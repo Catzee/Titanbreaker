@@ -279,6 +279,7 @@
 		"talent161"								"Killing Spree: Whenever a Boss gets killed, gain 100 Agility and 5% Movement Speed for 20 / 40 / 60 secs, with multiple instances of this buff stacking."
 		"talent162"								"Phantom Shade: After casting your 4th Ability, reduce all Damage taken by 75% for 2 / 3 / 4 secs, with an inner cooldown of 30 secs."
 
+		"talent163"								"Test Talent: Just test git."
 
 		// jungle troll
 		//"talent163"								"Dual Axes: Dealing Ability Damage is increased by x when your previous Ability Damage was caused by a different Ability."
