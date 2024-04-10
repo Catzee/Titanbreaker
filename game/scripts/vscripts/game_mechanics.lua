@@ -1132,8 +1132,8 @@ function DamageUnit( event )
 	    	eledmg_bonus = eledmg_bonus + 150
 	    end
         local wind5 = caster:FindAbilityByName("wind5")
-        if wind5 and wind5:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed() > 0 then
-            eledmg_bonus = eledmg_bonus + 100 * caster:GetIncreasedAttackSpeed()
+        if wind5 and wind5:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
+            eledmg_bonus = eledmg_bonus + 100 * caster:GetIncreasedAttackSpeed(false)
         end
         if caster:HasModifier("modifier_pathbuff_062") then
             eledmg_bonus = eledmg_bonus + 400
@@ -3327,7 +3327,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
     end
     if event.naturedmg and caster.woz and caster.woz > 0 then
-        value = value + 0.01 * caster:GetIncreasedAttackSpeed() * caster.woz
+        value = value + 0.01 * caster:GetIncreasedAttackSpeed(false) * caster.woz
     end
     if event.chaosdmg and caster.und and caster.und > 0 then
         value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
@@ -4486,8 +4486,8 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     if event.isdot then
         local brawler3 = caster:FindAbilityByName("Concussive_Blow")
-        if brawler3 and brawler3:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed() > 0 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster:GetIncreasedAttackSpeed())
+        if brawler3 and brawler3:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster:GetIncreasedAttackSpeed(false))
         end
     end
     if caster.consecutive_crits and caster.consecutive_crits >= 2 then --we had 2 previous crits, this is the 3rd crit
@@ -5392,7 +5392,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     local fury_as_abil = caster:FindAbilityByName("fury2")
     if fury_as_abil and fury_as_abil:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetIncreasedAttackSpeed())
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetIncreasedAttackSpeed(false))
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
@@ -10071,7 +10071,7 @@ function PetSystem( event )
 
         --as system
         if event.astransfer then
-            local stackcount = target:GetIncreasedAttackSpeed() * event.astransfer
+            local stackcount = target:GetIncreasedAttackSpeed(false) * event.astransfer
             if stackcount > 250 then
                 stackcount = 250
             end
@@ -14295,7 +14295,7 @@ function GlobalOnAbilityExecuted( event )
                 end)
             end
         end
-        if caster.talents[104] and caster.talents[104] > 0 and caster:GetIncreasedAttackSpeed() <= (8.5 + 0.5 * caster.talents[104]) then
+        if caster.talents[104] and caster.talents[104] > 0 and caster:GetIncreasedAttackSpeed(false) <= (8.5 + 0.5 * caster.talents[104]) then
             local bonus = 10 + 5 * caster.talents[104]
             local duration = 5
             local cap = 450 + 50 * caster.talents[104]
@@ -27086,7 +27086,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         healing_bonus = healing_bonus + 0.01 * GetNetherfusionStat(caster)
     end
     if GetSwiftMendingStat(caster) >= 1 then
-        local bonusAS = caster:GetIncreasedAttackSpeed() - 1
+        local bonusAS = caster:GetIncreasedAttackSpeed(false) - 1
         if bonusAS > 0 then
             healing_bonus = healing_bonus + 0.01 * GetSwiftMendingStat(caster) * bonusAS
         end
