@@ -1,0 +1,67 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nInitialParticles = 1
+	m_flConstantRadius = 79.600500
+	m_flConstantLifespan = 2.000000
+	m_vControlPoint1DefaultOffsetRelativeToControlPoint0 =
+	[
+		0.000000,
+		0.000000,
+		2.000000,
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = 2
+			m_flFinalTextureScaleV = 8.000000
+			m_flCenterYOffset = -1.000000
+			m_flAnimationRate = 0.500000
+			m_flSelfIllumAmount = 1.000000
+			m_hTexture = resource:"materials/particle/castbar/castbar.vtex"
+			m_bFitCycleToLifetime = true
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_CreateInEpitrochoid"
+			m_flRadius1 = 1.000000
+			m_flRadius2 = 1.000000
+			m_flOffset = 1.000000
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin =
+			[
+				0.000000,
+				-85.000000,
+				45.000000,
+			]
+			m_OffsetMax =
+			[
+				0.000000,
+				-85.000000,
+				45.000000,
+			]
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 0
+		},
+	]
+	m_flConstantRotation = 1.570000
+}

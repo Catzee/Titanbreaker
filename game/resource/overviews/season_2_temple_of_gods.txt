@@ -1,0 +1,8 @@
+season_2_temple_of_gods
+{
+	material materials/overviews/season_2_temple_of_gods.vmat
+	pos_x -16384
+	pos_y 16384
+	scale 32.000
+}
+

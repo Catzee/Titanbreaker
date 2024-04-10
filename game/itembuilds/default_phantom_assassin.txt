@@ -1,0 +1,38 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_phantom_assassin"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootscrit"
+			"item"		"item_agi2"
+			
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_weapon10"
+			"item"		"item_weapon8"
+			"item"		"item_nightblade"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_endgame10"	
+			"item"		"item_weapon14"		
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{	
+			"item"		"item_devilsoul"
+			"item"		"item_stunitem2"
+			"item"		"item_activerogue"
+			"item"		"item_activerogue3"
+			"item"		"item_irontalon2"
+		}
+	}
+}

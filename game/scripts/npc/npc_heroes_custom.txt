@@ -1,0 +1,3553 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	"npc_dota_hero_riki"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_riki"
+		"AbilityLayout"     "6"
+		"Ability1"					"hawk1"
+		"Ability2"					"hawk2"
+		"Ability3"					"hawk3"
+		"Ability4"					"hawk4"
+		"Ability5"					"hawk7"
+		"Ability6"					"hawk6"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_agility_20"
+		"Ability12"		"special_bonus_evasion_20"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_cooldown_reduction_10"
+		"Ability15"		"special_bonus_magic_resistance_10"
+		"Ability16"		"special_bonus_mp_regen_2"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "2.85"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "19"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "26"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_ursa"
+	{
+		"DisableWearables"		"1"
+		"override_hero"				"npc_dota_hero_ursa"
+		"Model"						"models/heroes/lone_druid/true_form.vmdl"
+		"AbilityLayout"     "6"
+		"Ability1"					"bear1"
+		"Ability2"					"bear2"
+		"Ability3"					"bear3"
+		"Ability4"					"bear4"
+		"Ability5"					"bear5"
+		"Ability6"					"bear6"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_magic_resistance_10"
+		"Ability13"		"special_bonus_agility_20"
+		"Ability14"		"special_bonus_cooldown_reduction_10"
+		"Ability15"		"special_bonus_hp_100"
+		"Ability16"		"special_bonus_armor_12"
+		"Ability17"		"special_bonus_strength_25"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "30"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "10"            // Base agility
+		"AttributeAgilityGain"         "1.5"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_furion"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_furion"
+		"AbilityLayout"     "6"
+		"Ability1"					"Lifebloom"
+		"Ability2"					"Regrowth"
+		"Ability3"					"Restoration" 
+		"Ability4"					"RootsDruid" 
+		"Ability5"					"CycloneDruid"
+		"Ability6"					"Shapeshift"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_20"
+		"Ability12"		"special_bonus_magic_resistance_35"
+		"Ability13"		"special_bonus_mp_regen_10"
+		"Ability14"		"special_bonus_cooldown_reduction_10"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_lifesteal_10"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+
+		"ModelScale"				"0.8"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_witch_doctor"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_witch_doctor"
+		"AbilityLayout"     "6"
+		"Ability1"					"resto1"
+		"Ability2"					"resto2"
+		"Ability3"					"resto3"
+		"Ability4"					"resto4"
+		"Ability5"					"resto5"
+		"Ability6"					"resto6"
+
+		"Ability10"		"special_bonus_movement_speed_15"
+		"Ability11"		"special_bonus_intelligence_30"
+		"Ability12"		"special_bonus_cast_range_150"
+		"Ability13"		"special_bonus_lifesteal_10"
+		"Ability14"		"special_bonus_cooldown_reduction_10"
+		"Ability15"		"special_bonus_intelligence_35"
+		"Ability16"		"special_bonus_magic_resistance_35"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+
+		"ModelScale"				"0.9"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "12"
+		"MagicalResistance"            "10"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_BADGUYS"
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_oracle"
+	{
+		//"DisableWearables"		"1"
+		"override_hero"				"npc_dota_hero_oracle"
+		"AbilityLayout"     "6"
+		"Ability1"					"holy1"
+		"Ability2"					"holy2"
+		"Ability3"					"holy3"
+		"Ability4"					"holy4"
+		"Ability5"					"holy55"
+		"Ability6"					"holy6"
+
+		"Ability10"		"special_bonus_movement_speed_35"
+		"Ability11"		"special_bonus_intelligence_20"
+		"Ability12"		"special_bonus_armor_6"
+		"Ability13"		"special_bonus_magic_resistance_15"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_lifesteal_10"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		"ModelScale"				"0.78"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+	"npc_dota_hero_keeper_of_the_light"
+	{
+		//"DisableWearables"		"1"
+		"override_hero"				"npc_dota_hero_keeper_of_the_light"
+		"AbilityLayout"     "6"
+		"Ability1"					"keeper1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_35"
+		"Ability11"		"special_bonus_intelligence_20"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_magic_resistance_15"
+		"Ability14"		"special_bonus_armor_8"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_hp_100"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		"ModelScale"				"0.9"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_warlock"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_warlock"
+		"AbilityLayout"     "6"
+		"Ability1"					"Agony"
+		"Ability2"					"Pain_Warlock"
+		"Ability3"					"Agony2" 
+		"Ability4"					"dark_ranger_life_drain" 
+		"Ability5"					"Fear_Warlock"
+		"Ability6"					"Felhunter"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_25"
+		"Ability12"		"special_bonus_day_vision_400"
+		"Ability13"		"special_bonus_armor_6"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_25"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "15"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_pugna"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_pugna"
+		"AbilityLayout"     "6"
+		"Ability1"					"destro1"
+		"Ability2"					"destro2"
+		"Ability3"					"destro3"
+		"Ability4"					"destro4"
+		"Ability5"					"Shadowfury"
+		"Ability6"					"destro6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_30"
+		"Ability12"		"special_bonus_armor_5"
+		"Ability13"		"special_bonus_cooldown_reduction_10"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_20"
+		"Ability17"		"special_bonus_spell_amplify_6"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "19"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "26"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "15"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_grimstroke"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_grimstroke"
+		"AbilityLayout"     "6"
+		"Ability1"					"demo1"
+		"Ability2"					"demo2"
+		"Ability3"					"demo3"
+		"Ability4"					"demo4"
+		"Ability5"					"demo5"
+		"Ability6"					"demo6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_30"
+		"Ability12"		"special_bonus_armor_6"
+		"Ability13"		"special_bonus_day_vision_400"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_20"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+		"ModelScale"				"0.66"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "22"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "23"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "15"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_lion"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_lion"
+		"AbilityLayout"     "6"
+		"Ability1"					"witcher1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_day_vision_400"
+		"Ability12"		"special_bonus_intelligence_30"
+		"Ability13"		"special_bonus_cast_range_150"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_armor_12"
+		"Ability16"		"special_bonus_magic_resistance_20"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+		"ModelScale"				"0.66"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "15"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_skeleton_king"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_skeleton_king"
+		"AbilityLayout"     "6"
+		"Ability1"					"Corrupting_Strike"
+		"Ability2"					"Rot"
+		"Ability3"					"Infested_Wound"
+		"Ability4"					"Death_For_Life"
+		"Ability5"					"Deafening_Coil"
+		"Ability6"					"Fatal_Grasp"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_attack_speed_50"
+		"Ability12"		"special_bonus_hp_700"
+		"Ability13"		"special_bonus_armor_6"
+		"Ability14"		"special_bonus_evasion_15"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_magic_resistance_25"
+		"Ability17"		"special_bonus_strength_25"
+
+		"UnitLabel"         "hero"
+
+
+		"ModelScale"				"0.9"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "25"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "20"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "45"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_sven"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_sven"
+		"AbilityLayout"     "6"
+		"Ability1"					"frostdk1"
+		"Ability2"					"frostdk2"
+		"Ability3"					"frostdk3"
+		"Ability4"					"frostdk4"
+		"Ability5"					"frostdk5"
+		"Ability6"					"frostdk6"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_armor_12"
+		"Ability13"		"special_bonus_agility_40"
+		"Ability14"		"special_bonus_vision_200"
+		"Ability15"		"special_bonus_attack_speed_100"
+		"Ability16"		"special_bonus_strength_25"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+		"UnitLabel"         "hero"
+
+
+		"ModelScale"				"0.9"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "26"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "19"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "45"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_abaddon"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_abaddon"
+		"AbilityLayout"     "6"
+		"Ability1"					"templedk1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_armor_8"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_hp_100"
+		"Ability16"		"special_bonus_strength_25"
+		"Ability17"		"special_bonus_attack_speed_100"
+
+		"UnitLabel"         "hero"
+
+
+		"ModelScale"				"0.85"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "26"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "19"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "45"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_pudge"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_pudge"
+		"AbilityLayout"     "6"
+		"Ability1"					"unholy_1"
+		"Ability2"					"unholy_2"
+		"Ability3"					"unholy_3"
+		"Ability4"					"unholy_5"
+		"Ability5"					"unholy_4"
+		"Ability6"					"unholy_6"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_strength_15"
+		"Ability12"		"special_bonus_day_vision_400"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_attack_speed_100"
+		"Ability16"		"special_bonus_armor_12"
+		"Ability17"		"special_bonus_mp_regen_2"
+
+		"UnitLabel"         "hero"
+
+
+		"ModelScale"				"0.9"
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "26"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "19"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "45"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_GOODGUYS"
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_phantom_assassin"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_phantom_assassin"
+		"AbilityLayout"     "6"
+		"Ability1"					"Dagger_Strike"
+		"Ability2"					"Numbing_Cut"
+		"Ability3"					"Fatal_Throw" 
+		"Ability4"					"Ambush" 
+		"Ability5"					"Shadow_Blend"
+		"Ability6"					"Shadow_Walk"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_agility_30"
+		"Ability12"		"special_bonus_magic_resistance_10"
+		"Ability13"		"special_bonus_day_vision_400"
+		"Ability14"		"special_bonus_mp_regen_2"
+		"Ability15"		"special_bonus_hp_100"
+		"Ability16"		"special_bonus_mp_125"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "2.85"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}	
+
+	"npc_dota_hero_slark"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_slark"
+		"AbilityLayout"     "6"
+		"Ability1"					"rogue1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_agility_30"
+		"Ability12"		"special_bonus_magic_resistance_12"
+		"Ability13"		"special_bonus_hp_regen_4"
+		"Ability14"		"special_bonus_agility_40"
+		"Ability15"		"special_bonus_attack_speed_100"
+		"Ability16"		"special_bonus_vision_200"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "2.85"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_antimage"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_antimage"
+		"AbilityLayout"     "6"
+		"Ability1"					"dh1"
+		"Ability2"					"dh2"
+		"Ability3"					"dh4"
+		"Ability4"					"dh3" 
+		"Ability5"					"dh5"
+		"Ability6"					"dh6"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_agility_25"
+		"Ability12"		"special_bonus_evasion_25"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_vision_200"
+		"Ability15"		"special_bonus_magic_resistance_10"
+		"Ability16"		"special_bonus_mp_regen_2"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "290"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_templar_assassin"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_templar_assassin"
+		"AbilityLayout"     "6"
+		"Ability1"					"spectre1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_cooldown_reduction_10"
+		"Ability12"		"special_bonus_hp_100"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_strength_25"
+		"Ability15"		"special_bonus_magic_resistance_10"
+		"Ability16"		"special_bonus_mp_regen_2"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "290"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_terrorblade"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_terrorblade"
+		"AbilityLayout"     "6"
+		"Ability1"					"terror1"
+		"Ability2"					"terror2"
+		"Ability3"					"terror3"
+		"Ability4"					"terror4" 
+		"Ability5"					"terror5"
+		"Ability6"					"terror6"
+
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_evasion_25"
+		"Ability13"		"special_bonus_hp_100"
+		"Ability14"		"special_bonus_attack_speed_100"
+		"Ability15"		"special_bonus_magic_resistance_10"
+		"Ability16"		"special_bonus_lifesteal_10"
+		"Ability17"		"special_bonus_strength_25"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "290"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "23"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "22"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_bounty_hunter"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_bounty_hunter"
+		"AbilityLayout"     "6"
+		"Ability1"					"combat1"
+		"Ability2"					"combat3"
+		"Ability3"					"combat2" 
+		"Ability4"					"combat4" 
+		"Ability5"					"combat5"
+		"Ability6"					"combat6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_attack_speed_50"
+		"Ability12"		"special_bonus_respawn_reduction_15"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_day_vision_400"
+		"Ability15"		"special_bonus_magic_resistance_15"
+		"Ability16"		"special_bonus_mp_regen_2"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "2.85"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "24"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}	
+	"npc_dota_hero_juggernaut"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_juggernaut"
+		"AbilityLayout"     "6"
+		"Ability1"					"deadly1"
+		"Ability2"					"deadly2"
+		"Ability3"					"deadly3"
+		"Ability4"					"deadly4"
+		"Ability5"					"deadly5"
+		"Ability6"					"deadly6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_agility_30"
+		"Ability12"		"special_bonus_magic_resistance_15"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_vision_200"
+		"Ability15"		"special_bonus_hp_regen_4"
+		"Ability16"		"special_bonus_agility_40"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "24"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "125"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}	
+	"npc_dota_hero_axe"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_axe"
+		"AbilityLayout"     "6"
+		"Ability1"					"Wounding_Strike"
+		"Ability2"					"Mortal_Swing"
+		"Ability3"					"Concussive_Blow" 
+		"Ability4"					"Knee_Breaker" 
+		"Ability5"					"Sword_Storm"
+		"Ability6"					"Switch_Battle_Stance"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_day_vision_400"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_armor_10"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_magic_resistance_20"
+		"Ability17"		"special_bonus_strength_25"
+
+		"ModelScale"				"0.94"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "25"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "20"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_BADGUYS"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_beastmaster"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_beastmaster"
+		"AbilityLayout"     "6"
+		"Ability1"					"fury1"
+		"Ability2"					"fury2"
+		"Ability3"					"fury3"
+		"Ability4"					"fury4"
+		"Ability5"					"fury5"
+		"Ability6"					"fury6"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_attack_speed_50"
+		"Ability12"		"special_bonus_armor_8"
+		"Ability13"		"special_bonus_mp_regen_2"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_vision_200"
+		"Ability16"		"special_bonus_hp_100"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "24"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "21"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}		
+
+	"npc_dota_hero_dragon_knight"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_dragon_knight"
+		"AbilityLayout"     "6"
+		"Ability1"					"Protect1"
+		"Ability2"					"Protect2"
+		"Ability3"					"Protect3" 
+		"Ability4"					"Protect4" 
+		"Ability5"					"Protect5"
+		"Ability6"					"Switch_Battle_Stance_Prot"
+		//"Ability7"					"warrior_2"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_hp_700"
+		"Ability13"		"special_bonus_evasion_10"
+		"Ability14"		"special_bonus_magic_resistance_15"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_armor_15"
+		"Ability17"		"special_bonus_strength_25"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "26"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "19"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}	
+	"npc_dota_hero_mars"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_mars"
+		"AbilityLayout"     "6"
+		"Ability1"					"mars1"
+		"Ability2"					"mars2"
+		"Ability3"					"mars3" 
+		"Ability4"					"mars4" 
+		"Ability5"					"mars5"
+		"Ability6"					"mars6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_hp_700"
+		"Ability13"		"special_bonus_evasion_25"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_armor_15"
+		"Ability17"		"special_bonus_strength_25"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "26"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "19"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}	
+	"npc_dota_hero_omniknight"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_omniknight"
+		"AbilityLayout"     "6"
+		"Ability1"					"Divine_Light"
+		"Ability2"					"Holy_Judgement"
+		"Ability3"					"Exorcism" 
+		"Ability4"					"Prayer_Of_Protection" 
+		"Ability5"					"Guardian"
+		"Ability6"					"Holy_Shield"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_cooldown_reduction_10"
+		"Ability12"		"special_bonus_lifesteal_10"
+		"Ability13"		"special_bonus_armor_15"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_phantom_lancer"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_phantom_lancer"
+		//"Model"						""
+		"ModelScale"				"0.85"
+		"AbilityLayout"     "6"
+		"Ability1"					"pala1"
+		"Ability2"					"pala2"
+		"Ability3"					"pala3" 
+		"Ability4"					"pala4" 
+		"Ability5"					"pala5"
+		"Ability6"					"pala6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_attack_speed_100"
+		"Ability13"		"special_bonus_magic_resistance_10"
+		"Ability14"		"special_bonus_armor_8"
+		"Ability15"		"special_bonus_hp_100"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_evasion_20"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "25"            // Base strength
+		"AttributeStrengthGain"        "1.75"            // Strength bonus per level.
+		"AttributeBaseAgility"         "15"            // Base agility
+		"AttributeAgilityGain"         "0.5"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "15"            // Base intelligence
+		"AttributeIntelligenceGain"    "0.5"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_shadow_shaman"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_shadow_shaman"
+		"AbilityLayout"     "6"
+		"Ability1"					"Lightning_Bolt"
+		"Ability2"					"Spirit_Heal"
+		"Ability3"					"Spirit_Shock" 
+		"Ability4"					"Lavaburst" 
+		"Ability5"					"serpent_twins"
+		"Ability6"					"Lightning_Storm"
+
+		"Ability10"		"special_bonus_armor_5"
+		"Ability11"		"special_bonus_spell_amplify_5"
+		"Ability12"		"special_bonus_magic_resistance_10"
+		"Ability13"		"special_bonus_respawn_reduction_15"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_movement_speed_50"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "24"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "12"
+		"MagicalResistance"            "10"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_disruptor"
+	{
+		"override_hero"				"npc_dota_hero_disruptor"
+		"AbilityLayout"     "6"
+		"Ability1"					"Spirit_Heal"
+		"Ability2"					"Lightning_Bolt"
+		"Ability3"					"Spirit_Shock" 
+		"Ability4"					"Lavaburst" 
+		"Ability5"					"serpent_twins"
+		"Ability6"					"Lightning_Storm"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "270"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "24"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_crystal_maiden"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_crystal_maiden"
+		"AbilityLayout"     "6"
+		"Ability1"					"Ice_Bolt"
+		"Ability2"					"Frost_Shatter"
+		"Ability3"					"Ice_Nova" 
+		"Ability4"					"Ice_Armor" 
+		"Ability5"					"Polymorph"
+		"Ability6"					"Waterelemental"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_armor_12"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_vision_200"
+		"Ability14"		"special_bonus_spell_amplify_10"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_25"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_vengefulspirit"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_vengefulspirit"
+		"AbilityLayout"     "6"
+		"Ability1"					"moon11"
+		"Ability2"					"moon3"
+		"Ability3"					"moon2"
+		"Ability4"					"moon4" 
+		"Ability5"					"moon5"
+		"Ability6"					"moon6"
+
+		"Ability10"		"special_bonus_movement_speed_20"
+		"Ability11"		"special_bonus_intelligence_30"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_day_vision_400"
+		"Ability14"		"special_bonus_intelligence_35"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_25"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+		"ModelScale"				"0.9"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_enchantress"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_enchantress"
+		"AbilityLayout"     "6"
+		"Ability1"					"ench1"
+		"Ability2"					"ench2"
+		"Ability3"					"ench3"
+		"Ability4"					"ench4"
+		"Ability5"					"ench5"
+		"Ability6"					"ench6"
+
+		"Ability10"		"special_bonus_movement_speed_15"
+		"Ability11"		"special_bonus_magic_resistance_10"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_armor_8"
+		"Ability14"		"special_bonus_lifesteal_10"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_hp_100"
+		"Ability17"		"special_bonus_all_stats_20"
+
+		"UnitLabel"         "hero"
+		"ModelScale"				"0.8"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	"npc_dota_hero_lina"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_lina"
+		"AbilityLayout"     "6"
+		"Ability1"					"Magma_Bolt"
+		"Ability2"					"Fire_Lance"
+		"Ability3"					"Molten_Lava" 
+		"Ability4"					"Dragon_Claw" 
+		"Ability5"					"Polymorph"
+		"Ability6"					"fire6"
+		//"Ability7"					"mage_1"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_25"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_armor_8"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_magic_resistance_20"
+		"Ability17"		"special_bonus_spell_amplify_10"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_invoker"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_invoker"
+		"AbilityLayout"     "6"
+		"Ability1"					"Arcane1"
+		"Ability2"					"Arcane2"
+		"Ability3"					"Arcane3" 
+		"Ability4"					"Arcane4"
+		"Ability5"					"Arcane7"
+		"Ability6"					"Arcane6"
+		"Ability7"					"combat_system"
+
+		//"Ability10"		"special_bonus_unique_invoker_1" //"special_bonus_movement_speed_25"
+		//"Ability11"		"special_bonus_unique_invoker_2" //"special_bonus_all_stats_15"
+		//"Ability12"		"special_bonus_unique_invoker_3" //"special_bonus_spell_amplify_5"
+		//"Ability13"		"special_bonus_unique_invoker_4" //"special_bonus_cast_range_150"
+		//"Ability14"		"special_bonus_unique_invoker_5" //"special_bonus_mp_400"
+		//"Ability15"		"special_bonus_cooldown_reduction_10"
+		//"Ability16"		"special_bonus_unique_invoker_2"	//"special_bonus_magic_resistance_35"
+		//"Ability17"		"special_bonus_unique_invoker_4"	//"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "18"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "27"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_silencer"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_silencer"
+		"AbilityLayout"     "6"
+		"Ability1"					"Light_of_Heaven"
+		"Ability2"					"sacred_shield"
+		"Ability3"					"Dark_Light2"
+		"Ability4"					"disc7" 
+		"Ability5"					"Shadow_Creeper"
+		"Ability6"					"Fear_of_Dark"
+
+		"Ability10"		"special_bonus_movement_speed_35"
+		"Ability11"		"special_bonus_intelligence_20"
+		"Ability12"		"special_bonus_cast_range_150"
+		"Ability13"		"special_bonus_magic_resistance_25"
+		"Ability14"		"special_bonus_armor_12"
+		"Ability15"		"special_bonus_lifesteal_10"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_cooldown_reduction_10"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "19"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "26"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "15"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_dark_seer"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_dark_seer"
+		"AbilityLayout"     "6"
+		"Ability1"					"shadow1"
+		"Ability2"					"shadow11"
+		"Ability3"					"shadow33"
+		"Ability4"					"shadow3"
+		"Ability5"					"shadow5"
+		"Ability6"					"shadow6"
+
+		"Ability10"		"special_bonus_movement_speed_35"
+		"Ability11"		"special_bonus_intelligence_20"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_magic_resistance_15"
+		"Ability14"		"special_bonus_armor_8"
+		"Ability15"		"special_bonus_spell_amplify_10"
+		"Ability16"		"special_bonus_vision_200"
+		"Ability17"		"special_bonus_intelligence_35"
+
+		"UnitLabel"         "hero"
+
+		"ModelScale"				"0.89"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"750"			// Speed of projectile.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "24"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "15"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+	
+
+	"npc_dota_hero_drow_ranger"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_drow_ranger"
+		"AbilityLayout"     "6"
+		"Ability1"					"Focussed_Shot"
+		"Ability2"					"Icy_Shot"
+		"Ability3"					"Inspiring_Shot" 
+		"Ability4"					"Mindfreezing_Shot" 
+		"Ability5"					"frost_lake"
+		"Ability6"					"glacier_crack_spell"
+		
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_agility_25"
+		"Ability12"		"special_bonus_mp_regen_2"
+		"Ability13"		"special_bonus_attack_range_150"
+		"Ability14"		"special_bonus_magic_resistance_15"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_vision_200"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.75"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_clinkz"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_clinkz"
+		"AbilityLayout"     "6"
+		"Ability1"					"clinkz1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+		
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_agility_25"
+		"Ability12"		"special_bonus_magic_resistance_15"
+		"Ability13"		"special_bonus_mp_125"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_attack_damage_55"
+		"Ability17"		"special_bonus_vision_200"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "25"            // Base agility
+		"AttributeAgilityGain"         "1.75"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_elder_titan"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_elder_titan"
+		"ModelScale"				"0.6"
+		"AbilityLayout"     "6"
+		"Ability1"					"shaman1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+		
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_25"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_cast_range_150"
+		"Ability14"		"special_bonus_lifesteal_10"
+		"Ability15"		"special_bonus_armor_10"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_magic_resistance_35"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.25"            // Intelligence bonus per level.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"750"			// Speed of projectile.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "12"
+		"MagicalResistance"            "10"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_bristleback"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_bristleback"
+		"AbilityLayout"     "6"
+		"Ability1"					"warrior1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_cooldown_reduction_10"
+		"Ability13"		"special_bonus_hp_regen_4"
+		"Ability14"		"special_bonus_magic_resistance_15"
+		"Ability15"		"special_bonus_mp_125"
+		"Ability16"		"special_bonus_attack_damage_55"
+		"Ability17"		"special_bonus_strength_25"
+
+		"ModelScale"				"0.94"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "25"            // Base strength
+		"AttributeStrengthGain"        "1.25"            // Strength bonus per level.
+		"AttributeBaseAgility"         "20"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"TeamName"          "DOTA_TEAM_BADGUYS"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_ogre_magi"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_ogre_magi"
+		"AbilityLayout"     "6"
+		"Ability1"					"mage1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+		
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_intelligence_25"
+		"Ability12"		"special_bonus_armor_10"
+		"Ability13"		"special_bonus_cast_range_150"
+		"Ability14"		"special_bonus_intelligence_35"
+		"Ability15"		"special_bonus_cooldown_reduction_10"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_magic_resistance_30"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.5"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttributePrimary"             "DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "5"            // Base agility
+		"AttributeAgilityGain"         "0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "25"            // Base intelligence
+		"AttributeIntelligenceGain"    "1.75"            // Intelligence bonus per level.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"750"			// Speed of projectile.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_mirana"
+	{
+		"override_hero"				"npc_dota_hero_mirana"
+		"AbilityLayout"     "6"
+		"Ability1"					"Focussed_Shot"
+		"Ability2"					"Icy_Shot"
+		"Ability3"					"Inspiring_Shot" 
+		"Ability4"					"Mindfreezing_Shot" 
+		"Ability5"					"frost_lake"
+		"Ability6"					"glacier_crack_spell"
+
+		"UnitLabel"         "hero"
+		"ModelScale"				"1.1"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "290"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "25"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "35"            // Base agility
+		"AttributeAgilityGain"         "1.25"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}	
+
+	"npc_dota_hero_windrunner"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_windrunner"
+		"AbilityLayout"     "6"
+		"Ability1"					"wind1"
+		"Ability2"					"wind2"
+		"Ability3"					"wind3"
+		"Ability4"					"wind4"
+		"Ability5"					"wind5"
+		"Ability6"					"wind7"
+
+		"Ability10"		"special_bonus_magic_resistance_15"
+		"Ability11"		"special_bonus_agility_25"
+		"Ability12"		"special_bonus_respawn_reduction_15"
+		"Ability13"		"special_bonus_attack_range_150"
+		"Ability14"		"special_bonus_movement_speed_35"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_attack_damage_55"
+		"Ability17"		"special_bonus_agility_40"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"850"		// Range within a target can be acquired.
+		"AttackRange"				"700"
+
+		"ProjectileSpeed"			"800"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "19"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "26"            // Base agility
+		"AttributeAgilityGain"         "1.75"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}	
+
+	"npc_dota_hero_sniper"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_sniper"
+		"AbilityLayout"     "6"
+
+
+		"Ability1"					"beast1"
+		"Ability2"					"Hunter_Assassinate"
+		"Ability3"					"Snipe" 
+		"Ability4"					"Beastrage" 
+		"Ability5"					"Beastheal"
+		"Ability6"					"Bear"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_attack_speed_50"
+		"Ability12"		"special_bonus_magic_resistance_10"
+		"Ability13"		"special_bonus_attack_range_150"
+		"Ability14"		"special_bonus_agility_40"
+		"Ability15"		"special_bonus_cast_range_150"
+		"Ability16"		"special_bonus_vision_200"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"600"
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "21"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "24"            // Base agility
+		"AttributeAgilityGain"         "1.75"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "0"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}	
+
+	"npc_dota_hero_dazzle"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_dazzle"
+		"AbilityLayout"     "6"
+		"Ability1"					"Feral2"
+		"Ability2"					"Feral3"
+		"Ability3"					"Feral4" 
+		"Ability4"					"Feral1" 
+		"Ability5"					"Feral5"
+		"Ability6"					"ShapeshiftFeral"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_all_stats_15"
+		"Ability12"		"special_bonus_armor_10"
+		"Ability13"		"special_bonus_agility_40"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_magic_resistance_15"
+		"Ability17"		"special_bonus_all_stats_20"
+
+
+		"ModelScale"				"0.80"
+
+		//"AnimationPlaybackRate"		"0.3"
+
+		//"Model"						"models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"100"
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "19"            // Base strength
+		"AttributeStrengthGain"        "1.5"            // Strength bonus per level.
+		"AttributeBaseAgility"         "23"            // Base agility
+		"AttributeAgilityGain"         "1.5"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "16"            // Base intelligence
+		"AttributeIntelligenceGain"    "0.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_bloodseeker"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_bloodseeker"
+		"AbilityLayout"     "6"
+		"Ability1"					"Ghost1"
+		"Ability2"					"Ghost2"
+		"Ability3"					"Ghost3"
+		"Ability4"					"Ghost5"
+		"Ability5"					"Ghost4"
+		"Ability6"					"Ghost6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_agility_25"
+		"Ability12"		"special_bonus_strength_20"
+		"Ability13"		"special_bonus_magic_resistance_10"
+		"Ability14"		"special_bonus_vision_200"
+		"Ability15"		"special_bonus_respawn_reduction_15"
+		"Ability16"		"special_bonus_attack_damage_55"
+		"Ability17"		"special_bonus_all_stats_20"
+
+
+		"ModelScale"				"1.00"
+
+		//"AnimationPlaybackRate"		"0.3"
+
+		//"Model"						"models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"100"
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"        "20"            // Base strength
+		"AttributeStrengthGain"        "1"            // Strength bonus per level.
+		"AttributeBaseAgility"         "21"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "20"            // Base intelligence
+		"AttributeIntelligenceGain"    "1"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "2" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "12"
+		"MagicalResistance"            "40"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
+	}
+
+	"npc_dota_hero_legion_commander"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_legion_commander"
+		"AbilityLayout"     "6"
+		"Ability1"					"Retri1"
+		"Ability2"					"Retri2"
+		"Ability3"					"Retri3"
+		"Ability4"					"Retri4"
+		"Ability5"					"Retri5"
+		"Ability6"					"Retri6"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_vision_200"
+		"Ability13"		"special_bonus_evasion_10"
+		"Ability14"		"special_bonus_armor_15" //"special_bonus_gold_income_5"
+		"Ability15"		"special_bonus_attack_speed_100"
+		"Ability16"		"special_bonus_agility_40"
+		"Ability17"		"special_bonus_attack_damage_55"
+
+
+		"ModelScale"				"1.00"
+
+		//"AnimationPlaybackRate"		"0.3"
+
+		//"Model"						"models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"100"
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "24"            // Base strength
+		"AttributeStrengthGain"        "1.75"            // Strength bonus per level.
+		"AttributeBaseAgility"         "17"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "20"            // Base intelligence
+		"AttributeIntelligenceGain"    "0.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+
+	"npc_dota_hero_chen"
+	{
+		"DisableWearables"  "0"
+		"override_hero"				"npc_dota_hero_chen"
+		"AbilityLayout"     "6"
+		"Ability1"					"paladin1"
+		"Ability2"					"empty_spell1"
+		"Ability3"					"empty_spell2"
+		"Ability4"					"empty_spell3"
+		"Ability5"					"empty_spell4"
+		"Ability6"					"empty_spell5"
+
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_all_stats_15"
+		"Ability12"		"special_bonus_hp_700"
+		"Ability13"		"special_bonus_evasion_10"
+		"Ability14"		"special_bonus_magic_resistance_10"
+		"Ability15"		"special_bonus_attack_speed_100"
+		"Ability16"		"special_bonus_all_stats_20"
+		"Ability17"		"special_bonus_strength_25"
+
+
+		"ModelScale"				"0.90"
+
+		//"AnimationPlaybackRate"		"0.3"
+
+		//"Model"						"models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"100"
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "24"            // Base strength
+		"AttributeStrengthGain"        "1.75"            // Strength bonus per level.
+		"AttributeBaseAgility"         "17"            // Base agility
+		"AttributeAgilityGain"         "1"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "20"            // Base intelligence
+		"AttributeIntelligenceGain"    "0.5"            // Intelligence bonus per level.
+
+		"StatusMana"    "725"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "BAD"
+	}
+}

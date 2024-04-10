@@ -1,0 +1,51 @@
+"AddonInfo"
+{
+	"maps"			"titanbreaker"
+	"TeamCount" 	"2"
+  	"IsPlayable"  "1"
+
+	"titanbreaker"
+	{
+		"MaxPlayers"		"5"
+	}
+
+	"Default_Keys"
+    {
+        "01"
+        {
+            "Key"       "U"
+            "Command"   "+UPressed"
+            "Name"      "KeyPress"
+        }
+        "02"
+        {
+            "Key"       "O"
+            "Command"   "+OPressed"
+            "Name"      "KeyPress"
+        }
+        "03"
+        {
+            "Key"       "J"
+            "Command"   "+JPressed"
+            "Name"      "KeyPress"
+        }
+        "04"
+        {
+            "Key"       "L"
+            "Command"   "+LPressed"
+            "Name"      "KeyPress"
+        }
+        "05"
+        {
+            "Key"       "N"
+            "Command"   "+NPressed"
+            "Name"      "KeyPress"
+        }
+        "06"
+        {
+            "Key"       "K"
+            "Command"   "+KPressed"
+            "Name"      "KeyPress"
+        }
+    }
+}

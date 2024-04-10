@@ -1,0 +1,226 @@
+"dota_shops"
+{
+	
+
+	"attributes"
+	{
+		//"item"		"item_branches"
+
+		"item"		"item_str1"
+		"item"		"item_agi1"
+		"item"		"item_int1"	
+
+		"item"		"item_all1"
+
+		"item"		"item_str2"
+		"item"		"item_agi2"
+		"item"		"item_int2"
+
+		"item"		"item_str3"
+		"item"		"item_agi3"
+		"item"		"item_int3"
+	}
+
+	"weapons_armor"
+	{
+		"item"		"item_dmg1"
+		"item"		"item_dmg2"
+		"item"		"item_dmg3"
+		"item"		"item_armor1"
+		"item"		"item_armor2"
+		"item"		"item_armor3"
+		"item"		"item_magicres1"
+		"item"		"item_magicres2"
+		"item"		"item_magicres3"
+		//"item"		"item_shield1"
+
+		//"item"		"item_quelling_blade"
+		//"item"		"item_orb_of_venom"
+		//"item"		"item_stout_shield"
+		//"item"		"item_blades_of_attack"
+		//"item"		"item_chainmail"
+		//"item"		"item_helm_of_iron_will"
+		//"item"		"item_broadsword"
+		//"item"		"item_quarterstaff"
+		//"item"		"item_claymore"				
+		//"item"		"item_javelin"
+		//"item"		"item_mithril_hammer"	
+	}
+			
+	"misc"
+	{
+		//"item"		"item_magic_stick"
+		"item"		"item_hp1"
+		"item"		"item_hp2"
+		"item"		"item_mana1"
+		"item"		"item_mana2"
+		//"item"		"item_ward_dispenser"
+		"item"		"item_manareg1"
+		//"item"		"item_whip"
+		//"item"		"item_telescope"
+		"item"		"item_manareg2"
+			
+	}	
+	
+	"consumables"
+	{
+		//"item"		"item_clarity"
+		//"item"		"item_enchanted_mango"
+		//"item"		"item_tango"
+		//"item"		"item_flask"
+		//"item"		"item_smoke_of_deceit"
+		//"item"		"item_blinders"
+		//"item"		"item_tpscroll"
+		//"item"		"item_red_mist"
+		//"item"		"item_bounty_pact"
+		//"item"		"item_dust"
+		//"item"		"item_courier"
+		//"item"		"item_flying_courier"
+		//"item"		"item_ward_observer"
+		//"item"		"item_ward_sentry"
+		//"item"		"item_bottle"	
+
+		"item"		"item_boots1"
+		"item"		"item_gloves1"
+						
+	}
+
+	// Level 1 - Green Recipes
+	"basics"
+	{
+		"item"		"item_strrecipe"
+		"item"		"item_agirecipe"
+		"item"		"item_intrecipe"
+		"item"		"item_allrecipe"
+
+		"item"		"item_bootssas"
+		"item"		"item_bootscrit" 
+		"item"		"item_bootshp"
+		"item"		"item_bootsmana"
+		"item"		"item_bootsswift"
+
+		"item"		"item_aura1"
+		"item"		"item_aura2"
+		"item"		"item_aura3"
+
+		//"item"		"item_magic_wand"
+		
+		//"item"		"item_poor_mans_shield"
+		//"item"		"item_soul_ring"
+		//"item"		"item_phase_boots"
+		//"item"		"item_power_treads"
+		//"item"		"item_oblivion_staff"
+		//"item"		"item_pers"
+		//"item"		"item_hand_of_midas"
+		//"item"		"item_travel_boots"		
+		//"item"		"item_moon_shard"				
+	}
+
+	// Level 2 - Blue Recipes
+	"support"
+	{
+		
+		"item"		"item_weapon14"
+		"item"		"item_active9"
+		"item"		"item_active13"
+		"item"		"item_weapon40"
+		"item"		"item_weapon7up"
+		"item"		"item_allstats2up"
+		"item"		"item_active99"
+		"item"		"item_nightblade"
+		"item"		"item_headarmor1"
+		"item"		"item_bowupgrade"
+	}
+				
+	"magics"			
+	{
+		"item"		"item_caster2"
+		"item"		"item_caster3"
+		"item"		"item_caster1"
+		"item"		"item_caster4"
+		"item"		"item_caster5"
+		"item"		"item_caster6"
+		"item"		"item_caster7"
+		"item"		"item_active5"
+		"item"		"item_active6"
+		"item"		"item_active7"
+		"item"		"item_allrecipe4"
+		"item"		"item_caster55"
+		"item"		"item_holyhammer2"
+	}
+		
+	// Level 3 - Purple Recipes	
+	"defense"
+	{
+		"item"		"item_shield10"
+		"item"		"item_shield1"
+		"item"		"item_shield2"
+		"item"		"item_shield3"
+		"item"		"item_allstats3"
+		"item"		"item_allstats2"
+		"item"		"item_active1"
+		"item"		"item_active1up"
+		"item"		"item_active2"
+		"item"		"item_active2up"
+		"item"		"item_active3"
+		"item"		"item_active4"
+				
+
+	}
+			
+	"weapons"
+	{
+		"item"		"item_weapon7"
+		"item"		"item_weapon1"	
+		"item"		"item_weapon2"
+		"item"		"item_weapon8"
+		"item"		"item_weapon3"	
+		//"item"		"item_invis_sword"
+		"item"		"item_weapon4"
+		//"item"		"item_silver_edge"
+		"item"		"item_weapon5"
+		"item"		"item_weapon5up"
+		"item"		"item_weapon6"
+		"item"		"item_weapon9"
+		"item"		"item_weapon10"
+		"item"		"item_weapon11"
+		
+		
+	
+					
+	}
+		
+	// Level 4 - Orange / Orb / Artifacts				
+	"artifacts"
+	{	
+ 		//"item"		"item_venomous_shield"
+ 		"item"		"item_endgame1"	
+ 		"item"		"item_endgame2"	
+ 		"item"		"item_endgame3"	
+ 		"item"		"item_endgame6"	
+ 		"item"		"item_endgame7"	
+ 		"item"		"item_endgame8"	
+ 		"item"		"item_endgame9"	
+ 		"item"		"item_endgame10"	
+ 		"item"		"item_endgame4"	
+ 		"item"		"item_endgame5"	
+ 		"item"		"item_endgame12"	
+ 		"item"		"item_endgame13"
+ 		"item"		"item_endgame14"	
+	}
+
+	"sideshop1"
+	{
+		
+	}
+
+	"sideshop2"
+	{
+		
+	}
+	
+	"secretshop"
+	{							
+		//"item"		"item_endgame1"	
+	}	
+}

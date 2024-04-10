@@ -1,0 +1,8 @@
+tod_advanced_level_20_to_40
+{
+	material materials/overviews/tod_advanced_level_20_to_40.vmat
+	pos_x -16384
+	pos_y 16384
+	scale 32.000
+}
+

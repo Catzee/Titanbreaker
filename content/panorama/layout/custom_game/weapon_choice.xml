@@ -1,0 +1,38 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/arena_start_button.css" />
+		<include src="file://{resources}/styles/custom_game/overthrow_game_info.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/weapon_choice.js" />
+	</scripts>
+	<Panel class="WeaponChoice" hittest="false">
+		<Label class="RewardHeader" html="true" text="Choose a Weapon" />
+
+		<Panel  class="WeaponRow">
+			<Panel  class="SingleWeapon">
+				<Button class="WeaponButton" onactivate="ChooseWeapon(1)">	
+					<Label class="WeaponHeader" text="Crushing Hammer" />	
+					<Image class="WeaponImage" src="file://{images}/items/endgame1.png" />
+					<Label class="WeaponStats" text="+ 11% chance to crit for 200% with spells" />
+				</Button>
+			</Panel>
+			<Panel  class="SingleWeapon">
+				<Button class="WeaponButton" onactivate="ChooseWeapon(2)">	
+					<Label class="WeaponHeader" text="Storm Twins" />	
+					<Image class="WeaponImage" src="file://{images}/items/choice_sword_dual_ice.png" />
+					<Label class="WeaponStats" text="+ 10 attack speed" />
+				</Button>
+			</Panel>
+			<Panel  class="SingleWeapon">
+				<Button class="WeaponButton" onactivate="ChooseWeapon(3)">	
+					<Label class="WeaponHeader" text="Blade of Light" />	
+					<Image class="WeaponImage" src="file://{images}/items/lightbringer.png" />
+					<Label class="WeaponStats" text="+ 50% healing caused" />
+					<Label class="WeaponStats" text="+ 10 movement speed" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+
+</root>

@@ -1,0 +1,550 @@
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{
+	
+	"score_board"
+	{
+		"team_id"					"short"
+		"team_score"				"short"
+	}
+
+	"kills_counter"
+	{
+		"leading_team"				"short"
+		"kills_remaining"			"short"
+	}
+
+	"countdown_timer"
+	{
+		"timer_reminder"			"short"
+	}
+
+	"ready_button"
+	{
+		"player_id"					"short"
+	}
+
+	"toggle_stash"
+	{
+		"nr"					"short"
+	}
+	"toggle_stash_set_number"
+	{
+		"nr"					"string"
+	}
+
+	"gamemode_vote"
+	{
+		"player_id"					"short"
+		"mode_id"					"short"
+	}
+	"send_elo_result"
+	{
+		"winningteam"					"short"
+	}
+	"send_leaver_detected"
+	{
+		"code"					"short"
+	}
+	"feedelotogame"
+	{
+		"name"					"string"
+		"rating"				"string"
+		"wins"				"string"
+	}
+	"getseasonrewards"
+	{
+		"season"					"short"
+	}
+	"feedrewardstoluaserver"
+	{	
+		"season"					"short"
+		"playerids"					"string"
+	}
+	"savechar"
+	{
+		"hero"				"string"
+		"slot1"				"string"
+		"slot2"				"string"
+		"slot3"				"string"
+		"slot4"				"string"
+		"slot5"				"string"
+		"slot6"				"string"
+		"slot7"				"string"
+		"slot8"				"string"
+		"slot9"				"string"
+		"slot10"				"string"
+		"slot11"				"string"
+		"slot12"				"string"
+		"slot13"				"string"
+		"slot14"				"string"
+		"slot15"				"string"
+		"pn"				"string"
+		"playerid"			"string"
+		"exp"				"string"
+		"gold"				"string"
+		"kills"				"string"
+		"lives"				"string"
+		"mythic1"				"string"
+		"mythic1stat1"	"string"
+		"mythic1stat2"	"string"
+		"mythic1stat3"	"string"
+		"mythic2"		"string"
+		"mythic2stat1"	"string"
+		"mythic2stat2"	"string"
+		"mythic2stat3"	"string"
+		"mythic3"		"string"
+		"mythic3stat1"	"string"
+		"mythic3stat2"	"string"
+		"mythic3stat3"	"string"
+		"mythic4"		"string"
+		"mythic4stat1"	"string"
+		"mythic4stat2"	"string"
+		"mythic4stat3"	"string"
+		"mythic5"		"string"
+		"mythic5stat1"	"string"
+		"mythic5stat2"	"string"
+		"mythic5stat3"	"string"
+		"mythic6"		"string"
+		"mythic6stat1"	"string"
+		"mythic6stat2"	"string"
+		"mythic6stat3"	"string"
+		"mythic7"		"string"
+		"mythic7stat1"	"string"
+		"mythic7stat2"	"string"
+		"mythic7stat3"	"string"
+		"mythic8"		"string"
+		"mythic8stat1"	"string"
+		"mythic8stat2"	"string"
+		"mythic8stat3"	"string"
+		"pathpoints"	"string"
+		"hardcore"	"short"
+		"bestdps"					"long"
+		"bestheal"					"long"
+		"ability1"	"string"
+		"ability2"	"string"
+		"ability3"	"string"
+		"ability4"	"string"
+		"ability5"	"string"
+		"slot16"				"string"
+		"slot17"				"string"
+		"slot18"				"string"
+		"slot19"				"string"
+		"slot20"				"string"
+		"slot21"				"string"
+		"slot22"				"string"
+		"slot23"				"string"
+		"slot24"				"string"
+		"slot25"				"string"
+		"slot26"				"string"
+		"slot27"				"string"
+		"slot28"				"string"
+		"slot29"				"string"
+		"slot30"				"string"
+		"slot31"				"string"
+		"slot32"				"string"
+		"slot33"				"string"
+		"slot34"				"string"
+		"slot35"				"string"
+		"slot36"				"string"
+		"slot37"				"string"
+		"slot38"				"string"
+		"slot39"				"string"
+		"aggro"				"string"
+	}
+	"loadchar"
+	{
+		"hero"				"string"
+		"playerid"			"string"
+		"hardcore"			"short"
+	}
+	"loadchardata"
+	{
+		"data"				"string"
+	}
+	"weaponchoice"
+	{
+		"player_id"					"short"
+		"weapon"					"short"
+	}
+	"temple_difficulty_change"
+	{
+		"value"					"short"
+	}
+	"temple_difficulty_mode_change"
+	{
+		"value"					"short"
+	}
+	"temple_difficulty_mode_update"
+	{
+		"value"					"short"
+	}
+	"temple_difficulty_update"
+	{
+		"value"					"float"
+	}
+	"templeherostatistics"
+	{
+		"playerid"	"short"
+		"abil"					"float"
+		"ele"					"float"
+		"crit_chance"					"float"
+		"crit_dmg"					"float"
+		"cd"					"float"
+		"aggro"					"float"
+		"dps"					"float"
+		"hps"					"float"
+		"heal"					"float"
+		"bestdps"					"long"
+		"bestheal"					"long"
+		"sp"					"long"
+		"multiplicative"					"float"
+	}
+	"temple_show_difficulty_panel"
+	{
+		"value"					"short"
+	}
+	"report_boss_score"
+	{
+		"value"					"long"
+		"kills"					"long"
+		"progress"					"long"
+	}
+	"mythic_dust_update"
+	{
+		"value"					"long"
+	}
+	"report_drop_chance"
+	{
+		"value"					"float"
+		"boss"					"short"
+		"mode"					"short"
+	}
+	"selltempleitem"
+	{
+		"itemslot"					"short"
+		"player_id"					"short"
+	}
+	"getmychest"
+	{
+		"player_id"					"short"
+	}
+	"setmychest"
+	{
+		"chest"					"long"
+	}
+	"lasttempledrop"
+	{
+		"gold"					"float"
+		"item"					"string"
+	}
+	"lasttempleweapondrop"
+	{
+		"item"					"string"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1"	"long"
+		"stat1name"					"string"
+		"stat2"	"long"
+		"stat2name"					"string"
+		"stat3"	"long"
+		"stat3name"					"string"
+		"ilevel"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"playerid"	"short"
+	}
+	"lasttempleweapondropshow"
+	{
+		"item"					"string"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1"	"long"
+		"stat1name"					"string"
+		"stat2"	"long"
+		"stat2name"					"string"
+		"stat3"	"long"
+		"stat3name"					"string"
+		"ilevel"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"playerid"	"long"
+		"heroname"	"string"
+		"weapontype"	"short"
+	}
+	"additemtoselllist"
+	{
+		"sell_list_index"	"long"
+		"is_artifact"	"long"
+		"item"					"string"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1"	"long"
+		"stat1name"					"string"
+		"stat2"	"long"
+		"stat2name"					"string"
+		"stat3"	"long"
+		"stat3name"					"string"
+		"ilevel"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"playerid"	"string"
+		"weapontype"	"short"
+	}
+	"templeweaponequip"
+	{
+		"item"					"string"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1"	"long"
+		"stat1name"					"string"
+		"stat2"	"long"
+		"stat2name"					"string"
+		"stat3"	"long"
+		"stat3name"					"string"
+		"ilevel"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"playerid"	"short"
+		"weapontype"	"short"
+	}
+	"additemtodroptable"
+	{
+		"item"					"string"
+		"is_artifact"			"short"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1name"					"string"
+		"stat2name"					"string"
+		"stat3name"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"observer"			"short"
+	}
+	"additemtoactenter"
+	{
+		"item"					"string"
+		"is_artifact"			"short"
+		"itemname"					"string"
+		"attributes"	"long"
+		"stat1name"					"string"
+		"stat2name"					"string"
+		"stat3name"					"string"
+		"slot"	"long"
+		"rarity"	"string"
+		"observer"			"short"
+	}
+	"runewordequip"
+	{
+		"word"					"long"
+		"power"					"long"
+		"playerid"	"short"
+	}
+	"sellmythicweapon"
+	{
+		"player_id"					"short"
+		"index"					"long"
+		"sellValue"				"long"
+	}
+	"setautosell"
+	{
+		"player_id"					"short"
+		"index"					"long"
+	}
+	"removetempleheroability"
+	{
+		"player_id"					"short"
+	}
+	"request_droptable"
+	{
+		"player_id"					"short"
+	}
+	"report_dps_meter"
+	{
+		"playerid1"					"string"
+		"aggro1"					"float"
+		"playerid2"					"string"
+		"aggro2"					"float"
+		"playerid3"					"string"
+		"aggro3"					"float"
+		"playerid4"					"string"
+		"aggro4"					"float"
+		"playerid5"					"string"
+		"aggro5"					"float"
+	}
+	"temple_ability_stats"
+	{
+		"abilityname"					"string"
+		"abilityindex"					"long"
+		"damage"					"float"
+		"healing"					"float"
+	}
+	"report_monster_spellcast"
+	{
+		"ability"					"string"
+		"unit"					"long"
+	}
+	"report_monster_affixes"
+	{
+		"unit"					"string"
+		"ability1"					"string"
+		"ability2"					"string"
+		"ability3"					"string"
+		"ability4"					"string"
+		"ability5"					"string"
+		"ability6"					"string"
+		"monstertype"				"short"
+	}
+	"equipmythicweapon"
+	{
+		"player_id"					"short"
+		"index"					"long"
+	}
+	"recover_artifact"
+	{
+		"player_id"					"short"
+		"slot"					"long"
+	}
+	"updateinventory"
+	{
+		"value"					"short"
+	}
+	"talentpressed"
+	{
+		"player_id"					"short"
+		"talent"					"long"
+	}
+	"resetpathpressed"
+	{
+		"player_id"					"short"
+	}
+	"resettempleherolevel"
+	{
+		"player_id"					"short"
+	}
+	"savecharsuccess"
+	{
+		"player_id"					"short"
+	}
+	"gamblingpressed"
+	{
+		"player_id"					"short"
+		"item"					"long"
+	}
+	"refreshtalents"
+	{
+		"player_id"					"short"
+	}
+	"togglepathword"
+	{
+		"player_id"					"short"
+	}
+	"artifactforging"
+	{
+		"player_id"					"short"
+		"item"					"long"
+	}
+	"talentleveled"
+	{
+		"player_id"					"short"
+		"talent"					"long"
+		"level"						"long"
+	}
+	"talentpoints"
+	{
+		"points"						"long"
+	}
+	"loadalltalents"
+	{
+		"player_id"					"short"
+	}
+	"actentered"
+	{
+		"act"					"short"
+	}
+	"tp_unlocked"
+	{
+		"value"					"long"
+	}
+	"tp_pressed"
+	{
+		"player_id"					"short"
+		"tp"						"long"
+	}
+	"save_pressed"
+	{
+		"player_id"					"short"
+	}
+	"moveitemtostash"
+	{
+		"player_id"					"short"
+	}
+	"toggle_menu"
+	{
+		"menu"					"long"
+	}
+	"molten_forge_menu"
+	{
+		"open"					"short"
+	}
+	"pathword"
+	{
+		"player_id"					"short"
+		"pathword"					"string"
+	}
+	"set_main_stats"
+	{
+		"id"					"long"
+		"str"					"long"
+		"agi"					"long"
+		"int"					"long"
+		"level"					"long"
+		"levelPercentage"					"long"
+	}
+	"set_mana_per_int"
+	{
+		"mana"					"short"
+	}
+	"set_gold"
+	{
+		"id"					"long"
+		"gold"					"long"
+	}
+	"additemtoshop"
+	{
+		"item"					"string"
+		"rarity"	"long"
+		"cost"		"long"
+		"isLastItem"	"short"
+	}
+	"buynormalitem"
+	{
+		"player_id"					"short"
+		"item"					"string"
+		"rarity"	"long"
+	}
+	"stopsendingshopitems"
+	{
+		"player_id"					"short"
+	}
+}
+

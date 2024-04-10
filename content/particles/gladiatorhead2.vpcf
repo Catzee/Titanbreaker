@@ -1,0 +1,91 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nInitialParticles = 1
+	m_flConstantRadius = 1.400000
+	m_flConstantLifespan = 100000000000000030000000000000000000.000000
+	m_vControlPoint1DefaultOffsetRelativeToControlPoint0 =
+	[
+		0.000000,
+		0.000000,
+		2.000000,
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_nCP = 0
+			m_nFieldOutput = 4
+			m_flRotOffset = 270.000000
+		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_nSpinRateDegrees = 5
+			m_fSpinRateStopTime = 0.300000
+			m_bDisableOperator = true
+		},
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList =
+			[
+				{
+					m_model = resource:"models/items/drow/mask_of_madness/mask_of_madness.vmdl"
+				},
+			]
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_CreateInEpitrochoid"
+			m_flRadius1 = 1.000000
+			m_flRadius2 = 1.000000
+			m_flOffset = 1.000000
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin =
+			[
+				180.000000,
+				0.000000,
+				0.000000,
+			]
+			m_OffsetMax =
+			[
+				180.000000,
+				0.000000,
+				0.000000,
+			]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 0.000000
+			m_flDegrees = 315.000000
+			m_nFieldOutput = 12
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 340.000000
+			m_flDegreesMax = 340.000000
+			m_nFieldOutput = 12
+			m_bDisableOperator = true
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 0
+		},
+	]
+}

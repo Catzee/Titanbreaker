@@ -1,0 +1,34 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_bounty_hunter"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootscrit"
+			"item"		"item_agi2"	
+					
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_weapon14"
+			"item"		"item_weapon10"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_demonglaive"	
+			"item"		"item_endgame10"		
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{	
+			"item"		"item_devilsoul"
+			"item"		"item_flamefury"
+		}
+	}
+}

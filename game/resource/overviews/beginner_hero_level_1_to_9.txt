@@ -1,0 +1,8 @@
+beginner_hero_level_1_to_9
+{
+	material materials/overviews/beginner_hero_level_1_to_9.vmat
+	pos_x -16384
+	pos_y 16384
+	scale 32.000
+}
+

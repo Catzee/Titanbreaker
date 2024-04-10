@@ -1,0 +1,8 @@
+expert_hero_level_10_or_higher
+{
+	material materials/overviews/expert_hero_level_10_or_higher.vmat
+	pos_x -16384
+	pos_y 16384
+	scale 32.000
+}
+

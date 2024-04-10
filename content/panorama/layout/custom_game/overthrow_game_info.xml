@@ -1,0 +1,36 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/overthrow_game_info.css" />
+	</styles>
+	<Panel class="OverthrowGameInfo">
+
+			<Label class="Header" html="true" text="Titanbreaker Information" />
+			<Label class="TipText" html="true" text="Titanbreaker is a 5 player dungeon. It can be played with less players but it will be hard. Each player will be revived 5 times after dying, after that they have to start a new game or they stay and observe the remaining heroes who are still alive." />
+			
+			<Label class="TipText" html="true" text="Currently the maximum hero level is 100. When you level up, you gain 13 Ability Points, plus 1 at Level 40, 60, 80 and 100." />
+			<Label class="TipText" html="true" text="All creatures have an aggro system, causing them to attack whoever damages them the most. It is advised to pick atleast 1 Tank and 1 Healer to survive longer." />
+			<Label class="TipText" html="true" text="Item drop rules: For each player an individual roll is performed to check if an item drops, whenever a creature is killed. Bosses and Champions drop an item with a 100% chance, while killing a complete trash mob camp roughly has a total 2% chance to drop an item. Item quality when killing a Boss is as follows: Legendary 0.1%, Epic 1%, Rare 10%, Common 25%, rolled in that order, if none of these dropped, a white item will drop." />
+			<Label class="TipText" html="true" text="The first Act has the difficulty you select at the start of the game. Each following Act is 10% more difficult compared to the initial difficulty setting. For example, if you select Monster Level 2, the Act difficulties will be 200% for the first Act, 220% for the 2nd Act, 240% for the third Act and so on. Item drop quality increases faster than difficulty does, as an incentive to play on challening Monster Levels, the formula is: LootQuality = ( ZoneDifficulty * 1.25 ) - 0.25. For example a Zone with Monster Level 2 would lead to LootQuality = 2 * 1.25 - 0.25 = 2.25 = 225% loot quality. This LootQuality factor is multiplied on top of the drop chance, so it would for example increase the Epic drop chance on bosses from 1% to 1% * 225% = 2.25%. Experience scales exponetially." />
+			<Label class="TipText" html="true" text="Summons from Abilities and Companions from Items, like the ones from the Dragon Set series, deal Damage whenever they attack. However, the damage dealt acts as if it were Damage done by an Ability of its master, meaning it will cause aggro and can for example benefit from Ability Critical Strikes on items worn by the master." />
+			<Label class="TipText" html="true" text="Items that state to be purchasable at the Side Shop can be purchased at the Molten Forge. Items that state to be purchasable at the Secret Shop can not be purchased." />
+			<Label class="TipText" html="true" text="When you try to buy an Item and it says YOUR HERO CAN NOT USE THAT ITEM, just save and start a fresh game. It occurs when too many Items dropped in your current game, disabling buying more Items from the shop. It is a DotA inherent mechanic, protecting against mass item buying." />
+			<!--
+
+			<Label class="TipText" html="true" text="To equalize the newly added passive Spell Amplification from Intellect, every 100 Strength increase your Physical Ability Damage by 11% and every 100 Agility increase your Ability Critical Strike Damage by 9%." />
+
+
+			<Label class="Header" html="true" text="Temple of dreams 规则" />
+			<Label class="TipText" html="true" text="Temple of dreams是一个5人地牢团队游戏，可以有少于5名玩家开始游戏，但这样游戏会更加困难。每个玩家拥有5个生命，死后复活会消耗。全部死亡后可以重新开始游戏或者观看还在存货的玩家游戏。" />
+			<Label class="TipText" html="true" text="现在最高级别为40级，每次你升级都会获得技能点数直到10级，之后每次升级会获得天赋点数，可以被动增强你的能力。当你到达特别的等级时候也会有额外奖励。LVL25 增加脱离战斗后的15%%移动速度 LVL30 护甲光环增加2点护甲 LVL35 增加脱离战斗后的25%%移动速度，并有特殊光效粒子。 LVL45 额外获得1个技能点数" />
+			<Label class="TipText" html="true" text="你可以在出生地用带有蓝色圈的箱子（这就是你自己的箱子）来保存游戏，其中包括你英雄的等级和装备还有金币。如果再次开始游戏时，会自动读取档案（相同的英雄的等级和装备），不同英雄之间只共享金币。" />
+			<Label class="TipText" html="true" text="游戏被分为不同的章节，每个章节至少有3个BOSS等待你。 在开始战斗前请认真阅读每个BOSS的技能！！！在开始战斗前请认真阅读每个BOSS的技能！！！在开始战斗前请认真阅读每个BOSS的技能！！！重要的事情说好多遍！！！群560201568" />
+			<Label class="TipText" html="true" text="每个怪物都有自己的仇恨系统，会攻击造成仇恨最多的敌人，所以建议选择一名坦克和一名奶，这样团队才可以活的更长久。" />
+			<Label class="TipText" html="true" text="物品掉落规则：每次物品掉落每个人都有独自的掉落系统。BOSS会100%%掉落物品，击杀小怪会有20%%几率掉落物品，基础掉率legendary 0.3% epic 3% rare 10% common 25%,小怪的爆率为BOSS的4分之一，并且不会掉落immortal（不朽）装备。" />
+			<Label class="TipText" html="true" text="第一章节的难度跟你选择的相同，之后的每个章节都会增加10%%难度，如果你选择200%%则会变为220%% 240%%以此类推，物品掉落率也会逐渐提升。" />
+			<Label class="TipText" html="true" text="当击杀某些多个BOSS在一起的状况 的时候会有双倍掉落物品率，比如5条龙蛋和肉山三兄弟，还有狼人兄弟和三个蛇棒等等。" />
+			<Label class="TipText" html="true" text="宠物(龙或者其他)也会受益与技能暴击，并会为主人增加仇恨。" />-->
+	
+		
+	</Panel>
+</root>
+

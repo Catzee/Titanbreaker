@@ -1,0 +1,419 @@
+"addon"
+{
+    "Language"        "english"
+    "Tokens"
+    {	
+    	"addonname"                                 "Titanbreaker"
+        "addon_game_name"                           "Titanbreaker"
+
+        "color_green"	"<font color=\"#32cd32\">"
+		"color_rare"	"<font color=\"#0000ff\">"
+		"color_epic"	"<font color=\"#ff69b4\">"
+		"color_legendary"	"<font color=\"#ff8c00\">"
+		"color_immortal"	"<font color=\"#66ffff\">" //00bfff
+		"color_ancient_immortal"	"<font color=\"#00ffff\">[Ancient] " //00cfff
+		"color_divine"	"<font color=\"#00EE00\">"
+		"color_mythical"	"<font color=\"#7733ff\">" //6600ff 9933ff
+
+		"PointsToWin"									"+{d:points_to_win} more"
+		"PointsToWin_CloseToVictory"					"+{d:points_to_win} more"
+		"PointsToWin_VeryCloseToVictory"				"+{d:points_to_win} more!"
+		"PointsToWin_Victory"							"Victory!"
+
+		"InstructionsTitle"								"Titanbreaker"
+		"InstructionsObjective"							"OBJECTIVE"
+		"InstructionsObjectiveText"						"Slay your enemies! Be the first to earn the goal number of kills, or the team with the most kills when the round ends, and you will be victorious."
+		"InstructionsHowToPlay"							"HOW TO PLAY"
+		"InstructionsLines"								"-Approach the Midas Throne to earn bonus gold and experience.<br>
+														-Snatch up any giant coins the Over Boss tosses to earn even more gold.<br>
+														-Keep an eye out for item deliveries. An icon will appear on your map where an item will appear.<br>
+														-The fewer kills your team has, the better the item you will receive from a delivery.<br>
+														-Slay anyone who isn't on your team."
+
+		"Chest"											"ITEM"
+		"ItemWillSpawn"									"IS ABOUT TO BE DELIVERED!"
+		"ItemHasSpawned"								"IS ON ITS WAY!"
+
+		"RecentScore"									"+{d:score}"
+
+		"Unassigned"      								"Unassigned Team"
+		"Spectator"       								"Spectator Team"
+		"Neutrals"        								"Neutral Team"
+		"NoTeam"          								"No Team"
+
+		"DOTA_GoodGuys"   								"Adventurers"
+		"DOTA_BadGuys"    								"Dark Forces"
+		"DOTA_Custom1"    								"Pink Dragon"
+		"DOTA_Custom2"    								"Orange Dog"
+		"DOTA_Custom3"    								"Blue Rooster"
+		"DOTA_Custom4"    								"Green Ram"
+		"DOTA_Custom5"    								"Brown Rat"
+		"DOTA_Custom6"    								"Cyan Boar"
+		"DOTA_Custom7"    								"Olive Snake"
+		"DOTA_Custom8"    								"Purple Horse"
+		
+		"OverthrowHeroPickup"							""
+		"OverthrowTextPickup"							""
+		"OverthrowItemPickup"							""
+
+		"Remaining"										"REMAINING"
+
+		"Overtime"										"OVERTIME!"
+		"OvertimeInstructions"							"SCORE TO WIN"
+
+		"KillMessageHero"								"{s:hero_id}"
+		"KillMessageText"								"HAS KILLED THE LEADER!"
+		"KillMessageBounty"								"Great Comeback!"
+		
+		"overthrow_game_info_header_objective"			"Objective:"
+		"overthrow_brief_description"					"Slay your enemies! First team to hit the kill limit wins!"
+		"overthrow_game_info_header_how_to_play"		"How To Play:"
+		"overthrow_game_info_throne"					"Approach the <span class='midas_throne'>Midas Throne</span> to earn bonus <span class='gold'>gold</span> and <span class='xp'>experience</span>."
+		"overthrow_game_info_coins"						"Snatch up coins the <span class='overboss'>Overboss</span> tosses to earn more <span class='gold'>gold</span>."
+		"overthrow_game_info_items"						"Keep an eye out for <span class='treasure'>treasure</span> deliveries. An icon will appear on your map where an <span class='items'>item</span> will appear."
+		"overthrow_game_info_tips_header"				"Tips:"
+		"overthrow_game_info_tip01"						"The current leader has a gold crown, and you will get extra gold for killing them."
+		"overthrow_game_info_tip02"						"Items can be given to teammates or sold at your base."
+		"overthrow_game_info_tip03"						"You may need to coordinate with an opposing team to take out a strong opponent."
+		"overthrow_game_info_tip04"						"The fewer kills your team has, the stronger items you will recieve from a delivery."
+
+		"DOTA_Tooltip_Ability_Wounding_Strike"  "Tooltip Example"  
+		"DOTA_Tooltip_Ability_Wounding_Strike_Description"  "This shows the basic tooltip syntax"
+		"DOTA_Tooltip_Ability_Wounding_Strike_Note0" "This shows when hovering with Alt pressed"
+		"DOTA_Tooltip_Ability_Wounding_Strike_Lore" "And then, there was Documentation."
+		"DOTA_Tooltip_Ability_Wounding_Strike_buffduration"    "Duration:" 
+
+		//dota inherent talents
+		//"DOTA_Tooltip_Ability_special_bonus_all_stats_5" 	"asdf"
+		//"special_bonus_all_stats_5" 	"asdf"
+
+
+		//path talents 1.8
+
+		"talent1"								"Grizzly's Power: + 5% / 10% / 15% Strength"
+		"talent2"								"Sharp Claws: + 25 / 50 / 75 Damage and Spellpower and when you deal Damage with an Ability, add 10% / 20% / 30% of your Attack Damage and Spellpower to its base Damage."
+		"talent3"								"Wound Mending: + 3% / 6% / 9% Healing caused and received and 1 / 1.5 / 2 additional Health per Strength"
+		"talent4"								"Iron Skin: + 5% / 7.5% / 10% Armor and for every 3 Points of Armor increase the Ability Damage of AOE Abilities by 1% / 2% / 3%, capped at 100%. Strength Heroes gain 1 / 2 / 3 additional Armor."
+		"talent5"								"Presence of Power: All debuffs caused by you last 10% / 20% / 30% longer. Winged Grave, Prayer of Protection, Meditation, Restoration, Rich Renewal, Divine Fortitude, Renew, and Bloodlust last 5% / 10% / 15% longer."
+		"talent6"								"Flesh Wounds: 10% / 20% / 30% increased Damage for your 3rd Ability and when you deal Damage with an Ability, you have a 10% chance to apply a Bleeding DoT, dealing Pure Damage every sec for 100% / 200% / 300% of your Primary Attribute. Lasts 5 secs. Multiple instances of this buff can be active. 1 sec inner cd. Does not proc itself."
+		"talent7"								"Maul: + 5% / 10% / 15% Single Target Damage and when you deal Damage with an Ability or target an ally with an Ability, increase all Damage and Healing caused by 0.5% for 5 secs, stacking up to 33 / 66 / 100 times."
+		"talent8"								"Colossal Strikes: 10% / 20% / 30% increased Damage for your 5th Ability and all Ability Damage instances with a scaling of 600% or higher. Also, when you Heal or deal Damage with an Ability, add 0.5% / 1% / 1.5% of your current Health to its Base Damage.\nDoes not affect Tamer's Wolf Lifesteal and Boots of the Unstoppable."
+		"talent9"								"Momentum of Mass: + 4% / 7% / 10% max Health and for every 10 points of Armor increase your Damage by 1% / 2% / 3%, capped at 25% / 50% / 75%."
+		"talent10"								"Iron Muscles: + 15 / 30 / 45 Strength, + 15 / 30 / 45 Primary Attribute and + 1 / 2 / 3 Armor."
+		"talent11"								"Bear of War: + 3% / 6% / 9% Damage, Block 3% / 6% / 9% of all Damage taken (capped at 60% after Block Bonuses) and increase all Summon Damage by an additional 10% / 20% / 30%."
+		"talent12"								"Iron Fury: Damage caused by Abilities that have a base cooldown of 5 secs or less is increased by 10% / 20% / 30% and passively gain Auto Attack Damage equal to 25% / 50% / 75% of your Strength. Twice as effective for Melee Heroes."
+		//"talent12"								"Counterclaw: +4% / 8% / 12% max Health and when you are being Auto Attacked, stun for 6 secs and retaliate for 100% of your current Health as Ability Damage, with an inner cooldown of 80 / 75 / 70 secs."
+		"talent13"								"Tiger's Swiftness: + 5% / 10% / 15% Agility"
+		"talent14"								"Armored War Tiger: + 5% / 10% / 15% Movement Speed and 1 / 1.5 / 2 Health per Agility. For Melee Heroes, the Health gain is 2 / 2.5 / 3 instead."
+		"talent15"								"Flow of Combat: + 30 / 60 / 90 Attack Speed, + 20% / 40% / 60% Spellhaste and + 5% / 10% / 15% Evasion (capped at 30%)."
+		"talent16"								"Moonlight Fairies: Increase all Arcane and Nature Damage by 15% / 30% / 45% and all Healing caused by 5% / 10% / 15%. After you Heal yourself, your Primary Attribute is increased by 5% / 10% / 15% for 15 secs."
+		"talent17"								"Full Moon: + 10% / 15% / 20% Cooldown Reduction for your 3rd Ability and + 10% / 15% / 20% Ability Critical Strike Damage and Healing."
+		"talent18"								"Tigerbites: + 10% / 20% / 30% Attack Damage and + 50 / 100 / 150 Auto Attack Damage"
+		"talent19"								"Phantom Assassin: + 1% / 2% / 3% chance to Critical Strike for 200% with Abilities and whenever your 3rd Ability lands a Critical Strike, there is a 10% / 20% / 30% chance to reset its cooldown, with an inner cooldown of 30 secs."
+		"talent20"								"Careful Aim: For every second you stand still your Damage and Healing is increased by 5% / 10% / 15%, stacking up to 5 times."
+		"talent21"								"Fragile Moon: Increase all Damage by 15% / 30% / 45% and cause your next Auto Attack Critical Strike Damage to be increased by 15% / 30% / 45% every 5 secs, at the cost of reducing Armor and Spell Resistance by 5 / 10 / 15."
+		"talent22"								"The Stars Aligned: Every 15 secs, the next time you deal Damage with an Ability, it will be a guaranteed Critical Strike for 200% / 250% / 300%. Does not proc on Ability Damage with a scaling below 600%." //\nWhenever you kill a creature, the cooldown is reset.
+		"talent23"								"Rain of Stars: When you Auto Attack or deal Damage with your 5th Ability, you have a 15% chance to cause a Rain of Stars dealing 75% / 150% / 225% of your Primary Attribute, Attack Damage and Spellpower as Physical Nature Damage to the target. Rain of Stars benefits twice as much from Nature Damage Bonuses."
+		"talent24"								"Moonglaive Shield: + 2% / 4% / 6% Auto Attack Critical Strike for 300% and every 25 secs gain a Moonglaive Shield stack which blocks 40% / 50% / 60% of the next Damage instance, stacking up to 4 times.\nFor every 50 Agility the Shield refreshes 1 sec faster. For Melee Heroes, the base block cooldown is 20 secs. Minimum refresh time is 5 secs."
+		"talent25"								"Dragon's Knowledge: + 5% / 10% / 15% Intellect"
+		"talent26"								"Mindstorm: Restore 10 / 20 / 30 Mana plus 1% / 2% / 3% of max Mana every 5 secs and for every 100 Points of Intellect gain 3% / 6% / 9% Spellhaste, capped at 80% / 90% / 100% Spellhaste.\n+ 5% / 10% / 15% non-Mana Resource Generation bonus."
+		"talent27"								"Netherdragon Scales: + 10% / 15% / 20% Spell Resistance (capped at 75%) and + 15% / 30% / 45% Arcane Damage"
+		"talent28"								"Timebender: + 5% / 7.5% / 10% Cooldown Reduction and Damage caused by Abilities with a base cooldown of 20 secs or higher is increased by 5% / 10% / 15%."
+		"talent29"								"Dragon's Breath: + 15% / 30% / 45% Fire Damage and gain a 10% chance when casting a Spell on an enemy to release a Fireball for 150% / 300% / 450% of your Attack Damage and Spellpower as Fire Damage. The chance is increased to 20% on Spells with cast time and channeled Spells."
+		"talent30"								"Blizzard: + 15% / 30% / 45% Frost Damage and after you deal Ability Damage, summon a Blizzard, dealing 150% / 300% / 450% of your Primary Attribute as Frost Damage in a 300 yard area around the target and slowing Movement and Attack Speed of enemies by 10% for 5 secs, stacking, with an inner cooldown of 5 secs. Does not break CC. "
+		//"talent30"								"Blizzard: A Blizzard will passively follow you, increasing Frost Damage by 3% / 6% / 9% and dealing 75% / 150% / 225% of your Primary Attribute as Frost Damage every 5 secs and slowing Movement and Attack Speed of enemies in a 750 radius by 5%. Multiple Auras stack. Does not break CC."
+		"talent31"								"Master Magician: + 25% / 50% / 75% Spellpower"
+		"talent32"								"Focussed Mind: + 15% / 30% / 45% Ability Damage and Healing for Channeled Abilities and 30% / 60% / 90% Spellhaste."
+		"talent33"								"Mana Shield: Gain 1 / 2 / 3 Armor per 500 Max Mana, capped at 30, and gain a Mana Shield absorbing 50% / 55% / 60%, capped at 70%, of all incoming Damage at the cost of 1 Mana per 50 / 55 / 60 Health. If you already have a Mana Shield, increase its Mana efficiency by 50% / 100% / 150%. Only working for Mana based classes."
+		"talent34"								"Knowledge is Power: + 10% / 20% / 30% Max Mana and gain 3% / 6% / 9% of current Mana as Spellpower"
+		"talent35"								"Sharpeye: Passively gain + 30 / 60 / 90 Intellect and when dealing Ability Damage to targets more than 500 yards away, increase the Damage by 10% / 20% / 30%."
+		"talent36"								"Deathwing: + 100 / 200 / 300 Spellpower and when you cast your highest base cooldown Ability, reset its cooldown, with an inner cooldown of 120 / 110 / 100 secs, capped at 60 secs."//Damage over Time and AOE Effects deal 10% / 20% / 30% increased Damage and after dealing Fire Damage, increase all Damage by 10% / 20% / 30% for 15 secs.\nAlso increases the Damage of your Companions from Items by 25% / 50% / 75%."
+		//"talent36"								"Deathwing: Take on the Aspect of Deathwing, granting you a 1% / 2% / 3% chance to Critical Strike for 500% with Damaging Abilities for every 25000 current Health and for every 25000 current Mana, capped at 25%."//Damage over Time and AOE Effects deal 10% / 20% / 30% increased Damage and after dealing Fire Damage, increase all Damage by 10% / 20% / 30% for 15 secs.\nAlso increases the Damage of your Companions from Items by 25% / 50% / 75%."
+		"talent37"								"Deadly Hits: + 3% / 5% / 7% Ability Critical Strike chance for 150%"
+		"talent38"								"Wolf's Versatility: + 4% / 8% / 12% Strength and Agility"
+		"talent39"								"Lick Wounds: Increase all Healing caused by your 1st Ability by 10% / 20% / 30% and Heal for 75 / 150 / 225 plus 1% / 2% / 3% of max Health every 5 secs."
+		"talent40"								"Tenacity: + 15 / 30 / 45 Agility and whenever you take Damage, Block an amount equal to 0.1% / 0.2% / 0.3% of your max Health."
+		"talent41"								"Howl of Time: + 7% / 14% / 21% Cooldown Reduction for your 5th Ability and for every Ability on cooldown, increase your Damage by 2% / 4% / 6%."
+		"talent42"								"Spiritwolf Protection: Increase all Nature Damage by 15% / 30% / 45% and Damage that could potentially kill you will be blocked, you restore 15% / 30% / 45% of max Health and gain the Protective Howl buff, rendering you imune to Damage and granting a 100% AS and 50% MS Aura for 1 / 2 / 3 secs, with an inner cooldown of 240 secs."
+		"talent43"								"Rip Armor: Auto Attacks lower the target's Armor by 1 / 1.5 / 2 for 5 secs and passively add 1% / 2% / 3% to all Auto Attack Critical Strike Chances (for example a 20% chance to crit would increase to 23% on rank 3). The Armor reduction stacks with other Players."
+		"talent44"								"Backstab: + 15% / 30% / 45% Ability Damage while being behind the target and whenever you deal Damage, stun the target for 2 / 3 / 4 secs, with an inner cooldown of 45 secs."
+		"talent45"								"Alpha Blood: Your 1st Ability gains a 3% / 6% / 9% chance and your 2nd Ability gains a 2% / 4% / 6% chance to Critical Strike for 200%. When this Critical Strike occurs, Heal yourself for 10% of max Health with an inner cooldown of 7 secs."
+		"talent46"								"Blood Wolf: + 15 / 30 / 45 Strength and Agility and Auto Attacks have a 6% chance to summon a Blood Wolf with Damage equal to 100% / 200% / 300% of your Strength plus Agility, lasting 10 secs.\nAfter summoning a creature, increase all Damage dealt by 10% / 20% / 30% for 5 secs."
+		"talent47"								"Wolf Rage: After having caused 15 / 20 / 25 Critical Strikes with Damaging Abilities, you enrage, increasing your Damage by 15% / 30% / 45% and Movement Speed by 25% for 15 secs."
+		"talent48"								"Hunt the Weak: Gain a 50% chance to Critical Strike for 130% / 140% / 150% with Abilities when damaging enemies that are below 50% of max Health."
+		"talent49"								"Steadiness: Auto Attacks deal 25% / 50% / 75% increased Damage (not affecting Abilities) and Damage over Time effects and Healing over Time Effects damage / heal 25% / 50% / 75% more."
+		"talent50"								"Swipe of Ursa: After having caused 25 Damage instances, unleash the Swipe of Ursa, dealing 200% / 400% / 600% of your Strength as Physical Damage in a 300 yard range around you, hitting up to 5 targets and reducing their Damage output by 20% for 1 / 2 / 3 secs. When only 1 target is hit, the Damage is doubled. Does not break CC."
+		//"talent50"								"Iron Heart: Increase the Damage of your Single Target Abilities by 5% / 10% / 15% and whenever you deal Damage or cause Healing with an Ability, there is a 1% chance to summon an Iron Grizzly for 12 secs, who attacks for 100% / 200% / 300% of your Strength, Agility and Intellect and who grants 5 Armor for 6 / 9 / 12 secs."
+		"talent51"								"Steel Mammoth: While at 70% or higher Physical (46 Armor) and Magical Damage Reduction, all Damage done, Healing received and Total Health is increased by 10% / 20% / 30%."
+		"talent52"								"Patient Prowler: Every 5 secs gain 5 stacks of the Patient Prowler buff, each increasing Damage by 3% / 6% / 9% and Agility by 10. Max 10 stacks. Each time you deal Ability Damage, you lose 1 stack."
+		"talent53"								"Windfury: Whenever you land an Auto Attack you have a 2% / 4% / 6% chance to cause 2 additional Auto Attacks in quick succession and increase your Damage by 5% / 10% / 15% and Movement Speed by 3% / 6% / 9% for 5 secs, with an inner cooldown of 1 sec."
+		"talent54"								"Tiger's Fury: When landing an Auto Attack, restore 1% / 1.5% / 2% of max Mana or max Hero Resource and cause your next Ability Damage instance to deal 15% / 30% / 45% increased Damage."
+		"talent55"								"Ice Storm: When you cast an Ability with a base cooldown of 30 secs or higher, evoke 5 Iceshatter Bolts to hit the closest enemy for 250% / 500% / 750% of your Primary Attribute and Spellpower as Arcane Frost Damage, stunning them in a Block of Ice for 2 secs. Ice Storm can not proc while a previous Ice Storm is still firing its missiles."
+		"talent56"								"Lizard Wizard: After having cast 8 Spells, cause an effect based on whether the target of the last Spell was an enemy, ally or no target at all. Enemy: Launch 5 Thunder Bolts Dealing 50% / 100% / 150% Intellect and Spellpower as Nature Damage.\nAlly: Cause a Healing Stream healing 2% / 4% / 6% of max Health 5 times. No Target: Launch 3 Blastwaves, stunning for 1.5 secs and dealing 75% / 150% / 225% Intellect and Spellpower as Fire Damage in a 900 yard range."  //"Power of the Dragon: + 7% / 14% / 21% Primary Attribute"
+		"talent57"								"Rise of the Phoenix: When incoming Damage would bring you below 25% of max Health, you restore 10% / 20% / 30% of max Health and max Mana, reduce all Damage taken by 99% for 0.5 / 1 / 1.5 secs and cause a Supernova, stunning all nearby enemies within 900 yards for 1 / 2 / 3 secs, dealing Fire Damage equal to 300% / 600% / 900% of your Primary Attribute, as well as reducing the cooldown of your 6th Ability by 10 / 20 / 30 secs. Has an inner cooldown of 180 secs, hard capped at 45 secs."
+		"talent58"								"Lifeblood: While in combat, sacrifice 15% of max Health every 5 secs to increase all Damage done by 10% / 20% / 30% and restore 1% / 1.5% / 2% of max Mana or 5% / 10% / 15% of max non-Mana Resource. Does not trigger when below 65% of max Health.\nIn addition, gain the True Blood Effect: After landing an Auto Attack Critical Strike, the Lifeblood Damage Bonus is doubled for 5 secs."
+		"talent59"								"Bestial Wrath: Passively increase the Damage of your Summons by 25% / 50% / 75%. When you cast an Ability with a base cooldown of 45 secs or higher, gain the Bestial Wrath buff, reducing all Damage taken by 75% and granting a 250% AS and 50% MS Aura for 5 / 5.5 / 6 secs, capped at 12 secs, with an inner cooldown of 30 secs."
+		"talent60"								"Wolf Rider: For every 20 Points of Movement Speed beyond 300 gain 1% / 2% / 3% increased Damage and Damage Reduction, both capped at 50%."
+
+		"talent61"								"Demon Fury: Gain Agility equal to 5% / 10% / 15% of your Strength and Intellect."
+		"talent62"								"Dark Wizardry: Gain Spellpower equal to 3% / 6% / 9% of your Strength, Agility and Intellect and Ability Damage instances with a scaling of 600% or higher gain a 1% / 2% / 3% chance to Critical Strike for 300%."
+		"talent63"								"Warden of Souls: + 15 / 30 / 45 Strength and whenever you die, there is a 7% / 14% / 21% chance to not lose a life (capped at 50%)."
+		"talent64"								"A Light in the Dark: Increase all Holy and Shadow Damage by 10% / 20% / 30% and all Ability Damage caused by your 4th Ability by 10% / 20% / 30%."
+		"talent65"								"Shadow Colossus: + 5% / 10% / 15% Primary Attribute and 250 / 500 / 750 Health, at the cost of 15% reduced Movement Speed while in combat."
+		"talent66"								"Shadow Claws: Increase the Ability Damage and Healing of your 2nd Ability by 15% / 30% / 45%, and whenever this Bonus Damage takes effect, there is a 25% chance (100% when you deal Shadow Damage) that your next Auto Attack will Critical Strike for 400% / 500% / 600%."
+		"talent67"								"Hellborn: + 7% / 14% / 21% Ability Damage and Healing for AOE Abilities and + 7% / 14% / 21% max Health."
+		"talent68"								"Apocalypse: Increase the Damage and Healing of your 6th Ability by 20% / 40% / 60% and after dealing Shadow or Chaos Damage, increase all Damage and Healing caused by 10% / 20% / 30% for 15 secs."
+		"talent69"								"Cruel Taskmaster: Passively increase all Summon and Item Companion Damage by 15% / 30% / 45% and after summoning a creature, heal 3% / 6% / 9% of max Health and gain 30 / 60 / 90 Attack Speed and Spellhaste for 10 secs (max 5 buff instances)."
+		"talent70"								"From the Shadows: After being invisible or hiding out of combat for atleast 5 secs, increase your Damage by 20% / 35% / 50% for 15 secs and cause your next Ability Damage instance to deal 10% / 20% / 30% increased Damage."
+		"talent71"								"Overwhelm: + 5% / 10% / 15% Debuff Duration and after stunning an enemy, your Primary Attribute is increased by 10% / 20% / 30% for 12 secs."
+		"talent72"								"Dark Offering: Decrease all Healing received by 75% to gain a 15% / 30% / 45% Damage and Healing increase."
+		"talent73"								"Shadow Form: When you cast an Ability with a base cooldown of 60 secs or higher, enter a Shadow Form for 10 / 11 / 12 secs, increasing all Ability and Auto Attack Critical Strike Damage and Healing by 25% / 50% / 75%, gaining 50% Evasion, a Phased Effect and 5 secs invisibility."
+		"talent74"								"Sacrifice of Souls: Mana based Heroes sacrifice 15% of max Mana every 5 secs while above 25% of max Mana, while all other Heroes reduce all Energy gain by 50% to increase all Damage and Healing by 15% / 30% / 45%. In addition, after sacrificing, your next 3 Ability Damage instances gain twice that Bonus."
+		"talent75"								"Three Face God: Add 15% / 30% / 45% of your Strength, Agility and Intellect as base Damage to all Ability Damage and gain 1 / 2 / 3 Mana Regeneration and Energy Regeneration per sec."
+		//"talent75"								"Shadow Reflexes: Become a Master of Evasion, Blocking a portion of all incoming Damage, equal to 5% / 10% / 15% of your Primary Attribute and for each percent of Spell Resistance, gain + 0.25% / 0.5% / 0.75% Physical, Shadow and Chaos Damage."
+
+
+		"talent76"								"Crow Feathers: + 3% / 6% / 9% Strength, Agility and Intellect."
+		"talent77"								"Raven Onslaught: + 15% / 30% / 45% Ability Damage when not landing a Critical Strike. Affects Damage from Summons and Channeled Abilities 50% more."
+		"talent78"								"Storm Claws: + 3% / 6% / 9% Attack Damage and after landing 5 Auto Attacks your next Ability Damage instance deals 15% / 30% / 45% increased Damage, and when landing an Auto Attack Critical Strike, lower the target's Armor by 2 / 3 / 4 for 3 secs (not stacking)."
+		"talent79"								"Murder of Crows: Critical Strikes from Summons and Companions deal 25% / 50% / 75% increased Damage and after your Summons and Companions have caused 25 Damage instances, summon a swarm of 5 Crows for 15 secs, attacking for 25% / 50% / 75% of your Primary Attribute, Attack Damage and Spellpower as Physical Shadow Damage."
+		"talent80"								"Wings of Liberty: + 15 / 30 / 45 Attack Speed and + 3% / 6% / 9% Movement Speed. For every Point of Attack Speed beyond 500, gain 1 / 2 / 3 Attack Damage and for every Point of Movement Speed beyond 300 gain 1 / 2 / 3 Spellpower."
+		"talent81"								"Skyfall: After casting an Ability with a cooldown of 20 secs or higher, increase all Damage by 10% / 20% / 30% and gain additional 50 / 100 / 150 Auto Attack Damage for 7 secs."
+		"talent82"								"Pure Pecking: All Ability Damage has a 10% / 20% / 30% chance to deal Pure Damage instead, ignoring Armor and Spell Resistances. Whenever you land a Critical Strike with an Auto Attack there is a 25% chance to increase its Damage by 33% / 66% / 100%." //there is a 10% chance to lower the target's Armor by 4 / 8 / 12 for 4 secs (not stacking)."
+		"talent83"								"Windbreaker: + 7% / 14% / 21% Cooldown Reduction for your 4th Ability and after casting your 4th Ability gain a 2% / 4% / 6% Movement Speed and 10% / 20% / 30% increased Mana and non-Mana Energy Regeneration for 10 secs."
+		"talent84"								"Wings of Dominance: + 15 / 30 / 45 Strength, Agility and Intellect. After casting your 6th Ability, increase all AOE Damage by 15% / 30% / 45% and gain Auto Attack Damage equal to 25% / 50% / 75% of your Strength, Agility and Intellect combined for 15 secs."
+		"talent85"								"A Feast for Crows: For every enemy in a 900 yard area around you, gain a 2% / 4% / 6% Damage Bonus and 0.33 / 0.66 / 1 Armor. Capped at 8 enemies for Ranged Heroes and at 12 enemies for Melee Heroes.\nWhenever there are 3 or more enemies nearby, you become a Storm Crow for 6 / 8 / 10 secs, increasing Attack Speed, Spellhaste and Ability AOE Damage by 100%."//there is a 50% chance to launch a Storm of Shadows at them every 5 secs, dealing 100% / 200% / 300% of your Attack Damage plus Spellpower as Pure Shadow Damage."
+		"talent86"								"Sky Combat: Ability Damage and Healing dealt to enemies further than 600 yards away is increased by 5% / 10% / 15% for every 100 yards beyond those 600 yards. Capped at 600 yards beyond the required 600 yards."
+		"talent87"								"Storm Harpy: Each Auto Attack has a 15% chance and every Channel Ability Damage instance has a 30% chance to cause a Storm Strike, dealing Holy Physical Nature Damage equal to 100% / 200% / 300% of your Attack Damage,\njumping to 2 additional targets with 50% Damage Reduction per jump and granting 5 / 10 / 15 Spell Resistance for 5 secs (max 30 Spell Resistance). Has an inner cooldown of 0.1 secs."
+		"talent88"								"Ravencraft: Gain 1 / 2 / 3 Ability Points."
+		"talent89"								"Crowfall: After having cast all of your 6 Abilities, take on the Aspect of the Crow, increasing all Damage by 2% / 4% / 6% every sec and Auto Attack Damage by an additional 2% / 4% / 6% every sec, lasting for 20 secs." //increasing Strength, Agility and Intellect by 25% / 50% / 75% and decreasing all Damage taken by 20% / 25% / 30%."
+		"talent90"								"Fury of the Eagle: When you land an Auto Attack or cast your 1st Ability, the cooldown of your Ability with the highest remaining cooldown will be reduced by 0.1 / 0.2 / 0.3 secs, capped at 0.75 secs."
+
+		"talent91"								"Dreadsteed: + 1 / 2 / 3 Armor and Spell Resistance and while moving, all Ability Damage and Healing caused is increased by 10% / 20% / 30%."
+		"talent92"								"Frostmourne: Whenever you Auto Attack, gain 1 / 2 / 3 Attack Speed, stacking 50 times. When you reach 50 stacks, consume them to Heal 5% / 10% / 15% of max Health and become the Lich King for 3 / 6 / 9 secs, increasing Attack Damage by 50%."
+		"talent93"								"Bone Shield: When you cast your 5th Ability, gain a Bone Shield, reducing all Damage taken by 35% for 3 / 5 / 7 secs. In addition, passively increase the efficiency of all Mana Shield effects and the effectiveness of Sacred Shield by 10% / 20% / 30%."
+		"talent94"								"Deadfury: + 2% / 4% / 6% Damaging Ability Critical Strike chance for 200% for Abilities with a cooldown of 3 secs or less."
+		"talent95"								"Shadowfrost: Gain flat Frost Damage, Shadow Damage and Damage Block equal to 5% / 10% / 15% of your Strength, Agility and Intellect."
+		"talent96"								"Epidemic: All AOE Damage over Time is increased by 25% / 50% / 75% and dealing Damage has a 3% / 4% / 5% chance to inflict Pestilence, lowering Spell Resistance by 5 and dealing 250% of your Primary Attribute as Shadow Damage per sec over 3 secs to all enemies within 300 yards of the target, stacking multiple times with an inner cooldown of 1 sec."
+		"talent97"								"Bloodflow: Debuffs that deal Damage over Time now tick 10% / 20% / 30% faster, capped at 50%. When you cast your 4th Ability, gain 10% Lifesteal and 250 Attack Speed and Spellhaste for 3 / 3.5 / 4 secs, capped at 8 secs. Has an inner cooldown of 25 secs."
+		"talent98"								"Unholy Frenzy: Whenever you land an Auto Attack, gain 5 / 10 / 15 Attack Damage for 5 secs, stacking up to 100 times."
+		"talent99"								"Reign of Chaos: While above 50% of max Resource (Mana or Energy), all Ability Damage and Healing is increased by 25% / 50% / 75%, but you pay an additional 3% of max Resource per Damage / Healing instance.\nWhen you deal Chaos Damage, the Reign of Chaos Bonus is doubled."
+		"talent100"								"Chaos Knight: Gain + 20% / 40% / 60% Physical and Chaos Damage (Elemental) and after having cast your 1st and 3rd Ability, your 2nd Ability deals 20% / 40% / 60% increased Damage for 8 secs."
+		"talent101"								"Unholy Aura: When you cast your 6th Ability, gain an Unholy Aura with 1500 range for 4 / 5 / 6 secs, increasing the Damage of nearby allies by 15% as well as Healing them for 50% of your Primary Attribute every 2 secs. You can only be affected by one Unholy Aura at a time."
+		"talent102"								"Lord of Bones: Whenever you deal Damage, there is a 7% chance to summon a Bone Warrior dealing Physical Shadow Damage equal to 100% / 200% / 300% of your Strength, Agility and Intellect, lasting 10 secs. Max 3 / 4 / 5 Bone Warriors.\nWhile atleast 1 Bone Warrior is alive, gain the Lord of Bones Aura for 10 secs, increasing the Movement Speed of all nearby non-Heroes by 25%."
+		"talent103"								"Heartbreaker: After landing a Damaging Critical Strike with an Ability or Auto Attack, gain the Heartbreaker buff, increasing all Energy Regeneration by 50% and all Damaging Ability and Auto Attack Critical Strike Damage by 1% / 2% / 3% for every 100 Points of Strength for 3 / 4 / 5 secs."
+		"talent104"								"Frostwyrm's Fury: Whenever you cast an Ability, gain Frostwyrm's Fury, increasing Attack Speed and Spellhaste by 15 / 20 / 25 for 5 secs. Multiple instances of this buff can be active, capped at 500 / 550 / 600. In addition, whenever you are Auto Attacked, there is a 5% / 7.5% / 10% chance to root the Attacker in an Ice Nova for 3 secs."
+		//"talent104"								"Frostwyrm: Summons and Companions have a 30% / 40% / 50% to have their Damage also be of type Frost and when you cast your 5th Ability, gain a Frostwyrm Armor for 10 secs, damaging nearby enemies for 250% / 500% / 750% of your Primary Attribute as Frost Damage in a 250 Range and increasing Armor by 3 / 6 / 9. Has an inner cooldown of 25 secs. Non-Bosses will be rooted in an Ice Nova for 5 secs when damaged by the Frostwyrm Armor."
+		"talent105"								"Reaper of Souls: The 1st / 1st + 2nd / 1st + 2nd + 3rd Soul in your Backpack grants +1 additional Path Point. At Level 4, you gain +2 Path Points for your 1st Soul and so on. Can not increase its own Level."
+
+		"talent106"								"Guardian Shield: Gain a Guardian Shield every 5 secs, reducing all Damage taken by 3% / 6% / 9% from enemies within 450 yards. Whenever you cause Healing, it will consume the Guardian Shield and Critical Strike for 200% / 250% / 300%."
+		"talent107"								"Lone Druid: While there is no enemy within 450 yards, increase all Damage and Healing caused by 7% / 14% / 21% and Heal for 50% / 100% / 150% of your Primary Attribute every 5 secs."
+		"talent108"								"Mountain Ranger: + 7% / 14% / 21% Single Target Ability and Auto Attack Damage."
+		"talent109"								"Stone Skin: Gain + 1 / 2 / 3 Armor per sec, stacking up to 10 times. Whenever you take Damage, you lose 2 stacks."
+		"talent110"								"Meditation: + 15% / 30% / 45% Damage at the cost of 10% / 20% / 30% longer cooldowns."
+		"talent111"								"Overgrowth: + 5% / 10% / 15% AOE Healing and whenever you apply a debuff, increase all Damage and Healing by 2% for 5 secs, stacking up to 10 / 20 / 30 times."
+		"talent112"								"Bark Skin: Gain 0.33 / 0.66 / 1 Armor for every 25 Points of Strength, up to 25 Armor."
+		"talent113"								"Elder Wisdom: Gain Mana Regeneration equal to 0.2% / 0.4% / 0.6% of your Max Mana and for every second of combined remaining cooldown time of all of your Abilities, gain + 0.2% / 0.4% / 0.6% Damage. Abilities hidden by Shapeshifting or Stance changes do not count."
+		"talent114"								"Aspect of the Viper: Gain 1 / 2 / 3 Spellpower for every 10 Points of Intellect and debuffs that deal Damage over Time now tick 10% / 20% / 30% faster for every 100% Spellhaste you have, capped at 50%."
+		"talent115"								"Ancient of War: + 1500 / 3000 / 4500 Health and when you deal AOE Damage with an Ability, add 1% / 2% / 3% of your current Health to its Base Damage, at the cost of 25 / 50 / 75 reduced Attack Speed."
+		"talent116"								"Ram Guardian: Gain 0.33 / 0.77 / 1 Spell Resistance and Armor for every 100 Points of Agility, capped at 30, and 1% / 2% / 3% Critical Strike Damage per 100 Agility."
+		"talent117"								"Bull Rush: Whenever you cast an Ability, there is a 30% / 40% / 50% chance to Auto Attack the closest enemy within 900 yards (300 yards for melee Heroes), with an inner cooldown of 0.3 secs."
+		//"talent117"								"Bull Rush: Increases the effectiveness of all Critical Strike chances by 5% / 10% / 15% and after landing a Damaging Critical Strike gain 10% increased Movement Speed for 1 / 2 / 3 secs."
+		"talent118"								"Molten Giant: Gain Attack Damage equal to 1% / 1.5% / 2% of your max Health and gain a 10% chance to get Lava Flow when Auto Attacking, restoring 3% / 6% / 9% of max Resource, with an inner cooldown of 2 secs. After dealing Fire Damage, the Attack Damage Bonus is doubled for 10 secs, with an inner cooldown of three times the duration." //+ 300 / 600 / 900 Attack Damage at the cost of 25 / 50 / 75 reduced Attack Speed."
+		"talent119"								"Storm Giant: Gain 1 / 2 / 3 Attack Speed for every Percent of Spell Resistance and gain Spellhaste equal to 50% of your Attack Speed. After dealing Nature Damage, these Bonuses are doubled for 10 secs, with an inner cooldown of three times the duration."
+		"talent120"								"Arcane Giant: + 100 / 200 / 300 Mana, + 10 / 20 / 30 Energy, + 10% / 20% / 30% Auto Attack Damage and also gain Health equal to 10% / 20% / 30% of your max Mana. After dealing a Critical Strike with Arcane Damage or an Auto Attack, cause 5 Arcane Explosions,\neach dealing 100% / 200% / 300% of your Primary Attribute, Attack Damage and Spellpower as Arcane Damage to all enemies within 450 yards, with an inner cooldown of 20 secs." //After dealing Arcane Damage, increase all Magical Ability Critical Strike Damage and Critical Healing by 15% / 30% / 45% for 10 secs, with an inner cooldown of three times the duration."
+
+
+
+
+		"talent121"								"Giant Growth: Whenever a Boss is killed, your Primary Attribute is increased by 0.5% / 0.75% / 1% for the rest of the game, stacking multiple times."
+		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 25% / 50% / 75% for 5 secs. Can not proc while active."
+		"talent123"								"Growing Pains: Whenever you land an Auto Attack Critical Strike, gain 30 / 60 / 90 Auto Attack Damage for 3 secs, stacking 100 times and whenever you die, gain 3% / 5% / 7% Spell Resistance and 3% / 5% / 7% max Health, capped at 50%."
+
+		"talent124"								"Lunar Eclipse: Gain 3 Lunar Eclipse stacks every 5 secs that get consumed when dealing Damage / Healing with an Ability, stacking up to 15 times. While you have Lunar Eclipse stacks, Ability Critical Strike Damage and Critical Healing is increased by 35% / 70% / 105%."
+		"talent125"								"Butterfly Effect: When you deal Damage with your first Ability, your next Damage instance with your second Ability deals Bonus Damage. When this Bonus Damage occurs, your next Damage instance with your third Ability deals Bonus Damage. This repeats until you reach your 6th Ability. Whenever you deal Damage with your first Ability, everything is reset. The initial Damage Bonus is 10% / 20% / 30% and it doubles on each jump. Capped at level 3."
+		"talent126"								"Starfire: All Ability Damage is increased by 5% / 10% / 15% per Elemental Damage type in the Damage instance. This Damage Bonus doubles on Critical Strikes, Pure Damage and AOE Damage instances, stacking multiplicatively."
+
+		"talent127"								"Dragonfury: Increases the effectiveness of all Elemental Damage Bonuses by 33% / 66% / 100%. Whenever you cause 2 or more Elemental Damage Types in the same Damage instance (excluding Physical), increase all Ability Damage by 15% / 30% / 45% for 5 secs."
+		"talent128"								"Cataclysm: Gain 1 / 1.5 / 2 Health per Intellect and whenever you deal AOE Damage, add 100% / 150% / 200% of your Strength, Agility, Intellect and Spellpower to its base Damage."
+		"talent129"								"Song of Ice and Fire: After casting your first Ability, your next Ability Damage instance with your second Ability has a 33% / 66% / 100% chance to also be of type Fire and to deal 100% increased Damage. After casting your second Ability, your next Ability Damage instance with your first Ability has a 33% / 66% / 100% chance to also be of type Frost and to deal 100% increased Damage. Capped at level 3." //"Scales of the Chimera: After casting an Ability with cast time, increase all Damage by 5% / 7.5% / 10% and Spell Resistance by 5 / 7.5 / 10 for 5 secs, stacking 3 times."
+
+		"talent130"								"Savagery: Increase all Ability Damage by 20% / 40% / 60%, but pay 1% of max Health per Damage instance. Only affects Abilities with a base cooldown of 5 secs or less. You can not die from this."
+		"talent131"								"Lycanthrope: After having caused a Healing, Ability, and Auto Attack Critical Strike, increase all Damage by 20% / 35% / 50% for 10 secs. Twice as effective for Summons and Companions. Can not proc while active." // "Leader of the Pact: Whenever you deal Single Target Damage with an Ability, add 50% / 100% / 150% of your Strength plus Agility to its base Damage. Twice as effective for Damage caused by Summons and Companions."
+		"talent132"								"Primal Power: Each first row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels. Capped at level 3."//All Abilities that are max Level have their Damage and Healing increased by 15% / 30% / 45%."
+
+		"talent133"								"Mimesis: Whenever you silence an enemy, strike them for 500% / 1000% / 1500% of your Attack Damage plus Spellpower as Shadow Chaos Damage, stun them for 1 / 2 / 3 secs and Heal yourself for 5% / 10% / 15% of max Health, with an inner cooldown of 5 secs."
+		"talent134"								"Nemesis: Every 4th / 3rd / 2nd Finishing Move against the same target does not consume Combo Points. Finishing Moves are Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash. Capped at level 3." //All Finishing Moves gain Spell Fury, causing each consecutive Damage instance dealt against the same target to deal 1% / 2% / 3% increased Damage, up to 30% / 60% / 90%.\nFinishing Moves are: Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash." // "Demonhunter: Ability Damage against enemies above 75% of max Health is increased by 15% / 30% / 45%. When dealing Shadow or Chaos Damage, it affects targets below 75% of max Health instead."
+		"talent135"								"Genesis: At the beginning of the game and whenever you are revived, gain 30% Damage and Damage Reduction for 180 / 240 / 300 secs."
+
+		"talent136"								"Typhoon Thunder: Gain a Typhoon charge every 5 secs, stacking up to 10 times. Whenever you're in combat and there's an enemy within 900 yards, strike it for 250% / 500% / 750% of all Attributes as Nature Damage and restore 3% / 6% / 9% of max Resource."
+		"talent137"								"Hysteria: Auto Attack the closest enemy every 3 / 2 / 1 secs and increase the max cap of Abilities with charges by 1 / 2 / 3. Auto Attack Range is 300 yards for Melee and 900 yards for Ranged. Capped at level 3."
+		"talent138"								"Natural Disaster: Whenever you proc a Natural Disaster, there is a 5% / 10% / 15% chance to proc all other Natural Disasters you have learned, with an inner cooldown of 3 secs, ignoring all other inner cooldowns. Natural Disasters are Rain of Stars, Blizzard, Ice Storm, Storm Strike, Epidemic and Typhoon."
+
+		"talent139"								"Four Horsemen: Your Abilities gain one out of four Effects, based on their Level.\nLevel 1: Passive + 3% / 6% / 9% Movement Speed and 25 / 50 / 75 Attack Speed. Level 2: + 3 / 6 / 9 passive Armor. Level 3: + 5% / 10% / 15% chance to Critical Strike for 200% with that Ability. Level 4: + 5% / 10% / 15% chance to deal Pure Damage with that Ability and 10% / 20% / 30% chance to add Chaos Damage Type."
+		"talent140"								"Mutation: All Damage is increased by 10% / 20% / 30% per Path Mutation Effect on your Hero. Path Mutation Effects are: Wolf Rage, Bestial Wrath, From the Shadows, Shadow Form, Storm Crow and Crowfall."
+		"talent141"								"Infestor: Stack based Debuffs gain + 1 / 2 / 3 max stacks and all debuffs last 0.5 / 1 / 1.5 secs longer."
+
+		"talent142"								"Tree of Life: Gain an HP Aura, increasing the max Health of all Heroes by 5% / 10% / 15%. Once per game, when the first Hero goes down to only 1 Life, replenish 1 / 2 / 3 Lifes. Both Effects stack with other Players. Capped at level 3."
+		"talent143"								"Mountain Giant: While Molten Giant, Storm Giant and Arcane Giant are on cooldown, gain 15% / 30% / 45% Damage and Damage Reduction. Capped at level 3."
+		"talent144"								"Mark of Nature: Stack based Buffs gain + 1 / 2 / 3 max stacks and whenever you Dispel an ally, heal you and the target for 15% / 30% / 45% of max Health. Capped at level 3."
+
+
+		//sinister assassin: combos, evasion, stealth, ambush, crit, fast attacks, dual wield, finishers, agility, poisons, nature damage, auto attacks, glaives azzinoth, stun
+		"talent145"								"Elusiveness: After being Attacked, gain 90% Evasion for 3 / 4 / 5 secs, with an inner cooldown of 45 secs."
+		"talent146"								"Dual Wielding: Your next Auto Attack hits twice, with an inner cooldown of 4 / 3 / 2 secs, capped at 1 sec. Passively gain Auto Attack Damage equal to 20% / 40% / 60% of your Agility, not affecting Abilities."
+		"talent147"								"Dark Initiation: When you cast your first Ability, gain 75 / 150 / 225 Attack Speed and Spellhaste for 5 secs, with an inner cooldown of 30 secs."
+		"talent148"								"Weapon Mastery: Gain a Bonus based on your Primary Attribute. Strength: After casting your 3rd Ability, increase all Damage by 2.5% / 5% / 7.5% for 5 secs, stacking 10 times. Agility: Dealing Damage with your 2nd Ability increases your Ability Damage by 0.5% / 1% / 1.5% for 5 secs, stacking 50 times. Intellect: Dealing Damage over Time increases your Ability Damage by 0.5% / 1% / 1.5% for 3 secs, stacking 50 times." //Whenever you land an Auto Attack, gain Mastery, stacking up to 10 times. Your next Ability Damage instance will consume all Mastery and increase the Ability Damage by 3% / 6% / 9% per stack."  //Whenever you deal Ability Damage, add 25% / 50% / 75% of your Strength plus Agility to its base Damage."
+		"talent149"								"Marked for Death: After 25 Auto Attacks against the same target, lower their Armor by 6 for 1 / 2 / 3 secs. Does not stack multiple times."
+		"talent150"								"Shield Shatter: Targeting an enemy with an Ability has a 3% / 5% / 7% chance to lower their Spell Resistance by 50 for 3 secs. Does not stack multiple times."
+		"talent151"								"Alacrity: Abilities with base cooldowns of 30 secs or less have their cooldown reduction cap changed from 66% to 69% / 72% / 75%. In addition, increases the tick rate of Dots and Channeled Abilities by 3% / 6% / 9% for every 100 Agility, capped at 50%."
+		"talent152"								"Cold Blood: Add a flat additive 1% / 2% / 3% to all damaging Ability and Auto Attack Critical Strike chances."
+		"talent153"								"Blood Moon: When you fall below 50% of max Health, reset all Ability cooldowns and reduce all Damage taken by 90% for 1 / 2 / 3 secs, with an inner cooldown of 300 / 240 / 180 secs, capped at 90 secs."
+		"talent154"								"Trickster: Reduce all Item cooldowns by 15% / 30% / 45% and after using an Item Ability, increase all Damage by 10% / 20% / 30% for 5 secs."
+		"talent155"								"Executioner: Your Ability with the highest base cooldown gains 25% / 50% / 75% increased Ability Damage. Abilities you have not learned and abilities with zero cooldown do not count."
+		"talent156"								"Rogue Resistance: While your Damage Reduction is 50% or higher, increase all Damage by 15% / 30% / 45%. This effect only refers to the actual stat Damage Reduction, not Armor or Spell Resistance."
+		"talent157"								"Inner Focus: Inner cooldowns are reduced by 10% / 20% / 30% (capped at 30%), Channeled Abilities deal 10% / 20% / 30% increased Damage and all Mana Regeneration is increased by 10% / 20% / 30% (does not affect non-Mana Heroes)."
+		"talent158"								"Deadly Arsenal: Each of your damaging Abilities gains a guaranteed Critical Strike for 150% / 200% / 250%, each with an inner cooldown of 20 secs and Auto Attack Critical Strikes deal 10% / 20% / 30% increased Damage."
+		"talent159"								"Ambush: After being invisibile for at least 1 sec, your next 10 Damage instances deal 30% / 60% / 90% increased Damage. Whenever you cast an Ability with a base cooldown of 45 secs or higher, become invisibile for 2 / 3 / 4 secs."
+		"talent160"								"Preparation: Ability cooldowns can not exceed 50 / 45 / 40 secs, taking effect after other reductions. Whenever this effect alters a cooldown, increase your Primary Attribute by 15% / 30% / 45% for 7 secs. Capped at level 3."
+		"talent161"								"Killing Spree: Whenever a Boss gets killed, gain 100 Agility and 5% Movement Speed for 20 / 40 / 60 secs, with multiple instances of this buff stacking."
+		"talent162"								"Phantom Shade: After casting your 4th Ability, reduce all Damage taken by 75% for 2 / 3 / 4 secs, with an inner cooldown of 30 secs."
+
+
+		// jungle troll
+		//"talent163"								"Dual Axes: Dealing Ability Damage is increased by x when your previous Ability Damage was caused by a different Ability."
+		//"talent163"								"Voodoo Master: Ability Damage is increased for every effect that takes place in a Damage instance: Critical Strike, Shadow Damage, Damage over Time."
+		//"talent163"								"Bloodthirst: 1 Life every 10 Boss kills."
+		//"talent163"								"King of the Jungle: When you cast your 6th Ability, taunt nearby enemies for 3 / 4 / 5 secs, with an inner cooldown of 45 secs."
+		//"talent163"								"Berserker: When you cast an Ability, gain 1 Berserker stack for 3 secs, stacking 50 times. Each stack increases your Damage by 1% / 2% / 3%."
+		//"talent163"								"Jungle Fortitude: Strength, Agility and Intellect now also provide 1 / 1.5 / 2 Health per Point."
+		//"talent163"								"Adaptivity: Whenever you take Damage, reduce all Damage taken by 0.5% / 1% / 1.5% for 3 secs, stacking 25 times."
+		//"talent163"								"Inner Fire: Increase your Mana Regeneration and non-Mana Regeneration by 1 / 2 / 3 per sec, and whenever you cause Ability Damage, cause the target to take 50% / 100% / 150% of Attack Damage plus Spellpower per sec as Holy Fire Damage over 5 secs, with an inner cooldown of 25 secs."
+		//"talent163"								"Tribal Power: Gain an Aura that increases Strength, Agility and Intellect of all allies, stacking with other players."
+		//"talent163"								"Witch Doctor: +75 / 150 / 225 Spellpower."
+		//"talent163"								"Spirit Walk: When you cast your 5th Ability, become invisible for 5 secs, with an inner cooldown of 45 secs."
+		//"talent163"								"Presence: While you have an active Taunt effect, reduce all Damage taken by 20% / 30% / 40%."
+		//"talent163"								"Forbidden Frenzy: Gain 0.33 / 0.66 / 1 Spellhaste for every Point of Armor."
+		//"talent163"								"Earthen Might: + 15% / 30% / 45% Nature Damage and + 10% / 15% / 20% Healing."
+		//"talent163"								"Big Bad Voodoo: 1% Damage per sec of base cooldown."
+		//"talent163"								"Caster Blaster: 1% Damage per mana/resource cost, half as effective on non-Mana Heroes."
+		//"talent163"								"Rampage: When you cast your 3rd Ability, cause 3 Auto Attacks hitting the closest nearby enemy within 300 (Melee) / 900 (Ranged) yards, with an inner cooldown of 7 / 6 / 5 secs."
+		//"talent163"								"Ring of Elements: After having caused Fire, Frost, Arcane, Shadow, Holy and Chaos Damage, increase all Damage by 50% / 100% / 150% for 10 secs. OR first ability 10 / 20 / 30% fire dmg, 2nd ability 10% frost etc"
+		//"talent163"								"Reincarnation: After dying, increase all Damage and reduce all Damage taken by 10% / 20% / 30% for 60 secs."
+		//"talent163"								"Axe Flinger: Melee Hero Ability Range."
+		//"talent163"								"Headhunter: Critical Strike Damage per Agility doubled."
+
+
+
+		//holy cursader
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Vengeance: Damage and Healing 45 secs after dying."
+		//"talent164"								"Reawakening: + 1 / +2 / +3 Lives."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+		//"talent164"								"Holy Hunter: Holy Damage and Healing."
+
+
+
+
+		//"talent153"								"Aspect of the Cobra: After dealing Shadow and Nature Damage in the same Damage instance, increase your primary Attribute by 25% / 50% / 75% for 10 secs."
+
+
+		//"talent145"								"Dual Wield: After landing 2 Auto Attacks, your next Ability Damage instance deals 10% / 20% / 30% increased Damage."
+		//"talent145"								"Combo Hits: After having cast your 1st and 2nd Ability, the next Damage instance with your 3rd Ability deals 10% / 20% / 30% increased Damage."
+		
+		
+		
+		//"talent145"								"Sinister Strike: Your 1st Ability deals 10% / 15% / 20% increased Damage."
+		
+		//"talent145"								"Sweeping Strike: After casting your 4th, 5th or 6th Ability, Auto Attack all nearby enemies within 300 (melee) / 900 (ranged) yards."
+		
+		
+		//"talent145"								"Fatal Finisher: After using a Finishing Move, increase all Damage by 15% / 30% / 45% for 5 secs."
+		//"talent145"								"Crippling Poison: When you apply a debuff to an enemy, there is a 10% chance to apply Crippling Poison, reducing Movement Speed by 50% and lowering Armor by 2 / 4 / 6 for 5 secs."
+		//"talent145"								"Deadly Poison: Auto Attacks have a 10% chance to inflict Nature Damage equal to 50% / 100% / 150% of your Strength plus Agility."
+		//"talent145"								"Numbing Poison: When you deal Nature Damage, increase the Ability Damage by 15% / 30% / 45% and stun the target for 1 / 1.5 / 2 secs, with an inner cooldown of 20 secs."
+		//"talent145"								"Leeching Poison: When you deal Nature Damage while being wounded, heal for 10% of the Damage done, with an inner cooldown of 30 / 25 / 20 secs."
+		//"talent145"								"Master Assassin: Add a flat additive 1% / 2% / 3% to all damaging Critical Strike chances."
+		//"talent145"								"Master Poisons: All Nature Damage Bonuses are 30% / 60% / 90% more effective."
+		
+
+		//"talent145"								"Dagger Mastery: Abilities with a base cooldown of 15 or less seconds have their cooldown reduced by 10% / 20% / 30%."
+		//"talent145"								"Mace Mastery: Auto Attacks have a 25% chance to stun the target for 1 / 2 / 3 secs, with an inner cooldown of 15 secs."
+		//"talent145"								"Combo Hits: Whenever you target an enemy with an Ability, gain 1% / 2% / 3% increased Damage for 5 secs, stacking 50 times."
+		
+		//"talent145"								"Shadow Sight: Increase vision range by 150."
+		
+		
+		//"talent145"								"Second Strike: Each second row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels."
+		
+		
+		
+
+
+
+
+		"rune1"								"Agility\n\nLOO-NAH-TEM = Luna Time"
+		"rune2"								"Intellect\n\nWII-ZER-TEM = Wiser Time"
+		"rune3"								"Armor\n\nWII-TAL-TEM = Vital Time"
+		"rune4"								"Spell Resistance (capped at 50)\n\nWII-TAL-TIC = Vital Tick"
+		"rune5"								"Strength\n\nFAH-TAL-TEM = Fatal Time"
+		"rune6"								"Attack Damage\n\nFAH-NAH-TIC = Fanatic"
+		"rune7"								"Spellpower\n\nFAH-ZER-TEM = Phaser Time"
+		"rune8"								"Rank(s) of Shadow Demon Path: CRUEL TASKMASTER\n\nFAH-TAL-KIL = Fatal Kill"
+		"rune9"								"Rank(s) of Moonlight Tiger Path: RAIN OF STARS\n\nLOO-NAH-KIL = Luna Kill"
+		"rune10"								"Rank(s) of Ancient Dragon Path: ICE STORM\n\nWII-NAH-KIL = Winter Kill"
+		"rune11"								"Rank(s) of Blood Wolf Path: BLOOD WOLF\n\nLOO-ZER-TEM = Lash Tame"
+		"rune12"								"Rank(s) of Moonlight Tiger Path: FULL MOON\n\nFAH-TAL-TIC = Fatal Tick"
+		"rune13"								"Rank(s) of Storm Crow Path: STORM HARPY\n\nWII-ZER-TIC = Wise Harpy"
+		"rune14"								"Rank(s) of Blood Wolf Path: WOLF RAGE\n\nLOO-NAH-TIC = Lunatic"
+		"rune15"								"Rank(s) of Iron Grizzly Path: STEADINESS\n\nWII-TAL-KIL = Vital Kill"
+		"rune16"								"Strength and Agility\n\nLOO-TAL-TEM = Lotus Templar"
+		"rune17"								"Rank(s) of Ancient Dragon Path: FOCUSSED MIND\n\nWII-NAH-TIC = Winner Ticks"
+		"rune18"								"% increased non-Mana Resource Generation\n\nLOO-TAL-TIC = Loot All Ticks"
+		"rune19"								"% increased Ability Damage\n\nWII-ZER-KIL = Wiser Kill"
+		"rune20"								"Rank(s) of Moonlight Tiger Path: WINDFURY\n\nFAH-ZER-KIL = Faster Kill"
+		"rune21"								"Rank(s) of Ancient Dragon Path: DRAGON'S BREATH\n\nFAH-ZER-TIC = Fire Tick"
+		"rune22"								"Rank(s) of Path: Genesis\n\nFAH-NAH-TEM = Phantom"
+		"rune23"								"Rank(s) of Path: Frostmourne and Frostwyrm's Fury\n\nWII-NAH-TEM = Winter Time"
+		"rune24"								"Rank(s) of Iron Grizzly Path: FLESH WOUNDS\n\nFAH-NAH-KIL = Fanatic Kill"
+		"rune25"								"% increased Ability Damage for your 4th Ability\n\nLOO-TAL-KIL = Lotta Kills"
+		"rune26"								"Rank(s) of Iron Grizzly Path: COLOSSAL STRIKES\n\nLOO-ZER-TIC = Loose Artist"
+		"rune27"								"% increased Ability Damage for your 1st and 2nd Ability\n\nLOO-ZER-KIL = Looser Kill"
+
+		"rune28"								"Rank(s) of Path: Unholy Aura\n\nWII-ROH-TEM = Virus Time"
+		"rune29"								"Rank(s) of Path: Storm Claws\n\nFAH-ROH-TEM = Ferocious Time"
+		"rune30"								"Rank(s) of Path: Deathwing\n\nLOO-ROH-TEM = Lordly Tamer"
+		"rune31"								"Rank(s) of Path: Epidemic\n\nWII-ROH-KIL = Virus Kill"
+		"rune32"								"Rank(s) of Path: Crowfall\n\nFAH-ROH-KIL = Ferocious Kill"
+		"rune33"								"Rank(s) of Path: The Stars Aligned\n\nLOO-ROH-KIL = Lordly Kill"
+		"rune34"								"Rank(s) of Path: Rise of the Phoenix\n\nWII-ROH-TIC = We Are Phoenix"
+		"rune35"								"Rank(s) of Path: Bull Rush\n\nFAH-ROH-TIC = Ferocious Trick"
+		"rune36"								"Rank(s) of Path: Steel Mammoth\n\nLOO-ROH-TIC = Lordly Thick"
+
+		"rune37"								"Rank(s) of Path: Dark Initiation\n\nSIN-ROH-TEM = Zero Time"
+		"rune38"								"Rank(s) of Path: Deadly Arsenal\n\nSIN-TAL-TEM = Sinful Time"
+		"rune39"								"Rank(s) of Path: Ambush\n\nSIN-NAH-TEM = Sinner Time"
+		"rune40"								"Rank(s) of Path: Phantom Shade\n\nSIN-ZER-TEM = Sinister Time"
+		"rune41"								"Rank(s) of Path: Elusiveness\n\nSIN-ROH-KIL = Sinister Rogue"
+		"rune42"								"Rank(s) of Path: Cold Blood\n\nSIN-TAL-KIL = Sinful Kill"
+		"rune43"								"Rank(s) of Path: Killing Spree\n\nSIN-NAH-KIL = Sinner Kill"
+		"rune44"								"Rank(s) of Path: Executioner\n\nSIN-ZER-KIL = Sinister Kill"
+		"rune45"								"Rank(s) of Path: Rogue Resistance\n\nSIN-ROH-TIC = Zero Tricks"
+		"rune46"								"Rank(s) of Path: Dual Wielding\n\nSIN-TAL-TIC = Sinner's Talent"
+		"rune47"								"Rank(s) of Path: Weapon Mastery\n\nSIN-NAH-TIC = Sinner Tricks"
+		"rune48"								"Rank(s) of Path: Trickster\n\nSIN-ZER-TIC = Sinister Trick"
+
+
+
+		
+
+	}
+
+}
+

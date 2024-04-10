@@ -1,0 +1,229 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+		<include src="file://{resources}/styles/custom_game/templechoice.css" />
+		<include src="file://{resources}/styles/custom_game/overthrow_game_info.css" />
+		<include src="file://{resources}/styles/custom_game/arena_start_button.css" />
+	</styles>
+	<scripts>
+	    <include src="file://{resources}/scripts/custom_game/templevote.js" />
+	  </scripts>
+	<Panel class="OverthrowLoadingRoot">
+		
+		<Panel id="seq" >
+			<Image id="seq_bg" class="SeqBg" src="file://{images}/custom_game/loading_screen/1.psd" />
+			<!--<Movie id="ZooHeroMoviePlayer" src="file://{images}/custom_game/loading_screen/test1.webm" controls="none" repeat="true" autoplay="onload" />-->
+			<!--<Movie id="Webm" src="file://{images}/custom_game/loading_screen/test1.webm" controls="none" repeat="true" autoplay="onload" />-->
+			
+			
+			<!--<Panel class="TipMessage" id="tipmessages">
+				<Button  onactivate="NextTip()" style="flow-children:down;" >
+					<Label class="WeaponHeader" text="Tips" style="color:orange; horizontal-align: left;font-size: 40px; margin-left: 10px;"/>
+					<Label class="WeaponHeader" id="loadingscreen_tips" style="font-size: 20px; margin-left: 5px;" text="If you want to play alone choose 100% Difficulty, which has reduced Monster Health and Damage per missing Player.\nFor higher difficulties it is recommended to play in a party with 1 Tank, 1 Healer and 3 Damage Dealers.\nYou can use your Chest in the starting area to save your Hero. It will automatically load in your next game." />
+					<Label class="WeaponStats" text="Click for a new Tip!" style="color:white; font-size: 15px; horizontal-align: center;"/> 
+				</Button>
+			</Panel>
+			<Panel class="Leaderboard" style="horizontal-align: center; vertical-align: center;">
+				<Label class="WeaponHeader" text="Top 20 Players" style="color:orange; font-size: 30px;" />
+				<Label class="WeaponHeader" id="playerleaderboard" style="font-size: 15px; margin-left: 5px;" text="" />
+			</Panel>-->
+			<Panel id="leaderboardloadingscreen" visible="false" hittest="false">	
+			<Panel class="rowdown">
+				<Label id="leaderboardheader" class="ButtTextBig" text="Ranking" />	
+			</Panel>	
+			<Panel class="rowdown">
+			
+				<Panel id="row45" class="row">
+					<Panel class="cellheader">
+						<Label id="rank" class="ButtTextSmall" text="Rank" />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="1." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="2." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="3." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="4." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="5." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="6." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="7." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="8." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="9." />	
+					</Panel>
+					<Panel class="cellheader">
+						<Label class="ButtTextSmall" text="10." />	
+					</Panel>
+				</Panel>
+					
+				<Panel id="row5" class="row">
+					<Panel class="cellheader">
+						<Label id="d11" class="ButtTextSmall" text=" Player " />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d21" class="ButtTextSmallGold" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d31" class="ButtTextSmallSilver" text="loading" />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d41" class="ButtTextSmallBronze" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d51" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d61" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d71" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d81" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d91" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d101" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d111" class="ButtTextSmall" text="loading" />	
+					</Panel>
+				</Panel>
+				
+				<Panel id="row6" class="row">
+					<Panel class="cellheader">
+						<Label id="d12" class="ButtTextSmall" text=" Rating " />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d22" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero1" src=""  />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d32" class="ButtTextSmall" text="loading" />
+						<Image class="ClassImage" id="hero2" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d42" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero3" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d52" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero4" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d62" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero5" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d72" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero6" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d82" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero7" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d92" class="ButtTextSmall" text="loading" />
+						<Image class="ClassImage" id="hero8" src=""  />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d102" class="ButtTextSmall" text="loading" />	
+						<Image class="ClassImage" id="hero9" src=""  />
+					</Panel>
+					<Panel class="cell">
+						<Label id="d112" class="ButtTextSmall" text="loading" />
+						<Image class="ClassImage" id="hero10" src=""  />	
+					</Panel>
+				</Panel>
+
+				<Panel id="row7" class="row">
+					<Panel class="cellheader">
+						<Label id="d13" class="ButtTextSmall" text=" Wins " />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d23" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d33" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d43" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d53" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d63" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d73" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d83" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d93" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d103" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d113" class="ButtTextSmall" text="loading" />	
+					</Panel>
+				</Panel>
+
+				<Panel id="row8" class="row">
+					<Panel class="cellheader">
+						<Label id="d14" class="ButtTextSmall" text=" Losses " />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d24" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d34" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d44" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d54" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d64" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d74" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d84" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d94" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d104" class="ButtTextSmall" text="loading" />	
+					</Panel>
+					<Panel class="cell">
+						<Label id="d114" class="ButtTextSmall" text="loading" />	
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		</Panel>
+	</Panel>
+</root>

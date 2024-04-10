@@ -1,0 +1,47 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_drow_ranger"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootssas"
+			"item"		"item_agirecipe"
+			"item"		"item_weapon3"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_weapon8"
+			"item"		"item_weapon10"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_endgame10"	
+			"item"		"item_weapon14"		
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_shield1"
+			"item"		"item_shield2"
+			"item"		"item_active2"
+			"item"		"item_weapon11"
+			"item"		"item_weapon40"
+			"item"		"item_active9"
+			"item"		"item_bowupgrade"
+			"item"		"item_activehunter"
+
+			"item"		"item_agirecipe"
+			"item"		"item_flamefury"
+			"item"		"item_weaponpoison3"
+			"item"		"item_bowcasttime"
+			"item"		"item_beastmaster"
+
+		}
+	}
+}

@@ -1,0 +1,8 @@
+700_frontpage
+{
+	material materials/overviews/700_frontpage.vmat
+	pos_x 0
+	pos_y -2147483648
+	scale -332306979139188339659867366684098560.000
+}
+

@@ -1,0 +1,54 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_skeleton_king"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootssas"
+			"item"		"item_strrecipe"
+			"item"		"item_weapon3"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_weapon1"
+			"item"		"item_weapon3"	
+			"item"		"item_weapon7"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_weapon7up"
+			"item"		"item_endgame2"			
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_shield1"
+			"item"		"item_shield2"
+			"item"		"item_weapon4"
+			"item"		"item_headarmor1"
+			"item"		"item_endgame9"	
+			"item"		"item_endgame3"	
+			"item"		"item_active13"
+			"item"		"item_endgame1"	
+			"item"		"item_aura2"
+			"item"		"item_active99"
+			"item"		"item_activedk"
+
+			"item"		"item_strrecipe"
+			"item"		"item_valyrian"
+			"item"		"item_halberd"
+			"item"		"item_weaponpoison3"
+			"item"		"item_straxe2"
+			"item"		"item_weapon5"
+			"item"		"item_dragonpike"
+			
+			
+		}
+	}
+}

@@ -1,0 +1,1412 @@
+.WeaponChoice
+{
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #434349 ) );
+    horizontal-align: center;
+    vertical-align: center;
+	flow-children: down;
+	width: 60%;
+    height: 50%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+}
+
+.WeaponRow
+{
+	vertical-align: top;
+   horizontal-align: center;
+	margin-bottom: 10px;
+	margin-left: 4px;
+	margin-top: 10px;
+	margin-right: 4px;
+	flow-children: right;
+}
+
+.WeaponList
+{
+	flow-children: down;
+	vertical-align: top;
+   	horizontal-align: right;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 45px;
+	margin-right: 4px;
+}
+
+.ToggleStashClass
+{
+	flow-children: down;
+	vertical-align: bottom;
+   	horizontal-align: right;
+	margin-bottom: 300px;
+	margin-left: 4px;
+	margin-top: 20px;
+	margin-right: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 10px;
+}
+
+.GoldUIClass
+{
+	flow-children: down;
+	vertical-align: bottom;
+   	horizontal-align: right;
+	margin-bottom: 5px;
+	margin-left: 4px;
+	margin-top: 20px;
+	margin-right: 100px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 10px;
+}
+
+.ToggleStashClass:hover
+{	
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #444444 ), to( #111111 ) );
+}
+
+.MonsterSpellcastList
+{
+	flow-children: right;
+	vertical-align: top;
+   	horizontal-align: center;
+	//margin-bottom: 4px;
+	//margin-left: 4px;
+	margin-top: 100px;
+	//margin-right: 4px;
+	
+}
+
+.MonsterSpellcastSpell
+{
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 10px;
+    width: 250px;
+    flow-children: down;
+    animation-name: scalein;
+    animation-duration: .25s;
+    animation-timing-function: linear;
+    //horizontal-align: center;
+	//margin-top: 50px;
+	//margin-left: 10px;
+	//margin-right: 10px;
+	//margin-bottom: 50px;
+	
+	//overflow: scroll;
+}
+
+.MonsterSpellcastSpells
+{
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 10px;
+    flow-children: down;
+    animation-name: scalein;
+    animation-duration: .25s;
+    animation-timing-function: linear;
+}
+
+.LootTableList
+{
+	flow-children: down;
+	//vertical-align: top;
+   	//horizontal-align: right;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 20px;
+	margin-right: 4px;
+	overflow: scroll;
+	//flex-direction: row;
+    //flex-wrap: wrap;
+}
+
+#loottable
+{
+    width: 80%;
+    height: 80%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+	vertical-align: top;
+	margin-top: 0px;
+	margin-left: 250px;
+	flow-children: down;
+	overflow: scroll;
+}
+
+#loottable2
+{
+
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #54545a ) );
+    horizontal-align: center;
+	//margin-top: 50px;
+	//margin-left: 10px;
+	//margin-right: 10px;
+	//margin-bottom: 50px;
+	flow-children: down;
+	overflow: scroll;
+}
+
+.WeaponColumn
+{
+   horizontal-align: center;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.WeaponDropDisplay
+{
+   horizontal-align: left;
+   vertical-align: bottom;
+   margin-left: 290px;
+   margin-bottom: 10px;
+   //min-width: 150px;
+}
+
+
+.WeaponInventoryDisplay
+{
+   horizontal-align: center;
+   vertical-align: top;
+   flow-children: down;
+   overflow: squish scroll;
+   //background-image: url("file://{images}/bg_hero.png");
+   //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+   //margin-left: 400px;
+   //margin-bottom: 400px;
+}
+
+.HeroStats
+{
+   horizontal-align: center;
+   vertical-align: top;
+   flow-children: down;
+   overflow: scroll squish;
+   //background-image: url("file://{images}/bg_hero.png");
+   //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+   //opacity: 0.9;
+   //border-style: solid;
+   //border-width: 2px;
+   //border-color: white;
+   //box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+.SingleWeapon2
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555c ), to( #77777c ) );
+	height: 300px;
+	width: 275px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.SingleWeapon:hover
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #66666d ), to( #88888d ) );
+}
+
+.VoteButton
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555c ), to( #77777c ) );
+	height: 75px;
+	width: 200px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+	border-style: solid;
+	border-width: 2px;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.VoteButton:hover
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #66666d ), to( #88888d ) );
+	border-color: lime;
+}
+
+.Weapon
+{	
+	//background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555c ), to( #77777c ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	//opacity: 0.9;
+	//height: 150px;
+	width: 300px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+
+	border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 10px;
+    //box-shadow: inset grey 2px 2px 2px 2px;
+    //animation-name: scalein;
+    //animation-duration: .5s;
+    //animation-timing-function: linear;
+}
+
+.Runeword
+{	
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	width: 650px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+
+	border-style: solid;
+    border-width: 2px;
+    border-color: white;
+}
+
+.WeaponDrop
+{	
+	//background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555c ), to( #77777c ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	//height: 150px;
+	//width: 225px;
+	min-width: 200px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+	horizontal-align: right;
+	border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 10px;
+    //box-shadow: inset grey 2px 2px 2px 2px;
+    //animation-name: scalein;
+    //animation-duration: .5s;
+    //animation-timing-function: linear;
+}
+
+.WeaponButton
+{	
+	//height: 300px;
+	//width: 300px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.Weapon1
+{	
+	height: 300px;
+	width: 300px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.WeaponHeader{
+	horizontal-align: center;
+	font-size: 16;
+	color: #ffeebb;
+	margin-bottom: 2px;
+	height: 16px;
+}
+
+.WeaponHeaderSmall{
+	horizontal-align: center;
+	font-size: 14;
+	color: #aaaaaa;
+	margin-bottom: 2px;
+	min-height: 16px;
+}
+
+.WeaponHeaderSmallYellow{
+	horizontal-align: center;
+	font-size: 14;
+	color: yellow;
+	margin-bottom: 2px;
+	height: 16px;
+}
+
+.WeaponHeaderWhite{
+	horizontal-align: center;
+	font-size: 18;
+	color: #ffffff;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+
+.WeaponHeaderEpic{
+	horizontal-align: center;
+	font-size: 18;
+	color: #ee22ee;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.WeaponHeaderLeg{
+	horizontal-align: center;
+	font-size: 18;
+	color: #ff9900;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.WeaponHeaderIm{
+	horizontal-align: center;
+	font-size: 18;
+	color: #66ffff;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.WeaponHeaderAim{
+	horizontal-align: center;
+	font-size: 18;
+	color: #00ffff;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.WeaponHeaderDivi{
+	horizontal-align: center;
+	font-size: 18;
+	color: gold;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.WeaponHeaderMyth{
+	horizontal-align: center;
+	font-size: 18;
+	color: #7733ff;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 10px;
+	//height: 20px;
+}
+.HeroIcon{
+	horizontal-align: center;
+	font-size: 18;
+	color: #77ddff;
+	margin-bottom: 2px;
+	//height: 20px;
+}
+
+.WeaponStats{
+	horizontal-align: center;
+	font-size: 15px;
+	color: #ffffff;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.WeaponImage
+{	
+	horizontal-align: center;
+	margin-bottom: 15px;
+	margin-left: 4px;
+	margin-top: 0px;
+	margin-right: 4px;
+}
+
+.WeaponImageSmall
+{	
+	horizontal-align: center;
+	margin-bottom: 10px;
+	margin-left: 4px;
+	margin-top: 0px;
+	margin-right: 4px;
+	//width: 65px; //65
+    //height: 45px; //45
+}
+
+.OverthrowLoadingRoot
+{
+    width: 100%;
+    height: 100%;
+    overflow: clip;
+    horizontal-align: left;
+	vertical-align: top;
+	//margin-top: 50px;
+	margin-left: 4px;
+}
+
+#rewards
+{
+    width: 80%;
+    height: 80%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+	vertical-align: top;
+	margin-top: 50px;
+	margin-left: 250px;
+	flow-children: down;
+	//overflow: scroll;
+}
+
+#questmenu
+{
+    //width: 80%;
+    height: 80%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+	vertical-align: top;
+	margin-top: 50px;
+	margin-left: 250px;
+	flow-children: down;
+	//overflow: scroll;
+	border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 10px;
+}
+
+#rewards2
+{
+
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #54545a ) );
+    horizontal-align: center;
+	margin-top: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 50px;
+	flow-children: down;
+	overflow: scroll;
+}
+
+.RewardHeader
+{
+	horizontal-align: center;
+	font-size: 40px;
+	color: #ffddaa;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.RewardRow
+{	
+	horizontal-align: left;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 40px;
+	margin-right: 4px;
+	flow-children: right;
+	overflow: scroll;
+}
+
+.RewardCell
+{	
+	horizontal-align: left;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+	overflow: scroll;
+}
+
+.RewardImage
+{	
+	height: 300px;
+	width: 300px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+}
+
+.ClassImage
+{	
+	height: 50px;
+	width: 50px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+}
+
+.ItemImage
+{	
+	height: 35px;
+	width: 50px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.TalentImage
+{	
+	height: 75px;
+	width: 75px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+	horizontal-align: center;
+}
+
+.RunewordImage
+{	
+	height: 50px;
+	width: 50px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 10px;
+	horizontal-align: center;
+}
+
+.RewardText
+{	
+	horizontal-align: center;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	overflow: scroll;
+	flow-children: down;
+}	
+
+.RewardTextRed
+{	
+	font-size: 14px;
+	color: orange;
+	horizontal-align: center;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	overflow: scroll;
+	flow-children: down;
+}
+
+.Butt
+{
+	height: 40px;
+}
+
+.SellButton
+{
+	//height: 40px;
+	flow-children: down;
+}
+
+.TalentButton
+{
+	//vertical-align: center;
+	flow-children: down;
+}
+
+.ButtText
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 20px;
+	color: #ffffff;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.ButtTextLeaver
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 20px;
+	color: #ff4444;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.ButtTextSafeLeave
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 20px;
+	color: #44ff44;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.ButtTextBig
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 30px;
+	color: #eeeeee;
+	margin-right: 4px;
+	margin-left: 4px;
+	
+}
+
+.ButtTextSmall
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #ffffff;
+	margin-right: 4px;
+	margin-left: 4px;
+	height: 50px;
+}
+
+.ButtTextSmallGold
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #ffbf00;
+	margin-right: 4px;
+	margin-left: 4px;
+	height: 50px;
+
+}
+
+.ButtTextMediumGold
+{
+	horizontal-align: left;
+	vertical-align: center;
+	font-size: 15px;
+	color: #ffbf00;
+	margin-right: 1px;
+	margin-left: 1px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+.ButtTextBigGold
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 25px;
+	color: #ffbf00;
+	margin-right: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.TextGold
+{
+	color: #ffbf00;
+	margin-right: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.TextTalentHead
+{
+	background-color: #000000;
+	font-size: 25px;
+	color: #ffbf00;
+	margin-right: 125px;
+	margin-left: 125px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border-color: orange;
+	border-style: solid;
+    border-width: 1px;
+}
+
+.ButtTextSmallSilver
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #bdbdbd;
+	margin-right: 4px;
+	margin-left: 4px;
+	height: 50px;
+}
+
+.ButtTextSmallBronze
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #ff8400;
+	margin-right: 4px;
+	margin-left: 4px;
+	height: 50px;
+}
+
+.ButtTextOld
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 14px;
+	color: #888888;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+#c11
+{
+	font-size: 25px;
+	color: #ffaa11;
+}
+#c12
+{
+	font-size: 25px;
+	color: #ffff33;
+}
+#c13
+{
+	font-size: 25px;
+	color: #88ff88;
+}
+#c14
+{
+	font-size: 25px;
+	color: #ff8888;
+}
+#rank
+{
+	font-size: 25px;
+}
+#d11
+{
+	font-size: 25px;
+	color: #ffaa11;
+}
+#d12
+{
+	font-size: 25px;
+	color: #ffff33;
+}
+#d13
+{
+	font-size: 25px;
+	color: #88ff88;
+}
+#d14
+{
+	font-size: 25px;
+	color: #ff8888;
+}
+
+#FlowPanel0
+{
+	width: 200px;
+	height: 70px;
+	background-color: #000000;
+}
+
+.FlowPanel
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+}
+.FlowPanel:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+.SellPanel
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+	flow-children: down;
+	horizontal-align: center;
+}
+.SellPanel2
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+	flow-children: down;
+	horizontal-align: center;
+	width: 30px;
+}
+.SellPanelNoHover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+	flow-children: down;
+	horizontal-align: center;
+}
+.SellPanel:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+.WeaponChoicePanel
+{	
+	margin-top: 15px;
+	flow-children: right;
+}
+
+#FlowPanel
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+}
+
+#FlowPanel2
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+}
+
+#FlowPanel3
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+}
+
+#FlowPanel:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+#FlowPanel2:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+#FlowPanel3:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+#startbuttons
+{
+	horizontal-align: left;
+	vertical-align: top;
+	margin-bottom: 0px;
+	margin-left: 50px;
+	margin-right: 5px;
+	flow-children: right;
+}
+
+.row
+{	
+	horizontal-align: left;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.rowdown
+{	
+	horizontal-align: center;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: right;
+}
+
+#table
+{
+	horizontal-align: left;
+	vertical-align: top;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	box-shadow: inset grey 2px 2px 2px 2px;
+	margin-top: 70px;
+	margin-right: 4px;
+	flow-children: right;
+}
+
+#leaderboard
+{	
+
+	horizontal-align: left;
+	vertical-align: top;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	box-shadow: inset grey 2px 2px 2px 2px;
+	margin-top: 70px;
+	margin-right: 4px;
+	margin-left: 250px;
+	flow-children: down;
+}
+
+#leaderboardloadingscreen
+{	
+
+	horizontal-align: left;
+	vertical-align: top;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	box-shadow: inset grey 2px 2px 2px 2px;
+	//margin-top: 25px;
+	margin-right: 4px;
+	margin-left: 25px;
+	flow-children: down;
+}
+
+#leaderboardchallengemode
+{	
+
+	horizontal-align: left;
+	vertical-align: top;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	box-shadow: inset grey 2px 2px 2px 2px;
+	margin-top: 70px;
+	margin-right: 4px;
+	margin-left: 250px;
+	flow-children: down;
+}
+
+.cell
+{	
+	horizontal-align: left;
+	//background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #111111 ) );
+	margin-top: 10px;
+	margin-right: 25px;
+	margin-bottom: 10px;
+	margin-left: 25px;
+	flow-children: right;
+}
+
+.cellheader
+{	
+	horizontal-align: left;
+	//background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #000000 ) );
+	//box-shadow: inset white 1px 1px 1px 1px;
+	margin-top: 10px;
+	margin-right: 25px;
+	margin-bottom: 10px;
+	margin-left: 25px;
+}
+
+#questlog
+{
+    //width: 15%;
+    //height: 3%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+	vertical-align: top;
+	horizontal-align: right;
+	margin-top: 0px;
+	margin-left: 175px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    box-shadow: inset grey 2px 2px 2px 2px;
+}
+#questlogingame
+{
+    //width: 50%;
+    //height: 50%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+	vertical-align: top;
+	horizontal-align: left;
+	//margin-left: auto 0;
+	//margin-top: 95px;
+	margin-top: 120px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 2px;
+    //box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+.Inventory
+{
+    //width: 89%;
+    //height: 50%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555a ), to( #22222a ) );
+    background-image: url("file://{images}/bg_hero.png");
+    //background-position: 50% 0%;
+    background-size: 100% 100%;
+    //background-size: 550px 700px;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-top: 50px;
+	margin-left: 150px;
+	margin-bottom: 350px;
+	flow-children: right;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    box-shadow: inset grey 2px 2px 2px 2px;
+    
+    height: 115%;
+}
+
+.Crafting
+{
+    //width: 50%;
+    //height: 25%;
+    //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+    background-image: url("file://{images}/act8.png");
+    //background-position: 50% 0%;
+    background-size: 100% 100%;
+    //background-size: 550px 700px;
+	vertical-align: top;
+	horizontal-align: left;
+	margin-left: 150px;
+	margin-bottom: 350px;
+	flow-children: right;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    box-shadow: inset grey 2px 2px 2px 2px;
+    overflow: scroll scroll; 
+}
+
+.Shop
+{
+    //width: 50%;
+    //height: 25%;
+    //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+    background-image: url("file://{images}/fff.png");
+    //background-position: 50% 0%;
+    background-size: 100% 100%;
+    //background-size: 550px 700px;
+	vertical-align: top;
+	horizontal-align: center;
+	//margin-left: 150px;
+	//margin-bottom: 350px;
+	flow-children: right;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    box-shadow: inset grey 2px 2px 2px 2px;
+    //overflow: scroll scroll;
+}
+
+.Teleporter
+{
+    //width: 50%;
+    //height: 50%;
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+    //background-image: url("file://{images}/bg_hero.png");
+    //background-position: 50% 0%;
+    //background-size: 100% 100%;
+    //background-size: 550px 700px;
+	//vertical-align: bottom;
+	//horizontal-align: left;
+	//margin-left: 300px;
+	//margin-bottom: 350px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+#talenttooltip
+{
+	margin-top: 5px;
+	vertical-align: top;
+	horizontal-align: center;
+	border-color: white;
+}
+
+.TalentTree
+{
+    max-width: 95%;
+    height: 90%;
+    background-color: black;
+    //background-image: url("file://{images}/ironbear.png")
+	vertical-align: top;
+	horizontal-align: left;
+	margin-left: 205px;
+	margin-top: 135px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+.ActEnterPanel
+{
+    width: 800px;
+    height: 1025px;
+    background-color: black;
+	vertical-align: top;
+	margin-top: 50px;
+	horizontal-align: center;
+	flow-children: down;
+	border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 25px;
+    //box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+.SingleTalentTree0
+{
+    height: 100%;
+    //background: linear-gradient( rgba(0, 0, 0, 1), rgba(50, 0, 0, 1) ), url('file://{images}/ironbear.png');
+    //background-image: url("file://{images}/ironbear.png");
+    background-position: 50% 0%;
+    background-size: 900px 1000px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree1
+{
+    height: 100%;
+    //background: linear-gradient( rgba(0, 0, 0, 1), rgba(50, 0, 0, 1) ), url('file://{images}/ironbear.png');
+    background-image: url("file://{images}/ironbear.png");
+    background-position: 0% 0%;
+    background-size: 900px 1000px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree2
+{
+    height: 100%;
+    background-image: url("file://{images}/thundercat4.png");
+    //background-position: 50% 0%;
+    background-size: 500px 1000px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree4
+{
+    height: 100%;
+    background-image: url("file://{images}/bloodwolf.png");
+    //background-position: 50% 0%;
+    background-size: 900px 1000px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree5
+{
+    height: 100%;
+    background-image: url("file://{images}/act4.png");
+    //background-position: 50% 0%;
+    background-size: 450px 900px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree6
+{
+    height: 100%;
+    background-image: url("file://{images}/act1old2.png");
+    //background-position: 50% 0%;
+    background-size: 1200px 900px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree7
+{
+    height: 100%;
+    background-image: url("file://{images}/act7.png");
+    //background-position: 50% 0%;
+    background-size: 450px 900px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree8
+{
+    height: 100%;
+    background-image: url("file://{images}/act6.png");
+    //background-position: 50% 0%;
+    background-size: 550px 1200px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree9
+{
+    height: 100%;
+    background-image: url("file://{images}/act6.png");
+    //background-position: 50% 0%;
+    background-size: 550px 1200px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.SingleTalentTree3
+{
+    height: 100%;
+    background-image: url("file://{images}/ancientdragon.png");
+    //background-position: 50% 0%;
+    background-size: 550px 900px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
+.TalentTreeRow
+{
+	//width: auto;
+    height: 93%;
+	flow-children: right;
+}
+
+.TalentRow
+{
+	horizontal-align:center;
+	flow-children: right;
+	//width: 100px;
+	margin-top: 10px;
+	height: 125px;
+}
+
+.Talent
+{	
+	margin-left: 10px;
+	margin-right: 10px;
+	border-style: solid;
+    border-width: 4px;
+    border-color: grey;
+    border-radius: 7px;
+	background-color: black;
+	//height: 165px;
+	//width: 30px;
+}
+
+.Talent:hover
+{	
+	border-color: white;
+}
+
+.TableRow
+{
+	flow-children: right;
+}
+
+.TableCol
+{
+	flow-children: down;
+}
+
+.TableColWithBorder
+{
+	flow-children: down;
+	border-width: 2px;
+    border-color: grey;
+    border-style: solid;
+}
+
+.TableColWithBorder:hover
+{
+	flow-children: down;
+	border-width: 2px;
+    border-color: white;
+}
+
+.TableCell
+{
+	width: 85px;
+    height: 20px;
+}
+
+.WeaponStatsDrops{
+	horizontal-align: left;
+	font-size: 20px;
+	color: #ffcc22;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.WeaponStatsRight{
+	horizontal-align: center;
+	font-size: 20px;
+	color: #ffcc22;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.DropChanceChooser{
+	horizontal-align: center;
+	font-size: 14px;
+	color: #ffcc22;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.DropTable
+{
+	horizontal-align: center;
+    background-color: black;
+	flow-children: down;
+    margin-bottom: 4px;
+	//margin-left: auto 0;
+	margin-top: 10px;
+	//margin-right: auto 0;
+    //border-style: solid;
+    border-width: 1px;
+    //border-color: grey;
+    box-shadow: inset white 1px 1px 1px 1px;
+}
+@keyframes 'scalein' {
+  from {
+    opacity:0;
+    transform: scaleX(2) scaleY(2);
+  }
+
+  to {
+    opacity:1;
+    transform: scaleX(1) scaleY(1);
+  }
+}

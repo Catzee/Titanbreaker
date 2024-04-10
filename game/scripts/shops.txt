@@ -1,0 +1,309 @@
+"dota_shops"
+{
+	
+
+	"attributes"
+	{
+
+		"item"		"item_str1"
+		"item"		"item_agi1"
+		"item"		"item_int1"	
+
+		"item"		"item_all1"
+
+		"item"		"item_str2"
+		"item"		"item_agi2"
+		"item"		"item_int2"
+
+		"item"		"item_str3"
+		"item"		"item_agi3"
+		"item"		"item_int3"
+
+		"item"		"item_gloves1"
+		"item"		"item_sp1"
+		"item"		"item_crit_pure"
+		//pve
+		//"item"	"item_set_str_tank_chest"
+		//"item"	"item_set_str_tank_head"
+		//"item"	"item_set_str_tank_gloves"
+		//"item"	"item_set_str_dmg_chest"
+		//"item"	"item_set_str_tank_head"
+		//"item"	"item_set_str_tank_gloves"
+		//"item"		"item_manareg1"
+		//"item"		"item_whip"
+		//"item"		"item_telescope"
+		//"item"		"item_manareg2"
+
+		
+	}
+
+	"weapons_armor"
+	{
+		"item"		"item_dmg1"
+		"item"		"item_dmg2"
+		"item"		"item_dmg3"
+		
+		"item"		"item_armor1"
+		"item"		"item_armor2"
+		"item"		"item_armor3"
+		"item"		"item_magicres1"
+		"item"		"item_magicres2"
+		"item"		"item_magicres3"
+
+		"item"		"item_hp1"
+		"item"		"item_hp2"
+		"item"		"item_mana1"
+		"item"		"item_manareg1"
+		"item"		"item_lifesteal2"
+		//"item"		"item_mana2"
+		//"item"		"item_ward_dispenser"
+		
+
+	}
+			
+	"misc"
+	{
+		//"item"		"item_magic_stick"
+		
+		"item"		"item_activewarrior"
+		"item"		"item_activedk"
+		"item"		"item_activedk_frost"
+		"item"		"item_activepaladin"
+		"item"		"item_activedh"
+		"item"		"item_activeshaman"
+		"item"		"item_activehunter"
+		
+		
+		"item"		"item_activedruid"
+		"item"		"item_activerogue"
+		"item"		"item_activerogue2"
+		"item"		"item_activepriest"
+		
+		"item"		"item_activemage2"
+		"item"		"item_activewarlock"
+		//"item"		"item_courier"
+		//"item"		"item_flying_courier"
+	}	
+	
+	"consumables"
+	{
+		//"item"		"item_lottery_rare"
+		"item"		"item_boots1"
+		
+
+		"item"		"item_bootssas"
+		"item"		"item_bootsmana"
+		"item"		"item_bootscrit" 
+		"item"		"item_bootshp"
+		//"item"		"item_bootshp2"
+		
+		"item"		"item_bootsswift"
+		//"item"		"item_bootsswiftup"
+
+		"item"		"item_strrecipe"
+		"item"		"item_agirecipe"
+		"item"		"item_intrecipe"
+		"item"		"item_allrecipe"
+		
+		"item"		"item_weapon3"
+		"item"		"item_sprecipe"	
+		
+	}
+
+	"basics"
+	{	
+		"item"		"item_weapon7"	
+		"item"		"item_weapon9"
+
+		"item"		"item_weapon1"
+		"item"		"item_weaponpoison"
+
+		"item"		"item_active13"
+		"item"		"item_weapon5"
+		"item"		"item_straxe2"
+		
+		"item"		"item_weapon5up"
+		"item"		"item_headarmor1"
+		
+		//"item"		"item_valyrian"
+		
+		//"item"		"item_weapon7up"
+		//"item"		"item_halberd"
+		
+		
+		//"item"		"item_endgame9"	
+		//"item"		"item_endgame2"	
+		
+		
+
+
+		
+		
+		
+			
+	}
+
+	// Level 2 - Blue Recipes
+	"support"
+	{
+		"item"		"item_weapon8"
+		"item"		"item_weapon10"
+		"item"		"item_weapon2"
+		"item"		"item_weaponpoison2"
+		
+		"item"		"item_weapon11"
+		//"item"		"item_weapon40"
+		
+		
+		
+		"item"		"item_nightblade"
+		
+		//"item"		"item_bowcasttime"
+		
+		
+		//"item"		"item_weapon14"
+		//"item"		"item_flamefury"
+		//"item"		"item_bowupgrade"
+		//"item"		"item_endgame10"	
+		//"item"		"item_endgame8"	
+		"item"		"item_beastmaster"		
+		//"item"		"item_weapon40"	
+	}
+				
+	"magics"			
+	{	
+		"item"		"item_caster4"
+		"item"		"item_caster6"
+		"item"		"item_caster5"
+		"item"		"item_weapon20"
+		"item"		"item_caster1"
+		"item"		"item_caster2"
+
+		"item"		"item_aura4"
+		"item"		"item_aura1"
+			
+		
+		//"item"		"item_active5"
+		
+ 		
+ 		//"item"		"item_endgame13"
+ 		//"item"		"item_endgame4"	
+ 		//"item"		"item_endgame12"
+ 		//"item"		"item_hasteproc"
+ 		//"item"		"item_nova_blade_shadow"
+ 		
+		
+	}
+		
+	// Level 3 - Purple Recipes	
+	"defense"
+	{
+		
+		//"item"		"item_shieldluna"
+		"item"		"item_shield1"
+		"item"		"item_active3"
+
+		"item"		"item_shield2"
+		"item"		"item_active4"
+
+		"item"		"item_shield3"
+
+		"item"		"item_shield10"
+		//"item"		"item_shield3up"
+		
+		"item"		"item_active2"
+		//"item"		"item_allstats2"
+		"item"		"item_active1"
+		//"item"		"item_active1up"
+		
+		//"item"		"item_active2up"
+		
+		
+		
+		"item"		"item_devilsoul"
+
+		"item"		"item_aura3"
+				
+
+	}
+			
+	"weapons"
+	{
+		//"item"		"item_caster7"
+		//"item"		"item_holyhammer2"
+		"item"		"item_fireball"
+		"item"		"item_elements"
+		"item"		"item_allrecipe4"
+
+		
+
+		//"item"		"item_active6"
+		//"item"		"item_active7"
+		"item"		"item_cooldown"
+		"item"		"item_curseblade"
+
+		"item"		"item_caster55"
+
+		"item"		"item_endgame14"
+	}
+					
+	"artifacts"
+	{	
+		"item"		"item_weapon6"
+		"item"		"item_chainlightning"
+		"item"		"item_sharpeye"
+
+		"item"		"item_weapon4"
+		"item"		"item_endgame1"	
+		"item"		"item_stunitem"
+
+		"item" 		"item_irontalon"
+		"item"		"item_dragonpike"
+		"item"		"item_active9"
+		"item"		"item_active99"
+		
+		//"item"		"item_lightbringer"
+		
+		//"item"		"item_endgame3"	
+		
+		//"item"		"item_weaponpoison3"
+		
+
+ 		//"item"		"item_endgame7"	
+ 		"item"		"item_allstats3"
+ 		"item"		"item_allstats2up"
+ 		
+ 		"item"		"item_aura2"
+ 		
+ 			
+	}
+
+	"sideshop1"
+	{	
+		"item"			"item_molten_steel"
+		//"item"		"item_mount_sven"
+		//"item"		"item_mount_drow"
+		//"item"		"item_mount_shaman"
+		//"item"		"item_mount_omni"
+		//"item"		"item_mount_standard"
+	}
+
+	"sideshop2"
+	{
+		
+	}
+	
+	"secretshop"
+	{							
+		//"item"		"item_frostmourne"	
+		//"item"		"item_warglaive"
+		//"item"		"item_handoffirelord"
+		//"item"		"item_shadowmourne"
+		//"item"		"item_eternallife"
+		//"item"		"item_arcaniteshield"
+
+
+		//"item"		"item_smith_steel"
+		//"item"		"item_catapult"
+	}	
+}

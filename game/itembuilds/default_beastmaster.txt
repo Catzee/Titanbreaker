@@ -1,0 +1,35 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_beastmaster"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootssas"
+			"item"		"item_dmg2"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_weapon6"
+			"item"		"item_chainlightning"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_bootsblood2"	
+			"item"		"item_endgame7"			
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_devilsoul"
+ 			"item"		"item_activewarrior"
+			"item"		"item_straxe2"
+
+		}
+	}
+}

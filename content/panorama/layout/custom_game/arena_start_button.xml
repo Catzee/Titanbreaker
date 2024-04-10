@@ -1,0 +1,1877 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/arena_start_button_old.css" />
+	</styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/arena_start_button.js"/>
+    </scripts>
+	<Panel class="OverthrowLoadingRoot" hittest="false">
+		<Panel id="TitlePanel">
+		</Panel>
+		
+		<Panel class="EndScreenRoot" hittest="false">
+			<Panel id="compiling" visible="false" hittest="false">
+				<Image style="opacity:0;" src="file://{images}/green_bar.png" />
+				<Image style="opacity:0;" src="file://{images}/act1.png" />
+				<Image style="opacity:0;" src="file://{images}/act2.png" />
+				<Image style="opacity:0;" src="file://{images}/act3.png" />
+				<Image style="opacity:0;" src="file://{images}/act4.png" />
+				<Image style="opacity:0;" src="file://{images}/act5.png" />
+				<Image style="opacity:0;" src="file://{images}/act6.png" />
+				<Image style="opacity:0;" src="file://{images}/act7.png" />
+				<Image style="opacity:0;" src="file://{images}/act8.png" />
+				<Image style="opacity:0;" src="file://{images}/act9.png" />
+				<Image style="opacity:0;" src="file://{images}/act10.png" />
+				<Image style="opacity:0;" src="file://{images}/act11.png" />
+				<Image style="opacity:0;" src="file://{images}/act12.png" />
+				<Image style="opacity:0;" src="file://{images}/act13.png" />
+				<Image style="opacity:0;" src="file://{images}/bg_hero.png" />
+
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/keeper_of_the_light.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/chen.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/clinkz.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/antimage.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/elder_titan.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/bristleback.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/ogre_magi.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/enchantress.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/juggernaut.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/abaddon.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/slark.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/beastmaster.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/ursa.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/terrorblade.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/templar_assassin.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/grimstroke.png" />
+				<Image style="opacity:0;" src="file://{images}/custom_game/heroicons/lion.png" />
+
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/1.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/2.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/3.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/4.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/5.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/6.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/7.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/8.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/9.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/10.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/11.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/12.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/13.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/14.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/15.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/16.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/17.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/18.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/19.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/20.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/21.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/22.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/23.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/24.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/25.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/26.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/27.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/28.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/29.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/30.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/31.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/32.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/33.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/34.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/35.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/36.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/37.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/38.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/39.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/40.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/41.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/42.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/43.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/44.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/45.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/howl.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/46.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/47.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/48.png" />
+
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/49.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/50.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/51.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/52.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/53.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/54.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/55.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/56.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/57.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/58.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/59.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/60.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/61.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/62.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/63.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/64.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/65.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/66.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/67.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/68.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/69.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/70.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/71.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/72.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/73.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/74.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/75.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/76.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/77.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/78.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/79.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/80.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/81.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/82.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/83.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/84.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/85.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/86.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/87.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/88.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/89.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/90.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/91.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/92.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/93.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/94.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/95.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/96.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/97.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/98.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/99.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/100.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/101.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/102.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/103.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/104.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/105.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/106.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/107.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/108.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/109.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/110.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/111.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/112.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/113.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/114.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/115.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/116.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/117.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/118.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/119.png" />
+				<Image style="opacity:0;" src="file://{images}/spellicons/fix/120.png" />
+
+				<Image style="opacity:0;" src="file://{images}/items/pathbuff_091.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_092.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_093.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_094.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_095.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_096.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_097.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_098.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_099.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_100.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_101.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_102.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_103.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_104.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_105.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_106.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_107.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_108.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_109.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_110.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_111.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_112.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_113.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_114.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_115.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_116.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_117.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_118.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_119.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_120.png" />
+
+
+				<Image style="opacity:0;" src="file://{images}/items/active1.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new3.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new32.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new7.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new72.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new8.png" />
+				<Image style="opacity:0;" src="file://{images}/items/new82.png" />
+<Image style="opacity:0;" src="file://{images}/items/active10.png" />
+<Image style="opacity:0;" src="file://{images}/items/active13.png" />
+<Image style="opacity:0;" src="file://{images}/items/active1up.png" />
+<Image style="opacity:0;" src="file://{images}/items/active2.png" />
+<Image style="opacity:0;" src="file://{images}/items/active2up.png" />
+<Image style="opacity:0;" src="file://{images}/items/active3.png" />
+<Image style="opacity:0;" src="file://{images}/items/active4.png" />
+<Image style="opacity:0;" src="file://{images}/items/active5.png" />
+<Image style="opacity:0;" src="file://{images}/items/active5up.png" />
+<Image style="opacity:0;" src="file://{images}/items/active6.png" />
+<Image style="opacity:0;" src="file://{images}/items/active67.png" />
+<Image style="opacity:0;" src="file://{images}/items/active7.png" />
+<Image style="opacity:0;" src="file://{images}/items/active7up.png" />
+<Image style="opacity:0;" src="file://{images}/items/active9.png" />
+<Image style="opacity:0;" src="file://{images}/items/active99.png" />
+<Image style="opacity:0;" src="file://{images}/items/active9up.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedh.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedh2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedk.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedk_frost.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedk_frost2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedk2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedruid.png" />
+<Image style="opacity:0;" src="file://{images}/items/activedruid2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activehunter.png" />
+<Image style="opacity:0;" src="file://{images}/items/activehunter2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activemage.png" />
+<Image style="opacity:0;" src="file://{images}/items/activemage_old.png" />
+<Image style="opacity:0;" src="file://{images}/items/activemage_old2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activemage2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activemage3.png" />
+<Image style="opacity:0;" src="file://{images}/items/activepaladin.png" />
+<Image style="opacity:0;" src="file://{images}/items/activepaladin2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activepaladin3.png" />
+<Image style="opacity:0;" src="file://{images}/items/activepriest.png" />
+<Image style="opacity:0;" src="file://{images}/items/activepriest2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activerogue.png" />
+<Image style="opacity:0;" src="file://{images}/items/activerogue2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activerogue3.png" />
+<Image style="opacity:0;" src="file://{images}/items/activerogue4.png" />
+<Image style="opacity:0;" src="file://{images}/items/activeshaman.png" />
+<Image style="opacity:0;" src="file://{images}/items/activeshaman2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activewarlock.png" />
+<Image style="opacity:0;" src="file://{images}/items/activewarlock2.png" />
+<Image style="opacity:0;" src="file://{images}/items/activewarrior.png" />
+<Image style="opacity:0;" src="file://{images}/items/activewarrior2.png" />
+<Image style="opacity:0;" src="file://{images}/items/aether_lens.png" />
+<Image style="opacity:0;" src="file://{images}/items/agi1.png" />
+<Image style="opacity:0;" src="file://{images}/items/agi2.png" />
+<Image style="opacity:0;" src="file://{images}/items/agi3.png" />
+<Image style="opacity:0;" src="file://{images}/items/agihp.png" />
+<Image style="opacity:0;" src="file://{images}/items/agirecipe.png" />
+<Image style="opacity:0;" src="file://{images}/items/agistr2.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1aaasaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1aastragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1agiaaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1agiaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1firenaturearcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1intspcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1intspmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1straaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1straacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2aaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2abilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2abilnature.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2agiabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2armoraggro.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2critcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2intabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2liferes.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2shadowfrostcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2spearcanefire.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2strabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3agipath.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3dmgabilp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3intmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3intpath.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3natarcfir.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3physhafro.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3spabilp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3stragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo3strpath.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4fahhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4loohp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4looprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4wiihp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4wiiprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5nahhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5serhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5serprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5talhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5talprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6kilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6minems.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6mineprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6ticms.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6ticprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/all1.png" />
+<Image style="opacity:0;" src="file://{images}/items/all2.png" />
+<Image style="opacity:0;" src="file://{images}/items/allrecipe.png" />
+<Image style="opacity:0;" src="file://{images}/items/allrecipe4.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats2.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats2up.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats3.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats4.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats5.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats6.png" />
+<Image style="opacity:0;" src="file://{images}/items/allstats7.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_10.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_12.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_8.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_agi.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_allstats.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_def.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_def_wolf.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_dmg.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_dragon.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_elune.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_grizzly.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_primary.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_str.png" />
+<Image style="opacity:0;" src="file://{images}/items/ancient_wolf.png" />
+<Image style="opacity:0;" src="file://{images}/items/angel.png" />
+<Image style="opacity:0;" src="file://{images}/items/arcaneblaster.png" />
+<Image style="opacity:0;" src="file://{images}/items/arcaniteshield.png" />
+<Image style="opacity:0;" src="file://{images}/items/armor1.png" />
+<Image style="opacity:0;" src="file://{images}/items/armor2.png" />
+<Image style="opacity:0;" src="file://{images}/items/armor3.png" />
+<Image style="opacity:0;" src="file://{images}/items/armoraxe.png" />
+<Image style="opacity:0;" src="file://{images}/items/assault.png" />
+<Image style="opacity:0;" src="file://{images}/items/attackpoint.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura_ancient.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura_eagle.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura_empire.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura1.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura2.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura3.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura33.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura34.png" />
+<Image style="opacity:0;" src="file://{images}/items/aura4.png" />
+<Image style="opacity:0;" src="file://{images}/items/auraspimmortal.png" />
+<Image style="opacity:0;" src="file://{images}/items/beastbracer.png" />
+<Image style="opacity:0;" src="file://{images}/items/beastmaster.png" />
+<Image style="opacity:0;" src="file://{images}/items/beastmaster2.png" />
+<Image style="opacity:0;" src="file://{images}/items/beastmaster3.png" />
+<Image style="opacity:0;" src="file://{images}/items/bladelifesteal.png" />
+<Image style="opacity:0;" src="file://{images}/items/bloodpike.png" />
+<Image style="opacity:0;" src="file://{images}/items/boots1.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsblood.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsblood2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsblood3.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit3.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscrit4.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootscurse.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsheal.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootshp.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootshp2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsreflect.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsreflect2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsreflect3.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootssas.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsswift.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootsswiftup.png" />
+<Image style="opacity:0;" src="file://{images}/items/bootstime.png" />
+<Image style="opacity:0;" src="file://{images}/items/bowcasttime.png" />
+<Image style="opacity:0;" src="file://{images}/items/bowupgrade.png" />
+<Image style="opacity:0;" src="file://{images}/items/buff_agi.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_immortal_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_immortal_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/buff_int.png" />
+<Image style="opacity:0;" src="file://{images}/items/buff_str.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster1.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster2.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster3.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster4.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster5.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster55.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster6.png" />
+<Image style="opacity:0;" src="file://{images}/items/caster7.png" />
+<Image style="opacity:0;" src="file://{images}/items/catapult.png" />
+<Image style="opacity:0;" src="file://{images}/items/chainlightning.png" />
+<Image style="opacity:0;" src="file://{images}/items/chest.png" />
+<Image style="opacity:0;" src="file://{images}/items/chest2.png" />
+<Image style="opacity:0;" src="file://{images}/items/choice_sword_dual.png" />
+<Image style="opacity:0;" src="file://{images}/items/choice_sword_dual_ice.png" />
+<Image style="opacity:0;" src="file://{images}/items/choice_sword_dual2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool1.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool10.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool11.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool13.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool3.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool4.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool5.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool6.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool7.png" />
+<Image style="opacity:0;" src="file://{images}/items/cool9.png" />
+<Image style="opacity:0;" src="file://{images}/items/cooldown.png" />
+<Image style="opacity:0;" src="file://{images}/items/cooldown2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_frost_immortal.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_frost_immortal2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_immortal.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_immortal2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crit_pure_immortal3.png" />
+<Image style="opacity:0;" src="file://{images}/items/critlifesteal.png" />
+<Image style="opacity:0;" src="file://{images}/items/crossbow.png" />
+<Image style="opacity:0;" src="file://{images}/items/crossbowarcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/crusader_mount.png" />
+<Image style="opacity:0;" src="file://{images}/items/curseblade.png" />
+<Image style="opacity:0;" src="file://{images}/items/demonglaive.png" />
+<Image style="opacity:0;" src="file://{images}/items/devilsoul.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmg1.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmg2.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmg3.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmg4.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmg5.png" />
+<Image style="opacity:0;" src="file://{images}/items/dmgminusas.png" />
+<Image style="opacity:0;" src="file://{images}/items/dragonpike.png" />
+<Image style="opacity:0;" src="file://{images}/items/dreihander.png" />
+<Image style="opacity:0;" src="file://{images}/items/echoofinfinity.png" />
+<Image style="opacity:0;" src="file://{images}/items/elements.png" />
+<Image style="opacity:0;" src="file://{images}/items/elements2.png" />
+<Image style="opacity:0;" src="file://{images}/items/elements3.png" />
+<Image style="opacity:0;" src="file://{images}/items/elements44.png" />
+<Image style="opacity:0;" src="file://{images}/items/elements5.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame1.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame10.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame12.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame13.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame14.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame2.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame3.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame4.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame5.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame6.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame7.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame8.png" />
+<Image style="opacity:0;" src="file://{images}/items/endgame9.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1aaasaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1aastragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1agiaaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1agiaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1firenaturearcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1intspcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1intspmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1straaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic1straacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2aaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2abilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2abilnature.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2agiabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2armoraggro.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2critcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2intabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2liferes.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2shadowfrostcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2spearcanefire.png" />
+<Image style="opacity:0;" src="file://{images}/items/epic2strabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/eternallife.png" />
+<Image style="opacity:0;" src="file://{images}/items/fireball.png" />
+<Image style="opacity:0;" src="file://{images}/items/fireball2.png" />
+<Image style="opacity:0;" src="file://{images}/items/fireball3.png" />
+<Image style="opacity:0;" src="file://{images}/items/fireblades.png" />
+<Image style="opacity:0;" src="file://{images}/items/firecore.png" />
+<Image style="opacity:0;" src="file://{images}/items/flame_axe.png" />
+<Image style="opacity:0;" src="file://{images}/items/flamefury.png" />
+<Image style="opacity:0;" src="file://{images}/items/flyingdagger.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostcore.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostfire.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostfire2.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostmourne.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostmourne2.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostpike.png" />
+<Image style="opacity:0;" src="file://{images}/items/gambling.png" />
+<Image style="opacity:0;" src="file://{images}/items/gloves1.png" />
+<Image style="opacity:0;" src="file://{images}/items/halberd.png" />
+<Image style="opacity:0;" src="file://{images}/items/handoffirelord.png" />
+<Image style="opacity:0;" src="file://{images}/items/hasteproc.png" />
+<Image style="opacity:0;" src="file://{images}/items/headarmor1.png" />
+<Image style="opacity:0;" src="file://{images}/items/hellbringer.png" />
+<Image style="opacity:0;" src="file://{images}/items/helmofice.png" />
+<Image style="opacity:0;" src="file://{images}/items/helmthunder.png" />
+<Image style="opacity:0;" src="file://{images}/items/helmthunder2.png" />
+<Image style="opacity:0;" src="file://{images}/items/holyhammer2.png" />
+<Image style="opacity:0;" src="file://{images}/items/holypike.png" />
+<Image style="opacity:0;" src="file://{images}/items/holyspear.png" />
+<Image style="opacity:0;" src="file://{images}/items/hp1.png" />
+<Image style="opacity:0;" src="file://{images}/items/hp2.png" />
+<Image style="opacity:0;" src="file://{images}/items/hp22.png" />
+<Image style="opacity:0;" src="file://{images}/items/hpmana1.png" />
+<Image style="opacity:0;" src="file://{images}/items/hunterbow.png" />
+<Image style="opacity:0;" src="file://{images}/items/hurricane.png" />
+<Image style="opacity:0;" src="file://{images}/items/ice_cleaver.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo12.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo15.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1aaasaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1aastragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1abilphys.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1agiaaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1agiaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1firenaturearcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1intspcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1intspmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1straaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1straacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2aaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2abilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2abilnature.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2agiabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2armoraggro.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2armorphys.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2critcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2intabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2liferes.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2shadowfrostcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2spearcanefire.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2strabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3agipath.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3dmgabilp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3intmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3intpath.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3natarcfir.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3physhafro.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3spabilp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3stragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3strpath.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4fahhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4loohp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4looprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4wiihp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4wiiprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5nahhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5serhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5serprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5talhp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5talprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6kilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6minems.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6mineprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6ticms.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6ticprim.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo7.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo9.png" />
+<Image style="opacity:0;" src="file://{images}/items/int1.png" />
+<Image style="opacity:0;" src="file://{images}/items/int2.png" />
+<Image style="opacity:0;" src="file://{images}/items/int3.png" />
+<Image style="opacity:0;" src="file://{images}/items/inthp.png" />
+<Image style="opacity:0;" src="file://{images}/items/intmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/intrecipe.png" />
+<Image style="opacity:0;" src="file://{images}/items/inventoryweapon.png" />
+<Image style="opacity:0;" src="file://{images}/items/ironcore.png" />
+<Image style="opacity:0;" src="file://{images}/items/irontalon.png" />
+<Image style="opacity:0;" src="file://{images}/items/irontalon2.png" />
+<Image style="opacity:0;" src="file://{images}/items/kingdouble.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1aaasaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1aastragi.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1agiaaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1agiaacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1firenaturearcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1intspcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1intspmana.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1straaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege1straacrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2aaas.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2abilms.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2abilnature.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2agiabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2armoraggro.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2critcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2intabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2liferes.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2shadowfrostcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2spearcanefire.png" />
+<Image style="opacity:0;" src="file://{images}/items/lege2strabil.png" />
+<Image style="opacity:0;" src="file://{images}/items/legionaire.png" />
+<Image style="opacity:0;" src="file://{images}/items/libramoflight.png" />
+<Image style="opacity:0;" src="file://{images}/items/lifepatron.png" />
+<Image style="opacity:0;" src="file://{images}/items/lifesteal2.png" />
+<Image style="opacity:0;" src="file://{images}/items/lightbringer.png" />
+<Image style="opacity:0;" src="file://{images}/items/longbow.png" />
+<Image style="opacity:0;" src="file://{images}/items/longbow2.png" />
+<Image style="opacity:0;" src="file://{images}/items/lottery_rare.png" />
+<Image style="opacity:0;" src="file://{images}/items/lotus_blue.png" />
+<Image style="opacity:0;" src="file://{images}/items/lotusguard.png" />
+<Image style="opacity:0;" src="file://{images}/items/lotusguard2.png" />
+<Image style="opacity:0;" src="file://{images}/items/lotusguard3.png" />
+<Image style="opacity:0;" src="file://{images}/items/mageold.png" />
+<Image style="opacity:0;" src="file://{images}/items/magicres1.png" />
+<Image style="opacity:0;" src="file://{images}/items/magicres2.png" />
+<Image style="opacity:0;" src="file://{images}/items/magicres3.png" />
+<Image style="opacity:0;" src="file://{images}/items/mana1.png" />
+<Image style="opacity:0;" src="file://{images}/items/mana2.png" />
+<Image style="opacity:0;" src="file://{images}/items/manareg1.png" />
+<Image style="opacity:0;" src="file://{images}/items/manareg2.png" />
+<Image style="opacity:0;" src="file://{images}/items/mask_horror.png" />
+<Image style="opacity:0;" src="file://{images}/items/mask_orange.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_001_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_002_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_003_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_004_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_005_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_006_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_007_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_008_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_009_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_010_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_011_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_012_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_013_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_014_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_015_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_016_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_017_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_018_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_019_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_020_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_021_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_022_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_023_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_024_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_025_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_026_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_027_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_028_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_029_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_030_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_031_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_032_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_033_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_034_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_035_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_036_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_037_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_038_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_039_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_040_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_041_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_042_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_043_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_044_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_045_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_046_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_047_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_048_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_049_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_050_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_051_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_052_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_053_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_054_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_055_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_056_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_057_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_058_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_059_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_060_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_061_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_062_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_063_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_064_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_065_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_066_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_067_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_068_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_069_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_070_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_071_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_072_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_073_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_074_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_076_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_077_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_078_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_079_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_080_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_081_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_082_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_083_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_084_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_085_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_086_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_087_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_088_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_089_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_090_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_091_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_092_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_093_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_094_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_095_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_096_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_097_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_098_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_099_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_100_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_101_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_102_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_103_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_104_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_105_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_106_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_107_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_108_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_109_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_110_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_111_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_112_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_113_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_114_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_115_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_116_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_117_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_118_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_119_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/mastery_120_002.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/mega_axe.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_aa.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_agi1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_armor1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_as1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_beast1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_def1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_frostfire1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_int1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_king1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_sp1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_str1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_support1.png" />
+<Image style="opacity:0;" src="file://{images}/items/merge_unkown.png" />
+<Image style="opacity:0;" src="file://{images}/items/mother_of_dragons.png" />
+<Image style="opacity:0;" src="file://{images}/items/mount_drow.png" />
+<Image style="opacity:0;" src="file://{images}/items/mount_omni.png" />
+<Image style="opacity:0;" src="file://{images}/items/mount_shaman.png" />
+<Image style="opacity:0;" src="file://{images}/items/mount_standard.png" />
+<Image style="opacity:0;" src="file://{images}/items/mount_sven.png" />
+<Image style="opacity:0;" src="file://{images}/items/multistaff.png" />
+<Image style="opacity:0;" src="file://{images}/items/naturecore.png" />
+<Image style="opacity:0;" src="file://{images}/items/needle.png" />
+<Image style="opacity:0;" src="file://{images}/items/needleaa.png" />
+<Image style="opacity:0;" src="file://{images}/items/needleaa.png" />
+<Image style="opacity:0;" src="file://{images}/items/needle2.png" />
+<Image style="opacity:0;" src="file://{images}/items/netherchaos.png" />
+<Image style="opacity:0;" src="file://{images}/items/night_shoulders.png" />
+<Image style="opacity:0;" src="file://{images}/items/nightblade.png" />
+<Image style="opacity:0;" src="file://{images}/items/noboots.png" />
+<Image style="opacity:0;" src="file://{images}/items/nochest.png" />
+<Image style="opacity:0;" src="file://{images}/items/nohead.png" />
+<Image style="opacity:0;" src="file://{images}/items/nooffhand.png" />
+<Image style="opacity:0;" src="file://{images}/items/noring.png" />
+<Image style="opacity:0;" src="file://{images}/items/noshoulder.png" />
+<Image style="opacity:0;" src="file://{images}/items/noamulet.png" />
+<Image style="opacity:0;" src="file://{images}/items/nogloves.png" />
+<Image style="opacity:0;" src="file://{images}/items/nolegs.png" />
+<Image style="opacity:0;" src="file://{images}/items/nocape.png" />
+<Image style="opacity:0;" src="file://{images}/items/nova_blade.png" />
+<Image style="opacity:0;" src="file://{images}/items/nova_blade_shadow.png" />
+<Image style="opacity:0;" src="file://{images}/items/nova_blade2.png" />
+<Image style="opacity:0;" src="file://{images}/items/noweapon.png" />
+<Image style="opacity:0;" src="file://{images}/items/outburst2.png" />
+<Image style="opacity:0;" src="file://{images}/items/path.png" />
+<Image style="opacity:0;" src="file://{images}/items/powerhelm.png" />
+<Image style="opacity:0;" src="file://{images}/items/purgeblade.png" />
+<Image style="opacity:0;" src="file://{images}/items/purgeblade2.png" />
+<Image style="opacity:0;" src="file://{images}/items/pyro.png" />
+<Image style="opacity:0;" src="file://{images}/items/raindrop.png" />
+<Image style="opacity:0;" src="file://{images}/items/ring_arcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/ring_arcane_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/ring_arcane_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/ringofflames.png" />
+<Image style="opacity:0;" src="file://{images}/items/rogueblades.png" />
+<Image style="opacity:0;" src="file://{images}/items/rogueblades2.png" />
+<Image style="opacity:0;" src="file://{images}/items/runeofdetection.png" />
+<Image style="opacity:0;" src="file://{images}/items/sandstorm.png" />
+<Image style="opacity:0;" src="file://{images}/items/sandstorm2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_dmg_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_agi_t3_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_all_t3_2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_all_t3_2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_all_t3_2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_dmg_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_int_t3_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_dmg_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_2_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_t3_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_str_tank_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t1_combine_token.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t2_combine_token.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t3_combine_token.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_combine_token.png" />
+<Image style="opacity:0;" src="file://{images}/items/shadowflame.png" />
+<Image style="opacity:0;" src="file://{images}/items/shadowmourne.png" />
+<Image style="opacity:0;" src="file://{images}/items/shadowstone.png" />
+<Image style="opacity:0;" src="file://{images}/items/shadowstrike.png" />
+<Image style="opacity:0;" src="file://{images}/items/shadowsword.png" />
+<Image style="opacity:0;" src="file://{images}/items/sharpeye.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield_aggro.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield_immolation.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield_immolation2.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield_stun.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield1.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield10.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield1up.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield2.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield20.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield21.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield2up.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield3.png" />
+<Image style="opacity:0;" src="file://{images}/items/shield3up.png" />
+<Image style="opacity:0;" src="file://{images}/items/shieldluna.png" />
+<Image style="opacity:0;" src="file://{images}/items/shivacape.png" />
+<Image style="opacity:0;" src="file://{images}/items/silverblood.png" />
+<Image style="opacity:0;" src="file://{images}/items/silverblood2.png" />
+<Image style="opacity:0;" src="file://{images}/items/silverblood3.png" />
+<Image style="opacity:0;" src="file://{images}/items/silverblood4.png" />
+<Image style="opacity:0;" src="file://{images}/items/silvermoon.png" />
+<Image style="opacity:0;" src="file://{images}/items/smith_steel.png" />
+<Image style="opacity:0;" src="file://{images}/items/sp1.png" />
+<Image style="opacity:0;" src="file://{images}/items/sp4.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellblood.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellhaste_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellhaste_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellhaste_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellhaste_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/spellhaste_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/sprecipe.png" />
+<Image style="opacity:0;" src="file://{images}/items/staffheal.png" />
+<Image style="opacity:0;" src="file://{images}/items/stormrider.png" />
+<Image style="opacity:0;" src="file://{images}/items/str1.png" />
+<Image style="opacity:0;" src="file://{images}/items/str2.png" />
+<Image style="opacity:0;" src="file://{images}/items/str3.png" />
+<Image style="opacity:0;" src="file://{images}/items/straxe.png" />
+<Image style="opacity:0;" src="file://{images}/items/straxe2.png" />
+<Image style="opacity:0;" src="file://{images}/items/straxe3.png" />
+<Image style="opacity:0;" src="file://{images}/items/straxe4.png" />
+<Image style="opacity:0;" src="file://{images}/items/strrecipe.png" />
+<Image style="opacity:0;" src="file://{images}/items/stunitem.png" />
+<Image style="opacity:0;" src="file://{images}/items/stunitem2.png" />
+<Image style="opacity:0;" src="file://{images}/items/stunitem3.png" />
+<Image style="opacity:0;" src="file://{images}/items/stunitem4.png" />
+<Image style="opacity:0;" src="file://{images}/items/tankaxe.png" />
+<Image style="opacity:0;" src="file://{images}/items/teardrop2.png" />
+<Image style="opacity:0;" src="file://{images}/items/totemlife.png" />
+<Image style="opacity:0;" src="file://{images}/items/valyrian.png" />
+<Image style="opacity:0;" src="file://{images}/items/viper_blade.png" />
+<Image style="opacity:0;" src="file://{images}/items/viper_blade_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/voodoo_scythe.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_full_dream.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_full_dream_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive_full2.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive3.png" />
+<Image style="opacity:0;" src="file://{images}/items/warglaive4.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon1.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon10.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon11.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon14.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon2.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon20.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon202.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon3.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon4.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon40.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon41.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon5.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon5_magma.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon5up.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon6.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon7.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon7up.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon7up2.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon7up3.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon8.png" />
+<Image style="opacity:0;" src="file://{images}/items/weapon9.png" />
+<Image style="opacity:0;" src="file://{images}/items/weaponpoison.png" />
+<Image style="opacity:0;" src="file://{images}/items/weaponpoison2.png" />
+<Image style="opacity:0;" src="file://{images}/items/weaponpoison3.png" />
+<Image style="opacity:0;" src="file://{images}/items/windforce.png" />
+<Image style="opacity:0;" src="file://{images}/items/windforce2.png" />
+<Image style="opacity:0;" src="file://{images}/items/windforce3.png" />
+<Image style="opacity:0;" src="file://{images}/items/windforce4.png" />
+<Image style="opacity:0;" src="file://{images}/items/windlance.png" />
+<Image style="opacity:0;" src="file://{images}/items/winterbreeze.png" />
+<Image style="opacity:0;" src="file://{images}/items/winterbreeze2.png" />
+<Image style="opacity:0;" src="file://{images}/items/winterbreeze3.png" />
+<Image style="opacity:0;" src="file://{images}/items/winterbreeze4.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_belt.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_belt_standard.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_claw.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_claw2.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_claw3.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_cloak.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_cloak_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_cloak_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/xset_str_t3_2_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/xset_str_t3_2_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/xset_str_t3_2_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/xset_str_t3_2_full.png" />
+<Image style="opacity:0;" src="file://{images}/items/zeus_cloud.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_crit.png" />
+
+
+
+
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/10.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/11.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/12.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/13.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/14.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/15.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/16.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/17.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/18.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/180.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/19.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/20.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/21.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/22.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/23.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/24.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/25.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/26.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/27.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/28.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/29.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/30.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/31.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/32.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/32old.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/33.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/34.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/35.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/36.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/37.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/38.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/39.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/40.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/41.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/42.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/43.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/44.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/45.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/46.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/47.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/48.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/49.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/50.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/52.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/53.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/55.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/56.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/5666.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/58.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/59.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/7.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/8.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/9.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/abaddon_borrowed_time_colored.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/abaddon_borrowed_time_colored_2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/abaddon_borrowed_time_purple.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/anger.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/aoe1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/aoe2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/ap.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/arcane7.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/armydead2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/armydead3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/arrow1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/asdfasdf.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/assacrit.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/axe_stance1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/axe_stance2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/axe_strike2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/bash1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/batrider_firefly_arcane.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/bear2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blackarrow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blackdragon.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blackdragon2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blackdragon3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blood_crit.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blood_machine.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blood_shield.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/bloodlust2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/blur.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/bubble.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/call1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/call2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/cannibal.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/catdruid.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/catdruid2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chainlight.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaos1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaos2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaos3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaos4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dragonshield.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaosbolt2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaosbolt3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaosbolt4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/chaosstrike.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/charge1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/charge2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/claw_red.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/claw1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/claw2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/coil2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/creeper2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/custom_games_xp_coin.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/cyclone1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/cyclone2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dazzle_shadow_wave_green.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dazzle_shadow_wave_ice.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/death_coil_2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/deathrattle.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/devour1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/disruptor_kinetic_field.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dot1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dot2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dot5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dot6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dpshps.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dragon_ice.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dragon_physical.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dragon_shadow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drain6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/dream3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/drow_ranger_trueshot2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/earthshaker_echo_slam_egset.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eclipse.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/elemental1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/envenom.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eshieldnew.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eternallife.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/execute.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eyebeam.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eyebeam2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/eyebeam3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fairyfire.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fear1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fear2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fear3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fear4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fear5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fearhands1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/felfire.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/felsilence.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/felstrike2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/felstrike3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fire7.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fireface.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/flashheal.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frost1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frost2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frost3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frost4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frostarrow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/frostchains.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/froststrike.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/fungal_spawn.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/gargoyle.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/ghoul.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/grip.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/gun_shrapnel.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/gun1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/hands1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/healpriest.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holy_barrier.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holy1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holy2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holybolt.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holybolt2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holybolt3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holyface.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/holyform.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/hot1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/hot2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/howl.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/icearrow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/iceberg.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/icegrip.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/icenovamega.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/infest2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/innerflame.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/innerflame2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/innerflame3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/invis.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/invis5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_arcane.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_fire.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_frost.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_holy.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_nature.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/itemdmg_shadow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/keeper_of_the_light_chakra_magic_holy.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/killspree.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/lance.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/lava1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/loadchar.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/lycan_feral_impulse.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/magnataur_shockwave_alt.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/magnataur_shockwave_teal.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/manashield1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/manaward.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/manaward2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/meta_fel.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/meta_fel2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/meta_fel3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/meta_fel4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast11.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast12.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindblast9.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/mindnumb.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/modifier_halloffame_glow.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/morphling_waveform_green.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/movetostash.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/necrolyte_heartstopper_aura_red.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/nevermore_requiem_demon.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/outbreak.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala_armor_aura.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala7.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala8.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pala9.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/penance.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/penance2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/penance3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/penance4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pet1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pet2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/poison1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/poison2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/poison3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/poison4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/poly.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/prayer3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pudge_rot2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/pugna_nether_ward_alt_purple.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/purpleskull.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/quest_icon.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/quest_icon_epic.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/quest_icon_green.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/quest_icon_leg.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/quest_icon_old.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/razor_static_link_alt.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/razorasdr.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/riki_daggers.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/ringoffrost.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/sacred_shield3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/savechar.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/sdgerger.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/seal1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/seal2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow_tentacle.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow10.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow22.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadow5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowdance.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowdance3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowfury.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowfury2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowsigil.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowsigil3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shadowsigil5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shapeshift1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shapeshift2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shield1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/shotgun.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/silence1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/smokebomb.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/spirit1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/spirit2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/spirit3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/startarena_button.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/step.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/stormtorrent.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_blood.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_blood_good.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_bloody.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_red.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_rune.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike_rune_2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike10.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike11.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike12.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike13.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike14.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike15.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike16.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike17.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike18.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike5.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike6.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike7.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/strike9.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/succu2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/sven_warcry2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/swiftform3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/tangle.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/timeshit.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totem1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemfire.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemfire3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemwater.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemwater2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemwind.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/totemwind2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/tranq.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/trauma_ward.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/travel1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/treant_living_armor_blue.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/twistednether2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/underlord1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/underlord2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/underlord2_red.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/underlord3.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/underlord4.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/unholy_aura.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/unholygrip.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/unholygrip_red.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/werawefw.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/wolf1.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/wolf2.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/wormpoison.png" />
+<Image style="opacity:0;" src="file://{images}/spellicons/fix/wrath.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aa_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aa_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aa_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aa_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aa_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aad_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aad_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aad_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aad_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_aad_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_agi_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_agi_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_agi_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_agi_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_agi_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_all_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_all_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_all_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_all_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_all_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_int_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_int_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_int_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_int_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_int_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_new_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_new_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_new_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_new_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_new_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_panther.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_sp_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_sp_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_sp_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_sp_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_sp_5.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_str_1.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_str_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_str_3.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_str_4.png" />
+<Image style="opacity:0;" src="file://{images}/items/set_t4_str_5.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_001.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_003.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_004.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_005.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_006.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_007.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_008.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_009.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_010.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_011.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_012.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_013.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_014.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_015.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_016.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_017.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_018.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_019.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_020.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_021.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_022.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_023.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_024.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_025.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_026.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_027.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_028.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_029.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_030.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_031.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_032.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_033.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_034.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_035.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_036.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_037.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_038.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_039.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_040.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_041.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_042.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_043.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_044.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_045.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_046.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_047.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_048.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_049.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_050.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_051.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_052.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_053.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_054.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_055.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_056.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_057.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_058.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_059.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_060.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_061.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_062.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_063.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_064.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_065.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_066.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_067.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_068.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_069.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_070.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_071.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_072.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_073.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_074.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_075.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_001.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_002.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_003.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_004.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_005.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_007.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_008.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_009.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_010.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_013.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_015.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_016.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_017.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_018.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_020.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_021.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_022.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_023.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_025.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_029.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_030.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_031.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_032.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_033.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_034.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_035.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_036.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_038.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_039.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_040.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_041.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_042.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_043.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_044.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_046.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_047.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_050.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_051.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_052.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_053.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_054.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_055.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_056.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_057.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_058.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_059.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_060.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_061.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_062.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_063.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_064.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_065.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_066.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_067.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_068.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_069.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_072.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_073.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_074.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_075.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_075.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_076.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_077.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_078.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_079.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_080.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_081.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_082.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_083.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_084.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_085.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_086.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_087.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_088.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_089.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_090.png" />
+<Image style="opacity:0;" src="file://{images}/items/pathbuff_090.png" />
+
+
+<Image style="opacity:0;" src="file://{images}/items/cain_legendary.png" />
+<Image style="opacity:0;" src="file://{images}/items/cain_immo.png" />
+<Image style="opacity:0;" src="file://{images}/items/cain_divine.png" />
+<Image style="opacity:0;" src="file://{images}/items/cain_set.png" />
+<Image style="opacity:0;" src="file://{images}/items/cain_set2.png" />
+<Image style="opacity:0;" src="file://{images}/items/molten_steel.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/cd_65.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_65_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_54.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_54_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_43.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_43_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cleavemace.png" />
+<Image style="opacity:0;" src="file://{images}/items/cleavemace_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/windfury.png" />
+<Image style="opacity:0;" src="file://{images}/items/windfury_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bighit.png" />
+<Image style="opacity:0;" src="file://{images}/items/bighit_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/channel.png" />
+<Image style="opacity:0;" src="file://{images}/items/channel_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/titanarmor.png" />
+<Image style="opacity:0;" src="file://{images}/items/titanarmor_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bloodlust.png" />
+<Image style="opacity:0;" src="file://{images}/items/bloodlust_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/agihaste.png" />
+<Image style="opacity:0;" src="file://{images}/items/agihaste_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/multi_element.png" />
+<Image style="opacity:0;" src="file://{images}/items/multi_element_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/focus_dagger.png" />
+<Image style="opacity:0;" src="file://{images}/items/focus_dagger_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_sword.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_sword_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/outburst3.png" />
+<Image style="opacity:0;" src="file://{images}/items/attackpoint2.png" />
+<Image style="opacity:0;" src="file://{images}/items/attackpoint3.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_65.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_65_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_54.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_54_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_43.png" />
+<Image style="opacity:0;" src="file://{images}/items/cd_43_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/cleavemace.png" />
+<Image style="opacity:0;" src="file://{images}/items/cleavemace_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/windfury.png" />
+<Image style="opacity:0;" src="file://{images}/items/windfury_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bighit.png" />
+<Image style="opacity:0;" src="file://{images}/items/bighit_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/channel.png" />
+<Image style="opacity:0;" src="file://{images}/items/channel_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/titanarmor.png" />
+<Image style="opacity:0;" src="file://{images}/items/titanarmor_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/bloodlust.png" />
+<Image style="opacity:0;" src="file://{images}/items/bloodlust_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/agihaste.png" />
+<Image style="opacity:0;" src="file://{images}/items/agihaste_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/multi_element.png" />
+<Image style="opacity:0;" src="file://{images}/items/multi_element_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/focus_dagger.png" />
+<Image style="opacity:0;" src="file://{images}/items/focus_dagger_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_sword.png" />
+<Image style="opacity:0;" src="file://{images}/items/wolf_sword_2.png" />
+<Image style="opacity:0;" src="file://{images}/items/outburst3.png" />
+<Image style="opacity:0;" src="file://{images}/items/attackpoint2.png" />
+<Image style="opacity:0;" src="file://{images}/items/moonlighttiger.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/class_jungle.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_snow.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_beast.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_savage.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_cruel.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_plated.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_chaos.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_peaceful.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/class_spirit.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_elemental.png" />
+<Image style="opacity:0;" src="file://{images}/items/netherchaos3.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_retri.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_arcane.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_dire.png" />
+<Image style="opacity:0;" src="file://{images}/items/deathknight.png" />
+<Image style="opacity:0;" src="file://{images}/items/attackpoint0.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_arctic.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_colossal.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_flame.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_wild.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_grizzly.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/class_deadly.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_sanctified.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_unholy.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/class_am.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_winter.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_bounty.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_warlock.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_fury.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_brawler.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_darkseer.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_invoker.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_venge.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_terror.png" />
+<Image style="opacity:0;" src="file://{images}/items/dragonmind.png" />
+<Image style="opacity:0;" src="file://{images}/items/class_terror.png" />
+<Image style="opacity:0;" src="file://{images}/items/dragonmind.png" />
+<Image style="opacity:0;" src="file://{images}/items/aad.png" />
+<Image style="opacity:0;" src="file://{images}/items/dragonmind2.png" />
+<Image style="opacity:0;" src="file://{images}/items/dragonmind2.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/aimo3critcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo1healcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo2armorres.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo4fahprimas.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo5nahsp.png" />
+<Image style="opacity:0;" src="file://{images}/items/aimo6kilcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo3critcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo1healcd.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo2armorres.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo4fahprimas.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo5nahsp.png" />
+<Image style="opacity:0;" src="file://{images}/items/immo6kilcrit.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/gen11.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen12.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen13.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen14.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen15.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen21.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen22.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen23.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen24.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen25.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen31.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen32.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen33.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen34.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen35.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen41.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen42.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen43.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen44.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen45.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen51.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen52.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen53.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen54.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen55.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen61.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen62.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen63.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen64.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen65.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen71.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen72.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen73.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen74.png" />
+<Image style="opacity:0;" src="file://{images}/items/gen75.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen91.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen92.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen93.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen94.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen95.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen111.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen112.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen113.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen114.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen115.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen101.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen102.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen103.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen104.png" />
+<Image style="opacity:0;" src="file://{images}/items/fixe/gen105.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/ge211.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge212.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge213.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge214.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge215.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge221.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge222.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge223.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge224.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge225.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge231.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge232.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge233.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge234.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge235.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge241.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge242.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge243.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge244.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge245.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge251.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge252.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge253.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge254.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge255.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge261.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge262.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge263.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge264.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge265.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge271.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge272.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge273.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge274.png" />
+<Image style="opacity:0;" src="file://{images}/items/ge275.png" />
+
+
+
+<Image style="opacity:0;" src="file://{images}/items/str.png" />
+<Image style="opacity:0;" src="file://{images}/items/agi.png" />
+<Image style="opacity:0;" src="file://{images}/items/int.png" />
+<Image style="opacity:0;" src="file://{images}/items/aaa.png" />
+<Image style="opacity:0;" src="file://{images}/items/spp.png" />
+<Image style="opacity:0;" src="file://{images}/items/crd.png" />
+<Image style="opacity:0;" src="file://{images}/items/ats.png" />
+<Image style="opacity:0;" src="file://{images}/items/abc.png" />
+<Image style="opacity:0;" src="file://{images}/items/arm.png" />
+<Image style="opacity:0;" src="file://{images}/items/res.png" />
+<Image style="opacity:0;" src="file://{images}/items/aac.png" />
+<Image style="opacity:0;" src="file://{images}/items/hpp.png" />
+<Image style="opacity:0;" src="file://{images}/items/man.png" />
+<Image style="opacity:0;" src="file://{images}/items/fir.png" />
+<Image style="opacity:0;" src="file://{images}/items/sha.png" />
+<Image style="opacity:0;" src="file://{images}/items/arc.png" />
+<Image style="opacity:0;" src="file://{images}/items/fro.png" />
+<Image style="opacity:0;" src="file://{images}/items/nat.png" />
+<Image style="opacity:0;" src="file://{images}/items/phy.png" />
+<Image style="opacity:0;" src="file://{images}/items/ene.png" />
+<Image style="opacity:0;" src="file://{images}/items/abp.png" />
+<Image style="opacity:0;" src="file://{images}/items/hea.png" />
+<Image style="opacity:0;" src="file://{images}/items/cdr.png" />
+<Image style="opacity:0;" src="file://{images}/items/blo.png" />
+<Image style="opacity:0;" src="file://{images}/items/hol.png" />
+<Image style="opacity:0;" src="file://{images}/items/cha.png" />
+<Image style="opacity:0;" src="file://{images}/items/abi.png" />
+<Image style="opacity:0;" src="file://{images}/items/aad.png" />
+<Image style="opacity:0;" src="file://{images}/items/pat.png" />
+<Image style="opacity:0;" src="file://{images}/items/dot.png" />
+<Image style="opacity:0;" src="file://{images}/items/aoe.png" />
+<Image style="opacity:0;" src="file://{images}/items/sin.png" />
+<Image style="opacity:0;" src="file://{images}/items/arr.png" />
+<Image style="opacity:0;" src="file://{images}/items/srr.png" />
+<Image style="opacity:0;" src="file://{images}/items/mov.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/ard.png" />
+<Image style="opacity:0;" src="file://{images}/items/chd.png" />
+<Image style="opacity:0;" src="file://{images}/items/nad.png" />
+<Image style="opacity:0;" src="file://{images}/items/fid.png" />
+<Image style="opacity:0;" src="file://{images}/items/frd.png" />
+<Image style="opacity:0;" src="file://{images}/items/phd.png" />
+<Image style="opacity:0;" src="file://{images}/items/shd.png" />
+<Image style="opacity:0;" src="file://{images}/items/hod.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/myth_str.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_agi.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_int.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_sp.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_aa.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_aad.png" />
+<Image style="opacity:0;" src="file://{images}/items/myth_def.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/amu0.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu1.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu2.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu3.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu4.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu5.png" />
+<Image style="opacity:0;" src="file://{images}/items/amu6.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/evasion.png" />
+
+<Image style="opacity:0;" src="file://{images}/items/purecrit2.png" />
+<Image style="opacity:0;" src="file://{images}/items/purecrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/resaura.png" />
+<Image style="opacity:0;" src="file://{images}/items/resaura2.png" />
+<Image style="opacity:0;" src="file://{images}/items/arcanabracers.png" />
+<Image style="opacity:0;" src="file://{images}/items/arcanabracers2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crowndefender.png" />
+<Image style="opacity:0;" src="file://{images}/items/crowndefender2.png" />
+<Image style="opacity:0;" src="file://{images}/items/critmaster.png" />
+<Image style="opacity:0;" src="file://{images}/items/critmaster2.png" />
+<Image style="opacity:0;" src="file://{images}/items/giant.png" />
+<Image style="opacity:0;" src="file://{images}/items/giant2.png" />
+<Image style="opacity:0;" src="file://{images}/items/firebow.png" />
+<Image style="opacity:0;" src="file://{images}/items/firebow2.png" />
+<Image style="opacity:0;" src="file://{images}/items/snowl.png" />
+<Image style="opacity:0;" src="file://{images}/items/snowl2.png" />
+<Image style="opacity:0;" src="file://{images}/items/naturedot.png" />
+<Image style="opacity:0;" src="file://{images}/items/naturedot2.png" />
+<Image style="opacity:0;" src="file://{images}/items/hptosp.png" />
+<Image style="opacity:0;" src="file://{images}/items/hptosp2.png" />
+<Image style="opacity:0;" src="file://{images}/items/firenature.png" />
+<Image style="opacity:0;" src="file://{images}/items/firenature2.png" />
+<Image style="opacity:0;" src="file://{images}/items/holyaaa.png" />
+<Image style="opacity:0;" src="file://{images}/items/holyaaa2.png" />
+<Image style="opacity:0;" src="file://{images}/items/summon.png" />
+<Image style="opacity:0;" src="file://{images}/items/summon2.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostcrit.png" />
+<Image style="opacity:0;" src="file://{images}/items/frostcrit2.png" />
+<Image style="opacity:0;" src="file://{images}/items/whiterobe.png" />
+<Image style="opacity:0;" src="file://{images}/items/whiterobe2.png" />
+<Image style="opacity:0;" src="file://{images}/items/dark.png" />
+<Image style="opacity:0;" src="file://{images}/items/dark2.png" />
+<Image style="opacity:0;" src="file://{images}/items/big.png" />
+<Image style="opacity:0;" src="file://{images}/items/big2.png" />
+<Image style="opacity:0;" src="file://{images}/items/chaosshield.png" />
+<Image style="opacity:0;" src="file://{images}/items/chaosshield2.png" />
+<Image style="opacity:0;" src="file://{images}/items/rage.png" />
+<Image style="opacity:0;" src="file://{images}/items/rage2.png" />
+<Image style="opacity:0;" src="file://{images}/items/storm.png" />
+<Image style="opacity:0;" src="file://{images}/items/storm2.png" />
+<Image style="opacity:0;" src="file://{images}/items/coloss.png" />
+<Image style="opacity:0;" src="file://{images}/items/coloss2.png" />
+<Image style="opacity:0;" src="file://{images}/items/crown.png" />
+<Image style="opacity:0;" src="file://{images}/items/crown2.png" />
+<Image style="opacity:0;" src="file://{images}/items/rune.png" />
+<Image style="opacity:0;" src="file://{images}/items/rune2.png" />
+<Image style="opacity:0;" src="file://{images}/items/wing.png" />
+<Image style="opacity:0;" src="file://{images}/items/wing2.png" />
+<Image style="opacity:0;" src="file://{images}/items/inttohp.png" />
+<Image style="opacity:0;" src="file://{images}/items/inttohp2.png" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

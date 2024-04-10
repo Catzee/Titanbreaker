@@ -1,0 +1,38 @@
+""
+{
+	"TextureData"
+	{
+		"minimap_treasure_chest"
+		{
+			"file"		"materials/vgui/hud/minimap_treasure_chest.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"64"
+			"height"		"64"
+		}
+		"minimap_creep"
+        {
+            "file"     "materials/vgui/hud/minimap_creep.vmat"
+            "x"        "0"
+            "y"        "0"
+            "width"    "64"
+            "height"   "64"
+        }
+        "minimap_boss"
+        {
+            "file"     "materials/vgui/hud/minimap_boss.vmat"
+            "x"        "0"
+            "y"        "0"
+            "width"    "64"
+            "height"   "64"
+        }
+        "minimap_tower"
+        {
+            "file"     "materials/vgui/hud/minimap_tower.vmat"
+            "x"        "0"
+            "y"        "0"
+            "width"    "64"
+            "height"   "64"
+        }
+	}
+}

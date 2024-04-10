@@ -1,0 +1,8 @@
+tod_beginner_level_1_to_20
+{
+	material materials/overviews/tod_beginner_level_1_to_20.vmat
+	pos_x -16384
+	pos_y 16384
+	scale 32.000
+}
+

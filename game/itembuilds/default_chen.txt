@@ -1,0 +1,49 @@
+"itembuilds/test_axe.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_dragon_knight"
+	"Title"			"Recommended items for Axe"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_bootsmana"
+			"item"		"item_intrecipe"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_caster2"
+			"item"		"item_caster4"
+			"item"		"item_caster5"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_endgame4"	
+ 			"item"		"item_endgame12"
+ 			"item"		"item_caster7"
+			"item"		"item_endgame14"
+			"item"		"item_caster6"
+					
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_active1"
+			"item"		"item_shield1"
+			"item"		"item_shield2"
+			"item"		"item_weapon20"
+			"item"		"item_activepaladin"
+
+			"item"		"item_intrecipe"
+			"item"		"item_cooldown"
+			"item"		"item_aura1"
+			"item"		"item_aura4"
+			"item"		"item_endgame13"
+			"item"		"item_aether_lens"
+			
+		}
+	}
+}

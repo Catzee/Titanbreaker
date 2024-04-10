@@ -1,0 +1,166 @@
+.WeaponChoice
+{
+
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #434349 ) );
+    horizontal-align: right;
+    vertical-align: top;
+    margin-right: 50px;
+    margin-top: 50px;
+	flow-children: down;
+	width: 30%;
+    //height: auto;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.TipMessage
+{
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #434349 ) );
+    horizontal-align: left;
+    vertical-align: top;
+	flow-children: down;
+	//width: 60%;
+    //height: 50%;
+    min-width: 55%;
+    min-height: 40%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    margin-top: 60%;
+    margin-left: 0px;
+}
+
+.Leaderboard
+{
+    background-color: gradient( linear, 0% 0%, 50% 100%, from( #32323a ), to( #434349 ) );
+    horizontal-align: left;
+    vertical-align: top;
+	flow-children: down;
+	//width: 60%;
+    //height: 50%;
+    //min-width: 55%;
+    //min-height: 40%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    //margin-top: 60%;
+    margin-right: 10%;
+    margin-bottom: 30%;
+}
+
+.DropTable
+{
+	horizontal-align: center;
+    background-color: black;
+	flow-children: down;
+	//width: 40%;
+    //height: 55%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+}
+.TableRow
+{
+	flow-children: right;
+}
+.TableCell
+{
+	width: 100px;
+    height: 30px;
+}
+
+.WeaponRow2
+{
+   horizontal-align: center;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 40px;
+	margin-right: 4px;
+	flow-children: right;
+}
+
+.SingleWeapon
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555c ), to( #77777c ) );
+	height: 100px;
+	width: 200px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.SingleWeapon:hover
+{	
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #66666d ), to( #88888d ) );
+}
+
+.WeaponButton
+{	
+	height: 90px;
+	width: 180px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	flow-children: down;
+}
+
+.SelectionButton
+{	
+	horizontal-align: center;
+	font-size: 20px;
+	color: #ffeebb;
+	margin-bottom: 4px;
+	//border-style: solid;
+    //border-width: 2px;
+    //border-color: white;
+    //border-radius: 10px;
+}
+
+.WeaponHeaderUNUSED{
+	horizontal-align: center;
+	font-size: 30px;
+	color: #ffeebb;
+	margin-bottom: 4px;
+}
+
+.WeaponStats2{
+	horizontal-align: left;
+	font-size: 20px;
+	color: #ffcc22;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+.WeaponStatsRight{
+	horizontal-align: center;
+	font-size: 20px;
+	color: #ffcc22;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.WeaponImage
+{	
+	horizontal-align: center;
+	margin-bottom: 20px;
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+}
+
+.RewardHeader
+{
+	horizontal-align: center;
+	font-size: 40px;
+	color: #ffddaa;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
