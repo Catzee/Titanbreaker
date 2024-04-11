@@ -3677,6 +3677,12 @@ function SetGold(args)
     gold_stat[id] = args.gold;
 }
 
+function RegisterKeyBind(keyBind, callback) {
+    let uniqueCommandName = "+" + "titanbreaker_" + keyBind + "_" + Date.now();
+    Game.AddCommand(uniqueCommandName, callback, "", 0);
+    Game.CreateCustomKeyBind(keyBind, uniqueCommandName);
+}
+	
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -3721,13 +3727,18 @@ function SetGold(args)
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemtoshop", AddItemToShop);
     
-    Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
-    Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
+    //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
+    //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
     //Game.AddCommand( "+JPressed", ToggleGambling, "", 0 );
-    Game.AddCommand( "+KPressed", TeleporterMenu, "", 0 );
-    Game.AddCommand( "+NPressed", ToggleAggroMeter, "", 0 );
+    //Game.AddCommand( "+KPressed", TeleporterMenu, "", 0 );
+    //Game.AddCommand( "+NPressed", ToggleAggroMeter, "", 0 );
     //Game.AddCommand( "+LPressed", ToggleLootInformation, "", 0 );
     
+    RegisterKeyBind("U", ToggleInventory);
+    RegisterKeyBind("O", ToggleTalentTree);
+    RegisterKeyBind("K", TeleporterMenu);
+    RegisterKeyBind("N", ToggleAggroMeter);
+	
     GameEvents.Subscribe("dota_player_update_selected_unit", onUnitChanged);
     //GameEvents.SendCustomGameEventToServer( "gamemode_vote", { "player_id" : Players.GetLocalPlayer(), "mode_id" : wins } );
     $.FindChildInContext("#table").visible = false;
