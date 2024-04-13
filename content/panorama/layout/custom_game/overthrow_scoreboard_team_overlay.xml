@@ -8,7 +8,7 @@
 	</scripts>
 	<Panel class="TeamOverlay" visible="true" >
 		<Panel id="TeamNotices">
-			<Image hittest="false" id="FirstPlaceIndicator" src="file://{images}/custom_game/crown001.psd" />
+			<Image hittest="false" id="FirstPlaceIndicator" src="file://{images}/custom_game/crown001.png" />
 			<Panel hittest="false" id="VictoryStatusRow">
 				<Label hittest="false" id="PointsToWin" text="999" visible="true" />
 			</Panel>
