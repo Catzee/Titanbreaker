@@ -12199,11 +12199,23 @@ function COverthrowGameMode:FilterDamage( filterTable )
             if victim:HasModifier("modifier_resaura") or victim:HasModifier("modifier_resaura2") then
               spiritwolfcd = spiritwolfcd * 0.85
             end
+            local spritiwolfduration = 1 * victim.talents[42]
             victim:SetHealth(victim:GetHealth()+victim:GetMaxHealth()*0.15*victim.talents[42])
             victim.combat_system_ability:ApplyDataDrivenModifier(victim, victim, "modifier_talent42cd", { Duration = spiritwolfcd})
-            victim.combat_system_ability:ApplyDataDrivenModifier(victim, victim, "modifier_talent_spiritwolf", { Duration = 1 * victim.talents[42] })
-            local particle = ParticleManager:CreateParticle( "particles/items3_fx/fish_bones_active.vpcf", PATTACH_POINT_FOLLOW, victim )
-            ParticleManager:ReleaseParticleIndex(particle)
+            victim.combat_system_ability:ApplyDataDrivenModifier(victim, victim, "modifier_talent_spiritwolf", { Duration = spritiwolfduration })
+            -- Moved to lua to be 100% sure it will be destroyed and released
+            local victimAbsOrigin = victim:GetAbsOrigin()
+            local firstParticle = ParticleManager:CreateParticle( "particles/sven_spell_warcry_ti_5_fixed.vpcf", PATTACH_POINT_FOLLOW, victim)
+            local secondParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf", PATTACH_ABSORIGIN_FOLLOW, victim)
+            ParticleManager:SetParticleControlEnt(secondParticle, 0, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victimAbsOrigin, false)
+            ParticleManager:SetParticleControlEnt(secondParticle, 1, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victimAbsOrigin, false)
+            ParticleManager:SetParticleControlEnt(secondParticle, 2, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victimAbsOrigin, false)
+            Timers:CreateTimer(spritiwolfduration, function()
+              ParticleManager:DestroyParticle(firstParticle, false)
+              ParticleManager:ReleaseParticleIndex(firstParticle)
+              ParticleManager:DestroyParticle(secondParticle, false)
+              ParticleManager:ReleaseParticleIndex(secondParticle)
+            end)
           end
         end
       end
