@@ -7359,6 +7359,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 							Timers:CreateTimer(delay,function() 
 								if lootquality >= 4 then
 					        		local particle = ParticleManager:CreateParticle("particles/econ/events/ti6/hero_levelup_ti6_flash_hit_magic.vpcf", PATTACH_POINT_FOLLOW, all[i])
+					        		ParticleManager:DestroyParticle(particle, false)
 					        		ParticleManager:ReleaseParticleIndex(particle)
 					        	end
 						        local item
@@ -7370,40 +7371,67 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 							        	local item2 = CreateItemOnPositionSync(spot, item)
 							        	local particle3 = ParticleManager:CreateParticle( "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_CUSTOMORIGIN, hero)
 										ParticleManager:SetParticleControl(particle3, 1, spot)
+										ParticleManager:DestroyParticle(particle3, false)
 										ParticleManager:ReleaseParticleIndex(particle3)
 							        	Timers:CreateTimer(0.1,function()
 								        	if item and not item:IsNull() then
 								        		--item:GetContainer():SetAbsOrigin(spot)
 								        		local offset_y = math.random(65,125)
 								        		local offset_x = math.random(-75,75)
+								        		local itemContainer = item:GetContainer()
 									        	item:LaunchLoot(false, 125, 0.9, all[i]:GetAbsOrigin()+Vector(offset_x,-offset_y,0), nil)
-									        	local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_d_glow.vpcf", PATTACH_POINT_FOLLOW, item:GetContainer())
-									        	ParticleManager:ReleaseParticleIndex(particle2)
+									        	local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_d_glow.vpcf", PATTACH_POINT_FOLLOW, itemContainer)
+										        -- Destroy & release item particle on item pickup
+												Timers:CreateTimer(1,function()
+													if(itemContainer:IsNull()) then
+														ParticleManager:DestroyParticle(particle2, false)
+														ParticleManager:ReleaseParticleIndex(particle2)
+														return
+													end
+													return 1
+												end)
 									        	Timers:CreateTimer(0.95,function() 
 										        	if lootquality > 1 then
-										        		local particle = ParticleManager:CreateParticle(fxpath, PATTACH_POINT_FOLLOW, item:GetContainer())
-										        		ParticleManager:ReleaseParticleIndex(particle)
-										        		--if fxpath_ray then jan 2021, remove lag attempt
-										        		--	particle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, item:GetContainer())
-										        		--	ParticleManager:ReleaseParticleIndex(particle)
-										        		--end
+										        		local particle = ParticleManager:CreateParticle(fxpath, PATTACH_POINT_FOLLOW, itemContainer)
+										        		-- Destroy & release item particle on item pickup
+														Timers:CreateTimer(1,function()
+															if(itemContainer:IsNull()) then
+																ParticleManager:DestroyParticle(particle, false)
+																ParticleManager:ReleaseParticleIndex(particle)
+																return
+															end
+															return 1
+														end)
+										        		if fxpath_ray then
+										        			local itemContainer = item:GetContainer()
+										        			-- Destroy & release ray particle on item pickup
+										        			local rayParticle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, itemContainer)
+										        			Timers:CreateTimer(1,function()
+																if(itemContainer:IsNull()) then
+																	ParticleManager:DestroyParticle(rayParticle, false)
+																	ParticleManager:ReleaseParticleIndex(rayParticle)
+																	return
+																end
+																return 1
+										        			end)
+										        		end
 										        	end
 										        end)
 									        end
 								        end)
 							        else
 							        	item = all[i]:AddItemByName( spawnedItem )
-							        	--Timers:CreateTimer(0.95,function() 
-								        	--if lootquality > 1 then jan 2021, remove lag attempt
-								        		--if fxpath_ray then
-								        		--	local div_particle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, all[i])
-								        		--	Timers:CreateTimer(4,function() 
-								        		--		ParticleManager:DestroyParticle(div_particle,true)
-								        		--		ParticleManager:ReleaseParticleIndex(div_particle)
-								        		--	end)
-								        		--end
-								        	--end
-								        --end)
+							        	Timers:CreateTimer(0.95,function() 
+								        	if lootquality > 1 then
+								        		if fxpath_ray then
+								        			local div_particle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, all[i])
+								        			Timers:CreateTimer(4,function() 
+								        				ParticleManager:DestroyParticle(div_particle,true)
+								        				ParticleManager:ReleaseParticleIndex(div_particle)
+								        			end)
+								        		end
+								        	end
+								        end)
 							        end
 							    else
 							    	-- artifact drop

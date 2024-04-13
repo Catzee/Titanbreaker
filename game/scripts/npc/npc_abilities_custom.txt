@@ -73509,12 +73509,6 @@
 			    "IsPurgable"       "0"
 			    "OnCreated"
 			    {
-			    	//"FireEffect" broken jan 2021
-			    	//{
-			    	//	"EffectName"        "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_halo.vpcf"
-			    	//	"EffectAttachType"  "attach_hitloc"
-			    	//	"Target"            "TARGET"
-			    	//}
 			    	"FireSound"
 			    	{
 			    		"EffectName"	"Item.GuardianGreaves.Activate"
@@ -73864,7 +73858,9 @@
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "50"
-			        "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"      "-100"
+			    	"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"		"1"
+			    	"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"		"1"
+			    	"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"		"1"
 			    }
 			}
 			"modifier_talent_invul"
