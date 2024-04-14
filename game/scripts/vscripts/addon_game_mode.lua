@@ -6197,7 +6197,7 @@ function COverthrowGameMode:OnThink()
       end
     end
     --statistics
-    local damagepersec = 0 -- math.floor(hero.damage_done / 30) might create overflow bug, breaking saving to database
+    local damagepersec = math.floor(hero.damage_done / 30)
     if hero.best_dps then
      if damagepersec > hero.best_dps then
       hero.best_dps = damagepersec
@@ -6205,7 +6205,7 @@ function COverthrowGameMode:OnThink()
   else
    hero.best_dps = damagepersec
  end
- local healpersec = 0 -- math.floor(hero.healing_done / 30)
+ local healpersec = math.floor(hero.healing_done / 30)
  if hero.best_hps then
    if healpersec > hero.best_hps then
     hero.best_hps = healpersec
@@ -9465,9 +9465,9 @@ end
          if setHeroStatsAggroPercent then
           source.aggro_caused = final_factor
         end
-        --if source:IsRealHero() then
-        --  source.damage_done = source.damage_done + aggro_original
-        --end
+        if source:IsRealHero() then
+          source.damage_done = source.damage_done + aggro_original
+        end
       end
       caster.aggrolist[source:GetPlayerOwnerID()] = caster.aggrolist[source:GetPlayerOwnerID()] + aggro
       if caster.totalaggro then
