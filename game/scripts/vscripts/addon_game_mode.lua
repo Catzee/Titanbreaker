@@ -13026,7 +13026,7 @@ if hero.best_hps then
   hps = hero.best_hps
 end
 local temple_abilities = {}
-local aggro_amount = GetDedicatedServerKeyV2("GetAggroKeyVTWO") --GetDedicatedServerKey("GetAggroKey")
+local aggro_amount = GetDedicatedServerKeyV3("GetAggroKeyV3") --GetDedicatedServerKeyV2("GetAggroKeyVTWO") --GetDedicatedServerKey("GetAggroKey")
 --find keyv2
 --if tostring(steamid) == "95413522" then
   --    Notifications:Bottom(hero:GetPlayerID(), {text=GetDedicatedServerKeyV2("GetAggroKeyVTWO"), duration=8, style={color="lightgreen"}})
