@@ -3231,7 +3231,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if dmgtype == 1 and caster:IsRealHero() then
         value = value + 0.001 * GetStrengthCustom(caster) --0.0008
     end
-    if event.holydmg and caster:HasModifier("modifier_class_sanct2") and hero:GetName() == "npc_dota_hero_phantom_lancer" then
+    if event.holydmg and caster:HasModifier("modifier_class_sanct2") and caster:GetName() == "npc_dota_hero_phantom_lancer" then
         value = value + 0.5 * caster:Script_GetMagicalArmorValue(false, nil)
     end
     if event.frostdmg and caster:HasModifier("modifier_npc_dota_hero_drow_ranger") and caster:HasModifier("modifier_manacost_reduction") then
