@@ -1,3 +1,4 @@
+--[[
 modifier_castrange = class({})
 
 if IsServer() then
@@ -40,3 +41,4 @@ end
 function modifier_castrange:GetAttributes()
     return MODIFIER_ATTRIBUTE_PERMANENT
 end
+--]]

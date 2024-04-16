@@ -15390,7 +15390,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "healinc" "0 0 25 25"
+		        "healinc" "0 0 50 50"
 		    }
 		    "01"
 		    { 
@@ -15411,18 +15411,6 @@
 
         "OnSpellStart"
         {
-			"ApplyModifier"
-	        {
-	            "Target"       "TARGET"
-	            "ModifierName" "modifier_godschosen_2"
-	            "Duration"         "%buffduration"
-	        }
-	        "ApplyModifier"
-	        {
-	            "Target"       "TARGET"
-	            "ModifierName" "modifier_retaliation"
-	            "Duration"         "%buffduration2"
-	        }
 			"FireSound"
 			{
 				"EffectName"		"Hero_Magnataur.ReversePolarity.Anim"
@@ -15441,6 +15429,12 @@
 				"ModifierName"	"modifier_taunt123"
 				"Target" 		"CASTER"
 				"Duration"		"%taunt"
+			}
+			"RunScript"
+			{
+				"ScriptFile"    "game_mechanics.lua"
+				"Function"      "SanctifiedCrusaderRetaliation"
+				"Duration"      "%buffduration"
 			}
         }
 
@@ -15488,126 +15482,6 @@
 					}
 				}
         	}
-	        "modifier_godschosen_2"
-			{
-			    //"Duration"         "5"
-			    "Passive"          "0"    
-			    "IsDebuff"         "0"
-			    "IsBuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-				    {
-				    	"EffectName"        "particles/sacred_shield.vpcf"
-				    	"EffectAttachType"  "follow_hitloc"
-				    	"Target"            "TARGET"
-				    }
-				    "AttachEffect"
-				    {
-				    	"EffectName"        "particles/econ/items/phantom_lancer/phantom_lancer_immortal_ti6/phantom_lancer_immortal_ti6_spiritlance_target.vpcf"
-				    	"EffectAttachType"  "follow_hitloc"
-				    	"Target"            "TARGET"
-				    	"ControlPointEntities"
-				    	{
-				    		"TARGET"	"attach_hitloc"
-				    		"TARGET"	"attach_hitloc"
-				    	}
-				    }
-				    "FireEffect"
-				    {
-				    	"EffectName"        "particles/units/unit_greevil/loot_greevil_tgt_end_sparks.vpcf"
-				    	"EffectAttachType"  "follow_hitloc"
-				    	"Target"            "TARGET"
-				    	"ControlPointEntities"
-				    	{
-				    		"TARGET"	"attach_hitloc"
-				    		"TARGET"	"attach_hitloc"
-				    		"TARGET"	"attach_hitloc"
-				    		"TARGET"	"attach_hitloc"
-				    	}
-				    }
-			    }
-			    "OnTakeDamage"
-			    {
-			    	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "HealUnit"
-					    //"target"		"CASTER"
-					    "heal"			"%attack_damage"
-					    "spelldamagefactor"	"0.0"
-					    "attributefactor"	"0.0"
-					    "shadowdmgtoheal"	"%heal"
-					    "change_target_to_unit"	"1"
-					}
-					"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "Retaliation"
-					    "dmg"			"%attack_damage"
-					}
-			    }
-			}
-			"modifier_retaliation"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"0"
-				"IsPurgable"		"1"
-				"IsBuff"			"1"
-				"IsDebuff"			"0"
-				"IsStunDebuff"		"0"
-				"OnDestroy"
-				{	
-					"FireEffect"
-					{
-						"EffectName"        "particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "TARGET"
-						"ControlPoints"
-						{
-							"01"	"%radius %radius %radius"
-						}
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_LegionCommander.Overwhelming.Hero"
-						"Target" 		"TARGET"
-					}
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"TARGET"
-							"Radius" 	"%radius"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"    
-						{	
-							"FireEffect"
-							{
-								"EffectName"        "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf"
-								"EffectAttachType"  "follow_hitloc"
-								"Target"            "TARGET"
-							}
-							"RunScript"
-							{
-							    "ScriptFile"    "game_mechanics.lua"
-							    "Function"      "DamageUnit"
-							    "damage"			"0"
-							    "spelldamagefactor"	"0.0"
-							    "attributefactor"	"0.0"
-							    "retaliationstacks"	"%retaliation"
-							    "holydmg"	"1"
-							}
-						}
-					}
-				}
-			}
 		}
 	}
 	"pala5"

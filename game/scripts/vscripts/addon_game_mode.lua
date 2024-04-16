@@ -2565,15 +2565,6 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
 
-      --charge ability modifier
-      LinkLuaModifier("modifier_charges", LUA_MODIFIER_MOTION_NONE)
-      LinkLuaModifier("modifier_phased_lua", LUA_MODIFIER_MOTION_NONE)
-      --LinkLuaModifier("modifier_armor_formula", LUA_MODIFIER_MOTION_NONE)
-      --LinkLuaModifier("modifier_dotsystem", LUA_MODIFIER_MOTION_NONE)
-      --LinkLuaModifier("modifier_castrange", LUA_MODIFIER_MOTION_NONE)
-      --LinkLuaModifier("path_health_buff", LUA_MODIFIER_MOTION_NONE)
-
-
       Convars:RegisterCommand( "overthrow_force_item_drop", function(...) self:ForceSpawnItem() end, "Force an item drop.", FCVAR_CHEAT )
       Convars:RegisterCommand( "overthrow_force_gold_drop", function(...) self:ForceSpawnGold() end, "Force gold drop.", FCVAR_CHEAT )
       Convars:RegisterCommand( "overthrow_set_timer", function(...) return SetTimer( ... ) end, "Set the timer.", FCVAR_CHEAT )
