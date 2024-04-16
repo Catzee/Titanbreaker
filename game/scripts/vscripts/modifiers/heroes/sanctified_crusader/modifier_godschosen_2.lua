@@ -59,11 +59,11 @@ function modifier_godschosen_2:GetModifierIncomingDamage_Percentage(kv)
     })
 
     self:SetStackCount(self:GetStackCount() + kv.damage)
-    -- Preserve old mechanic (heal after dmg) because you can die with 75% of damage taken as healing
+    -- Preserved old mechanic (heal after dmg) because you can die with 75% of damage taken as healing
     if(self.healingPct < 1) then
         return
     end
-    -- Prevent death
+    -- Prevents death
     return -99999999
 end
 
@@ -106,7 +106,7 @@ function modifier_godschosen_2:OnDestroy()
         ParticleManager:SetParticleControlEnt(particle, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(particle)
-        -- We could cache event data and only change victim, but something in DamageUnit might modify event data...
+        -- We could cache event data and only change victim, but something in DamageUnit might modify event data and affect next call...
         DamageUnit({
             caster = self.parent,
             target = enemy,
