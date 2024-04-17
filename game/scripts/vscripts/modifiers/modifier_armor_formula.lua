@@ -1,3 +1,4 @@
+--[[
 function modifier_armor_formula:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -41,3 +42,4 @@ end
 function modifier_armor_formula:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+--]]

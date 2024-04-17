@@ -800,12 +800,6 @@ function DamageUnit( event )
         finaldamage = finaldamage * event.adjustdamage
     end
 
-    if event.retaliationstacks then
-        finaldamage = finaldamage + caster:GetModifierStackCount("modifier_godschosen_2", nil) * event.retaliationstacks / 100
-        if finaldamage > caster:GetMaxHealth()*2 then
-            finaldamage = caster:GetMaxHealth()*2
-        end
-    end
     -- Spelldamage
     local spelldamagefromitem = 0
     if caster and caster.spelldamage == nil then
@@ -16722,6 +16716,10 @@ function StrikeOfVengeance2( event )
     end
 end
 
+function SanctifiedCrusaderRetaliation( event )
+    event.caster:AddNewModifier(event.caster, event.ability, "modifier_godschosen_2", {duration = event.Duration})
+end
+
 function StrikeOfVengeance3( event )
     local caster = event.caster
     --local dmg = event.dmg
@@ -18804,12 +18802,6 @@ function Autocast(event)
         local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ursa/ursa_fury_sweep_cross.vpcf", PATTACH_POINT_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(particle)
     end
-end
-
-function Retaliation(event)
-    local caster = event.caster
-    local stacks = caster:GetModifierStackCount("modifier_godschosen_2", caster) + event.dmg
-    caster:SetModifierStackCount("modifier_godschosen_2", event.ability, stacks)
 end
 
 function WaveOfGlory(event)
