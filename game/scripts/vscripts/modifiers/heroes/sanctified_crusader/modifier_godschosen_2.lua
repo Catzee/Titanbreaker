@@ -59,12 +59,6 @@ function modifier_godschosen_2:GetModifierIncomingDamage_Percentage(kv)
     })
 
     self:SetStackCount(self:GetStackCount() + kv.damage)
-    -- Preserved old mechanic (heal after dmg) because you can die with 75% of damage taken as healing
-    if(self.healingPct < 1) then
-        return
-    end
-    -- Prevents death
-    return -99999999
 end
 
 function modifier_godschosen_2:OnDestroy()
