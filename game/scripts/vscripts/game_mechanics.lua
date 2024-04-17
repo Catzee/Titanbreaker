@@ -470,41 +470,111 @@ function DamageUnit( event )
         event.holydmg = 1
     end
     if caster:HasModifier("modifier_fusion") then
-        if event.chaosdmg then
-            event.chaosdmg = nil
-        else
-            event.chaosdmg = 1
+        --color wheel: red(fire) yellow(holy) lightgreen(chaos) darkgreen(nature) blue(frost) pink(arcane) purple(shadow)
+        --example: fire holy -> shadow holy fire chaos
+
+        local hasFire = event.firedmg
+        local hasHoly = event.holydmg
+        local hasChaos = event.chaosdmg
+        local hasNature = event.naturedmg
+        local hasFrost = event.frostdmg
+        local hasArcane = event.arcanedmg
+        local hasShadow = event.shadowdmg
+
+        local getsFire = false
+        local getsHoly = false
+        local getsChaos = false
+        local getsNature = false
+        local getsFrost = false
+        local getsArcane = false
+        local getsShadow = false
+
+        -- determine result
+        if hasFire then
+            getsHoly = true
+            getsShadow = true
         end
-        if event.firedmg then
-            event.firedmg = nil
-        else
+
+        if hasHoly then
+            getsFire = true
+            getsChaos = true
+        end
+
+        if hasChaos then
+            getsHoly = true
+            getsNature = true
+        end
+
+        if hasNature then
+            getsChaos = true
+            getsFrost = true
+        end
+
+        if hasFrost then
+            getsNature = true
+            getsArcane = true
+        end
+
+        if hasArcane then
+            getsFrost = true
+            getsShadow = true
+        end
+
+        if hasShadow then
+            getsArcane = true
+            getsFire = true
+        end
+
+        -- apply result
+        if getsFire then
             event.firedmg = 1
-        end
-        if event.frostdmg then
-            event.frostdmg = nil
         else
-            event.frostdmg = 1
+            event.firedmg = nil
         end
-        if event.holydmg then
-            event.holydmg = nil
-        else
+
+        if getsHoly then
             event.holydmg = 1
-        end
-        if event.shadowdmg then
-            event.shadowdmg = nil
         else
-            event.shadowdmg = 1
+            event.holydmg = nil
         end
-        if event.naturedmg then
-            event.naturedmg = nil
+
+        if getsChaos then
+            event.chaosdmg = 1
         else
+            event.chaosdmg = nil
+        end
+
+        if getsNature then
             event.naturedmg = 1
-        end
-        if event.arcanedmg then
-            event.arcanedmg = nil
         else
-            event.arcanedmg = 1
+            event.naturedmg = nil
         end
+
+        if getsFrost then
+            event.frostdmg = 1
+        else
+            event.frostdmg = nil
+        end
+
+        if getsArcane then
+            event.arcanedmg = 1
+        else
+            event.arcanedmg = nil
+        end
+
+        if getsShadow then
+            event.shadowdmg = 1
+        else
+            event.shadowdmg = nil
+        end
+
+        --print(getsFire)
+        --print(getsHoly)
+        --print( getsChaos)
+        --print(getsNature)
+        --print(getsFrost)
+        --print(getsArcane)
+        --print(getsShadow)
     end
     if event.isdot and caster:HasModifier("modifier_plague_form") then
         event.chaosdmg = 1
