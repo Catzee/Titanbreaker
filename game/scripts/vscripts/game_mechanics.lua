@@ -16787,7 +16787,7 @@ function StrikeOfVengeance2( event )
 end
 
 function SanctifiedCrusaderRetaliation( event )
-    event.caster:AddNewModifier(event.caster, event.ability, "modifier_godschosen_2", {duration = event.Duration})
+    event.target:AddNewModifier(event.caster, event.ability, "modifier_godschosen_2", {duration = event.Duration})
 end
 
 function StrikeOfVengeance3( event )
