@@ -90,7 +90,7 @@ function modifier_godschosen_2:OnDestroy()
 		false
 	)
 
-    local finalDamage = math.min(self:GetStackCount() * self.finalDmgPct, self.parent:GetMaxHealth())
+    local finalDamage = math.min(self:GetStackCount() * self.finalDmgPct, self.parent:GetMaxHealth() * 2)
 
     for _, enemy in pairs(enemies) do
         local particle = ParticleManager:CreateParticle(
