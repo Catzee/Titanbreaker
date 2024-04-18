@@ -83,13 +83,10 @@ function LeaderboardToggle() {
     //$.Msg("pressed leader");
     if (!leaderboardvisible){
         leaderboardvisible = true;
-        $.FindChildInContext("#leaderboard").style.visibility = "visible";
-        $.FindChildInContext("#leaderboard").SetAcceptsFocus(true);
-        $.FindChildInContext("#leaderboard").SetFocus();
+        $.FindChildInContext("#leaderboard").visible = true;
     }else{
         leaderboardvisible = false;
-        $.FindChildInContext("#leaderboard").style.visibility = "collapse";
-        $.FindChildInContext("#leaderboard").SetAcceptsFocus(false);
+        $.FindChildInContext("#leaderboard").visible = false;
     }
     
     if (!leaderboard_fromserver){
@@ -117,13 +114,10 @@ function ToggleInventory() {
     if (!inventoryvisible){
         UpdateInventory();
         inventoryvisible = true;
-        $.FindChildInContext("#WeaponInventoryDisplay").style.visibility = "visible";
-        $.FindChildInContext("#WeaponInventoryDisplay").SetAcceptsFocus(true);
-        $.FindChildInContext("#WeaponInventoryDisplay").SetFocus();
+        $.FindChildInContext("#WeaponInventoryDisplay").visible = true;
     }else{
         inventoryvisible = false;
-        $.FindChildInContext("#WeaponInventoryDisplay").style.visibility = "collapse";
-        $.FindChildInContext("#WeaponInventoryDisplay").SetAcceptsFocus(false);
+        $.FindChildInContext("#WeaponInventoryDisplay").visible = false;
     }
 }
 
@@ -149,32 +143,15 @@ function ToggleTalentTree() {
     if (!talenttreevisible){
         UpdateTalentTree(-1);
         talenttreevisible = true;
-        $.FindChildInContext("#TalentTree").style.visibility = "visible";
-        $.FindChildInContext("#TalentTree").SetAcceptsFocus(true);
-        $.FindChildInContext("#TalentTree").SetFocus();
+        $.FindChildInContext("#TalentTree").visible = true;
     }else{
         talenttreevisible = false;
-        $.FindChildInContext("#TalentTree").style.visibility = "collapse";
-        $.FindChildInContext("#TalentTree").SetAcceptsFocus(false);
+        $.FindChildInContext("#TalentTree").visible = false;
     }
-}
-
-function IsBlacksmithVisible()
-{
-    return $.FindChildInContext("#shopMain").style.visibility != "collapse";
 }
 
 function ToggleBlacksmith() {
-    if(IsBlacksmithVisible())
-    {
-        $.FindChildInContext("#shopMain").style.visibility = "collapse";
-        $.FindChildInContext("#shopMain").SetAcceptsFocus(false);
-    } else
-    {
-        $.FindChildInContext("#shopMain").style.visibility = "visible";
-        $.FindChildInContext("#shopMain").SetAcceptsFocus(true);
-        $.FindChildInContext("#shopMain").SetFocus();
-    }
+    $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
 }
 
 function ToggleRewards() {
@@ -233,52 +210,11 @@ function MoltenForgeMenuToggle(args) {
     }
 }
 
-function IsTeleporterMenuVisible()
-{
-    return $.FindChildInContext("#teleportermenu").style.visibility != "collapse";
-}
-
 function TeleporterMenu() {
-    if (IsTeleporterMenuVisible()){
-        $.FindChildInContext("#teleportermenu").style.visibility = "collapse";
-        $.FindChildInContext("#teleportermenu").SetAcceptsFocus(false);
-    } else {
-        $.FindChildInContext("#teleportermenu").style.visibility = "visible";
-        $.FindChildInContext("#teleportermenu").SetAcceptsFocus(true);
-        $.FindChildInContext("#teleportermenu").SetFocus();
-    }
-}
-
-function CloseAllBigWindows()
-{
-    if(inventoryvisible)
-    {
-        ToggleInventory();
-    }
-
-    if(talenttreevisible)
-    {
-        ToggleTalentTree();
-    }
-
-    if(IsTeleporterMenuVisible())
-    {
-        TeleporterMenu();
-    }
-
-    if(IsBlacksmithVisible())
-    {
-        ToggleBlacksmith();
-    }
-
-    if(IsLootInformationVisible())
-    {
-        ToggleLootInformation();
-    }
-
-    if(leaderboardvisible)
-    {
-        LeaderboardToggle();
+    if ($.FindChildInContext("#teleportermenu").visible){
+        $.FindChildInContext("#teleportermenu").visible = false;
+    }else{
+        $.FindChildInContext("#teleportermenu").visible = true;
     }
 }
 
@@ -332,19 +268,11 @@ function SaveHeroTimer(){
     }
 }
 
-function IsLootInformationVisible()
-{
-    return $.FindChildInContext("#rewards").style.visibility != "collapse";
-}
-
 function ToggleLootInformation() {
-    if (IsLootInformationVisible()){
-        $.FindChildInContext("#rewards").style.visibility = "collapse";
-        $.FindChildInContext("#rewards").SetAcceptsFocus(false);
+    if ($.FindChildInContext("#rewards").visible){
+        $.FindChildInContext("#rewards").visible = false;
     }else{
-        $.FindChildInContext("#rewards").style.visibility = "visible";
-        $.FindChildInContext("#rewards").SetAcceptsFocus(true);
-        $.FindChildInContext("#rewards").SetFocus();
+        $.FindChildInContext("#rewards").visible = true;
     }
 }
 
@@ -3810,36 +3738,16 @@ function RegisterKeyBind(keyBind, callback) {
     RegisterKeyBind("O", ToggleTalentTree);
     RegisterKeyBind("K", TeleporterMenu);
     RegisterKeyBind("N", ToggleAggroMeter);
-
-    // Game.CreateCustomKeyBind doesn't work for esc ("Escape") key... 
-    // So we can SetFocus() last opened big window and detect esc key press in that window to close all of them.
-    // To close them we use style because there no is "SetFocus(false)" and hidden windows still focused so rest ui not responding (like chat)...
-    $.RegisterKeyBind($.FindChildInContext("#WeaponInventoryDisplay"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-    $.RegisterKeyBind($.FindChildInContext("#TalentTree"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-    $.RegisterKeyBind($.FindChildInContext("#teleportermenu"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-    $.RegisterKeyBind($.FindChildInContext("#shopMain"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-    $.RegisterKeyBind($.FindChildInContext("#rewards"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-    $.RegisterKeyBind($.FindChildInContext("#leaderboard"), "key_escape", () => {
-        CloseAllBigWindows();
-    });
-
+	
     GameEvents.Subscribe("dota_player_update_selected_unit", onUnitChanged);
     //GameEvents.SendCustomGameEventToServer( "gamemode_vote", { "player_id" : Players.GetLocalPlayer(), "mode_id" : wins } );
     $.FindChildInContext("#table").visible = false;
+    $.FindChildInContext("#leaderboard").visible = false;
     //$.FindChildInContext("#leaderboardchallengemode").visible = false;
     //$.FindChildInContext("#rewards").visible = false;
     $.FindChildInContext("#questlogingame").visible = false;
     $.FindChildInContext("#FlowPanel4").visible = false;
+    $.FindChildInContext("#teleportermenu").visible = false;
     $.FindChildInContext("#questmenu").visible = false;
     ladder = Game.GetAllPlayerIDs().length;
     for (var i = 0; i < ladder; i++) {
@@ -3914,19 +3822,10 @@ function RegisterKeyBind(keyBind, callback) {
         $.FindChildInContext("#selectdiffipanel").visible = false;
     }
 
-    // Hides them via style instead of visible property so they can lost focus
-    $.FindChildInContext("#WeaponInventoryDisplay").style.visibility = "collapse";
-    $.FindChildInContext("#TalentTree").style.visibility = "collapse";
-    $.FindChildInContext("#shopMain").style.visibility = "collapse";
-    $.FindChildInContext("#teleportermenu").style.visibility = "collapse";
-    $.FindChildInContext("#rewards").style.visibility = "collapse";
-    $.FindChildInContext("#leaderboard").style.visibility = "collapse";
-
     $.FindChildInContext("#WeaponDropDisplay").visible = false;
-    //$.FindChildInContext("#WeaponInventoryDisplay").visible = false;
-    //$.FindChildInContext("#TalentTree").visible = false;
-    //$.FindChildInContext("#shopMain").visible = false;
-    //$.FindChildInContext("#teleportermenu").visible = false;
+    $.FindChildInContext("#WeaponInventoryDisplay").visible = false;
+    $.FindChildInContext("#TalentTree").visible = false;
+    $.FindChildInContext("#shopMain").visible = false;
     $.FindChildInContext("#talenttooltip").visible = false;
     $.FindChildInContext("#gambling").visible = false;
     $.FindChildInContext("#ActEntering").visible = false;
