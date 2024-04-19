@@ -80678,23 +80678,11 @@
         	
         		"OnCreated"
         		{
-        			"FireEffect"
-        			{
-        				"EffectName"        "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_rope_arcana.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "AddPathOfFlamesRingParticle"
+					}
         		}
         	
         		"ThinkInterval"  "1.5"
@@ -80714,23 +80702,11 @@
 					    "onlyhero"	"1"
 					    "firedmg"	"1"
 					}
-					"FireEffect"
-        			{
-        				"EffectName"        "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_rope_arcana.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "AddPathOfFlamesRingParticle"
+					}
         		}
         	}
 		}
