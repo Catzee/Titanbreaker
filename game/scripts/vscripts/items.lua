@@ -7384,7 +7384,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        -- Destroy & release item particle on item pickup
 												Timers:CreateTimer(1,function()
 													if(itemContainer:IsNull()) then
-														ParticleManager:DestroyParticle(particle2, false)
+														ParticleManager:DestroyParticle(particle2, true)
 														ParticleManager:ReleaseParticleIndex(particle2)
 														return
 													end
@@ -7396,7 +7396,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        		-- Destroy & release item particle on item pickup
 														Timers:CreateTimer(1,function()
 															if(itemContainer:IsNull()) then
-																ParticleManager:DestroyParticle(particle, false)
+																ParticleManager:DestroyParticle(particle, true)
 																ParticleManager:ReleaseParticleIndex(particle)
 																return
 															end
@@ -7408,7 +7408,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        			local rayParticle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, itemContainer)
 										        			Timers:CreateTimer(1,function()
 																if(itemContainer:IsNull()) then
-																	ParticleManager:DestroyParticle(rayParticle, false)
+																	ParticleManager:DestroyParticle(rayParticle, true)
 																	ParticleManager:ReleaseParticleIndex(rayParticle)
 																	return
 																end
