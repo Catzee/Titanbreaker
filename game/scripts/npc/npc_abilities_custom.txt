@@ -92525,19 +92525,11 @@
 
         		"OnCreated"
         		{
-        			"AttachEffect"
-	            	{
-	            		"EffectName"        "particles/econ/items/invoker/invoker_ti6/invoker_tornado_ti6_funnel.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "TARGET"
-	            		"ControlPointEntities"
-	            		{
-	            			"TARGET"	"attach_hitloc"
-	            			"TARGET"	"attach_hitloc"
-	            			"TARGET"	"attach_hitloc"
-	            			"TARGET"	"attach_hitloc"
-	            		}
-	            	}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "AddCrowTornadoParticle"
+					}
         		}
         		"ThinkInterval"  "3.5"
         		"OnIntervalThink"
