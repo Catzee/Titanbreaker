@@ -15838,6 +15838,32 @@ function DancingRune(event)
     end)
 end
 
+function AddCrowTornadoParticle( event)
+    local dummy = event.target
+    local dummyModifier = dummy:FindModifierByName("modifier_poolfx")
+
+    if(dummyModifier == nil) then
+        return
+    end
+
+    local particle = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_ti6/invoker_tornado_ti6_funnel.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+    ParticleManager:SetParticleControlEnt(particle, 3, dummy, PATTACH_ABSORIGIN_FOLLOW , "attach_hitloc", dummy:GetAbsOrigin(), true)
+    dummyModifier:AddParticle(particle, false, false, 1, false, false)
+end
+
+function AddPathOfFlamesRingParticle( event)
+    local dummy = event.target
+    local dummyModifier = dummy:FindModifierByName("modifier_poolfx")
+
+    if(dummyModifier == nil) then
+        return
+    end
+
+    local particle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_rope_arcana.vpcf", PATTACH_ABSORIGIN, dummy)
+    ParticleManager:SetParticleControlEnt(particle, 7, dummy, PATTACH_ABSORIGIN , "attach_hitloc", dummy:GetAbsOrigin(), true)
+    dummyModifier:AddParticle(particle, false, false, 1, false, false)
+end
+
 function DancingRuneAADamage( event )
     local caster = event.caster
     local target = event.target
