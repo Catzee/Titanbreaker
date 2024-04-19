@@ -5737,11 +5737,6 @@ function DamageAOESplitHero( event )
     end
 end
 
-function PathFeastForCrows( event )
-    local caster = event.caster
-    caster.nearby_enemies = CountNearbyEnemies(caster, 900)
-end
-
 function PathFeastForCrowsAOE( caster )
 	Timers:CreateTimer(0.5,function()
 		EmitSoundOn("DOTA_Item.Mjollnir.Activate", caster)
@@ -21356,12 +21351,16 @@ function PassiveStatCalculation(event)
                 local buff = "modifier_stormcrow"
                 --hero:RemoveModifierByName(buff)
                 local value = CountNearbyEnemies(hero, 900)
+				
+                hero.nearby_enemies = value
+				
                 --ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
                 --hero:SetModifierStackCount(buff, ability, value)
                 local feast_threshold = 3
                 if hero:HasModifier("modifier_pathbuff_075") then
                     feast_threshold = 2
                 end
+
                 if value >= feast_threshold then
                 	--PathFeastForCrowsAOE(hero)
                     ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = 4 + 2 * level})
