@@ -20331,7 +20331,7 @@ function PassiveStatCalculation(event)
         if hero:HasModifier("modifier_pathbuff_004") then
             primary_stats_static_bonus = primary_stats_static_bonus + 75
         end
-        if hero:HasModifier("modifier_pathbuff_006") then
+        if hero:HasModifier("modifier_pathbuff_005") then
             primary_stats_static_bonus = primary_stats_static_bonus + 100
         end
         if hero:HasModifier("modifier_pathbuff_007") then
