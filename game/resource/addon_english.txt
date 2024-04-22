@@ -10157,7 +10157,7 @@
 		"DOTA_Tooltip_ability_item_icelotus"  "<font color=\"#ffd700\">[Divine] Ice Lotus"
 		"DOTA_Tooltip_ability_item_icelotus_Description"  "<font color=\"#FF6600\">Whenever you deal Arcane Damage, it will be Frost Damage instead and vice versa, while gaining a 25% chance to Critical Strike for 250% everytime this takes effect.</font>"
 		"DOTA_Tooltip_ability_item_spearspeed"  "<font color=\"#ffd700\">[Divine] Spear of Speed"
-		"DOTA_Tooltip_ability_item_spearspeed_Description"  "<font color=\"#FF6600\">When you land a Critical Strike with Single Target Ability Damage, increase all Damage by 3%, stacking. Resets after not dealing a Critical Strike for 2 secs.</font>"
+		"DOTA_Tooltip_ability_item_spearspeed_Description"  "<font color=\"#FF6600\">When you land a Critical Strike with Single Target Ability Damage, increase all Damage by 3%, stacking up to 75 times. Resets after not dealing a Critical Strike for 2 secs.</font>"
 		"DOTA_Tooltip_ability_item_spearspeed_stat1"  "Agility: + "
 		"DOTA_Tooltip_ability_item_wandwisdom"  "<font color=\"#ffd700\">[Divine] Band of Wisdom"
 		"DOTA_Tooltip_ability_item_wandwisdom_Description"  "<font color=\"#FF6600\">Increases your Intellect by 100%, but you no longer benefit from Spellpower.</font>"

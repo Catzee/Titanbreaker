@@ -4904,7 +4904,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[104])
         --end
         if caster.spearspeed then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * caster.spearspeed)
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * math.min(75, caster.spearspeed))
         end
         if process_procs and caster.talents[130] > 0 and ability and ability:GetCooldown(ability:GetLevel()) <= 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[130])
