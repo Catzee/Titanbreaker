@@ -8898,7 +8898,7 @@
 		"DOTA_Tooltip_ability_item_class_elemental_bonus_stat3"                            "Intellect:"
 
 		"DOTA_Tooltip_ability_item_class_retri"                                          "<font color=\"#00ffff\">[Ancient] Trident of Hope"
-		"DOTA_Tooltip_ability_item_class_retri_Description"                              "<font color=\"#00EE00\">Sacred Spear has its cooldown reduced by 60%%, heals 25%% of max Health and reduces the cooldown of Divine Sphere by 2 secs."
+		"DOTA_Tooltip_ability_item_class_retri_Description"                              "<font color=\"#00EE00\">Sacred Spear has its cooldown reduced by 60%%, heals 25%% of max Health and reduces the cooldown of Divine Sphere by 2 secs, but not below 50%% of Divine Sphere base cooldown."
 		"DOTA_Tooltip_ability_item_class_retri_bonus_stat1"                              "Attack Damage:"
 
 		"DOTA_Tooltip_ability_item_class_arcane"                                          "<font color=\"#00ffff\">[Ancient] Netherglow Talisman"

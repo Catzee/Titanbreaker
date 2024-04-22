@@ -14753,8 +14753,19 @@ function CooldownReduction( event ) --also instant ability resets
         --ability procs
         if caster:HasModifier("modifier_npc_dota_hero_legion_commander") and ability:GetName() == "Retri2" then
             HealUnit({caster = caster, target = caster, heal = 0, percenthp = 25, ability = ability})
-            local myevent = {caster = caster, amount = 2, ability = ability, chooseabilityname = "Retri6" }
-            ReduceCooldown(myevent)
+			
+            local sphereAbility = caster:FindAbilityByName("Retri6")
+			
+            if(sphereAbility) then
+                local sphereCooldown = sphereAbility:GetCooldown(sphereAbility:GetLevel() - 1)
+                local sphereCurrentCooldown = sphereAbility:GetCooldownTimeRemaining()
+                local minSphereCooldownReduction = sphereCooldown * 0.5
+                if(sphereCurrentCooldown > minSphereCooldownReduction) then
+                    local flatCdr = math.min(2, sphereCurrentCooldown - minSphereCooldownReduction)
+                    local myevent = {caster = caster, amount = flatCdr, ability = ability, chooseabilityname = "Retri6" }
+                    ReduceCooldown(myevent)
+                end
+            end
         end
         if caster:HasModifier("modifier_npc_dota_hero_ursa") and ability:GetName() == "bear2" then
             HealUnit({caster = caster, target = caster, heal = 0, percenthp = 15, ability = ability})
