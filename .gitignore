@@ -1,1 +1,7 @@
 /game/tools_thumbnail_cache.bin
+/game/tools_asset_info.bin
+*.vtex_c
+*.vpcf_c
+*.vxml_c
+*.vjs_c
+*.vcss_c
