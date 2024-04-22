@@ -16049,7 +16049,7 @@
 	}
 	"Modifiers"
 	{
-		"modifier_pathbuff_006"
+		"modifier_pathbuff_005"
 		{
 			"Passive"  "1"
 	  		"IsHidden"  "1"

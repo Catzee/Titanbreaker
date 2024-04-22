@@ -4904,7 +4904,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[104])
         --end
         if caster.spearspeed then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * caster.spearspeed)
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * math.min(75, caster.spearspeed))
         end
         if process_procs and caster.talents[130] > 0 and ability and ability:GetCooldown(ability:GetLevel()) <= 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[130])
@@ -14753,8 +14753,19 @@ function CooldownReduction( event ) --also instant ability resets
         --ability procs
         if caster:HasModifier("modifier_npc_dota_hero_legion_commander") and ability:GetName() == "Retri2" then
             HealUnit({caster = caster, target = caster, heal = 0, percenthp = 25, ability = ability})
-            local myevent = {caster = caster, amount = 2, ability = ability, chooseabilityname = "Retri6" }
-            ReduceCooldown(myevent)
+			
+            local sphereAbility = caster:FindAbilityByName("Retri6")
+			
+            if(sphereAbility) then
+                local sphereCooldown = sphereAbility:GetCooldown(sphereAbility:GetLevel() - 1)
+                local sphereCurrentCooldown = sphereAbility:GetCooldownTimeRemaining()
+                local minSphereCooldownReduction = sphereCooldown * 0.5
+                if(sphereCurrentCooldown > minSphereCooldownReduction) then
+                    local flatCdr = math.min(2, sphereCurrentCooldown - minSphereCooldownReduction)
+                    local myevent = {caster = caster, amount = flatCdr, ability = ability, chooseabilityname = "Retri6" }
+                    ReduceCooldown(myevent)
+                end
+            end
         end
         if caster:HasModifier("modifier_npc_dota_hero_ursa") and ability:GetName() == "bear2" then
             HealUnit({caster = caster, target = caster, heal = 0, percenthp = 15, ability = ability})
@@ -20331,7 +20342,7 @@ function PassiveStatCalculation(event)
         if hero:HasModifier("modifier_pathbuff_004") then
             primary_stats_static_bonus = primary_stats_static_bonus + 75
         end
-        if hero:HasModifier("modifier_pathbuff_006") then
+        if hero:HasModifier("modifier_pathbuff_005") then
             primary_stats_static_bonus = primary_stats_static_bonus + 100
         end
         if hero:HasModifier("modifier_pathbuff_007") then
