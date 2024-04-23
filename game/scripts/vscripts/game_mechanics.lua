@@ -1787,13 +1787,18 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_5") then
-        critchance = 20*critchancefactor + flatCritChance
+    local tributeOfBloodModifier = caster:FindModifierByName("modifier_item_crit_pure_5")
+    if critpossible == true and tributeOfBloodModifier then
+        local tributeOfBloodModifierAbility = tributeOfBloodModifier:GetAbility()
+        critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+        local critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+
         if caster:HasModifier("modifier_item_crit_pure_5_lifesteal") then
-            critchance = critchance * 2
+            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")
+            critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6835,6 +6840,22 @@ function HealUnit( event )
         local worldBreakerModifierAbility = worldBreakerModifier:GetAbility()
         critchance = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
         local critDmgFactor = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+        if math.random(1,100) <= critchance then
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+            displaynumber = 1
+            critpossible = false
+        end
+    end
+    local tributeOfBloodModifier = event.caster:FindModifierByName("modifier_item_crit_pure_5")
+    if critpossible == true and tributeOfBloodModifier then
+        local tributeOfBloodModifierAbility = tributeOfBloodModifier:GetAbility()
+        critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+        local critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+
+        if caster:HasModifier("modifier_item_crit_pure_5_lifesteal") then
+            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")
+            critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat7") / 100
+        end
         if math.random(1,100) <= critchance then
             event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1

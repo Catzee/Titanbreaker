@@ -34346,7 +34346,7 @@
 	    	{
 	    		"ModifierName"	"modifier_item_crit_pure_5_lifesteal"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireEffect"
 	    	{
@@ -34365,8 +34365,28 @@
 	    {
 	        "01"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "20"
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat3"    "12" // passive crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat4"    "150" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat5"    "8" // crit buff duration
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat6"    "34" // active crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat7"    "150" // active crit multiplier
 	        }
 	    }
 

@@ -6016,7 +6016,7 @@
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat1"                              "Spellpower: +"
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat2"                              "Spell Resistance: +"
 
-		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Double this Item's Critical Strike chance for 8 secs.\n\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: %bonus_stat3%%% Ability Critical Strike chance for %bonus_stat4%%%\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 
 		//2.1
 		
@@ -6059,7 +6059,7 @@
 		"DOTA_Tooltip_Ability_Ghost4_ms"    "%Movement Speed:"
 		"DOTA_Tooltip_Ability_Ghost4_as"    "%Attack Speed:"
 
-		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal"                                         "100% Critical Strike Chance"
+		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal"                                         "Tribute of Blood"
 
 		"DOTA_Tooltip_Ability_item_shadowmourne_Description"  "<h1>Mist of Shadows</h1>Gain 10%% Lifesteal for 5 secs."
 
@@ -7072,7 +7072,7 @@
 		"DOTA_Tooltip_modifier_buff_int"                                                  "Arcano Infuse"
 		"DOTA_Tooltip_modifier_buff_str"                                                  "Blood Infuse"
 
-		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal_no_ls"                                         "100% Critical Strike Chance"
+		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal_no_ls"                                         "Titan Temple Armor"
 
 		"DOTA_Tooltip_modifier_offstance"	"Aggressive Stance"
 
