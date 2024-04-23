@@ -1424,7 +1424,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/winter_wyvern_winters_curse.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Frost Fever" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Gain % Frost Damage equal to a percentage of your Agility, capped at 200%." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Gain % Frost Damage equal to a percentage of your Agility." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">

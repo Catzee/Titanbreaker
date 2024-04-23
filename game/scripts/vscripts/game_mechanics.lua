@@ -3375,11 +3375,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.0001 * GetStrengthCustom(caster) * caster.fof
     end
     if event.frostdmg and caster.ffe and caster.ffe > 0 then
-        local ffe = 0.0001 * GetAgilityCustom(caster) * caster.ffe
-        if ffe > 2.5 then
-            ffe = 2.5
-        end
-        value = value + ffe
+        value = value + 0.0001 * GetAgilityCustom(caster) * caster.ffe
     end
     if event.holydmg and caster.hog and caster.hog > 0 then
         value = value + 0.0001 * GetIntellectCustom(caster) * caster.hog
