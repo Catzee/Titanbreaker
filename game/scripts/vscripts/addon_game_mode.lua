@@ -31,6 +31,7 @@ require('libraries/attachments')
 require('libraries/popups')
 require('libraries/notifications')
 require("statcollection/init")
+require("debug_tools")
 
 ---------------------------------------------------------------------------
 -- Precache
