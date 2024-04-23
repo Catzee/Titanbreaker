@@ -34772,7 +34772,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
+	            "bonus_stat1"    "17" // crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "300" // crit multiplier
 	        }
 	    }
 

@@ -1644,10 +1644,13 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_immortal2") then
-        critchance = 10*critchancefactor + flatCritChance
+    local worldBreakerModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal2")
+    if critpossible == true and worldBreakerModifier then
+        local worldBreakerModifierAbility = worldBreakerModifier:GetAbility()
+        critchance = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+        local critDmgFactor = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.5*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6827,10 +6830,13 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal2") then
-        critchance = 10*critchancefactor
+    local worldBreakerModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal2")
+    if critpossible == true and worldBreakerModifier then
+        local worldBreakerModifierAbility = worldBreakerModifier:GetAbility()
+        critchance = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+        local critDmgFactor = worldBreakerModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*6*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
