@@ -1801,13 +1801,17 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_warglaive") then
-        critchance = 6*critchancefactor + flatCritChance
+    local ebonyMasterBowModifier = caster:FindModifierByName("modifier_item_warglaive")
+    if critpossible == true and ebonyMasterBowModifier then
+        local ebonyMasterBowAbility = ebonyMasterBowModifier:GetAbility()
+        critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+        local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
         if caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = 30
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")
+            critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6904,13 +6908,19 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_warglaive") then
-        critchance = 6*critchancefactor
+    local ebonyMasterBowModifier = event.caster:FindModifierByName("modifier_item_warglaive")
+    if critpossible == true and ebonyMasterBowModifier then
+        local ebonyMasterBowAbility = ebonyMasterBowModifier:GetAbility()
+        critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+        local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
+
         if event.caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = 100
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")
+            critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
+
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*3.5*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end

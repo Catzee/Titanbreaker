@@ -53817,17 +53817,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "25"
+	            "bonus_stat2"    "25" // bonus agility
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "6"
+	            "bonus_stat3"    "12" // passive crit chance
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat4"    "150"
+	            "bonus_stat4"    "150" // passive crit multiplier
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat5"    "5" // crit buff duration
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat6"    "34" // active crit chance
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat7"    "150" // active crit multiplier
 	        }
 	    }
 	    "OnSpellStart"
@@ -53836,7 +53851,7 @@
 	    	{
 	    		"ModifierName"	"modifier_bow_crit_legendary"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"5"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireSound"
 	    	{
