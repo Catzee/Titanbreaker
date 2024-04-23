@@ -5283,9 +5283,14 @@
 		"DOTA_Tooltip_ability_item_crit_pure_bonus_stat1"                                 "%Ability Critical Strike chance for 130%:"
 
 		"DOTA_Tooltip_ability_item_crit_pure_immortal"                                             "<font color=\"#66ffff\">Armageddon"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_Description"                                 "%bonus_stat1%%% Ability Critical Strike chance for %bonus_stat2%%%\n%bonus_stat1%%% Auto Attack Critical Strike chance for %bonus_stat2%%%\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal2"                                             "<font color=\"#66ffff\">Worldbreaker"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal2_Description"                                 "%bonus_stat1%%% Ability Critical Strike chance for %bonus_stat2%%%\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat2"                                 "%Ability and Auto Attack Critical Strike Factor: "
+
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2"                                 			"<font color=\"#66ffff\">Worldbreaker"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat1"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat2"									"%Ability Critical Strike Factor: "
 
 		"DOTA_Tooltip_ability_item_crit_pure_2"                                           "<font color=\"#ff69b4\">Heartgore"
 		"DOTA_Tooltip_ability_item_crit_pure_2_Description"                               "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
@@ -6016,7 +6021,9 @@
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat1"                              "Spellpower: +"
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat2"                              "Spell Resistance: +"
 
-		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: %bonus_stat3%%% Ability Critical Strike chance for %bonus_stat4%%%\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat3"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat4"									"%Ability Critical Strike Factor: "
 
 		//2.1
 		
