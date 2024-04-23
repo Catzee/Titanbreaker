@@ -37366,7 +37366,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "15" // passive crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "175" // passive crit multiplier
 	        }
 	    }
 
@@ -37382,7 +37387,7 @@
 					{
 						"ScriptFile"	"game_mechanics.lua"
 						"Function"		"AutoAttackCriticalStrike"
-						"aacrit_factor"	"175"
+						"aacrit_factor"	"%bonus_stat2"
 						"aacrit_chance"	"%bonus_stat1"
 					}
 			    }

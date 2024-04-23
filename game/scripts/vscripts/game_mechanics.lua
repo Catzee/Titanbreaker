@@ -1794,10 +1794,13 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_immortal") then
-        critchance = 20*critchancefactor + flatCritChance
+    local armageddon = caster:FindModifierByName("modifier_item_crit_pure_immortal")
+    if critpossible == true and armageddon then
+        local armageddonAbility = armageddon:GetAbility()
+        critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+        local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.75*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6900,10 +6903,13 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal") then
-        critchance = 20*critchancefactor
+    local armageddon = event.caster:FindModifierByName("modifier_item_crit_pure_immortal")
+    if critpossible == true and armageddon then
+        local armageddonAbility = armageddon:GetAbility()
+        critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+        local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*4*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -24822,8 +24828,10 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
     if caster:HasModifier("modifier_item_bootsblood3") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 400, aacrit_chance = 15})
     end
-    if caster:HasModifier("modifier_item_crit_pure_immortal") then
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 400, aacrit_chance = 15})
+    local armageddon = caster:FindModifierByName("modifier_item_crit_pure_immortal")
+    if armageddon then
+        local armageddonAbility = armageddon:GetAbility()
+        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = armageddonAbility:GetSpecialValueFor("bonus_stat2"), aacrit_chance = armageddonAbility:GetSpecialValueFor("bonus_stat1")})
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_2") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 275, aacrit_chance = 3})

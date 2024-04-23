@@ -5283,8 +5283,7 @@
 		"DOTA_Tooltip_ability_item_crit_pure_bonus_stat1"                                 "%Ability Critical Strike chance for 130%:"
 
 		"DOTA_Tooltip_ability_item_crit_pure_immortal"                                             "<font color=\"#66ffff\">Armageddon"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike chance for 175%:"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_Description"                                 "%bonus_stat1%%% Ability Critical Strike chance for %bonus_stat2%%%\n%bonus_stat1%%% Auto Attack Critical Strike chance for %bonus_stat2%%%\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal2"                                             "<font color=\"#66ffff\">Worldbreaker"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal2_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat1"                                 "%Ability Critical Strike chance for 250%:"
