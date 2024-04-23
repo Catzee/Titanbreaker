@@ -12,6 +12,9 @@ Timers:CreateTimer(1, function()
 end)
 
 function Init()
+    if(_G._debugToolsInit) then
+        return
+    end
     Convars:RegisterCommand("reload_kv", function(...)
         GameRules:Playtesting_UpdateAddOnKeyValues()
     end, "reload_kv", FCVAR_CHEAT)
@@ -19,4 +22,6 @@ function Init()
     local villageDummyPoint = Vector(-14972.935547, 14804.335938, 128.000000)
     
     CreateUnitByName("npc_dota_creature_tutorial_dummy", villageDummyPoint, false, nil, nil, DOTA_TEAM_NEUTRALS)
+
+    _G._debugToolsInit = true
 end
