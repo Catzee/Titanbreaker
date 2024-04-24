@@ -13998,7 +13998,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "30"
+	            "bonus_stat1"    "30" // primary attribute
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "15" // shadow passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "200" // shadow passive crit multiplier
 	        }
 	    }
 
@@ -14190,7 +14200,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "125"
+	            "bonus_stat1"    "125" // primary attribute
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "15" // shadow passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "200" // shadow passive crit multiplier
 	        }
 	    }
 
