@@ -22612,12 +22612,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "10" // passive crit chance
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "45"
+	            "bonus_stat3"    "225" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "45" // movespeed
 	        }
 	    }
 
@@ -22650,7 +22655,7 @@
 	            "IsHidden" "1"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat4"
 	            }
 	        }
 	        "modifier_firefly_item"

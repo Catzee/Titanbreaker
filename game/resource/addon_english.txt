@@ -7403,8 +7403,9 @@
 
 		"DOTA_Tooltip_Ability_item_bootscrit3"  											"<font color=\"#00ffff\">[Ancient] Alphamane Mount"
 		"DOTA_Tooltip_Ability_item_bootscrit3_Description"  								"<h1>Alpharun</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 25%% increased Damage.\nDoes not stack with Firebat.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."
-		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat2"  								"%Ability Critical Strike Chance for 225%:"
-		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat1"									"Movement Speed: +"
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat2"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat3"									"%Ability Critical Strike Factor: "
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat4"									"Movement Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7up4"  "<font color=\"#00ffff\">[Ancient] Destroyer of Realms"
 		"DOTA_Tooltip_Ability_item_weapon7up4_Description"  "All non-Mana Resource generation is increased by 25%%.\n<font color=\"#FF6600\">Uniquely Equipped.\nDoes not stack with Echostrike.</font>"
