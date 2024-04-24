@@ -2061,11 +2061,11 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[37] and caster.talents[37] > 0 then
-        critchance = (2 * caster.talents[37] + 1)*critchancefactor + flatCritChance
+        critchance = (7 * caster.talents[37])*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            local factor = 1.5
+            local factor = 2
             if caster:HasModifier("modifier_pathbuff_037") and GetHighestAbilityScaling(event) <= 400 then
-                factor = 2.5
+                factor = 3
             end
             finaldamage = finaldamage*factor*critdmgbonusfactor
             critpossible = false

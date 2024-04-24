@@ -129,7 +129,7 @@
 		"talent35"								"Sharpeye: Passively gain + 30 / 60 / 90 Intellect and when dealing Ability Damage to targets more than 500 yards away, increase the Damage by 10% / 20% / 30%."
 		"talent36"								"Deathwing: + 100 / 200 / 300 Spellpower and when you cast your highest base cooldown Ability, reset its cooldown, with an inner cooldown of 120 / 110 / 100 secs, capped at 60 secs."//Damage over Time and AOE Effects deal 10% / 20% / 30% increased Damage and after dealing Fire Damage, increase all Damage by 10% / 20% / 30% for 15 secs.\nAlso increases the Damage of your Companions from Items by 25% / 50% / 75%."
 		//"talent36"								"Deathwing: Take on the Aspect of Deathwing, granting you a 1% / 2% / 3% chance to Critical Strike for 500% with Damaging Abilities for every 25000 current Health and for every 25000 current Mana, capped at 25%."//Damage over Time and AOE Effects deal 10% / 20% / 30% increased Damage and after dealing Fire Damage, increase all Damage by 10% / 20% / 30% for 15 secs.\nAlso increases the Damage of your Companions from Items by 25% / 50% / 75%."
-		"talent37"								"Deadly Hits: + 3% / 5% / 7% Ability Critical Strike chance for 150%"
+		"talent37"								"Deadly Hits: + 7% / 14% / 21% Ability Critical Strike chance for 200%"
 		"talent38"								"Wolf's Versatility: + 4% / 8% / 12% Strength and Agility"
 		"talent39"								"Lick Wounds: Increase all Healing caused by your 1st Ability by 10% / 20% / 30% and Heal for 75 / 150 / 225 plus 1% / 2% / 3% of max Health every 5 secs."
 		"talent40"								"Tenacity: + 15 / 30 / 45 Agility and whenever you take Damage, Block an amount equal to 0.1% / 0.2% / 0.3% of your max Health."

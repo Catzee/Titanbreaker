@@ -8013,7 +8013,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_036_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deathwing.</font>\nIceshatter Bolts from Ice Storm are now Iceflame Bolts, dealing Frost and Fire Damage at the same time and having their Damage increased by 100%%."
 		"DOTA_Tooltip_ability_item_pathbuff_036_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_037"  "<font color=\"#ffd700\">[Divine] Bone of Nyx"
-		"DOTA_Tooltip_ability_item_pathbuff_037_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deadly Hits.</font>\nDeadly Hits Critical Strikes by Ability Damage instances with a scaling of 400%% or less will Critical Strike for 250%% instead of 150%%."
+		"DOTA_Tooltip_ability_item_pathbuff_037_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deadly Hits.</font>\nDeadly Hits Critical Strikes by Ability Damage instances with a scaling of 400%% or less will Critical Strike for 300%% instead of 200%%."
 		"DOTA_Tooltip_ability_item_pathbuff_037_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_038"  "<font color=\"#ffd700\">[Divine] Claw of Moogla"
 		"DOTA_Tooltip_ability_item_pathbuff_038_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Wolf's Versatility.</font>\nShadow Claws now also affects your 4th Ability."
