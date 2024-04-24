@@ -1770,13 +1770,18 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_immortal3") then
-        critchance = 15*critchancefactor + flatCritChance
+    local templeArmorModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal3")
+    if critpossible == true and templeArmorModifier then
+        local templeArmorModifierAbility = templeArmorModifier:GetAbility()
+        critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+        local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+
         if caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
-            critchance = critchance * 2
+            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+            critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
         end
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -1794,7 +1799,7 @@ function DamageUnit( event )
         local critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
 
         if caster:HasModifier("modifier_item_crit_pure_5_lifesteal") then
-            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")
+            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor + flatCritChance
             critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
         if math.random(1,100) <= critchance then
@@ -1818,7 +1823,7 @@ function DamageUnit( event )
         critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
         local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
         if caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor + flatCritChance
             critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
         if math.random(1,100) <= critchance then
@@ -6856,7 +6861,7 @@ function HealUnit( event )
         local critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
 
         if caster:HasModifier("modifier_item_crit_pure_5_lifesteal") then
-            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")
+            critchance = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor
             critDmgFactor = tributeOfBloodModifierAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
         if math.random(1,100) <= critchance then
@@ -6873,13 +6878,18 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal3") then
-        critchance = 15*critchancefactor
-        if caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
-            critchance = critchance * 2
+    local templeArmorModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal3")
+    if critpossible == true and templeArmorModifier then
+        local templeArmorModifierAbility = templeArmorModifier:GetAbility()
+        critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+        local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+
+        if event.caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
+            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+            critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
         end
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -6951,7 +6961,7 @@ function HealUnit( event )
         local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
 
         if event.caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor
             critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
         end
 

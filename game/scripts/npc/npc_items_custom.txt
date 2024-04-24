@@ -30085,12 +30085,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "30" // passive crit chance
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "500"
+	            "bonus_stat2"    "300" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "35" // active crit chance
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "360" // active crit multiplier
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "8" // buff duration
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "500" // max hp bonus
 	        }
 	    }
 
@@ -30102,7 +30122,7 @@
 	    	{
 	    		"ModifierName"	"modifier_item_crit_pure_5_lifesteal_no_ls"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireEffect"
 	    	{
@@ -30125,7 +30145,7 @@
 	            "IsHidden" "1" 
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_stat2" 
+	            	"MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_stat6" 
 	            }
 	        }
 	        "modifier_item_crit_pure_5_lifesteal_no_ls"
