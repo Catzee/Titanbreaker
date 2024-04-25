@@ -62295,17 +62295,21 @@
 
 	    "AbilitySpecial"
 	    {
-	    	"01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
-	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "40"
+	            "bonus_stat1"    "15" // passive crit chance
 	        }
-	        
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "175" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "40"
+	        }
 	    }
 
 	    "Modifiers"
@@ -62317,7 +62321,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat3"
 	            }
 	        } 
 	    }

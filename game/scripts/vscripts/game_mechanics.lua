@@ -2078,10 +2078,13 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_bootscrit_2") then
-        critchance = 10*critchancefactor + flatCritChance
+    local bootsOfWonderModifier = caster:FindModifierByName("modifier_item_bootscrit_2")
+    if critpossible == true and bootsOfWonderModifier then
+        local bootsOfWonderModifierAbility = bootsOfWonderModifier:GetAbility()
+        critchance = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+        local critDmgFactor = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.75*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -7156,8 +7159,11 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_bootscrit_2") then
-        critchance = 11*critchancefactor
+    local bootsOfWonderModifier = caster:FindModifierByName("modifier_item_bootscrit_2")
+    if critpossible == true and bootsOfWonderModifier then
+        local bootsOfWonderModifierAbility = bootsOfWonderModifier:GetAbility()
+        critchance = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+        local critDmgFactor = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
             event.heal = event.heal*2.25*critdmgbonusfactor
             displaynumber = 1
