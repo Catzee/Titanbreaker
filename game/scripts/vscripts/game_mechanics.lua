@@ -2187,12 +2187,17 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_guaranteed_crit_once") then
-        critchance = 100*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.0*critdmgbonusfactor
-            critpossible = false
-            caster:RemoveModifierByName("modifier_guaranteed_crit_once")
+    local legionBannerActiveModifier = caster:FindModifierByName("modifier_guaranteed_crit_once")
+    if critpossible == true and legionBannerActiveModifier then
+        local legionBannerActiveModifierAbility = legionBannerActiveModifier:GetAbility()
+        if(legionBannerActiveModifierAbility) then
+            critchance = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+            if math.random(1,100) <= critchance then
+                local critDmgFactor = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+                caster:RemoveModifierByName("modifier_guaranteed_crit_once")
+            end
         end
     end
     if critpossible == true and event.beartrapcrit and caster.owner and caster.owner:GetAbilityByIndex(2) and caster.owner:GetAbilityByIndex(2):GetLevel() >= 3 and target:HasModifier("modifier_bear_trap") then
@@ -7118,13 +7123,18 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_guaranteed_crit_once") then
-        critchance = 100*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.0*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
-            event.caster:RemoveModifierByName("modifier_guaranteed_crit_once")
+    local legionBannerActiveModifier = caster:FindModifierByName("modifier_guaranteed_crit_once")
+    if critpossible == true and legionBannerActiveModifier then
+        local legionBannerActiveModifierAbility = legionBannerActiveModifier:GetAbility()
+        if(legionBannerActiveModifierAbility) then
+            critchance = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+            if math.random(1,100) <= critchance then
+                local critDmgFactor = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+                event.caster:RemoveModifierByName("modifier_guaranteed_crit_once")
+            end
         end
     end
     if critpossible == true and event.caster:HasModifier("modifier_item_endgame5") then

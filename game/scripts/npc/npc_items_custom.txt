@@ -55490,6 +55490,26 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat5"    "150" // passive crit multiplier
 	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "900" // active radius
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat7"    "15" // active duration
+	        }
+	        "08"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat8"    "100" // active crit chance
+	        }
+	        "09"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat9"    "200" // active crit multiplier
+	        }
 	    }
 
 	    "OnSpellStart"
@@ -55517,7 +55537,7 @@
 	    		"Target"
 	    		{
 	    			"Center"  	"CASTER"
-	    			"Radius" 	"900"
+	    			"Radius" 	"%bonus_stat6"
 	    			"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    			"Types" 	"DOTA_UNIT_TARGET_HERO"
 	    		}
@@ -55528,7 +55548,7 @@
 	    			{
 	    				"ModifierName"	"modifier_guaranteed_crit_once"
 	    				"Target" 		"TARGET"
-	    				"Duration"		"15"
+	    				"Duration"		"%bonus_stat7"
 	    			}
 	    		}
 	    	}
