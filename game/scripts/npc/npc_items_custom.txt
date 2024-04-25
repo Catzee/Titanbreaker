@@ -55434,12 +55434,12 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "10" // passive crit chance
+	            "bonus_stat4"    "20" // passive crit chance
 	        }
 	        "05"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat5"    "250" // passive crit multiplier
+	            "bonus_stat5"    "150" // passive crit multiplier
 	        }
 	    }
 
