@@ -1900,10 +1900,13 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_3") then
-        critchance = 20*critchancefactor + flatCritChance
+    local boneCollectorModifier = caster:FindModifierByName("modifier_item_crit_pure_3")
+    if critpossible == true and boneCollectorModifier then
+        local boneCollectorModifierAbility = boneCollectorModifier:GetAbility()
+        critchance = boneCollectorModifierAbility:GetSpecialValueFor("bonus_stat4")*critchancefactor + flatCritChance
+        local critDmgFactor = boneCollectorModifierAbility:GetSpecialValueFor("bonus_stat5") / 100
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.3*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -7158,6 +7161,17 @@ function HealUnit( event )
         critchance = 15*critchancefactor
         if math.random(1,100) <= critchance then
             event.heal = event.heal*2*critdmgbonusfactor
+            displaynumber = 1
+            critpossible = false
+        end
+    end
+    local boneCollectorModifier = caster:FindModifierByName("modifier_item_crit_pure_3")
+    if critpossible == true and boneCollectorModifier then
+        local boneCollectorModifierAbility = boneCollectorModifier:GetAbility()
+        critchance = boneCollectorModifierAbility:GetSpecialValueFor("bonus_stat4")*critchancefactor
+        local critDmgFactor = boneCollectorModifierAbility:GetSpecialValueFor("bonus_stat5") / 100
+        if math.random(1,100) <= critchance then
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -27354,8 +27368,9 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         if target:HasModifier("modifier_item_crit_pure_2") then
             healing_bonus = healing_bonus + 0.05
         end
-        if target:HasModifier("modifier_item_crit_pure_3") then
-            healing_bonus = healing_bonus + 0.1
+        local boneCollectorModifier = target:FindModifierByName("modifier_item_crit_pure_3")
+        if boneCollectorModifier then
+            healing_bonus = healing_bonus + boneCollectorModifier:GetAbility():GetSpecialValueFor("bonus_stat3") / 100
         end
         local legionBannerModifier = target:FindModifierByName("modifier_item_crit_pure_4")
         if legionBannerModifier then

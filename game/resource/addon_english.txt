@@ -5302,10 +5302,12 @@
 
 		"DOTA_Tooltip_ability_item_crit_pure_3"                                           "<font color=\"#ff8c00\">The Bone Collector"
 		"DOTA_Tooltip_ability_item_crit_pure_3_Description"                               "All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat0"                               "Movement Speed: +"
-		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat1"                               "%Damaging Abilities Critical Strike chance for 130%:"
+		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat1"                               "Movement Speed: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat2"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat3"                               "%Healing received: +"
+		"DOTA_Tooltip_Ability_item_crit_pure_3_bonus_stat4"                               "%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_crit_pure_3_bonus_stat5"                               "%Ability Critical Strike Factor: "
+
 		"DOTA_Tooltip_ability_item_crit_pure_5"                                           "<font color=\"#66ffff\">Tribute of Blood"
 
 		"temple_mount_misha"                                                              "Mizha"

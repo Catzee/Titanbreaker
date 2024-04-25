@@ -63073,22 +63073,27 @@
 	    	"01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat0"    "45"
+	            "bonus_stat1"    "45" // bonus movement speed
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "20"
+	            "bonus_stat2"    "500" // bonus health
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "500"
+	            "bonus_stat3"    "10" // bonus healing received %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "10"
+	            "bonus_stat4"    "20" // passive crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "150" // passive crit multiplier
 	        }
 	    }
 
@@ -63106,7 +63111,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat0"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat2"
 	            }
 	        } 
