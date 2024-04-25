@@ -1711,16 +1711,18 @@ function DamageUnit( event )
     local riggedDiceModifier = caster:FindModifierByName("modifier_item_crit_myth")
     if critpossible == true and riggedDiceModifier then
         local riggedDiceModifierAbility = riggedDiceModifier:GetAbility()
-        critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
-        local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
-
-        if caster:HasModifier("modifier_crit_myth") then
-            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor + flatCritChance
-            critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
-        end
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(riggedDiceModifierAbility) then
+            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+            local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+    
+            if caster:HasModifier("modifier_crit_myth") then
+                critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor + flatCritChance
+                critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
+            end
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster:HasModifier("modifier_pathbuff_069") and (event.fromcompanion or event.fromsummon or event.ComesFromPet) then
@@ -2030,11 +2032,13 @@ function DamageUnit( event )
     local noblePlainstridersModifier = caster:FindModifierByName("modifier_item_bootscrit4")
     if critpossible == true and noblePlainstridersModifier then
         local noblePlainstridersModifierAbility = noblePlainstridersModifier:GetAbility()
-        critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
-        local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(noblePlainstridersModifierAbility) then
+            critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
+            local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local alphamaneModifier = caster:FindModifierByName("modifier_item_bootscrit3")
@@ -6902,17 +6906,19 @@ function HealUnit( event )
     local riggedDiceModifier = event.caster:FindModifierByName("modifier_item_crit_myth")
     if critpossible == true and riggedDiceModifier then
         local riggedDiceModifierAbility = riggedDiceModifier:GetAbility()
-        critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
-        local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
-
-        if caster:HasModifier("modifier_crit_myth") then
-            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor
-            critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
-        end
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(riggedDiceModifierAbility) then
+            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+            local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+    
+            if caster:HasModifier("modifier_crit_myth") then
+                critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor
+                critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
+            end
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local worldBreakerModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal2")
@@ -7080,12 +7086,14 @@ function HealUnit( event )
     local noblePlainstridersModifier = event.caster:FindModifierByName("modifier_item_bootscrit4")
     if critpossible == true and noblePlainstridersModifier then
         local noblePlainstridersModifierAbility = noblePlainstridersModifier:GetAbility()
-        critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
-        local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(noblePlainstridersModifierAbility) then
+            critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
+            local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local alphamaneModifier = event.caster:FindModifierByName("modifier_item_bootscrit3")
