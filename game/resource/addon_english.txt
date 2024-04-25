@@ -10111,7 +10111,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_120_stat1"  "%Arcane Damage: + "
 
 		"DOTA_Tooltip_ability_item_pathbuff_156"  "<font color=\"#ffd700\">[Divine] Tower of Resistance"
-		"DOTA_Tooltip_ability_item_pathbuff_156_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Rogue Resistance.\n<h1>Resistance</h1>Reduce all Damage taken by 50% for 10 secs.</font>"
+		"DOTA_Tooltip_ability_item_pathbuff_156_Description"  "<h1>Resistance</h1>Reduce all Damage taken by 50% for 10 secs.</font>\n<font color=\"#FF6600\">+3 for the Path Talent Rogue Resistance."
 		"DOTA_Tooltip_ability_item_pathbuff_156_stat1"  "Armor: + "
 		"DOTA_Tooltip_ability_item_pathbuff_129"  "<font color=\"#ffd700\">[Divine] Ring of Ice and Fire"
 		"DOTA_Tooltip_ability_item_pathbuff_129_Description"  "<font color=\"#FF6600\">Increases the Song of Ice and Fire Bonus Damage to 250%.</font>"
