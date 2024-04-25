@@ -2102,10 +2102,10 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster.talents and caster.talents[48] and caster.talents[48] > 0 and target and target:GetHealth() / target:GetMaxHealth() < 0.5 then
-        critchance = 50*critchancefactor + flatCritChance
+    if critpossible == true and caster.talents and caster.talents[48] and caster.talents[48] > 0 and not (event.isdot or event.isaoe) then
+        critchance = 12*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*(1.2 + 0.1 * caster.talents[48])*critdmgbonusfactor
+            finaldamage = finaldamage*(1.5 + 1 * caster.talents[48])*critdmgbonusfactor
             critpossible = false
         end
     end
