@@ -4617,7 +4617,7 @@
 	}
 	"02"{
 		"var_type"      "FIELD_INTEGER"
-		"stat2"    "20" // crit chance
+		"stat2"    "25" // crit chance
 	}
 	"03"{
 		"var_type"      "FIELD_INTEGER"
@@ -7912,12 +7912,12 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10" // passive crit chance
+	            "bonus_stat2"    "30" // passive crit chance
 	        }
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "250" // passive crit multiplier
+	            "bonus_stat3"    "325" // passive crit multiplier
 	        }
 	    }
 
