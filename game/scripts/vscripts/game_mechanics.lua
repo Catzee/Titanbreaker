@@ -1706,13 +1706,18 @@ function DamageUnit( event )
             caster:RemoveModifierByName("modifier_fury_crit")
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_myth") then
-        critchance = 15*critchancefactor + flatCritChance
+    local riggedDiceModifier = caster:FindModifierByName("modifier_item_crit_myth")
+    if critpossible == true and riggedDiceModifier then
+        local riggedDiceModifierAbility = riggedDiceModifier:GetAbility()
+        critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+        local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+
         if caster:HasModifier("modifier_crit_myth") then
-            critchance = critchance * 2
+            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor + flatCritChance
+            critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
         end
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.5*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6862,13 +6867,18 @@ function HealUnit( event )
     if caster:HasModifier("modifier_path_shadowform") then
         critdmgbonusfactor = critdmgbonusfactor + 0.3 * caster.talents[73]
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_myth") then
-        critchance = 15*critchancefactor
+    local riggedDiceModifier = event.caster:FindModifierByName("modifier_item_crit_myth")
+    if critpossible == true and riggedDiceModifier then
+        local riggedDiceModifierAbility = riggedDiceModifier:GetAbility()
+        critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+        local critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+
         if caster:HasModifier("modifier_crit_myth") then
-            critchance = critchance * 2
+            critchance = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat5")*critchancefactor
+            critDmgFactor = riggedDiceModifierAbility:GetSpecialValueFor("bonus_stat6") / 100
         end
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*6*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end

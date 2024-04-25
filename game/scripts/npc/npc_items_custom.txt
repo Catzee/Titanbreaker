@@ -7992,12 +7992,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat2"    "1500" // max health
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "1500"
+	            "bonus_stat3"    "30" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "400" // passive crit multiplier
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "30" // active crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "500" // active crit multiplier
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat7"    "8" // active crit duration
 	        }
 	    }
 
@@ -8009,7 +8029,7 @@
 	    	{
 	    		"ModifierName"	"modifier_crit_myth"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat7"
 	    	}
 	    	"FireEffect"
 	    	{
