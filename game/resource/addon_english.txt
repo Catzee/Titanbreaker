@@ -9440,8 +9440,9 @@
 
 		"DOTA_Tooltip_Ability_item_bootscrit4"  											"<font color=\"#7733ff\">[Mythical] Noble Plainstriders"
 		"DOTA_Tooltip_Ability_item_bootscrit4_Description"  								"<h1>Plainstrider</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 35%% increased Damage.\nDoes not stack with Firebat or Alphamane.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."
-		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat2"  								"%Ability Critical Strike Chance for 250%:"
 		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat1"									"Movement Speed: +"
+		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat2"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat3"									"%Ability Critical Strike Factor: "
 
 		"DOTA_Tooltip_Ability_item_attackpoint3"  "<font color=\"#7733ff\">[Mythical] Cloudburst"
 		"DOTA_Tooltip_Ability_item_attackpoint3_Description"  "Reduces your Base Attack time to 1.75 seconds.\nDoes not stack with other effects adjusting Base Attack time."

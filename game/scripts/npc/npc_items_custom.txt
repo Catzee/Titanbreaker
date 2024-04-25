@@ -7896,16 +7896,20 @@
 
 	    "AbilitySpecial"
 	    {
-	        
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
-	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "45"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "10" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "250" // passive crit multiplier
 	        }
 	    }
 

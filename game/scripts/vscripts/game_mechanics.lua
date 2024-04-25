@@ -2006,10 +2006,13 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_bootscrit4") then
-        critchance = 10*critchancefactor + flatCritChance
+    local noblePlainstridersModifier = caster:FindModifierByName("modifier_item_bootscrit4")
+    if critpossible == true and noblePlainstridersModifier then
+        local noblePlainstridersModifierAbility = noblePlainstridersModifier:GetAbility()
+        critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
+        local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.5*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -7022,10 +7025,13 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_bootscrit4") then
-        critchance = 10*critchancefactor
+    local noblePlainstridersModifier = event.caster:FindModifierByName("modifier_item_bootscrit4")
+    if critpossible == true and noblePlainstridersModifier then
+        local noblePlainstridersModifierAbility = noblePlainstridersModifier:GetAbility()
+        critchance = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
+        local critDmgFactor = noblePlainstridersModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.5*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
