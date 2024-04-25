@@ -1677,7 +1677,7 @@ function DamageUnit( event )
         end
         if math.random(1,100) <= critchance then
             caster.deadfury_crit_chance_factor = nil
-            finaldamage = finaldamage*4*critdmgbonusfactor
+            finaldamage = finaldamage*3*critdmgbonusfactor
             critpossible = false
         end
     end
