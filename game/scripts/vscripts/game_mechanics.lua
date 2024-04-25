@@ -1784,16 +1784,18 @@ function DamageUnit( event )
     local templeArmorModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal3")
     if critpossible == true and templeArmorModifier then
         local templeArmorModifierAbility = templeArmorModifier:GetAbility()
-        critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
-        local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
-
-        if caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
-            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
-            critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
-        end
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(templeArmorModifierAbility) then
+            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+    
+            if caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
+                critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+                critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+            end
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster:HasModifier("modifier_element_shadow") then
@@ -1806,11 +1808,13 @@ function DamageUnit( event )
     local itemMultiElementShadowCrits = event.caster:FindModifierByName("modifier_element_shadow")
     if critpossible == true and itemMultiElementShadowCrits then
         local itemMultiElementShadowCritsAbility = itemMultiElementShadowCrits:GetAbility()
-        local critDmgFactor = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat3") / 100
-        critchance = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(itemMultiElementShadowCritsAbility) then
+            local critDmgFactor = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat3") / 100
+            critchance = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local tributeOfBloodModifier = caster:FindModifierByName("modifier_item_crit_pure_5")
@@ -2032,21 +2036,25 @@ function DamageUnit( event )
     local alphamaneModifier = caster:FindModifierByName("modifier_item_bootscrit3")
     if critpossible == true and alphamaneModifier then
         local alphamaneModifierAbility = alphamaneModifier:GetAbility()
-        critchance = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
-        local critDmgFactor = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(alphamaneModifierAbility) then
+            critchance = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
+            local critDmgFactor = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local tamedFirebatModifier = caster:FindModifierByName("modifier_item_bootscrit2")
     if critpossible == true and tamedFirebatModifier then
         local tamedFirebatModifierAbility = tamedFirebatModifier:GetAbility()
-        critchance = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
-        local critDmgFactor = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(tamedFirebatModifierAbility) then
+            critchance = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor + flatCritChance
+            local critDmgFactor = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster:HasModifier("modifier_item_endgame5") then
@@ -6938,17 +6946,19 @@ function HealUnit( event )
     local templeArmorModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal3")
     if critpossible == true and templeArmorModifier then
         local templeArmorModifierAbility = templeArmorModifier:GetAbility()
-        critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
-        local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
-
-        if event.caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
-            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
-            critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
-        end
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(templeArmorModifierAbility) then
+            critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+    
+            if event.caster:HasModifier("modifier_item_crit_pure_5_lifesteal_no_ls") then
+                critchance = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+                critDmgFactor = templeArmorModifierAbility:GetSpecialValueFor("bonus_stat4") / 100
+            end
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[19] and caster.talents[19] > 0 then
@@ -7070,23 +7080,27 @@ function HealUnit( event )
     local alphamaneModifier = event.caster:FindModifierByName("modifier_item_bootscrit3")
     if critpossible == true and alphamaneModifier then
         local alphamaneModifierAbility = alphamaneModifier:GetAbility()
-        critchance = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
-        local critDmgFactor = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(alphamaneModifierAbility) then
+            critchance = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
+            local critDmgFactor = alphamaneModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local tamedFirebatModifier = event.caster:FindModifierByName("modifier_item_bootscrit2")
     if critpossible == true and tamedFirebatModifier then
         local tamedFirebatModifierAbility = tamedFirebatModifier:GetAbility()
-        critchance = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
-        local critDmgFactor = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(tamedFirebatModifierAbility) then
+            critchance = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
+            local critDmgFactor = tamedFirebatModifierAbility:GetSpecialValueFor("bonus_stat3") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster.spiritHealCrit and caster.spiritHealCrit >= 1 then
@@ -7164,12 +7178,14 @@ function HealUnit( event )
     local itemMultiElementShadowCrits = event.caster:FindModifierByName("modifier_element_shadow")
     if critpossible == true and itemMultiElementShadowCrits then
         local itemMultiElementShadowCritsAbility = itemMultiElementShadowCrits:GetAbility()
-        local critDmgFactor = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat3") / 100
-        critchance = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(itemMultiElementShadowCritsAbility) then
+            local critDmgFactor = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat3") / 100
+            critchance = itemMultiElementShadowCritsAbility:GetSpecialValueFor("bonus_stat2")*critchancefactor
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[139] > 0 and ability and ability:GetLevel() == 3 then
