@@ -4594,7 +4594,7 @@
 "ID"           "4016"
 "BaseClass"    "item_datadriven"
 "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-"AbilityTextureName" "item_healing_lotus"
+"AbilityTextureName" "item_ice_lotus"
 "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
 "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
 "ItemQuality"  "artifact"
