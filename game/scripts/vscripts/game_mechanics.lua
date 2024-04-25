@@ -1829,25 +1829,29 @@ function DamageUnit( event )
     local armageddon = caster:FindModifierByName("modifier_item_crit_pure_immortal")
     if critpossible == true and armageddon then
         local armageddonAbility = armageddon:GetAbility()
-        critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
-        local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(armageddonAbility) then
+            critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local ebonyMasterBowModifier = caster:FindModifierByName("modifier_item_warglaive")
     if critpossible == true and ebonyMasterBowModifier then
         local ebonyMasterBowAbility = ebonyMasterBowModifier:GetAbility()
-        critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
-        local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
-        if caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor + flatCritChance
-            critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
-        end
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
-            critpossible = false
+        if(ebonyMasterBowAbility) then
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor + flatCritChance
+            local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
+            if caster:HasModifier("modifier_bow_crit_legendary") then
+                critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor + flatCritChance
+                critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
+            end
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster:HasModifier("modifier_item_set_agi_set_crit_2") then
@@ -6983,29 +6987,33 @@ function HealUnit( event )
     local armageddon = event.caster:FindModifierByName("modifier_item_crit_pure_immortal")
     if critpossible == true and armageddon then
         local armageddonAbility = armageddon:GetAbility()
-        critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
-        local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(armageddonAbility) then
+            critchance = armageddonAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = armageddonAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local ebonyMasterBowModifier = event.caster:FindModifierByName("modifier_item_warglaive")
     if critpossible == true and ebonyMasterBowModifier then
         local ebonyMasterBowAbility = ebonyMasterBowModifier:GetAbility()
-        critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
-        local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
-
-        if event.caster:HasModifier("modifier_bow_crit_legendary") then
-            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor
-            critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
-        end
-
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+        if(ebonyMasterBowAbility) then
+            critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat3")*critchancefactor
+            local critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat4") / 100
+    
+            if event.caster:HasModifier("modifier_bow_crit_legendary") then
+                critchance = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat6")*critchancefactor
+                critDmgFactor = ebonyMasterBowAbility:GetSpecialValueFor("bonus_stat7") / 100
+            end
+    
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     --if critpossible == true and caster.runeword and caster.runeword[20] and caster.runeword[20] > 0 then
@@ -24965,7 +24973,9 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
     local armageddon = caster:FindModifierByName("modifier_item_crit_pure_immortal")
     if armageddon then
         local armageddonAbility = armageddon:GetAbility()
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = armageddonAbility:GetSpecialValueFor("bonus_stat2"), aacrit_chance = armageddonAbility:GetSpecialValueFor("bonus_stat1")})
+        if(armageddonAbility) then
+            AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = armageddonAbility:GetSpecialValueFor("bonus_stat2"), aacrit_chance = armageddonAbility:GetSpecialValueFor("bonus_stat1")})
+        end
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_2") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 275, aacrit_chance = 3})
