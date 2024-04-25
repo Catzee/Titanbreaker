@@ -7283,10 +7283,10 @@ function HealUnit( event )
     if critpossible == true and maskOfHorrorModifier then
         local maskOfHorrorModifierAbility = maskOfHorrorModifier:GetAbility()
         if(maskOfHorrorModifierAbility) then
-            critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+            critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor
             local critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
             if caster:HasModifier("modifier_horror_proc") then
-                critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat10")*critchancefactor + flatCritChance
+                critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat10")*critchancefactor
                 critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat11") / 100
             end
             if math.random(1,100) <= critchance then
