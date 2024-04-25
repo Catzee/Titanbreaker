@@ -1669,13 +1669,13 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[94] and caster.talents[94] > 0 and ability and ability:GetCooldown(ability:GetLevel()) <= 3 then
-        critchance = critchancefactor * 2 * caster.talents[94] + flatCritChance
+        critchance = critchancefactor * 5 * caster.talents[94] + flatCritChance
         if caster.deadfury_crit_chance_factor then
             critchance = critchance * caster.deadfury_crit_chance_factor
         end
         if math.random(1,100) <= critchance then
             caster.deadfury_crit_chance_factor = nil
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*4*critdmgbonusfactor
             critpossible = false
         end
     end
