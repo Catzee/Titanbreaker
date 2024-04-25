@@ -8044,7 +8044,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_044"  "<font color=\"#ffd700\">[Divine] Direwolf Pelt"
 		"DOTA_Tooltip_ability_item_pathbuff_044_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Backstab.</font>\nYour 3rd Ability gains Spell Fury, increasing consecutive Damage by 5%%, up to 50%%. Does not affect Spells that already have an active Spell Fury."
 		"DOTA_Tooltip_ability_item_pathbuff_045"  "<font color=\"#ffd700\">[Divine] Axe of Ra'qoon"
-		"DOTA_Tooltip_ability_item_pathbuff_045_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Alpha Blood.</font>\nThe Alpha Blood Critical Strike chance for your 2nd Ability is doubled.\nYour summons now also gain the same Critical Strike chance that Alpha Blood grants to your 1st Ability, but for 300%% Damage."
+		"DOTA_Tooltip_ability_item_pathbuff_045_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Alpha Blood.</font>\nThe Alpha Blood Critical Strike chance for your 2nd Ability is doubled.\nYour summons now also gain the same Critical Strike chance that Alpha Blood grants to your 1st Ability, but for 600%% Damage."
 		"DOTA_Tooltip_ability_item_pathbuff_046"  "<font color=\"#ffd700\">[Divine] Alphamane Armor"
 		"DOTA_Tooltip_ability_item_pathbuff_046_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Blood Wolf.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_046_stat1"  "Strength: "

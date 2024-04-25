@@ -1978,15 +1978,15 @@ function DamageUnit( event )
     end
     local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
     if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1 or (alphablood_divine and (event.fromsummon or event.ComesFromPet)) or (ability:GetAbilityIndex() == 2 and caster:HasModifier("modifier_pathbuff_013")))) then
-        local alphablood_chance = 3
-        local crit_dmg_alpha = 2
+        local alphablood_chance = 5
+        local crit_dmg_alpha = 4
         if alphablood_divine and (event.fromsummon or event.ComesFromPet) then
-            crit_dmg_alpha = crit_dmg_alpha * 1.5
+            crit_dmg_alpha = 6
         end
         if ability:GetAbilityIndex() == 1 then
-            alphablood_chance = 2
+            alphablood_chance = 2.5
             if alphablood_divine then
-                alphablood_chance = 4
+                alphablood_chance = 5
             end
         end
         critchance = alphablood_chance * caster.talents[45] * critchancefactor + flatCritChance
