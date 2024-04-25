@@ -1723,13 +1723,17 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_ancient_def") then
-        critchance = 5*critchancefactor + flatCritChance
+    local maskOfHorrorModifier = caster:FindModifierByName("modifier_ancient_def")
+    if critpossible == true and maskOfHorrorModifier then
+        local maskOfHorrorModifierAbility = maskOfHorrorModifier:GetAbility()
+        critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+        local critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
         if caster:HasModifier("modifier_horror_proc") then
-            critchance = 30 * critchancefactor
+            critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat10")*critchancefactor + flatCritChance
+            critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat11") / 100
         end
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -3696,14 +3700,15 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.firedmg and caster:HasModifier("modifier_shadowflame") then
         value = value + 0.25
     end
-    if event.chaosdmg and caster:HasModifier("modifier_ancient_def") then
-        value = value + 0.25
+    local maskOfHorrorModifier = caster:FindModifierByName("modifier_ancient_def")
+    if event.chaosdmg and maskOfHorrorModifier then
+        value = value + maskOfHorrorModifier:GetAbility():GetSpecialValueFor("bonus_stat7") / 100
     end
-    if event.firedmg and caster:HasModifier("modifier_ancient_def") then
-        value = value + 0.25
+    if event.firedmg and maskOfHorrorModifier then
+        value = value + maskOfHorrorModifier:GetAbility():GetSpecialValueFor("bonus_stat6") / 100
     end
-    if event.shadowdmg and caster:HasModifier("modifier_ancient_def") then
-        value = value + 0.25
+    if event.shadowdmg and maskOfHorrorModifier then
+        value = value + maskOfHorrorModifier:GetAbility():GetSpecialValueFor("bonus_stat5") / 100
     end
     if event.arcanedmg and caster:HasModifier("modifier_stormrider") then
         value = value + 0.25
@@ -6916,14 +6921,6 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_ancient_def") then
-        critchance = 5*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
-        end
-    end
     if critpossible == true and caster.talents and caster.talents[19] and caster.talents[19] > 0 then
         critchance = caster.talents[19] * critchancefactor
         if math.random(1,100) <= critchance then
@@ -7187,13 +7184,28 @@ function HealUnit( event )
             critpossible = false
         end
     end
+    local maskOfHorrorModifier = caster:FindModifierByName("modifier_ancient_def")
+    if critpossible == true and maskOfHorrorModifier then
+        local maskOfHorrorModifierAbility = maskOfHorrorModifier:GetAbility()
+        critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+        local critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
+        if caster:HasModifier("modifier_horror_proc") then
+            critchance = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat10")*critchancefactor + flatCritChance
+            critDmgFactor = maskOfHorrorModifierAbility:GetSpecialValueFor("bonus_stat11") / 100
+        end
+        if math.random(1,100) <= critchance then
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+            displaynumber = 1
+            critpossible = false
+        end
+    end
     local bootsOfWonderModifier = caster:FindModifierByName("modifier_item_bootscrit_2")
     if critpossible == true and bootsOfWonderModifier then
         local bootsOfWonderModifierAbility = bootsOfWonderModifier:GetAbility()
         critchance = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
         local critDmgFactor = bootsOfWonderModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.25*critdmgbonusfactor
+            event.heal = event.heal*critDmgFactor*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -15073,7 +15085,7 @@ function AbilityComboProcs(caster, ability)
             --proc
             if caster.item_horror_ability then
                 local buff = "modifier_horror_proc"
-                caster.item_horror_ability:ApplyDataDrivenModifier(caster, caster, buff, {Duration = 8})
+                caster.item_horror_ability:ApplyDataDrivenModifier(caster, caster, buff, {Duration = caster.item_horror_ability:GetSpecialValueFor("bonus_stat12")})
             end
         end
     end

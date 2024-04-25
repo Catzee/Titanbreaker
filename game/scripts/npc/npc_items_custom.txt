@@ -30408,27 +30408,52 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "500"
+	            "bonus_stat1"    "500" // bonus health
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "10"
+	            "bonus_stat4"    "10" // bonus spell resistance
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat5"    "25"
+	            "bonus_stat5"    "25" // bonus shadow dmg %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat6"    "25"
+	            "bonus_stat6"    "25" // bonus fire dmg %
 	        }
-	        "01"
+	        "05"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat7"    "25"
+	            "bonus_stat7"    "25" // bonus chaos dmg %
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat8"    "30" // passive crit chance
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat9"    "300" // passive crit multiplier
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat10"    "35" // active crit chance
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat11"    "360" // active crit multiplier
+	        }
+	        "08"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat12"    "8" // active crit duration
 	        }
 	    }
 
