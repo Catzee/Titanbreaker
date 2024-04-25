@@ -2769,7 +2769,7 @@
 
 		"DOTA_Tooltip_Ability_fury1_dmgfromstat"    "%Base Damage dealt:" 
 		"DOTA_Tooltip_Ability_Holy_Judgement_Description"  "Heal an ally or Damage an enemy for reduced Holy Damage. If used on enemies, silence for 0.5 secs and cause your next Auto Attack to restore Mana.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Reduced cooldown. \nRank 4: Increased Damage Factor, increased Mana on Auto Attack and Mana on crit and Critical Heals heal 15%% more. Also increases the target's Spell Resistance by 50 for 3 secs when it is an ally.\n\n</font>"
-		"DOTA_Tooltip_ability_Holy_Judgement_critmana"                                    "Mana restored on crit:"
+		"DOTA_Tooltip_ability_Holy_Judgement_critmana"                                    "%Mana restored on crit:"
 			"DOTA_Tooltip_ability_Holy_Judgement_aamana"                                      "Mana restored on Auto Attack:"
 			"DOTA_Tooltip_ability_Holy_Judgement_dmgfactor"                                   "%Damage Factor:"
 
