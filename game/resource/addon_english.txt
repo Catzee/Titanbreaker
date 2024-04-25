@@ -1071,7 +1071,7 @@
 		"DOTA_Tooltip_modifier_active5up_haste_Description"                               " "
 
 		"DOTA_Tooltip_Ability_item_active6"  "<font color=\"#ff69b4\">Wings of Hell"  
-		"DOTA_Tooltip_Ability_item_active6_Description"  "Whenever you deal Damage, you lower the target's Spell Resistance by 5 for 5 secs.\n\n<h1>Hellfire</h1>Your targets will be afflicted by an additional debuff, reducing their Spell Resistance by another 10.\n"
+		"DOTA_Tooltip_Ability_item_active6_Description"  "<h1>Hellfire</h1>Your targets will be afflicted by an additional debuff, reducing their Spell Resistance by another 10.\n<h1>Hell Touch</h1>Whenever you deal Damage, you lower the target's Spell Resistance by 5 for 5 secs."
 		"DOTA_Tooltip_Ability_item_active6_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_active6_bonus_stat2"	"Spellpower: +"
 		"DOTA_Tooltip_Ability_item_active6_buffduration"	"Hellfire Duration:"
@@ -2432,7 +2432,7 @@
 		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat3"	"%Slow: "
 
-		"DOTA_Tooltip_Ability_item_weaponpoison2"  "<<font color=\"#32cd32\">Bloodpython"
+		"DOTA_Tooltip_Ability_item_weaponpoison2"  "<font color=\"#32cd32\">Bloodpython"
 		"DOTA_Tooltip_Ability_item_weaponpoison2_Description"	"Successful Auto Attacks apply a crippling Python Poison to the target, reducing their Health Regeneration and reducing all Healing received for 6 secs."  
 		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat2"	"Attack Damage: +"
@@ -9667,7 +9667,7 @@
 		"DOTA_Tooltip_Ability_item_crowndefender_bonus_stat1"	"Health: +"
 
 		"DOTA_Tooltip_Ability_item_crowndefender2"  "<font color=\"#7733ff\">[Mythical] Crown Defender"  
-		"DOTA_Tooltip_Ability_item_crowndefender2_Description"  "Active - Save the Crown: Taunt nearby enemies for 5 secs.\nGrizzly's Power now grants 7.5%% increased Strength per Level."
+		"DOTA_Tooltip_Ability_item_crowndefender2_Description"  "<h1>Save the Crown</h1>Taunt nearby enemies for 5 secs.\nGrizzly's Power now grants 7.5%% increased Strength per Level."
 		"DOTA_Tooltip_Ability_item_crowndefender2_bonus_stat1"	"Health: +"
 
 		"DOTA_Tooltip_Ability_item_critmaster2"  "<font color=\"#7733ff\">[Mythical] Godslayer"  
@@ -10111,7 +10111,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_120_stat1"  "%Arcane Damage: + "
 
 		"DOTA_Tooltip_ability_item_pathbuff_156"  "<font color=\"#ffd700\">[Divine] Tower of Resistance"
-		"DOTA_Tooltip_ability_item_pathbuff_156_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Rogue Resistance.\nActive - Resistance: Reduce all Damage taken by 50% for 10 secs.</font>"
+		"DOTA_Tooltip_ability_item_pathbuff_156_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Rogue Resistance.\n<h1>Resistance</h1>Reduce all Damage taken by 50% for 10 secs.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_156_stat1"  "Armor: + "
 		"DOTA_Tooltip_ability_item_pathbuff_129"  "<font color=\"#ffd700\">[Divine] Ring of Ice and Fire"
 		"DOTA_Tooltip_ability_item_pathbuff_129_Description"  "<font color=\"#FF6600\">Increases the Song of Ice and Fire Bonus Damage to 250%.</font>"
@@ -10166,7 +10166,7 @@
 		"DOTA_Tooltip_ability_item_pikepower_Description"  "<font color=\"#FF6600\">Add 250% of your Strength as base Damage to all Ability Damage you cause to targets within 300 yards.</font>"
 		"DOTA_Tooltip_ability_item_pikepower_stat1"  "Strength: + "
 		"DOTA_Tooltip_ability_item_divinedef"  "<font color=\"#ffd700\">[Divine] Divine Defender"
-		"DOTA_Tooltip_ability_item_divinedef_Description"  "<font color=\"#FF6600\">Active - Divine Blessing: After 3 secs, purge the target from all debuffs and heal it for 15% of max Health.</font>"
+		"DOTA_Tooltip_ability_item_divinedef_Description"  "<h1>Divine Blessing</h1><font color=\"#FF6600\">After 3 secs, purge the target from all debuffs and heal it for 15% of max Health.</font>"
 		"DOTA_Tooltip_ability_item_divinedef_stat1"  "%Max Health: + "
 		"DOTA_Tooltip_ability_item_divinedef_stat2"  "%Damage Reduction: + "
 		
