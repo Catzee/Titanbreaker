@@ -4615,6 +4615,14 @@
 		"var_type"      "FIELD_INTEGER"
 		"stat1"    "125"
 	}
+	"02"{
+		"var_type"      "FIELD_INTEGER"
+		"stat2"    "20" // crit chance
+	}
+	"03"{
+		"var_type"      "FIELD_INTEGER"
+		"stat3"    "340" // crit multiplier
+	}
 }
 "Modifiers"
 {

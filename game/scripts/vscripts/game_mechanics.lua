@@ -1657,18 +1657,34 @@ function DamageUnit( event )
         end
     end
     if critpossible and event.icelotus1 then
-        critchance = 25*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.5*critdmgbonusfactor
-            critpossible = false
+        local iceLotusModifier = caster:FindModifierByName("modifier_icelotus")
+        if(iceLotusModifier) then
+            local iceLotusModifierAbility = iceLotusModifier:GetAbility()
+            if(iceLotusModifierAbility) then
+                local critDmgFactor = iceLotusModifierAbility:GetSpecialValueFor("stat3") / 100
+                critchance = iceLotusModifierAbility:GetSpecialValueFor("stat2")*critchancefactor + flatCritChance
+                if math.random(1,100) <= critchance then
+                    finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                    critpossible = false
+                end
+            end
         end
+        event.icelotus1 = nil
     end
     if critpossible and event.icelotus2 then
-        critchance = 25*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2.5*critdmgbonusfactor
-            critpossible = false
+        local iceLotusModifier = caster:FindModifierByName("modifier_icelotus")
+        if(iceLotusModifier) then
+            local iceLotusModifierAbility = iceLotusModifier:GetAbility()
+            if(iceLotusModifierAbility) then
+                local critDmgFactor = iceLotusModifierAbility:GetSpecialValueFor("stat3") / 100
+                critchance = iceLotusModifierAbility:GetSpecialValueFor("stat2")*critchancefactor + flatCritChance
+                if math.random(1,100) <= critchance then
+                    finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                    critpossible = false
+                end
+            end
         end
+        event.icelotus2 = nil
     end
     if critpossible == true and caster.talents and caster.talents[94] and caster.talents[94] > 0 and ability and ability:GetCooldown(ability:GetLevel()) <= 3 then
         critchance = critchancefactor * 5 * caster.talents[94] + flatCritChance
