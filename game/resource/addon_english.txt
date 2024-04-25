@@ -4319,8 +4319,11 @@
 		"DOTA_Tooltip_Ability_item_allstats5"  "<font color=\"#ff8c00\">Legionnaire's Banner"  
 		"DOTA_Tooltip_Ability_item_allstats5_Description"  "<h1>Legionnaire's Command</h1>Cause every nearby friendly hero within 900 yards to have their next Healing or Damage done by an Ability be a guaranteed Critical Strike for 200%%.\n\nEach Auto Attack will collect 1 Rune, granting 1 Attack Damage and 1 Spellpower, stacking up to 20 times.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n" 
 		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat1"	"All Attributes: +"
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat2"	"%Damaging Abilities Critical Strike chance for 135%:"
-		
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat2"	"Health: +"
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat3"	"%Healing received: +"
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat4"	"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat5"	"%Ability Critical Strike Factor: "
+
 		"DOTA_Tooltip_modifier_item_spellpower_stack"                                             "Rune"
 		"DOTA_Tooltip_modifier_item_spellpower_stack_Description"                                 " "
 
@@ -6166,8 +6169,6 @@
 		//version 2.1.4
 		
 		"DOTA_Tooltip_Ability_Death_For_Life_bonusspeed"    "%Attack Speed: +" 
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat3"	"Health: +"
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat4"	"%Healing received: +"
 		"DOTA_Tooltip_ability_item_crit_pure_2_bonus_stat2"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_pure_2_bonus_stat3"                               "%Healing received: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat2"                               "Health: +"

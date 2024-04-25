@@ -55419,22 +55419,27 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
+	            "bonus_stat1"    "10" // all stats
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "250" // bonus health
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "250"
+	            "bonus_stat3"    "10" // bonus healing recieved %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "10"
+	            "bonus_stat4"    "10" // passive crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "250" // passive crit multiplier
 	        }
 	    }
 
@@ -55492,7 +55497,7 @@
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat1"
 	                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat1"
 	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_stat1"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_stat3"
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 	            {
