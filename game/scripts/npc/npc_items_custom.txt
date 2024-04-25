@@ -4615,6 +4615,14 @@
 		"var_type"      "FIELD_INTEGER"
 		"stat1"    "125"
 	}
+	"02"{
+		"var_type"      "FIELD_INTEGER"
+		"stat2"    "25" // crit chance
+	}
+	"03"{
+		"var_type"      "FIELD_INTEGER"
+		"stat3"    "340" // crit multiplier
+	}
 }
 "Modifiers"
 {
@@ -7896,16 +7904,20 @@
 
 	    "AbilitySpecial"
 	    {
-	        
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
-	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "45"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "30" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "325" // passive crit multiplier
 	        }
 	    }
 
@@ -7988,12 +8000,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat2"    "1500" // max health
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "1500"
+	            "bonus_stat3"    "30" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "400" // passive crit multiplier
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "30" // active crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "500" // active crit multiplier
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat7"    "8" // active crit duration
 	        }
 	    }
 
@@ -8005,7 +8037,7 @@
 	    	{
 	    		"ModifierName"	"modifier_crit_myth"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat7"
 	    	}
 	    	"FireEffect"
 	    	{
@@ -13998,7 +14030,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "30"
+	            "bonus_stat1"    "30" // primary attribute
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "15" // shadow passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "200" // shadow passive crit multiplier
 	        }
 	    }
 
@@ -14190,7 +14232,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "125"
+	            "bonus_stat1"    "125" // primary attribute
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "15" // shadow passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "200" // shadow passive crit multiplier
 	        }
 	    }
 
@@ -22612,12 +22664,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "20" // passive crit chance
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "45"
+	            "bonus_stat3"    "325" // passive crit chance
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "45" // movespeed
 	        }
 	    }
 
@@ -22650,7 +22707,7 @@
 	            "IsHidden" "1"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat4"
 	            }
 	        }
 	        "modifier_firefly_item"
@@ -30085,12 +30142,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "30" // passive crit chance
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "500"
+	            "bonus_stat2"    "300" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "35" // active crit chance
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "360" // active crit multiplier
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "8" // buff duration
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "500" // max hp bonus
 	        }
 	    }
 
@@ -30102,7 +30179,7 @@
 	    	{
 	    		"ModifierName"	"modifier_item_crit_pure_5_lifesteal_no_ls"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireEffect"
 	    	{
@@ -30125,7 +30202,7 @@
 	            "IsHidden" "1" 
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_stat2" 
+	            	"MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_stat6" 
 	            }
 	        }
 	        "modifier_item_crit_pure_5_lifesteal_no_ls"
@@ -30363,27 +30440,52 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "500"
+	            "bonus_stat1"    "500" // bonus health
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "10"
+	            "bonus_stat4"    "10" // bonus spell resistance
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat5"    "25"
+	            "bonus_stat5"    "25" // bonus shadow dmg %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat6"    "25"
+	            "bonus_stat6"    "25" // bonus fire dmg %
 	        }
-	        "01"
+	        "05"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat7"    "25"
+	            "bonus_stat7"    "25" // bonus chaos dmg %
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat8"    "30" // passive crit chance
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat9"    "300" // passive crit multiplier
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat10"    "35" // active crit chance
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat11"    "360" // active crit multiplier
+	        }
+	        "08"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat12"    "8" // active crit duration
 	        }
 	    }
 
@@ -31318,11 +31420,15 @@
 
 	    "AbilitySpecial"
 	    {
-	        
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat3"    "220" // passive crit multiplier
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "25" // passive crit chance
 	        }
 	        "01"
 	        {
@@ -34346,7 +34452,7 @@
 	    	{
 	    		"ModifierName"	"modifier_item_crit_pure_5_lifesteal"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"8"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireEffect"
 	    	{
@@ -34365,8 +34471,28 @@
 	    {
 	        "01"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "20"
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat3"    "25" // passive crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat4"    "280" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat5"    "8" // crit buff duration
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat6"    "36" // active crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat7"    "280" // active crit multiplier
 	        }
 	    }
 
@@ -34772,7 +34898,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
+	            "bonus_stat1"    "20" // crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "355" // crit multiplier
 	        }
 	    }
 
@@ -37366,7 +37497,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "25" // passive crit chance
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "265" // passive crit multiplier
 	        }
 	    }
 
@@ -37382,7 +37518,7 @@
 					{
 						"ScriptFile"	"game_mechanics.lua"
 						"Function"		"AutoAttackCriticalStrike"
-						"aacrit_factor"	"175"
+						"aacrit_factor"	"%bonus_stat2"
 						"aacrit_chance"	"%bonus_stat1"
 					}
 			    }
@@ -53817,17 +53953,32 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "25"
+	            "bonus_stat2"    "25" // bonus agility
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "6"
+	            "bonus_stat3"    "20" // passive crit chance
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat4"    "150"
+	            "bonus_stat4"    "180" // passive crit multiplier
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat5"    "5" // crit buff duration
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat6"    "40" // active crit chance
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat7"    "180" // active crit multiplier
 	        }
 	    }
 	    "OnSpellStart"
@@ -53836,7 +53987,7 @@
 	    	{
 	    		"ModifierName"	"modifier_bow_crit_legendary"
 	    		"Target" 		"CASTER"
-	    		"Duration"		"5"
+	    		"Duration"		"%bonus_stat5"
 	    	}
 	    	"FireSound"
 	    	{
@@ -55325,22 +55476,47 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
+	            "bonus_stat1"    "10" // all stats
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "250" // bonus health
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "250"
+	            "bonus_stat3"    "10" // bonus healing recieved %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "10"
+	            "bonus_stat4"    "20" // passive crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "150" // passive crit multiplier
+	        }
+	        "06"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat6"    "900" // active radius
+	        }
+	        "07"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat7"    "15" // active duration
+	        }
+	        "08"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat8"    "100" // active crit chance
+	        }
+	        "09"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat9"    "200" // active crit multiplier
 	        }
 	    }
 
@@ -55369,7 +55545,7 @@
 	    		"Target"
 	    		{
 	    			"Center"  	"CASTER"
-	    			"Radius" 	"900"
+	    			"Radius" 	"%bonus_stat6"
 	    			"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    			"Types" 	"DOTA_UNIT_TARGET_HERO"
 	    		}
@@ -55380,7 +55556,7 @@
 	    			{
 	    				"ModifierName"	"modifier_guaranteed_crit_once"
 	    				"Target" 		"TARGET"
-	    				"Duration"		"15"
+	    				"Duration"		"%bonus_stat7"
 	    			}
 	    		}
 	    	}
@@ -55398,7 +55574,7 @@
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat1"
 	                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat1"
 	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_stat1"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_stat3"
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 	            {
@@ -62201,17 +62377,21 @@
 
 	    "AbilitySpecial"
 	    {
-	    	"01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
-	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "40"
+	            "bonus_stat1"    "15" // passive crit chance
 	        }
-	        
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "175" // passive crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "40"
+	        }
 	    }
 
 	    "Modifiers"
@@ -62223,7 +62403,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat3"
 	            }
 	        } 
 	    }
@@ -62970,22 +63150,27 @@
 	    	"01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat0"    "45"
+	            "bonus_stat1"    "45" // bonus movement speed
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "20"
+	            "bonus_stat2"    "500" // bonus health
 	        }
-	        "01"
+	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "500"
+	            "bonus_stat3"    "10" // bonus healing received %
 	        }
-	        "01"
+	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "10"
+	            "bonus_stat4"    "20" // passive crit chance
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "150" // passive crit multiplier
 	        }
 	    }
 
@@ -63003,7 +63188,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat0"
+	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat2"
 	            }
 	        } 

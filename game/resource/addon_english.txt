@@ -3614,7 +3614,7 @@
 		"DOTA_Tooltip_Ability_item_handoffirelord_bonus_stat4"	"Maximum Targets: "
 
 		"DOTA_Tooltip_Ability_item_warglaive"  "<font color=\"#ff8c00\">[Ancient] Ebony Masterbow"  
-		"DOTA_Tooltip_Ability_item_warglaive_Description"  "<h1>Master Focus</h1>Increases this Item's Critical Strike chance to 30%% for 5 secs."
+		"DOTA_Tooltip_Ability_item_warglaive_Description"  "<h1>Master Focus</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs."
 		"DOTA_Tooltip_Ability_item_warglaive_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_warglaive_bonus_stat3"	"%Ability Critical Strike Chance: "
 		"DOTA_Tooltip_Ability_item_warglaive_bonus_stat4"	"%Ability Critical Strike Factor: "
@@ -4317,10 +4317,13 @@
 		"DOTA_Tooltip_Ability_item_allstats4_bonus_stat1"	"All Attributes: +"
 
 		"DOTA_Tooltip_Ability_item_allstats5"  "<font color=\"#ff8c00\">Legionnaire's Banner"  
-		"DOTA_Tooltip_Ability_item_allstats5_Description"  "<h1>Legionnaire's Command</h1>Cause every nearby friendly hero within 900 yards to have their next Healing or Damage done by an Ability be a guaranteed Critical Strike for 200%%.\n\nEach Auto Attack will collect 1 Rune, granting 1 Attack Damage and 1 Spellpower, stacking up to 20 times.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n" 
+		"DOTA_Tooltip_Ability_item_allstats5_Description"  "<h1>Legionnaire's Command</h1>Cause every nearby friendly hero within %bonus_stat6% yards to have their next Healing or Damage done by an Ability be a guaranteed Critical Strike for %bonus_stat9%%% in next %bonus_stat7% secs.\n\nEach Auto Attack will collect 1 Rune, granting 1 Attack Damage and 1 Spellpower, stacking up to 20 times.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n" 
 		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat1"	"All Attributes: +"
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat2"	"%Damaging Abilities Critical Strike chance for 135%:"
-		
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat2"	"Health: +"
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat3"	"%Healing received: +"
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat4"	"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat5"	"%Ability Critical Strike Factor: "
+
 		"DOTA_Tooltip_modifier_item_spellpower_stack"                                             "Rune"
 		"DOTA_Tooltip_modifier_item_spellpower_stack_Description"                                 " "
 
@@ -5221,8 +5224,9 @@
 
 		"DOTA_Tooltip_Ability_item_bootscrit_2"  											"<font color=\"#ff8c00\">Boots of Wonder"  
 		"DOTA_Tooltip_Ability_item_bootscrit_2_Description"  								"All Damage dealing Ability Critical Strikes caused by you deal 10%% increased Damage."
-		"DOTA_Tooltip_Ability_item_bootscrit_2_bonus_stat2"  								"%Ability Critical Strike Chance for 175%:"
-		"DOTA_Tooltip_Ability_item_bootscrit_2_bonus_stat1"									"Movement Speed: +"
+		"DOTA_Tooltip_Ability_item_bootscrit_2_bonus_stat1"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit_2_bonus_stat2"									"%Ability Critical Strike Factor: "
+		"DOTA_Tooltip_Ability_item_bootscrit_2_bonus_stat3"									"Movement Speed: +"
 
 		"DOTA_Tooltip_modifier_blood_rushed"                                             "Aura of the Unholy"
 		"DOTA_Tooltip_modifier_blood_rushed_Description"                                 "Healing and movement Increased."
@@ -5284,10 +5288,13 @@
 
 		"DOTA_Tooltip_ability_item_crit_pure_immortal"                                             "<font color=\"#66ffff\">Armageddon"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike chance for 175%:"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal2"                                             "<font color=\"#66ffff\">Worldbreaker"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_bonus_stat2"                                 "%Ability and Auto Attack Critical Strike Factor: "
+
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2"                                 			"<font color=\"#66ffff\">Worldbreaker"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal2_Description"                                 "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat1"                                 "%Ability Critical Strike chance for 250%:"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat1"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal2_bonus_stat2"									"%Ability Critical Strike Factor: "
 
 		"DOTA_Tooltip_ability_item_crit_pure_2"                                           "<font color=\"#ff69b4\">Heartgore"
 		"DOTA_Tooltip_ability_item_crit_pure_2_Description"                               "<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
@@ -5295,10 +5302,12 @@
 
 		"DOTA_Tooltip_ability_item_crit_pure_3"                                           "<font color=\"#ff8c00\">The Bone Collector"
 		"DOTA_Tooltip_ability_item_crit_pure_3_Description"                               "All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat0"                               "Movement Speed: +"
-		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat1"                               "%Damaging Abilities Critical Strike chance for 130%:"
+		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat1"                               "Movement Speed: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat2"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat3"                               "%Healing received: +"
+		"DOTA_Tooltip_Ability_item_crit_pure_3_bonus_stat4"                               "%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_crit_pure_3_bonus_stat5"                               "%Ability Critical Strike Factor: "
+
 		"DOTA_Tooltip_ability_item_crit_pure_5"                                           "<font color=\"#66ffff\">Tribute of Blood"
 
 		"temple_mount_misha"                                                              "Mizha"
@@ -6018,7 +6027,9 @@
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat1"                              "Spellpower: +"
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat2"                              "Spell Resistance: +"
 
-		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Double this Item's Critical Strike chance for 8 secs.\n\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat3"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat4"									"%Ability Critical Strike Factor: "
 
 		//2.1
 		
@@ -6061,7 +6072,7 @@
 		"DOTA_Tooltip_Ability_Ghost4_ms"    "%Movement Speed:"
 		"DOTA_Tooltip_Ability_Ghost4_as"    "%Attack Speed:"
 
-		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal"                                         "100% Critical Strike Chance"
+		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal"                                         "Tribute of Blood"
 
 		"DOTA_Tooltip_Ability_item_shadowmourne_Description"  "<h1>Mist of Shadows</h1>Gain 10%% Lifesteal for 5 secs."
 
@@ -6160,8 +6171,6 @@
 		//version 2.1.4
 		
 		"DOTA_Tooltip_Ability_Death_For_Life_bonusspeed"    "%Attack Speed: +" 
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat3"	"Health: +"
-		"DOTA_Tooltip_Ability_item_allstats5_bonus_stat4"	"%Healing received: +"
 		"DOTA_Tooltip_ability_item_crit_pure_2_bonus_stat2"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_pure_2_bonus_stat3"                               "%Healing received: +"
 		"DOTA_Tooltip_ability_item_crit_pure_3_bonus_stat2"                               "Health: +"
@@ -6573,7 +6582,8 @@
 		"DOTA_Tooltip_modifier_firefly_mage"                                              "Dragonfly"
 		"DOTA_Tooltip_Ability_item_bootscrit2"  											"<font color=\"#66ffff\">Tamed Firebat"
 		"DOTA_Tooltip_Ability_item_bootscrit2_Description"  								"<h1>Firefly</h1>Gain a 50%% Movement Speed Burst and Phased Effect for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 15%% increased Damage.\n<font color=\"#00ff00\">Mount: Gain 15%% increased Movement Speed while out of combat."
-		"DOTA_Tooltip_Ability_item_bootscrit2_bonus_stat2"  								"%Ability Critical Strike Chance for 200%:"
+		"DOTA_Tooltip_Ability_item_bootscrit2_bonus_stat2"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit2_bonus_stat3"									"%Ability Critical Strike Factor: "
 		"DOTA_Tooltip_Ability_item_bootscrit2_bonus_stat1"									"Movement Speed: +"
 		"DOTA_Tooltip_modifier_firefly_item"                                              "Mount Speed Boost"
 		"DOTA_Tooltip_modifier_cheater"                                              "Banned"
@@ -6721,18 +6731,18 @@
 		"DOTA_Tooltip_Ability_item_bootsreflect3_bonus_stat3"	"Armor: +"
 		"DOTA_Tooltip_Ability_item_bootsreflect3_bonus_stat4"	"%Holy Damage: +"
 		"DOTA_Tooltip_ability_item_ancient_def"                                           "<font color=\"#00ffff\">[Ancient] Mask of Horror"
-		"DOTA_Tooltip_ability_item_ancient_def_Description"                               "5%% Ability Critical Strike chance for 200%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nAfter having cast your 4th, 5th and 6th Ability, increase this Items Critical Strike chance to 30%% for 8 secs."
+		"DOTA_Tooltip_ability_item_ancient_def_Description"                               "%bonus_stat8%%% Ability Critical Strike chance for %bonus_stat9%%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nAfter having cast your 4th, 5th and 6th Ability, increase this Items Critical Strike chance to %bonus_stat10%%% and Critical Strike multiplier to %bonus_stat11%%% for %bonus_stat12% secs."
 		"DOTA_Tooltip_ability_item_ancient_def_bonus_stat1"                               "Health: +"
-		"DOTA_Tooltip_ability_item_ancient_def_bonus_stat3"                               "Armor: +"
 		"DOTA_Tooltip_ability_item_ancient_def_bonus_stat4"                               "Spell Resistance: +"
 		"DOTA_Tooltip_ability_item_lotusguard3"                                            "<font color=\"#00ffff\">[Ancient] Titanium Bracers"
 		"DOTA_Tooltip_ability_item_lotusguard3_Description"                                "<h1>Spell Barrier</h1>Increase the target's Spell Resistance by an additional 45 for 3 secs.<font color=\"#FF6600\">\nPassive Aura: Decrease the Spell Resistance of nearby enemies by 5.\nUniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_lotusguard3_bonus_stat1"                                "Health: +"
 		"DOTA_Tooltip_ability_item_lotusguard3_bonus_stat2"                                "Spell Resistance: +"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal3"                                             "<font color=\"#00ffff\">[Ancient] Titan Temple Armor"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal3_Description"                                 "<h1>Titan Power</h1>Double this Item's Critical Strike chance for 8 secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal3_bonus_stat1"                                 "%Ability Critical Strike chance for 200%:"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal3_bonus_stat2"                               "Health: +"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal3_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat3%%% and Critical Strike multiplier to %bonus_stat4%%% for %bonus_stat5% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_crit_pure_immortal3_bonus_stat1"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_crit_pure_immortal3_bonus_stat2"									"%Ability Critical Strike Factor: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal3_bonus_stat6"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal3_lore"                                 "Divine Power lies within."
 		"DOTA_Tooltip_ability_item_ancient_str"                                           "<font color=\"#00ffff\">[Ancient] General's Faceguard"
 		"DOTA_Tooltip_ability_item_ancient_str_Description"                               "General's Aura: Grant nearby allies bonus Strength."
@@ -7074,7 +7084,7 @@
 		"DOTA_Tooltip_modifier_buff_int"                                                  "Arcano Infuse"
 		"DOTA_Tooltip_modifier_buff_str"                                                  "Blood Infuse"
 
-		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal_no_ls"                                         "100% Critical Strike Chance"
+		"DOTA_Tooltip_modifier_item_crit_pure_5_lifesteal_no_ls"                                         "Titan Temple Armor"
 
 		"DOTA_Tooltip_modifier_offstance"	"Aggressive Stance"
 
@@ -7396,8 +7406,9 @@
 
 		"DOTA_Tooltip_Ability_item_bootscrit3"  											"<font color=\"#00ffff\">[Ancient] Alphamane Mount"
 		"DOTA_Tooltip_Ability_item_bootscrit3_Description"  								"<h1>Alpharun</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 25%% increased Damage.\nDoes not stack with Firebat.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."
-		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat2"  								"%Ability Critical Strike Chance for 225%:"
-		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat1"									"Movement Speed: +"
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat2"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat3"									"%Ability Critical Strike Factor: "
+		"DOTA_Tooltip_Ability_item_bootscrit3_bonus_stat4"									"Movement Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7up4"  "<font color=\"#00ffff\">[Ancient] Destroyer of Realms"
 		"DOTA_Tooltip_Ability_item_weapon7up4_Description"  "All non-Mana Resource generation is increased by 25%%.\n<font color=\"#FF6600\">Uniquely Equipped.\nDoes not stack with Echostrike.</font>"
@@ -8005,7 +8016,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_036_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deathwing.</font>\nIceshatter Bolts from Ice Storm are now Iceflame Bolts, dealing Frost and Fire Damage at the same time and having their Damage increased by 100%%."
 		"DOTA_Tooltip_ability_item_pathbuff_036_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_037"  "<font color=\"#ffd700\">[Divine] Bone of Nyx"
-		"DOTA_Tooltip_ability_item_pathbuff_037_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deadly Hits.</font>\nDeadly Hits Critical Strikes by Ability Damage instances with a scaling of 400%% or less will Critical Strike for 250%% instead of 150%%."
+		"DOTA_Tooltip_ability_item_pathbuff_037_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Deadly Hits.</font>\nDeadly Hits Critical Strikes by Ability Damage instances with a scaling of 400%% or less will Critical Strike for 300%% instead of 200%%."
 		"DOTA_Tooltip_ability_item_pathbuff_037_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_038"  "<font color=\"#ffd700\">[Divine] Claw of Moogla"
 		"DOTA_Tooltip_ability_item_pathbuff_038_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Wolf's Versatility.</font>\nShadow Claws now also affects your 4th Ability."
@@ -8033,7 +8044,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_044"  "<font color=\"#ffd700\">[Divine] Direwolf Pelt"
 		"DOTA_Tooltip_ability_item_pathbuff_044_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Backstab.</font>\nYour 3rd Ability gains Spell Fury, increasing consecutive Damage by 5%%, up to 50%%. Does not affect Spells that already have an active Spell Fury."
 		"DOTA_Tooltip_ability_item_pathbuff_045"  "<font color=\"#ffd700\">[Divine] Axe of Ra'qoon"
-		"DOTA_Tooltip_ability_item_pathbuff_045_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Alpha Blood.</font>\nThe Alpha Blood Critical Strike chance for your 2nd Ability is doubled.\nYour summons now also gain the same Critical Strike chance that Alpha Blood grants to your 1st Ability, but for 300%% Damage."
+		"DOTA_Tooltip_ability_item_pathbuff_045_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Alpha Blood.</font>\nThe Alpha Blood Critical Strike chance for your 2nd Ability is doubled.\nYour summons now also gain the same Critical Strike chance that Alpha Blood grants to your 1st Ability, but for 600%% Damage."
 		"DOTA_Tooltip_ability_item_pathbuff_046"  "<font color=\"#ffd700\">[Divine] Alphamane Armor"
 		"DOTA_Tooltip_ability_item_pathbuff_046_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Blood Wolf.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_046_stat1"  "Strength: "
@@ -8539,10 +8550,10 @@
 		"DOTA_Tooltip_ability_pve_trap_twin_dragons_Description"                                 "Summon Twin Dragons, launching Fire Breaths, dealing high Fire Damage."
 
 		"DOTA_Tooltip_ability_item_multi_element"                                              "<font color=\"#ff8c00\">[Ancient] Elemental Armor"
-		"DOTA_Tooltip_ability_item_multi_element_Description"                                  "After dealing Damage with a certain Elemental Type, apply a buff or debuff for 20 secs.\nFire: 50%% Spellhaste and Attack Speed, 5%% Movement Speed and 5%% chance to stun for 1 sec (inner stun cd of 20 secs).\nFrost: 10%% Movement slow and target takes 5%% increased Damage from all sources.\nNature: 10 Armor and 5%% of max Health healed every 5 secs.\nArcane: -5 Spell Resistance and 2 Mana per sec.\nShadow: 15 Spell Resistance and 5%% Ability Critical Strike chance for 200%%.\nHoly: 20%% increased Primary Attribute and 20%% Healing caused.\nChaos: 30%% increased Ability Critical Strike and AOE Damage."
+		"DOTA_Tooltip_ability_item_multi_element_Description"                                  "After dealing Damage with a certain Elemental Type, apply a buff or debuff for 20 secs.\nFire: 50%% Spellhaste and Attack Speed, 5%% Movement Speed and 5%% chance to stun for 1 sec (inner stun cd of 20 secs).\nFrost: 10%% Movement slow and target takes 5%% increased Damage from all sources.\nNature: 10 Armor and 5%% of max Health healed every 5 secs.\nArcane: -5 Spell Resistance and 2 Mana per sec.\nShadow: 15 Spell Resistance and %bonus_stat2%%% Ability Critical Strike chance for %bonus_stat3%%%.\nHoly: 20%% increased Primary Attribute and 20%% Healing caused.\nChaos: 30%% increased Ability Critical Strike and AOE Damage."
 		"DOTA_Tooltip_ability_item_multi_element_bonus_stat1"                                "Primary Attribute: +"
 		"DOTA_Tooltip_ability_item_multi_element_2"                                              "<font color=\"#ffd700\">[Divine] Legacy of Kiirion"
-		"DOTA_Tooltip_ability_item_multi_element_2_Description"                                  "After dealing Damage with a certain Elemental Type, apply a buff or debuff for 20 secs.\nFire: 50%% Spellhaste and Attack Speed, 10%% Movement Speed and 5%% chance to stun for 1 sec (inner stun cd of 20 secs).\nFrost: 10%% Movement slow and target takes 5%% increased Damage from all sources.\nNature: 10 Armor and 5%% of max Health healed every 5 secs.\nArcane: -5 Spell Resistance and 2 Mana per sec.\nShadow: 15 Spell Resistance and 5%% Ability Critical Strike chance for 200%%.\nHoly: 20%% increased Primary Attribute and 20%% Healing caused.\nChaos: 30%% increased Ability Critical Strike and AOE Damage."
+		"DOTA_Tooltip_ability_item_multi_element_2_Description"                                  "After dealing Damage with a certain Elemental Type, apply a buff or debuff for 20 secs.\nFire: 50%% Spellhaste and Attack Speed, 10%% Movement Speed and 5%% chance to stun for 1 sec (inner stun cd of 20 secs).\nFrost: 10%% Movement slow and target takes 5%% increased Damage from all sources.\nNature: 10 Armor and 5%% of max Health healed every 5 secs.\nArcane: -5 Spell Resistance and 2 Mana per sec.\nShadow: 15 Spell Resistance and %bonus_stat2%%% Ability Critical Strike chance for %bonus_stat3%%%.\nHoly: 20%% increased Primary Attribute and 20%% Healing caused.\nChaos: 30%% increased Ability Critical Strike and AOE Damage."
 		"DOTA_Tooltip_ability_item_multi_element_2_bonus_stat1"                                "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_focus_dagger"                                          "<font color=\"#ff8c00\">[Ancient] Focus Spear"
@@ -9422,15 +9433,17 @@
 		"DOTA_Tooltip_Ability_item_xset_str_t3_2_2_bonus_stat4"	"%Shadow Damage: +"
 
 		"DOTA_Tooltip_ability_item_crit_myth"                                             "<font color=\"#7733ff\">[Mythical] Rigged Dice of the Deceiver"
-		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Double this Item's Critical Strike chance for 8 secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_crit_myth_bonus_stat1"                                 "%Ability Critical Strike chance for 250%:"
+		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat5%%% and Critical Strike multiplier to %bonus_stat6%%% for %bonus_stat7% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat3"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat4"									"%Ability Critical Strike Factor: "
 		"DOTA_Tooltip_ability_item_crit_myth_bonus_stat2"                               "Health: +"
 		"DOTA_Tooltip_ability_item_crit_myth_lore"                                 		"Manipulates the laws of physics."
 
 		"DOTA_Tooltip_Ability_item_bootscrit4"  											"<font color=\"#7733ff\">[Mythical] Noble Plainstriders"
 		"DOTA_Tooltip_Ability_item_bootscrit4_Description"  								"<h1>Plainstrider</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 35%% increased Damage.\nDoes not stack with Firebat or Alphamane.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."
-		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat2"  								"%Ability Critical Strike Chance for 250%:"
 		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat1"									"Movement Speed: +"
+		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat2"									"%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_bootscrit4_bonus_stat3"									"%Ability Critical Strike Factor: "
 
 		"DOTA_Tooltip_Ability_item_attackpoint3"  "<font color=\"#7733ff\">[Mythical] Cloudburst"
 		"DOTA_Tooltip_Ability_item_attackpoint3_Description"  "Reduces your Base Attack time to 1.75 seconds.\nDoes not stack with other effects adjusting Base Attack time."
@@ -10155,7 +10168,7 @@
 		"DOTA_Tooltip_ability_item_wise_eye_Description"  "<font color=\"#FF6600\">Demon Fury now grants Intellect based on Strength and Agility instead.</font>"
 		"DOTA_Tooltip_ability_item_wise_eye_stat1"  "Intellect: + "
 		"DOTA_Tooltip_ability_item_icelotus"  "<font color=\"#ffd700\">[Divine] Ice Lotus"
-		"DOTA_Tooltip_ability_item_icelotus_Description"  "<font color=\"#FF6600\">Whenever you deal Arcane Damage, it will be Frost Damage instead and vice versa, while gaining a 25% chance to Critical Strike for 250% everytime this takes effect.</font>"
+		"DOTA_Tooltip_ability_item_icelotus_Description"  "<font color=\"#FF6600\">Whenever you deal Arcane Damage, it will be Frost Damage instead and vice versa, while gaining a %stat2%%% chance to Critical Strike for %stat3%%% everytime this takes effect.</font>"
 		"DOTA_Tooltip_ability_item_spearspeed"  "<font color=\"#ffd700\">[Divine] Spear of Speed"
 		"DOTA_Tooltip_ability_item_spearspeed_Description"  "<font color=\"#FF6600\">When you land a Critical Strike with Single Target Ability Damage, increase all Damage by 3%, stacking up to 75 times. Resets after not dealing a Critical Strike for 2 secs.</font>"
 		"DOTA_Tooltip_ability_item_spearspeed_stat1"  "Agility: + "
