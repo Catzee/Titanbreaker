@@ -18728,11 +18728,11 @@ function TutorialDummyPosition(event)
     end
 
     if caster.dummy_dps_time > 10 then
-        local pos = caster.position
-        local pos2 = caster:GetAbsOrigin()
-        if (pos-pos2):Length() > 20 then
-            caster:SetAbsOrigin(pos)
+        if(caster.position == nil) then
+            caster.position = caster:GetAbsOrigin()
         end
+
+        caster:SetAbsOrigin(caster.position)
     end
 end
 
