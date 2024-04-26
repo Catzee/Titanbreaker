@@ -7167,7 +7167,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 							itemdrop = false
 						else
 							if roll <= t8chance then --mythical
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13))]
+								local mythicalItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13)
+								spawnedItem = mythicalItems[math.random(1, #mythicalItems)]
 								itemdrop = true
 								lootquality = 8
 								if lootquality > best_drop then
@@ -7179,7 +7180,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								--	EmitGlobalSound("abaddon_abad_respawn_06")
 								--end)
 							elseif roll <= t7chance then --divine
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12))]
+								local divineItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12)
+								spawnedItem = divineItems[math.random(1, #divineItems)]
 								itemdrop = true
 								lootquality = 7
 								if lootquality > best_drop then
@@ -7201,7 +7203,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								if self.jungledifficulty >= 50 then
 									immortal_item_level = 11
 								end
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level))]
+								local immortalItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)
+								spawnedItem = immortalItems[math.random(1, #immortalItems)]
 								itemdrop = true
 								lootquality = 6
 								if lootquality > best_drop then
@@ -7235,7 +7238,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								if self.jungledifficulty >= 2 then
 									immortal_item_level = 7
 								end
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level))]
+								local legendaryItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)
+								spawnedItem = legendaryItems[math.random(1, #legendaryItems)]
 								itemdrop = true
 								lootquality = 5
 								if lootquality > best_drop then
@@ -7248,7 +7252,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									EmitGlobalSound("abaddon_abad_levelup_04")
 								end)
 							elseif roll <= t4chance then -- epic
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4))]
+								local epicItems = OverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4
+								spawnedItem = epicItems[math.random(1, #epicItems)]
 								itemdrop = true
 								lootquality = 4
 								if lootquality > best_drop then
@@ -7256,7 +7261,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_epic.vpcf"
 							elseif roll <= t3chance then --rare
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3))]
+								local rareItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3)
+								spawnedItem = rareItems[math.random(1, #rareItems)]
 								itemdrop = true
 								lootquality = 3
 								if lootquality > best_drop then
@@ -7264,7 +7270,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_rare.vpcf"
 							elseif roll <= t2chance then --common
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2))]
+								local uncommonItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2)
+								spawnedItem = uncommonItems[math.random(1, #uncommonItems)]
 								itemdrop = true
 								lootquality = 2
 								if lootquality > best_drop then
@@ -7272,7 +7279,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_green.vpcf"
 							else --white
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1))]
+								local commonItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1)
+								spawnedItem = commonItems[math.random(1, #commonItems)]
 								itemdrop = true
 								lootquality = 1
 							end
