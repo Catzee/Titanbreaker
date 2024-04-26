@@ -2418,14 +2418,15 @@
 		"Ability6"					"Arcane6"
 		"Ability7"					"combat_system"
 
-		//"Ability10"		"special_bonus_unique_invoker_1" //"special_bonus_movement_speed_25"
-		//"Ability11"		"special_bonus_unique_invoker_2" //"special_bonus_all_stats_15"
-		//"Ability12"		"special_bonus_unique_invoker_3" //"special_bonus_spell_amplify_5"
-		//"Ability13"		"special_bonus_unique_invoker_4" //"special_bonus_cast_range_150"
-		//"Ability14"		"special_bonus_unique_invoker_5" //"special_bonus_mp_400"
-		//"Ability15"		"special_bonus_cooldown_reduction_10"
-		//"Ability16"		"special_bonus_unique_invoker_2"	//"special_bonus_magic_resistance_35"
-		//"Ability17"		"special_bonus_unique_invoker_4"	//"special_bonus_intelligence_35"
+		// First row of talents will not work unless some invoker abilities present in hero kv (level up order ignored by client)...
+		"Ability17"		"special_bonus_unique_nether_wizard_1"
+		"Ability18"		"special_bonus_unique_nether_wizard_2"
+		"Ability19"		"special_bonus_unique_nether_wizard_3"
+		"Ability20"		"special_bonus_unique_nether_wizard_4"
+		"Ability21"		"special_bonus_unique_nether_wizard_5"
+		"Ability22"		"special_bonus_unique_nether_wizard_6"
+		"Ability23"		"special_bonus_unique_nether_wizard_7"
+		"Ability24"		"special_bonus_unique_nether_wizard_8"
 
 		"UnitLabel"         "hero"
 
