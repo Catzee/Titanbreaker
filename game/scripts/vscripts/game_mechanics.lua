@@ -4542,7 +4542,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         multiplicative_bonus = multiplicative_bonus * (1 + bonus)
     end
-    if GetLevelOfAbility(caster, "special_bonus_unique_invoker_1") >= 1 then
+    if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_3") >= 1 then
         multiplicative_bonus = multiplicative_bonus * 1.05
     end
     if caster:HasModifier("modifier_mop2") then
@@ -14837,7 +14837,7 @@ function GetCooldownReductionFactor( caster, ability )
     if caster:HasModifier("modifier_item_night_shoulders") and ability == caster:GetAbilityByIndex(5) then
         factor = factor * 0.75
     end
-    if GetLevelOfAbility(caster, "special_bonus_unique_invoker_9") >= 1 then
+    if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_4") >= 1 then
         factor = factor * 0.9
     end
     if caster.talents and caster.talents[110] and caster.talents[110] >= 1 then
@@ -20140,7 +20140,7 @@ function GetCastRangeBonus(hero)
     if hero:HasModifier("modifier_shadow_form_ds") and hero:HasModifier("modifier_class_ds2") then
         bonus = bonus + 450
     end
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_5") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_6") >= 1 then
         bonus = bonus + 300
     end
     return bonus
@@ -20736,7 +20736,7 @@ function PassiveStatCalculation(event)
     baseStats[STR] = baseStats[STR] + hero.runeword[5] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[63] * 15 + hero.talents[46] * 15 + hero.talents[10] * 15 + GetGlobalStrengthAuraStat() + GetAllStats(hero)
     baseStats[AGI] = baseStats[AGI] + hero.runeword[1] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[40] * 15 + hero.talents[46] * 15 + GetGlobalAgilityAuraStat() + GetAllStats(hero)
     baseStats[INT] = baseStats[INT] + hero.runeword[2] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[35] * 30 + GetGlobalIntellectAuraStat() + GetAllStats(hero)
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_3") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_8") >= 1 then
         baseStats[INT] = baseStats[INT] + 75
     end
     --primary static
@@ -20834,7 +20834,7 @@ function PassiveStatCalculation(event)
         manaPerInt = 0.0 --0.1
     end
     local maxManaBonusesFromNonItems = realBaseStats[INT] * manaPerInt + hero.talents[120] * 100
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_4") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_5") >= 1 then
         maxManaBonusesFromNonItems = maxManaBonusesFromNonItems + 500
     end
     baseStats[MANA] = hero:GetMaxMana() + maxManaBonusesFromNonItems --these base stats are wrong because mana per int is added by original values, needs fix to remove int mana
@@ -21398,7 +21398,7 @@ function PassiveStatCalculation(event)
                 if hero.talents[80] and hero.talents[80] > 0 then
                     static_bonus = static_bonus + 3 * hero.talents[80]
                 end
-                if GetLevelOfAbility(hero, "special_bonus_unique_invoker_10") >= 1 then
+                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_1") >= 1 then
                     static_bonus = static_bonus + 5
                 end
                 if hero.talents[139] and hero.talents[139] > 0 then
@@ -21529,7 +21529,7 @@ function PassiveStatCalculation(event)
                     end
                 end
                 local value5 = 0
-                if GetLevelOfAbility(hero, "special_bonus_unique_invoker_2") >= 1 then
+                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_7") >= 1 then
                     value5 = 35
                 end
                 local mresPerInt = 0.01
@@ -21920,7 +21920,7 @@ end
 
 function GetAllStats(hero)
     local value = 0
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_6") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_2") >= 1 then
         value = value + 15
     end
     return value
