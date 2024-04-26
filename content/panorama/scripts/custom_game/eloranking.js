@@ -15,8 +15,6 @@ var last_loot_table_panel = null;
 var last_loot_table_panel_artifact = null;
 var last_act_enter_item_panel_artifact = null;
 var last_shop_item_panel = null;
-var shopItemsAdded = false;
-var recipesItemsAdded = false;
 var save_cooldown = 0;
 var autosell = 0;
 var main_stats_detailed = false;
@@ -1884,34 +1882,28 @@ function MoveItemToStash(args){
     GameEvents.SendCustomGameEventToServer( "moveitemtostash", { "player_id": Players.GetLocalPlayer() } );
 }
 
+function AddItemsToShop(args){
+    for (const [_, itemData] of Object.entries(args)) {
+        AddItemToShop(itemData);
+    }
+}
+
 function AddItemToShop(args){
-    if(shopItemsAdded){
-        return;
-    }
-    var isRecipe = args.item.length >= 14 && args.item.slice(5, 11) == "recipe";
-    if(args.isLastItem == 1){
-        shopItemsAdded = true;
-        GameEvents.SendCustomGameEventToServer( "stopsendingshopitems", { "player_id": Players.GetLocalPlayer() } );
-    }
     var panel = $('#shop');
     //check if we need new row
     var itemsPerLine = 15;
-    if(isRecipe){
-        itemsPerLine = 10;
-    }
-    if((last_shop_item_panel == null) || ((last_shop_item_panel.GetChildCount() % (itemsPerLine + 1)) == itemsPerLine) || (isRecipe && !recipesItemsAdded)){
+
+    if((last_shop_item_panel == null) || ((last_shop_item_panel.GetChildCount() % (itemsPerLine + 1)) == itemsPerLine)){
         var newRow = $.CreatePanel('Panel', panel, '');
         newRow.AddClass("TableRow");
         last_shop_item_panel = newRow;
-        if(isRecipe && !recipesItemsAdded){
-            recipesItemsAdded = true;
-        }
     }
     //$.Msg("add item " + args.item + " child count " + last_shop_item_panel.GetChildCount());
     panel = last_shop_item_panel;
     if(panel == null){
         return;
     }
+    /*
     var itemPanel = $.CreatePanel('Panel', panel, '');
     itemPanel.AddClass("SellPanel");
     itemPanel.style.height = "100px";
@@ -1954,13 +1946,24 @@ function AddItemToShop(args){
     title.style.color = "gold";
     title.html = true;
     title.text = args.cost + "$";
+    */
+    
+    var itemPanel = $.CreatePanel('Panel', panel, '');
+    itemPanel.BLoadLayoutSnippet("BlacksmithItem");
 
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "talent_cataclysm"));
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "invoker_cataclysm"));
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "special_bonus_unique_invoker_1"));
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "special_bonus_unique_invoker_6"));
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "special_bonus_unique_invoker_7"));
-    //$.Msg($.Localize( "DOTA_Tooltip_ability_" + "special_bonus_unique_invoker_8"));
+    let itemIcon = itemPanel.FindChildTraverse("itemIcon");
+    itemIcon.itemname = args.item;
+
+    let itemPrice = itemPanel.FindChildTraverse("itemPriceLabel");
+    itemPrice.text = args.cost;
+
+    let itemButton = itemPanel.FindChildTraverse("buyButton");
+    itemButton.SetPanelEvent(
+        "onmouseactivate", 
+        function(){
+            BuyNormalItem(args.item, args.rarity);
+        }
+    )
 }
 
 function BuyNormalItem(item, rarity){
@@ -3725,8 +3728,11 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("set_mana_per_int", SetManaPerInt);
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
-    GameEvents.Subscribe("additemtoshop", AddItemToShop);
+    GameEvents.Subscribe("additemstoshop", AddItemsToShop);
     
+    // Require shop items for blacksmith
+    GameEvents.SendCustomGameEventToServer("getshopitems", { } );
+
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
     //Game.AddCommand( "+JPressed", ToggleGambling, "", 0 );

@@ -1417,3 +1417,44 @@
 {
     text-shadow: -1px 1px 2px 1.0 #000000;
 }
+
+.BlacksmithItemContainer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+	flow-children: down;
+	horizontal-align: center;
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+}
+
+.BlacksmithItemBuyButton
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.BlacksmithItemPriceContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.BlacksmithItemPriceLabel
+{
+	font-size: 24px;
+	color: gold;
+}
+
+.BlacksmithItemPriceIcon
+{
+	width: 26px;
+	height: 26px;
+}
+
+.BlacksmithItemPriceLabel
+{
+	font-size: 24px;
+	color: gold;
+}

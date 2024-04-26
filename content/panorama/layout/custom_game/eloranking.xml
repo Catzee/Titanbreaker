@@ -5,7 +5,22 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/eloranking.js" />
 	</scripts>
-	
+	<snippets>
+        <snippet name="BlacksmithItem">
+			<Panel class="BlacksmithItemContainer">
+				<Panel class="BlacksmithItemBuyButton">
+					<Button id="buyButton" class="SellButton" style="width: 100%;">
+						<DOTAItemImage id="itemIcon" itemname=""/>
+					</Button>
+				</Panel>
+				<Panel class="BlacksmithItemPriceContainer">
+					<Image class="BlacksmithItemPriceIcon" src="s2r://panorama/images/hud/reborn/gold_small_psd.vtex"/>
+					<Label id="itemPriceLabel" class="BlacksmithItemPriceLabel" text="123" html="true"/>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+
 	<Panel class="OverthrowLoadingRoot" hittest="false">
 		<Panel id="startbuttons" visible="false">
 			<Panel id="FlowPanel4" class="FlowPanel">
