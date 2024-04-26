@@ -1429,6 +1429,11 @@
 	margin-top: 10px;
 }
 
+.BlacksmithItemContainer.Hidden
+{
+	width: 0px;
+}
+
 .BlacksmithItemBuyButton
 {
 	flow-children: down;
@@ -1457,4 +1462,50 @@
 {
 	font-size: 24px;
 	color: gold;
+}
+
+#BlacksmithSearchBar {
+    border: 1px solid baseBorder;
+    width: 352px;
+    height: 36px;
+
+    padding: 5px 7px 3px 7px;
+
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#111111ff), to(#222222ff));
+
+    color: white;
+    font-size: 20px;
+
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+#BlacksmithSearchBar:disabled {
+    border-color: #44444440;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#11111140), to(#22222240));
+    color: #999999ff;
+}
+
+#BlacksmithSearchBar #PlaceholderText {
+    opacity: 1;
+
+    transition-property: opacity;
+    transition-duration: 0.2s;
+
+    margin-top: 2px;
+
+    color: #555555;
+    font-size: 18px;
+}
+
+#BlacksmithSearchBar.ThinTextEntry {
+    height: 32px;
+    font-size: 18px;
+}
+
+.BlacksmithTableRow
+{
+	flow-children: right;
+	width: fill-parent-flow(1.0);
+	height: fit-childrens;
 }

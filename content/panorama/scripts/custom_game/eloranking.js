@@ -1882,20 +1882,54 @@ function MoveItemToStash(args){
     GameEvents.SendCustomGameEventToServer( "moveitemtostash", { "player_id": Players.GetLocalPlayer() } );
 }
 
+var blacksmithFilterTextField = $("#BlacksmithSearchBar");
+var blacksmithItemsContainer = $("#shop");
+var previousBlacksmithFilterText = "";
+var blacksmithFilterTickRate = 0.25;
+var blacksmithFilterStarted = false;
+
 function AddItemsToShop(args){
     for (const [_, itemData] of Object.entries(args)) {
         AddItemToShop(itemData);
     }
+
+    if(!blacksmithFilterStarted)
+    {
+        $.Schedule(blacksmithFilterTickRate, TryApplyBlacksmithFilter);
+        blacksmithFilterStarted = true;
+    }
+}
+
+function TryApplyBlacksmithFilter()
+{
+    let currentFilterText = blacksmithFilterTextField.text.toLowerCase();
+
+    if(currentFilterText.length > 0 && currentFilterText != previousBlacksmithFilterText)
+    {
+        var shopItems = blacksmithItemsContainer.shopItems;
+
+        if(shopItems != undefined)
+        {
+            for (const [_, itemPanel] of Object.entries(shopItems)) {
+                var isIncludedInFilterText = itemPanel.itemSearchText != undefined && itemPanel.itemSearchText.includes(currentFilterText) == true;
+                itemPanel.SetHasClass("Hidden", !isIncludedInFilterText);
+            }
+        }
+
+        previousBlacksmithFilterText = currentFilterText;
+    }
+
+    $.Schedule(blacksmithFilterTickRate, TryApplyBlacksmithFilter);
 }
 
 function AddItemToShop(args){
-    var panel = $('#shop');
+    var panel = blacksmithItemsContainer;
     //check if we need new row
     var itemsPerLine = 15;
 
     if((last_shop_item_panel == null) || ((last_shop_item_panel.GetChildCount() % (itemsPerLine + 1)) == itemsPerLine)){
         var newRow = $.CreatePanel('Panel', panel, '');
-        newRow.AddClass("TableRow");
+        newRow.AddClass("BlacksmithTableRow");
         last_shop_item_panel = newRow;
     }
     //$.Msg("add item " + args.item + " child count " + last_shop_item_panel.GetChildCount());
@@ -1903,50 +1937,6 @@ function AddItemToShop(args){
     if(panel == null){
         return;
     }
-    /*
-    var itemPanel = $.CreatePanel('Panel', panel, '');
-    itemPanel.AddClass("SellPanel");
-    itemPanel.style.height = "100px";
-    itemPanel.style.width = "90px";
-    itemPanel.style.marginTop = "10px";
-    var buy_button = $.CreatePanel('Button', itemPanel, '');
-    buy_button.AddClass("SellButton");
-    buy_button.style.width = "100%";
-    var itemImage = $.CreatePanel('DOTAItemImage', buy_button, '');
-    itemImage.itemname = args.item;
-    //if(isRecipe){
-    //    itemImage.itemname = "item_recipe_arcane_boots";
-    //}
-    
-    
-    buy_button.SetPanelEvent(
-        "onmouseactivate", 
-        function(){
-            BuyNormalItem(args.item, args.rarity);
-        }
-    )
-
-    //name
-    if(isRecipe){
-        itemPanel.style.height = "200px";
-        itemPanel.style.width = "135px";
-        var name = $.CreatePanel('Label', buy_button, '');
-        name.style.horizontalAlign = "center";
-        name.style.fontSize = 24;
-        name.style.color = "white";
-        name.html = true;
-        var reducedName = args.item.slice(0, 5) + args.item.slice(12, args.item.length);
-        name.text = ""; //$.Localize( "DOTA_Tooltip_ability_".concat(reducedName));
-    }
-
-    //gold
-    var title = $.CreatePanel('Label', buy_button, '');
-    title.style.horizontalAlign = "center";
-    title.style.fontSize = 24;
-    title.style.color = "gold";
-    title.html = true;
-    title.text = args.cost + "$";
-    */
     
     var itemPanel = $.CreatePanel('Panel', panel, '');
     itemPanel.BLoadLayoutSnippet("BlacksmithItem");
@@ -1964,6 +1954,18 @@ function AddItemToShop(args){
             BuyNormalItem(args.item, args.rarity);
         }
     )
+
+    var isRecipe = args.item.length >= 14 && args.item.slice(5, 11) == "recipe";
+    var itemName = isRecipe ? args.item.replace("item_recipe", "item") : args.item;
+
+    itemPanel.itemSearchText = ((isRecipe ? "recipe" : "") + $.Localize("#dota_tooltip_ability_" + itemName)).toLowerCase();
+
+    if(blacksmithItemsContainer.shopItems == undefined)
+    {
+        blacksmithItemsContainer.shopItems = [];
+    }
+
+    blacksmithItemsContainer.shopItems.push(itemPanel);
 }
 
 function BuyNormalItem(item, rarity){
