@@ -22,9 +22,30 @@ function Init()
         GameRules:Playtesting_UpdateAddOnKeyValues()
     end, "reload_kv", FCVAR_CHEAT)
     --]]
+
+    Convars:RegisterCommand("droptempleitem", function(_, lootQuality, lootModifier)
+        local lootQuality = tonumber(lootQuality)
+        local isSoul = lootModifier == "soul" -- probably impossible without modifying DropTempleItem so unimplemented for now
+        local isArti = lootModifier == "arti"
+
+        DebugDropTempleItem(lootQuality, isSoul, isArti)
+    end, "droptempleitem", FCVAR_CHEAT)
+
     local villageDummyPoint = Vector(-14972.935547, 14804.335938, 128.000000)
     
     CreateUnitByName("npc_dota_creature_tutorial_dummy", villageDummyPoint, false, nil, nil, DOTA_TEAM_NEUTRALS)
 
     _G._debugToolsInit = true
+
+end
+
+function DebugDropTempleItem(lootQuality, isSoul, isArti)
+    if not IsInToolsMode() then -- just to be 100% safe
+        return
+    end
+    if(lootQuality == nil) then
+        return
+    end
+
+    COverthrowGameMode:DropTempleItem(PlayerResource:GetSelectedHeroEntity(0), 100, 2, lootQuality, isArti)
 end

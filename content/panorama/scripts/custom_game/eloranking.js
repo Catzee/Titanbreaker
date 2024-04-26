@@ -19,6 +19,8 @@ var shopItemsAdded = false;
 var recipesItemsAdded = false;
 var save_cooldown = 0;
 var autosell = 0;
+var autosellArti = 0;
+var autosellSouls = 0;
 var main_stats_detailed = false;
 
 var hpPerStr = 10; //20;
@@ -3136,23 +3138,91 @@ function SetMyChest(args)
     }
 }
 
-function SetAutoSell(args){
+function SetAutoSellItems() {
     autosell = autosell + 1;
-    if(autosell > 6){
+
+    if(autosell > 15){
         autosell = 0;
-        $("#autoselltext").text = "Auto Sell: Off";
+        $("#autoselltext1").text = "Don't Auto Sell Items";
     }
     if(autosell == 1){
+        autosell = 2;
+        $("#autoselltext1").text = "Auto Sell: Common Items and below";
+    }
+    if(autosell == 3){
         autosell = 4;
-        $("#autoselltext").text = "Auto Sell: Epic and below";
+        $("#autoselltext1").text = "Auto Sell: Uncommon Items and below";
     }
     if(autosell == 5){
-        $("#autoselltext").text = "Auto Sell: Legendary and below";
+        autosell = 6;
+        $("#autoselltext1").text = "Auto Sell: Rare Items and below";
     }
-    if(autosell == 6){
-        $("#autoselltext").text = "Auto Sell: Immortal and below";
+    if(autosell == 7){
+        autosell = 8;
+        $("#autoselltext1").text = "Auto Sell: Epic Items and below";
+    }
+    if(autosell == 9){
+        autosell = 10;
+        $("#autoselltext1").text = "Auto Sell: Legendary Items and below";
+    }
+    if(autosell == 11){
+        autosell = 12;
+        $("#autoselltext1").text = "Auto Sell: Immortal Items and below";
+    }
+    if(autosell == 13){
+        autosell = 14;
+        $("#autoselltext1").text = "Auto Sell: Divine Items and below";
+    }
+    if(autosell == 15){
+        autosell = 16;
+        $("#autoselltext1").text = "Auto Sell: Mythical Items and below";
     }
     GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autosell } );
+}
+
+function SetAutoSellArtifacts() {
+    autosellArti = autosellArti + 1;
+
+    if(autosellArti > 10){
+        autosellArti = 0;
+        $("#autoselltext2").text = "Don't Auto Sell Artifacts";
+    }
+    if(autosellArti == 1){
+        autosellArti = 2;
+        $("#autoselltext2").text = "Auto Sell: Epic Artifacts and below";
+    }
+    if(autosellArti == 3){
+        autosellArti = 4;
+        $("#autoselltext2").text = "Auto Sell: Legendary Artifacts and below";
+    }
+    if(autosellArti == 5){
+        autosellArti = 6;
+        $("#autoselltext2").text = "Auto Sell: Immortal Artifacts and below";
+    }
+    if(autosellArti == 7){
+        autosellArti = 8;
+        $("#autoselltext2").text = "Auto Sell: Divine Artifacts and below";
+    }
+    if(autosellArti == 9){
+        autosellArti = 10;
+        $("#autoselltext2").text = "Auto Sell: Mythical Artifacts and below";
+    }
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti" : autosellArti } );
+}
+
+function SetAutoSellSouls() {
+    autosellSouls = autosellSouls + 1;
+
+    if(autosellSouls > 1){
+        autosellSouls = 0;
+        $("#autoselltext3").text = "Don't Auto Sell Souls";
+    }
+    if(autosellSouls == 1){
+        autosellSouls = 2;
+        $("#autoselltext3").text = "Auto Sell: All Souls";
+    }
+
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls" : autosellSouls } );
 }
 
 function TalentPressed(args){

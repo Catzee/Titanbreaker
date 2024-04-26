@@ -3503,8 +3503,14 @@
 
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart">
-			<Button id="QuestlogButton2" class="Butt" onactivate="SetAutoSell()">	
-				<Label class="ButtText" id="autoselltext" text="Auto Sell: None" />			
+			<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems()">	
+				<Label class="ButtText" id="autoselltext1" text="Don't Auto Sell Items" />			
+			</Button>
+			<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts()">	
+				<Label class="ButtText" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
+			</Button>
+			<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls()">	
+				<Label class="ButtText" id="autoselltext3" text="Don't Auto Sell Souls" />			
 			</Button>
 		</Panel>
 		<Panel class="MonsterSpellcastList" hittest="false" id="monsterspells">

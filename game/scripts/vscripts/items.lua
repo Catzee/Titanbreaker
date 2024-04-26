@@ -7294,7 +7294,76 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						end
 
 						--autosell feature
-						if hero and hero.autosell and lootquality and lootquality <= hero.autosell then
+						local isAutoSell = false
+						
+						if(artifact) then
+							-- Auto Sell: Epic Artifacts and below
+							if(hero.autosellArti == 2) then
+								isAutoSell = lootquality <= 4
+							end
+							-- Auto Sell: Legendary Artifacts and below
+							if(hero.autosellArti == 4) then
+								isAutoSell = lootquality <= 5
+							end
+							-- Auto Sell: Immortal Artifacts and below
+							if(hero.autosellArti == 6) then
+								isAutoSell = lootquality <= 6
+							end
+							-- Auto Sell: Divine Artifacts and below
+							if(hero.autosellArti == 8) then
+								isAutoSell = lootquality <= 7
+							end
+							-- Auto Sell: Mythical Artifacts and below
+							if(hero.autosellArti == 10) then
+								isAutoSell = lootquality <= 8
+							end
+						else
+							if(itemdrop) then
+								local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
+
+								-- Auto Sell: All Souls
+								local isSoulProtected = true
+								if(isSoulDrop and hero.autosellSouls == 0) then
+									isSoulProtected = false
+								end
+
+								print("isSoulProtected ", isSoulProtected)
+								-- Auto Sell: Common Items and below
+								if(hero.autosell == 2) then
+									isAutoSell = lootquality <= 1 and isSoulProtected
+								end
+								-- Auto Sell: Uncommon Items and below
+								if(hero.autosell == 4) then
+									isAutoSell = lootquality <= 2 and isSoulProtected
+								end
+								-- Auto Sell: Rare Items and below
+								if(hero.autosell == 6) then
+									isAutoSell = lootquality <= 3 and isSoulProtected
+								end
+								-- Auto Sell: Epic Items and below
+								if(hero.autosell == 8) then
+									isAutoSell = lootquality <= 4 and isSoulProtected
+								end
+								-- Auto Sell: Legendary Items and below
+								if(hero.autosell == 10) then
+									isAutoSell = lootquality <= 5 and isSoulProtected
+								end
+								-- Auto Sell: Immortal Items and below
+								if(hero.autosell == 12) then
+									isAutoSell = lootquality <= 6 and isSoulProtected
+								end
+								-- Auto Sell: Divine Items and below
+								if(hero.autosell == 14) then
+									isAutoSell = lootquality <= 7 and isSoulProtected
+								end
+								-- Auto Sell: Mythical Items and below
+								if(hero.autosell == 16) then
+									isAutoSell = lootquality <= 8 and isSoulProtected
+								end
+							end
+						end
+
+						if hero and isAutoSell then
 							itemdrop = false
 							local gold = GetSellValueByItemLevel(lootquality)
 			                EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
