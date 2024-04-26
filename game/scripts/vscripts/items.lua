@@ -7383,7 +7383,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									        	local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_d_glow.vpcf", PATTACH_POINT_FOLLOW, itemContainer)
 										        -- Destroy & release item particle on item pickup
 												Timers:CreateTimer(1,function()
-													if(itemContainer:IsNull()) then
+													if(itemContainer == nil or itemContainer:IsNull()) then
 														ParticleManager:DestroyParticle(particle2, true)
 														ParticleManager:ReleaseParticleIndex(particle2)
 														return
@@ -7395,7 +7395,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        		local particle = ParticleManager:CreateParticle(fxpath, PATTACH_POINT_FOLLOW, itemContainer)
 										        		-- Destroy & release item particle on item pickup
 														Timers:CreateTimer(1,function()
-															if(itemContainer:IsNull()) then
+															if(itemContainer == nil or itemContainer:IsNull()) then
 																ParticleManager:DestroyParticle(particle, true)
 																ParticleManager:ReleaseParticleIndex(particle)
 																return
@@ -7407,7 +7407,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        			-- Destroy & release ray particle on item pickup
 										        			local rayParticle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, itemContainer)
 										        			Timers:CreateTimer(1,function()
-																if(itemContainer:IsNull()) then
+																if(itemContainer == nil or itemContainer:IsNull()) then
 																	ParticleManager:DestroyParticle(rayParticle, true)
 																	ParticleManager:ReleaseParticleIndex(rayParticle)
 																	return
