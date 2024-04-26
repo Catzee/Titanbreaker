@@ -7252,7 +7252,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									EmitGlobalSound("abaddon_abad_levelup_04")
 								end)
 							elseif roll <= t4chance then -- epic
-								local epicItems = OverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4
+								local epicItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4)
 								spawnedItem = epicItems[math.random(1, #epicItems)]
 								itemdrop = true
 								lootquality = 4
