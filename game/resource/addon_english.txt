@@ -9979,8 +9979,8 @@
 		"DOTA_Tooltip_modifier_dot_gen"                                                       "Damage over Time"
 		"DOTA_Tooltip_modifier_dot_gen_Description"                                           " "
 
-		"DOTA_Tooltip_modifier_ursa_prot"                                                       "Protection of Ursa"
-		"DOTA_Tooltip_modifier_ursa_prot_Description"                                           " "
+		"DOTA_Tooltip_modifier_swipe_of_ursa_proc"                                                       "Protection of Ursa"
+		"DOTA_Tooltip_modifier_swipe_of_ursa_proc_Description"                                           " "
 
 		"DOTA_Tooltip_modifier_tunic_hunt_item2"                                                       "Tunic of the Hunt"
 		"DOTA_Tooltip_modifier_tunic_hunt_item2_Description"                                           "Armor reduced."

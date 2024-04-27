@@ -75424,32 +75424,7 @@
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "1"
 	            }
 	        }
-	        "modifier_ursa_prot"
-	        {
-	        	"Duration" 	"6"
-	            "Passive"  "0"
-	            "IsHidden" "0" 
-	            "IsPurgable"		"1"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "TextureName" "ursa_enrage"
-	            "OnCreated"
-	            {
-	            	"AttachEffect"
-	            	{
-	            		"EffectName"        "particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_shield_buff_parent.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "TARGET"
-	            		"ControlPointEntities"
-	            		{
-	            			"TARGET"	"attach_hitloc"
-	            			"TARGET"	"attach_hitloc"
-	            		}
-	            	}
-	            }
-	        }
-	        
+
 	    	"modifier_runeofdetection"
 	        {
 	            "Passive"          "0"
