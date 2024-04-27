@@ -1244,7 +1244,7 @@ COverthrowGameMode.PathTalentNames = {
 	"Alpha Blood",
 	"Blood Wolf",
 	"Wolf Rage",
-	"Hunt the Weak",
+	"Impale",
 	"Steadiness",
 	"Swipe of Ursa",
 	"Steel Mammoth",
@@ -3364,7 +3364,7 @@ function COverthrowGameMode:GetMythicWeaponAttributeName(weapon, attribute)
 			return " Path: Backstab"
 		end
 		if attribute == 2 then
-			return " Path: Hunt the Weak"
+			return " Path: Impale"
 		end
 		if attribute == 3 then
 			return " Path: Full Moon"
@@ -3939,7 +3939,7 @@ function COverthrowGameMode:GetMythicWeaponAttributeName(weapon, attribute)
 			return " Path: Backstab"
 		end
 		if attribute == 2 then
-			return " Path: Hunt the Weak"
+			return " Path: Impale"
 		end
 		if attribute == 3 then
 			return " Path: Full Moon"
