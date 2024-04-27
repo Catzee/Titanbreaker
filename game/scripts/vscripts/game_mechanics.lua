@@ -20169,6 +20169,8 @@ function PassiveStatCalculation(event)
     local dur = 10
     local isUpdateTickEvery5secs = false
     local isUpdateTickEvery10secs = false
+
+    -- keeping track of current hp %, so that when changes to max HP occur, we can still keep same current hp %, by setting this again after all max hp changes were applied
     local hpPercent = hero:GetHealth() / hero:GetMaxHealth()
     if hero:GetGold() > 0 then
         hero:SetGold(0, true)
@@ -21272,14 +21274,10 @@ function PassiveStatCalculation(event)
         end
 
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
-        --new_talent_value = 1
-        --new_talent_value = 1
-        --if i == 111 then
+        --if i == 39 then
         --    new_talent_value = 3
         --end
-        --if i == 34 then
-        --    new_talent_value = 1
-        --end
+        
         --new divine doubling soul items
         local pathbuff = "modifier_pathbuff_0"
         if i <= 9 then
@@ -21540,23 +21538,6 @@ function PassiveStatCalculation(event)
                     hero:SetModifierStackCount(buff, ability, finalValue)
                 end
             end
-            if i == 39 and isUpdateTickEvery5secs then
-                local value = level
-                local fixedheal = 75 * level
-                local myevent = {caster = hero, target = hero, percenthp = value, heal = fixedheal, ability = ability}
-                HealUnit(myevent)
-                if hero:HasModifier("modifier_pathbuff_039") then
-                    if not hero.blindfold_lickwounds_heal_counter then
-                        hero.blindfold_lickwounds_heal_counter = 0
-                    end
-                    hero.blindfold_lickwounds_heal_counter = hero.blindfold_lickwounds_heal_counter + 1
-                    if hero.blindfold_lickwounds_heal_counter == 5 then
-                        local particle = ParticleManager:CreateParticle( "particles/items4_fx/combo_breaker_buff.vpcf", PATTACH_POINT_FOLLOW, hero )
-                        ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
-                        ParticleManager:ReleaseParticleIndex(particle)
-                    end
-                end
-            end
             if i == 46 then
                 local buff = "modifier_talent_beastmaster"
                 hero:RemoveModifierByName(buff)
@@ -21783,7 +21764,7 @@ function PassiveStatCalculation(event)
         hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "system_aacrit", nil)
         hero:SetModifierStackCount("system_aacrit", hero.combat_system_ability, system_aacrit_stacks)
     end
-    --hp fix
+    --hp fix to keep current hp % the same, even if max hp changes
     hero:SetHealth(hero:GetMaxHealth() * hpPercent)
     ProcsEverySecond(hero)
     if isUpdateTickEvery5secs then
@@ -21873,6 +21854,25 @@ function ProcsEvery5Seconds(hero)
         --AutoAttackCriticalStrike({attacker = hero, target = nil, ability = hero.combat_system_ability, aacrit_factor = 250, aacrit_chance = 100})
         --hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "modifier_critguaranteed", {Duration = 5})
         hero.passiveAACrit = 250
+    end
+
+    if hero.talents[39] and hero.talents[39] > 0 then
+        local level = hero.talents[39]
+        local value = level
+        local fixedheal = 75 * level
+        local myevent = {caster = hero, target = hero, percenthp = value, heal = fixedheal, ability = hero.combat_system_ability}
+        HealUnit(myevent)
+        if hero:HasModifier("modifier_pathbuff_039") then
+            if not hero.blindfold_lickwounds_heal_counter then
+                hero.blindfold_lickwounds_heal_counter = 0
+            end
+            hero.blindfold_lickwounds_heal_counter = hero.blindfold_lickwounds_heal_counter + 1
+            if hero.blindfold_lickwounds_heal_counter == 5 then
+                local particle = ParticleManager:CreateParticle( "particles/items4_fx/combo_breaker_buff.vpcf", PATTACH_POINT_FOLLOW, hero )
+                ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
+                ParticleManager:ReleaseParticleIndex(particle)
+            end
+        end
     end
 end
 
