@@ -20169,7 +20169,7 @@ function PassiveStatCalculation(event)
     local dur = 10
     local isUpdateTickEvery5secs = false
     local isUpdateTickEvery10secs = false
-    local hpPercent = hero:GetHealth() / hero:GetMaxHealth()
+    --local hpPercent = hero:GetHealth() / hero:GetMaxHealth()
     if not hero.sentShopItems then
         SendItemsToShop(hero)
         hero.sentShopItems = true
@@ -21495,9 +21495,10 @@ function PassiveStatCalculation(event)
                 end
             end
             if i == 58 and isUpdateTickEvery5secs then
-                if not hero:HasModifier("modifier_oocmana") and hpPercent >= 0.65 then
-                    --hero:SetHealth(hero:GetHealth() - hero:GetMaxHealth() * 0.15)
-                    hpPercent = hpPercent - 0.15
+                local lifeBloodHpPercent = hero:GetHealth() / hero:GetMaxHealth()
+                if not hero:HasModifier("modifier_oocmana") and lifeBloodHpPercent >= 0.65 then
+                    hero:SetHealth(hero:GetHealth() - hero:GetMaxHealth() * 0.15)
+                    --hpPercent = hpPercent - 0.15
                     hero.lifeblood = 1 + 0.1 * level
                     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf", PATTACH_POINT_FOLLOW, hero)
                     ParticleManager:ReleaseParticleIndex(particle)
@@ -21787,8 +21788,8 @@ function PassiveStatCalculation(event)
         hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "system_aacrit", nil)
         hero:SetModifierStackCount("system_aacrit", hero.combat_system_ability, system_aacrit_stacks)
     end
-    --hp fix
-    hero:SetHealth(hero:GetMaxHealth() * hpPercent)
+    --hp fix (i have no idea what exactly that supposed to fix, but seems used only for lifeblood and breaks healing from at least lick wounds)
+    --hero:SetHealth(hero:GetMaxHealth() * hpPercent)
     ProcsEverySecond(hero)
     if isUpdateTickEvery5secs then
         ProcsEvery5Seconds(hero)
