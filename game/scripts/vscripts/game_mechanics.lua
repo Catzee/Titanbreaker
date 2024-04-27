@@ -20170,10 +20170,6 @@ function PassiveStatCalculation(event)
     local isUpdateTickEvery5secs = false
     local isUpdateTickEvery10secs = false
     local hpPercent = hero:GetHealth() / hero:GetMaxHealth()
-    if not hero.sentShopItems then
-        SendItemsToShop(hero)
-        hero.sentShopItems = true
-    end
     if hero:GetGold() > 0 then
         hero:SetGold(0, true)
         hero:SetGold(0, false)

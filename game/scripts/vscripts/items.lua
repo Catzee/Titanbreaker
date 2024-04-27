@@ -7965,25 +7965,48 @@ function GetCostByItemLevel( level )
 	return 1
 end
 
-function SendItemsToShop(hero)
-	local player = PlayerResource:GetPlayer(hero:GetPlayerID())
+function COverthrowGameMode:SendItemsToShop(params)
+	local player = PlayerResource:GetPlayer(params.PlayerID)
+
+	if(player == nil) then
+		return
+	end
+
     local items = GetAllItems(nil, true, false, 1)
     items[5] = GetAllRecipes()
-    local delay = 0.5
+	local currentBatchQuantity = 0
+	local itemsToSend = {}
+
     for j=1,5 do
     	--if j <= 5 then
 	    	for i=1,#items[j] do
-	    		local lastItem = 0
-	    		if j == 5 and i == #items[j] then
-	    			lastItem = 1
-	    		end
-	    		Timers:CreateTimer(delay,function()
-	        		CustomGameEventManager:Send_ServerToPlayer(player, "additemtoshop", { item = items[j][i], rarity = j, cost = GetCostByItemLevel(j), isLastItem = lastItem } )
-	        	end)
-	        	delay = delay + 0.5
+	    		--local lastItem = 0
+	    		--if j == 5 and i == #items[j] then
+	    		--	lastItem = 1
+	    		--end
+
+				table.insert(itemsToSend, {
+					item = items[j][i],
+					rarity = j,
+					cost = GetCostByItemLevel(j),
+					--isLastItem = lastItem
+				})
+
+				currentBatchQuantity = currentBatchQuantity + 1
+				-- Send items in batches of 100
 	        end
+			if(currentBatchQuantity >= 100) then
+				CustomGameEventManager:Send_ServerToPlayer(player, "additemstoshop", itemsToSend )
+				itemsToSend = {}
+				currentBatchQuantity = 0
+			end
 		--end
     end
+
+	-- Send last batch, if not sended still
+	if(currentBatchQuantity > 0) then
+		CustomGameEventManager:Send_ServerToPlayer(player, "additemstoshop", itemsToSend )
+	end
 end
 
 function GetAllRecipes()

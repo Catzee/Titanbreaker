@@ -2560,9 +2560,8 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
+      CustomGameEventManager:RegisterListener( "getshopitems", Dynamic_Wrap(COverthrowGameMode, 'SendItemsToShop'))
       
-      
-
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
 
