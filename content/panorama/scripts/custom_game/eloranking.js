@@ -3726,7 +3726,7 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
     
-    // Require shop items for blacksmith
+    // Requires shop items for blacksmith
     GameEvents.SendCustomGameEventToServer("getshopitems", { } );
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );

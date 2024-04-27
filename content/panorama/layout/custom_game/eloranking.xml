@@ -1661,7 +1661,7 @@
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
 				<Panel class="TableRow">
 					<Label text="Item name" style="vertical-align: center; color: white; font-size: 20px; margin-right: 10px;"/>
-					<TextEntry id="BlacksmithSearchBar" placeholder="" oninputsubmit="ApplyBlacksmithItemsFilter()"/>
+					<TextEntry id="BlacksmithSearchBar"/>
 				</Panel>
 				<Panel class="" id="blacksmithItemsList"/>
 			</Panel>
