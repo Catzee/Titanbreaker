@@ -1883,9 +1883,9 @@ function MoveItemToStash(args){
 }
 
 var blacksmithFilterTextField = $("#BlacksmithSearchBar");
-var blacksmithItemsContainer = $("#shop");
+var blacksmithItemsContainer = $("#blacksmithItemsList");
 var previousBlacksmithFilterText = "";
-var blacksmithFilterTickRate = 0.25;
+var blacksmithFilterTickRate = 0.05;
 var blacksmithFilterStarted = false;
 
 function AddItemsToShop(args){
@@ -1904,41 +1904,35 @@ function TryApplyBlacksmithFilter()
 {
     let currentFilterText = blacksmithFilterTextField.text.toLowerCase();
 
-    if(currentFilterText.length > 0 && currentFilterText != previousBlacksmithFilterText)
-    {
-        var shopItems = blacksmithItemsContainer.shopItems;
+    var shopItems = blacksmithItemsContainer.shopItems;
 
-        if(shopItems != undefined)
+    if(shopItems != undefined)
+    {  
+        if(currentFilterText != previousBlacksmithFilterText)
         {
-            for (const [_, itemPanel] of Object.entries(shopItems)) {
-                var isIncludedInFilterText = itemPanel.itemSearchText != undefined && itemPanel.itemSearchText.includes(currentFilterText) == true;
-                itemPanel.SetHasClass("Hidden", !isIncludedInFilterText);
+            if(currentFilterText.length > 0)
+            {
+                for (const [_, itemPanel] of Object.entries(shopItems)) {
+                    var isIncludedInFilterText = itemPanel.itemSearchText != undefined && itemPanel.itemSearchText.includes(currentFilterText) == true;
+                    itemPanel.SetHasClass("Hidden", !isIncludedInFilterText);
+                }
+            } else
+            {
+                for (const [_, itemPanel] of Object.entries(shopItems)) {
+                    itemPanel.SetHasClass("Hidden", false);
+                }
             }
-        }
 
+            
         previousBlacksmithFilterText = currentFilterText;
+        }  
     }
 
     $.Schedule(blacksmithFilterTickRate, TryApplyBlacksmithFilter);
 }
 
-function AddItemToShop(args){
-    var panel = blacksmithItemsContainer;
-    //check if we need new row
-    var itemsPerLine = 15;
-
-    if((last_shop_item_panel == null) || ((last_shop_item_panel.GetChildCount() % (itemsPerLine + 1)) == itemsPerLine)){
-        var newRow = $.CreatePanel('Panel', panel, '');
-        newRow.AddClass("BlacksmithTableRow");
-        last_shop_item_panel = newRow;
-    }
-    //$.Msg("add item " + args.item + " child count " + last_shop_item_panel.GetChildCount());
-    panel = last_shop_item_panel;
-    if(panel == null){
-        return;
-    }
-    
-    var itemPanel = $.CreatePanel('Panel', panel, '');
+function AddItemToShop(args){ 
+    var itemPanel = $.CreatePanel('Panel', blacksmithItemsContainer, '');
     itemPanel.BLoadLayoutSnippet("BlacksmithItem");
 
     let itemIcon = itemPanel.FindChildTraverse("itemIcon");

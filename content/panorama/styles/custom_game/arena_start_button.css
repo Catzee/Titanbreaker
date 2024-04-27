@@ -1427,11 +1427,12 @@
 	width: 90px;
 	height: 90px;
 	margin-top: 10px;
+	visibility: visible;
 }
 
 .BlacksmithItemContainer.Hidden
 {
-	width: 0px;
+	visibility: collapse;
 }
 
 .BlacksmithItemBuyButton
@@ -1503,9 +1504,17 @@
     font-size: 18px;
 }
 
-.BlacksmithTableRow
+#blacksmithItemsList
 {
-	flow-children: right;
+	flow-children: right-wrap;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 20px;
+	margin-right: 4px;
+	overflow: scroll;
 	width: fill-parent-flow(1.0);
-	height: fit-childrens;
+	height: fill-parent-flow(1.0);
+	horizontal-align: center;
+	max-width: 1350px;
+	max-height: 700px;
 }

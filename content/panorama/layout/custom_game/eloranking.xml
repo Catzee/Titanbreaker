@@ -1660,9 +1660,10 @@
 			<Label class="ButtTextBigGold" text="The Blacksmith" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
 				<Panel class="TableRow">
-					<Label text="Item name" style="vertical-align: center; color: white; font-size: 20px; margin-right: 5px;"/>
+					<Label text="Item name" style="vertical-align: center; color: white; font-size: 20px; margin-right: 10px;"/>
 					<TextEntry id="BlacksmithSearchBar" placeholder="" oninputsubmit="ApplyBlacksmithItemsFilter()"/>
 				</Panel>
+				<Panel class="" id="blacksmithItemsList"/>
 			</Panel>
 		</Panel>	
 
