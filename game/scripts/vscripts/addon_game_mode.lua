@@ -2560,9 +2560,8 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
+      CustomGameEventManager:RegisterListener( "getshopitems", Dynamic_Wrap(COverthrowGameMode, 'SendItemsToShop'))
       
-      
-
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
 
@@ -13752,11 +13751,22 @@ function RefreshTalents(event, args)
       function SetAutoSell(event, args)
         local id = args['player_id']
         local index = args['index']
+        local indexArti = args['indexArti']
+        local indexSouls = args['indexSouls']
         local player = PlayerResource:GetPlayer(id)
+
         if player then
           local hero = player:GetAssignedHero()
           if hero then
-            hero.autosell = index
+            if(index ~= nil) then
+              hero.autosell = index
+            end
+            if(indexArti ~= nil) then
+              hero.autosellArti = indexArti
+            end
+            if(indexSouls ~= nil) then
+              hero.autosellSouls = indexSouls
+            end
           end
         end
       end

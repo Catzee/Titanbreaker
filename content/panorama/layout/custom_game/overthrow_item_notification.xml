@@ -25,7 +25,7 @@
 				<Panel hittest="false" id="PickupImages" text="">
 					<Image hittest="false" id="PickupMessage_Hero" />
 					<Image hittest="false" id="PickupMessage_Chest" />
-					<Image hittest="false" id="PickupMessage_Item" />
+					<DOTAItemImage hittest="false" id="PickupMessage_Item" itemname=""/>
 				</Panel>
 				<Label hittest="false" id="PickupMessage_Hero_Text" class="TitleFont" text="#OverthrowHeroPickup" />
 				<Label hittest="false" id="PickupMessage_Text" class="TitleFont" text="#OverthrowTextPickup" />

@@ -7217,17 +7217,14 @@
 		"DOTA_Tooltip_Ability_special_bonus_respawn_reduction_15"	"+ 25% Nature Damage" //tier 2/3
 		"DOTA_Tooltip_Ability_special_bonus_gold_income_5"	"+ 25% Auto Attack Crit Damage" //tier 3/4
 
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_10"	"+ 5% Movement Speed"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_6"	"+ 15 All Stats"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_1"	"+ 5% Damage"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_9"	"+ 10% Cooldown Reduction"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_4"	"+ 500 Mana"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_5"	"+ 300 Cast Range"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_2"	"+ 35 Spell Resistance"
-		"DOTA_Tooltip_Ability_special_bonus_unique_invoker_3"	"+ 75 Intellect"
-		
-		
-		
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_1"	"+ 5% Movement Speed"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_2"	"+ 15 All Stats"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_3"	"+ 5% Damage"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_4"	"+ 10% Cooldown Reduction"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_5"	"+ 500 Mana"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_6"	"+ 300 Cast Range"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_7"	"+ 35 Spell Resistance"
+		"DOTA_Tooltip_Ability_special_bonus_unique_nether_wizard_8"	"+ 75 Intellect"
 
 		"DOTA_Tooltip_ability_pve_passive_as_25"                                          "Raging Claws"
 		"DOTA_Tooltip_ability_pve_passive_as_25_Description"                              "Attack Speed increased and Corruption restored on when attacking."

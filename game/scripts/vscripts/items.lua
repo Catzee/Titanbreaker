@@ -1244,7 +1244,7 @@ COverthrowGameMode.PathTalentNames = {
 	"Alpha Blood",
 	"Blood Wolf",
 	"Wolf Rage",
-	"Hunt the Weak",
+	"Impale",
 	"Steadiness",
 	"Swipe of Ursa",
 	"Steel Mammoth",
@@ -3364,7 +3364,7 @@ function COverthrowGameMode:GetMythicWeaponAttributeName(weapon, attribute)
 			return " Path: Backstab"
 		end
 		if attribute == 2 then
-			return " Path: Hunt the Weak"
+			return " Path: Impale"
 		end
 		if attribute == 3 then
 			return " Path: Full Moon"
@@ -3939,7 +3939,7 @@ function COverthrowGameMode:GetMythicWeaponAttributeName(weapon, attribute)
 			return " Path: Backstab"
 		end
 		if attribute == 2 then
-			return " Path: Hunt the Weak"
+			return " Path: Impale"
 		end
 		if attribute == 3 then
 			return " Path: Full Moon"
@@ -7167,7 +7167,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 							itemdrop = false
 						else
 							if roll <= t8chance then --mythical
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13))]
+								local mythicalItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 13)
+								spawnedItem = mythicalItems[math.random(1, #mythicalItems)]
 								itemdrop = true
 								lootquality = 8
 								if lootquality > best_drop then
@@ -7179,7 +7180,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								--	EmitGlobalSound("abaddon_abad_respawn_06")
 								--end)
 							elseif roll <= t7chance then --divine
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12))]
+								local divineItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 12)
+								spawnedItem = divineItems[math.random(1, #divineItems)]
 								itemdrop = true
 								lootquality = 7
 								if lootquality > best_drop then
@@ -7201,7 +7203,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								if self.jungledifficulty >= 50 then
 									immortal_item_level = 11
 								end
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level))]
+								local immortalItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)
+								spawnedItem = immortalItems[math.random(1, #immortalItems)]
 								itemdrop = true
 								lootquality = 6
 								if lootquality > best_drop then
@@ -7235,7 +7238,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								if self.jungledifficulty >= 2 then
 									immortal_item_level = 7
 								end
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level))]
+								local legendaryItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), immortal_item_level)
+								spawnedItem = legendaryItems[math.random(1, #legendaryItems)]
 								itemdrop = true
 								lootquality = 5
 								if lootquality > best_drop then
@@ -7248,7 +7252,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									EmitGlobalSound("abaddon_abad_levelup_04")
 								end)
 							elseif roll <= t4chance then -- epic
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4))]
+								local epicItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4)
+								spawnedItem = epicItems[math.random(1, #epicItems)]
 								itemdrop = true
 								lootquality = 4
 								if lootquality > best_drop then
@@ -7256,7 +7261,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_epic.vpcf"
 							elseif roll <= t3chance then --rare
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3))]
+								local rareItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 3)
+								spawnedItem = rareItems[math.random(1, #rareItems)]
 								itemdrop = true
 								lootquality = 3
 								if lootquality > best_drop then
@@ -7264,7 +7270,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_rare.vpcf"
 							elseif roll <= t2chance then --common
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2))]
+								local uncommonItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 2)
+								spawnedItem = uncommonItems[math.random(1, #uncommonItems)]
 								itemdrop = true
 								lootquality = 2
 								if lootquality > best_drop then
@@ -7272,7 +7279,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_green.vpcf"
 							else --white
-								spawnedItem = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1)[math.random(1,#COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1))]
+								local commonItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 1)
+								spawnedItem = commonItems[math.random(1, #commonItems)]
 								itemdrop = true
 								lootquality = 1
 							end
@@ -7294,7 +7302,76 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						end
 
 						--autosell feature
-						if hero and hero.autosell and lootquality and lootquality <= hero.autosell then
+						local isAutoSell = false
+						
+						if(artifact) then
+							-- Auto Sell: Epic Artifacts and below
+							if(hero.autosellArti == 2) then
+								isAutoSell = lootquality <= 4
+							end
+							-- Auto Sell: Legendary Artifacts and below
+							if(hero.autosellArti == 4) then
+								isAutoSell = lootquality <= 5
+							end
+							-- Auto Sell: Immortal Artifacts and below
+							if(hero.autosellArti == 6) then
+								isAutoSell = lootquality <= 6
+							end
+							-- Auto Sell: Divine Artifacts and below
+							if(hero.autosellArti == 8) then
+								isAutoSell = lootquality <= 7
+							end
+							-- Auto Sell: Mythical Artifacts and below
+							if(hero.autosellArti == 10) then
+								isAutoSell = lootquality <= 8
+							end
+						else
+							if(itemdrop) then
+								local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
+
+								-- Auto Sell: All Souls
+								local isSoulProtected = true
+								if(isSoulDrop and hero.autosellSouls == 0) then
+									isSoulProtected = false
+								end
+
+								print("isSoulProtected ", isSoulProtected)
+								-- Auto Sell: Common Items and below
+								if(hero.autosell == 2) then
+									isAutoSell = lootquality <= 1 and isSoulProtected
+								end
+								-- Auto Sell: Uncommon Items and below
+								if(hero.autosell == 4) then
+									isAutoSell = lootquality <= 2 and isSoulProtected
+								end
+								-- Auto Sell: Rare Items and below
+								if(hero.autosell == 6) then
+									isAutoSell = lootquality <= 3 and isSoulProtected
+								end
+								-- Auto Sell: Epic Items and below
+								if(hero.autosell == 8) then
+									isAutoSell = lootquality <= 4 and isSoulProtected
+								end
+								-- Auto Sell: Legendary Items and below
+								if(hero.autosell == 10) then
+									isAutoSell = lootquality <= 5 and isSoulProtected
+								end
+								-- Auto Sell: Immortal Items and below
+								if(hero.autosell == 12) then
+									isAutoSell = lootquality <= 6 and isSoulProtected
+								end
+								-- Auto Sell: Divine Items and below
+								if(hero.autosell == 14) then
+									isAutoSell = lootquality <= 7 and isSoulProtected
+								end
+								-- Auto Sell: Mythical Items and below
+								if(hero.autosell == 16) then
+									isAutoSell = lootquality <= 8 and isSoulProtected
+								end
+							end
+						end
+
+						if hero and isAutoSell then
 							itemdrop = false
 							local gold = GetSellValueByItemLevel(lootquality)
 			                EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
@@ -7383,7 +7460,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									        	local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_d_glow.vpcf", PATTACH_POINT_FOLLOW, itemContainer)
 										        -- Destroy & release item particle on item pickup
 												Timers:CreateTimer(1,function()
-													if(itemContainer:IsNull()) then
+													if(itemContainer == nil or itemContainer:IsNull()) then
 														ParticleManager:DestroyParticle(particle2, true)
 														ParticleManager:ReleaseParticleIndex(particle2)
 														return
@@ -7395,7 +7472,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        		local particle = ParticleManager:CreateParticle(fxpath, PATTACH_POINT_FOLLOW, itemContainer)
 										        		-- Destroy & release item particle on item pickup
 														Timers:CreateTimer(1,function()
-															if(itemContainer:IsNull()) then
+															if(itemContainer == nil or itemContainer:IsNull()) then
 																ParticleManager:DestroyParticle(particle, true)
 																ParticleManager:ReleaseParticleIndex(particle)
 																return
@@ -7407,7 +7484,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 										        			-- Destroy & release ray particle on item pickup
 										        			local rayParticle = ParticleManager:CreateParticle(fxpath_ray, PATTACH_POINT_FOLLOW, itemContainer)
 										        			Timers:CreateTimer(1,function()
-																if(itemContainer:IsNull()) then
+																if(itemContainer == nil or itemContainer:IsNull()) then
 																	ParticleManager:DestroyParticle(rayParticle, true)
 																	ParticleManager:ReleaseParticleIndex(rayParticle)
 																	return
@@ -7888,25 +7965,48 @@ function GetCostByItemLevel( level )
 	return 1
 end
 
-function SendItemsToShop(hero)
-	local player = PlayerResource:GetPlayer(hero:GetPlayerID())
+function COverthrowGameMode:SendItemsToShop(params)
+	local player = PlayerResource:GetPlayer(params.PlayerID)
+
+	if(player == nil) then
+		return
+	end
+
     local items = GetAllItems(nil, true, false, 1)
     items[5] = GetAllRecipes()
-    local delay = 0.5
+	local currentBatchQuantity = 0
+	local itemsToSend = {}
+
     for j=1,5 do
     	--if j <= 5 then
 	    	for i=1,#items[j] do
-	    		local lastItem = 0
-	    		if j == 5 and i == #items[j] then
-	    			lastItem = 1
-	    		end
-	    		Timers:CreateTimer(delay,function()
-	        		CustomGameEventManager:Send_ServerToPlayer(player, "additemtoshop", { item = items[j][i], rarity = j, cost = GetCostByItemLevel(j), isLastItem = lastItem } )
-	        	end)
-	        	delay = delay + 0.5
+	    		--local lastItem = 0
+	    		--if j == 5 and i == #items[j] then
+	    		--	lastItem = 1
+	    		--end
+
+				table.insert(itemsToSend, {
+					item = items[j][i],
+					rarity = j,
+					cost = GetCostByItemLevel(j),
+					--isLastItem = lastItem
+				})
+
+				currentBatchQuantity = currentBatchQuantity + 1
+				-- Send items in batches of 100
 	        end
+			if(currentBatchQuantity >= 100) then
+				CustomGameEventManager:Send_ServerToPlayer(player, "additemstoshop", itemsToSend )
+				itemsToSend = {}
+				currentBatchQuantity = 0
+			end
 		--end
     end
+
+	-- Send last batch, if not sended still
+	if(currentBatchQuantity > 0) then
+		CustomGameEventManager:Send_ServerToPlayer(player, "additemstoshop", itemsToSend )
+	end
 end
 
 function GetAllRecipes()

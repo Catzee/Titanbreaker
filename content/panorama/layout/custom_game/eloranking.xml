@@ -5,7 +5,22 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/eloranking.js" />
 	</scripts>
-	
+	<snippets>
+        <snippet name="BlacksmithItem">
+			<Panel class="BlacksmithItemContainer">
+				<Panel class="BlacksmithItemBuyButton">
+					<Button id="buyButton" class="SellButton" style="width: 100%;">
+						<DOTAItemImage id="itemIcon" itemname=""/>
+					</Button>
+				</Panel>
+				<Panel class="BlacksmithItemPriceContainer">
+					<Image class="BlacksmithItemPriceIcon" src="s2r://panorama/images/hud/reborn/gold_small_psd.vtex"/>
+					<Label id="itemPriceLabel" class="BlacksmithItemPriceLabel" text="123" html="true"/>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+
 	<Panel class="OverthrowLoadingRoot" hittest="false">
 		<Panel id="startbuttons" visible="false">
 			<Panel id="FlowPanel4" class="FlowPanel">
@@ -1640,11 +1655,15 @@
 				</Panel>
 			</Panel>
 		</Panel>
-
+		
 		<Panel class="Shop" hittest="false" id="shopMain" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
 			<Label class="ButtTextBigGold" text="The Blacksmith" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
-
+				<Panel class="TableRow">
+					<Label text="Item name" style="vertical-align: center; color: white; font-size: 20px; margin-right: 10px;"/>
+					<TextEntry id="BlacksmithSearchBar"/>
+				</Panel>
+				<Panel class="" id="blacksmithItemsList"/>
 			</Panel>
 		</Panel>	
 
@@ -3503,8 +3522,14 @@
 
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart">
-			<Button id="QuestlogButton2" class="Butt" onactivate="SetAutoSell()">	
-				<Label class="ButtText" id="autoselltext" text="Auto Sell: None" />			
+			<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems()">	
+				<Label class="ButtText" id="autoselltext1" text="Don't Auto Sell Items" />			
+			</Button>
+			<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts()">	
+				<Label class="ButtText" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
+			</Button>
+			<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls()">	
+				<Label class="ButtText" id="autoselltext3" text="Don't Auto Sell Souls" />			
 			</Button>
 		</Panel>
 		<Panel class="MonsterSpellcastList" hittest="false" id="monsterspells">

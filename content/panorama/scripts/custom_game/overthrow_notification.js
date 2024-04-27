@@ -39,7 +39,7 @@ function ClearItemSpawnMessage()
 //==============================================================
 function OnItemDrop( msg )
 {
-//	$.Msg( "recent_item_drop: ", msg );
+	$.Msg( "recent_item_drop: ", msg );
 
 	$.GetContextPanel().SetHasClass( "recent_item_drop", true );
 
@@ -51,9 +51,11 @@ function OnItemDrop( msg )
 
 	var chest_image_name = "file://{images}/econ/tools/gift_lockless_luckbox.png";
 	$( "#PickupMessage_Chest" ).SetImage( chest_image_name );
-			
-	var item_image_name = "file://{images}/items/" + msg.dropped_item.replace( "item_", "" ) + ".png"
-	$( "#PickupMessage_Item" ).SetImage( item_image_name ); //not all images work atm
+	
+	// Let dota load icon from internal things insated of using image panel with not up to date icons
+	$( "#PickupMessage_Item" ).itemname = msg.dropped_item;
+	//var item_image_name = "file://{images}/items/" + msg.dropped_item.replace( "item_", "" ) + ".png"
+	//$( "#PickupMessage_Item" ).SetImage( item_image_name ); //not all images work atm
 
 	$.Schedule( 2.5, ClearDropMessage );
 }

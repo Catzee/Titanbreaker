@@ -4542,7 +4542,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         multiplicative_bonus = multiplicative_bonus * (1 + bonus)
     end
-    if GetLevelOfAbility(caster, "special_bonus_unique_invoker_1") >= 1 then
+    if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_3") >= 1 then
         multiplicative_bonus = multiplicative_bonus * 1.05
     end
     if caster:HasModifier("modifier_mop2") then
@@ -14837,7 +14837,7 @@ function GetCooldownReductionFactor( caster, ability )
     if caster:HasModifier("modifier_item_night_shoulders") and ability == caster:GetAbilityByIndex(5) then
         factor = factor * 0.75
     end
-    if GetLevelOfAbility(caster, "special_bonus_unique_invoker_9") >= 1 then
+    if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_4") >= 1 then
         factor = factor * 0.9
     end
     if caster.talents and caster.talents[110] and caster.talents[110] >= 1 then
@@ -18728,11 +18728,11 @@ function TutorialDummyPosition(event)
     end
 
     if caster.dummy_dps_time > 10 then
-        local pos = caster.position
-        local pos2 = caster:GetAbsOrigin()
-        if (pos-pos2):Length() > 20 then
-            caster:SetAbsOrigin(pos)
+        if(caster.position == nil) then
+            caster.position = caster:GetAbsOrigin()
         end
+
+        caster:SetAbsOrigin(caster.position)
     end
 end
 
@@ -20140,7 +20140,7 @@ function GetCastRangeBonus(hero)
     if hero:HasModifier("modifier_shadow_form_ds") and hero:HasModifier("modifier_class_ds2") then
         bonus = bonus + 450
     end
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_5") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_6") >= 1 then
         bonus = bonus + 300
     end
     return bonus
@@ -20169,11 +20169,9 @@ function PassiveStatCalculation(event)
     local dur = 10
     local isUpdateTickEvery5secs = false
     local isUpdateTickEvery10secs = false
+
+    -- keeping track of current hp %, so that when changes to max HP occur, we can still keep same current hp %, by setting this again after all max hp changes were applied
     local hpPercent = hero:GetHealth() / hero:GetMaxHealth()
-    if not hero.sentShopItems then
-        SendItemsToShop(hero)
-        hero.sentShopItems = true
-    end
     if hero:GetGold() > 0 then
         hero:SetGold(0, true)
         hero:SetGold(0, false)
@@ -20736,7 +20734,7 @@ function PassiveStatCalculation(event)
     baseStats[STR] = baseStats[STR] + hero.runeword[5] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[63] * 15 + hero.talents[46] * 15 + hero.talents[10] * 15 + GetGlobalStrengthAuraStat() + GetAllStats(hero)
     baseStats[AGI] = baseStats[AGI] + hero.runeword[1] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[40] * 15 + hero.talents[46] * 15 + GetGlobalAgilityAuraStat() + GetAllStats(hero)
     baseStats[INT] = baseStats[INT] + hero.runeword[2] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[35] * 30 + GetGlobalIntellectAuraStat() + GetAllStats(hero)
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_3") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_8") >= 1 then
         baseStats[INT] = baseStats[INT] + 75
     end
     --primary static
@@ -20834,7 +20832,7 @@ function PassiveStatCalculation(event)
         manaPerInt = 0.0 --0.1
     end
     local maxManaBonusesFromNonItems = realBaseStats[INT] * manaPerInt + hero.talents[120] * 100
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_4") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_5") >= 1 then
         maxManaBonusesFromNonItems = maxManaBonusesFromNonItems + 500
     end
     baseStats[MANA] = hero:GetMaxMana() + maxManaBonusesFromNonItems --these base stats are wrong because mana per int is added by original values, needs fix to remove int mana
@@ -21276,14 +21274,10 @@ function PassiveStatCalculation(event)
         end
 
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
-        --new_talent_value = 1
-        --new_talent_value = 1
-        --if i == 111 then
+        --if i == 39 then
         --    new_talent_value = 3
         --end
-        --if i == 34 then
-        --    new_talent_value = 1
-        --end
+        
         --new divine doubling soul items
         local pathbuff = "modifier_pathbuff_0"
         if i <= 9 then
@@ -21398,7 +21392,7 @@ function PassiveStatCalculation(event)
                 if hero.talents[80] and hero.talents[80] > 0 then
                     static_bonus = static_bonus + 3 * hero.talents[80]
                 end
-                if GetLevelOfAbility(hero, "special_bonus_unique_invoker_10") >= 1 then
+                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_1") >= 1 then
                     static_bonus = static_bonus + 5
                 end
                 if hero.talents[139] and hero.talents[139] > 0 then
@@ -21529,7 +21523,7 @@ function PassiveStatCalculation(event)
                     end
                 end
                 local value5 = 0
-                if GetLevelOfAbility(hero, "special_bonus_unique_invoker_2") >= 1 then
+                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_7") >= 1 then
                     value5 = 35
                 end
                 local mresPerInt = 0.01
@@ -21542,23 +21536,6 @@ function PassiveStatCalculation(event)
                 if finalValue >= 1 then
                     ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
                     hero:SetModifierStackCount(buff, ability, finalValue)
-                end
-            end
-            if i == 39 and isUpdateTickEvery5secs then
-                local value = level
-                local fixedheal = 75 * level
-                local myevent = {caster = hero, target = hero, percenthp = value, heal = fixedheal, ability = ability}
-                HealUnit(myevent)
-                if hero:HasModifier("modifier_pathbuff_039") then
-                    if not hero.blindfold_lickwounds_heal_counter then
-                        hero.blindfold_lickwounds_heal_counter = 0
-                    end
-                    hero.blindfold_lickwounds_heal_counter = hero.blindfold_lickwounds_heal_counter + 1
-                    if hero.blindfold_lickwounds_heal_counter == 5 then
-                        local particle = ParticleManager:CreateParticle( "particles/items4_fx/combo_breaker_buff.vpcf", PATTACH_POINT_FOLLOW, hero )
-                        ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
-                        ParticleManager:ReleaseParticleIndex(particle)
-                    end
                 end
             end
             if i == 46 then
@@ -21787,7 +21764,7 @@ function PassiveStatCalculation(event)
         hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "system_aacrit", nil)
         hero:SetModifierStackCount("system_aacrit", hero.combat_system_ability, system_aacrit_stacks)
     end
-    --hp fix
+    --hp fix to keep current hp % the same, even if max hp changes
     hero:SetHealth(hero:GetMaxHealth() * hpPercent)
     ProcsEverySecond(hero)
     if isUpdateTickEvery5secs then
@@ -21878,6 +21855,25 @@ function ProcsEvery5Seconds(hero)
         --hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "modifier_critguaranteed", {Duration = 5})
         hero.passiveAACrit = 250
     end
+
+    if hero.talents[39] and hero.talents[39] > 0 then
+        local level = hero.talents[39]
+        local value = level
+        local fixedheal = 75 * level
+        local myevent = {caster = hero, target = hero, percenthp = value, heal = fixedheal, ability = hero.combat_system_ability}
+        HealUnit(myevent)
+        if hero:HasModifier("modifier_pathbuff_039") then
+            if not hero.blindfold_lickwounds_heal_counter then
+                hero.blindfold_lickwounds_heal_counter = 0
+            end
+            hero.blindfold_lickwounds_heal_counter = hero.blindfold_lickwounds_heal_counter + 1
+            if hero.blindfold_lickwounds_heal_counter == 5 then
+                local particle = ParticleManager:CreateParticle( "particles/items4_fx/combo_breaker_buff.vpcf", PATTACH_POINT_FOLLOW, hero )
+                ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
+                ParticleManager:ReleaseParticleIndex(particle)
+            end
+        end
+    end
 end
 
 function ProcsEvery10Seconds(hero)
@@ -21920,7 +21916,7 @@ end
 
 function GetAllStats(hero)
     local value = 0
-    if GetLevelOfAbility(hero, "special_bonus_unique_invoker_6") >= 1 then
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_2") >= 1 then
         value = value + 15
     end
     return value
