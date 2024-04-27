@@ -24562,7 +24562,9 @@ function SwipeOfUrsaTalent(caster, original_ability)
         ApplyBuffAOE(buffevent)
         DamageAOE(event)
         if caster:HasModifier("modifier_pathbuff_042") and caster.combat_system_ability then
-            caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_ursa_prot", {Duration = 10})
+            --local mod = caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_ursa_prot", {Duration = 10})
+            -- I have no idea why data driven modifier duration = 10 ignored and somewhere set to 6... Probably dota modifier internal name used or some weird data driven things
+            caster:AddNewModifier(caster, nil, "modifier_swipe_of_ursa_proc", { Duration = 10})
         end
     end)
 end
