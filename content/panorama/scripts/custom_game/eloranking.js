@@ -678,9 +678,10 @@ function GetSteamID32(playerid) {
 
 function LoadLeaderboardFromServer()
 {   
-    ladder = Game.GetAllPlayerIDs().length;
-    //$.Msg(Game.GetMapInfo()['map_display_name']);
     $("#leaderboardheader").text = "Titanbreaker - Leaderboard";
+
+    GameEvents.SendCustomGameEventToServer("getleaderboard", { });
+
 	/*
 	Valve removed AsyncWebRequest
     $.AsyncWebRequest('http://catze.eu/templetop10_season_5.php',
@@ -695,6 +696,11 @@ function LoadLeaderboardFromServer()
         //return data;
     }
     }); */
+}
+
+function OnLeaderboardResponseFromServer(args)
+{
+    LeaderboardFillTemple(args.data);
 }
 
 function LoadLeaderboardChallengeModeFromServer()
@@ -3826,7 +3832,8 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
-    
+    GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
+
     // Requires shop items for blacksmith
     GameEvents.SendCustomGameEventToServer("getshopitems", { } );
 

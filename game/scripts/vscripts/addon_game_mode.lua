@@ -2561,7 +2561,8 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
       CustomGameEventManager:RegisterListener( "getshopitems", Dynamic_Wrap(COverthrowGameMode, 'SendItemsToShop'))
-      
+      CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
+
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
 
@@ -2573,7 +2574,8 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
 
       GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 ) 
 
-
+      -- Load leaderboard from server
+      COverthrowGameMode:LoadLeaderboardFromServer()
       -- Spawning monsters
       spawncamps = {}
       for i = 1, self.numSpawnCamps do
@@ -20111,4 +20113,47 @@ end
 function GetRandomPassiveAggroAbilityOrMS()
   local abils = {"pve_temple_aggro_highest_hp", "pve_temple_aggro_ranged", "pve_temple_aggro_cycling", "pve_healnegate" }
   return abils[math.random(1,#abils)]
+end
+
+function COverthrowGameMode:LoadLeaderboardFromServer()
+  if(IsServer() == false) then
+    return
+  end
+
+  local request = CreateHTTPRequestScriptVM("POST", "http://catze.eu/templetop10_season_5.php")
+  request:SetHTTPRequestGetOrPostParameter("order", "getelo")
+  request:SetHTTPRequestGetOrPostParameter("players", "5") -- seems unused, but panorama sends...
+  request:Send(function(result)
+    print(result)
+    print(result.Body)
+    if result and result.Body and string.match(result.Body, ",") then
+      self._leaderboardData = result.Body
+      self._isLeaderboardReady = true
+    else
+      self._isLeaderboardReady = false
+    end
+  end)
+end
+
+function COverthrowGameMode:SendLeaderboard(params)
+  local player = PlayerResource:GetPlayer(params.PlayerID)
+
+  -- Disconnected player or broken request
+  if(player == null) then
+    return
+  end
+
+  -- Server still processing request
+  if(COverthrowGameMode._isLeaderboardReady == nil) then
+    Timers:CreateTimer(1, function()
+      COverthrowGameMode:SendLeaderboard(params)
+    end)
+  end
+
+  -- Server not responding, too bad...
+  if(COverthrowGameMode._isLeaderboardReady == false) then
+    return
+  end
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "getleaderboardresponse", { data = COverthrowGameMode._leaderboardData } )
 end
