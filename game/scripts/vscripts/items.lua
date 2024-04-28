@@ -7335,7 +7335,6 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									isSoulProtected = false
 								end
 
-								print("isSoulProtected ", isSoulProtected)
 								-- Auto Sell: Common Items and below
 								if(hero.autosell == 2) then
 									isAutoSell = lootquality <= 1 and isSoulProtected

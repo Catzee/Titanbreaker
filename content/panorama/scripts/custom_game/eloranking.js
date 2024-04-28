@@ -3137,91 +3137,132 @@ function SetMyChest(args)
     }
 }
 
-function SetAutoSellItems() {
-    autosell = autosell + 1;
+var autoSellOptions = [
+    {
+        text: "Don't Auto Sell Items",
+        value: 0
+    },
+    {
+        text: "Auto Sell: Common Items and below",
+        value: 2
+    },
+    {
+        text: "Auto Sell: Uncommon Items and below",
+        value: 4
+    },
+    {
+        text: "Auto Sell: Rare Items and below",
+        value: 6
+    },
+    {
+        text: "Auto Sell: Epic Items and below",
+        value: 8
+    },
+    {
+        text: "Auto Sell: Legendary Items and below",
+        value: 10
+    },
+    {
+        text: "Auto Sell: Immortal Items and below",
+        value: 12
+    },
+    {
+        text: "Auto Sell: Divine Items and below",
+        value: 14
+    },
+    {
+        text: "Auto Sell: Mythical Items and below",
+        value: 16
+    }
+];
 
-    if(autosell > 15){
+function SetAutoSellItems(isForwardDirection) {
+    autosell = autosell + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellOptions.length - 1;
+
+    if(autosell < 0) {
+        autosell = autoSellOptionsLastIndex;
+    }
+
+    if(autosell > autoSellOptionsLastIndex)
+    {
         autosell = 0;
-        $("#autoselltext1").text = "Don't Auto Sell Items";
     }
-    if(autosell == 1){
-        autosell = 2;
-        $("#autoselltext1").text = "Auto Sell: Common Items and below";
-    }
-    if(autosell == 3){
-        autosell = 4;
-        $("#autoselltext1").text = "Auto Sell: Uncommon Items and below";
-    }
-    if(autosell == 5){
-        autosell = 6;
-        $("#autoselltext1").text = "Auto Sell: Rare Items and below";
-    }
-    if(autosell == 7){
-        autosell = 8;
-        $("#autoselltext1").text = "Auto Sell: Epic Items and below";
-    }
-    if(autosell == 9){
-        autosell = 10;
-        $("#autoselltext1").text = "Auto Sell: Legendary Items and below";
-    }
-    if(autosell == 11){
-        autosell = 12;
-        $("#autoselltext1").text = "Auto Sell: Immortal Items and below";
-    }
-    if(autosell == 13){
-        autosell = 14;
-        $("#autoselltext1").text = "Auto Sell: Divine Items and below";
-    }
-    if(autosell == 15){
-        autosell = 16;
-        $("#autoselltext1").text = "Auto Sell: Mythical Items and below";
-    }
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autosell } );
+
+    $("#autoselltext1").text = autoSellOptions[autosell].text;
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autoSellOptions[autosell].value} );
 }
 
-function SetAutoSellArtifacts() {
-    autosellArti = autosellArti + 1;
+var autoSellArtiOptions = [
+    {
+        text: "Don't Auto Sell Artifacts",
+        value: 0
+    },
+    {
+        text: "Auto Sell: Epic Artifacts and below",
+        value: 2
+    },
+    {
+        text: "Auto Sell: Legendary Artifacts and below",
+        value: 4
+    },
+    {
+        text: "Auto Sell: Immortal Artifacts and below",
+        value: 6
+    },
+    {
+        text: "Auto Sell: Divine Artifacts and below",
+        value: 8
+    },
+    {
+        text: "Auto Sell: Mythical Artifacts and below",
+        value: 10
+    }
+];
 
-    if(autosellArti > 10){
+function SetAutoSellArtifacts(isForwardDirection) {
+    autosellArti = autosellArti + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellArtiOptions.length - 1;
+
+    if(autosellArti < 0) {
+        autosellArti = autoSellOptionsLastIndex;
+    }
+
+    if(autosellArti > autoSellOptionsLastIndex)
+    {
         autosellArti = 0;
-        $("#autoselltext2").text = "Don't Auto Sell Artifacts";
     }
-    if(autosellArti == 1){
-        autosellArti = 2;
-        $("#autoselltext2").text = "Auto Sell: Epic Artifacts and below";
-    }
-    if(autosellArti == 3){
-        autosellArti = 4;
-        $("#autoselltext2").text = "Auto Sell: Legendary Artifacts and below";
-    }
-    if(autosellArti == 5){
-        autosellArti = 6;
-        $("#autoselltext2").text = "Auto Sell: Immortal Artifacts and below";
-    }
-    if(autosellArti == 7){
-        autosellArti = 8;
-        $("#autoselltext2").text = "Auto Sell: Divine Artifacts and below";
-    }
-    if(autosellArti == 9){
-        autosellArti = 10;
-        $("#autoselltext2").text = "Auto Sell: Mythical Artifacts and below";
-    }
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti" : autosellArti } );
+
+    $("#autoselltext2").text = autoSellArtiOptions[autosellArti].text;
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti": autoSellArtiOptions[autosellArti].value} );
 }
 
-function SetAutoSellSouls() {
-    autosellSouls = autosellSouls + 1;
+var autoSellSoulsOptions = [
+    {
+        text: "Don't Auto Sell Souls",
+        value: 0
+    },
+    {
+        text: "Auto Sell: All Souls",
+        value: 2
+    }
+];
 
-    if(autosellSouls > 1){
+function SetAutoSellSouls(isForwardDirection) {
+    autosellSouls = autosellSouls + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellSoulsOptions.length - 1;
+
+    if(autosellSouls < 0) {
+        autosellSouls = autoSellOptionsLastIndex;
+    }
+
+    if(autosellSouls > autoSellOptionsLastIndex)
+    {
         autosellSouls = 0;
-        $("#autoselltext3").text = "Don't Auto Sell Souls";
-    }
-    if(autosellSouls == 1){
-        autosellSouls = 2;
-        $("#autoselltext3").text = "Auto Sell: All Souls";
     }
 
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls" : autosellSouls } );
+    $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls": autoSellSoulsOptions[autosellSouls].value} );
 }
 
 function TalentPressed(args){
