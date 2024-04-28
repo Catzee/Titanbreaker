@@ -398,14 +398,11 @@ function LeaderboardFillTemple(data) {
         
         if(cell == 2){
             $(c).text = "";
-            var im = "file://{images}/custom_game/heroicons/";
-            im = im.concat(info[i]);
-            im = im.concat(".png");
             var c = "#hero";
             c = c.concat(String(row-1));
             //$.Msg(im);
             //$.Msg(c);
-            $(c).SetImage(im);
+            $(c).heroname="npc_dota_hero_" + info[i];
         }
         if(cell == 3){
             var c = "#d";
