@@ -3523,13 +3523,13 @@
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart">
 			<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems(true)" oncontextmenu="SetAutoSellItems(false)">	
-				<Label class="ButtText" id="autoselltext1" text="Don't Auto Sell Items" />			
+				<Label class="ButtText AutoSellFilterLabel" id="autoselltext1" text="Don't Auto Sell Items" />			
 			</Button>
 			<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts(true)" oncontextmenu="SetAutoSellArtifacts(false)">	
-				<Label class="ButtText" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
+				<Label class="ButtText AutoSellFilterLabel" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
 			</Button>
 			<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls(true)" oncontextmenu="SetAutoSellSouls(false)">	
-				<Label class="ButtText" id="autoselltext3" text="Don't Auto Sell Souls" />			
+				<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls" />			
 			</Button>
 		</Panel>
 		<Panel class="MonsterSpellcastList" hittest="false" id="monsterspells">
