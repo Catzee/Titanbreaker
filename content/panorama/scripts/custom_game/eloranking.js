@@ -3137,6 +3137,48 @@ function SetMyChest(args)
     }
 }
 
+function OnAutoSellFiltersResponse(args)
+{
+    if(args.autosell != undefined)
+    {
+        for(let i = 0; i < autoSellOptions.length; i ++)
+        {
+            if(autoSellOptions[i].value == args.autosell)
+            {
+                autosell = i;
+                SetAutoSellText(autosell);
+                break;
+            }
+        }
+    }
+
+    if(args.autosellArti != undefined)
+    {
+        for(let i = 0; i < autoSellArtiOptions.length; i ++)
+        {
+            if(autoSellArtiOptions[i].value == args.autosellArti)
+            {
+                autosellArti = i;
+                SetAutoSellArtiText(autosellArti);
+                break;
+            }
+        }
+    }
+
+    if(args.autosellSouls != undefined)
+    {
+        for(let i = 0; i < autoSellSoulsOptions.length; i ++)
+        {
+            if(autoSellSoulsOptions[i].value == args.autosellSouls)
+            {
+                autosellSouls = i;
+                SetAutoSellSoulsText(autosellSouls);
+                break;
+            }
+        }
+    }
+}
+
 var autoSellOptions = [
     {
         text: "Don't Auto Sell Items",
@@ -3189,8 +3231,14 @@ function SetAutoSellItems(isForwardDirection) {
         autosell = 0;
     }
 
-    $("#autoselltext1").text = autoSellOptions[autosell].text;
+    SetAutoSellText(autosell);
+
     GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autoSellOptions[autosell].value} );
+}
+
+function SetAutoSellText(autosellIndex)
+{
+    $("#autoselltext1").text = autoSellOptions[autosellIndex].text;
 }
 
 var autoSellArtiOptions = [
@@ -3233,8 +3281,14 @@ function SetAutoSellArtifacts(isForwardDirection) {
         autosellArti = 0;
     }
 
-    $("#autoselltext2").text = autoSellArtiOptions[autosellArti].text;
+    SetAutoSellArtiText(autosellArti);
+
     GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti": autoSellArtiOptions[autosellArti].value} );
+}
+
+function SetAutoSellArtiText(autosellIndex)
+{
+    $("#autoselltext2").text = autoSellArtiOptions[autosellIndex].text;
 }
 
 var autoSellSoulsOptions = [
@@ -3261,8 +3315,14 @@ function SetAutoSellSouls(isForwardDirection) {
         autosellSouls = 0;
     }
 
-    $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
+    SetAutoSellSoulsText(autosellSouls);
+    
     GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls": autoSellSoulsOptions[autosellSouls].value} );
+}
+
+function SetAutoSellSoulsText(autosellSouls)
+{
+    $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
 }
 
 function TalentPressed(args){
@@ -3839,6 +3899,10 @@ function RegisterKeyBind(keyBind, callback) {
     
     // Requires shop items for blacksmith
     GameEvents.SendCustomGameEventToServer("getshopitems", { } );
+
+    // Restore autosell filters data
+    GameEvents.SendCustomGameEventToServer("getautosell", { } );
+    GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );

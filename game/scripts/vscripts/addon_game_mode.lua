@@ -2557,6 +2557,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "recover_artifact", RecoverLastReplacedArtifact )
       CustomGameEventManager:RegisterListener( "savecharsuccess", SaveCharSuccessNotification )
       CustomGameEventManager:RegisterListener( "setautosell", SetAutoSell )
+      CustomGameEventManager:RegisterListener( "getautosell", GetAutoSell )
       CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
@@ -13746,6 +13747,20 @@ function RefreshTalents(event, args)
             end
           end
         end)
+      end
+
+      function GetAutoSell(event, args)
+        local id = args['PlayerID']
+
+        local player = PlayerResource:GetPlayer(id)
+
+        if player then
+          local hero = player:GetAssignedHero()
+
+          if(hero) then
+            CustomGameEventManager:Send_ServerToPlayer(player, "getautosellresponse", { autosell = hero.autosell, autosellArti = hero.autosellArti, autosellSouls = hero.autosellSouls })
+          end
+        end
       end
 
       function SetAutoSell(event, args)
