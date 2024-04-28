@@ -680,7 +680,6 @@ function LoadLeaderboardFromServer()
 {   
     ladder = Game.GetAllPlayerIDs().length;
     //$.Msg(Game.GetMapInfo()['map_display_name']);
-    $.Msg("This?");
     $("#leaderboardheader").text = "Titanbreaker - Leaderboard";
 	/*
 	Valve removed AsyncWebRequest
