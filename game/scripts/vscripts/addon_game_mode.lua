@@ -20124,8 +20124,8 @@ function COverthrowGameMode:LoadLeaderboardFromServer()
   request:SetHTTPRequestGetOrPostParameter("order", "getelo")
   request:SetHTTPRequestGetOrPostParameter("players", "5") -- seems unused, but panorama sends...
   request:Send(function(result)
-    print(result)
-    print(result.Body)
+    --print(result)
+    --print(result.Body)
     if result and result.Body and string.match(result.Body, ",") then
       self._leaderboardData = result.Body
       self._isLeaderboardReady = true
