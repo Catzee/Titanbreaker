@@ -3873,7 +3873,7 @@ function TrySendReconnectEvent()
     if(!isServerSendedDataForReconnectedPlayer)
     {
         GameEvents.SendCustomGameEventToServer("playerconnected", { "player_id" : Players.GetLocalPlayer() });
-        $.Schedule(2.5, TrySendReconnectEvent);  
+        $.Schedule(1, TrySendReconnectEvent);  
     } else
     {
         //$.Msg("We finally got response!");
