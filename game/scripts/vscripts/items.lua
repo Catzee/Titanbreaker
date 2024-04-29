@@ -7302,84 +7302,11 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						end
 
 						--autosell feature
-						local isAutoSell = false
+						local isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
 						
-						if(artifact) then
-							-- Auto Sell: Epic Artifacts and below
-							if(hero.autosellArti == 2) then
-								isAutoSell = lootquality <= 4
-							end
-							-- Auto Sell: Legendary Artifacts and below
-							if(hero.autosellArti == 4) then
-								isAutoSell = lootquality <= 5
-							end
-							-- Auto Sell: Immortal Artifacts and below
-							if(hero.autosellArti == 6) then
-								isAutoSell = lootquality <= 6
-							end
-							-- Auto Sell: Divine Artifacts and below
-							if(hero.autosellArti == 8) then
-								isAutoSell = lootquality <= 7
-							end
-							-- Auto Sell: Mythical Artifacts and below
-							if(hero.autosellArti == 10) then
-								isAutoSell = lootquality <= 8
-							end
-						else
-							if(itemdrop) then
-								local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
-
-								-- Auto Sell: All Souls
-								local isSoulProtected = true
-								if(isSoulDrop and hero.autosellSouls == 0) then
-									isSoulProtected = false
-								end
-
-								-- Auto Sell: Common Items and below
-								if(hero.autosell == 2) then
-									isAutoSell = lootquality <= 1 and isSoulProtected
-								end
-								-- Auto Sell: Uncommon Items and below
-								if(hero.autosell == 4) then
-									isAutoSell = lootquality <= 2 and isSoulProtected
-								end
-								-- Auto Sell: Rare Items and below
-								if(hero.autosell == 6) then
-									isAutoSell = lootquality <= 3 and isSoulProtected
-								end
-								-- Auto Sell: Epic Items and below
-								if(hero.autosell == 8) then
-									isAutoSell = lootquality <= 4 and isSoulProtected
-								end
-								-- Auto Sell: Legendary Items and below
-								if(hero.autosell == 10) then
-									isAutoSell = lootquality <= 5 and isSoulProtected
-								end
-								-- Auto Sell: Immortal Items and below
-								if(hero.autosell == 12) then
-									isAutoSell = lootquality <= 6 and isSoulProtected
-								end
-								-- Auto Sell: Divine Items and below
-								if(hero.autosell == 14) then
-									isAutoSell = lootquality <= 7 and isSoulProtected
-								end
-								-- Auto Sell: Mythical Items and below
-								if(hero.autosell == 16) then
-									isAutoSell = lootquality <= 8 and isSoulProtected
-								end
-							end
-						end
-
 						if hero and isAutoSell then
 							itemdrop = false
-							local gold = GetSellValueByItemLevel(lootquality)
-			                EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
-			                local particle = ParticleManager:CreateParticle( "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_CUSTOMORIGIN, hero)
-			                ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
-			                ParticleManager:ReleaseParticleIndex(particle)
-			                --hero:SetGold(hero:GetGold()+gold, true)
-			                --hero:SetGold(0, false)
-			                AddGold(hero, gold)
+							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, false)
 						end
 
 						--boss kill, update kill stats, update quests,  heal and screen sparks
@@ -7540,7 +7467,19 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									if not normal_drop and buy_quality == 9 then
 										spawnedItem = loot_table_artifacts[13][math.random(1,#loot_table_artifacts[13])]
 									end
-									self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
+
+									-- Auto sell dropped and rerolled artifacts if required
+									isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, true, false)
+									if(drop_type == 1) then
+										if(isAutoSell) then
+											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, false)
+										else
+											self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
+										end
+									else
+										-- If somebody buying artifact then gives it to him
+										self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
+									end
 							    end
 
 						        if item and not item:IsNull() then
@@ -7593,6 +7532,92 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			end
 		end)
 	end
+end
+
+function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
+	if(artifact) then
+		-- Auto Sell: Epic Artifacts and below
+		if(hero.autosellArti == 2) then
+			isAutoSell = lootquality <= 4
+		end
+		-- Auto Sell: Legendary Artifacts and below
+		if(hero.autosellArti == 4) then
+			isAutoSell = lootquality <= 5
+		end
+		-- Auto Sell: Immortal Artifacts and below
+		if(hero.autosellArti == 6) then
+			isAutoSell = lootquality <= 6
+		end
+		-- Auto Sell: Divine Artifacts and below
+		if(hero.autosellArti == 8) then
+			isAutoSell = lootquality <= 7
+		end
+		-- Auto Sell: Mythical Artifacts and below
+		if(hero.autosellArti == 10) then
+			isAutoSell = lootquality <= 8
+		end
+	else
+		if(itemdrop) then
+			local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
+
+			-- Auto Sell: All Souls
+			local isSoulProtected = true
+			if(isSoulDrop and hero.autosellSouls == 0) then
+				isSoulProtected = false
+			end
+
+			-- Auto Sell: Common Items and below
+			if(hero.autosell == 2) then
+				isAutoSell = lootquality <= 1 and isSoulProtected
+			end
+			-- Auto Sell: Uncommon Items and below
+			if(hero.autosell == 4) then
+				isAutoSell = lootquality <= 2 and isSoulProtected
+			end
+			-- Auto Sell: Rare Items and below
+			if(hero.autosell == 6) then
+				isAutoSell = lootquality <= 3 and isSoulProtected
+			end
+			-- Auto Sell: Epic Items and below
+			if(hero.autosell == 8) then
+				isAutoSell = lootquality <= 4 and isSoulProtected
+			end
+			-- Auto Sell: Legendary Items and below
+			if(hero.autosell == 10) then
+				isAutoSell = lootquality <= 5 and isSoulProtected
+			end
+			-- Auto Sell: Immortal Items and below
+			if(hero.autosell == 12) then
+				isAutoSell = lootquality <= 6 and isSoulProtected
+			end
+			-- Auto Sell: Divine Items and below
+			if(hero.autosell == 14) then
+				isAutoSell = lootquality <= 7 and isSoulProtected
+			end
+			-- Auto Sell: Mythical Items and below
+			if(hero.autosell == 16) then
+				isAutoSell = lootquality <= 8 and isSoulProtected
+			end
+		end
+	end
+
+	return isAutoSell
+end
+
+function COverthrowGameMode:AutoSellTempleItem(hero, lootQuality, isArtifact)
+	local gold = GetSellValueByItemLevel(lootquality)
+
+	if(isArtifact) then
+		gold = GetSellValueByArtifactLevel(lootquality)
+	end
+
+	EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
+	local particle = ParticleManager:CreateParticle( "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_CUSTOMORIGIN, hero)
+	ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
+	--hero:SetGold(hero:GetGold()+gold, true)
+	--hero:SetGold(0, false)
+	AddGold(hero, gold)
 end
 
 function COverthrowGameMode:ThunderEffectAndSound(hero)
@@ -7940,6 +7965,34 @@ function GetSellValueByItemLevel( level )
 		return 250
 	end
 	if level == 8 then
+		return 500
+	end
+	return 1
+end
+
+function GetSellValueByArtifactLevel( level )
+	if level == 1 then -- common, not exists
+		return 1
+	end
+	if level == 2 then -- uncommon, not exists
+		return 2
+	end
+	if level == 3 then -- rare, not exists
+		return 2
+	end
+	if level == 4 then -- epic
+		return 2
+	end
+	if level == 5 then -- legendary
+		return 5
+	end
+	if level == 6 then -- immortal
+		return 25 -- should be 50 for ancient immortals, but probably nobody will notice
+	end
+	if level == 7 then -- divine
+		return 100
+	end
+	if level == 8 then -- mythical
 		return 500
 	end
 	return 1
