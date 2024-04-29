@@ -1507,11 +1507,9 @@
 	margin-top: 20px;
 	margin-right: 4px;
 	overflow: scroll;
-	width: fill-parent-flow(1.0);
-	height: fill-parent-flow(1.0);
+	width: 1350px;
+	height: 700px;
 	horizontal-align: center;
-	max-width: 1350px;
-	max-height: 700px;
 }
 
 .AutoSellFilterLabel

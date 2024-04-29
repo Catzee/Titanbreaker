@@ -7964,9 +7964,7 @@ function GetCostByItemLevel( level )
 	return 1
 end
 
-function COverthrowGameMode:SendItemsToShop(params)
-	local player = PlayerResource:GetPlayer(params.PlayerID)
-
+function SendItemsToShop(player)
 	if(player == nil) then
 		return
 	end

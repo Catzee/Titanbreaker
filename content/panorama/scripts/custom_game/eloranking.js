@@ -1890,6 +1890,12 @@ var previousBlacksmithFilterText = "";
 var blacksmithFilterTickRate = 0.05;
 var blacksmithFilterStarted = false;
 
+// Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
+if(Game.IsInToolsMode())
+{
+    blacksmithItemsContainer.RemoveAndDeleteChildren()
+}
+
 function AddItemsToShop(args){
     for (const [_, itemData] of Object.entries(args)) {
         AddItemToShop(itemData);
@@ -3852,7 +3858,28 @@ function RegisterKeyBind(keyBind, callback) {
     Game.AddCommand(uniqueCommandName, callback, "", 0);
     Game.CreateCustomKeyBind(keyBind, uniqueCommandName);
 }
-	
+
+var isServerSendedDataForReconnectedPlayer = false;
+
+function OnPlayerConnectedResponse()
+{
+    // Server responded so stop spam until next time
+    isServerSendedDataForReconnectedPlayer = true;
+}
+
+function TrySendReconnectEvent()
+{
+    // Spamming server every 1s until he sends our data back...
+    if(!isServerSendedDataForReconnectedPlayer)
+    {
+        GameEvents.SendCustomGameEventToServer("playerconnected", { "player_id" : Players.GetLocalPlayer() });
+        $.Schedule(2.5, TrySendReconnectEvent);  
+    } else
+    {
+        //$.Msg("We finally got response!");
+    }
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -3896,12 +3923,6 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
-    
-    // Requires shop items for blacksmith
-    GameEvents.SendCustomGameEventToServer("getshopitems", { } );
-
-    // Restore autosell filters data
-    GameEvents.SendCustomGameEventToServer("getautosell", { } );
     GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
@@ -4012,10 +4033,7 @@ function RegisterKeyBind(keyBind, callback) {
     $.FindChildInContext("#selectdiffipanel").visible = false;
     //$.FindChildInContext("#StatBranchBG").visible = false;
     //$("#StatBranch").visible = false;
-    
-    
-    GameEvents.SendCustomGameEventToServer( "loadalltalents", { "player_id": Players.GetLocalPlayer() } );
-    
+        
     var spectatorid = Game.GetLocalPlayerID();
     spectator = Players.IsSpectator(spectatorid);
     //spectator = true;
@@ -4027,6 +4045,10 @@ function RegisterKeyBind(keyBind, callback) {
     PeriodicUpdate();
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
+
+    GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
+    // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
+    $.Schedule(1, TrySendReconnectEvent);
 })();
 
 function DisableTalentTree(){
