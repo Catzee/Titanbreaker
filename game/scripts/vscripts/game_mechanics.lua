@@ -1799,11 +1799,16 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        critchance = 5*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
-            critpossible = false
+    local ballistaOfExectionModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if critpossible == true and ballistaOfExectionModifier then
+        local ballistaOfExectionModifierAbility = ballistaOfExectionModifier:GetAbility()
+        if(ballistaOfExectionModifierAbility) then
+            critchance = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local templeArmorModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal3")
@@ -7033,12 +7038,17 @@ function HealUnit( event )
             end
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        critchance = 5*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+    local ballistaOfExectionModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if critpossible == true and ballistaOfExectionModifier then
+        local ballistaOfExectionModifierAbility = ballistaOfExectionModifier:GetAbility()
+        if(ballistaOfExectionModifierAbility) then
+            critchance = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local armageddon = event.caster:FindModifierByName("modifier_item_crit_pure_immortal")
@@ -25029,8 +25039,12 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
     if caster:HasModifier("modifier_item_crit_pure_immortal_3") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 750, aacrit_chance = 15})
     end
-    if caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 500, aacrit_chance = 5})
+    local ballistaOfExection = caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if ballistaOfExection then
+        local ballistaOfExectionAbility = ballistaOfExection:GetAbility()
+        if(ballistaOfExectionAbility) then
+            AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = ballistaOfExectionAbility:GetSpecialValueFor("bonus_stat4"), aacrit_chance = ballistaOfExectionAbility:GetSpecialValueFor("bonus_stat3")})
+        end
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 275, aacrit_chance = 5})

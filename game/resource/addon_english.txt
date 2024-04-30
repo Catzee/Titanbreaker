@@ -7399,8 +7399,10 @@
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2"                                             "<font color=\"#00ffff\">[Ancient] Ballista of Execution"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_Description"                                 "Increases the level of Blood Wolf by 2.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat0"                                 "Attack Speed: "
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat1"                                 "%Ability Critical Strike chance for 200%:"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat2"                                 "%Auto Attack Critical Strike chance for 200%:"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat1"                                 "%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat2"                                 "%Ability Critical Strike Factor: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat3"                                 "%Auto Attack Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat4"                                 "%Auto Attack Critical Strike Factor: "
 
 		"DOTA_Tooltip_Ability_item_bootscrit3"  											"<font color=\"#00ffff\">[Ancient] Alphamane Mount"
 		"DOTA_Tooltip_Ability_item_bootscrit3_Description"  								"<h1>Alpharun</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 25%% increased Damage.\nDoes not stack with Firebat.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."

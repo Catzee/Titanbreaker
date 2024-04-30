@@ -22757,17 +22757,27 @@
 	    	"01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat0"    "100"
+	            "bonus_stat0"    "100" // attack speed
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "5"
+	            "bonus_stat1"    "15" // passive ability crit chance
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "5"
+	            "bonus_stat2"    "180" // passive ability crit multiplier
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "15" // passive aa crit chance
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "180" // passive aa crit multiplier
 	        }
 	    }
 
