@@ -2679,15 +2679,18 @@ function COverthrowGameMode:OnPlayerConnected(params)
   local player = PlayerResource:GetPlayer(playerId)
   CustomGameEventManager:Send_ServerToPlayer(player, "playerconnectedresponse", { })
 
-  -- Restore shop data for that client
-  SendItemsToShop(player)
-  -- Restore auto sell filters data for that client
-  SendAutoSell(player)
-  -- Restore talents data for that client
-  SendAllTalentsToPlayer(player, playerId)
+  -- Should be enough to consider high ping guys
+  Timers:CreateTimer(5, function()
+    -- Restore shop data for that client
+    SendItemsToShop(player)
+    -- Restore auto sell filters data for that client
+    SendAutoSell(player)
+    -- Restore talents data for that client
+    SendAllTalentsToPlayer(player, playerId)
 
-  -- Allows next reconnect requests spam
-  COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
+    -- Allows next reconnect requests spam
+    COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
+  end)
 end
 
 function RemoveAllCosmetics( hero )
