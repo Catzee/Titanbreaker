@@ -1764,11 +1764,16 @@ function DamageUnit( event )
             end
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_ancient_wolf") then
-        critchance = 10*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
-            critpossible = false
+    local armorOfRedWolfModifier = caster:FindModifierByName("modifier_item_ancient_wolf")
+    if critpossible == true and armorOfRedWolfModifier then
+        local armorOfRedWolfModifierAbility = armorOfRedWolfModifier:GetAbility()
+        if(armorOfRedWolfModifierAbility) then
+            critchance = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[158] > 0 then
@@ -7015,12 +7020,17 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_ancient_wolf") then
-        critchance = 10*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.25*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+    local armorOfRedWolfModifier = caster:FindModifierByName("modifier_item_ancient_wolf")
+    if critpossible == true and armorOfRedWolfModifier then
+        local armorOfRedWolfModifierAbility = armorOfRedWolfModifier:GetAbility()
+        if(armorOfRedWolfModifierAbility) then
+            critchance = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal_2") then
