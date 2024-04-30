@@ -156,7 +156,7 @@
 		"talent60"								"Wolf Rider: For every 20 Points of Movement Speed beyond 300 gain 1% / 2% / 3% increased Damage and Damage Reduction, both capped at 50%."
 
 		"talent61"								"Demon Fury: Gain Agility equal to 5% / 10% / 15% of your Strength and Intellect."
-		"talent62"								"Dark Wizardry: Gain Spellpower equal to 3% / 6% / 9% of your Strength, Agility and Intellect and Ability Damage instances with a scaling of 600% or higher gain a 1% / 2% / 3% chance to Critical Strike for 300%."
+		"talent62"								"Dark Wizardry: Gain Spellpower equal to 3% / 6% / 9% of your Strength, Agility and Intellect and Ability Damage instances with a scaling of 600% or higher gain a 4% / 8% / 12% chance to Critical Strike for 275%."
 		"talent63"								"Warden of Souls: + 15 / 30 / 45 Strength and whenever you die, there is a 7% / 14% / 21% chance to not lose a life (capped at 50%)."
 		"talent64"								"A Light in the Dark: Increase all Holy and Shadow Damage by 10% / 20% / 30% and all Ability Damage caused by your 4th Ability by 10% / 20% / 30%."
 		"talent65"								"Shadow Colossus: + 5% / 10% / 15% Primary Attribute and 250 / 500 / 750 Health, at the cost of 15% reduced Movement Speed while in combat."

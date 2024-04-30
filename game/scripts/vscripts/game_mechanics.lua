@@ -1571,10 +1571,11 @@ function DamageUnit( event )
         critdmgbonusfactor = critdmgbonusfactor + 0.25 * caster.talents[79]
     end
     local flatCritChance = GetFlatCritChance(caster) * critchancefactor
+    caster.talents[62] = 100
     if critpossible == true and is_very_big_hit and caster.talents and caster.talents[62] and caster.talents[62] > 0 then
-        critchance = critchancefactor * caster.talents[62] + flatCritChance
+        critchance = critchancefactor * 4 * caster.talents[62] + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*3*critdmgbonusfactor
+            finaldamage = finaldamage*2.75*critdmgbonusfactor
             critpossible = false
         end
     end
