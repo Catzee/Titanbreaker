@@ -11874,6 +11874,10 @@ function COverthrowGameMode:FilterDamage( filterTable )
   if attacker:HasModifier("modifier_sou_minus") then
     newdamage = newdamage * 0.8
   end
+  if attacker:HasModifier("modifier_dmg_reduce_roots") then
+    newdamage = newdamage * 0.85
+  end
+  
   --if victim:HasModifier("modifier_killdance") then
     --    newdamage = 0 --newdamage * 0.1
     --end
@@ -11882,6 +11886,21 @@ function COverthrowGameMode:FilterDamage( filterTable )
     end
     if victim:HasModifier("modifier_rotdk") then
       newdamage = newdamage * 0.95
+    end
+    if victim:HasModifier("modifier_soulwarden_shield") then
+      newdamage = newdamage * 0.25
+    end
+    if victim:HasModifier("modifier_prayer_shield") then
+      newdamage = newdamage * 0.5
+    end
+
+    local restoStacks = victim:GetModifierStackCount("modifier_hot3", nil)
+    if restoStacks > 0 then
+      local restoReduction = 0.1 * restoStacks
+      if restoReduction > 0.9 then
+        restoReduction = 0.9
+      end
+      newdamage = newdamage * (1 - restoReduction)
     end
     
     

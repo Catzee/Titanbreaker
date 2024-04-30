@@ -7619,7 +7619,7 @@ function HealUnit( event )
         end
     end
 
-    HealProcs(caster, target, event.isdot)
+    HealProcs(caster, target, ability, event.heal, event.isdot)
 
     if caster:HasModifier("modifier_guardian_self") and event.FromGuardian ~= 1 then
         local all = HeroList:GetAllHeroes()
@@ -8377,8 +8377,11 @@ function DruidTalentAOERoots( event )
         end
     	event.buff = "modifier_rootsdruid"
     	CCTarget(event)
+        event.buff = "modifier_mindnumb"
+        event.dur = 15
+        CCTarget(event)
     	if event.ability:GetLevel() >= 4 and entangle_ability_for_talents then
-    		event.buff = "modifier_mindnumb"
+    		event.buff = "modifier_dmg_reduce_roots"
     		event.dur = 15
     		CCTarget(event)
     	end
@@ -9769,6 +9772,7 @@ function SacredShield( event )
 	end
 	target.pwssource = caster
 	caster.sacredtarget = target
+    caster.sacredShieldIncreases = 0
 	--also add bonus factor
     local statbonus = 1.0
     if event.lowbonus and event.lowbonus > 0 and target:GetHealth()/target:GetMaxHealth() < 0.50 then
@@ -9800,6 +9804,13 @@ function SacredShield( event )
 		-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
 		ParticleManager:SetParticleControlEnt(target.ShieldParticle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	end)]]
+end
+
+function AddToSacredShieldAbsorb( target, ability, absorbAmount )
+    if target.AphoticShieldRemaining then
+        target.AphoticShieldRemaining = target.AphoticShieldRemaining + absorbAmount
+        target:SetModifierStackCount("modifier_sacred_shield", ability, target.AphoticShieldRemaining)
+    end
 end
 
 function SacredShieldAbsorb( event )
@@ -13852,6 +13863,11 @@ function HealingWaveJump(event, target, from_target, target_list)
     event.chainhealtargets = event.chainhealtargets - 1
     --heal
     HealUnit(event)
+
+    if event.resbuffduration and event.resbuffduration > 0 then
+        ApplyBuff({caster = caster, target = target, ability = event.ability, buff = "modifier_resto1_res", dur = 5})
+    end
+
     local particle = ParticleManager:CreateParticle("particles/dazzle_shadow_wave_green.vpcf", PATTACH_POINT_FOLLOW, from_target)
     ParticleManager:SetParticleControlEnt(particle, 0, from_target, PATTACH_POINT_FOLLOW, "attach_hitloc", from_target:GetAbsOrigin(), true)
     ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -13889,11 +13905,23 @@ end
 function HealingWave(event)
 	local caster = event.caster
 	local target = event.target
+    local ability = event.ability
     local target_list = {}
     if caster:HasModifier("modifier_npc_dota_hero_witch_doctor") then
         event.can_hit_same_target_again = 1
         event.chainhealtargets = event.chainhealtargets + 1
     end
+
+    if ability:GetLevel() >= 4 then
+        if caster:HasModifier("modifier_healing_totem") then
+            ReduceCooldown({caster = caster, amount = 2, ability = ability, chooseability = 2 })
+        end
+        if caster:HasModifier("manatotemregen") then
+            ReduceCooldown({caster = caster, amount = 2, ability = ability, chooseability = 4 })
+            ReduceCooldown({caster = caster, amount = 2, ability = ability, chooseability = 5 })
+        end
+    end
+
     HealingWaveJump(event, target, caster, target_list)
 end
 
@@ -15026,6 +15054,7 @@ function CooldownReduction( event ) --also instant ability resets
     	local priestcharge = caster:GetModifierStackCount("modifier_light_charge", caster)
     	if priestcharge >= 4 and event.event_ability:GetName() == "Light_of_Heaven" and ability.wasinstant then
     		caster:RemoveModifierByName("modifier_light_charge")
+            HealMostWoundedHero({caster = caster, target = caster, ability = event.event_ability, holy4FX = 1, fromCaster = 1, heal = 0, attributefactor = 100, spelldamagefactor = 100, range = 900})
     	end
 
         --ignoring cap here
@@ -15681,7 +15710,7 @@ function ApplyBuff(event)
     end
 
     --cycloned targets are imune new buffs
-    if target:HasModifier("modifier_cyclone_self") or (not isBuff and target:HasModifier("modifier_invul")) then
+    if (target:HasModifier("modifier_cyclone_self") and not event.pierceCyclone) or (not isBuff and target:HasModifier("modifier_invul")) then
         return
     end
 
@@ -16857,6 +16886,10 @@ end
 
 function SetBuffStack( event )
     local caster = event.caster
+    if event.setTarget then
+        caster = event.target
+    end
+
     local amount = 1
     local buff = event.buff
     local ability = event.ability
@@ -25778,7 +25811,7 @@ function PathStormStrikeProc( caster, target, is_aa, is_channel, ignoreInnerCD, 
     end
 end
 
-function HealProcs(caster, target, isdot)
+function HealProcs(caster, target, ability, healingAmount, isdot)
     if caster and caster.talents then
         DivineBlessingProc(caster)
         if caster.talents[16] and caster.talents[16] > 0 and caster == target and caster.combat_system_ability then
@@ -25801,6 +25834,11 @@ function HealProcs(caster, target, isdot)
     end
     if HeroHasNeutralItem(caster, "item_neutral_32") then
         ApplyBuff({ caster = caster, target = target, dur = 5, buff = "modifier_eyeaegis", ability = caster.combat_system_ability})
+    end
+
+    if caster.sacredShieldIncreases == 0 and GetLevelOfAbility(caster, "Light_of_Heaven") >= 3 and not isdot then
+        caster.sacredShieldIncreases = caster.sacredShieldIncreases + 1
+        AddToSacredShieldAbsorb( target, ability, healingAmount )
     end
 end
 
@@ -28359,6 +28397,9 @@ function GetGlobalHPAuraStat() --percentage
         if HeroHasNeutralItem(all[i], "item_neutral_15") then
             stat = stat + 0.1
         end
+        if GetLevelOfAbility(all[i], "holy1") >= 4 then
+            stat = stat + 0.1
+        end
     end
     return stat
 end
@@ -29705,4 +29746,39 @@ function DivineSphereTakeDamage(event)
     local caster = event.caster
     HealUnit({caster = caster, target = caster, heal = 0, percenthp = 5, ability = event.ability})
     RestoreMana({caster = caster, percent = 1, amount = 5})
+end
+
+function SoulwardenTotemShield(event)
+    local caster = event.caster
+    local target = event.target
+    local pos = target:GetAbsOrigin()
+    local ally = FindClosestAlly(caster, pos, 900, true)
+
+    if ally then
+        ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
+    end
+end
+
+function CycloneHurricane(event)
+    local caster = event.caster
+    local ability = event.ability
+
+    if ability:GetLevel() >= 4 and caster:HasModifier("modifier_druid_evasion_h") then
+        ApplyBuff({caster = caster, target = caster, dur = 7, buff = "modifier_cyclone_hurricane", ability = ability, pierceCyclone = 1})
+    end
+end
+
+function CycloneHurricanePeriodic(event)
+    local caster = event.caster
+    local enemy = FindClosestEnemy({caster = caster, radius = 900})
+
+    if enemy then
+        ApplyBuffStack({caster = caster, target = enemy, dur = 5, buff = "modifier_hurricane_weakening", ability = event.ability, max = 7})
+        DamageUnit({caster = caster, target = enemy, ability = event.ability, damage = 0, attributefactor = 500, spelldamagefactor = 500, naturedmg = 1})
+        local particle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_arcana/razor_arcana_strike_top_lightning_strike.vpcf", PATTACH_POINT_FOLLOW, enemy)
+        ParticleManager:SetParticleControl(particle, 0, enemy:GetAbsOrigin())
+        ParticleManager:SetParticleControl(particle, 1, enemy:GetAbsOrigin())
+        ParticleManager:ReleaseParticleIndex(particle)
+        EmitSoundOn("DOTA_Item.Mjollnir.Activate", enemy)
+    end
 end
