@@ -1742,9 +1742,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster:HasModifier("modifier_pathbuff_069") and (event.fromcompanion or event.fromsummon or event.ComesFromPet) then
-        critchance = 15 * critchancefactor + flatCritChance
+        critchance = 10 * critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3.25*critdmgbonusfactor
             critpossible = false
         end
     end
