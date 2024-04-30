@@ -2024,9 +2024,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[19] and caster.talents[19] > 0 then
-        critchance = caster.talents[19] * critchancefactor + flatCritChance
+        critchance = caster.talents[19] * 5 * critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3.6*critdmgbonusfactor
             critpossible = false
         end
     end
