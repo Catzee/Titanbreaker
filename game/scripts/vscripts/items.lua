@@ -298,7 +298,7 @@ function COverthrowGameMode:UpdateMythicWeaponStats(hero)
 				if stat == "% Attack Speed" then
 					buff = "modifier_mythic_as"
 				end
-				if stat == "% Ability Crit (200%)" then
+				if stat == "% Ability Crit (300%)" then
 					buff = "modifier_mythic_abilcrit"
 				end
 				if stat == " Armor" then
@@ -508,10 +508,10 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 	if attribute == " Auto Attack Damage" then
 		return 5
 	end
-	if attribute == "% Ability Crit (200%)" and COverthrowGameMode.version == 1 then
+	if attribute == "% Ability Crit (300%)" and COverthrowGameMode.version == 1 then
 		return 0.33333
 	end
-	if attribute == "% Ability Crit (200%)" and COverthrowGameMode.version == 2 then
+	if attribute == "% Ability Crit (300%)" and COverthrowGameMode.version == 2 then
 		return 0.11
 	end
 	if attribute == "% Ability Critical Damage" then
@@ -935,7 +935,7 @@ COverthrowGameMode.HeroStatsData = {
     {"hpe", 0.1, " % Total Health", "Vitality", "Vital", "Vitality"}, 
     {"map", 0.1, " % Total Mana", "Deep", "Deep", "Depth"}, 
     --crit procs
-    {"abc", 0.05, " % Ability Crit (200%)", "Executioner", "Final", "Execution"}, --weapons, shoulder, ring
+    {"abc", 0.05, " % Ability Crit (300%)", "Executioner", "Final", "Execution"}, --weapons, shoulder, ring
     {"abd", 0.025, " % Ability Crit (1000%)", "Cataclysm", "Cataclysmic", "Cataclysm"}, --weapons, shoulder, ring
     {"aac", 0.025, " % Auto Attack Crit (300%)", "Deadly", "Deadly", "Conflict"}, --weapons
     {"aae", 0.05, " % Auto Attack Crit (300%)", "Piercer", "Piercing", "Piercing"} --weapons
@@ -950,7 +950,7 @@ COverthrowGameMode.GeneratedItemData = {
     {"spp", " Spellpower", "Wizard", "Mythical", "Magic"}, 
     {"crd", "% Ability Critical Damage", "Colossal", "Cruel", "Destruction"}, --offhand, ring
     {"ats", " Attack Speed", "Windfury", "Rapid", "Combat"}, --weapons, shoulder
-    {"abc", "% Ability Crit (200%)", "Executioner", "Final", "Execution"}, --weapons, shoulder, ring
+    {"abc", "% Ability Crit (300%)", "Executioner", "Final", "Execution"}, --weapons, shoulder, ring
     {"arm", " Armor", "Valyrian", "Unbreakable", "Defense"}, --not weapons and ring
     {"res", " Spell Resistance", "Barrier", "Enchanted", "Shelter"}, --not weapons and ring
     {"aac", "% Auto Attack Crit (300%)", "Deadly", "Deadly", "Conflict"}, --weapons

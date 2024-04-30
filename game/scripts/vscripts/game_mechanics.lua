@@ -1705,7 +1705,7 @@ function DamageUnit( event )
     if critpossible == true and caster:HasModifier("modifier_mythic_abilcrit") then
         critchance = critchancefactor * caster:GetModifierStackCount("modifier_mythic_abilcrit", nil) + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6977,7 +6977,7 @@ function HealUnit( event )
     if critpossible == true and event.caster:HasModifier("modifier_mythic_abilcrit") then
         critchance = critchancefactor * caster:GetModifierStackCount("modifier_mythic_abilcrit", nil)
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
+            event.heal = event.heal*3*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
