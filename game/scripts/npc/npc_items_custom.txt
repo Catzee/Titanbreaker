@@ -30157,22 +30157,22 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "30" // passive crit chance
+	            "bonus_stat1"    "20" // passive crit chance
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "300" // passive crit multiplier
+	            "bonus_stat2"    "325" // passive crit multiplier
 	        }
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "35" // active crit chance
+	            "bonus_stat3"    "25" // active crit chance
 	        }
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "360" // active crit multiplier
+	            "bonus_stat4"    "460" // active crit multiplier
 	        }
 	        "05"
 	        {
@@ -30480,22 +30480,22 @@
 	        "06"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat8"    "30" // passive crit chance
+	            "bonus_stat8"    "20" // passive crit chance
 	        }
 	        "07"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat9"    "300" // passive crit multiplier
+	            "bonus_stat9"    "325" // passive crit multiplier
 	        }
 	        "06"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat10"    "35" // active crit chance
+	            "bonus_stat10"    "25" // active crit chance
 	        }
 	        "07"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat11"    "360" // active crit multiplier
+	            "bonus_stat11"    "460" // active crit multiplier
 	        }
 	        "08"
 	        {
