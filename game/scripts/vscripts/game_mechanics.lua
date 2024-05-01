@@ -1571,10 +1571,11 @@ function DamageUnit( event )
         critdmgbonusfactor = critdmgbonusfactor + 0.25 * caster.talents[79]
     end
     local flatCritChance = GetFlatCritChance(caster) * critchancefactor
+    caster.talents[62] = 100
     if critpossible == true and is_very_big_hit and caster.talents and caster.talents[62] and caster.talents[62] > 0 then
-        critchance = critchancefactor * caster.talents[62] + flatCritChance
+        critchance = critchancefactor * 4 * caster.talents[62] + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*3*critdmgbonusfactor
+            finaldamage = finaldamage*2.75*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -1705,7 +1706,7 @@ function DamageUnit( event )
     if critpossible == true and caster:HasModifier("modifier_mythic_abilcrit") then
         critchance = critchancefactor * caster:GetModifierStackCount("modifier_mythic_abilcrit", nil) + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -1742,9 +1743,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster:HasModifier("modifier_pathbuff_069") and (event.fromcompanion or event.fromsummon or event.ComesFromPet) then
-        critchance = 15 * critchancefactor + flatCritChance
+        critchance = 10 * critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3.5*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -1764,11 +1765,16 @@ function DamageUnit( event )
             end
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_ancient_wolf") then
-        critchance = 10*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
-            critpossible = false
+    local armorOfRedWolfModifier = caster:FindModifierByName("modifier_item_ancient_wolf")
+    if critpossible == true and armorOfRedWolfModifier then
+        local armorOfRedWolfModifierAbility = armorOfRedWolfModifier:GetAbility()
+        if(armorOfRedWolfModifierAbility) then
+            critchance = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[158] > 0 then
@@ -1794,11 +1800,16 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        critchance = 5*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
-            critpossible = false
+    local ballistaOfExectionModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if critpossible == true and ballistaOfExectionModifier then
+        local ballistaOfExectionModifierAbility = ballistaOfExectionModifier:GetAbility()
+        if(ballistaOfExectionModifierAbility) then
+            critchance = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor + flatCritChance
+            local critDmgFactor = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     local templeArmorModifier = caster:FindModifierByName("modifier_item_crit_pure_immortal3")
@@ -2013,9 +2024,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[19] and caster.talents[19] > 0 then
-        critchance = caster.talents[19] * critchancefactor + flatCritChance
+        critchance = caster.talents[19] * 5 * critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*3.6*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -6967,7 +6978,7 @@ function HealUnit( event )
     if critpossible == true and event.caster:HasModifier("modifier_mythic_abilcrit") then
         critchance = critchancefactor * caster:GetModifierStackCount("modifier_mythic_abilcrit", nil)
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
+            event.heal = event.heal*3*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -7015,20 +7026,30 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_ancient_wolf") then
-        critchance = 10*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.25*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+    local armorOfRedWolfModifier = caster:FindModifierByName("modifier_item_ancient_wolf")
+    if critpossible == true and armorOfRedWolfModifier then
+        local armorOfRedWolfModifierAbility = armorOfRedWolfModifier:GetAbility()
+        if(armorOfRedWolfModifierAbility) then
+            critchance = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = armorOfRedWolfModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        critchance = 5*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*5*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
+    local ballistaOfExectionModifier = event.caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if critpossible == true and ballistaOfExectionModifier then
+        local ballistaOfExectionModifierAbility = ballistaOfExectionModifier:GetAbility()
+        if(ballistaOfExectionModifierAbility) then
+            critchance = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat1")*critchancefactor
+            local critDmgFactor = ballistaOfExectionModifierAbility:GetSpecialValueFor("bonus_stat2") / 100
+            if math.random(1,100) <= critchance then
+                event.heal = event.heal*critDmgFactor*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+            end
         end
     end
     local armageddon = event.caster:FindModifierByName("modifier_item_crit_pure_immortal")
@@ -25052,8 +25073,12 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
     if caster:HasModifier("modifier_item_crit_pure_immortal_3") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 750, aacrit_chance = 15})
     end
-    if caster:HasModifier("modifier_item_crit_pure_immortal_2") then
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 500, aacrit_chance = 5})
+    local ballistaOfExection = caster:FindModifierByName("modifier_item_crit_pure_immortal_2")
+    if ballistaOfExection then
+        local ballistaOfExectionAbility = ballistaOfExection:GetAbility()
+        if(ballistaOfExectionAbility) then
+            AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = ballistaOfExectionAbility:GetSpecialValueFor("bonus_stat4"), aacrit_chance = ballistaOfExectionAbility:GetSpecialValueFor("bonus_stat3")})
+        end
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 275, aacrit_chance = 5})

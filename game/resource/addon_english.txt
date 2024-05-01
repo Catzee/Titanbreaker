@@ -6027,7 +6027,7 @@
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat1"                              "Spellpower: +"
 		"DOTA_Tooltip_ability_item_shadowstrike_bonus_stat2"                              "Spell Resistance: +"
 
-		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_5_Description"                               "<h1>Titan Power</h1>Increases this Item's Critical Strike Chance to %bonus_stat6%%% for %bonus_stat5% secs.\nPassive: All debuffs caused by you last 15%% longer.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat3"									"%Ability Critical Strike Chance: "
 		"DOTA_Tooltip_ability_item_crit_pure_5_bonus_stat4"									"%Ability Critical Strike Factor: "
 
@@ -6731,7 +6731,7 @@
 		"DOTA_Tooltip_Ability_item_bootsreflect3_bonus_stat3"	"Armor: +"
 		"DOTA_Tooltip_Ability_item_bootsreflect3_bonus_stat4"	"%Holy Damage: +"
 		"DOTA_Tooltip_ability_item_ancient_def"                                           "<font color=\"#00ffff\">[Ancient] Mask of Horror"
-		"DOTA_Tooltip_ability_item_ancient_def_Description"                               "%bonus_stat8%%% Ability Critical Strike chance for %bonus_stat9%%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nAfter having cast your 4th, 5th and 6th Ability, increase this Items Critical Strike chance to %bonus_stat10%%% and Critical Strike multiplier to %bonus_stat11%%% for %bonus_stat12% secs."
+		"DOTA_Tooltip_ability_item_ancient_def_Description"                               "%bonus_stat8%%% Ability Critical Strike Chance for %bonus_stat9%%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nAfter having cast your 4th, 5th and 6th Ability, increase this Item's Critical Strike Chance to %bonus_stat10%%% for %bonus_stat12% secs."
 		"DOTA_Tooltip_ability_item_ancient_def_bonus_stat1"                               "Health: +"
 		"DOTA_Tooltip_ability_item_ancient_def_bonus_stat4"                               "Spell Resistance: +"
 		"DOTA_Tooltip_ability_item_lotusguard3"                                            "<font color=\"#00ffff\">[Ancient] Titanium Bracers"
@@ -6739,7 +6739,7 @@
 		"DOTA_Tooltip_ability_item_lotusguard3_bonus_stat1"                                "Health: +"
 		"DOTA_Tooltip_ability_item_lotusguard3_bonus_stat2"                                "Spell Resistance: +"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal3"                                             "<font color=\"#00ffff\">[Ancient] Titan Temple Armor"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal3_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat3%%% and Critical Strike multiplier to %bonus_stat4%%% for %bonus_stat5% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal3_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike Chance to %bonus_stat3%%% for %bonus_stat5% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_crit_pure_immortal3_bonus_stat1"									"%Ability Critical Strike Chance: "
 		"DOTA_Tooltip_Ability_item_crit_pure_immortal3_bonus_stat2"									"%Ability Critical Strike Factor: "
 		"DOTA_Tooltip_ability_item_crit_pure_immortal3_bonus_stat6"                               "Health: +"
@@ -7140,7 +7140,8 @@
 
 		"DOTA_Tooltip_ability_item_ancient_wolf"                                       "<font color=\"#00ffff\">[Ancient] Armor of the Red Wolf"
 		"DOTA_Tooltip_ability_item_ancient_wolf_Description"                           "Increases the level of Sharp Claws by 2.\nIncreases the level of Wolf Rage by 2.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_ability_item_ancient_wolf_bonus_stat1"                           "%Ability Critical Strike Chance (150%): +"
+		"DOTA_Tooltip_Ability_item_ancient_wolf_bonus_stat1"                           "%Ability Critical Strike Chance: "
+		"DOTA_Tooltip_Ability_item_ancient_wolf_bonus_stat2"                           "%Ability Critical Strike Factor: "
 
 		"DOTA_Tooltip_ability_item_ancient_dragon"                                       "<font color=\"#00ffff\">[Ancient] Dragonscale Shoulders"
 		"DOTA_Tooltip_ability_item_ancient_dragon_Description"                           "Increases the Level of Mana Shield by 2 if it is atleast Level 1.\n<font color=\"#FF6600\">Uniquely Equipped.</font>"
@@ -7398,8 +7399,8 @@
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2"                                             "<font color=\"#00ffff\">[Ancient] Ballista of Execution"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_Description"                                 "Increases the level of Blood Wolf by 2.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat0"                                 "Attack Speed: "
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat1"                                 "%Ability Critical Strike chance for 200%:"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat2"                                 "%Auto Attack Critical Strike chance for 200%:"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike Chance: "
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat2"                                 "%Ability and Auto Attack Critical Strike Factor: "
 
 		"DOTA_Tooltip_Ability_item_bootscrit3"  											"<font color=\"#00ffff\">[Ancient] Alphamane Mount"
 		"DOTA_Tooltip_Ability_item_bootscrit3_Description"  								"<h1>Alpharun</h1>Gain a 50%% Movement Speed Burst, Phased Effect and 90%% Evasion for 3 secs.\n\nPassive: All damage dealing Ability Critical Strikes caused by you deal 25%% increased Damage.\nDoes not stack with Firebat.\n<font color=\"#00ff00\">Mount: Gain 25%% increased Movement Speed while out of combat."
@@ -8122,7 +8123,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_068_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Apocalypse.</font>\nAsteroid Extinction: While under Apocalypse, Rain of Stars Damage is increased by 100%%.\nTomb Raider: Lord of Bones proc chance is increased by 3%%, if it is at least Level 1."
 		"DOTA_Tooltip_ability_item_pathbuff_068_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_069"  "<font color=\"#ffd700\">[Divine] Tamed Moose"
-		"DOTA_Tooltip_ability_item_pathbuff_069_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Cruel Taskmaster.</font>\nAura of the Moose: Your Summons and Companions gain a 15%% chance to Critical Strike for 200%%."
+		"DOTA_Tooltip_ability_item_pathbuff_069_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Cruel Taskmaster.</font>\nAura of the Moose: Your Summons and Companions gain a 10%% chance to Critical Strike for 350%%."
 		"DOTA_Tooltip_ability_item_pathbuff_070"  "<font color=\"#ffd700\">[Divine] Cutthroat"
 		"DOTA_Tooltip_ability_item_pathbuff_070_Description"  "<font color=\"#FF6600\">+3 for the Path Talent From the Shadows.</font>\nAmbush Master: While under the effect of Patient Prowler and From the Shadows, your Primary Attribute is increased by 25%%.\nAll Ability Damage is increased by 25%% against targets above 75%% of max Health."
 		"DOTA_Tooltip_ability_item_pathbuff_071"  "<font color=\"#ffd700\">[Divine] Valyrian Steel Hook"
@@ -9430,7 +9431,7 @@
 		"DOTA_Tooltip_Ability_item_xset_str_t3_2_2_bonus_stat4"	"%Shadow Damage: +"
 
 		"DOTA_Tooltip_ability_item_crit_myth"                                             "<font color=\"#7733ff\">[Mythical] Rigged Dice of the Deceiver"
-		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat5%%% and Critical Strike multiplier to %bonus_stat6%%% for %bonus_stat7% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat5%%% for %bonus_stat7% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat3"									"%Ability Critical Strike Chance: "
 		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat4"									"%Ability Critical Strike Factor: "
 		"DOTA_Tooltip_ability_item_crit_myth_bonus_stat2"                               "Health: +"

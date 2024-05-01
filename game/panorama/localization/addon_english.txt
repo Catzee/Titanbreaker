@@ -109,7 +109,7 @@
 		"talent16"								"Moonlight Fairies: Increase all Arcane and Nature Damage by 15% / 30% / 45% and all Healing caused by 5% / 10% / 15%. After you Heal yourself, your Primary Attribute is increased by 5% / 10% / 15% for 15 secs."
 		"talent17"								"Full Moon: + 10% / 15% / 20% Cooldown Reduction for your 3rd Ability and + 10% / 15% / 20% Ability Critical Strike Damage and Healing."
 		"talent18"								"Tigerbites: + 10% / 20% / 30% Attack Damage and + 50 / 100 / 150 Auto Attack Damage"
-		"talent19"								"Phantom Assassin: + 1% / 2% / 3% chance to Critical Strike for 200% with Abilities and whenever your 3rd Ability lands a Critical Strike, there is a 10% / 20% / 30% chance to reset its cooldown, with an inner cooldown of 30 secs."
+		"talent19"								"Phantom Assassin: + 5% / 10% / 15% chance to Critical Strike for 360% with Abilities and whenever your 3rd Ability lands a Critical Strike, there is a 10% / 20% / 30% chance to reset its cooldown, with an inner cooldown of 30 secs."
 		"talent20"								"Careful Aim: For every second you stand still your Damage and Healing is increased by 5% / 10% / 15%, stacking up to 5 times."
 		"talent21"								"Fragile Moon: Increase all Damage by 15% / 30% / 45% and cause your next Auto Attack Critical Strike Damage to be increased by 15% / 30% / 45% every 5 secs, at the cost of reducing Armor and Spell Resistance by 5 / 10 / 15."
 		"talent22"								"The Stars Aligned: Every 15 secs, the next time you deal Damage with an Ability, it will be a guaranteed Critical Strike for 200% / 250% / 300%. Does not proc on Ability Damage with a scaling below 600%." //\nWhenever you kill a creature, the cooldown is reset.
@@ -156,7 +156,7 @@
 		"talent60"								"Wolf Rider: For every 20 Points of Movement Speed beyond 300 gain 1% / 2% / 3% increased Damage and Damage Reduction, both capped at 50%."
 
 		"talent61"								"Demon Fury: Gain Agility equal to 5% / 10% / 15% of your Strength and Intellect."
-		"talent62"								"Dark Wizardry: Gain Spellpower equal to 3% / 6% / 9% of your Strength, Agility and Intellect and Ability Damage instances with a scaling of 600% or higher gain a 1% / 2% / 3% chance to Critical Strike for 300%."
+		"talent62"								"Dark Wizardry: Gain Spellpower equal to 3% / 6% / 9% of your Strength, Agility and Intellect and Ability Damage instances with a scaling of 600% or higher gain a 4% / 8% / 12% chance to Critical Strike for 275%."
 		"talent63"								"Warden of Souls: + 15 / 30 / 45 Strength and whenever you die, there is a 7% / 14% / 21% chance to not lose a life (capped at 50%)."
 		"talent64"								"A Light in the Dark: Increase all Holy and Shadow Damage by 10% / 20% / 30% and all Ability Damage caused by your 4th Ability by 10% / 20% / 30%."
 		"talent65"								"Shadow Colossus: + 5% / 10% / 15% Primary Attribute and 250 / 500 / 750 Health, at the cost of 15% reduced Movement Speed while in combat."
