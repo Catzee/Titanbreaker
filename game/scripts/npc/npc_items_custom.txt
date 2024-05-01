@@ -30167,12 +30167,12 @@
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "25" // active crit chance
+	            "bonus_stat3"    "40" // active crit chance
 	        }
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "460" // active crit multiplier
+	            "bonus_stat4"    "325" // active crit multiplier
 	        }
 	        "05"
 	        {
@@ -30490,12 +30490,12 @@
 	        "06"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat10"    "25" // active crit chance
+	            "bonus_stat10"    "40" // active crit chance
 	        }
 	        "07"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat11"    "460" // active crit multiplier
+	            "bonus_stat11"    "325" // active crit multiplier
 	        }
 	        "08"
 	        {
