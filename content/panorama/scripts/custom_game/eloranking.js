@@ -1924,6 +1924,12 @@ var previousBlacksmithFilterText = "";
 var blacksmithFilterTickRate = 0.05;
 var blacksmithFilterStarted = false;
 
+// Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
+if(Game.IsInToolsMode())
+{
+    blacksmithItemsContainer.RemoveAndDeleteChildren()
+}
+
 function AddItemsToShop(args){
     for (const [_, itemData] of Object.entries(args)) {
         AddItemToShop(itemData);
@@ -3171,91 +3177,192 @@ function SetMyChest(args)
     }
 }
 
-function SetAutoSellItems() {
-    autosell = autosell + 1;
+function OnAutoSellFiltersResponse(args)
+{
+    if(args.autosell != undefined)
+    {
+        for(let i = 0; i < autoSellOptions.length; i ++)
+        {
+            if(autoSellOptions[i].value == args.autosell)
+            {
+                autosell = i;
+                SetAutoSellText(autosell);
+                break;
+            }
+        }
+    }
 
-    if(autosell > 15){
+    if(args.autosellArti != undefined)
+    {
+        for(let i = 0; i < autoSellArtiOptions.length; i ++)
+        {
+            if(autoSellArtiOptions[i].value == args.autosellArti)
+            {
+                autosellArti = i;
+                SetAutoSellArtiText(autosellArti);
+                break;
+            }
+        }
+    }
+
+    if(args.autosellSouls != undefined)
+    {
+        for(let i = 0; i < autoSellSoulsOptions.length; i ++)
+        {
+            if(autoSellSoulsOptions[i].value == args.autosellSouls)
+            {
+                autosellSouls = i;
+                SetAutoSellSoulsText(autosellSouls);
+                break;
+            }
+        }
+    }
+}
+
+var autoSellOptions = [
+    {
+        text: "Don't Auto Sell Items",
+        value: 0
+    },
+    {
+        text: "Auto Sell: Common Items and below",
+        value: 2
+    },
+    {
+        text: "Auto Sell: Uncommon Items and below",
+        value: 4
+    },
+    {
+        text: "Auto Sell: Rare Items and below",
+        value: 6
+    },
+    {
+        text: "Auto Sell: Epic Items and below",
+        value: 8
+    },
+    {
+        text: "Auto Sell: Legendary Items and below",
+        value: 10
+    },
+    {
+        text: "Auto Sell: Immortal Items and below",
+        value: 12
+    },
+    {
+        text: "Auto Sell: Divine Items and below",
+        value: 14
+    },
+    {
+        text: "Auto Sell: Mythical Items and below",
+        value: 16
+    }
+];
+
+function SetAutoSellItems(isForwardDirection) {
+    autosell = autosell + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellOptions.length - 1;
+
+    if(autosell < 0) {
+        autosell = autoSellOptionsLastIndex;
+    }
+
+    if(autosell > autoSellOptionsLastIndex)
+    {
         autosell = 0;
-        $("#autoselltext1").text = "Don't Auto Sell Items";
     }
-    if(autosell == 1){
-        autosell = 2;
-        $("#autoselltext1").text = "Auto Sell: Common Items and below";
-    }
-    if(autosell == 3){
-        autosell = 4;
-        $("#autoselltext1").text = "Auto Sell: Uncommon Items and below";
-    }
-    if(autosell == 5){
-        autosell = 6;
-        $("#autoselltext1").text = "Auto Sell: Rare Items and below";
-    }
-    if(autosell == 7){
-        autosell = 8;
-        $("#autoselltext1").text = "Auto Sell: Epic Items and below";
-    }
-    if(autosell == 9){
-        autosell = 10;
-        $("#autoselltext1").text = "Auto Sell: Legendary Items and below";
-    }
-    if(autosell == 11){
-        autosell = 12;
-        $("#autoselltext1").text = "Auto Sell: Immortal Items and below";
-    }
-    if(autosell == 13){
-        autosell = 14;
-        $("#autoselltext1").text = "Auto Sell: Divine Items and below";
-    }
-    if(autosell == 15){
-        autosell = 16;
-        $("#autoselltext1").text = "Auto Sell: Mythical Items and below";
-    }
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autosell } );
+
+    SetAutoSellText(autosell);
+
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "index": autoSellOptions[autosell].value} );
 }
 
-function SetAutoSellArtifacts() {
-    autosellArti = autosellArti + 1;
+function SetAutoSellText(autosellIndex)
+{
+    $("#autoselltext1").text = autoSellOptions[autosellIndex].text;
+}
 
-    if(autosellArti > 10){
+var autoSellArtiOptions = [
+    {
+        text: "Don't Auto Sell Artifacts",
+        value: 0
+    },
+    {
+        text: "Auto Sell: Epic Artifacts and below",
+        value: 2
+    },
+    {
+        text: "Auto Sell: Legendary Artifacts and below",
+        value: 4
+    },
+    {
+        text: "Auto Sell: Immortal Artifacts and below",
+        value: 6
+    },
+    {
+        text: "Auto Sell: Divine Artifacts and below",
+        value: 8
+    },
+    {
+        text: "Auto Sell: Mythical Artifacts and below",
+        value: 10
+    }
+];
+
+function SetAutoSellArtifacts(isForwardDirection) {
+    autosellArti = autosellArti + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellArtiOptions.length - 1;
+
+    if(autosellArti < 0) {
+        autosellArti = autoSellOptionsLastIndex;
+    }
+
+    if(autosellArti > autoSellOptionsLastIndex)
+    {
         autosellArti = 0;
-        $("#autoselltext2").text = "Don't Auto Sell Artifacts";
     }
-    if(autosellArti == 1){
-        autosellArti = 2;
-        $("#autoselltext2").text = "Auto Sell: Epic Artifacts and below";
-    }
-    if(autosellArti == 3){
-        autosellArti = 4;
-        $("#autoselltext2").text = "Auto Sell: Legendary Artifacts and below";
-    }
-    if(autosellArti == 5){
-        autosellArti = 6;
-        $("#autoselltext2").text = "Auto Sell: Immortal Artifacts and below";
-    }
-    if(autosellArti == 7){
-        autosellArti = 8;
-        $("#autoselltext2").text = "Auto Sell: Divine Artifacts and below";
-    }
-    if(autosellArti == 9){
-        autosellArti = 10;
-        $("#autoselltext2").text = "Auto Sell: Mythical Artifacts and below";
-    }
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti" : autosellArti } );
+
+    SetAutoSellArtiText(autosellArti);
+
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexArti": autoSellArtiOptions[autosellArti].value} );
 }
 
-function SetAutoSellSouls() {
-    autosellSouls = autosellSouls + 1;
+function SetAutoSellArtiText(autosellIndex)
+{
+    $("#autoselltext2").text = autoSellArtiOptions[autosellIndex].text;
+}
 
-    if(autosellSouls > 1){
+var autoSellSoulsOptions = [
+    {
+        text: "Don't Auto Sell Souls",
+        value: 0
+    },
+    {
+        text: "Auto Sell: All Souls",
+        value: 2
+    }
+];
+
+function SetAutoSellSouls(isForwardDirection) {
+    autosellSouls = autosellSouls + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellSoulsOptions.length - 1;
+
+    if(autosellSouls < 0) {
+        autosellSouls = autoSellOptionsLastIndex;
+    }
+
+    if(autosellSouls > autoSellOptionsLastIndex)
+    {
         autosellSouls = 0;
-        $("#autoselltext3").text = "Don't Auto Sell Souls";
-    }
-    if(autosellSouls == 1){
-        autosellSouls = 2;
-        $("#autoselltext3").text = "Auto Sell: All Souls";
     }
 
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls" : autosellSouls } );
+    SetAutoSellSoulsText(autosellSouls);
+    
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls": autoSellSoulsOptions[autosellSouls].value} );
+}
+
+function SetAutoSellSoulsText(autosellSouls)
+{
+    $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
 }
 
 function TalentPressed(args){
@@ -3785,7 +3892,28 @@ function RegisterKeyBind(keyBind, callback) {
     Game.AddCommand(uniqueCommandName, callback, "", 0);
     Game.CreateCustomKeyBind(keyBind, uniqueCommandName);
 }
-	
+
+var isServerSendedDataForReconnectedPlayer = false;
+
+function OnPlayerConnectedResponse()
+{
+    // Server responded so stop spam until next time
+    isServerSendedDataForReconnectedPlayer = true;
+}
+
+function TrySendReconnectEvent()
+{
+    // Spamming server every 1s until he sends our data back...
+    if(!isServerSendedDataForReconnectedPlayer)
+    {
+        GameEvents.SendCustomGameEventToServer("playerconnected", { "player_id" : Players.GetLocalPlayer() });
+        $.Schedule(1, TrySendReconnectEvent);  
+    } else
+    {
+        //$.Msg("We finally got response!");
+    }
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -3829,10 +3957,7 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
-    GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
-
-    // Requires shop items for blacksmith
-    GameEvents.SendCustomGameEventToServer("getshopitems", { } );
+    GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
@@ -3942,10 +4067,7 @@ function RegisterKeyBind(keyBind, callback) {
     $.FindChildInContext("#selectdiffipanel").visible = false;
     //$.FindChildInContext("#StatBranchBG").visible = false;
     //$("#StatBranch").visible = false;
-    
-    
-    GameEvents.SendCustomGameEventToServer( "loadalltalents", { "player_id": Players.GetLocalPlayer() } );
-    
+        
     var spectatorid = Game.GetLocalPlayerID();
     spectator = Players.IsSpectator(spectatorid);
     //spectator = true;
@@ -3957,6 +4079,10 @@ function RegisterKeyBind(keyBind, callback) {
     PeriodicUpdate();
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
+
+    GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
+    // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
+    $.Schedule(1, TrySendReconnectEvent);
 })();
 
 function DisableTalentTree(){

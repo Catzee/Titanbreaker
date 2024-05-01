@@ -2544,7 +2544,6 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "talentpressed", TalentPressedButton )
       CustomGameEventManager:RegisterListener( "resetpathpressed", ToggleResetPathPointsPressed )
       CustomGameEventManager:RegisterListener( "resettempleherolevel", ToggleResetTempleHeroLevel )
-      CustomGameEventManager:RegisterListener( "loadalltalents", SendAllTalentsToPlayer )
       CustomGameEventManager:RegisterListener( "gamblingpressed", GamblingPressedButton )
       CustomGameEventManager:RegisterListener( "refreshtalents", RefreshTalents )
       CustomGameEventManager:RegisterListener( "artifactforging", ArtifactForgingPressedButton )
@@ -2560,8 +2559,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
-      CustomGameEventManager:RegisterListener( "getshopitems", Dynamic_Wrap(COverthrowGameMode, 'SendItemsToShop'))
-      CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
+      CustomGameEventManager:RegisterListener( "playerconnected", Dynamic_Wrap( COverthrowGameMode, 'OnPlayerConnected' ) )
 
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
@@ -2665,6 +2663,35 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
 end
 end
 end
+end
+
+function COverthrowGameMode:OnPlayerConnected(params)
+  local playerId = params["player_id"]
+
+  -- Ignore every request until data synced
+  if(COverthrowGameMode._ignoreReconnectRequestsFromPlayer and COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId]) then
+    return
+  end
+
+  -- Since some dota patch all client side requests silently fail if you send them too early...
+  COverthrowGameMode._ignoreReconnectRequestsFromPlayer = COverthrowGameMode._ignoreReconnectRequestsFromPlayer or {}
+  COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = true
+
+  local player = PlayerResource:GetPlayer(playerId)
+  CustomGameEventManager:Send_ServerToPlayer(player, "playerconnectedresponse", { })
+
+  -- Should be enough to consider high ping guys
+  Timers:CreateTimer(5, function()
+    -- Restore shop data for that client
+    SendItemsToShop(player)
+    -- Restore auto sell filters data for that client
+    SendAutoSell(player)
+    -- Restore talents data for that client
+    SendAllTalentsToPlayer(player, playerId)
+
+    -- Allows next reconnect requests spam
+    COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
+  end)
 end
 
 function RemoveAllCosmetics( hero )
@@ -13670,9 +13697,7 @@ function AddTalentPoint(hero, amount)
 	end
 end
 
-function SendAllTalentsToPlayer(event, args)
-  local id = args['player_id']
-  local player = PlayerResource:GetPlayer(id)
+function SendAllTalentsToPlayer(player, id)
   local hero = player:GetAssignedHero()
   if hero and hero.talents then
     for i=1, COverthrowGameMode.maxtalents do
@@ -13767,6 +13792,15 @@ function RefreshTalents(event, args)
             end
           end
         end)
+      end
+
+      function SendAutoSell(player)
+        if player then
+          local hero = player:GetAssignedHero()
+          if(hero) then
+            CustomGameEventManager:Send_ServerToPlayer(player, "getautosellresponse", { autosell = hero.autosell, autosellArti = hero.autosellArti, autosellSouls = hero.autosellSouls })
+          end
+        end
       end
 
       function SetAutoSell(event, args)
