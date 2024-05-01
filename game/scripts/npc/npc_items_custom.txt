@@ -34502,7 +34502,7 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat6"    "36" // active crit chance
+	            "bonus_stat6"    "35" // active crit chance
 	        }
 	        "05"
 	        {
