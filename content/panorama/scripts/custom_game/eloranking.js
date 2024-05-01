@@ -3958,6 +3958,7 @@ function TrySendReconnectEvent()
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
     GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
+    GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
