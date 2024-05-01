@@ -628,7 +628,7 @@
 		//"DOTA_Tooltip_Ability_antimage_blink_buffduration"    "Duration:" 
 
 		"DOTA_Tooltip_Ability_Shadow_Creeper"  "Shadowbeast"  
-		"DOTA_Tooltip_Ability_Shadow_Creeper_Description"  "Summon a Shadowbeast to attack an enemy. When attacking, it will restore Mana and apply Shadowbeast Cripple, increasing all Damage taken, stacking 10 times.<font color=\"#FFBB00\">\n\nRank 2: The Shadowbeast lasts longer. \nRank 3: Increased Damage taken per stack of Shadowbeast Cripple. \nRank 4: Mana restored increased, improved Movement slow and also slow the target's Attack Speed by 1%% per stack.\n\n</font>"
+		"DOTA_Tooltip_Ability_Shadow_Creeper_Description"  "Summon a Shadowbeast to attack an enemy. When attacking, it will restore Mana and apply Shadowbeast Cripple, increasing all Damage taken, stacking 10 times.<font color=\"#FFBB00\">\n\nRank 2: The Shadowbeast lasts longer. When cast, stun all enemies within 900 yards for 3 secs and apply 3 stacks of Shadowbeast Cripple. \nRank 3: Increased Damage taken per stack of Shadowbeast Cripple. \nRank 4: Mana restored increased, improved Movement slow and also slow the target's Attack Speed by 1%% per stack.\n\n</font>"
 		"DOTA_Tooltip_Ability_Shadow_Creeper_duration"    "Duration:"
 		//"DOTA_Tooltip_Ability_Shadow_Creeper_SummonHealth"    "Health:"
 
@@ -654,7 +654,7 @@
 		"DOTA_Tooltip_ability_Dark_Light2_dmg"                                            "%Damage Effectiveness:"
 
 		"DOTA_Tooltip_Ability_Light_of_Heaven"  "Light of Heaven"  
-		"DOTA_Tooltip_Ability_Light_of_Heaven_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased initial Healing. \nRank 3: Apply a HoT to the target, healing every second. \nRank 4: Reduced Mana cost and gain a Flash of Heaven stack each cast. When you have 4 stacks, your next Light of Heaven will be instant.\n\n</font>"
+		"DOTA_Tooltip_Ability_Light_of_Heaven_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Apply a HoT to the target, healing every second. \nRank 3: Increased initial Healing. When you heal a target affected by Sacred Shield, increase the Shield amount by the amount healed (once per cast of Sacred Shield, not triggered by HoTs). \nRank 4: Reduced Mana cost and gain a Flash of Heaven stack each cast. When you have 4 stacks, your next Light of Heaven will be instant and Heal the most wounded ally within 900 yards for 100%% of Intellect and Spellpower.\n\n</font>"
 		//"DOTA_Tooltip_Ability_Light_of_Heaven_AbilityHealing"    "Healing:" 
 		"DOTA_Tooltip_Ability_Light_of_Heaven_dmgfromstat"    "%Intellect to Healing:" 
 		"DOTA_Tooltip_Ability_Light_of_Heaven_spelldmg"    "%Spellpower Factor:"
@@ -1206,7 +1206,7 @@
 
 
 		"DOTA_Tooltip_Ability_Restoration"  "Restoration"  
-		"DOTA_Tooltip_Ability_Restoration_Description"  "Heal all targeted allies over time, ticking every second. Can not be dispelled.<font color=\"#FFBB00\">\n\nRank 2: Increased healing. \nRank 3: Cast range doubled, root all enemies in the area for 3 secs, also applying talents from Entangle when learned. \nRank 4: Passively Heal all nearby allies in a 1500 aoe every 5 secs based on your 100%% of your Spellpower and 5%% of their max Health.\n\n</font>"
+		"DOTA_Tooltip_Ability_Restoration_Description"  "Heal all targeted allies over time, ticking every second and gaining 10%% Damage Reduction per sec (capped at 90%%). Can not be dispelled.<font color=\"#FFBB00\">\n\nRank 2: Increased healing and duration. \nRank 3: Cast range doubled, root all enemies in the area for 3 secs, also applying talents from Entangle when learned. \nRank 4: Passively Heal all nearby allies in a 1500 aoe every 5 secs based on your 100%% of your Spellpower and 5%% of their max Health.\n\n</font>"
 		"DOTA_Tooltip_Ability_Restoration_dmgfromstat"    "%Intellect to Healing per Tick:"
 		"DOTA_Tooltip_Ability_Restoration_buffduration"    "HoT Duration:"
 		"DOTA_Tooltip_Ability_Restoration_spelldmg"    "%Spellpower Factor per Tick:" 
@@ -1423,7 +1423,7 @@
 		"npc_dota_hero_witch_doctor"	"[Healer] Spirit Voodoo"
 
 		"DOTA_Tooltip_Ability_resto1"  "Healing Wave"  
-		"DOTA_Tooltip_Ability_resto1_Description"  "Heal the target and the most injured nearby ally with 25%% effectiveness. Heals 30%% more on targets affected by Rock Shield. 2 secs cast time.<font color=\"#FFBB00\">\n\nRank 2: Increased healing. \nRank 3: Affects up to 3 targets, less Healing reduction per jump and jump range increased by 150 yards. \nRank 4: Healing increased by 100%%, but mana cost increased by 200%%.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto1_Description"  "Heal the target and the most injured nearby ally with 25%% effectiveness. Heals 30%% more on targets affected by Rock Shield. 2 secs cast time.<font color=\"#FFBB00\">\n\nRank 2: Increased healing and affected targets gain 15 Spell Resistance for 5 secs. \nRank 3: Affects up to 3 targets, less Healing reduction per jump and jump range increased by 150 yards. \nRank 4: When cast while affected by Soulwarden Totem, reduce the cooldown of Meditation by 2 secs. When cast while affected by Manastorm Totem, reduce the cooldown of both Totems by 2 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_resto1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_resto1_spelldmg"    "%Spellpower Factor:"
 
@@ -1709,7 +1709,7 @@
 		"DOTA_Tooltip_Ability_item_allrecipe4_lore"	"Join me in death."
 
 		//1.8.1
-		"DOTA_Tooltip_Ability_resto3_Description"  "Heal all nearby allies every second, but your movement speed is reduced during the effect. Each tick increases the initial healing by 5%%.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Affected targets take 60%% less damage for the duration and instead of having reduced movement speed, you gain a movement bonus. \nRank 4: Reduced cooldown.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto3_Description"  "Heal all nearby allies every second, but your movement speed is reduced during the effect. Each tick increases the initial healing by 5%%.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Affected targets take 60%% less damage for the duration and instead of having reduced movement speed, you gain a movement bonus. \nRank 4: Reduced cooldown and increased duration.\n\n</font>"
 		"DOTA_Tooltip_Ability_resto3_slow"    "%Movement reduction:"
 
 		"DOTA_Tooltip_modifier_meditation_reduction"                                      "Body and Soul"
@@ -2502,7 +2502,7 @@
 		"DOTA_Tooltip_Ability_item_silvermoon_bonus_stat3"	"%Increase all Healing received: +"
 		"DOTA_Tooltip_Ability_item_silvermoon_lore"	"Hold the door! Hold the door! Hol-de-dor! Hol-de-dor! Hodedor! Hodedor! Hodoor! Hodoor!"
 
-		"DOTA_Tooltip_Ability_resto6_Description"  "Summon a Manastorm Totem, regenerating 5 Mana and 5 non-Mana Resource every second for nearby allies.<font color=\"#FFBB00\">\n\nRank 2: Gain an Aqua Shield when summoned, granting 50%% Evasion and restoring 1%% of max mana every 2 secs and everytime you take damage. \nRank 3: Passively cause all Critical Heals to heal the target over 3 secs for 1%% of max health per second. This HoT can not proc itself. \nRank 4: Also summon a Spirit Elemental with damage based on your Intellect and an Aura that increases all Healing and all Fire, Frost, Arcane and Nature damage by 50%%.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto6_Description"  "Summon a Manastorm Totem, regenerating 5 Mana and 5 non-Mana Resource every second for nearby allies.<font color=\"#FFBB00\">\n\nRank 2: Gain an Aqua Shield when summoned, granting 25%% Evasion, 25 Spell Resistance and restoring 1%% of max mana every 2 secs and everytime you take damage. \nRank 3: Passively cause all Critical Heals to heal the target over 3 secs for 1%% of max health per second. This HoT can not proc itself. \nRank 4: Also summon a Spirit Elemental with damage based on your Intellect and an Aura that increases all Healing and all Fire, Frost, Arcane and Nature damage by 50%%.\n\n</font>"
 
 		"DOTA_Tooltip_Ability_Shadowfury"  "Shadowburn"  
 		"DOTA_Tooltip_Ability_Shadowfury_Description"  "Deal area Shadow Damage and stun all affected enemies. When you take damage, the cooldown is decreased by 1 sec. <font color=\"#FFBB00\">\n\nRank 2: Increased stun duration and passively increase your total Strength by 50%%. \nRank 3: Increased Damage and passively gain Spellpower equal to your Strength. \nRank 4: Reduced cooldown and passively increase all Shadow Damage by 0.25%% per Spellhaste you have.\n\n</font>"
@@ -2779,7 +2779,7 @@
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat2"	"Agility: +"
 
-		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
+		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.\nThe closest ally to the Totem when cast will gain 75%% Damage Reduction for the Totem duration.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
 
 		"DOTA_Tooltip_Ability_item_weapon5"  "<font color=\"#ff69b4\">The Great Zweihander"
 		"DOTA_Tooltip_Ability_item_weapon5_Description"  "Whenever you deal damage with an Ability, you have a chance to deal 50%% of your Primary Attribute as Physical Damage in a 250 radius around the target to up to 5 enemies. After 10 procs, can not proc again for 5 secs.\n"  
@@ -2929,14 +2929,14 @@
 		"DOTA_Tooltip_Ability_item_elements2_bonus_stat7"	"Holy: +1 to all Stats and +3% healing caused, max Stacks"
 
 		"DOTA_Tooltip_Ability_holy1"  "Holy Light"  
-		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Healing increased, but mana cost increased greatly.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and cast range. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy1_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy1_magicres"    "Spell Resistance on cast:"
 		"DOTA_Tooltip_Ability_holy1_duration"    "Spell Resistance duration:"
 
 		"DOTA_Tooltip_Ability_holy2"  "Wandering Prayer"  
-		"DOTA_Tooltip_Ability_holy2_Description"  "Buff the target with a Wandering Prayer, causing it to be healed when taking damage, consuming 1 charge. When a charge is consumed, the buff will jump to the most injured nearby hero. The Healing is increased by 10%% per remaining charge.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Passively gain a 20%% Critical Strike Chance with all Abilities for 200%%. \nRank 4: Gain 1 extra charge and passively Heal the closest ally within 600 yards for 10%% of max Health every 5 secs, or yourself when there is no ally nearby. When this Heal is a Critical Strike, the target gains 50%% Damage Reduction for 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy2_Description"  "Buff the target with a Wandering Prayer, causing it to be healed when taking damage, consuming 1 charge. When a charge is consumed, the buff will jump to the most injured nearby hero. The Healing is increased by 10%% per remaining charge. \nThe affected target gains 50%% Damage Reduction. <font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Passively gain a 20%% Critical Strike Chance with all Abilities for 200%%. \nRank 4: Gain 1 extra charge and passively Heal the closest ally within 600 yards for 10%% of max Health every 5 secs, or yourself when there is no ally nearby. When this Heal is a Critical Strike, the target gains 50%% Damage Reduction for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy2_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy2_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy2_charges"    "Charges:"
@@ -2944,14 +2944,14 @@
 		"DOTA_Tooltip_Ability_holy2_duration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_holy3"  "Divine Nova"  
-		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with lower effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed deal 50%% increased Holy Damage for 5 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed gain 15 Armor for 8 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed deal 50%% increased Holy Damage for 5 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed gain 15 Armor for 8 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy3_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy3_spelldmg"    "%Healing Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy3_dmgfactor"    "%Damage Effectiveness:"
 		"DOTA_Tooltip_Ability_holy3_critmana"    "%Max Mana restored on Crit:"
 
 		"DOTA_Tooltip_Ability_holy4"  "Holy Flamebolt"  
-		"DOTA_Tooltip_Ability_holy4_Description"  "Deal Holy Damage and interrupt spellcasting. You suffer 10%% of the Damage caused.<font color=\"#FFBB00\">\n\nRank 2: Apply a DoT to the target, dealing Holy Damage every second, lowering its Spell Resistance by 5 and Attack Speed by 15 for 10 secs. \nRank 3: Whenever you cause Damage with Holy Flamebolt or Mass Dispel, Heal the most injured nearby ally for 50%% of your Intellect and Spellpower (900 range). \nRank 4: Increased impact Damage, heal yourself for 50%% of the impact Damage (you still suffer 10%% of the damage done) and stun for 2 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy4_Description"  "Deal Holy Damage and interrupt spellcasting. You suffer 10%% of the Damage caused.<font color=\"#FFBB00\">\n\nRank 2: Apply a DoT to the target, dealing Holy Damage every second, lowering its Spell Resistance by 5 and Attack Speed by 15 for 10 secs. \nRank 3: Whenever you cause Damage with Holy Flamebolt or Mass Dispel, Heal the most injured nearby ally for 50%% of your Intellect and Spellpower (900 range). \nRank 4: Hit all enemies within 300 yards of the target, increased impact Damage, heal yourself for 50%% of the impact Damage (you still suffer 10%% of the damage done) and stun for 2.5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy4_dmgfromstat"    "%Intellect to Damage:"
 		"DOTA_Tooltip_Ability_holy4_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy4_dotdmg"    "%Intellect and Spellpower to DoT Tick Damage:"
@@ -6196,7 +6196,7 @@
 		"DOTA_Tooltip_ability_pve_ice_nova_affix_radius"                                  "RADIUS:"
 		"DOTA_Tooltip_ability_pve_ice_nova_affix_buffduration"                            "DURATION:"
 
-		"DOTA_Tooltip_Ability_CycloneDruid_Description"  "Toss the target into the air, preventing all actions but also making it imune to damage and healing. Cyclone can not be dispelled and has a low cooldown, but diminising returns (duration lowered anti proportional to diminising return value). 2 secs cast time.\n\nIf used on allies, dispels all debuffs.<font color=\"#FFBB00\">\n\nRank 2: Passively grants a 1500 yards 50 Attack Speed and 50%% Spellhaste Aura (Hero only). \nRank 3: When used on allies, restore 2%% of max health and mana per second. \nRank 4: Diminising returns lasting 16 instead of 20 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_CycloneDruid_Description"  "Toss the target into the air, preventing all actions but also making it imune to damage and healing. Cyclone can not be dispelled and has a low cooldown, but diminising returns (duration lowered anti proportional to diminising return value). 2 secs cast time.\n\nIf used on allies, dispels all debuffs.<font color=\"#FFBB00\">\n\nRank 2: Passively grants a 1500 yards 50 Attack Speed and 50%% Spellhaste Aura (Hero only). \nRank 3: When used on allies, restore 2%% of max health and mana per second. \nRank 4: When casting Cyclone while Swift Winds is active, summon a Hurricane following you for 7 secs, striking the closest enemy for Nature Damage and reducing their Spell Resistance and Armor.\n\n</font>"
 
 		"DOTA_Tooltip_modifier_talent42cd"                                                "Protection Cooldown"
 		"DOTA_Tooltip_modifier_talent42cd_Description"                                    " "
@@ -6358,7 +6358,7 @@
 		"DOTA_Tooltip_Ability_Terror_ShoutFury_dmgfromstat"    "%Base Damage dealt:"
 		"DOTA_Tooltip_Ability_shadow11_Description"  "Deal Shadow Damage in a small area around the target. 2 secs casttime.\n\nHas 3 charges and refreshes every 10 secs.\n\n<font color=\"#00EE00\">Generates 1 Shadow Sphere per target hit (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Area increased from 250 to 350 and also stun for 2 secs (with an inner cooldown of 5 secs). \nRank 4: Each cast reduces the cooldown of your 5th and 6th Ability by 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Ice_Bolt_Description"  "Deal Frost Damage and slow by 50%%. Applies a Winter's Chill stack to you, tripling the Damage of Frost Shatter when you have gathered 2 stacks. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased damage. \nRank 3: Passive chance to crit with Ice Bolt. \nRank 4: Critical Strikes with Ice Bolt deal 50%% increased Damage.\n\n</font>"
-		"DOTA_Tooltip_Ability_RootsDruid_Description"  "Deal Nature Damage, root the target in place and reduce its Armor for 15 secs. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Improved Armor reduction and whenever you cast Entangle or Swift Winds, trigger a free Flourish. \nRank 3: Passively gain a Root Shield every 20 secs, decreasing the Damage of the next incoming Damage instance by 80%%, stacking twice. \nRank 4: Increased root duration and Damage and also deal Nature Damage every second while rooted.\n\n</font>"
+		"DOTA_Tooltip_Ability_RootsDruid_Description"  "Deal Nature Damage, root the target in place and reduce its Armor for 15 secs. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Improved Armor reduction and whenever you cast Entangle or Swift Winds, trigger a free Flourish. \nRank 3: Passively gain a Root Shield every 20 secs, decreasing the Damage of the next incoming Damage instance by 80%%, stacking twice. \nRank 4: Increased root duration and Damage and also deal Nature Damage every second while rooted. While the Armor reduction lasts, the enemy deals 15%% reduced Damage.\n\n</font>"
 		"DOTA_Tooltip_Ability_RootsDruid_bonusdmg"  "%Extra Damage taken:"
 		"DOTA_Tooltip_modifier_arcane_barrage_bonus"                                             "Arcane Hurricane"
 		"DOTA_Tooltip_modifier_fire_barrage_bonus"                                             "Arcane Firestorm"

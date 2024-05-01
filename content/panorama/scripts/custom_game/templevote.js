@@ -2,6 +2,8 @@
 
 function LoadTopPlayersFromServer()
 {   
+    /*
+    Valve removed AsyncWebRequest
     $.AsyncWebRequest('http://catze.eu/templetop10_season_10.php',
     {
         type: 'POST',
@@ -12,6 +14,7 @@ function LoadTopPlayersFromServer()
             LeaderboardTopPlayersFill(data);
         }
     });
+		*/
 }
 
 function LeaderboardTopPlayersFill(data) {
@@ -257,6 +260,8 @@ function LoadLeaderboardFromServerRecursive(){
 
 function LoadLeaderboardFromServerLoadingScreen()
 {   
+/*
+	Valve removed AsyncWebRequest
     $.Msg("start load leaderboard");
     var ladder = Game.GetAllPlayerIDs().length;
     //$.Msg(Game.GetMapInfo()['map_display_name']);
@@ -274,7 +279,7 @@ function LoadLeaderboardFromServerLoadingScreen()
             //return data;
         }
         });
-    }
+    } */
 }
 
 function LeaderboardFillTemple(data) {
@@ -348,6 +353,7 @@ function LeaderboardFillTemple(data) {
     if($("#leaderboardloadingscreen") != null) {
         $("#leaderboardloadingscreen").visible = false;
     }
+	
     LoadLeaderboardFromServerRecursive();
     
     //$("#leaderboardloadingscreen").style.marginTop = "0px";

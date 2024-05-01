@@ -2572,7 +2572,8 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
 
       GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 ) 
 
-
+      -- Load leaderboard from server
+      COverthrowGameMode:LoadLeaderboardFromServer()
       -- Spawning monsters
       spawncamps = {}
       for i = 1, self.numSpawnCamps do
@@ -11902,6 +11903,10 @@ function COverthrowGameMode:FilterDamage( filterTable )
   if attacker:HasModifier("modifier_sou_minus") then
     newdamage = newdamage * 0.8
   end
+  if attacker:HasModifier("modifier_dmg_reduce_roots") then
+    newdamage = newdamage * 0.85
+  end
+  
   --if victim:HasModifier("modifier_killdance") then
     --    newdamage = 0 --newdamage * 0.1
     --end
@@ -11910,6 +11915,21 @@ function COverthrowGameMode:FilterDamage( filterTable )
     end
     if victim:HasModifier("modifier_rotdk") then
       newdamage = newdamage * 0.95
+    end
+    if victim:HasModifier("modifier_soulwarden_shield") then
+      newdamage = newdamage * 0.25
+    end
+    if victim:HasModifier("modifier_prayer_shield") then
+      newdamage = newdamage * 0.5
+    end
+
+    local restoStacks = victim:GetModifierStackCount("modifier_hot3", nil)
+    if restoStacks > 0 then
+      local restoReduction = 0.1 * restoStacks
+      if restoReduction > 0.9 then
+        restoReduction = 0.9
+      end
+      newdamage = newdamage * (1 - restoReduction)
     end
     
     
@@ -20146,4 +20166,47 @@ end
 function GetRandomPassiveAggroAbilityOrMS()
   local abils = {"pve_temple_aggro_highest_hp", "pve_temple_aggro_ranged", "pve_temple_aggro_cycling", "pve_healnegate" }
   return abils[math.random(1,#abils)]
+end
+
+function COverthrowGameMode:LoadLeaderboardFromServer()
+  if(IsServer() == false) then
+    return
+  end
+
+  local request = CreateHTTPRequestScriptVM("POST", "http://catze.eu/templetop10_season_5.php")
+  request:SetHTTPRequestGetOrPostParameter("order", "getelo")
+  request:SetHTTPRequestGetOrPostParameter("players", "5") -- seems unused, but panorama sends...
+  request:Send(function(result)
+    --print(result)
+    --print(result.Body)
+    if result and result.Body and string.match(result.Body, ",") then
+      self._leaderboardData = result.Body
+      self._isLeaderboardReady = true
+    else
+      self._isLeaderboardReady = false
+    end
+  end)
+end
+
+function COverthrowGameMode:SendLeaderboard(params)
+  local player = PlayerResource:GetPlayer(params.PlayerID)
+
+  -- Disconnected player or broken request
+  if(player == null) then
+    return
+  end
+
+  -- Server still processing request
+  if(COverthrowGameMode._isLeaderboardReady == nil) then
+    Timers:CreateTimer(1, function()
+      COverthrowGameMode:SendLeaderboard(params)
+    end)
+  end
+
+  -- Server not responding, too bad...
+  if(COverthrowGameMode._isLeaderboardReady == false) then
+    return
+  end
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "getleaderboardresponse", { data = COverthrowGameMode._leaderboardData } )
 end

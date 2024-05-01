@@ -360,43 +360,43 @@
 					</Panel>
 					<Panel class="cell">
 						<Label id="d22" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero1" src=""  />	
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero1" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d32" class="ButtTextSmall" text="loading" />
-						<Image class="ClassImage" id="hero2" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero2" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d42" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero3" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero3" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d52" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero4" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero4" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d62" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero5" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero5" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d72" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero6" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero6" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d82" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero7" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero7" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d92" class="ButtTextSmall" text="loading" />
-						<Image class="ClassImage" id="hero8" src=""  />	
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero8" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d102" class="ButtTextSmall" text="loading" />	
-						<Image class="ClassImage" id="hero9" src=""  />
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero9" heroname="" heroimagestyle="icon"/>
 					</Panel>
 					<Panel class="cell">
 						<Label id="d112" class="ButtTextSmall" text="loading" />
-						<Image class="ClassImage" id="hero10" src=""  />	
+						<DOTAHeroImage class="LeaderboardHeroIcon" id="hero10" heroname="" heroimagestyle="icon"/>	
 					</Panel>
 				</Panel>
 

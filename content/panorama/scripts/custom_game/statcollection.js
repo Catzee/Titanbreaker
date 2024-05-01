@@ -1,7 +1,8 @@
 "use strict";
 
 function OnClientCheckIn(args) {
-
+    /*
+    Valve removed AsyncWebRequest
     var payload = {
         modIdentifier: args.modID,
         steamID32: GetSteamID32(),
@@ -19,6 +20,7 @@ function OnClientCheckIn(args) {
                 $.Msg('GDS Reply: ', data)
             }
         });
+		*/
 }
 
 function GetSteamID32() {

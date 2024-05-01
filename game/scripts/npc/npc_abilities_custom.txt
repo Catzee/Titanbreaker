@@ -19183,50 +19183,112 @@
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "stun" "0 0 0 2"
+		        "stun" "0 0 0 2.5"
+		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "aoechance" "0 0 0 100"
 		    }
 	    }
 
 
         "OnProjectileHitUnit"
 			{
-				"RunScript"
+				"Random"
 				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "SpellInterrupt"
-				    "dur"		"0.1"
-				}
-		        "RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "DamageUnit"
-				    "damage"			"%AbilityDamage"
-				    "spelldamagefactor"	"%spelldmg"
-				    "attributefactor"	"%dmgfromstat"
-				    "damageself"		"0.1"
-				    "holydmg"	"1"
-				    "lifesteal" 	"%healpercent"
-				    "holy4heal"		"1"
+					"Chance"			"%aoechance"
+					"OnSuccess"
+					{
+						"ActOnTargets"
+						{
+							"Target"
+							{
+								"Center"  	"TARGET"
+								"Radius" 	"300"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+						
+							"Action"    
+							{
+								"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "SpellInterrupt"
+								    "dur"		"0.1"
+								}
+								"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "ApplyBuff"
+								    "buff"			"modifier_holy_fire"
+								    "dur"	"%dotduration"
+								    "settickrate"	"1"
+								}
+								"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "ApplyBuff"
+								    "buff"			"modifier_stunned"
+								    "dur"	"%stun"
+								}
+								"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "DamageUnit"
+								    "damage"			"%AbilityDamage"
+								    "spelldamagefactor"	"%spelldmg"
+								    "attributefactor"	"%dmgfromstat"
+								    "damageself"		"0.1"
+								    "holydmg"	"1"
+								    "lifesteal" 	"%healpercent"
+								    "holy4heal"		"1"
+								}
+							}
+						}
+					}
+					"OnFailure"
+					{
+						"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "SpellInterrupt"
+						    "dur"		"0.1"
+						}
+						"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "ApplyBuff"
+						    "buff"			"modifier_holy_fire"
+						    "dur"	"%dotduration"
+						    "settickrate"	"1"
+						}
+						"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "ApplyBuff"
+						    "buff"			"modifier_stunned"
+						    "dur"	"%stun"
+						}
+						"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "DamageUnit"
+						    "damage"			"%AbilityDamage"
+						    "spelldamagefactor"	"%spelldmg"
+						    "attributefactor"	"%dmgfromstat"
+						    "damageself"		"0.1"
+						    "holydmg"	"1"
+						    "lifesteal" 	"%healpercent"
+						    "holy4heal"		"1"
+						}
+					}
 				}
 				"FireSound"
 				{
 					"EffectName"		"Hero_Lina.attack"
 					"Target"			"TARGET"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ApplyBuff"
-				    "buff"			"modifier_holy_fire"
-				    "dur"	"%dotduration"
-				    "settickrate"	"1"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ApplyBuff"
-				    "buff"			"modifier_stunned"
-				    "dur"	"%stun"
 				}
 				"RunScript"
 				{
@@ -20212,12 +20274,12 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "350 400 400 600"
+		        "dmgfromstat" "350 400 400 400"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmg" "350 400 400 600"
+		        "spelldmg" "350 400 400 400"
 		    }
 		    "04"
 		    { 
@@ -20230,10 +20292,10 @@
 		        "duration" "0 0 10 10"
 		    }
 		}
-	    "AbilityManaCost"         "35 35 35 70"
+	    "AbilityManaCost"         "35"
 
 	    "AbilityCooldown"         "0.0"
-	    "AbilityCastRange"        "600"
+	    "AbilityCastRange"        "600 900 900 900"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityChannelTime"      "0.0"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
@@ -34323,12 +34385,24 @@
 						"Target"		"TARGET"
 						"Duration"		"%duration"
 					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "SoulwardenTotemShield"
+					    "duration"			"%duration"
+					}
 				}
 			}	
 		}
 	
 		"Modifiers"
 		{
+			"modifier_soulwarden_shield"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			}
 			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
 			"modifier_buff_imune_aura"
 	        {
@@ -34831,7 +34905,8 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT" "50"
+					"MODIFIER_PROPERTY_EVASION_CONSTANT" "25"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "25"
 				}
 	        }
 		}
@@ -35079,7 +35154,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffduration" "7"
+		        "buffduration" "7 7 7 8"
 		    }
 		}
 
@@ -35395,12 +35470,12 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "250 300 300 600"
+		        "dmgfromstat" "250 300 300 300"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmg" "250 300 300 600"
+		        "spelldmg" "250 300 300 300"
 		    }
 		    "03"
 		    { 
@@ -35417,8 +35492,13 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "max" "2 2 3 3"
 		    }
+		    "03"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "resbuffduration" "0 5 5 5"
+		    }
 		}
-	    "AbilityManaCost"         "30 30 30 90"
+	    "AbilityManaCost"         "30"
 
 	    "AbilityCooldown"         "0.0"
 	    "AbilityCastRange"        "600"
@@ -35448,6 +35528,7 @@
 				    "jumpdistance"	"%jumpdistance"
 				    "chainhealtargets"	"%max"
 				    "isaoeheal"		"1"
+				    "resbuffduration"	"%resbuffduration"
 				}
 				"FireSound"
 				{
@@ -35497,6 +35578,21 @@
 		    "particle"  "particles/castbar.vpcf"
 		    "particle"  "particles/units/heroes/hero_templar_assassin/templar_loadout.vpcf"
 		    "particle"  "particles/dazzle_shadow_wave_green.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_resto1_res"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15"
+				}
+			}
 		}
 
 	}
@@ -49819,11 +49915,14 @@
 				    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%ashaste"
 				}
 			}
+			
 		}
 
 
         "precache"
 		{
+			"particle"  "particles/econ/items/razor/razor_arcana/razor_arcana_strike_top_lightning_strike.vpcf"
+			"particle"  "particles/econ/items/razor/razor_arcana/razor_arcana_cyclone_core_cloudy.vpcf"
 		    "particle"  "particles/units/heroes/hero_tiny/tiny_grow_cleave.vpcf"
 		    "model"		"models/items/courier/fei_lian_blue/fei_lian_blue.vmdl"
 		    "model"		"models/heroes/treant_protector/treant_protector.vmdl"
@@ -50070,7 +50169,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffduration" "7"
+		        "buffduration" "5 7 7 7"
 		    }
 		    "03"
 		    { 
@@ -50170,6 +50269,13 @@
 						    "buff"			"modifier_hot3"
 						    "dur"	"%buffduration"
 						}
+						"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "SetBuffStack"
+						    "buff"			"modifier_hot3"
+						    "setTarget"	"1"
+						}
 		        	}
 		        }
 		        "ActOnTargets"
@@ -50228,6 +50334,13 @@
 					    "attributefactor"	"%dmgfromstat"
 					    "isdot"	"1"
 					    "isaoeheal"		"1"
+					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "SetBuffStack"
+					    "buff"			"modifier_hot3"
+					    "setTarget"	"1"
 					}
 			    }
 
@@ -50380,7 +50493,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "diminish" "20 20 20 16"
+		        "diminish" "20"
 		    }
 		    "01"
 		    { 
@@ -50401,6 +50514,11 @@
 				{
 				    "ScriptFile"    "game_mechanics.lua"
 				    "Function"      "PurgeIfFriend"
+				}
+				"RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "CycloneHurricane"
 				}
 				"RunScript"
 				{
@@ -50582,6 +50700,37 @@
 					}
 			    }
 	        }
+	        "modifier_cyclone_hurricane"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/econ/items/razor/razor_arcana/razor_arcana_cyclone_core_cloudy.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "CycloneHurricanePeriodic"
+					}
+				}
+			}
+			"modifier_hurricane_weakening"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-5" 
+				}
+			}
 		}
 	}
 
@@ -50823,6 +50972,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "rootshield" "0 0 21 21"
 		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "reduceduration" "0 0 0 15"
+		    }
 		}
 		
 		"OnSpellStart"
@@ -50843,7 +50997,13 @@
 				    "dur"		"%mindnumbduration"
 				    "buff"		"modifier_mindnumb"
 				}
-		        
+		        "RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "CCTarget"
+				    "dur"		"%reduceduration"
+				    "buff"		"modifier_dmg_reduce_roots"
+				}
 				"FireSound"
 				{
 					"EffectName"		"Hero_Furion.Teleport_Grow"
@@ -51030,6 +51190,16 @@
 			    	//"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-25"
 			    	"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"
 			    }
+			}
+			"modifier_dmg_reduce_roots"
+			{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "1"
+			    "IsPurgable"       "1"
+			    "TextureName"	"fix/mindnumb"
 			}
 		}
 	}
@@ -57482,6 +57652,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "asslow" "0 0 0 -1"
 		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "initialEffectChance" "0 100 100 100"
+		    }
 		}
 
         "OnSpellStart"
@@ -57544,7 +57719,55 @@
 					"EffectName"	"silencer_silen_respawn_10"
 					"Target" 		"CASTER"
 				}
+				"Random"
+				{
+					"Chance"			"%initialEffectChance"
+					"OnSuccess"
+					{
+						"ActOnTargets"
+						{
+							"Target"
+							{
+								"Center"  	"CASTER"
+								"Radius" 	"900"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+						
+							"Action"    
+							{
+								"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "ApplyBuff"
+								    "buff"			"modifier_stunned"
+								    "dur"	"3"
+								}
+								"RunScript"
+						    	{
+						    		"ScriptFile"	"game_mechanics.lua"
+						    		"Function"		"ApplyBuffStack"
+						    		"addstacks"			"3"
+						    		"buff"			"modifier_shadowcreepercriple"
+						    		"dur"	"10"
+						    		"notself"		"1"
+						    	}
+						    	"FireEffect"
+								{
+									"EffectName"        "particles/items_fx/phylactery.vpcf"
+									"EffectAttachType"  "attach_hitloc"
+									"Target"            "TARGET"
+									"ControlPointEntities"
+						            {
+						                "CASTER" "attach_hitloc"
+						                "TARGET" "attach_hitloc"
+						            }
+								}
 
+							}
+						}
+					}
+				}
         }
         
     	"precache"
@@ -59231,22 +59454,22 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "300 350 350 350"
+		        "dmgfromstat" "300 300 350 350"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmg" "300 350 350 350"
+		        "spelldmg" "300 300 350 350"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hot" "0 0 10 10"
+		        "hot" "0 20 20 20"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hotdur" "0 0 10 10"
+		        "hotdur" "0 10 10 10"
 		    }
 		    "04"
 		    { 
