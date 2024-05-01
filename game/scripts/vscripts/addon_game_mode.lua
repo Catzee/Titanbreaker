@@ -20201,6 +20201,7 @@ function COverthrowGameMode:SendLeaderboard(params)
     Timers:CreateTimer(1, function()
       COverthrowGameMode:SendLeaderboard(params)
     end)
+    return
   end
 
   -- Server not responding, too bad...
