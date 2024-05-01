@@ -46,6 +46,8 @@ function EloOnClientCheckIn(args) {
 
     //$.Msg('Sending: ', payload);
 
+/*
+	Valve removed AsyncWebRequest
     $.AsyncWebRequest('http://getdotastats.com/s2/api/s2_check_in.php',
         {
             type: 'POST',
@@ -53,7 +55,7 @@ function EloOnClientCheckIn(args) {
             success: function (data) {
                 $.Msg('GDS Reply: ', data)
             }
-        });
+        }); */
 }
 
 function TableToggle() {
@@ -396,14 +398,11 @@ function LeaderboardFillTemple(data) {
         
         if(cell == 2){
             $(c).text = "";
-            var im = "file://{images}/custom_game/heroicons/";
-            im = im.concat(info[i]);
-            im = im.concat(".png");
             var c = "#hero";
             c = c.concat(String(row-1));
             //$.Msg(im);
             //$.Msg(c);
-            $(c).SetImage(im);
+            $(c).heroname="npc_dota_hero_" + info[i];
         }
         if(cell == 3){
             var c = "#d";
@@ -676,9 +675,12 @@ function GetSteamID32(playerid) {
 
 function LoadLeaderboardFromServer()
 {   
-    ladder = Game.GetAllPlayerIDs().length;
-    //$.Msg(Game.GetMapInfo()['map_display_name']);
     $("#leaderboardheader").text = "Titanbreaker - Leaderboard";
+
+    GameEvents.SendCustomGameEventToServer("getleaderboard", { });
+
+	/*
+	Valve removed AsyncWebRequest
     $.AsyncWebRequest('http://catze.eu/templetop10_season_5.php',
     {
         type: 'POST',
@@ -690,7 +692,12 @@ function LoadLeaderboardFromServer()
         LeaderboardFillTemple(data);
         //return data;
     }
-    });
+    }); */
+}
+
+function OnLeaderboardResponseFromServer(args)
+{
+    LeaderboardFillTemple(args.data);
 }
 
 function LoadLeaderboardChallengeModeFromServer()
@@ -699,6 +706,8 @@ function LoadLeaderboardChallengeModeFromServer()
 
     if (true){
         $("#leaderboardchallengemodeheader").text = "Titanbreaker Leaderboard";
+		/*
+	Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/templetop10_challenge_season_2.php',
         {
             type: 'POST',
@@ -710,9 +719,11 @@ function LoadLeaderboardChallengeModeFromServer()
             LeaderboardChallengeModeFillTemple(data);
             //return data;
         }
-        });
+        }); */
     }else{
         $("#leaderboardchallengemodeheader").text = "Titanbreaker Leaderboard";
+		/*
+	Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/templetop10_challenge.php',
         {
             type: 'POST',
@@ -724,7 +735,7 @@ function LoadLeaderboardChallengeModeFromServer()
             LeaderboardChallengeModeFillTemple(data);
             //return data;
         }
-        });
+        }); */
     }
 }
 
@@ -833,6 +844,8 @@ function SendValuesToServer(winningteam) //team 1 = 2, team 2 = 3, paramter = 1 
 
     if (winningteam == 1){
         //$.Msg( "Request Elo from server call");
+		/*
+			Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/elosystemv2.php',
         {
             type: 'POST',
@@ -864,7 +877,7 @@ function SendValuesToServer(winningteam) //team 1 = 2, team 2 = 3, paramter = 1 
             TableFill(data);
             //return data;
         }
-        });
+        }); */
     }else{
         var penalty = 0;
         if(leaver){
@@ -872,6 +885,8 @@ function SendValuesToServer(winningteam) //team 1 = 2, team 2 = 3, paramter = 1 
         }
         //$.Msg( "Insert Elo into server call");
         //$.Msg( String(penalty));
+		/*
+			Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/elosystemv2.php',
         {
             type: 'POST',
@@ -901,7 +916,7 @@ function SendValuesToServer(winningteam) //team 1 = 2, team 2 = 3, paramter = 1 
             //$.Msg('GDS Reply: ', data)
             //TableFillEnd(data);
         }
-        });
+        }); */
     }
     
 }
@@ -926,6 +941,8 @@ function LoadSeasonRewards(args)
     //$.Msg( "Request Season Reward from server");
     
     //2vs2
+	/*
+		Valve removed AsyncWebRequest
     $.AsyncWebRequest('http://catze.eu/getseasonreward.php',
     {
         type: 'POST',
@@ -934,7 +951,7 @@ function LoadSeasonRewards(args)
         $.Msg('GDS Reply for reward request: ', data)
         RewardsFromServerToPlayers(data);
     }
-    }); 
+    }); */
 }
 
 function RewardsFromServerToPlayers(data)
@@ -1069,7 +1086,8 @@ function SaveChar(args)
         $.Msg(mydata['slot16']);
         $.Msg(mydata['slot17']);
         if (hardcore == 1){
-            
+            /*
+				Valve removed AsyncWebRequest
             $.AsyncWebRequest('http://catze.eu/savechar_v10_hardcore.php',
             {
                 type: 'POST',
@@ -1078,8 +1096,10 @@ function SaveChar(args)
                 $.Msg('GDS Reply for save hardcore char: ', data)
                 SaveCharReply(data);
             }
-            });
+            }); */
         }else if(hardcore == 2){
+			/*
+				Valve removed AsyncWebRequest
             $.AsyncWebRequest('http://catze.eu/savechar_v10_challenge.php',
             {
                 type: 'POST',
@@ -1088,9 +1108,11 @@ function SaveChar(args)
                 $.Msg('GDS Reply for save char: ', data)
                 SaveCharReply(data);
             }
-            });
+            }); */
         }else{
             if (true){
+				/*
+					Valve removed AsyncWebRequest
                 $.AsyncWebRequest('http://catze.eu/savechar_v18_season_3.php',
                 {
                     type: 'POST',
@@ -1099,8 +1121,10 @@ function SaveChar(args)
                     $.Msg('GDS Reply for save char: ', data)
                     SaveCharReply(data);
                 }
-                });
+                }); */
             }else{
+				/*
+					Valve removed AsyncWebRequest
                 $.AsyncWebRequest('http://catze.eu/savechar_v14.php',
                 {
                     type: 'POST',
@@ -1109,10 +1133,12 @@ function SaveChar(args)
                     $.Msg('GDS Reply for save char: ', data)
                     SaveCharReply(data);
                 }
-                });
+                }); */
             }
         }
     }else{
+		/*
+			Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/savechar.php',
         {
             type: 'POST',
@@ -1121,7 +1147,7 @@ function SaveChar(args)
             $.Msg('GDS Reply for save char: ', data)
             SaveCharReply(data);
         }
-        });
+        }); */
     } 
 }
 
@@ -1149,6 +1175,8 @@ function LoadChar(args)
 
     if(temple_version == 2){
         if (hardcore){
+			/*
+				Valve removed AsyncWebRequest
             $.AsyncWebRequest('http://catze.eu/loadchar_v8_hardcore.php',
             {
                 type: 'POST',
@@ -1157,9 +1185,11 @@ function LoadChar(args)
                 //$.Msg('GDS Reply for load hardcore char: ', data)
                 LoadCharReply(data);
             }
-            });
+            }); */
         }else{
             if (true){//(Game.GetMapInfo()['map_display_name'] == "titanbreaker_season_2"){
+				/*
+					Valve removed AsyncWebRequest
                 $.AsyncWebRequest('http://catze.eu/loadchar_v13_season_3.php',
                 {
                     type: 'POST',
@@ -1168,8 +1198,10 @@ function LoadChar(args)
                     //$.Msg('GDS Reply for load char: ', data)
                     LoadCharReply(data);
                 }
-                });
+                }); */
             }else{
+				/*
+					Valve removed AsyncWebRequest
                 $.AsyncWebRequest('http://catze.eu/loadchar_v10.php',
                 {
                     type: 'POST',
@@ -1178,11 +1210,13 @@ function LoadChar(args)
                     //$.Msg('GDS Reply for load char: ', data)
                     LoadCharReply(data);
                 }
-                });
+                }); */
             }
         }
 
     }else{
+		/*
+			Valve removed AsyncWebRequest
         $.AsyncWebRequest('http://catze.eu/loadchar.php',
         {
             type: 'POST',
@@ -1191,7 +1225,7 @@ function LoadChar(args)
             //$.Msg('GDS Reply for load char: ', data)
             LoadCharReply(data);
         }
-        });
+        }); */
     } 
 }
 
@@ -3795,7 +3829,8 @@ function RegisterKeyBind(keyBind, callback) {
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
-    
+    GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
+
     // Requires shop items for blacksmith
     GameEvents.SendCustomGameEventToServer("getshopitems", { } );
 

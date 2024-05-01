@@ -1518,3 +1518,13 @@
 	max-width: 1350px;
 	max-height: 700px;
 }
+
+.LeaderboardHeroIcon
+{	
+	height: 32px;
+	width: 32px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: -8px;
+	margin-right: 0px;
+}
