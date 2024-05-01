@@ -8123,7 +8123,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_068_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Apocalypse.</font>\nAsteroid Extinction: While under Apocalypse, Rain of Stars Damage is increased by 100%%.\nTomb Raider: Lord of Bones proc chance is increased by 3%%, if it is at least Level 1."
 		"DOTA_Tooltip_ability_item_pathbuff_068_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_069"  "<font color=\"#ffd700\">[Divine] Tamed Moose"
-		"DOTA_Tooltip_ability_item_pathbuff_069_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Cruel Taskmaster.</font>\nAura of the Moose: Your Summons and Companions gain a 10%% chance to Critical Strike for 325%%."
+		"DOTA_Tooltip_ability_item_pathbuff_069_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Cruel Taskmaster.</font>\nAura of the Moose: Your Summons and Companions gain a 10%% chance to Critical Strike for 350%%."
 		"DOTA_Tooltip_ability_item_pathbuff_070"  "<font color=\"#ffd700\">[Divine] Cutthroat"
 		"DOTA_Tooltip_ability_item_pathbuff_070_Description"  "<font color=\"#FF6600\">+3 for the Path Talent From the Shadows.</font>\nAmbush Master: While under the effect of Patient Prowler and From the Shadows, your Primary Attribute is increased by 25%%.\nAll Ability Damage is increased by 25%% against targets above 75%% of max Health."
 		"DOTA_Tooltip_ability_item_pathbuff_071"  "<font color=\"#ffd700\">[Divine] Valyrian Steel Hook"
