@@ -8015,12 +8015,12 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat5"    "30" // active crit chance
+	            "bonus_stat5"    "60" // active crit chance
 	        }
 	        "05"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat6"    "500" // active crit multiplier
+	            "bonus_stat6"    "400" // active crit multiplier
 	        }
 	        "06"
 	        {

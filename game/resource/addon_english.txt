@@ -9431,7 +9431,7 @@
 		"DOTA_Tooltip_Ability_item_xset_str_t3_2_2_bonus_stat4"	"%Shadow Damage: +"
 
 		"DOTA_Tooltip_ability_item_crit_myth"                                             "<font color=\"#7733ff\">[Mythical] Rigged Dice of the Deceiver"
-		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat5%%% and Critical Strike multiplier to %bonus_stat6%%% for %bonus_stat7% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_myth_Description"                                 "<h1>Titan Power</h1>Increases this Item's Critical Strike chance to %bonus_stat5%%% for %bonus_stat7% secs.\nPassive: When you die, there is a 20%% chance to not lose a life.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat3"									"%Ability Critical Strike Chance: "
 		"DOTA_Tooltip_Ability_item_crit_myth_bonus_stat4"									"%Ability Critical Strike Factor: "
 		"DOTA_Tooltip_ability_item_crit_myth_bonus_stat2"                               "Health: +"
