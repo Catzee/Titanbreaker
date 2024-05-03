@@ -10152,9 +10152,7 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
   if(orderType == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
     if(filterTable["entindex_ability"]) then
       local ability = EntIndexToHScript(filterTable["entindex_ability"])
-      print("ability", ability, ability:GetAbilityName())
       if(ability) then
-        print("ability._ToggleAltCast", ability._ToggleAltCast)
         if(ability._ToggleAltCast ~= nil) then
           ability:_ToggleAltCast()
         end
