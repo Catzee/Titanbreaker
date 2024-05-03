@@ -311,8 +311,8 @@
 		"DOTA_Tooltip_modifier_combopoint"	"Focus Points"
 		"DOTA_Tooltip_modifier_combopoint_Description"	"Fuels powerful abilities."
 
-		"DOTA_Tooltip_modifier_wisdom"	"Judgement of Sanction"
-		"DOTA_Tooltip_modifier_wisdom_Description"	"Your next Auto Attack restores Mana."
+		"DOTA_Tooltip_modifier_judgement_wisdom"	"Judgement of Sanction"
+		"DOTA_Tooltip_modifier_judgement_wisdom_Description"	"Your next Auto Attack restores Mana."
 
 		"DOTA_Tooltip_modifier_aoeslow50"	"Slow"
 		"DOTA_Tooltip_modifier_aoeslow50_Description"	"Slowed by 50%% and turnspeed reduced."
@@ -2768,10 +2768,10 @@
 		"DOTA_Tooltip_Ability_item_fireball3_bonus_stat3"	"%Flamestrike Chance: "
 
 		"DOTA_Tooltip_Ability_fury1_dmgfromstat"    "%Base Damage dealt:" 
-		"DOTA_Tooltip_Ability_Holy_Judgement_Description"  "Heal an ally or Damage an enemy for reduced Holy Damage. If used on enemies, silence for 0.5 secs and cause your next Auto Attack to restore Mana.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Reduced cooldown. \nRank 4: Increased Damage Factor, increased Mana on Auto Attack and Mana on crit and Critical Heals heal 15%% more. Also increases the target's Spell Resistance by 50 for 3 secs when it is an ally.\n\n</font>"
+		"DOTA_Tooltip_Ability_Holy_Judgement_Description"  "Heal an ally. If Alt-Cast is activated, it can also target enemies. If you target an enemy, it will cause reduced Holy Damage, silence the target for %silenceduration% secs and your next Auto Attack in %aaprocduration% secs will restore Mana. If damage from this ability causes Ability Critical Strike you will restore % of Max Mana.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Reduced cooldown. \nRank 4: Increased Damage Factor, increased Mana on Auto Attack and Mana on crit and Critical Heals heal 15%% more. Also increases the target's Spell Resistance by %spellres% for %spellresduration% secs when it is an ally.\n\n</font>"
 		"DOTA_Tooltip_ability_Holy_Judgement_critmana"                                    "%Mana restored on crit:"
-			"DOTA_Tooltip_ability_Holy_Judgement_aamana"                                      "Mana restored on Auto Attack:"
-			"DOTA_Tooltip_ability_Holy_Judgement_dmgfactor"                                   "%Damage Factor:"
+		"DOTA_Tooltip_ability_Holy_Judgement_aamana"                                      "Mana restored on Auto Attack:"
+		"DOTA_Tooltip_ability_Holy_Judgement_dmgfactor"                                   "%Damage Factor:"
 
 
 		// 2.8

@@ -8812,24 +8812,6 @@ end
 
 --Paladin -------------------------------------------------------------------------------------------------------------------------------------------
 
-function HolyJudgement(event)
-	local caster = event.caster
-	local target = event.target
-
-	if caster:GetTeamNumber() == target:GetTeamNumber() then
-        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_judgement_spellres", {Duration = event.spellresduration})
-		HealUnit(event)
-	else
-		event.spelldamagefactor = event.spelldamagefactor * event.dmgfactor/100
-		event.attributefactor = event.attributefactor * event.dmgfactor/100
-        event.critdmgbonusfactor = nil
-		DamageUnit(event)
-		local table = {}
-		table.Duration = 5
-		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_wisdom", table)
-	end
-end
-
 function Penance(event)
     local caster = event.caster
     local target = event.target

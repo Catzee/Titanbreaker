@@ -66378,10 +66378,13 @@
 
 	"Holy_Judgement"
 	{
-		"BaseClass"             "ability_datadriven"
+		"BaseClass"             "ability_lua"
+		"ScriptFile" 			""
+		"BaseClass"									"ability_lua"
+		"ScriptFile"								"abilities/heroes/divine_crusarder/holy_judgement"
         "AbilityTextureName"    "asdf4"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -66406,42 +66409,58 @@
 		        "var_type"  "FIELD_INTEGER"
 		        "AbilityHealing" "0"
 		    }
-		    "03"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "450 600 600 600"
 		    }
-		    "04"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "450 600 600 600"
 		    }
-		    "03"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "critmana" "15 15 15 45"
 		    }
-		    "03"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "critbonus" "1 1 1 1.15"
 		    }
-		    "03"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "aamana" "15 15 15 45"
 		    }
-		    "03"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfactor" "50 50 50 75"
 		    }
-		    "03"
+		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spellresduration" "0 0 0 3"
+		        "spellresduration" "3" // hardcoded to lvl4 in code
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_INTEGER"
+		        "spellres" "50"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_INTEGER"
+		        "aaprocduration" "5"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silenceduration" "0.5"
 		    }
 		}
+
 	    "AbilityManaCost"         "80"
 	    "AbilityCooldown"         "6 6 4 4"
 	    "AbilityCastRange"        "600"
@@ -66449,127 +66468,6 @@
 	    "AbilityChannelTime"      "0.0"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    //"AoERadius"               "250"
-
-	    "precache"
-		{
-		    "particle"  "particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_b_gold.vpcf"
-		    "particle"  "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_mana_leak.vpcf"
-		    "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_bloom.vpcf"
-		}
-        
-        "OnSpellStart"
-        {
-        	"FireEffect"
-			{
-			    "Target" "TARGET"
-			    "EffectName" "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-			    "EffectAttachType" "attach_hitloc"
-
-			    "ControlPoints"
-			    {
-			        "00" "0 0 0"
-			        "01" "10 10 10"
-			    }
-			}
-			"FireEffect"
-			{
-			    "Target" "TARGET"
-			    "EffectName" "particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_b_gold.vpcf"
-			    "EffectAttachType" "follow_overhead"
-
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuffConditional"
-			    "buff"			"modifier_silence"
-			    "dur"			"0.5"
-			    "onlyenemy"	"1"
-			}
-    		"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "HolyJudgement"
-			    "heal"			"%AbilityHealing"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "critdmgbonusfactor"	"%critbonus"
-			    "critmanareg"	"%critmana"
-			    "critmanaregnonpercent"	"1"
-			    "dmgfactor"	"%dmgfactor"
-			    "holydmg"	"1"
-			    "spellresduration"	"%spellresduration"
-			}
-			"FireSound"
-			{
-				"EffectName"		"Hero_Omniknight.Purification"
-				"Target"			"CASTER"
-			}
-        }
-
-        "Modifiers"
-        {
-        	"modifier_judgement_spellres"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-        		"Properties"
-        		{
-        			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"
-        		}
-        	}
-        	"modifier_wisdom"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        		"IsBuff"			"1"
-        		"IsPurgable"		"1"
-        		"TextureName"		"wisp_spirits"
-
-        		
-        		"OnCreated"
-        		{
-        			"AttachEffect"
-        			{
-        				"EffectName"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_mana_leak.vpcf"
-        				"EffectAttachType"	"attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
-        		}
-        		
-        
-        		"OnAttackLanded"
-        		{
-        			"RunScript"
-        			{
-        				"ScriptFile"	"game_mechanics.lua"
-        				"Function"		"RestoreMana"
-        				"amount"		"%aamana"
-        				//"percent"	"1"
-        			}
-        			"FireEffect"
-        			{
-        				"EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_bloom.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "CASTER"
-        			}
-        			"RemoveModifier"
-        			{
-        				"ModifierName"	"modifier_wisdom"
-        				"Target" 		"CASTER"
-        			}
-        		}
-        	}
-        }
-
 	}
 
 	"Divine_Light"
