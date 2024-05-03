@@ -10156,9 +10156,6 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
         if(ability._ToggleAltCast ~= nil) then
           ability:_ToggleAltCast()
         end
-        if(ability.OnAltCastToggled ~= nil) then
-          ability:OnAltCastToggled()
-        end
       end
     end
   end
