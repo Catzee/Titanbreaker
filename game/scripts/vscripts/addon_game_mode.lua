@@ -31,6 +31,7 @@ require('libraries/attachments')
 require('libraries/popups')
 require('libraries/notifications')
 require("statcollection/init")
+require("overrides/require")
 require("debug_tools")
 
 ---------------------------------------------------------------------------
@@ -10147,6 +10148,23 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 	]]
 
 	local orderType = filterTable["order_type"]
+
+  if(orderType == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
+    if(filterTable["entindex_ability"]) then
+      local ability = EntIndexToHScript(filterTable["entindex_ability"])
+      print("ability", ability, ability:GetAbilityName())
+      if(ability) then
+        print("ability._ToggleAltCast", ability._ToggleAltCast)
+        if(ability._ToggleAltCast ~= nil) then
+          ability:_ToggleAltCast()
+        end
+        if(ability.OnAltCastToggled ~= nil) then
+          ability:OnAltCastToggled()
+        end
+      end
+    end
+  end
+
 	if ( orderType ~= DOTA_UNIT_ORDER_PICKUP_ITEM or filterTable["issuer_player_id_const"] == -1 ) then
 		return true
 	else
