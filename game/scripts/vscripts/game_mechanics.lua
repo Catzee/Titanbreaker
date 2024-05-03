@@ -587,15 +587,23 @@ function DamageUnit( event )
     if caster:HasModifier("modifier_icelotus") then
         local frost = event.frostdmg
         local arcane = event.arcanedmg
-        if frost then
-            event.arcanedmg = 1
-            event.frostdmg = nil
+
+        -- Lotus tooltip (atm): Whenever you deal Arcane Damage, it will be Frost Damage instead and vice versa, while gaining a 25% chance to Critical Strike for 250% everytime this takes effect.
+        -- Considers mixed damage instance (for example ice storm) and let it get double benefit from this item: keep dmg types and double crit roll
+        if(frost and arcane) then
             event.icelotus1 = 1
-        end
-        if arcane then
-            event.arcanedmg = nil
-            event.frostdmg = 1
             event.icelotus2 = 1
+        else
+            if frost then
+                event.arcanedmg = 1
+                event.frostdmg = nil
+                event.icelotus1 = 1
+            end
+            if arcane then
+                event.arcanedmg = nil
+                event.frostdmg = 1
+                event.icelotus2 = 1
+            end
         end
     end
     if event.islavaimp and caster:HasModifier("modifier_class_pugna2") then
