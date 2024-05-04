@@ -6368,7 +6368,7 @@ end
 function IsHardCC( buff )
     if buff == "modifier_stunned" or buff == "modifier_delay_impale" or buff == "modifier_deepfreeze" or buff == "glacier_trap" or buff == "modifier_rootedfx" 
         or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" 
-        or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifier_fearsp" or buff == "modifier_confused"
+        or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_fearsp" or buff == "modifier_confused"
         or buff == "modifier_confused_unbreakable" or buff == "modifier_frostarmorbuff" or buff == "modifier_iceexplode" or buff == "modifier_stomp"
         or buff == "modifier_voodoo_datadriven"
             then
@@ -6381,7 +6381,7 @@ end
 function CheckForCC( target )
     if target:HasModifier("modifier_stunned") or target:HasModifier("modifier_delay_impale") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("glacier_trap") or target:HasModifier("modifier_rootedfx") 
         or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") 
-        or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
+        or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
         or target:HasModifier("modifier_confused_unbreakable") or target:HasModifier("modifier_frostarmorbuff") or target:HasModifier("modifier_iceexplode") or target:HasModifier("modifier_stomp")
         or target:HasModifier("modifier_voodoo_datadriven")
             then
@@ -6670,11 +6670,13 @@ function PurgeUnit(event)
 		target:RemoveModifierByName("modifier_dot4")
 		target:RemoveModifierByName("modifier_infested")
 		target:RemoveModifierByName("modifier_cyclone_self")
+		target:RemoveModifierByName("modifer_peaceful_guardian_cyclone_debuff")
 	end
 
 	if event.massdispel then
 		--print("try")
 		target:RemoveModifierByName("modifier_cyclone_self")
+		target:RemoveModifierByName("modifer_peaceful_guardian_cyclone_debuff")
 		target:RemoveModifierByName("modifier_infested")
 	end
     OnPurgeProcs(caster, target, event.ability)
@@ -6773,7 +6775,7 @@ function HealUnit( event )
     --if target:GetUnitLabel() == "tower" then
     --	return
     --end
-    if target:HasModifier("modifier_cyclone_self") and not event.healthroughcyclone then
+    if (target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff")) and not event.healthroughcyclone then
   		return
     end
     if target:HasModifier("modifier_denial_aura") then
@@ -7869,8 +7871,13 @@ function GetSpellhaste( caster, event )
     if caster:HasModifier("modifier_shadow_rage") then
         speedbonus = speedbonus + 2.5
     end
-    if caster:HasModifier("modifier_druid_as_buff") then
-        speedbonus = speedbonus + 0.5
+    
+    local furionCycloneAura = caster:FindModifierByName("modifer_peaceful_guardian_cyclone_aura_buff")
+    if(furionCycloneAura) then
+        local furionCycloneAuraAbility = furionCycloneAura:GetAbility()
+        if(furionCycloneAuraAbility) then
+            speedbonus = speedbonus + furionCycloneAuraAbility:GetSpecialValueFor("spellhaste")
+        end
     end
     if caster:HasModifier("modifier_stormbringer") then
         speedbonus = speedbonus + 5
@@ -9918,15 +9925,6 @@ function SacredShieldHealth( event )
 	local target = event.target
 
 	target.OldHealth = target:GetHealth()
-end
-
-function CycloneDiminishing(event)
-	local caster = event.caster
-	local target = event.target
-
-	local diminishing = caster:GetModifierStackCount("cyclone_diminishing_return", caster)
-	event.dur = event.dur * (event.diminish - diminishing) / event.diminish
-	CCTarget(event)
 end
 
 function ManaBurn (event)
@@ -15625,7 +15623,7 @@ function ApplyBuff(event)
 		isBuff = false
 	end
 
-    if not isBuff and not event.is_already_aoe_buff and (buff == "modifier_cyclone_self" or buff == "modifier_rootsdruid") and caster:HasModifier("modifier_npc_dota_hero_furion") then
+    if not isBuff and not event.is_already_aoe_buff and (buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_rootsdruid") and caster:HasModifier("modifier_npc_dota_hero_furion") then
         event.dur = event.dur * 1.1
         event.aoe = 300
         event.targetpos = 1
@@ -15713,7 +15711,7 @@ function ApplyBuff(event)
     end
 
     --cycloned targets are imune new buffs
-    if (target:HasModifier("modifier_cyclone_self") and not event.pierceCyclone) or (not isBuff and target:HasModifier("modifier_invul")) then
+    if ((target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff")) and not event.pierceCyclone) or (not isBuff and target:HasModifier("modifier_invul")) then
         return
     end
 
@@ -15728,7 +15726,7 @@ function ApplyBuff(event)
     end
 
     --bladestorm makes cyclone imune
-    if target:HasModifier("modifier_axestorm") and buff == "modifier_cyclone_self" then
+    if target:HasModifier("modifier_axestorm") and (buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff") then
         return
     end
 
@@ -29763,29 +29761,5 @@ function SoulwardenTotemShield(event)
 
     if ally then
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
-    end
-end
-
-function CycloneHurricane(event)
-    local caster = event.caster
-    local ability = event.ability
-
-    if ability:GetLevel() >= 4 and caster:HasModifier("modifier_druid_evasion_h") then
-        ApplyBuff({caster = caster, target = caster, dur = 7, buff = "modifier_cyclone_hurricane", ability = ability, pierceCyclone = 1})
-    end
-end
-
-function CycloneHurricanePeriodic(event)
-    local caster = event.caster
-    local enemy = FindClosestEnemy({caster = caster, radius = 900})
-
-    if enemy then
-        ApplyBuffStack({caster = caster, target = enemy, dur = 5, buff = "modifier_hurricane_weakening", ability = event.ability, max = 7})
-        DamageUnit({caster = caster, target = enemy, ability = event.ability, damage = 0, attributefactor = 500, spelldamagefactor = 500, naturedmg = 1})
-        local particle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_arcana/razor_arcana_strike_top_lightning_strike.vpcf", PATTACH_POINT_FOLLOW, enemy)
-        ParticleManager:SetParticleControl(particle, 0, enemy:GetAbsOrigin())
-        ParticleManager:SetParticleControl(particle, 1, enemy:GetAbsOrigin())
-        ParticleManager:ReleaseParticleIndex(particle)
-        EmitSoundOn("DOTA_Item.Mjollnir.Activate", enemy)
     end
 end

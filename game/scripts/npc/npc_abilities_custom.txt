@@ -50445,10 +50445,11 @@
 
 	"CycloneDruid"
 	{
-        "BaseClass"             "ability_datadriven"
+		"BaseClass"    "ability_lua"
+		"ScriptFile"    "abilities/heroes/peaceful_guardian/cyclone"
         "AbilityTextureName"    "fix/cyclone1"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -50480,257 +50481,111 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "bonus_stat3" "0 0 2 2"
 		    }
-		    "01"
+			"02"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_stat3_tooltip" "2"
+		    }
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "instant" "0 0 0 0"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "4.5"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "diminish" "20"
 		    }
-		    "01"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "as" "0 50 50 50"
 		    }
-		}
-		
-		"OnSpellStart"
-        {
-        		"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ChannelManaFixEnd"
-				    "mana"			"%AbilityManaCost"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "PurgeIfFriend"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "CycloneHurricane"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "CycloneDiminishing"
-				    "diminish"		"%diminish"
-				    "dur"		"%buffduration"
-				    "buff"		"modifier_cyclone_self"
-				    "curseblade"	"1"
-				}
-				"FireSound"
-				{
-					"EffectName"		"DOTA_Item.Cyclone.Activate"
-					"Target"			"CASTER"
-				}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ChannelManaFixEnd"
-				    "mana"			"%AbilityManaCost"
-				}
-				"RunScript"
-		    	{
-		    		"ScriptFile"	"game_mechanics.lua"
-		    		"Function"		"ApplyBuffStack"
-		    		"max"			"%diminish"
-		    		"buff"			"cyclone_diminishing_return"
-		    		"self"			"1"
-		    		"dur"			"%diminish"
-		    		"addstacks"		"%diminish"
-		    		"alwaysapply"	"1"
-		    	}
-        }
-        "OnAbilityPhaseInterrupted"
-        {
-        	"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ChannelInterrupt"
-				    "cooldownfix"	"1"
-				}
-        }
-        "OnAbilityPhaseStart"
-        {
-
-        		"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ChannelManaFixStart"
-				    "mana"			"%AbilityManaCost"
-				    "instantcast"	"%instant"
-				}
-				"FireSound"
-				{
-					"EffectName"		"Hero_Silencer.Curse"
-					"Target"			"CASTER"
-				}
-				"RunScript"
-				{
-					"ScriptFile"	"game_mechanics.lua"
-					"Function"		"ShapeshiftOut"
-				}
-        }
-
-		"precache"
-		{
-		    "particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
-		    "particle"  "particles/cyclone_self1.vpcf"
-		}
-
-		"Modifiers"
-		{
-			"modifier_druid_as"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-				"IsDebuff"			"0"
-			
-				"Aura"          	"modifier_druid_as_buff"
-				"Aura_Radius"   	"1500"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-				"Aura_ApplyToCaster" "1"
-			}
-			"modifier_druid_as_buff"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as"
-				}
-			}
-			"modifier_cyclone_self"
-			{
-			    //"Duration"         "5"
-			    "Passive"          "0"    
-
-			    "IsBuff"			"0"
-			    "IsDebuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "0"
-
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"        "particles/cyclone_self1.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    	"ApplyModifier"
-			    	{
-			    		"ModifierName"	"cyclone_animation"
-			    		"Target" 		"TARGET"
-			    	}
-			    }
-
-			    "Properties"
-			    {
-			    	"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100.0"
-			    }
-			     "States"
-			    {
-			        "MODIFIER_STATE_STUNNED"      "MODIFIER_STATE_VALUE_ENABLED"
-			    }
-
-			    "ThinkInterval"  "1.0"
-			    "OnIntervalThink"
-			    {
-			    	"ApplyModifier"
-			    	{
-			    		"ModifierName"	"cyclone_animation"
-			    		"Target" 		"TARGET"
-			    	}
-			    	"RunScript"
-        			{
-        				"ScriptFile"	"game_mechanics.lua"
-        				"Function"		"RestoreManaIfFriend"
-        				"amount"		"%bonus_stat3"
-        				"percent"	"%bonus_stat3"
-        			}
-        			"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "HealUnitIfFriend"
-					    "heal"			"0.0"
-					    "percenthp"		"%bonus_stat3"
-					    "isdot"	"1"
-					    "healthroughcyclone"	"1"
-					}
-			    }
-
-			}
-			"cyclone_animation"
-	        {
-	            "IsHidden" "1"
-	            "Duration" "0.94"
-	            "OverrideAnimation" "ACT_DOTA_FLAIL"
-	        }
-	        "cyclone_diminishing_return"
-	        {
-	            "Passive"          "0"    
-			    "IsBuff"			"0"
-			    "IsDebuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "0"
-			    "TextureName"		"enraged_wildkin_tornado"
-			    "ThinkInterval"  "1.0"
-			    "OnIntervalThink"
-			    {
-			    	"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"		"DecreaseBuffStack"
-						"buff"			"cyclone_diminishing_return"
-					}
-			    }
-	        }
-	        "modifier_cyclone_hurricane"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-			
-				"EffectName"		"particles/econ/items/razor/razor_arcana/razor_arcana_cyclone_core_cloudy.vpcf"
-				"EffectAttachType"	"follow_origin"
-			
-				"ThinkInterval"  "1.0"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "CycloneHurricanePeriodic"
-					}
-				}
-			}
-			"modifier_hurricane_weakening"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"1"
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
-				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-5" 
-				}
-			}
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "as_tooltip" "50"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellhaste" "0 50 50 50"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellhaste_tooltip" "50"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "auraradius" "1500"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "healtickrate" "1"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "diminishingtickrate" "1"
+		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_armor" "-1"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_duration" "7"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_armor" "-1"
+		    }
+		    "15"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_spellresistance" "-5"
+		    }
+		    "16"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_radius" "900"
+		    }
+		    "17"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_tickrate" "1"
+		    }
+		    "18"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_debuff_duration" "7"
+		    }
+		    "19"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_debuff_max_stacks" "7"
+		    }
+		    "20"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_stat_to_dmg" "500"
+		    }
+		    "21"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hurricane_sp_to_dmg" "500"
+		    }
 		}
 	}
 
@@ -66378,8 +66233,6 @@
 
 	"Holy_Judgement"
 	{
-		"BaseClass"             "ability_lua"
-		"ScriptFile" 			""
 		"BaseClass"									"ability_lua"
 		"ScriptFile"								"abilities/heroes/divine_crusarder/holy_judgement"
         "AbilityTextureName"    "asdf4"
@@ -66442,19 +66295,24 @@
 		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spellresduration" "3" // hardcoded to lvl4 in code
+		        "spellresduration" "0 0 0 3"
 		    }
 		    "09"
 		    { 
-		        "var_type"  "FIELD_INTEGER"
-		        "spellres" "50"
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresduration_tooltip" "3"
 		    }
 		    "10"
 		    { 
 		        "var_type"  "FIELD_INTEGER"
-		        "aaprocduration" "5"
+		        "spellres" "50"
 		    }
 		    "11"
+		    { 
+		        "var_type"  "FIELD_INTEGER"
+		        "aaprocduration" "5"
+		    }
+		    "12"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "silenceduration" "0.5"

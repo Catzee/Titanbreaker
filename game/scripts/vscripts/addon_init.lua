@@ -15,6 +15,13 @@ LinkLuaModifier("modifier_phased_lua", "modifiers/modifier_phased_lua", LUA_MODI
 LinkLuaModifier("modifier_godschosen_2", "modifiers/heroes/sanctified_crusader/shield_of_vengeance/modifier_godschosen_2", LUA_MODIFIER_MOTION_NONE)
 -- swipe of ursa proc duration fix
 LinkLuaModifier("modifier_swipe_of_ursa_proc", "modifiers/path_talents/modifier_swipe_of_ursa_proc", LUA_MODIFIER_MOTION_NONE)
--- omniknight 2nd ability alt cast support
+-- omniknight 2nd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_judgement_spellres", "modifiers/heroes/divine_crusarder/holy_judgement/modifier_judgement_spellres", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_judgement_wisdom", "modifiers/heroes/divine_crusarder/holy_judgement/modifier_judgement_wisdom", LUA_MODIFIER_MOTION_NONE)
+-- np 5th ability alt cast support (lua rewrite)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_aura", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_aura_buff", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_aura_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_debuff", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_diminishing_return", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_diminishing_return", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_hurricane", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_hurricane", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifer_peaceful_guardian_cyclone_hurricane_debuff", "modifiers/heroes/peaceful_guardian/cyclone/modifer_peaceful_guardian_cyclone_hurricane_debuff", LUA_MODIFIER_MOTION_NONE)

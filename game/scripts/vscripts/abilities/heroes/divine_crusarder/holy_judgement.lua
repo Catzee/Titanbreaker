@@ -70,12 +70,10 @@ function Holy_Judgement:OnSpellStart()
 	}
 
 	if (caster:GetTeamNumber() == target:GetTeamNumber()) then
-		if(self:GetLevel() == 4) then
-			target:AddNewModifier(caster, self, "modifier_judgement_spellres",
-			{
-				duration = eventTable.spellresduration
-			})
-		end
+		target:AddNewModifier(caster, self, "modifier_judgement_spellres",
+		{
+			duration = eventTable.spellresduration
+		})
 
 		HealUnit(eventTable)
 	else
