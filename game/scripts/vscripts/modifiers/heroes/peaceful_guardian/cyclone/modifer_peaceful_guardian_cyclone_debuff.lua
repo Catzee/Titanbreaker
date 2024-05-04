@@ -58,18 +58,18 @@ function modifer_peaceful_guardian_cyclone_debuff:OnRefresh()
     if(not IsServer()) then
         return
     end
-    
     self.ability = self:GetAbility()
+    self.caster = self.ability:GetCaster()
     self.healingMaxHpMpPct = self.ability:GetSpecialValueFor("bonus_stat3")
     self.restoreManaEventTable = {
-		caster = self.parent,
+		caster = self.caster,
 		target = self.parent,
 		ability = self.ability,
         amount = self.healingMaxHpMpPct,
         percent = self.healingMaxHpMpPct
     }
     self.restoreHealthEventTable = {
-		caster = self.parent,
+		caster = self.caster,
 		target = self.parent,
 		ability = self.ability,
         heal = 0.0,

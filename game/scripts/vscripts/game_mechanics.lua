@@ -6731,7 +6731,7 @@ function HealUnit( event )
         isaoe = true
     end
     local displaynumber = true
-
+    
     if event.heal_owner and caster then
         --caster = caster.owner
         target = caster
@@ -6840,7 +6840,6 @@ function HealUnit( event )
     if event.spelldamagefactor == nil then
     	event.spelldamagefactor = 0.0
     end
-
     if event.percenthp then
     	event.heal = event.heal + event.percenthp*target:GetMaxHealth()/100.0
     end
@@ -7876,7 +7875,7 @@ function GetSpellhaste( caster, event )
     if(furionCycloneAura) then
         local furionCycloneAuraAbility = furionCycloneAura:GetAbility()
         if(furionCycloneAuraAbility) then
-            speedbonus = speedbonus + furionCycloneAuraAbility:GetSpecialValueFor("spellhaste")
+            speedbonus = speedbonus + (furionCycloneAuraAbility:GetSpecialValueFor("spellhaste") / 100)
         end
     end
     if caster:HasModifier("modifier_stormbringer") then
