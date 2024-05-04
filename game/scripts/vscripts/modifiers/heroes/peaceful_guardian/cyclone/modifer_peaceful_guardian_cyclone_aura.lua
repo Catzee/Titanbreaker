@@ -1,6 +1,6 @@
 modifer_peaceful_guardian_cyclone_aura = class({
     IsHidden = function()
-        return false
+        return true
     end,
     IsPurgable = function()
         return false

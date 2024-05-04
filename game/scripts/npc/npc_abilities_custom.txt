@@ -49700,7 +49700,7 @@
 		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "manareg" "0 0 10 10"
+		        "manareg" "0 0 10 10" // disabled since rework of np 6th ability
 		    }
 		    "02"
 		    { 

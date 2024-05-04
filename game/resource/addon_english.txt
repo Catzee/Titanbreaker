@@ -1233,7 +1233,7 @@
 
 		"DOTA_Tooltip_Ability_Shapeshift"  "Swift Winds"  
 		"DOTA_Tooltip_Ability_Shapeshift_speed"    "%Movement Speed Bonus:" 
-		"DOTA_Tooltip_Ability_Shapeshift_manareg"    "Mana Regeneration bonus:" 
+		//"DOTA_Tooltip_Ability_Shapeshift_manareg"    "Mana Regeneration bonus:" 
 
 		"DOTA_Tooltip_modifier_druid_evasion_h"	"Swift Winds"
 		"DOTA_Tooltip_modifier_druid_evasion_h_Description"	"Evasion."
@@ -3125,7 +3125,9 @@
 
 		"DOTA_Tooltip_modifier_cyclone_self"	"Cyclone"
 		"DOTA_Tooltip_modifier_cyclone_self_Description"	"Stunned and imune to damage and healing."
-		
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_debuff"	"Cyclone"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_debuff_Description"	"Stunned and imune to damage and healing."
+
 		"DOTA_Tooltip_Ability_CycloneDruidFeral_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies. 2 secs cast time.\n\nIf used on allies, dispels all debuffs."
 		"DOTA_Tooltip_Ability_CycloneDruidFeralInstant_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies.\n\nIf used on allies, dispels all debuffs."
 
@@ -3971,6 +3973,12 @@
 
 		"DOTA_Tooltip_cyclone_diminishing_return"                                         "Cyclone Diminishing Return"
 		"DOTA_Tooltip_cyclone_diminishing_return_Description"                             " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_diminishing_return"               "Cyclone Diminishing Return"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_diminishing_return_Description"   " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane"               "Hurricane"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_Description"   " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_debuff"               "Hurricane"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_debuff_Description"   "Spell Resistance and Armor reduced."
 
 		"DOTA_Tooltip_modifier_manaburn_debuff"                                           "Soul Burn Weakness"
 		"DOTA_Tooltip_modifier_manaburn_debuff_Description"                               " "
