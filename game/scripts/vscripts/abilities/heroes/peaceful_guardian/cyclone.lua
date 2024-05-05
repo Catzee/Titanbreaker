@@ -26,21 +26,24 @@ function CycloneDruid:CastFilterResultTarget(target)
 end
 
 function CycloneDruid:OnAbilityPhaseStart()
-    local eventTable = {
-		caster = self:GetCaster(),
-		target = self:GetCursorTarget(),
+    local caster = self:GetCaster()
+    local target = self:GetCursorTarget()
+    
+    ChannelManaFixStart({
+		caster = caster,
+		target = target,
 		ability = self,
         mana = self:GetSpecialValueFor("AbilityManaCost"),
         instantcast = self:GetSpecialValueFor("instant")
-	}
-    
-    ChannelManaFixStart(eventTable)
+	})
 
-    EmitSoundOn("Hero_Silencer.Curse", eventTable.caster)
+    EmitSoundOn("Hero_Silencer.Curse", caster)
 
-    eventTable.mana = nil
-    eventTable.instantcast = nil
-    ShapeshiftOut(eventTable)
+    ShapeshiftOut({
+		caster = caster,
+		target = target,
+		ability = self,
+	})
 
     return true
 end
@@ -61,43 +64,51 @@ function CycloneDruid:OnSpellStart()
     local abilityManaCost = self:GetSpecialValueFor("AbilityManaCost")
     local diminish = self:GetSpecialValueFor("diminish")
 
-	local eventTable = {
+    ChannelManaFixEnd({
 		caster = caster,
 		target = target,
 		ability = self,
         mana = abilityManaCost
-	}
-
-    ChannelManaFixEnd(eventTable)
+	})
     
-    eventTable.mana = nil
-    PurgeIfFriend(eventTable)
+    PurgeIfFriend({
+		caster = caster,
+		target = target,
+		ability = self
+	})
 
     self:CycloneHurricane(eventTable)
 
-    eventTable.diminish = diminish
-    eventTable.dur = self:GetSpecialValueFor("buffduration")
-    eventTable.buff = "modifer_peaceful_guardian_cyclone_debuff"
-    eventTable.curseblade = 1
-    self:CycloneDiminishing(eventTable)
+    self:CycloneDiminishing({
+		caster = caster,
+		target = target,
+		ability = self,
+        diminish = diminish,
+        dur = self:GetSpecialValueFor("buffduration"),
+        buff = "modifer_peaceful_guardian_cyclone_debuff",
+        curseblade = 1
+	})
 
     EmitSoundOn("DOTA_Item.Cyclone.Activate", caster)
 
-    eventTable.diminish = nil
-    eventTable.dur = nil
-    eventTable.buff = nil
-    eventTable.curseblade = nil
-    eventTable.mana = abilityManaCost
-    ChannelManaFixEnd(eventTable)
+    ChannelManaFixEnd({
+		caster = caster,
+		target = target,
+		ability = self,
+        mana = abilityManaCost
+	})
 
-    eventTable.max = diminish
-    eventTable.buff = "modifer_peaceful_guardian_cyclone_diminishing_return"
-    eventTable.self = 1
-    eventTable.dur = diminish
-    eventTable.addstacks = diminish
-    eventTable.alwaysapply = 1
-    eventTable.mana = nil
-    ApplyBuffStack(eventTable)
+    ApplyBuffStack({
+		caster = caster,
+		target = target,
+		ability = self,
+        max = diminish,
+        buff = "modifer_peaceful_guardian_cyclone_diminishing_return",
+        self = 1,
+        dur = diminish,
+        addstacks = diminish,
+        alwaysapply = 1
+	})
 end
 
 function CycloneDruid:CycloneDiminishing(event)

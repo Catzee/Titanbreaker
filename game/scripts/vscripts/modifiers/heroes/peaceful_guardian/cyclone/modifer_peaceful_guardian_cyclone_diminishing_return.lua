@@ -19,17 +19,16 @@ function modifer_peaceful_guardian_cyclone_diminishing_return:OnCreated()
     end
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-
-    self.eventTable = {
-		caster = self.parent,
-		target = self.parent,
-		ability = self.ability,
-        buff = self:GetName()
-    }
-
+    self.buffName = self:GetName()
+    
     self:StartIntervalThink(self.ability:GetSpecialValueFor("diminishingtickrate"))
 end
 
 function modifer_peaceful_guardian_cyclone_diminishing_return:OnIntervalThink()
-    DecreaseBuffStack(self.eventTable)
+    DecreaseBuffStack({
+		caster = self.parent,
+		target = self.parent,
+		ability = self.ability,
+        buff = self.buffName
+    })
 end

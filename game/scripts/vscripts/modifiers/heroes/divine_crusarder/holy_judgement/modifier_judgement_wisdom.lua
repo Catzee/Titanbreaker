@@ -26,8 +26,6 @@ function modifier_judgement_wisdom:OnCreated()
         return
     end
 
-    self:OnRefresh()
-
     local parentOrigin = self.parent:GetAbsOrigin()
 
     local particleProc = ParticleManager:CreateParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_mana_leak.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -37,27 +35,19 @@ function modifier_judgement_wisdom:OnCreated()
     self:AddParticle(particleProc, false, false, 1, false, false)
 end
 
-function modifier_judgement_wisdom:OnRefresh()
-    if(not IsServer()) then
-        return
-    end
-
-    self.ability = self:GetAbility()
-
-    self.restoreManaEventTable = {
-		caster = self.parent,
-		target = self.parent,
-		ability = self.ability,
-        amount = self.ability:GetSpecialValueFor("aamana")
-	}
-end
-
 function modifier_judgement_wisdom:OnAttackLanded(kv)
     if(kv.attacker ~= self.parent) then
         return
     end
     
-    RestoreMana(self.restoreManaEventTable)
+    self.ability = self:GetAbility()
+
+    RestoreMana({
+		caster = self.parent,
+		target = self.parent,
+		ability = self.ability,
+        amount = self.ability:GetSpecialValueFor("aamana")
+	})
 
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_bloom.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)

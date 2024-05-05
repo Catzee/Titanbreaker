@@ -61,14 +61,17 @@ function modifer_peaceful_guardian_cyclone_debuff:OnRefresh()
     self.ability = self:GetAbility()
     self.caster = self.ability:GetCaster()
     self.healingMaxHpMpPct = self.ability:GetSpecialValueFor("bonus_stat3")
-    self.restoreManaEventTable = {
+end
+
+function modifer_peaceful_guardian_cyclone_debuff:OnIntervalThink()
+    RestoreManaIfFriend({
 		caster = self.caster,
 		target = self.parent,
 		ability = self.ability,
         amount = self.healingMaxHpMpPct,
         percent = self.healingMaxHpMpPct
-    }
-    self.restoreHealthEventTable = {
+    })
+    HealUnitIfFriend({
 		caster = self.caster,
 		target = self.parent,
 		ability = self.ability,
@@ -76,10 +79,5 @@ function modifer_peaceful_guardian_cyclone_debuff:OnRefresh()
         percenthp = self.healingMaxHpMpPct,
         isdot = 1,
         healthroughcyclone = 1
-    }
-end
-
-function modifer_peaceful_guardian_cyclone_debuff:OnIntervalThink()
-    RestoreManaIfFriend(self.restoreManaEventTable)
-    HealUnitIfFriend(self.restoreHealthEventTable)
+    })
 end
