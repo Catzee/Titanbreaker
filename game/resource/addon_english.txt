@@ -1520,7 +1520,9 @@
 		"DOTA_Tooltip_Ability_Inspiring_Shot"  "Aimed Iceshot"  
 		"DOTA_Tooltip_ability_Inspiring_Shot_bonusregen"                                  "%Bonus Resource Regeneration:"
 		"DOTA_Tooltip_ability_Inspiring_Shot_range"                                       "Cast range:"
-		 
+
+		"DOTA_Tooltip_modifier_resto1_res"	"Healing Wave"
+		"DOTA_Tooltip_modifier_resto1_res_Description"	"Spell Resistance increased."
 
 		"DOTA_Tooltip_Ability_Hellfire"  "Hellfire"  
 		"DOTA_Tooltip_Ability_Hellfire_Description"  "Cause all enemies in the area to be burned by hellfire, taking damage and being slowed for 2 secs. Be careful, allies will also be slowed by the fire. You will be healed by 2%% of max Health for each target hit."
@@ -2931,7 +2933,7 @@
 		"DOTA_Tooltip_Ability_item_elements2_bonus_stat7"	"Holy: +1 to all Stats and +3% healing caused, max Stacks"
 
 		"DOTA_Tooltip_Ability_holy1"  "Holy Light"  
-		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and cast range. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Cast Range by 300. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy1_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy1_magicres"    "Spell Resistance on cast:"

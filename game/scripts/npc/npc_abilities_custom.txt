@@ -35514,7 +35514,7 @@
 			"modifier_resto1_res"
 			{
 				"Passive"			"0"
-				"IsHidden"			"1"
+				"IsHidden"			"0"
 				"IsDebuff"			"0"
 		
 				"Properties"
