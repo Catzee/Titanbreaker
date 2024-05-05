@@ -1,4 +1,4 @@
-modifier_judgement_wisdom = class({
+modifier_divine_crusarder_holy_judgement_wisdom = class({
     IsHidden = function()
         return false
     end,
@@ -19,7 +19,7 @@ modifier_judgement_wisdom = class({
     end
 })
 
-function modifier_judgement_wisdom:OnCreated()
+function modifier_divine_crusarder_holy_judgement_wisdom:OnCreated()
     self.parent = self:GetParent()
 
     if(not IsServer()) then
@@ -35,7 +35,7 @@ function modifier_judgement_wisdom:OnCreated()
     self:AddParticle(particleProc, false, false, 1, false, false)
 end
 
-function modifier_judgement_wisdom:OnAttackLanded(kv)
+function modifier_divine_crusarder_holy_judgement_wisdom:OnAttackLanded(kv)
     if(kv.attacker ~= self.parent) then
         return
     end

@@ -7157,12 +7157,16 @@ function HealUnit( event )
         end
     end
     if critpossible == true and caster.spiritHealCrit and caster.spiritHealCrit >= 1 then
-        critchance = 100*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.0*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
-            caster.spiritHealCrit = caster.spiritHealCrit - 1
+        local wdSpiritShock = caster:FindAbilityByName("resto4")
+        if(wdSpiritShock) then
+            critchance = wdSpiritShock:GetSpecialValueFor("crit_chance")*critchancefactor
+            if math.random(1,100) <= critchance then
+                local critMultiplier = wdSpiritShock:GetSpecialValueFor("crit_multiplier") / 2
+                event.heal = event.heal*critMultiplier*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+                caster.spiritHealCrit = caster.spiritHealCrit - 1
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1) then
@@ -8053,7 +8057,25 @@ function ChannelManaFixStart( event )
     	event.casttime = castpoint
     	ability:SetOverrideCastPoint(castpoint)
 	end
-
+    -- wd 4th ability instant casts
+	local spiritShockInstantCastsModifier = caster:FindModifierByName("modifier_spirit_voodoo_spirit_shock_instant_casts")
+	if isalreadyinstant == 0 and spiritShockInstantCastsModifier ~= nil then
+        local stacks = spiritShockInstantCastsModifier:GetStackCount()
+        if stacks == 1 then
+            caster:RemoveModifierByName("modifier_spirit_voodoo_spirit_shock_instant_casts")
+        else
+            spiritShockInstantCastsModifier:SetStackCount(stacks - 1)
+        end
+		if ability.originalcastpoint == nil then
+			ability.originalcastpoint = ability:GetCastPoint()
+    	end
+    	ability.wasinstant = true
+    	isalreadyinstant = 1
+    	local castpoint = 0.2
+    	event.casttime = castpoint
+    	ability:SetOverrideCastPoint(castpoint)
+	end
+    -- data driven instant casts
 	local instantbolt = caster:GetModifierStackCount("modifier_instantbolt", nil)
 	if isalreadyinstant == 0 and instantbolt > 0 then
         if instantbolt == 1 then
@@ -28770,12 +28792,6 @@ function GetLevelOfAbility( hero, abilityName )
         return ability:GetLevel()
     end
     return 0
-end
-
-function SpiritHealCrit( event )
-    if event.ability:GetLevel() >= 3 then
-        event.caster.spiritHealCrit = 2
-    end
 end
 
 function FelBlast( caster, target )

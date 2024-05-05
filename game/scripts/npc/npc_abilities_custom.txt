@@ -34914,10 +34914,11 @@
 
 	"resto4"
 	{
-		"BaseClass"             "ability_datadriven"
+		"BaseClass"    "ability_lua"
+		"ScriptFile"    "abilities/heroes/spirit_voodoo/spirit_shock"
         "AbilityTextureName"    "magnataur_shockwave"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -34949,12 +34950,12 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "buffdurationInterrupt" "1"
 		    }
-		    "03"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "500 500 500 750"
 		    }
-		    "04"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "500 500 500 750"
@@ -34962,141 +34963,69 @@
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "shamanhaste" "0 60 60 60"
-		    }
-		    "04"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
 		        "enemyslow" "0 0 0 5"
 		    }
-		    "04"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "res" "0 0 0 3"
+		        "enemyslow_tooltip" "5"
+		    }
+		    "06"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance_duration" "0 0 0 3"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance_duration_tooltip" "3"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_movespeed" "-50"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_attackspeed" "-25"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance" "90"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_multiplier" "200"
+		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_chance" "100"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crits_count" "2"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "instant_casts" "3"
+		    }
+		    "15"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "instant_casts_max" "6"
+		    }
+		    "16"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "instant_casts_duration" "0 60 60 60"
 		    }
 		}
-
-        "OnSpellStart"
-        {
-        	"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica_replicate.vpcf"
-				"EffectAttachType"  "attach_hitloc"
-				"Target"            "TARGET"
-				"ControlPointEntities"
-	            {
-	                "TARGET" "attach_hitloc"
-	                "TARGET" "attach_hitloc"
-	            }
-			}
-        	"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuffConditional"
-			    "buff"			"modifier_slow50"
-			    "dur"			"%enemyslow"
-			    "onlyenemy"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuffConditional"
-			    "buff"			"modifier_silence"
-			    "dur"			"%buffdurationInterrupt"
-			    "onlyenemy"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuffConditional"
-			    "buff"			"modifier_judgement_spellres"
-			    "dur"			"%res"
-			    "onlyfriend"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "SpiritHealCrit"
-			}
-    		"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "DamageUnitConditional"
-			    "damage"			"%AbilityDamage"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "arcanedmg"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "PurgeIfFriend"
-			}
-			"RunScript"
-	    	{
-	    		"ScriptFile"	"game_mechanics.lua"
-	    		"Function"		"ApplyBuffStack"
-	    		"addstacks"		"3"
-	    		"max"	"6"
-	    		"buff"			"modifier_instantbolt"
-	    		"self"	"1"
-	    		"dur"	"%shamanhaste"
-	    	}
-			"FireSound"
-			{
-				"EffectName"	"Hero_ElderTitan.AncestralSpirit.Buff"
-				"Target" 		"TARGET"
-			}
-			"FireSound"
-			{
-				"EffectName"	"witchdoctor_wdoc_anger_07"
-				"Target" 		"TARGET"
-			}
-			
-
-        }
-        "precache"
-        {
-        	"particle"  "particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica_replicate.vpcf"
-        	"particle"  "particles/radiant_fx/tower_good3_dest_lvl2_hit.vpcf"
-        }
-        "Modifiers"
-        {
-        	"modifier_judgement_spellres"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-        		"Properties"
-        		{
-        			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "90"
-        		}
-        	}
-        	"modifier_instantbolt"
-			{
-			    "Passive"          "0"    
-			    "IsDebuff"         "0"
-			    "IsBuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-			}
-			"modifier_slow50"
-			{
-			    "Passive"          "0"    
-			    "IsDebuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-			    "EffectName"       "particles/items_fx/diffusal_slow.vpcf"
-			    "EffectAttachType"  "attach_hitloc"
-			    
-			    "Properties"
-			    {
-			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-50"
-			        "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-25"
-			    }
-			}
-        }
 	}
 
 	"resto3"

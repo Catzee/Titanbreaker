@@ -70,7 +70,7 @@ function Holy_Judgement:OnSpellStart()
 	}
 
 	if (caster:GetTeamNumber() == target:GetTeamNumber()) then
-		target:AddNewModifier(caster, self, "modifier_judgement_spellres",
+		target:AddNewModifier(caster, self, "modifier_divine_crusarder_holy_judgement_buff",
 		{
 			duration = eventTable.spellresduration
 		})
@@ -82,7 +82,7 @@ function Holy_Judgement:OnSpellStart()
         eventTable.critdmgbonusfactor = nil
 		DamageUnit(eventTable)
 
-		caster:AddNewModifier(caster, self, "modifier_judgement_wisdom",
+		caster:AddNewModifier(caster, self, "modifier_divine_crusarder_holy_judgement_wisdom",
 		{
 			duration = self:GetSpecialValueFor("aaprocduration")
 		})

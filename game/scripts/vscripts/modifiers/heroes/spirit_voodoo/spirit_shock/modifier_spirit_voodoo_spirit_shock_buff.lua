@@ -1,4 +1,4 @@
-modifier_judgement_spellres = class({
+modifier_spirit_voodoo_spirit_shock_buff = class({
     IsHidden = function()
         return false
     end,
@@ -22,10 +22,10 @@ modifier_judgement_spellres = class({
     end
 })
 
-function modifier_judgement_spellres:OnCreated()
+function modifier_spirit_voodoo_spirit_shock_buff:OnCreated()
     self:OnRefresh()
 end
 
-function modifier_judgement_spellres:OnRefresh()
-    self.bonusSpellResistance = self:GetAbility():GetSpecialValueFor("spellres")
+function modifier_spirit_voodoo_spirit_shock_buff:OnRefresh()
+    self.bonusSpellResistance = self:GetAbility():GetSpecialValueFor("spellresistance")
 end
