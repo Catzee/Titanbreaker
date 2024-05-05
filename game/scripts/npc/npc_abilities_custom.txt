@@ -34916,7 +34916,7 @@
 	{
 		"BaseClass"    "ability_lua"
 		"ScriptFile"    "abilities/heroes/spirit_voodoo/spirit_shock"
-        "AbilityTextureName"    "magnataur_shockwave"
+        "AbilityTextureName"    "fix/resto4"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
