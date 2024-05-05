@@ -1515,6 +1515,8 @@
 		"DOTA_Tooltip_Ability_resto5_range"    "Healing Range:" 
 		"DOTA_Tooltip_Ability_resto5_heal"    "%Intellect and Spellpower to Healing: " 
 
+		"DOTA_Tooltip_modifier_soulwarden_shield"	"Soulwarden Totem"
+		"DOTA_Tooltip_modifier_soulwarden_shield_Description"	"Damage Reduction increased."
 		"DOTA_Tooltip_Ability_Inspiring_Shot"  "Aimed Iceshot"  
 		"DOTA_Tooltip_ability_Inspiring_Shot_bonusregen"                                  "%Bonus Resource Regeneration:"
 		"DOTA_Tooltip_ability_Inspiring_Shot_range"                                       "Cast range:"
