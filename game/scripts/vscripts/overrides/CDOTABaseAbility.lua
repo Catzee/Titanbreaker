@@ -25,7 +25,6 @@ function CDOTABaseAbility:ApplyDataDrivenModifier(caster, target, modifierName, 
             print("Valve did something to break data driven. Fix manually...")
             return nil
         else
-            -- Last resort to make all work
             return CDOTA_Ability_DataDriven.ApplyDataDrivenModifier(self, caster, target, modifierName, modifierTable)
         end
     else
