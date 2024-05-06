@@ -11,12 +11,18 @@ function Dark_Light2:CastFilterResultTarget(target)
 	end
 
 	-- Alt cast state: can target enemies and allies
-	if(self:IsAltCasted()) then
+	if(self:IsAltCasted() or self._forcedAltCast == true) then
 		return UnitFilter(target, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), self:GetCaster():GetTeamNumber())
 	end
 
 	-- Default state: can target only allies
 	return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, self:GetCaster():GetTeamNumber())
+end
+
+function Dark_Light2:OnAltCastToggled()
+    if(self:IsChanneling()) then
+        self._forcedAltCast = true
+    end
 end
 
 function Dark_Light2:OnSpellStart()
@@ -53,6 +59,8 @@ end
 function Dark_Light2:OnChannelFinish(isInterrupt)
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
+
+    self._forcedAltCast = nil
 
     if(isInterrupt == true) then
         StopChannelTarget({
