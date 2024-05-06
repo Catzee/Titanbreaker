@@ -77,7 +77,11 @@ function CycloneDruid:OnSpellStart()
 		ability = self
 	})
 
-    self:CycloneHurricane(eventTable)
+    self:CycloneHurricane({
+		caster = caster,
+		target = target,
+		ability = self
+	})
 
     self:CycloneDiminishing({
 		caster = caster,
