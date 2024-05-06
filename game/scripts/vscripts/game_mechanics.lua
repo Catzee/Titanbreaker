@@ -8840,31 +8840,6 @@ end
 
 --Paladin -------------------------------------------------------------------------------------------------------------------------------------------
 
-function Penance(event)
-    local caster = event.caster
-    local target = event.target
-
-    if caster:GetTeamNumber() == target:GetTeamNumber() then
-        if event.ability:GetLevel() >= 4 then
-            local event2 = {caster = caster, target = target, ability = event.ability, max = 8, buff = "modifier_judgement_spellres2", dur = 6}
-            ApplyBuffStack(event2)
-            --event.ability:ApplyDataDrivenModifier(caster, target, "modifier_judgement_spellres", {Duration = 6})
-        end
-        HealUnit(event)
-    else
-        if event.darkstacks and event.darkstacks > 0 then
-            local myevent = {}
-            myevent.caster = caster
-            myevent.target = target
-            myevent.darkstacks = event.darkstacks
-            ShadowCrippleStacks(myevent)
-        end
-        event.spelldamagefactor = event.spelldamagefactor * event.dmgfactor/100
-        event.attributefactor = event.attributefactor * event.dmgfactor/100
-        DamageUnit(event)
-    end
-end
-
 function HealPercentage( event )
 	local caster = event.target
 	if event.selftarget ~= nil then
@@ -27884,7 +27859,12 @@ function ChannelTickSystem( event )
     local maxtotalticks = duration / tickinterval
     --proc first tick instantly
     if event.instantfirsttick then
-        ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+        if(ability.OnChannelTickSystemTick) then
+            -- lua ability support
+            ability:OnChannelTickSystemTick(caster, target)
+        else
+            ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+        end
     end
     local count = 1
     for count=1, maxtotalticks do
@@ -27894,7 +27874,12 @@ function ChannelTickSystem( event )
                 --if channeltime >= tickinterval * tickcount then
                     --tick!
                     --tickcount = tickcount + 1
-                    ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+                    if(ability.OnChannelTickSystemTick) then
+                        -- lua ability support
+                        ability:OnChannelTickSystemTick(caster, target)
+                    else
+                        ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+                    end
                 --end
             end
         end)

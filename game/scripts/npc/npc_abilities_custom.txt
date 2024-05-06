@@ -58520,10 +58520,11 @@
 	}
 	"Dark_Light2"
 	{
-        "BaseClass"             "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/twilight_cleric/lightstream"
         "AbilityTextureName"    "fix/penance4"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -58550,283 +58551,77 @@
 	    //"AoERadius"               "250"
 	    "AbilitySpecial"
 		{	
-			"03"
+			"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "300 400 400 400"
 		    }
-		    "04"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "300 400 400 400"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "duration" "2 2 2 3"
 		    }
-			"01"
+			"04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dotticks" "0.85"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "anim" "0.75"
 		    }
-		    "01"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "darkstacks" "0 0 1 1"
 		    }
-		    "01"
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "darkstacks_tooltip" "1"
+		    }
+		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmg" "50"
 		    }
-		    "01"
+		    "09"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "cd" "0 0 2 2"
 		    }
-		    "01"
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "cd_tooltip" "2"
+		    }
+		    "11"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dispelontick" "0 100 100 100"
 		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance_per_stack" "5"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance_duration" "6"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spellresistance_max_stacks" "8"
+		    }
 		}
-		
-		"OnSpellStart"
-	    {	
-	    	"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "PurgeIfFriend"
-			}
-	        "ApplyModifier"
-	        {
-	            "ModifierName" "modifier_penance"
-	            "Target" "TARGET"
-	            "Duration"	"%duration"
-	        }
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelManaFixStart"
-			    "mana"			"%AbilityManaCost"
-			    "casttime"	"%duration"
-			}
-			"FireEffect"
-        	{
-        		"EffectName"        "particles/dazzle_holy_wave_b.vpcf"
-        		"EffectAttachType"  "attach_hitloc"
-        		"Target"            "CASTER"
-        		"ControlPointEntities"
-        		{
-        			"CASTER"	"attach_attack1"
-        			"TARGET"	"attach_hitloc"
-        		}
-        	}
-        	"FireEffect"
-        	{
-        		"EffectName"        "particles/econ/events/ti6/hero_levelup_ti6_flash_hit_magic.vpcf"
-        		"EffectAttachType"  "attach_hitloc"
-        		"Target"            "TARGET"
-        	}
-			"FireSound"
-			{
-				"EffectName"		"DOTA_Item.LinkensSphere.Target"
-				"Target"			"TARGET"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "Penance"
-			    "damage"			"%AbilityDamage"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "holydmg"	"1"
-			    "heal"			"0.0"
-			    "dmgfactor"	"%dmg"
-			    "darkstacks"			"%darkstacks"
-			    "bloodwolf"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ReduceCooldown"
-			    "amount"			"%cd"
-			    "chooseability"	"5"
-			}
-	    }
-
-	    "OnChannelInterrupted"
-	    {
-	    	"RemoveModifier"
-	        {
-	            "ModifierName" "modifier_penance"
-	            "Target" "TARGET"
-	        }
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "StopChannelTarget"
-			    "buff"	"modifier_penance"
-			}
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelInterrupt"
-			    "cooldownfix"	"1"
-			}
-	    }
-
-	    "OnChannelFinish"
-	    {
-	    	
-	        "RemoveModifier"
-	        {
-	            "ModifierName" "modifier_penance"
-	            "Target" "TARGET"
-	        }
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelManaFixEnd"
-			    "mana"			"%AbilityManaCost"
-			}
-	    }
-
-	    "Modifiers"
-	    {
-	    	"modifier_judgement_spellres2"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        		//"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-        		"Properties"
-        		{
-        			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "5"
-        		}
-        	}
-	        "modifier_penance"
-	        {
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "IsHidden"	"1"
-	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-	            "OnCreated"
-	            {
-	            	"RunScript"
-					{ 
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ChannelTickSystem"
-					    "tickinterval"	"%dotticks"
-					    "duration"		"%duration"
-					    "channelintervalcheck"	"0.1"
-					}
-	            	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "SetChannelTarget"
-					}
-	            }	
-
-	            "ThinkInterval" "%dotticks"
-	            "OnIntervalThink"
-	            {
-	            	
-					"ApplyModifier"
-	                {
-	                    "ModifierName" "channelling_animation"
-	                    "Target" "CASTER"
-	                }
-	                
-	            }
-	        }
-	        "modifier_channel_proc"
-	        {
-	        	"Duration"			"0.05"
-	        	"Passive"			"0"
-	        	"IsHidden"			"1"
-	        	"IsDebuff"			"0"
-	        	"IsPurgable"		"0"
-	        	"IsBuff"			"1"
-	        	"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-	        	"OnCreated"
-	        	{
-	        		"Random"
-	            	{
-	            		"Chance"			"%dispelontick"
-	            		"OnSuccess"
-	            		{
-	            			"RunScript"
-							{
-							    "ScriptFile"    "game_mechanics.lua"
-							    "Function"      "PurgeIfFriend"
-							}
-	            		}
-	            	}
-	            	"FireEffect"
-	            	{
-	            		"EffectName"        "particles/dazzle_holy_wave_b.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "CASTER"
-	            		"ControlPointEntities"
-	            		{
-	            			"CASTER"	"attach_attack1"
-	            			"TARGET"	"attach_hitloc"
-	            		}
-	            	}
-	            	"FireEffect"
-	            	{
-	            		"EffectName"        "particles/econ/events/ti6/hero_levelup_ti6_flash_hit_magic.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "TARGET"
-	            	}
-	                "FireSound"
-					{
-						"EffectName"		"DOTA_Item.LinkensSphere.Target"
-						"Target"			"TARGET"
-					}
-					"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "Penance"
-					    "damage"			"%AbilityDamage"
-					    "spelldamagefactor"	"%spelldmg"
-					    "attributefactor"	"%dmgfromstat"
-					    "holydmg"	"1"
-					    "heal"			"0.0"
-					    "dmgfactor"	"%dmg"
-					    "darkstacks"			"%darkstacks"
-					    "bloodwolf"	"1"
-					}
-					"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ReduceCooldown"
-					    "amount"			"%cd"
-					    "chooseability"	"5"
-					}
-	        	}
-	        }
-	        "channelling_animation"
-	        {
-	            "IsHidden" "1"
-	            "Duration" "%anim"
-	            "OverrideAnimation" "ACT_DOTA_CAST_ABILITY_3"
-	            "Properties"
-	            {
-	            	"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE" "1.2"
-	            }
-	        }
-			
-	    }
 	}
 
 	"shadow11"

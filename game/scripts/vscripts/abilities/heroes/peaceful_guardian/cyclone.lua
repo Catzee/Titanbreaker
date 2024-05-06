@@ -33,7 +33,7 @@ function CycloneDruid:OnAbilityPhaseStart()
 		caster = caster,
 		target = target,
 		ability = self,
-        mana = self:GetSpecialValueFor("AbilityManaCost"),
+        mana = self:GetManaCost(-1),
         instantcast = self:GetSpecialValueFor("instant")
 	})
 
@@ -61,7 +61,7 @@ function CycloneDruid:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 	local targetOrigin = caster:GetAbsOrigin()
-    local abilityManaCost = self:GetSpecialValueFor("AbilityManaCost")
+    local abilityManaCost = self:GetManaCost(-1)
     local diminish = self:GetSpecialValueFor("diminish")
 
     ChannelManaFixEnd({

@@ -647,11 +647,14 @@
 		"DOTA_Tooltip_Ability_Dark_Light_spelldmg"    "%Spellpower Factor:" 
 
 		"DOTA_Tooltip_ability_Dark_Light2"                                                "Lightstream"
-		"DOTA_Tooltip_ability_Dark_Light2_Description"                                    "Channel for 2 secs, Healing an ally or dealing Holy Damage to an enemy a total of 3 times. The first tick dispels all debuffs when an ally is targeted.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and now also dispel debuffs from targeted allies every tick. \nRank 3: Each tick reduces your cooldown of your 6th Ability by 2 secs and applies 1 stack of Shadowbeast Cripple from your Shadowbeast Ability. \nRank 4: Channel 1 sec longer, causing a total of 4 ticks and increase the target's Spell Resistance by 5 for 6 secs, stacking up to 8 times.\n\n</font>"
+		"DOTA_Tooltip_ability_Dark_Light2_Description"                                    "Channel for 2 secs, Healing an ally a total of 3 times. The first tick dispels all debuffs when an ally is targeted. If Alt-Cast is activated can also target enemies dealing reduced Holy Damage.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and now also dispel debuffs from targeted allies every tick. \nRank 3: Each tick reduces your cooldown of your 6th Ability by %cd_tooltip% secs and applies %darkstacks_tooltip% stack of Shadowbeast Cripple from your Shadowbeast Ability. \nRank 4: Channel 1 sec longer, causing a total of 4 ticks and increase the target's Spell Resistance by %spellresistance_per_stack% for %spellresistance_duration% secs, stacking up to %spellresistance_max_stacks% times.\n\n</font>"
 		"DOTA_Tooltip_ability_Dark_Light2_dmgfromstat"                                    "%Intellect to Healing:"
 		"DOTA_Tooltip_ability_Dark_Light2_spelldmg"                                       "%Spellpower to Healing:"
 		"DOTA_Tooltip_ability_Dark_Light2_duration"                                       "Channel Duration:"
 		"DOTA_Tooltip_ability_Dark_Light2_dmg"                                            "%Damage Effectiveness:"
+
+		"DOTA_Tooltip_modifier_twilight_cleric_lightstream_buff"                          "Lightstream"
+		"DOTA_Tooltip_modifier_twilight_cleric_lightstream_buff_Description"              "Spell Resistance increased."
 
 		"DOTA_Tooltip_Ability_Light_of_Heaven"  "Light of Heaven"  
 		"DOTA_Tooltip_Ability_Light_of_Heaven_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Apply a HoT to the target, healing every second. \nRank 3: Increased initial Healing. When you heal a target affected by Sacred Shield, increase the Shield amount by the amount healed (once per cast of Sacred Shield, not triggered by HoTs). \nRank 4: Reduced Mana cost and gain a Flash of Heaven stack each cast. When you have 4 stacks, your next Light of Heaven will be instant and Heal the most wounded ally within 900 yards for 100%% of Intellect and Spellpower.\n\n</font>"
