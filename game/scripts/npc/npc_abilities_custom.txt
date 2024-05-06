@@ -50468,49 +50468,44 @@
 		    "12"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_armor" "-1"
+		        "hurricane_duration" "8"
 		    }
 		    "13"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_duration" "7"
+		        "hurricane_armor" "-0.5"
 		    }
 		    "14"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_armor" "-1"
+		        "hurricane_spellresistance" "-2"
 		    }
 		    "15"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_spellresistance" "-5"
+		        "hurricane_radius" "900"
 		    }
 		    "16"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_radius" "900"
+		        "hurricane_tickrate" "1"
 		    }
 		    "17"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_tickrate" "1"
+		        "hurricane_debuff_duration" "8"
 		    }
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_debuff_duration" "7"
+		        "hurricane_debuff_max_stacks" "8"
 		    }
 		    "19"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "hurricane_debuff_max_stacks" "7"
-		    }
-		    "20"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
 		        "hurricane_stat_to_dmg" "500"
 		    }
-		    "21"
+		    "20"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "hurricane_sp_to_dmg" "500"
@@ -65999,7 +65994,7 @@
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "critmana" "15 15 15 45"
+		        "critmana" "10 10 10 15"
 		    }
 		    "05"
 		    { 
@@ -66009,7 +66004,7 @@
 		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "aamana" "15 15 15 45"
+		        "aamana" "100 100 100 150"
 		    }
 		    "07"
 		    { 
