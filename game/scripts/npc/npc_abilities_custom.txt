@@ -49621,35 +49621,40 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "speed" "5 10 10 10"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "ashaste" "25"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "rootremove" "0 0 1 1"
 		    }
-		    "02"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "manareg" "0 0 10 10" // disabled since rework of np 6th ability
 		    }
-		    "02"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgtaken" "0 0 -35 -35"
 		    }
-		    "02"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "evasion" "3 4 4 4"
 		    }
-		    "02"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "healchance" "0 100 100 100"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "blocks_amount" "4 5 5 5"
 		    }
 	    }
 
@@ -49679,12 +49684,16 @@
 				        "EffectAttachType" "attach_hitloc"
 				        "Target" "TARGET"
 				    }
-				    "ApplyModifier"
-				    {
-				    	"ModifierName"	"modifier_druid_evasion_h"
-				    	"Target" 		"TARGET"
-				    	"Duration"		"%evasion"
-				    }
+        			"RunScript"
+			    	{
+			    		"ScriptFile"	"game_mechanics.lua"
+			    		"Function"		"ApplyBuffStack"
+			    		"max"			"%blocks_amount"
+			    		"buff"			"modifier_druid_evasion_h"
+			    		"notself"		"1"
+			    		"addstacks"		"%blocks_amount"
+			    		"dur"			"%evasion"
+			    	}
 				    "Random"
 				    {
 				    	"Chance"			"%healchance"
@@ -49753,10 +49762,6 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT" "90"
-				}
 				"ThinkInterval"  "1.05"
 				"OnIntervalThink"
 				{

@@ -12087,7 +12087,18 @@ function COverthrowGameMode:FilterDamage( filterTable )
           victim:RemoveModifierByName("modifier_talent_moonglaive_shield")
         end
       end
-
+	  
+      -- np swift winds block damage shield
+      local swiftWindsBlocks = victim:GetModifierStackCount("modifier_druid_evasion_h", nil)
+      if swiftWindsBlocks > 0 and victim.combat_system_ability and newdamage >= 5 then
+        local block_factor = 1
+        newdamage = newdamage * (1 - block_factor)
+        swiftWindsBlocks = swiftWindsBlocks - 1
+        if swiftWindsBlocks >= 0 then
+          victim:SetModifierStackCount("modifier_druid_evasion_h", victim.combat_system_ability, swiftWindsBlocks)
+        end
+      end
+	  
       --block
       local block = 0
       if mars2 and mars2:GetLevel() >= 4 then
