@@ -16306,12 +16306,12 @@ function LookAtTarget(event)
 end
 
 function FindNearbyEnemies( caster, pos, radius )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     return enemies
 end
 
 function FindNearbyAllies( caster, pos, radius )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     return enemies
 end
 
@@ -16319,7 +16319,7 @@ function FindClosestEnemy( event )
     local caster = event.caster
     local pos = caster:GetAbsOrigin()
     local radius = event.radius
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local distance = radius
     local closesttarget = nil
     if #enemies > 0 then
@@ -16337,7 +16337,7 @@ function FindClosestEnemy( event )
 end
 
 function FindClosestAlly( caster, pos, radius, includeSelf )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local distance = radius
     local closesttarget = nil
     if #enemies > 0 then
@@ -16361,7 +16361,7 @@ function ChainsIce(event)
 
 	caster.icechains1 = target
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print("chainlight enemies")
 	--print(#enemies)
 	local distance = 10000.0
@@ -29755,11 +29755,11 @@ end
 
 function SoulwardenTotemShield(event)
     local caster = event.caster
-    local target = event.target
-    local pos = target:GetAbsOrigin()
-    local ally = FindClosestAlly(caster, pos, 900, true)
-
-    if ally then
+    local pos = event.ability:GetCursorPosition()
+    local range = event.ability:GetSpecialValueFor("damage_reduction_range")
+    local allies = FindNearbyAllies(caster, pos, range)
+    print(#allies, pos, range)
+    for _, ally in pairs(allies) do
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
     end
 end

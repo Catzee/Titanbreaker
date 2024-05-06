@@ -34303,7 +34303,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 	    "AnimationPlaybackRate"  "1.5"
-		
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"45 30 30 30"
@@ -34326,20 +34326,25 @@
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"4 4 4 5"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal"				"200 300 300 300"
 			}
-			"02"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"range"				"600 600 600 900"
 			}
-			"02"
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"reduce"				"0 0 40 40"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_reduction_range"	"300"
 			}
 		}
 	

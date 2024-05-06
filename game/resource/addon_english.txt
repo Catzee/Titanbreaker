@@ -2786,7 +2786,7 @@
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat2"	"Agility: +"
 
-		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.\nThe closest ally to the Totem when cast will gain 75%% Damage Reduction for the Totem duration.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
+		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.\nEvery ally around Totem in %damage_reduction_range% yards when cast will gain 75%% Damage Reduction for the Totem duration.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
 
 		"DOTA_Tooltip_Ability_item_weapon5"  "<font color=\"#ff69b4\">The Great Zweihander"
 		"DOTA_Tooltip_Ability_item_weapon5_Description"  "Whenever you deal damage with an Ability, you have a chance to deal 50%% of your Primary Attribute as Physical Damage in a 250 radius around the target to up to 5 enemies. After 10 procs, can not proc again for 5 secs.\n"  
