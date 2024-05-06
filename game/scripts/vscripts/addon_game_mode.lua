@@ -10154,7 +10154,20 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
       local ability = EntIndexToHScript(filterTable["entindex_ability"])
       if(ability) then
         if(ability._ToggleAltCast ~= nil) then
-          ability:_ToggleAltCast()
+          local status, errorMessage = pcall(function ()
+            ability:_ToggleAltCast()
+          end)
+          if(status ~= true) then
+            print("ToggleAltCast error: ", errorMessage)
+          end
+        end
+        if(ability.OnAltCastToggled ~= nil) then
+          local status, errorMessage = pcall(function ()
+            ability:OnAltCastToggled()
+          end)
+          if(status ~= true) then
+            print("OnAltCastToggled error: ", errorMessage)
+          end
         end
       end
     end
