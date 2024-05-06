@@ -29342,17 +29342,60 @@ function SniperAAProcs(event)
     end
 end
 
+function SymbiosisSpellStart(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = event.ability
+
+    if(caster == target) then
+        ability._symbiosisPriorityTaget = nil
+    else
+        ability._symbiosisPriorityTaget = target
+    end
+end
+
 function Symbiosis(event)
     local caster = event.caster
     local target = event.target
     local ability = event.ability
-    if caster:HasModifier("modifier_npc_dota_hero_furion2") then
-        local target = FindClosestAlly(caster, caster:GetAbsOrigin(), 900, false)
-        if target then
-            ApplyBuff({caster = caster, target = target, dur = 10, buff = "modifier_symbiosos_fur", ability = ability})
+    local modifier = caster:FindModifierByName("modifier_npc_dota_hero_furion2")
+
+    if modifier then
+        local itemAbility = modifier:GetAbility()
+        local radius = 900
+        local pos = caster:GetAbsOrigin()
+        local allies = FindNearbyAllies(caster, pos, radius)
+        local priorityTarget = nil
+
+        local distance = radius
+        local closesttarget = nil
+
+        if #allies > 0 then
+            for _, ally in pairs(allies) do
+                if ally and not ally:IsNull() and ally:IsAlive() and ally ~= caster then
+                    if(ally == itemAbility._symbiosisPriorityTaget) then
+                        priorityTarget = ally
+                    end
+
+                    local tempdistance = (ally:GetAbsOrigin()-pos):Length()
+
+                    if tempdistance < distance then
+                        closesttarget = ally
+                        distance = tempdistance
+                    end
+                end
+            end
+        end
+
+        if(priorityTarget) then
+            closesttarget = priorityTarget
+        end
+
+        if closesttarget then
+            ApplyBuff({caster = caster, target = closesttarget, dur = 10, buff = "modifier_symbiosos_fur", ability = ability})
             local particle = ParticleManager:CreateParticle( "particles/econ/items/monkey_king/arcana/death/mk_spring_arcana_death_souls_line.vpcf", PATTACH_WORLDORIGIN, nil)
             ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
-            ParticleManager:SetParticleControl(particle, 4, target:GetAbsOrigin())
+            ParticleManager:SetParticleControl(particle, 4, closesttarget:GetAbsOrigin())
             ParticleManager:ReleaseParticleIndex(particle)
         end
     end

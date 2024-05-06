@@ -10863,7 +10863,7 @@
 		"DOTA_Tooltip_ability_item_class_legion2_bonus_stat2"                              "Armor:"
 
 		"DOTA_Tooltip_ability_item_class_peaceful2"                                        "<font color=\"#00ffff\">[Ancient] Talisman of Symbiosis"
-		"DOTA_Tooltip_ability_item_class_peaceful2_Description"                            "<font color=\"#00EE00\">Peaceful Guardian: Every 10 secs, the closest Hero within 900 yards will receive 25%% Damage and Damage Reduction for 10 secs."
+		"DOTA_Tooltip_ability_item_class_peaceful2_Description"                            "<h1>Priority Target</h1>You can target an ally to make him priority target for this effect. Target yourself to reset priority.\n<h1><font color=\"#00EE00\">Symbiosis</font></h1><font color=\"#00EE00\">Every 10 secs Flourish will provide a Symbiosis effect to the closest Hero within 900 yards that increases Damage by 25%% and Damage Reduction by 25%% for 10 secs."
 		"DOTA_Tooltip_ability_item_class_peaceful2_bonus_stat1"                            "Intellect:"
 		"DOTA_Tooltip_ability_item_class_peaceful2_bonus_stat2"                            "Spell Resistance:"
 
