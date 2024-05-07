@@ -19646,27 +19646,22 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "0 1000 1000 1000"
+		        "dmgfromstat" "0 150 150 150"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmg" "0 600 600 600"
+		        "spelldmg" "0 150 150 150"
 		    }
-		    "01"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "aoehealchance" "0 0 0 100"
-		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "duration" "6 6 8 8"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "taunt" "0 0 0 8"
+		        "bonus_damage_pct" "0 0 0 20"
 		    }
 		}
 
@@ -19701,8 +19696,6 @@
 				    "Function"      "WingedGrave"
 				    "buff"			"modifier_eternallife"
 				    "dur"	"%duration"
-				    "dur2"	"%critduration"
-				    "taunt"		"%taunt"
 				}
 				"RunScript"
 				{
@@ -19720,32 +19713,12 @@
 		    "particle"  "particles/doom_bringer_doom_sigil_c_green.vpcf"
 		    "particle"  "particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_gold_lvl2_e.vpcf"
 		    "particle"  "particles/econ/items/undying/undying_manyone/undying_pale_gold_tower_destruct_flash.vpcf"
-		    "particle"  "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
 		    "particle"  "particles/econ/courier/courier_donkey_ti7/courier_donkey_ti7_ambient_angels.vpcf"
 		    "particle"  "particles/econ/events/ti7/hero_levelup_ti7_godray.vpcf"
 		}
 
         "Modifiers"
         {
-        	"modifier_taunt123"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        	
-        		"EffectName"		"particles/items2_fx/urn_of_shadows_damage.vpcf"
-        		"EffectAttachType"	"attach_hitloc"
-        	}
-        	"modifier_winged_grave_cd"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        		"IsPurgable"		"0"
-        		"IsBuff"			"1"
-        		"EffectName"		"particles/items4_fx/spirit_vessel_damage_ring_base.vpcf"
-        		"EffectAttachType"	"attach_hitloc"
-        	}
 	        "modifier_eternallife"
 			{
 			    "Passive"          "0"    
@@ -19763,87 +19736,34 @@
 			    		"EffectAttachType"  "attach_hitloc"
 			    		"Target"            "TARGET"
 			    	}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "HealUnit"
+					    "heal"			"0.0"
+					    "spelldamagefactor"	"%spelldmg"
+					    "attributefactor"	"%dmgfromstat"
+					}
 			    }
 	
-			    "Properties"
-			    {
-			    	"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"350"
-			    }
 			    "States"
 			    {
 			    	"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
 			    }
 
-			    "OnDestroy"
-			    {
-			    	"FireSound"
-			    	{
-			    		"EffectName"	"DOTA_Item.Butterfly"
-			    		"Target" 		"TARGET"
-			    	}
-			    	"Random"
-			    	{
-			    		"Chance"			"%aoehealchance"
-			    		"OnSuccess"
-			    		{
-			    			"FireEffect"
-				            {
-				            	"EffectName"        "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
-				            	"EffectAttachType"  "attach_hitloc"
-				            	"Target"            "TARGET"
-				            	"ControlPoints"
-				            	{
-				            		"01"	"900 900 900"
-				            	}
-				            }
-			    			"ActOnTargets"
-			    			{
-			    				"Target"
-			    				{
-			    					"Center"  	"TARGET"
-			    					"Radius" 	"900"
-			    					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-			    					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-			    				}
-			    			
-			    				"Action"    
-			    				{
-			    					"RunScript"
-									{
-									    "ScriptFile"    "game_mechanics.lua"
-									    "Function"      "HealUnit"
-									    "heal"			"0.0"
-									    "spelldamagefactor"	"%spelldmg"
-									    "attributefactor"	"%dmgfromstat"
-									}
-									"FireEffect"
-									{
-										"EffectName"        "particles/units/heroes/hero_oracle/oracle_fortune_dmg_flash.vpcf"
-										"EffectAttachType"  "attach_hitloc"
-										"Target"            "TARGET"
-									}
-			    				}
-			    			}
-			    		}
-			    		"OnFailure"
-			    		{
-			    			"RunScript"
-							{
-							    "ScriptFile"    "game_mechanics.lua"
-							    "Function"      "HealUnit"
-							    "heal"			"0.0"
-							    "spelldamagefactor"	"%spelldmg"
-							    "attributefactor"	"%dmgfromstat"
-							}
-							"FireEffect"
-							{
-								"EffectName"        "particles/units/heroes/hero_oracle/oracle_fortune_dmg_flash.vpcf"
-								"EffectAttachType"  "attach_hitloc"
-								"Target"            "TARGET"
-							}
-			    		}
-			    	}
-			    }
+	            "ThinkInterval"  "1"
+	            "OnIntervalThink"
+	            {
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "HealUnit"
+					    "heal"			"0.0"
+					    "spelldamagefactor"	"%spelldmg"
+					    "attributefactor"	"%dmgfromstat"
+						"isdot"	"1"
+					}
+	            }
 			}
 			"modifier_holy55_fx"
 			{

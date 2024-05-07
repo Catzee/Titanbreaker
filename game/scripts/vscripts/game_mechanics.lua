@@ -4746,6 +4746,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_dispelovertime") then
         multiplicative_bonus = multiplicative_bonus * 1.3
     end
+    local wingedGraveModifier = caster:FindModifierByName("modifier_eternallife")
+    if wingedGraveModifier then
+        local wingedGraveModifierAbility = wingedGraveModifier:GetAbility()
+        if(wingedGraveModifierAbility) then
+            multiplicative_bonus = multiplicative_bonus * (1 + (wingedGraveModifierAbility:GetSpecialValueFor("bonus_damage_pct") / 100))
+        end
+    end
     if is_500_big_hit and HeroHasNeutralItem(caster, "item_neutral_29") and not wascrit then
         multiplicative_bonus = multiplicative_bonus * 3.5
     end
@@ -6731,7 +6738,6 @@ function HealUnit( event )
         isaoe = true
     end
     local displaynumber = true
-    
     if event.heal_owner and caster then
         --caster = caster.owner
         target = caster
@@ -25506,18 +25512,8 @@ function WingedGrave( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	if not target:HasModifier("modifier_winged_grave_cd") then
-		ApplyBuff(event)
 
-		--event.buff = "modifier_guaranteed_crit"
-		--event.dur = event.dur2
-		--ApplyBuff(event)
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_winged_grave_cd", {Duration = 45})
-        if event.taunt and event.taunt > 0 then
-            event.buff = "modifier_taunt123"
-            ApplyBuff(event)
-        end
-	end
+    ApplyBuff(event)
 end
 
 function CainSetGiveLife( event )

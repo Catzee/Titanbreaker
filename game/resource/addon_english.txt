@@ -3138,7 +3138,7 @@
 		"DOTA_Tooltip_Ability_CycloneDruidFeral_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies. 2 secs cast time.\n\nIf used on allies, dispels all debuffs."
 		"DOTA_Tooltip_Ability_CycloneDruidFeralInstant_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies.\n\nIf used on allies, dispels all debuffs."
 
-		"DOTA_Tooltip_Ability_holy6_Description"  "Remove all dispellable negative debuffs from allies and give them a shield reducing all Damage taken by 50%% for 3 secs. <font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and cast range increased by 300. \nRank 3: Passively increase your maximum Mana by 25%% and all Healing caused by you by 25%%. \nRank 4: Root and deal Holy Damage to enemies. Whenever you cast Holy Flamebolt, reduce the remaining cooldown of Mass Dispel by 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy6_Description"  "Remove all dispellable negative debuffs from allies and give them a shield reducing all Damage taken by 50%% for 3 secs. <font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and Cast Range increased by 300. \nRank 3: Passively increase your maximum Mana by 25%% and all Healing caused by you by 25%%. \nRank 4: Root and deal Holy Damage to enemies. Whenever you cast Holy Flamebolt, reduce the remaining cooldown of Mass Dispel by 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy6_duration"  "Root Duration:"
 		"DOTA_Tooltip_Ability_holy6_mana"  "Passive Max Mana Bonus:"
 		"DOTA_Tooltip_Ability_holy6_dmg"  "%Intellect and Spellpower to Damage:"
@@ -3767,9 +3767,9 @@
 		"DOTA_Tooltip_Ability_Fear_Warlock_haste"    "%Spellhaste:" 
 
 		"DOTA_Tooltip_ability_holy55"                                                     "Winged Grave"
-		"DOTA_Tooltip_ability_holy55_Description"                                         "Render the target near immortal, reducing all Damage Taken by 95%%, increase its Healing received by 100%% and give it phased movement as well as a locked movement speed of 350, ignoring other movement effects.\nAfter using Winged Grave on a target, that target can not be affected by Winged Grave again for 45 secs.<font color=\"#FFBB00\">\n\nRank 2: Heal the target when the effect ends. \nRank 3: Longer duration and reduced cooldown. \nRank 4: The affected target will also taunt nearby enemies and the Healing at the end of the effect will now heal all allies in a 900 aoe.\n\n</font>"
-		"DOTA_Tooltip_ability_holy55_dmgfromstat"                                         "%Intellect to Healing:"
-		"DOTA_Tooltip_ability_holy55_spelldmg"                                            "%Spellpower to Healing:"
+		"DOTA_Tooltip_ability_holy55_Description"                                         "Render the target near immortal, reducing all Damage Taken by 95%%, increase its Healing received by 100%% and give it phased movement.<font color=\"#FFBB00\">\n\nRank 2: Heal the target instantly and over time every second during Winged Grave duration. \nRank 3: Longer duration and reduced cooldown. \nRank 4: Affected target deal 20% increased Damage during duration.\n\n</font>"
+		"DOTA_Tooltip_ability_holy55_dmgfromstat"                                         "%Intellect to Healing per Tick:"
+		"DOTA_Tooltip_ability_holy55_spelldmg"                                            "%Spellpower to Healing per Tick:"
 		"DOTA_Tooltip_ability_holy55_duration"                                            "Winged Grave Duration:"
 
 		"DOTA_Tooltip_modifier_holymagicres"	"Holy Barrier"
@@ -9624,9 +9624,6 @@
 
 		"DOTA_Tooltip_ability_pve_act_affix_pack"                                       "Spiritbond"
 		"DOTA_Tooltip_ability_pve_act_affix_pack_Description"                           "Every nearby ally within 600 yards decreases all Damage taken."
-
-		"DOTA_Tooltip_modifier_winged_grave_cd"                                                "Winged Grave Cooldown"
-		"DOTA_Tooltip_modifier_winged_grave_cd_Description"                                    ""
 
 		"DOTA_Tooltip_modifier_voodooshield"                                                "Voodoo Soulshield"
 		"DOTA_Tooltip_modifier_voodooshield_Description"                                    ""
