@@ -3522,15 +3522,22 @@
 
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
-			<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems(true)" oncontextmenu="SetAutoSellItems(false)">	
-				<Label class="ButtText AutoSellFilterLabel" id="autoselltext1" text="Don't Auto Sell Items" />			
-			</Button>
-			<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts(true)" oncontextmenu="SetAutoSellArtifacts(false)">	
-				<Label class="ButtText AutoSellFilterLabel" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
-			</Button>
-			<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls(true)" oncontextmenu="SetAutoSellSouls(false)">	
-				<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls" />			
-			</Button>
+			<Panel class="AutoSellFiltersButton">
+				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()">	
+					<Label class="ButtText" text="Show Auto Sell Filters" />			
+				</Button>
+			</Panel>
+			<Panel id="AutoSellFiltersContainer" style="visibility: collapse;">
+				<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems(true)" oncontextmenu="SetAutoSellItems(false)">	
+					<Label class="ButtText AutoSellFilterLabel" id="autoselltext1" text="Don't Auto Sell Items" />			
+				</Button>
+				<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts(true)" oncontextmenu="SetAutoSellArtifacts(false)">	
+					<Label class="ButtText AutoSellFilterLabel" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
+				</Button>
+				<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls(true)" oncontextmenu="SetAutoSellSouls(false)">	
+					<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls" />			
+				</Button>
+			</Panel>
 		</Panel>
 		<Panel class="MonsterSpellcastList" hittest="false" id="monsterspells">
 

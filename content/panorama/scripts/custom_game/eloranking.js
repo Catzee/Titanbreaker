@@ -3365,6 +3365,12 @@ function SetAutoSellSoulsText(autosellSouls)
     $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
 }
 
+function ToggleAutoSellFiltersVisibility()
+{
+    let autoSellFiltersContainer = $("#AutoSellFiltersContainer");
+    autoSellFiltersContainer.style.visibility = autoSellFiltersContainer.style.visibility == "collapse" ? "visible" : "collapse";
+}
+
 function TalentPressed(args){
     //$.Msg("talent pressed " + args);
     if(Players.GetLocalPlayer() != selectedHeroPlayerID){

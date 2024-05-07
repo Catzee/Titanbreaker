@@ -1518,6 +1518,33 @@
 	max-width: 1350px;
 	max-height: 700px;
 }
+.AutoSellFiltersButton
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	box-shadow: inset white 1px 1px 1px 1px;
+	margin-right: 10px;
+	horizontal-align: right;
+}
+
+.AutoSellFiltersButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+.AutoSellFiltersButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+.AutoSellFiltersButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+}
+
+#AutoSellFiltersContainer
+{
+	flow-children: down;
+}
 
 .LeaderboardHeroIcon
 {	
