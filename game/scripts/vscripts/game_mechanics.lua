@@ -7167,7 +7167,7 @@ function HealUnit( event )
         if(wdSpiritShock) then
             critchance = wdSpiritShock:GetSpecialValueFor("crit_chance")*critchancefactor
             if math.random(1,100) <= critchance then
-                local critMultiplier = wdSpiritShock:GetSpecialValueFor("crit_multiplier") / 2
+                local critMultiplier = wdSpiritShock:GetSpecialValueFor("crit_multiplier") / 100
                 event.heal = event.heal*critMultiplier*critdmgbonusfactor
                 displaynumber = 1
                 critpossible = false
