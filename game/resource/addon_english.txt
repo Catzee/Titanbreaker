@@ -2951,7 +2951,7 @@
 		"DOTA_Tooltip_Ability_holy2_duration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_holy3"  "Divine Nova"  
-		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed deal 50%% increased Holy Damage for 5 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed gain 15 Armor for 8 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed gain 15 Armor for 8 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed deal 50%% increased Holy Damage for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy3_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy3_spelldmg"    "%Healing Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy3_dmgfactor"    "%Damage Effectiveness:"

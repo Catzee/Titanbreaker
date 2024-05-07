@@ -14192,12 +14192,12 @@ function holynova(event)
 	local ability = event.ability
 	local range = event.range
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
 				if enemy:GetUnitLabel()=="hero" then
-                    if ability:GetLevel() >= 4 then
+                    if ability:GetLevel() >= 2 then
                         ability:ApplyDataDrivenModifier(caster, enemy, "modifier_judgement_armor", {Duration = 8})
                     end
 					local table = {}
