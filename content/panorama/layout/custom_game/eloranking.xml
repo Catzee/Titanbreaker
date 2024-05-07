@@ -3510,18 +3510,18 @@
 				</Panel>
 			<!--/Panel-->
 		</Panel>
-		<Panel class="ToggleStashClass" hittest="false" id="ToggleStash">
+		<Panel class="ToggleStashClass" hittest="false" id="ToggleStash" style="z-index: -9000;">
 			<Button id="ToggleStashButton" class="Butt" onactivate="ToggleStash()">	
 				<Label class="ButtText" id="ToggleStashText" text="No Stash Unlocked" />			
 			</Button>
 		</Panel>
-		<Panel class="GoldUIClass" hittest="false" style="width: 160px; height: 50px;">
+		<Panel class="GoldUIClass" hittest="false" style="width: 160px; height: 50px; z-index: -9000;">
 			<Label class="ButtText" id="ui_gold" text="Gold" style="color:gold; font-size: 24px;" />			
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="SellListStart" style="margin-right: 200px;">
 
 		</Panel>
-		<Panel class="WeaponList" hittest="false" id="WeaponListStart">
+		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
 			<Button id="QuestlogButton3" class="Butt" onactivate="SetAutoSellItems(true)" oncontextmenu="SetAutoSellItems(false)">	
 				<Label class="ButtText AutoSellFilterLabel" id="autoselltext1" text="Don't Auto Sell Items" />			
 			</Button>
