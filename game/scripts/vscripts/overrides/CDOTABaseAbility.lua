@@ -15,7 +15,7 @@ end
 function CDOTABaseAbility:OnAltCastToggled()
 end
 
-function CDOTABaseAbility:_ToggleAltCast(altCasted)
+function CDOTABaseAbility:_ToggleAltCast()
     self._isAbilityAltCasted = not self:IsAltCasted()
 end
 
