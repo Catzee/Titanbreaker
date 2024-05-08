@@ -4753,6 +4753,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_dispelovertime") then
         multiplicative_bonus = multiplicative_bonus * 1.3
     end
+    local wingedGraveModifier = caster:FindModifierByName("modifier_eternallife")
+    if wingedGraveModifier then
+        local wingedGraveModifierAbility = wingedGraveModifier:GetAbility()
+        if(wingedGraveModifierAbility) then
+            multiplicative_bonus = multiplicative_bonus * (1 + (wingedGraveModifierAbility:GetSpecialValueFor("bonus_damage_pct") / 100))
+        end
+    end
     if is_500_big_hit and HeroHasNeutralItem(caster, "item_neutral_29") and not wascrit then
         multiplicative_bonus = multiplicative_bonus * 3.5
     end
@@ -6375,7 +6382,7 @@ end
 function IsHardCC( buff )
     if buff == "modifier_stunned" or buff == "modifier_delay_impale" or buff == "modifier_deepfreeze" or buff == "glacier_trap" or buff == "modifier_rootedfx" 
         or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" 
-        or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifier_fearsp" or buff == "modifier_confused"
+        or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_fearsp" or buff == "modifier_confused"
         or buff == "modifier_confused_unbreakable" or buff == "modifier_frostarmorbuff" or buff == "modifier_iceexplode" or buff == "modifier_stomp"
         or buff == "modifier_voodoo_datadriven"
             then
@@ -6388,7 +6395,7 @@ end
 function CheckForCC( target )
     if target:HasModifier("modifier_stunned") or target:HasModifier("modifier_delay_impale") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("glacier_trap") or target:HasModifier("modifier_rootedfx") 
         or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") 
-        or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
+        or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
         or target:HasModifier("modifier_confused_unbreakable") or target:HasModifier("modifier_frostarmorbuff") or target:HasModifier("modifier_iceexplode") or target:HasModifier("modifier_stomp")
         or target:HasModifier("modifier_voodoo_datadriven")
             then
@@ -6677,11 +6684,13 @@ function PurgeUnit(event)
 		target:RemoveModifierByName("modifier_dot4")
 		target:RemoveModifierByName("modifier_infested")
 		target:RemoveModifierByName("modifier_cyclone_self")
+		target:RemoveModifierByName("modifer_peaceful_guardian_cyclone_debuff")
 	end
 
 	if event.massdispel then
 		--print("try")
 		target:RemoveModifierByName("modifier_cyclone_self")
+		target:RemoveModifierByName("modifer_peaceful_guardian_cyclone_debuff")
 		target:RemoveModifierByName("modifier_infested")
 	end
     OnPurgeProcs(caster, target, event.ability)
@@ -6736,7 +6745,6 @@ function HealUnit( event )
         isaoe = true
     end
     local displaynumber = true
-
     if event.heal_owner and caster then
         --caster = caster.owner
         target = caster
@@ -6780,7 +6788,7 @@ function HealUnit( event )
     --if target:GetUnitLabel() == "tower" then
     --	return
     --end
-    if target:HasModifier("modifier_cyclone_self") and not event.healthroughcyclone then
+    if (target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff")) and not event.healthroughcyclone then
   		return
     end
     if target:HasModifier("modifier_denial_aura") then
@@ -6845,7 +6853,6 @@ function HealUnit( event )
     if event.spelldamagefactor == nil then
     	event.spelldamagefactor = 0.0
     end
-
     if event.percenthp then
     	event.heal = event.heal + event.percenthp*target:GetMaxHealth()/100.0
     end
@@ -7163,12 +7170,16 @@ function HealUnit( event )
         end
     end
     if critpossible == true and caster.spiritHealCrit and caster.spiritHealCrit >= 1 then
-        critchance = 100*critchancefactor
-        if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.0*critdmgbonusfactor
-            displaynumber = 1
-            critpossible = false
-            caster.spiritHealCrit = caster.spiritHealCrit - 1
+        local wdSpiritShock = caster:FindAbilityByName("resto4")
+        if(wdSpiritShock) then
+            critchance = wdSpiritShock:GetSpecialValueFor("crit_chance")*critchancefactor
+            if math.random(1,100) <= critchance then
+                local critMultiplier = wdSpiritShock:GetSpecialValueFor("crit_multiplier") / 100
+                event.heal = event.heal*critMultiplier*critdmgbonusfactor
+                displaynumber = 1
+                critpossible = false
+                caster.spiritHealCrit = caster.spiritHealCrit - 1
+            end
         end
     end
     if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1) then
@@ -7876,8 +7887,13 @@ function GetSpellhaste( caster, event )
     if caster:HasModifier("modifier_shadow_rage") then
         speedbonus = speedbonus + 2.5
     end
-    if caster:HasModifier("modifier_druid_as_buff") then
-        speedbonus = speedbonus + 0.5
+    
+    local furionCycloneAura = caster:FindModifierByName("modifer_peaceful_guardian_cyclone_aura_buff")
+    if(furionCycloneAura) then
+        local furionCycloneAuraAbility = furionCycloneAura:GetAbility()
+        if(furionCycloneAuraAbility) then
+            speedbonus = speedbonus + (furionCycloneAuraAbility:GetSpecialValueFor("spellhaste") / 100)
+        end
     end
     if caster:HasModifier("modifier_stormbringer") then
         speedbonus = speedbonus + 5
@@ -8054,7 +8070,25 @@ function ChannelManaFixStart( event )
     	event.casttime = castpoint
     	ability:SetOverrideCastPoint(castpoint)
 	end
-
+    -- wd 4th ability instant casts
+	local spiritShockInstantCastsModifier = caster:FindModifierByName("modifier_spirit_voodoo_spirit_shock_instant_casts")
+	if isalreadyinstant == 0 and spiritShockInstantCastsModifier ~= nil then
+        local stacks = spiritShockInstantCastsModifier:GetStackCount()
+        if stacks == 1 then
+            caster:RemoveModifierByName("modifier_spirit_voodoo_spirit_shock_instant_casts")
+        else
+            spiritShockInstantCastsModifier:SetStackCount(stacks - 1)
+        end
+		if ability.originalcastpoint == nil then
+			ability.originalcastpoint = ability:GetCastPoint()
+    	end
+    	ability.wasinstant = true
+    	isalreadyinstant = 1
+    	local castpoint = 0.2
+    	event.casttime = castpoint
+    	ability:SetOverrideCastPoint(castpoint)
+	end
+    -- data driven instant casts
 	local instantbolt = caster:GetModifierStackCount("modifier_instantbolt", nil)
 	if isalreadyinstant == 0 and instantbolt > 0 then
         if instantbolt == 1 then
@@ -8818,49 +8852,6 @@ function WarlockPurge(event)
 end
 
 --Paladin -------------------------------------------------------------------------------------------------------------------------------------------
-
-function HolyJudgement(event)
-	local caster = event.caster
-	local target = event.target
-
-	if caster:GetTeamNumber() == target:GetTeamNumber() then
-        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_judgement_spellres", {Duration = event.spellresduration})
-		HealUnit(event)
-	else
-		event.spelldamagefactor = event.spelldamagefactor * event.dmgfactor/100
-		event.attributefactor = event.attributefactor * event.dmgfactor/100
-        event.critdmgbonusfactor = nil
-		DamageUnit(event)
-		local table = {}
-		table.Duration = 5
-		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_wisdom", table)
-	end
-end
-
-function Penance(event)
-    local caster = event.caster
-    local target = event.target
-
-    if caster:GetTeamNumber() == target:GetTeamNumber() then
-        if event.ability:GetLevel() >= 4 then
-            local event2 = {caster = caster, target = target, ability = event.ability, max = 8, buff = "modifier_judgement_spellres2", dur = 6}
-            ApplyBuffStack(event2)
-            --event.ability:ApplyDataDrivenModifier(caster, target, "modifier_judgement_spellres", {Duration = 6})
-        end
-        HealUnit(event)
-    else
-        if event.darkstacks and event.darkstacks > 0 then
-            local myevent = {}
-            myevent.caster = caster
-            myevent.target = target
-            myevent.darkstacks = event.darkstacks
-            ShadowCrippleStacks(myevent)
-        end
-        event.spelldamagefactor = event.spelldamagefactor * event.dmgfactor/100
-        event.attributefactor = event.attributefactor * event.dmgfactor/100
-        DamageUnit(event)
-    end
-end
 
 function HealPercentage( event )
 	local caster = event.target
@@ -9943,15 +9934,6 @@ function SacredShieldHealth( event )
 	local target = event.target
 
 	target.OldHealth = target:GetHealth()
-end
-
-function CycloneDiminishing(event)
-	local caster = event.caster
-	local target = event.target
-
-	local diminishing = caster:GetModifierStackCount("cyclone_diminishing_return", caster)
-	event.dur = event.dur * (event.diminish - diminishing) / event.diminish
-	CCTarget(event)
 end
 
 function ManaBurn (event)
@@ -14217,12 +14199,12 @@ function holynova(event)
 	local ability = event.ability
 	local range = event.range
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
 				if enemy:GetUnitLabel()=="hero" then
-                    if ability:GetLevel() >= 4 then
+                    if ability:GetLevel() >= 2 then
                         ability:ApplyDataDrivenModifier(caster, enemy, "modifier_judgement_armor", {Duration = 8})
                     end
 					local table = {}
@@ -15650,7 +15632,7 @@ function ApplyBuff(event)
 		isBuff = false
 	end
 
-    if not isBuff and not event.is_already_aoe_buff and (buff == "modifier_cyclone_self" or buff == "modifier_rootsdruid") and caster:HasModifier("modifier_npc_dota_hero_furion") then
+    if not isBuff and not event.is_already_aoe_buff and (buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_rootsdruid") and caster:HasModifier("modifier_npc_dota_hero_furion") then
         event.dur = event.dur * 1.1
         event.aoe = 300
         event.targetpos = 1
@@ -15738,7 +15720,7 @@ function ApplyBuff(event)
     end
 
     --cycloned targets are imune new buffs
-    if (target:HasModifier("modifier_cyclone_self") and not event.pierceCyclone) or (not isBuff and target:HasModifier("modifier_invul")) then
+    if ((target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff")) and not event.pierceCyclone) or (not isBuff and target:HasModifier("modifier_invul")) then
         return
     end
 
@@ -15753,7 +15735,7 @@ function ApplyBuff(event)
     end
 
     --bladestorm makes cyclone imune
-    if target:HasModifier("modifier_axestorm") and buff == "modifier_cyclone_self" then
+    if target:HasModifier("modifier_axestorm") and (buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff") then
         return
     end
 
@@ -16337,12 +16319,12 @@ function LookAtTarget(event)
 end
 
 function FindNearbyEnemies( caster, pos, radius )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     return enemies
 end
 
 function FindNearbyAllies( caster, pos, radius )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     return enemies
 end
 
@@ -16350,7 +16332,7 @@ function FindClosestEnemy( event )
     local caster = event.caster
     local pos = caster:GetAbsOrigin()
     local radius = event.radius
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local distance = radius
     local closesttarget = nil
     if #enemies > 0 then
@@ -16368,7 +16350,7 @@ function FindClosestEnemy( event )
 end
 
 function FindClosestAlly( caster, pos, radius, includeSelf )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local distance = radius
     local closesttarget = nil
     if #enemies > 0 then
@@ -16392,7 +16374,7 @@ function ChainsIce(event)
 
 	caster.icechains1 = target
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print("chainlight enemies")
 	--print(#enemies)
 	local distance = 10000.0
@@ -25537,18 +25519,8 @@ function WingedGrave( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	if not target:HasModifier("modifier_winged_grave_cd") then
-		ApplyBuff(event)
 
-		--event.buff = "modifier_guaranteed_crit"
-		--event.dur = event.dur2
-		--ApplyBuff(event)
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_winged_grave_cd", {Duration = 45})
-        if event.taunt and event.taunt > 0 then
-            event.buff = "modifier_taunt123"
-            ApplyBuff(event)
-        end
-	end
+    ApplyBuff(event)
 end
 
 function CainSetGiveLife( event )
@@ -27890,7 +27862,12 @@ function ChannelTickSystem( event )
     local maxtotalticks = duration / tickinterval
     --proc first tick instantly
     if event.instantfirsttick then
-        ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+        if(ability.OnChannelTickSystemTick) then
+            -- lua ability support
+            ability:OnChannelTickSystemTick(caster, target)
+        else
+            ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+        end
     end
     local count = 1
     for count=1, maxtotalticks do
@@ -27900,7 +27877,12 @@ function ChannelTickSystem( event )
                 --if channeltime >= tickinterval * tickcount then
                     --tick!
                     --tickcount = tickcount + 1
-                    ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+                    if(ability.OnChannelTickSystemTick) then
+                        -- lua ability support
+                        ability:OnChannelTickSystemTick(caster, target)
+                    else
+                        ability:ApplyDataDrivenModifier(caster, target, "modifier_channel_proc", {Duration = 0.05})
+                    end
                 --end
             end
         end)
@@ -28800,12 +28782,6 @@ function GetLevelOfAbility( hero, abilityName )
     return 0
 end
 
-function SpiritHealCrit( event )
-    if event.ability:GetLevel() >= 3 then
-        event.caster.spiritHealCrit = 2
-    end
-end
-
 function FelBlast( caster, target )
     local range = 250
     local particle = ParticleManager:CreateParticle("particles/econ/items/pugna/pugna_ti9_immortal/pugna_ti9_immortal_netherblast.vpcf", PATTACH_WORLDORIGIN, caster)
@@ -29369,17 +29345,60 @@ function SniperAAProcs(event)
     end
 end
 
+function SymbiosisSpellStart(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = event.ability
+
+    if(caster == target) then
+        ability._symbiosisPriorityTaget = nil
+    else
+        ability._symbiosisPriorityTaget = target
+    end
+end
+
 function Symbiosis(event)
     local caster = event.caster
     local target = event.target
     local ability = event.ability
-    if caster:HasModifier("modifier_npc_dota_hero_furion2") then
-        local target = FindClosestAlly(caster, caster:GetAbsOrigin(), 900, false)
-        if target then
-            ApplyBuff({caster = caster, target = target, dur = 10, buff = "modifier_symbiosos_fur", ability = ability})
+    local modifier = caster:FindModifierByName("modifier_npc_dota_hero_furion2")
+
+    if modifier then
+        local itemAbility = modifier:GetAbility()
+        local radius = 900
+        local pos = caster:GetAbsOrigin()
+        local allies = FindNearbyAllies(caster, pos, radius)
+        local priorityTarget = nil
+
+        local distance = radius
+        local closesttarget = nil
+
+        if #allies > 0 then
+            for _, ally in pairs(allies) do
+                if ally and not ally:IsNull() and ally:IsAlive() and ally ~= caster then
+                    if(ally == itemAbility._symbiosisPriorityTaget) then
+                        priorityTarget = ally
+                    end
+
+                    local tempdistance = (ally:GetAbsOrigin()-pos):Length()
+
+                    if tempdistance < distance then
+                        closesttarget = ally
+                        distance = tempdistance
+                    end
+                end
+            end
+        end
+
+        if(priorityTarget) then
+            closesttarget = priorityTarget
+        end
+
+        if closesttarget then
+            ApplyBuff({caster = caster, target = closesttarget, dur = 10, buff = "modifier_symbiosos_fur", ability = ability})
             local particle = ParticleManager:CreateParticle( "particles/econ/items/monkey_king/arcana/death/mk_spring_arcana_death_souls_line.vpcf", PATTACH_WORLDORIGIN, nil)
             ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
-            ParticleManager:SetParticleControl(particle, 4, target:GetAbsOrigin())
+            ParticleManager:SetParticleControl(particle, 4, closesttarget:GetAbsOrigin())
             ParticleManager:ReleaseParticleIndex(particle)
         end
     end
@@ -29782,35 +29801,11 @@ end
 
 function SoulwardenTotemShield(event)
     local caster = event.caster
-    local target = event.target
-    local pos = target:GetAbsOrigin()
-    local ally = FindClosestAlly(caster, pos, 900, true)
-
-    if ally then
+    local pos = event.ability:GetCursorPosition()
+    local range = event.ability:GetSpecialValueFor("damage_reduction_range")
+    local allies = FindNearbyAllies(caster, pos, range)
+    print(#allies, pos, range)
+    for _, ally in pairs(allies) do
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
-    end
-end
-
-function CycloneHurricane(event)
-    local caster = event.caster
-    local ability = event.ability
-
-    if ability:GetLevel() >= 4 and caster:HasModifier("modifier_druid_evasion_h") then
-        ApplyBuff({caster = caster, target = caster, dur = 7, buff = "modifier_cyclone_hurricane", ability = ability, pierceCyclone = 1})
-    end
-end
-
-function CycloneHurricanePeriodic(event)
-    local caster = event.caster
-    local enemy = FindClosestEnemy({caster = caster, radius = 900})
-
-    if enemy then
-        ApplyBuffStack({caster = caster, target = enemy, dur = 5, buff = "modifier_hurricane_weakening", ability = event.ability, max = 7})
-        DamageUnit({caster = caster, target = enemy, ability = event.ability, damage = 0, attributefactor = 500, spelldamagefactor = 500, naturedmg = 1})
-        local particle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_arcana/razor_arcana_strike_top_lightning_strike.vpcf", PATTACH_POINT_FOLLOW, enemy)
-        ParticleManager:SetParticleControl(particle, 0, enemy:GetAbsOrigin())
-        ParticleManager:SetParticleControl(particle, 1, enemy:GetAbsOrigin())
-        ParticleManager:ReleaseParticleIndex(particle)
-        EmitSoundOn("DOTA_Item.Mjollnir.Activate", enemy)
     end
 end

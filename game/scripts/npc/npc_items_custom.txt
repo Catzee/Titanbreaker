@@ -65162,7 +65162,9 @@
 	{
 	    "ID"           "8754"
 	    "BaseClass"    "item_datadriven"
-	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
 	    "AbilityTextureName" "item_refresher_shard"
 	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
@@ -65198,6 +65200,15 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat2"    "10"
 	        }
+	    }
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "SymbiosisSpellStart"
+			}
 	    }
 
 	    "Modifiers"

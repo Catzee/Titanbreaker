@@ -311,8 +311,8 @@
 		"DOTA_Tooltip_modifier_combopoint"	"Focus Points"
 		"DOTA_Tooltip_modifier_combopoint_Description"	"Fuels powerful abilities."
 
-		"DOTA_Tooltip_modifier_wisdom"	"Judgement of Sanction"
-		"DOTA_Tooltip_modifier_wisdom_Description"	"Your next Auto Attack restores Mana."
+		"DOTA_Tooltip_modifier_divine_crusarder_holy_judgement_wisdom"	"Judgement of Sanction"
+		"DOTA_Tooltip_modifier_divine_crusarder_holy_judgement_wisdom_Description"	"Your next Auto Attack restores Mana."
 
 		"DOTA_Tooltip_modifier_aoeslow50"	"Slow"
 		"DOTA_Tooltip_modifier_aoeslow50_Description"	"Slowed by 50%% and turnspeed reduced."
@@ -647,11 +647,14 @@
 		"DOTA_Tooltip_Ability_Dark_Light_spelldmg"    "%Spellpower Factor:" 
 
 		"DOTA_Tooltip_ability_Dark_Light2"                                                "Lightstream"
-		"DOTA_Tooltip_ability_Dark_Light2_Description"                                    "Channel for 2 secs, Healing an ally or dealing Holy Damage to an enemy a total of 3 times. The first tick dispels all debuffs when an ally is targeted.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and now also dispel debuffs from targeted allies every tick. \nRank 3: Each tick reduces your cooldown of your 6th Ability by 2 secs and applies 1 stack of Shadowbeast Cripple from your Shadowbeast Ability. \nRank 4: Channel 1 sec longer, causing a total of 4 ticks and increase the target's Spell Resistance by 5 for 6 secs, stacking up to 8 times.\n\n</font>"
+		"DOTA_Tooltip_ability_Dark_Light2_Description"                                    "Channel for 2 secs, Healing an ally a total of 3 times. The first tick dispels all debuffs when an ally is targeted. If Alt-Cast is activated can also target enemies dealing reduced Holy Damage.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and now also dispel debuffs from targeted allies every tick. \nRank 3: Each tick reduces your cooldown of your 6th Ability by %cd_tooltip% secs and applies %darkstacks_tooltip% stack of Shadowbeast Cripple from your Shadowbeast Ability. \nRank 4: Channel 1 sec longer, causing a total of 4 ticks and increase the target's Spell Resistance by %spellresistance_per_stack% for %spellresistance_duration% secs, stacking up to %spellresistance_max_stacks% times.\n\n</font>"
 		"DOTA_Tooltip_ability_Dark_Light2_dmgfromstat"                                    "%Intellect to Healing:"
 		"DOTA_Tooltip_ability_Dark_Light2_spelldmg"                                       "%Spellpower to Healing:"
 		"DOTA_Tooltip_ability_Dark_Light2_duration"                                       "Channel Duration:"
 		"DOTA_Tooltip_ability_Dark_Light2_dmg"                                            "%Damage Effectiveness:"
+
+		"DOTA_Tooltip_modifier_twilight_cleric_lightstream_buff"                          "Lightstream"
+		"DOTA_Tooltip_modifier_twilight_cleric_lightstream_buff_Description"              "Spell Resistance increased."
 
 		"DOTA_Tooltip_Ability_Light_of_Heaven"  "Light of Heaven"  
 		"DOTA_Tooltip_Ability_Light_of_Heaven_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Apply a HoT to the target, healing every second. \nRank 3: Increased initial Healing. When you heal a target affected by Sacred Shield, increase the Shield amount by the amount healed (once per cast of Sacred Shield, not triggered by HoTs). \nRank 4: Reduced Mana cost and gain a Flash of Heaven stack each cast. When you have 4 stacks, your next Light of Heaven will be instant and Heal the most wounded ally within 900 yards for 100%% of Intellect and Spellpower.\n\n</font>"
@@ -1233,7 +1236,7 @@
 
 		"DOTA_Tooltip_Ability_Shapeshift"  "Swift Winds"  
 		"DOTA_Tooltip_Ability_Shapeshift_speed"    "%Movement Speed Bonus:" 
-		"DOTA_Tooltip_Ability_Shapeshift_manareg"    "Mana Regeneration bonus:" 
+		//"DOTA_Tooltip_Ability_Shapeshift_manareg"    "Mana Regeneration bonus:" 
 
 		"DOTA_Tooltip_modifier_druid_evasion_h"	"Swift Winds"
 		"DOTA_Tooltip_modifier_druid_evasion_h_Description"	"Evasion."
@@ -1439,7 +1442,7 @@
 		"DOTA_Tooltip_Ability_resto3_buffduration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_resto4"  "Spirit Shock"  
-		"DOTA_Tooltip_Ability_resto4_Description"  "Deal Arcane Damage and silence an enemy or dispel all debuffs from an ally.<font color=\"#FFBB00\">\n\nRank 2: After casting, your next 3 Healing Waves will be instant cast, stacking up to 6 times. \nRank 3: Reduced cooldown and when cast, your next 2 Healing instances will Critical Strike for 200%%. \nRank 4: Increased damage and also slow Movement Speed by 50%% and Attack Speed by 40%% for 5 secs when used on enemies and when used on allies, grant them 90 Spell Resistance for 3 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto4_Description"  "Dispel all debuffs from an ally. If Alt-Cast is activated can also target enemies dealing Arcane Damage to them and silences them.<font color=\"#FFBB00\">\n\nRank 2: After casting, your next %instant_casts% Healing Waves will be instant cast, stacking up to %instant_casts_max% times. \nRank 3: Reduced cooldown and when cast, your next %crits_count% Healing instances will Critical Strike for %crit_multiplier%%%. \nRank 4: Increased damage and also slow Movement Speed by %bonus_movespeed%%% and Attack Speed by %bonus_attackspeed% for %enemyslow_tooltip% secs when used on enemies and when used on allies, grant them %spellresistance% Spell Resistance for %spellresistance_duration_tooltip% secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_resto4_buffdurationInterrupt"    "Silence Duration:" 
 		"DOTA_Tooltip_Ability_resto4_dmgfromstat"    "%Intellect to Damage:" 
 		"DOTA_Tooltip_Ability_resto4_spelldmg"    "%Spellpower Factor:"  
@@ -1515,10 +1518,14 @@
 		"DOTA_Tooltip_Ability_resto5_range"    "Healing Range:" 
 		"DOTA_Tooltip_Ability_resto5_heal"    "%Intellect and Spellpower to Healing: " 
 
+		"DOTA_Tooltip_modifier_soulwarden_shield"	"Soulwarden Totem"
+		"DOTA_Tooltip_modifier_soulwarden_shield_Description"	"Damage Reduction increased."
 		"DOTA_Tooltip_Ability_Inspiring_Shot"  "Aimed Iceshot"  
 		"DOTA_Tooltip_ability_Inspiring_Shot_bonusregen"                                  "%Bonus Resource Regeneration:"
 		"DOTA_Tooltip_ability_Inspiring_Shot_range"                                       "Cast range:"
-		 
+
+		"DOTA_Tooltip_modifier_resto1_res"	"Healing Wave"
+		"DOTA_Tooltip_modifier_resto1_res_Description"	"Spell Resistance increased."
 
 		"DOTA_Tooltip_Ability_Hellfire"  "Hellfire"  
 		"DOTA_Tooltip_Ability_Hellfire_Description"  "Cause all enemies in the area to be burned by hellfire, taking damage and being slowed for 2 secs. Be careful, allies will also be slowed by the fire. You will be healed by 2%% of max Health for each target hit."
@@ -2768,10 +2775,10 @@
 		"DOTA_Tooltip_Ability_item_fireball3_bonus_stat3"	"%Flamestrike Chance: "
 
 		"DOTA_Tooltip_Ability_fury1_dmgfromstat"    "%Base Damage dealt:" 
-		"DOTA_Tooltip_Ability_Holy_Judgement_Description"  "Heal an ally or Damage an enemy for reduced Holy Damage. If used on enemies, silence for 0.5 secs and cause your next Auto Attack to restore Mana.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Reduced cooldown. \nRank 4: Increased Damage Factor, increased Mana on Auto Attack and Mana on crit and Critical Heals heal 15%% more. Also increases the target's Spell Resistance by 50 for 3 secs when it is an ally.\n\n</font>"
+		"DOTA_Tooltip_Ability_Holy_Judgement_Description"  "Heal an ally. If Alt-Cast is activated, it can also target enemies. If you target an enemy, it will cause reduced Holy Damage, silence the target for %silenceduration% secs and your next Auto Attack in %aaprocduration% secs will restore Mana. If damage from this ability causes Ability Critical Strike you will restore % of Max Mana.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Reduced cooldown. \nRank 4: Increased Damage Factor, increased Mana on Auto Attack and Mana on crit and Critical Heals heal 15%% more. Also increases the target's Spell Resistance by %spellres% for %spellresduration_tooltip% secs when it is an ally.\n\n</font>"
 		"DOTA_Tooltip_ability_Holy_Judgement_critmana"                                    "%Mana restored on crit:"
-			"DOTA_Tooltip_ability_Holy_Judgement_aamana"                                      "Mana restored on Auto Attack:"
-			"DOTA_Tooltip_ability_Holy_Judgement_dmgfactor"                                   "%Damage Factor:"
+		"DOTA_Tooltip_ability_Holy_Judgement_aamana"                                      "Mana restored on Auto Attack:"
+		"DOTA_Tooltip_ability_Holy_Judgement_dmgfactor"                                   "%Damage Factor:"
 
 
 		// 2.8
@@ -2779,7 +2786,7 @@
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_bowcasttime_bonus_stat2"	"Agility: +"
 
-		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.\nThe closest ally to the Totem when cast will gain 75%% Damage Reduction for the Totem duration.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
+		"DOTA_Tooltip_Ability_resto5_Description"  "Summon a Totem, Healing nearby allies that are below 50%% of max Health every sec.\nEvery ally around Totem in %damage_reduction_range% yards when cast will gain 75%% Damage Reduction for the Totem duration.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and increased Healing. \nRank 3: The Totem also increases Spell Resistance by 40. \nRank 4: Healing radius increased to 900 and longer Totem duration.\n\n</font>" 
 
 		"DOTA_Tooltip_Ability_item_weapon5"  "<font color=\"#ff69b4\">The Great Zweihander"
 		"DOTA_Tooltip_Ability_item_weapon5_Description"  "Whenever you deal damage with an Ability, you have a chance to deal 50%% of your Primary Attribute as Physical Damage in a 250 radius around the target to up to 5 enemies. After 10 procs, can not proc again for 5 secs.\n"  
@@ -2929,7 +2936,7 @@
 		"DOTA_Tooltip_Ability_item_elements2_bonus_stat7"	"Holy: +1 to all Stats and +3% healing caused, max Stacks"
 
 		"DOTA_Tooltip_Ability_holy1"  "Holy Light"  
-		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and cast range. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Cast Range by 300. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy1_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy1_magicres"    "Spell Resistance on cast:"
@@ -2944,7 +2951,7 @@
 		"DOTA_Tooltip_Ability_holy2_duration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_holy3"  "Divine Nova"  
-		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed deal 50%% increased Holy Damage for 5 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed gain 15 Armor for 8 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed gain 15 Armor for 8 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed deal 50%% increased Holy Damage for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy3_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy3_spelldmg"    "%Healing Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy3_dmgfactor"    "%Damage Effectiveness:"
@@ -3125,11 +3132,13 @@
 
 		"DOTA_Tooltip_modifier_cyclone_self"	"Cyclone"
 		"DOTA_Tooltip_modifier_cyclone_self_Description"	"Stunned and imune to damage and healing."
-		
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_debuff"	"Cyclone"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_debuff_Description"	"Stunned and imune to damage and healing."
+
 		"DOTA_Tooltip_Ability_CycloneDruidFeral_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies. 2 secs cast time.\n\nIf used on allies, dispels all debuffs."
 		"DOTA_Tooltip_Ability_CycloneDruidFeralInstant_Description"  "Toss the target into the air, preventing all action but making it imune to damage and healing. Removes all positive buffs from enemies and negative buffs from allies.\n\nIf used on allies, dispels all debuffs."
 
-		"DOTA_Tooltip_Ability_holy6_Description"  "Remove all dispellable negative debuffs from allies and give them a shield reducing all Damage taken by 50%% for 3 secs. <font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and cast range increased by 300. \nRank 3: Passively increase your maximum Mana by 25%% and all Healing caused by you by 25%%. \nRank 4: Root and deal Holy Damage to enemies. Whenever you cast Holy Flamebolt, reduce the remaining cooldown of Mass Dispel by 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy6_Description"  "Remove all dispellable negative debuffs from allies and give them a shield reducing all Damage taken by 50%% for 3 secs. <font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and Cast Range increased by 300. \nRank 3: Passively increase your maximum Mana by 25%% and all Healing caused by you by 25%%. \nRank 4: Root and deal Holy Damage to enemies. Whenever you cast Holy Flamebolt, reduce the remaining cooldown of Mass Dispel by 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy6_duration"  "Root Duration:"
 		"DOTA_Tooltip_Ability_holy6_mana"  "Passive Max Mana Bonus:"
 		"DOTA_Tooltip_Ability_holy6_dmg"  "%Intellect and Spellpower to Damage:"
@@ -3758,9 +3767,9 @@
 		"DOTA_Tooltip_Ability_Fear_Warlock_haste"    "%Spellhaste:" 
 
 		"DOTA_Tooltip_ability_holy55"                                                     "Winged Grave"
-		"DOTA_Tooltip_ability_holy55_Description"                                         "Render the target near immortal, reducing all Damage Taken by 95%%, increase its Healing received by 100%% and give it phased movement as well as a locked movement speed of 350, ignoring other movement effects.\nAfter using Winged Grave on a target, that target can not be affected by Winged Grave again for 45 secs.<font color=\"#FFBB00\">\n\nRank 2: Heal the target when the effect ends. \nRank 3: Longer duration and reduced cooldown. \nRank 4: The affected target will also taunt nearby enemies and the Healing at the end of the effect will now heal all allies in a 900 aoe.\n\n</font>"
-		"DOTA_Tooltip_ability_holy55_dmgfromstat"                                         "%Intellect to Healing:"
-		"DOTA_Tooltip_ability_holy55_spelldmg"                                            "%Spellpower to Healing:"
+		"DOTA_Tooltip_ability_holy55_Description"                                         "Render the target near immortal, reducing all Damage Taken by 95%%, increase its Healing received by 100%% and give it phased movement.<font color=\"#FFBB00\">\n\nRank 2: Heal the target instantly and over time every second during Winged Grave duration. \nRank 3: Longer duration and reduced cooldown. \nRank 4: Affected target deal 20% increased Damage during duration.\n\n</font>"
+		"DOTA_Tooltip_ability_holy55_dmgfromstat"                                         "%Intellect to Healing per Tick:"
+		"DOTA_Tooltip_ability_holy55_spelldmg"                                            "%Spellpower to Healing per Tick:"
 		"DOTA_Tooltip_ability_holy55_duration"                                            "Winged Grave Duration:"
 
 		"DOTA_Tooltip_modifier_holymagicres"	"Holy Barrier"
@@ -3971,6 +3980,12 @@
 
 		"DOTA_Tooltip_cyclone_diminishing_return"                                         "Cyclone Diminishing Return"
 		"DOTA_Tooltip_cyclone_diminishing_return_Description"                             " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_diminishing_return"               "Cyclone Diminishing Return"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_diminishing_return_Description"   " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane"               "Hurricane"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_Description"   " "
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_debuff"               "Hurricane"
+		"DOTA_Tooltip_modifer_peaceful_guardian_cyclone_hurricane_debuff_Description"   "Spell Resistance and Armor reduced."
 
 		"DOTA_Tooltip_modifier_manaburn_debuff"                                           "Soul Burn Weakness"
 		"DOTA_Tooltip_modifier_manaburn_debuff_Description"                               " "
@@ -4084,6 +4099,9 @@
 
 		"DOTA_Tooltip_modifier_instantbolt"                                               "Instant Cast"
 		"DOTA_Tooltip_modifier_instantbolt_Description"                                   " "
+
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_instant_casts"                  "Instant Cast"
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_instant_casts_Description"      " "
 
 		"DOTA_Tooltip_modifier_molten_armor"                                              "Dragonflame Armor"
 		"DOTA_Tooltip_modifier_molten_armor_Description"                                  "Mana Shielded and chance to launch Fire Lances at attackers."
@@ -6196,7 +6214,7 @@
 		"DOTA_Tooltip_ability_pve_ice_nova_affix_radius"                                  "RADIUS:"
 		"DOTA_Tooltip_ability_pve_ice_nova_affix_buffduration"                            "DURATION:"
 
-		"DOTA_Tooltip_Ability_CycloneDruid_Description"  "Toss the target into the air, preventing all actions but also making it imune to damage and healing. Cyclone can not be dispelled and has a low cooldown, but diminising returns (duration lowered anti proportional to diminising return value). 2 secs cast time.\n\nIf used on allies, dispels all debuffs.<font color=\"#FFBB00\">\n\nRank 2: Passively grants a 1500 yards 50 Attack Speed and 50%% Spellhaste Aura (Hero only). \nRank 3: When used on allies, restore 2%% of max health and mana per second. \nRank 4: When casting Cyclone while Swift Winds is active, summon a Hurricane following you for 7 secs, striking the closest enemy for Nature Damage and reducing their Spell Resistance and Armor.\n\n</font>"
+		"DOTA_Tooltip_Ability_CycloneDruid_Description"  "Toss an ally into the air, dispel all debuffs, preventing all actions but also making ally immune to damage and healing. Cyclone can not be dispelled and has a low cooldown, but diminising returns (duration lowered anti proportional to diminising return value). 2 secs cast time.\n\nIf Alt-Cast is activated can also target enemies without dispelling their debuffs.<font color=\"#FFBB00\">\n\nRank 2: Passively grants a %auraradius% yards %as_tooltip% Attack Speed and %spellhaste_tooltip%%% Spellhaste Aura (Hero only). \nRank 3: When used on allies, restore %bonus_stat3_tooltip%%% of max health and mana per second. \nRank 4: When casting Cyclone while Swift Winds is active, summon a Hurricane following you for %hurricane_duration% secs, striking the closest enemy in %hurricane_radius% yards with %hurricane_stat_to_dmg%%% of Intellect and %hurricane_sp_to_dmg%%% of Spellpower as Nature Damage. Every time enemy damaged by this effect his Spell Resistance will be reduced by %hurricane_spellresistance% and Armor by %hurricane_armor%, stacking up to %hurricane_debuff_max_stacks% times.\n\n</font>"
 
 		"DOTA_Tooltip_modifier_talent42cd"                                                "Protection Cooldown"
 		"DOTA_Tooltip_modifier_talent42cd_Description"                                    " "
@@ -6252,7 +6270,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_chance"                                  "%Chance on deal Damage to gain 100 Attack Speed for 6 secs:"
 		
 		//2.6
-		"DOTA_Tooltip_Ability_Shapeshift_Description"  "Passively grant nearby allies within 900 yards 5%% increased Movement Speed, 25 Attack Speed and 25%% Spellhaste and when cast, grant them 90%% Evasion for 3 secs.<font color=\"#FFBB00\">\n\nRank 2: Movement Speed Bonus and Evasion duration increased to 4 secs and when cast, Heal nearby allies affected by Flourish for 25%% of their max Health. \nRank 3: You passively take 35%% reduced Damage from all sources. \nRank 4: Passively gain 100%% Spellhaste and cause Cooldown Reduction effects to be 50%% more effective.\n\n</font>"
+		"DOTA_Tooltip_Ability_Shapeshift_Description"  "Passively grant nearby allies within 900 yards 5%% increased Movement Speed, 25 Attack Speed and 25%% Spellhaste and when cast, grant them a 4 stacks of Swift Evasion that blocks the next Damage Instance each for 3 secs.<font color=\"#FFBB00\">\n\nRank 2: Movement Speed Bonus duration increased to 4 secs, Swift Evasion stacks increased to 5 and when cast, Heal nearby allies affected by Flourish for 25%% of their max Health. \nRank 3: You passively take 35%% reduced Damage from all sources. \nRank 4: Passively gain 100%% Spellhaste and cause Cooldown Reduction effects to be 50%% more effective.\n\n</font>"
 		"DOTA_Tooltip_ability_item_set_str_tank_full_chance"                                 "%Chance on deal damage to strike again for half amount:"
 		"DOTA_Tooltip_ability_item_set_str_tank_3_chance"                                 "%Chance on deal damage to strike again for half amount:"
 		"DOTA_Tooltip_ability_dh3_Description"                                            "Silence all enemies in the area and place a Sigil of Shadows on the ground, increasing the Spell Resistance of nearby allies for 5 secs. <font color=\"#FFBB00\">\n\nRank 2: Improved Spell Resistance. \nRank 3: While you stand in the Sigil of Shadows, your Chaos Strike Damage is increased by 50%%. \nRank 4: The Sigil of Shadows now slows Movement Speed of enemies by 50%% and causes Physical Shadow Damage every second.\n\n</font>"
@@ -9294,6 +9312,15 @@
 
 		"DOTA_Tooltip_modifier_judgement_spellres"                                        "Divine Resistance"
 		"DOTA_Tooltip_modifier_judgement_spellres_Description"                            "Spell Resistances increased."
+		
+		"DOTA_Tooltip_modifier_divine_crusarder_holy_judgement_buff"                      "Divine Resistance"
+		"DOTA_Tooltip_modifier_divine_crusarder_holy_judgement_buff_Description"          "Spell Resistances increased."
+
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_buff"                           "Spirit Shock"
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_buff_Description"               "Spell Resistances increased."
+
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_debuff"                           "Spirit Shock"
+		"DOTA_Tooltip_modifier_spirit_voodoo_spirit_shock_debuff_Description"               "Movement Speed and Attack Speed reduced."
 
 		"DOTA_Tooltip_modifier_stormclaws"                                                "Storm Claws"
 		"DOTA_Tooltip_modifier_stormclaws_Description"                                    ""
@@ -9597,9 +9624,6 @@
 
 		"DOTA_Tooltip_ability_pve_act_affix_pack"                                       "Spiritbond"
 		"DOTA_Tooltip_ability_pve_act_affix_pack_Description"                           "Every nearby ally within 600 yards decreases all Damage taken."
-
-		"DOTA_Tooltip_modifier_winged_grave_cd"                                                "Winged Grave Cooldown"
-		"DOTA_Tooltip_modifier_winged_grave_cd_Description"                                    ""
 
 		"DOTA_Tooltip_modifier_voodooshield"                                                "Voodoo Soulshield"
 		"DOTA_Tooltip_modifier_voodooshield_Description"                                    ""
@@ -10836,7 +10860,7 @@
 		"DOTA_Tooltip_ability_item_class_legion2_bonus_stat2"                              "Armor:"
 
 		"DOTA_Tooltip_ability_item_class_peaceful2"                                        "<font color=\"#00ffff\">[Ancient] Talisman of Symbiosis"
-		"DOTA_Tooltip_ability_item_class_peaceful2_Description"                            "<font color=\"#00EE00\">Peaceful Guardian: Every 10 secs, the closest Hero within 900 yards will receive 25%% Damage and Damage Reduction for 10 secs."
+		"DOTA_Tooltip_ability_item_class_peaceful2_Description"                            "<h1>Priority Target</h1>You can target an ally to make him priority target for this effect. Target yourself to reset priority.\n<h1><font color=\"#00EE00\">Symbiosis</font></h1><font color=\"#00EE00\">Every 10 secs Flourish will provide a Symbiosis effect to the closest Hero within 900 yards that increases Damage by 25%% and Damage Reduction by 25%% for 10 secs."
 		"DOTA_Tooltip_ability_item_class_peaceful2_bonus_stat1"                            "Intellect:"
 		"DOTA_Tooltip_ability_item_class_peaceful2_bonus_stat2"                            "Spell Resistance:"
 

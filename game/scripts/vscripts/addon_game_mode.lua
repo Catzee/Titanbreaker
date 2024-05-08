@@ -31,6 +31,7 @@ require('libraries/attachments')
 require('libraries/popups')
 require('libraries/notifications')
 require("statcollection/init")
+require("overrides/require")
 require("debug_tools")
 
 ---------------------------------------------------------------------------
@@ -10148,6 +10149,31 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 	]]
 
 	local orderType = filterTable["order_type"]
+
+  if(orderType == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
+    if(filterTable["entindex_ability"]) then
+      local ability = EntIndexToHScript(filterTable["entindex_ability"])
+      if(ability) then
+        if(ability._ToggleAltCast ~= nil) then
+          local status, errorMessage = pcall(function ()
+            ability:_ToggleAltCast()
+          end)
+          if(status ~= true) then
+            print("ToggleAltCast error: ", errorMessage)
+          end
+        end
+        if(ability.OnAltCastToggled ~= nil) then
+          local status, errorMessage = pcall(function ()
+            ability:OnAltCastToggled()
+          end)
+          if(status ~= true) then
+            print("OnAltCastToggled error: ", errorMessage)
+          end
+        end
+      end
+    end
+  end
+
 	if ( orderType ~= DOTA_UNIT_ORDER_PICKUP_ITEM or filterTable["issuer_player_id_const"] == -1 ) then
 		return true
 	else
@@ -12062,7 +12088,18 @@ function COverthrowGameMode:FilterDamage( filterTable )
           victim:RemoveModifierByName("modifier_talent_moonglaive_shield")
         end
       end
-
+	  
+      -- np swift winds block damage shield
+      local swiftWindsBlocks = victim:GetModifierStackCount("modifier_druid_evasion_h", nil)
+      if swiftWindsBlocks > 0 and victim.combat_system_ability and newdamage >= 5 then
+        local block_factor = 1
+        newdamage = newdamage * (1 - block_factor)
+        swiftWindsBlocks = swiftWindsBlocks - 1
+        if swiftWindsBlocks >= 0 then
+          victim:SetModifierStackCount("modifier_druid_evasion_h", victim.combat_system_ability, swiftWindsBlocks)
+        end
+      end
+	  
       --block
       local block = 0
       if mars2 and mars2:GetLevel() >= 4 then
