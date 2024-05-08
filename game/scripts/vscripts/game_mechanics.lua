@@ -20183,9 +20183,6 @@ end
 
 function GetCastRangeBonus(hero)
     local bonus = GetInterstellarStat(hero)
-    if not hero:IsRangedAttacker() then
-        return 0
-    end
     if hero:HasModifier("modifier_pathbuff_107") then
         bonus = bonus + 100
     end
@@ -20260,15 +20257,21 @@ function PassiveStatCalculation(event)
     --mres
     local castRangeBonus = GetCastRangeBonus(hero)
     if castRangeBonus >= 1 then
-        --event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_castrange", {Duration = -1})
+        -- Do not rely on internal aether lens modifier because its matter of time until valve cause issues via it...
+        local castRangeModifier = hero:AddNewModifier(hero, nil, "modifier_bonus_cast_range", {duration = -1})
+        if(castRangeModifier) then
+            castRangeModifier:SetStackCount(castRangeBonus)
+        else
+            print("Valve breaks cast range bonus. Fix manually")
+        end
         --hero:RemoveModifierByName("modifier_item_aether_lens")
-        hero:RemoveModifierByName("modifier_item_aether_lens")
-        hero:AddNewModifier(hero, event.ability, "modifier_item_aether_lens", {duration = -1})
-        event.ability:SetLevel(math.floor(castRangeBonus / 50))
+        --hero:AddNewModifier(hero, event.ability, "modifier_item_aether_lens", {duration = -1})
+        --event.ability:SetLevel(math.floor(castRangeBonus / 50))
         --hero:SetModifierStackCount("modifier_item_aether_lens", event.ability, castRangeBonus)
     else
-        event.ability:SetLevel(0)
-        hero:RemoveModifierByName("modifier_item_aether_lens")
+        --event.ability:SetLevel(0)
+        --hero:RemoveModifierByName("modifier_item_aether_lens")
+        hero:RemoveModifierByName("modifier_bonus_cast_range")
     end
     local attackRangeBonusToApply = GetRequiredAttackRangeBonuses(hero) --this is not the actual total bonus, just some bonuses require a buff to be applied
     if attackRangeBonusToApply >= 1 then
