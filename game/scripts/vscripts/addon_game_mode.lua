@@ -10191,6 +10191,11 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
     end
   end
 
+	if(orderType == DOTA_UNIT_ORDER_SELL_ITEM) then
+    Notifications:Bottom(filterTable.issuer_player_id_const, {text="You can sell items only when they dropped by using menu at right side of your screen", duration=6, style={color="red"}})
+    return false
+	end
+
 	if ( orderType ~= DOTA_UNIT_ORDER_PICKUP_ITEM or filterTable["issuer_player_id_const"] == -1 ) then
 		return true
 	else
