@@ -3537,7 +3537,7 @@
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
 			<Panel class="AutoSellFiltersButton">
 				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()">	
-					<Label class="ButtText" text="Show Auto Sell Filters" />			
+					<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Show Auto Sell Filters" />			
 				</Button>
 			</Panel>
 			<Panel id="AutoSellFiltersContainer" style="visibility: collapse;">

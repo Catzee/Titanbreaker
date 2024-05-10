@@ -3372,7 +3372,17 @@ function SetAutoSellSoulsText(autosellSouls)
 function ToggleAutoSellFiltersVisibility()
 {
     let autoSellFiltersContainer = $("#AutoSellFiltersContainer");
-    autoSellFiltersContainer.style.visibility = autoSellFiltersContainer.style.visibility == "collapse" ? "visible" : "collapse";
+    let autoSellButtonLabel = $("#ShowAutoSellFiltersButtonLabel");
+    let isHidden = autoSellFiltersContainer.style.visibility == "collapse";
+
+    if(isHidden) {
+        autoSellButtonLabel.text = "Hide Auto Sell Filters";
+        autoSellFiltersContainer.style.visibility = "visible";
+    } else
+    {
+        autoSellButtonLabel.text = "Show Auto Sell Filters";
+        autoSellFiltersContainer.style.visibility = "collapse";
+    }
 }
 
 function TalentPressed(args){
