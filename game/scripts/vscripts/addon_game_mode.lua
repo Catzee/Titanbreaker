@@ -2269,6 +2269,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
   GameRules:GetGameModeEntity():SetFountainConstantManaRegen( 30 )
   GameRules:GetGameModeEntity():SetBountyRunePickupFilter( Dynamic_Wrap( COverthrowGameMode, "BountyRunePickupFilter" ), self )
   GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( COverthrowGameMode, "ExecuteOrderFilter" ), self )
+  GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( COverthrowGameMode, "FilterModifiers" ), self )
 
   -- PWS damage filter, my own
   GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(COverthrowGameMode, "FilterDamage"), self)			--SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "OrderFilter"), self)
@@ -10204,6 +10205,14 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 		end
 	end
 	return true
+end
+
+function COverthrowGameMode:FilterModifiers(filterTable)
+  -- Removes built in dota immortality modifier after death
+  if (filterTable.name_const == "modifier_fountain_invulnerability") then
+    return false
+  end
+  return true
 end
 
 function COverthrowGameMode:OnNPCSpawned( keys )
