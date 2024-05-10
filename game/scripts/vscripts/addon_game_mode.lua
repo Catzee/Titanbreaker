@@ -2690,7 +2690,7 @@ function COverthrowGameMode:OnPlayerConnected(params)
     SendAutoSell(player)
     -- Restore talents data for that client
     SendAllTalentsToPlayer(player, playerId)
-    -- Restory toggle stash button
+    -- Restore toggle stash button
     COverthrowGameMode:SendStashInfo(player)
 
     -- Allows next reconnect requests spam
