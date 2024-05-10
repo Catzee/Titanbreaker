@@ -3507,7 +3507,7 @@
 				<Button class="SellButton" onactivate="PickupAllItemsOnGround(false)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
 					<Panel  class="TableRow">
 						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items_with_stash.png" />
-						<Label class="ButtTextBig" style="font-size: 16px;" text="Pickup All Items"/>
+						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up All Items"/>
 					</Panel>
 				</Button>
 			</Panel>
@@ -3515,7 +3515,7 @@
 				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground that dropped in current game and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
 					<Panel  class="TableRow">
 						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items.png" />
-						<Label class="ButtTextBig" style="font-size: 16px;" text="Pickup Items"/>
+						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up Items"/>
 					</Panel>
 				</Button>
 			</Panel>
