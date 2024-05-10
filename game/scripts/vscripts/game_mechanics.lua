@@ -25767,6 +25767,18 @@ function COverthrowGameMode:TryPickupAllItems(args)
         return
     end
 
+    COverthrowGameMode._pickAllItemsCd = COverthrowGameMode._pickAllItemsCd or {}
+
+    if(COverthrowGameMode._pickAllItemsCd[playerId] ~= nil) then
+        Notifications:Top(playerId, {text="You must wait at least 5 seconds before trying picking up items again!", duration=6, style={color="red"}})
+    end
+
+    COverthrowGameMode._pickAllItemsCd[playerId] = true
+
+    Timers:CreateTimer(5, function()
+        COverthrowGameMode._pickAllItemsCd[playerId] = nil
+    end)
+
     local droppedItemsQuantity = GameRules:NumDroppedItems()
     local currentIndex = 0
     while(currentIndex < droppedItemsQuantity) do
