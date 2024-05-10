@@ -6,7 +6,6 @@ Overthrow Game Mode
 _G.nNEUTRAL_TEAM = 4
 _G.nCOUNTDOWNTIMER = 3901
 
-
 ---------------------------------------------------------------------------
 -- COverthrowGameMode class
 ---------------------------------------------------------------------------
@@ -10167,6 +10166,66 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 
 	local orderType = filterTable["order_type"]
 
+  -- Fix for bug: can't drop items from inventory to village while dead/fake dead?
+  if(orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN) then
+    local itemInInventory = filterTable["entindex_ability"]
+    if(itemInInventory ~= nil and itemInInventory > -1) then
+      itemInInventory = EntIndexToHScript(itemInInventory)
+      if(itemInInventory ~= nil) then
+        local hero = filterTable.units and filterTable.units["0"] or nil
+        if(hero ~= nil and hero > -1) then
+          hero = EntIndexToHScript(hero)
+          if(hero ~= nil and hero:IsRealHero()) then
+            local realItemInInventory = nil
+            for i = 0, DOTA_ITEM_INVENTORY_SIZE, 1 do
+              if(hero:GetItemInSlot(i) == itemInInventory) then
+                realItemInInventory = itemInInventory
+                break
+              end
+            end
+
+            if(realItemInInventory) then
+              -- There is some way to get respawn position using basic entities or whatever, but very unlikely respawn position will ever change so hard code it for now...
+              local fontainPosition = Vector(-14810.639648, 15134.875000, 128.000000)
+              local offset_y = math.random(65,125)
+              local offset_x = math.random(-75,75)
+              fontainPosition = fontainPosition+Vector(offset_x,-offset_y,0)
+              hero:DropItemAtPositionImmediate(realItemInInventory, fontainPosition)
+            end
+          end
+        end
+      end
+    end
+  end
+
+  -- Fix for bug: can't drop items from stash while dead/fake dead?
+  if(orderType == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH) then
+    local itemInStash = filterTable["entindex_ability"]
+    if(itemInStash ~= nil and itemInStash > -1) then
+      itemInStash = EntIndexToHScript(itemInStash)
+      if(itemInStash ~= nil) then
+        local hero = filterTable.units and filterTable.units["0"] or nil
+        if(hero ~= nil and hero > -1) then
+          hero = EntIndexToHScript(hero)
+          if(hero ~= nil and hero:IsRealHero()) then
+            local realItemInStash = nil
+            for i = DOTA_ITEM_STASH_MIN, DOTA_ITEM_STASH_MIN + DOTA_ITEM_STASH_SIZE, 1 do
+              if(hero:GetItemInSlot(i) == itemInStash) then
+                realItemInStash = itemInStash
+                break
+              end
+            end
+
+            if(realItemInStash) then
+              hero:EjectItemFromStash(realItemInStash)
+            end
+          end
+        end
+      end
+    end
+  end
+
+  -- Alt cast abilities support
   if(orderType == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
     if(filterTable["entindex_ability"]) then
       local ability = EntIndexToHScript(filterTable["entindex_ability"])
@@ -10191,11 +10250,13 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
     end
   end
 
+  -- Newbie help
 	if(orderType == DOTA_UNIT_ORDER_SELL_ITEM) then
     Notifications:Bottom(filterTable.issuer_player_id_const, {text="You can sell items only when they dropped by using menu at right side of your screen", duration=6, style={color="red"}})
     return false
 	end
 
+  -- Idk what is that and for what purpose this exists...
 	if ( orderType ~= DOTA_UNIT_ORDER_PICKUP_ITEM or filterTable["issuer_player_id_const"] == -1 ) then
 		return true
 	else
