@@ -20200,9 +20200,10 @@ function PassiveStatCalculation(event)
     local hero = event.caster
 
     --fix staying at 0 health
-    if hero:GetHealth() <= 0 then
-        hero:SetHealth(1) --might work
-    end
+    -- If this bug happens again better fix will be replace every SetHealth with wrapper for SetHealth that prevents 0 health heroes
+    --if hero:GetHealth() <= 0 then
+    --    hero:SetHealth(1) --might work
+    --end
 
     local updateEveryXSecs = 1
     local ability = event.ability
