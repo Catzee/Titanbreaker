@@ -25753,6 +25753,53 @@ function COverthrowGameMode:TryToggleStash(args)
     end
 end
 
+function COverthrowGameMode:TryPickupAllItems(args)
+    local playerId = args["player_id"]
+    local droppedItemsOnly = args["droppedonly"] == 1
+    local player = PlayerResource:GetPlayer(playerId)
+
+    if(player == nil) then
+        return
+    end
+    
+    local playerHero = player:GetAssignedHero()
+    if(playerHero == nil) then
+        return
+    end
+
+    local droppedItemsQuantity = GameRules:NumDroppedItems()
+    local currentIndex = 0
+    while(currentIndex < droppedItemsQuantity) do
+        local itemOnGround = GameRules:GetDroppedItem(currentIndex)
+        if(itemOnGround == nil) then
+            return
+        end
+
+        local item = itemOnGround:GetContainedItem()
+        if(item ~= nil and item:GetPurchaser() == playerHero) then
+            local moveItem = true
+            if(droppedItemsOnly) then
+                moveItem = item.isItemDroppedThisSession ~= nil
+            end
+
+            if(moveItem) then
+                local itemInInvetory = playerHero:AddItem(item)
+                if(itemInInvetory ~= nil) then
+                    local itemPosition = itemOnGround:GetAbsOrigin()
+                    local particle = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", PATTACH_CUSTOMORIGIN, nil)
+                    ParticleManager:SetParticleControl(particle, 0, itemPosition)
+                    ParticleManager:ReleaseParticleIndex(particle)
+                    EmitSoundOn("Item.GlimmerCape.Activate", itemOnGround)
+                    UTIL_RemoveImmediate(itemOnGround)
+                    currentIndex = currentIndex - 1
+                end
+            end
+        end
+        
+        currentIndex = currentIndex + 1
+    end
+end
+
 function SoulPact( event )
     local caster = event.caster
     local target = event.target

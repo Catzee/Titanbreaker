@@ -852,14 +852,6 @@
 						</Button>
 					</Panel>
 					<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-						<Button class="SellButton" onactivate="PickupAllItemsOnGround()" style="width: 100%;">	
-							<Panel  class="TableRow">
-								<Image class="ItemImage" style="width: 36px; height: 32px;" src="file://{images}/custom_game/teleport_all_items.png" />
-								<Label class="ButtTextBig" style="font-size: 18px; margin-left: 18px;" text="Pickup All Items"/>
-							</Panel>
-						</Button>
-					</Panel>
-					<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
 						<Button class="SellButton" onactivate="TeleporterMenu()" style="width: 100%;">	
 							<Panel  class="TableRow">
 								<Image class="ItemImage" src="file://{images}/spellicons/underlord2.png" style="width: 36px;" />
@@ -3512,10 +3504,18 @@
 		</Panel>
 		<Panel class="StashButtonsContainer" hittest="false" id="ToggleStash" style="z-index: -9000;">
 			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-				<Button class="SellButton" onactivate="ToggleStash(true)" oncontextmenu="ToggleStash(false)" style="width: 100%;">	
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(false)" style="width: 100%;">	
 					<Panel  class="TableRow">
-						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/toggle_stash_button.png" scaling="stretch"/>
-						<Label id="ToggleStashText" class="ButtTextBig" text="No Stash Unlocked" style="font-size: 16px;"/>
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items_with_stash.png" />
+						<Label class="ButtTextBig" style="font-size: 18px;" text="Pickup All Items"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items.png" />
+						<Label class="ButtTextBig" style="font-size: 18px;" text="Pickup Items"/>
 					</Panel>
 				</Button>
 			</Panel>
@@ -3524,6 +3524,14 @@
 					<Panel  class="TableRow">
 						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/move_to_stash_button.png" scaling="stretch"/>
 						<Label class="ButtTextBig" text="Move Item to Stash" style="font-size: 16px;"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="ToggleStash(true)" oncontextmenu="ToggleStash(false)" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/toggle_stash_button.png" scaling="stretch"/>
+						<Label id="ToggleStashText" class="ButtTextBig" text="No Stash Unlocked" style="font-size: 16px;"/>
 					</Panel>
 				</Button>
 			</Panel>

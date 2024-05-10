@@ -1914,8 +1914,8 @@ function AddItemToSellList(args)
     }
 }
 
-function PickupAllItemsOnGround(){
-    GameEvents.SendCustomGameEventToServer( "pickupallitems", { "player_id": Players.GetLocalPlayer() } );
+function PickupAllItemsOnGround(droppedOnly){
+    GameEvents.SendCustomGameEventToServer( "pickupallitems", { "player_id": Players.GetLocalPlayer(), "droppedonly": droppedOnly} );
 }
 
 function MoveItemToStash(args){
