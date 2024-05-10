@@ -10196,6 +10196,7 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
         end
       end
     end
+    return false
   end
 
   -- Fix for bug: can't drop items from stash while dead/fake dead?
@@ -10223,6 +10224,7 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
         end
       end
     end
+    return false
   end
 
   -- Alt cast abilities support
