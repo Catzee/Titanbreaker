@@ -8079,7 +8079,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_050_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Swipe of Ursa.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_050_stat1"  "Strength: "
 		"DOTA_Tooltip_ability_item_pathbuff_051"  "<font color=\"#ffd700\">[Divine] Mammoth Cuirass"
-		"DOTA_Tooltip_ability_item_pathbuff_051_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Steel Mammoth.</font>\nTotal Armor cap increased from 150 to 175."
+		"DOTA_Tooltip_ability_item_pathbuff_051_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Steel Mammoth.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_051_stat1"  "Primary Attribute: "
 		"DOTA_Tooltip_ability_item_pathbuff_051_stat2"  "Armor: "
 		"DOTA_Tooltip_ability_item_pathbuff_052"  "<font color=\"#ffd700\">[Divine] Assassin's Longbow"

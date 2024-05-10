@@ -18183,7 +18183,7 @@
 		}
 		"01"{
 			"var_type"      "FIELD_INTEGER"
-			"stat2"    "10"
+			"stat2"    "25"
 		}
 	}
 	"Modifiers"
