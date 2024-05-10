@@ -25725,27 +25725,31 @@ function ClearItemsInStash( hero )
     end
 end
 
-function ToggleStash( hero )
+function ToggleStash( hero, isForward )
     if hero.bought_stash_count and hero.current_stash_id then
         SaveCurrentStashItemsToStashTable( hero, hero.current_stash_id )
-        hero.current_stash_id = hero.current_stash_id + 1
+        if(isForward) then
+            hero.current_stash_id = hero.current_stash_id + 1
+        else
+            hero.current_stash_id = hero.current_stash_id - 1
+        end
         if hero.current_stash_id > hero.bought_stash_count then
             hero.current_stash_id = 1
+        end
+        if hero.current_stash_id <= 0 then
+            hero.current_stash_id = hero.bought_stash_count
         end
         LoadStashTableItemsIntoStash( hero, hero.current_stash_id )
     end
 end
 
-function TryToggleStash(event, args)
+function COverthrowGameMode:TryToggleStash(args)
+    local isForward = args["forward"] == 1
     local player = PlayerResource:GetPlayer(args['nr'])
     local hero = player:GetAssignedHero()
     if hero and hero.auto_loaded and hero.bought_stash_count and hero.bought_stash_count > 1 and player then
-        ToggleStash( hero )
-        local text = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]"
-        if not hero.premium then
-            text = "Stash not unlocked";
-        end
-        CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = text})
+        ToggleStash( hero, isForward)
+        COverthrowGameMode:SendStashInfo(player)
     end
 end
 

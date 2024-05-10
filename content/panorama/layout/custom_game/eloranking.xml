@@ -852,10 +852,10 @@
 						</Button>
 					</Panel>
 					<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-						<Button class="SellButton" onactivate="MoveItemToStash(1)" style="width: 100%;">	
+						<Button class="SellButton" onactivate="PickupAllItemsOnGround()" style="width: 100%;">	
 							<Panel  class="TableRow">
-								<Image class="ItemImage" src="file://{images}/items/mount_standard.png" />
-								<Label class="ButtTextBig" text="Move Item to Stash" style="font-size: 16px;"/>
+								<Image class="ItemImage" style="width: 36px; height: 32px;" src="file://{images}/custom_game/teleport_all_items.png" />
+								<Label class="ButtTextBig" style="font-size: 18px; margin-left: 18px;" text="Pickup All Items"/>
 							</Panel>
 						</Button>
 					</Panel>
@@ -3510,10 +3510,23 @@
 				</Panel>
 			<!--/Panel-->
 		</Panel>
-		<Panel class="ToggleStashClass" hittest="false" id="ToggleStash" style="z-index: -9000;">
-			<Button id="ToggleStashButton" class="Butt" onactivate="ToggleStash()">	
-				<Label class="ButtText" id="ToggleStashText" text="No Stash Unlocked" />			
-			</Button>
+		<Panel class="StashButtonsContainer" hittest="false" id="ToggleStash" style="z-index: -9000;">
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="ToggleStash(true)" oncontextmenu="ToggleStash(false)" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/toggle_stash_button.png" scaling="stretch"/>
+						<Label id="ToggleStashText" class="ButtTextBig" text="No Stash Unlocked" style="font-size: 16px;"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="MoveItemToStash(1)" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/move_to_stash_button.png" scaling="stretch"/>
+						<Label class="ButtTextBig" text="Move Item to Stash" style="font-size: 16px;"/>
+					</Panel>
+				</Button>
+			</Panel>
 		</Panel>
 		<Panel class="GoldUIClass" hittest="false" style="width: 160px; height: 50px; z-index: -9000;">
 			<Label class="ButtText" id="ui_gold" text="Gold" style="color:gold; font-size: 24px;" />			

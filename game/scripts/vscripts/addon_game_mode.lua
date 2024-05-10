@@ -2557,7 +2557,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "recover_artifact", RecoverLastReplacedArtifact )
       CustomGameEventManager:RegisterListener( "savecharsuccess", SaveCharSuccessNotification )
       CustomGameEventManager:RegisterListener( "setautosell", SetAutoSell )
-      CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
+      CustomGameEventManager:RegisterListener( "toggle_stash", Dynamic_Wrap( COverthrowGameMode, 'TryToggleStash' ) )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
       CustomGameEventManager:RegisterListener( "playerconnected", Dynamic_Wrap( COverthrowGameMode, 'OnPlayerConnected' ) )
@@ -2690,10 +2690,26 @@ function COverthrowGameMode:OnPlayerConnected(params)
     SendAutoSell(player)
     -- Restore talents data for that client
     SendAllTalentsToPlayer(player, playerId)
+    -- Restory toggle stash button
+    COverthrowGameMode:SendStashInfo(player)
 
     -- Allows next reconnect requests spam
     COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
   end)
+end
+
+function COverthrowGameMode:SendStashInfo(player)
+  local hero = player:GetAssignedHero()
+
+  if(hero == nil) then
+    return
+  end
+
+  if hero.premium and hero.premium >= 6 then
+    CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]"})
+  else
+    CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Stash not unlocked"})
+  end
 end
 
 function RemoveAllCosmetics( hero )
@@ -14229,7 +14245,7 @@ if data[bankindex] then
   hero.premium = bank_slots
   hero.bought_stash_count = math.floor(bank_slots / 6)
   hero.current_stash_id = 1
-  CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]";})
+  COverthrowGameMode:SendStashInfo(player)
   print("stash check 3 " .. hero.bought_stash_count)
 else
   bank_slots = 6

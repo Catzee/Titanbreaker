@@ -239,8 +239,8 @@ function TeleporterPressed(tp){
     GameEvents.SendCustomGameEventToServer( "tp_pressed", { "player_id": Players.GetLocalPlayer(), "tp": tp } );
 }
 
-function ToggleStash(){
-    GameEvents.SendCustomGameEventToServer( "toggle_stash", { "nr": Players.GetLocalPlayer() } );
+function ToggleStash(isForward){
+    GameEvents.SendCustomGameEventToServer( "toggle_stash", { "nr": Players.GetLocalPlayer(), "forward": isForward } );
 }
 
 function SetStashToggleNumber(args){
@@ -1912,6 +1912,10 @@ function AddItemToSellList(args)
         image.SetImage(im);
         */
     }
+}
+
+function PickupAllItemsOnGround(){
+    GameEvents.SendCustomGameEventToServer( "pickupallitems", { "player_id": Players.GetLocalPlayer() } );
 }
 
 function MoveItemToStash(args){
