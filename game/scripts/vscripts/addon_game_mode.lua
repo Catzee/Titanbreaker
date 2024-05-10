@@ -2551,7 +2551,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "request_droptable", EventRequestDropTable )
       CustomGameEventManager:RegisterListener( "tp_pressed", TempleTeleportFromMenu )
       CustomGameEventManager:RegisterListener( "save_pressed", SavePressed )
-      CustomGameEventManager:RegisterListener( "moveitemtostash", MoveToStash )
+      CustomGameEventManager:RegisterListener( "moveitemtostash", Dynamic_Wrap( COverthrowGameMode, 'MoveToStash' ) )
       CustomGameEventManager:RegisterListener( "buynormalitem", BuyNormalItem )
       CustomGameEventManager:RegisterListener( "recover_artifact", RecoverLastReplacedArtifact )
       CustomGameEventManager:RegisterListener( "savecharsuccess", SaveCharSuccessNotification )
@@ -17497,10 +17497,10 @@ function TempleShadowLinkTick(event)
  end
 end
 
-function MoveToStash(event, args)
+function COverthrowGameMode:MoveToStash(args)
   local player = PlayerResource:GetPlayer(args['player_id'])
   local hero = player:GetAssignedHero()
-  if hero and hero:IsHero() and hero:IsAlive() and GetNumberItemsInStash(hero) < 6 then
+  if hero and hero:IsHero() and GetNumberItemsInStash(hero) < 6 then
     local item = hero:GetItemInSlot(0)
     if item and not item:IsNull() and not item:IsMuted() then
       --inventory gets filled first, then backpack, then stash
@@ -17526,7 +17526,7 @@ function MoveToStash(event, args)
       Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! No Item in your top left Item slot or Item does not belong to you!", duration=6, style={color="red"}})
     end
   else
-    Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! Hero dead or Stash full!", duration=6, style={color="red"}})
+    Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! Stash is full!", duration=6, style={color="red"}})
   end
 end
 
