@@ -3544,8 +3544,8 @@
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
 			<Panel class="AutoSellFiltersButton">
-				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()">	
-					<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Show Auto Sell Filters" onmouseover="DOTAShowTextTooltip('Lets you define auto sell for items that you don\'t need anymore. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()"/>			
+				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()" onmouseover="DOTAShowTextTooltip('Lets you define auto sell for items that you don\'t need anymore. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()">	
+					<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Show Auto Sell Filters"/>			
 				</Button>
 			</Panel>
 			<Panel id="AutoSellFiltersContainer" style="visibility: collapse;">
