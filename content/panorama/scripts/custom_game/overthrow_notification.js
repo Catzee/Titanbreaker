@@ -39,7 +39,7 @@ function ClearItemSpawnMessage()
 //==============================================================
 function OnItemDrop( msg )
 {
-	$.Msg( "recent_item_drop: ", msg );
+	//$.Msg( "recent_item_drop: ", msg );
 
 	$.GetContextPanel().SetHasClass( "recent_item_drop", true );
 
