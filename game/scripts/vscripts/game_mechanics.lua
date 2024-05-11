@@ -20279,7 +20279,7 @@ function PassiveStatCalculation(event)
     --hero:RemoveModifierByName("modifier_agi_custom")
     hero:RemoveModifierByName("modifier_agi_custom_penalty")
     hero:RemoveModifierByName("modifier_str_custom_penalty")
-    hero:RemoveModifierByName("modifier_armor_custom_penalty")
+    --hero:RemoveModifierByName("modifier_armor_custom_penalty")
     --hero:RemoveModifierByName("modifier_dmg_from_primary")
     --hero:RemoveModifierByName("modifier_aa_from_abi")
     local system_aacrit_stacks = 0
@@ -20930,15 +20930,15 @@ function PassiveStatCalculation(event)
     realBaseStatsToApply[AA] = realBaseStats[AA] - hero:GetAttackDamage()
 
     --armor cap 150
-    local armorCap = 150
-    if hero:HasModifier("modifier_pathbuff_051") then
-        armorCap = 175
-    end
-    if realBaseStats[ARM] > armorCap then
-        local buff = "modifier_armor_custom_penalty"
-        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-        hero:SetModifierStackCount(buff, ability, realBaseStats[ARM] - armorCap)
-    end
+    --local armorCap = 150
+    --if hero:HasModifier("modifier_pathbuff_051") then
+    --    armorCap = 175
+    --end
+    --if realBaseStats[ARM] > armorCap then
+    --    local buff = "modifier_armor_custom_penalty"
+    --    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+    --    hero:SetModifierStackCount(buff, ability, realBaseStats[ARM] - armorCap)
+    --end
 
     --now we have calculated all basic stats, lets apply them!
     for i = 4, totalAttributes do --str int agi already applied
