@@ -239,8 +239,8 @@ function TeleporterPressed(tp){
     GameEvents.SendCustomGameEventToServer( "tp_pressed", { "player_id": Players.GetLocalPlayer(), "tp": tp } );
 }
 
-function ToggleStash(){
-    GameEvents.SendCustomGameEventToServer( "toggle_stash", { "nr": Players.GetLocalPlayer() } );
+function ToggleStash(isForward){
+    GameEvents.SendCustomGameEventToServer( "toggle_stash", { "nr": Players.GetLocalPlayer(), "forward": isForward } );
 }
 
 function SetStashToggleNumber(args){
@@ -1914,6 +1914,10 @@ function AddItemToSellList(args)
     }
 }
 
+function PickupAllItemsOnGround(droppedOnly){
+    GameEvents.SendCustomGameEventToServer( "pickupallitems", { "player_id": Players.GetLocalPlayer(), "droppedonly": droppedOnly} );
+}
+
 function MoveItemToStash(args){
     GameEvents.SendCustomGameEventToServer( "moveitemtostash", { "player_id": Players.GetLocalPlayer() } );
 }
@@ -3368,7 +3372,17 @@ function SetAutoSellSoulsText(autosellSouls)
 function ToggleAutoSellFiltersVisibility()
 {
     let autoSellFiltersContainer = $("#AutoSellFiltersContainer");
-    autoSellFiltersContainer.style.visibility = autoSellFiltersContainer.style.visibility == "collapse" ? "visible" : "collapse";
+    let autoSellButtonLabel = $("#ShowAutoSellFiltersButtonLabel");
+    let isHidden = autoSellFiltersContainer.style.visibility == "collapse";
+
+    if(isHidden) {
+        autoSellButtonLabel.text = "Hide Auto Sell Filters";
+        autoSellFiltersContainer.style.visibility = "visible";
+    } else
+    {
+        autoSellButtonLabel.text = "Show Auto Sell Filters";
+        autoSellFiltersContainer.style.visibility = "collapse";
+    }
 }
 
 function TalentPressed(args){

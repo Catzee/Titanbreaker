@@ -852,14 +852,6 @@
 						</Button>
 					</Panel>
 					<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-						<Button class="SellButton" onactivate="MoveItemToStash(1)" style="width: 100%;">	
-							<Panel  class="TableRow">
-								<Image class="ItemImage" src="file://{images}/items/mount_standard.png" />
-								<Label class="ButtTextBig" text="Move Item to Stash" style="font-size: 16px;"/>
-							</Panel>
-						</Button>
-					</Panel>
-					<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
 						<Button class="SellButton" onactivate="TeleporterMenu()" style="width: 100%;">	
 							<Panel  class="TableRow">
 								<Image class="ItemImage" src="file://{images}/spellicons/underlord2.png" style="width: 36px;" />
@@ -3510,10 +3502,39 @@
 				</Panel>
 			<!--/Panel-->
 		</Panel>
-		<Panel class="ToggleStashClass" hittest="false" id="ToggleStash" style="z-index: -9000;">
-			<Button id="ToggleStashButton" class="Butt" onactivate="ToggleStash()">	
-				<Label class="ButtText" id="ToggleStashText" text="No Stash Unlocked" />			
-			</Button>
+		<Panel class="StashButtonsContainer" hittest="false" id="ToggleStash" style="z-index: -9000;">
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(false)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items_with_stash.png" />
+						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up All Items"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground that dropped in current game and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items.png" />
+						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up Items"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="MoveItemToStash(1)" style="width: 100%;" onmouseover="DOTAShowTextTooltip('Moves item from first (top left) item slot into stash')" onmouseout="DOTAHideTextTooltip()">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/move_to_stash_button.png" scaling="stretch"/>
+						<Label class="ButtTextBig" text="Move Item to Stash" style="font-size: 16px;"/>
+					</Panel>
+				</Button>
+			</Panel>
+			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
+				<Button class="SellButton" onactivate="ToggleStash(true)" oncontextmenu="ToggleStash(false)" onmouseover="DOTAShowTextTooltip('Swaps current active stash. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
+					<Panel  class="TableRow">
+						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/toggle_stash_button.png" scaling="stretch"/>
+						<Label id="ToggleStashText" class="ButtTextBig" text="No Stash Unlocked" style="font-size: 16px;"/>
+					</Panel>
+				</Button>
+			</Panel>
 		</Panel>
 		<Panel class="GoldUIClass" hittest="false" style="width: 160px; height: 50px; z-index: -9000;">
 			<Label class="ButtText" id="ui_gold" text="Gold" style="color:gold; font-size: 24px;" />			
@@ -3523,8 +3544,8 @@
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
 			<Panel class="AutoSellFiltersButton">
-				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()">	
-					<Label class="ButtText" text="Show Auto Sell Filters" />			
+				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()" onmouseover="DOTAShowTextTooltip('Lets you define auto sell for items that you don\'t need anymore. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()">	
+					<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Show Auto Sell Filters"/>			
 				</Button>
 			</Panel>
 			<Panel id="AutoSellFiltersContainer" style="visibility: collapse;">

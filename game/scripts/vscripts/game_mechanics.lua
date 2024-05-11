@@ -20200,9 +20200,10 @@ function PassiveStatCalculation(event)
     local hero = event.caster
 
     --fix staying at 0 health
-    if hero:GetHealth() <= 0 then
-        hero:SetHealth(1) --might work
-    end
+    -- If this bug happens again better fix will be replace every SetHealth with wrapper for SetHealth that prevents 0 health heroes
+    --if hero:GetHealth() <= 0 then
+    --    hero:SetHealth(1) --might work
+    --end
 
     local updateEveryXSecs = 1
     local ability = event.ability
@@ -25725,27 +25726,90 @@ function ClearItemsInStash( hero )
     end
 end
 
-function ToggleStash( hero )
+function ToggleStash( hero, isForward )
     if hero.bought_stash_count and hero.current_stash_id then
         SaveCurrentStashItemsToStashTable( hero, hero.current_stash_id )
-        hero.current_stash_id = hero.current_stash_id + 1
+        if(isForward) then
+            hero.current_stash_id = hero.current_stash_id + 1
+        else
+            hero.current_stash_id = hero.current_stash_id - 1
+        end
         if hero.current_stash_id > hero.bought_stash_count then
             hero.current_stash_id = 1
+        end
+        if hero.current_stash_id <= 0 then
+            hero.current_stash_id = hero.bought_stash_count
         end
         LoadStashTableItemsIntoStash( hero, hero.current_stash_id )
     end
 end
 
-function TryToggleStash(event, args)
+function COverthrowGameMode:TryToggleStash(args)
+    local isForward = args["forward"] == 1
     local player = PlayerResource:GetPlayer(args['nr'])
     local hero = player:GetAssignedHero()
     if hero and hero.auto_loaded and hero.bought_stash_count and hero.bought_stash_count > 1 and player then
-        ToggleStash( hero )
-        local text = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]"
-        if not hero.premium then
-            text = "Stash not unlocked";
+        ToggleStash( hero, isForward)
+        COverthrowGameMode:SendStashInfo(player)
+    end
+end
+
+function COverthrowGameMode:TryPickupAllItems(args)
+    local playerId = args["player_id"]
+    local droppedItemsOnly = args["droppedonly"] == 1
+    local player = PlayerResource:GetPlayer(playerId)
+
+    if(player == nil) then
+        return
+    end
+    
+    local playerHero = player:GetAssignedHero()
+    if(playerHero == nil) then
+        return
+    end
+
+    COverthrowGameMode._pickAllItemsCd = COverthrowGameMode._pickAllItemsCd or {}
+
+    if(COverthrowGameMode._pickAllItemsCd[playerId] ~= nil) then
+        Notifications:Top(playerId, {text="You must wait at least 5 seconds before trying picking up items again!", duration=6, style={color="red"}})
+    end
+
+    COverthrowGameMode._pickAllItemsCd[playerId] = true
+
+    Timers:CreateTimer(5, function()
+        COverthrowGameMode._pickAllItemsCd[playerId] = nil
+    end)
+
+    local droppedItemsQuantity = GameRules:NumDroppedItems()
+    local currentIndex = 0
+    while(currentIndex < droppedItemsQuantity) do
+        local itemOnGround = GameRules:GetDroppedItem(currentIndex)
+        if(itemOnGround == nil) then
+            return
         end
-        CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = text})
+
+        local item = itemOnGround:GetContainedItem()
+        if(item ~= nil and item:GetPurchaser() == playerHero) then
+            local moveItem = true
+            if(droppedItemsOnly) then
+                moveItem = item.isItemDroppedThisSession ~= nil
+            end
+
+            if(moveItem) then
+                local itemInInvetory = playerHero:AddItem(item)
+                if(itemInInvetory ~= nil) then
+                    local itemPosition = itemOnGround:GetAbsOrigin()
+                    local particle = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", PATTACH_CUSTOMORIGIN, nil)
+                    ParticleManager:SetParticleControl(particle, 0, itemPosition)
+                    ParticleManager:ReleaseParticleIndex(particle)
+                    EmitSoundOn("Item.GlimmerCape.Activate", itemOnGround)
+                    UTIL_RemoveImmediate(itemOnGround)
+                    currentIndex = currentIndex - 1
+                end
+            end
+        end
+        
+        currentIndex = currentIndex + 1
     end
 end
 

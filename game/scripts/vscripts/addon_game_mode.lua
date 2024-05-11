@@ -6,7 +6,6 @@ Overthrow Game Mode
 _G.nNEUTRAL_TEAM = 4
 _G.nCOUNTDOWNTIMER = 3901
 
-
 ---------------------------------------------------------------------------
 -- COverthrowGameMode class
 ---------------------------------------------------------------------------
@@ -2553,17 +2552,18 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "request_droptable", EventRequestDropTable )
       CustomGameEventManager:RegisterListener( "tp_pressed", TempleTeleportFromMenu )
       CustomGameEventManager:RegisterListener( "save_pressed", SavePressed )
-      CustomGameEventManager:RegisterListener( "moveitemtostash", MoveToStash )
+      CustomGameEventManager:RegisterListener( "moveitemtostash", Dynamic_Wrap( COverthrowGameMode, 'MoveToStash' ) )
       CustomGameEventManager:RegisterListener( "buynormalitem", BuyNormalItem )
       CustomGameEventManager:RegisterListener( "recover_artifact", RecoverLastReplacedArtifact )
       CustomGameEventManager:RegisterListener( "savecharsuccess", SaveCharSuccessNotification )
       CustomGameEventManager:RegisterListener( "setautosell", SetAutoSell )
-      CustomGameEventManager:RegisterListener( "toggle_stash", TryToggleStash )
+      CustomGameEventManager:RegisterListener( "toggle_stash", Dynamic_Wrap( COverthrowGameMode, 'TryToggleStash' ) )
       CustomGameEventManager:RegisterListener( "togglepathword", TogglePathWord )
       CustomGameEventManager:RegisterListener( "temple_difficulty_mode_change", TempleDifficultyModeChange )
       CustomGameEventManager:RegisterListener( "playerconnected", Dynamic_Wrap( COverthrowGameMode, 'OnPlayerConnected' ) )
       CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
-      
+      CustomGameEventManager:RegisterListener( "pickupallitems", Dynamic_Wrap( COverthrowGameMode, 'TryPickupAllItems' ) )
+
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
 
@@ -2691,10 +2691,26 @@ function COverthrowGameMode:OnPlayerConnected(params)
     SendAutoSell(player)
     -- Restore talents data for that client
     SendAllTalentsToPlayer(player, playerId)
+    -- Restore toggle stash button
+    COverthrowGameMode:SendStashInfo(player)
 
     -- Allows next reconnect requests spam
     COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
   end)
+end
+
+function COverthrowGameMode:SendStashInfo(player)
+  local hero = player:GetAssignedHero()
+
+  if(hero == nil) then
+    return
+  end
+
+  if hero.premium and hero.premium >= 6 then
+    CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]"})
+  else
+    CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Stash not unlocked"})
+  end
 end
 
 function RemoveAllCosmetics( hero )
@@ -10151,6 +10167,68 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 
 	local orderType = filterTable["order_type"]
 
+  -- Fix for bug: can't drop items from inventory to village while dead/fake dead?
+  if(orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN) then
+    local itemInInventory = filterTable["entindex_ability"]
+    if(itemInInventory ~= nil and itemInInventory > -1) then
+      itemInInventory = EntIndexToHScript(itemInInventory)
+      if(itemInInventory ~= nil) then
+        local hero = filterTable.units and filterTable.units["0"] or nil
+        if(hero ~= nil and hero > -1) then
+          hero = EntIndexToHScript(hero)
+          if(hero ~= nil and hero:IsRealHero()) then
+            local realItemInInventory = nil
+            for i = 0, DOTA_ITEM_INVENTORY_SIZE, 1 do
+              if(hero:GetItemInSlot(i) == itemInInventory) then
+                realItemInInventory = itemInInventory
+                break
+              end
+            end
+
+            if(realItemInInventory) then
+              -- There is some way to get respawn position using basic entities or whatever, but very unlikely respawn position will ever change so hard code it for now...
+              local fontainPosition = Vector(-14810.639648, 15134.875000, 128.000000)
+              local offset_y = math.random(65,125)
+              local offset_x = math.random(-75,75)
+              fontainPosition = fontainPosition+Vector(offset_x,-offset_y,0)
+              hero:DropItemAtPositionImmediate(realItemInInventory, fontainPosition)
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  -- Fix for bug: can't drop items from stash while dead/fake dead?
+  if(orderType == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH) then
+    local itemInStash = filterTable["entindex_ability"]
+    if(itemInStash ~= nil and itemInStash > -1) then
+      itemInStash = EntIndexToHScript(itemInStash)
+      if(itemInStash ~= nil) then
+        local hero = filterTable.units and filterTable.units["0"] or nil
+        if(hero ~= nil and hero > -1) then
+          hero = EntIndexToHScript(hero)
+          if(hero ~= nil and hero:IsRealHero()) then
+            local realItemInStash = nil
+            for i = DOTA_ITEM_STASH_MIN, DOTA_ITEM_STASH_MIN + DOTA_ITEM_STASH_SIZE, 1 do
+              if(hero:GetItemInSlot(i) == itemInStash) then
+                realItemInStash = itemInStash
+                break
+              end
+            end
+
+            if(realItemInStash) then
+              hero:EjectItemFromStash(realItemInStash)
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  -- Alt cast abilities support
   if(orderType == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
     if(filterTable["entindex_ability"]) then
       local ability = EntIndexToHScript(filterTable["entindex_ability"])
@@ -10175,6 +10253,13 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
     end
   end
 
+  -- Newbie help
+	if(orderType == DOTA_UNIT_ORDER_SELL_ITEM) then
+    Notifications:Bottom(filterTable.issuer_player_id_const, {text="You can sell items only when they dropped by using menu at right side of your screen", duration=6, style={color="red"}})
+    return false
+	end
+
+  -- Idk what is that and for what purpose this exists...
 	if ( orderType ~= DOTA_UNIT_ORDER_PICKUP_ITEM or filterTable["issuer_player_id_const"] == -1 ) then
 		return true
 	else
@@ -14238,7 +14323,7 @@ if data[bankindex] then
   hero.premium = bank_slots
   hero.bought_stash_count = math.floor(bank_slots / 6)
   hero.current_stash_id = 1
-  CustomGameEventManager:Send_ServerToPlayer(player, "toggle_stash_set_number", {nr = "Toggle Stash: [" .. hero.current_stash_id .. "/" .. hero.bought_stash_count .. "]";})
+  COverthrowGameMode:SendStashInfo(player)
   print("stash check 3 " .. hero.bought_stash_count)
 else
   bank_slots = 6
@@ -17421,10 +17506,10 @@ function TempleShadowLinkTick(event)
  end
 end
 
-function MoveToStash(event, args)
+function COverthrowGameMode:MoveToStash(args)
   local player = PlayerResource:GetPlayer(args['player_id'])
   local hero = player:GetAssignedHero()
-  if hero and hero:IsHero() and hero:IsAlive() and GetNumberItemsInStash(hero) < 6 then
+  if hero and hero:IsHero() and GetNumberItemsInStash(hero) < 6 then
     local item = hero:GetItemInSlot(0)
     if item and not item:IsNull() and not item:IsMuted() then
       --inventory gets filled first, then backpack, then stash
@@ -17450,7 +17535,7 @@ function MoveToStash(event, args)
       Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! No Item in your top left Item slot or Item does not belong to you!", duration=6, style={color="red"}})
     end
   else
-    Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! Hero dead or Stash full!", duration=6, style={color="red"}})
+    Notifications:Top(hero:GetPlayerID(), {text="Couldn't move Item! Stash is full!", duration=6, style={color="red"}})
   end
 end
 

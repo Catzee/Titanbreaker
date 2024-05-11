@@ -34,12 +34,13 @@
 	margin-right: 4px;
 }
 
-.ToggleStashClass
+.StashButtonsContainer
 {
+	min-width: 200px;
 	flow-children: down;
 	vertical-align: bottom;
    	horizontal-align: right;
-	margin-bottom: 300px;
+	margin-bottom: 240px;
 	margin-left: 4px;
 	margin-top: 20px;
 	margin-right: 4px;
@@ -47,7 +48,6 @@
     border-style: solid;
     border-width: 2px;
     border-color: grey;
-    border-radius: 10px;
 }
 
 .GoldUIClass

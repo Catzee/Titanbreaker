@@ -7371,6 +7371,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						        	-- normal item drop, not artifact
 							        if all[i]:GetNumItemsInInventory() >= 6 then --and all[i]:GetNumItemsInStash() >= 6 then
 							        	item = CreateItem(spawnedItem, hero, hero)
+							        	item.isItemDroppedThisSession = true
 							        	local item2 = CreateItemOnPositionSync(spot, item)
 							        	local particle3 = ParticleManager:CreateParticle( "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_CUSTOMORIGIN, hero)
 										ParticleManager:SetParticleControl(particle3, 1, spot)
