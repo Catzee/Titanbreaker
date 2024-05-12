@@ -86669,6 +86669,12 @@
 		        		"Function"		"AddAbilityToUnit"
 		        		"abil"	"pve_temple_heal_aura"
 		        	}
+		        	"RunScript"
+		        	{
+		        		"ScriptFile"	"game_mechanics.lua"
+		        		"Function"		"AddAbilityToUnit"
+		        		"abil"			"pveboss_system"
+		        	}
 					"RunScript"
 					{
 					    "ScriptFile"    "addon_game_mode.lua"
