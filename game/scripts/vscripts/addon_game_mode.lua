@@ -1303,7 +1303,8 @@ function Precache( context )
             PrecacheResource( "model", "models/items/phantom_assassin/creeping_shadow_head/creeping_shadow_head.vmdl", context )
             PrecacheResource( "model", "models/items/visage/bound_of_the_soul_keeper_familiar/bound_of_the_soul_keeper_familiar.vmdl", context )
             
-            
+            -- Pick up all items particle
+            PrecacheResource( "particle", "particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", context )
           end
 
         end
