@@ -5950,7 +5950,7 @@ function COverthrowGameMode:OnThink()
               if not self.gold_quest_completed and self.main_quests_completed and self.main_quests_completed >= 5 then
                 self.gold_quest_completed = true
                 Timers:CreateTimer(20.0,function()
-                  local gold_drop = 25 * self.jungledifficulty
+                  local gold_drop = 50 * self.jungledifficulty
                   --EmitGlobalSound("abaddon_abad_lasthit_07")
                   EmitGlobalSound("DOTA_Item.Hand_Of_Midas")
                   Notifications:BottomToAll({text="Quest completed: Half way there", duration=12, style={color="lightgreen"}})
@@ -5971,7 +5971,7 @@ function COverthrowGameMode:OnThink()
               if not self.gold_quest_completed_2 and self.main_quests_completed and self.main_quests_completed >= 9 then
                 self.gold_quest_completed_2 = true
                 Timers:CreateTimer(20.0,function()
-                  local gold_drop = 50 * self.jungledifficulty
+                  local gold_drop = 100 * self.jungledifficulty
                   --EmitGlobalSound("abaddon_abad_lasthit_07")
                   EmitGlobalSound("DOTA_Item.Hand_Of_Midas")
                   Notifications:BottomToAll({text="Quest completed: Almost there!", duration=12, style={color="lightgreen"}})
@@ -8879,7 +8879,7 @@ end
       end
     end
     if unit.loot_goblin_gold_drop then
-      AddGoldToAllPlayers(math.random(5,25)*COverthrowGameMode.jungledifficulty)
+      AddGoldToAllPlayers(math.random(25,50)*COverthrowGameMode.jungledifficulty)
     end
     if unit.loot_hoarder_on_death_chance and math.random(1,100) <= unit.loot_hoarder_on_death_chance then
       COverthrowGameMode:SpawnTreasureChest(unit:GetAbsOrigin(), 99)
