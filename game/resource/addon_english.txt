@@ -8451,27 +8451,27 @@
 
 		//version 5.1
 		"DOTA_Tooltip_ability_item_cd_65"                                                 "<font color=\"#ff8c00\">[Ancient] Book of Time"
-		"DOTA_Tooltip_ability_item_cd_65_Description"                                     "When you cast your 6th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 5th Ability."
+		"DOTA_Tooltip_ability_item_cd_65_Description"                                     "When you cast your 6th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 5th Ability."
 		"DOTA_Tooltip_ability_item_cd_65_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cd_65_2"                                                 "<font color=\"#ffd700\">[Divine] Bible of Time"
-		"DOTA_Tooltip_ability_item_cd_65_2_Description"                                     "When you cast your 6th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 5th Ability."
+		"DOTA_Tooltip_ability_item_cd_65_2_Description"                                     "When you cast your 6th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 5th Ability."
 		"DOTA_Tooltip_ability_item_cd_65_2_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cd_54"                                                 "<font color=\"#ff8c00\">[Ancient] Age Breaker"
-		"DOTA_Tooltip_ability_item_cd_54_Description"                                     "When you cast your 5th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 4th Ability."
+		"DOTA_Tooltip_ability_item_cd_54_Description"                                     "When you cast your 5th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 4th Ability."
 		"DOTA_Tooltip_ability_item_cd_54_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cd_54_2"                                                 "<font color=\"#ffd700\">[Divine] Timebreaker"
-		"DOTA_Tooltip_ability_item_cd_54_2_Description"                                     "When you cast your 5th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 4th Ability."
+		"DOTA_Tooltip_ability_item_cd_54_2_Description"                                     "When you cast your 5th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 4th Ability."
 		"DOTA_Tooltip_ability_item_cd_54_2_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cd_43"                                                 "<font color=\"#ff8c00\">[Ancient] Sundown Amulet"
-		"DOTA_Tooltip_ability_item_cd_43_Description"                                     "When you cast your 4th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 3rd Ability."
+		"DOTA_Tooltip_ability_item_cd_43_Description"                                     "When you cast your 4th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 3rd Ability."
 		"DOTA_Tooltip_ability_item_cd_43_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cd_43_2"                                                 "<font color=\"#ffd700\">[Divine] Moonshine Amulet"
-		"DOTA_Tooltip_ability_item_cd_43_2_Description"                                     "When you cast your 4th Ability and it has a cooldown of atleast 30 secs, half the remaining cooldown of your 3rd Ability."
+		"DOTA_Tooltip_ability_item_cd_43_2_Description"                                     "When you cast your 4th Ability and it has a base cooldown of atleast 30 secs, half the remaining cooldown of your 3rd Ability."
 		"DOTA_Tooltip_ability_item_cd_43_2_bonus_stat1"                                     "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_cleavemace"                                            "<font color=\"#ff8c00\">[Ancient] Devastator"
