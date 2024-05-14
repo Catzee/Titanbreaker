@@ -1588,7 +1588,7 @@
 		"DOTA_Tooltip_Ability_shadow1_spelldmg"    "%Spellpower Factor:" 
 		"DOTA_Tooltip_Ability_shadow1_slow"    "%Slow:" 
 		"DOTA_Tooltip_Ability_shadow1_slowdur"    "Slow Duration:"
-		"DOTA_Tooltip_Ability_shadow1_shadow_orbs_chance"    "%Shadow Sphere chance:"
+		"DOTA_Tooltip_Ability_shadow1_shadow_orbs_chance"    "%Shadow Sphere Chance:"
 		
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender"    "Mindbender"
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender_Description"    "Shadow Damage increased."
