@@ -1822,7 +1822,7 @@ function AddItemToSellList(args)
         
 
         title.html = true;
-        title.text = ""; //$.Localize( "DOTA_Tooltip_ability_".concat(args.itemname));
+        title.text = $.Localize( "#DOTA_Tooltip_ability_".concat(args.itemname));
         //title.fontWeight = "1800";
         title.hittest = false;
         title.style.horizontalAlign = "center";
