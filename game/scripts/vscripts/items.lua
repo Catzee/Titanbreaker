@@ -7303,10 +7303,9 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 
 						--autosell feature
 						local isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
-						
 						if hero and isAutoSell then
 							itemdrop = false
-							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, false)
+							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, artifact)
 						end
 
 						--boss kill, update kill stats, update quests,  heal and screen sparks
@@ -7473,7 +7472,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, true, false)
 									if(drop_type == 1) then
 										if(isAutoSell) then
-											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, false)
+											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, true)
 										else
 											self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
 										end
@@ -7606,10 +7605,10 @@ function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedIt
 end
 
 function COverthrowGameMode:AutoSellTempleItem(hero, lootQuality, isArtifact)
-	local gold = GetSellValueByItemLevel(lootquality)
+	local gold = GetSellValueByItemLevel(lootQuality)
 
 	if(isArtifact) then
-		gold = GetSellValueByArtifactLevel(lootquality)
+		gold = GetSellValueByArtifactLevel(lootQuality)
 	end
 
 	EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
