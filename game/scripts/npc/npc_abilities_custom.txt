@@ -33776,7 +33776,8 @@
 
 	"shadow1"
 	{
-	    "BaseClass" "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/shadow_cleric/mindstorm"
 	    "AbilityTextureName" "fix/mindblast4"
 	    "MaxLevel" "7"
 
@@ -33784,14 +33785,11 @@
 	    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-	    //"AbilityCastAnimation" "ACT_DOTA_ATTACK"
 
 	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	    "MaxLevel"               "4"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
-
-	    "AbilityCastAnimation"   "ACT_DOTA_IDLE"
 
 	    "AbilityCastRange" "600"
 	    "AbilityCastRangeBuffer"  "400"
@@ -33802,401 +33800,93 @@
 	    "AbilityChannelTime" "3.0"
 	    "AbilityDamage"           "0"
 
-	    "precache"
-	    {
-	        "particle" "particles/neutral_fx/satyr_trickster_projectile.vpcf"
-	        "particle"  "particles/econ/items/invoker/invoker_apex/invoker_apex_quas_flare_b.vpcf"
-	        "particle"  "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
-	        "particle"  "particles/econ/items/puck/puck_alliance_set/puck_base_attack_explosion_aproset.vpcf"
-	        "particle"  "particles/econ/events/ti4/dagon_ti4.vpcf"
-	        "particle"  "particles/units/heroes/hero_bane/bane_projectile.vpcf"
-	        "soundfile"	"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
-	    }
-
 	    "AbilitySpecial"
 	    {	
-	    	"03"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "chance" "15 15 30 30"
-		    }
-	    	"03"
+	    	"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "150 200 200 200"
 		    }
-		    "04"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "150 200 200 200"
 		    }
-		    "04"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_INTEGER"
-		        "slow" "0 0 0 -30"
+		        "slow" "0 0 -30 -30"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "slowdur" "0 0 0 3"
+		        "slowdur" "0 0 3 3"
 		    }
-		    "04"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "knockback" "0 0 0 25"
+		        "knockback" "0 0 25 25"
 		    }
-		    "04"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "purechance" "0 0 0 30"
+		        "knockback_tooltip" "25"
 		    }
-		    "04"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "duration" "3"
+		        "tickrate" "0.55"
 		    }
-	    }
-
-	    "OnSpellStart"
-	    {
-	    	"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuff"
-			    "buff"			"modifier_sh"
-			    "dur"	"3"
-			}
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelManaFixStart"
-			    "mana"			"%AbilityManaCost"
-			    "casttime"	"3"
-			}
-	    }
-
-	    "OnChannelInterrupted"
-	    {
-	    	"RemoveModifier"
-	        {
-	            "ModifierName" "modifier_sh"
-	            "Target" "TARGET"
-	        }
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelInterrupt"
-			    "cooldownfix"	"1"
-			}
-	    }
-
-	    "OnChannelFinish"
-	    {
-	        "RemoveModifier"
-	        {
-	            "ModifierName" "modifier_sh"
-	            "Target" "TARGET"
-	        }
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ChannelManaFixEnd"
-			    "mana"			"%AbilityManaCost"
-			}
-			"RemoveModifier"
-	        {
-	            "ModifierName" "delayanimation"
-	            "Target" "CASTER"
-	        }
-	        "RemoveModifier"
-	        {
-	            "ModifierName" "animation_tick"
-	            "Target" "CASTER"
-	        }
-	    }
-
-	    "Modifiers"
-	    {
-	        "modifier_sh"
-	        {
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "IsHidden"	"1"
-	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-	            "OnCreated"
-	            {
-	            	"RunScript"
-					{ 
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ChannelTickSystem"
-					    "tickinterval"	"0.55"
-					    "duration"		"%duration"
-					    "channelintervalcheck"	"0.1"
-					}
-	            	"ApplyModifier"
-		            {
-		                "ModifierName" "channelling_animation2"
-		                "Target" "CASTER"
-		            }
-		            "ApplyModifier"
-		            {
-		                "ModifierName" "delayanimation"
-		                "Target" "CASTER"
-		            }
-	            }
-	        }
-	        "modifier_channel_proc"
-	        {
-	        	"Duration"			"0.05"
-	        	"Passive"			"0"
-	        	"IsHidden"			"1"
-	        	"IsDebuff"			"0"
-	        	"IsPurgable"		"0"
-	        	"IsBuff"			"1"
-	        	"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-	        	"OnCreated"
-	        	{
-	        		"FireSound"
-					{
-						"EffectName"	"Hero_TemplarAssassin.Trap.Cast"
-						"Target" 		"CASTER"
-					}
-					"FireEffect"
-					{
-						"EffectName"        "particles/econ/items/templar_assassin/templar_assassin_butterfly/templar_assassin_base_attack_explosion_butterfly.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-					"FireEffect"
-					{
-						"EffectName"        "particles/econ/events/ti4/dagon_ti4.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "CASTER"
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_attack1"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-					"FireEffect"
-					{
-						"EffectName"        "particles/econ/events/ti4/dagon_ti4.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "CASTER"
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_attack2"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-	                "ApplyModifier"
-	                {
-	                	"ModifierName"	"channelling_fx_flay_cool"
-	                	"Target" 		"TARGET"
-	                }
-	                "RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "DamageUnit"
-					    "damage"			"%AbilityDamage"
-					    "spelldamagefactor"	"%spelldmg"
-					    "attributefactor"	"%dmgfromstat"
-					    "shadowdmg"	"1"
-					    "shadowstrikesp"	"1"
-					    "bloodwolf"	"1"
-					    "pure_damage_chance"	"%purechance"
-					}
-					"Random"
-					{
-						"Chance"			"%knockback"
-						"OnSuccess"
-						{
-							"RunScript"
-							{
-							    "ScriptFile"    "game_mechanics.lua"
-							    "Function"      "KnockBackNear"
-							    "fixedforce"		"200"
-							    "neartarget"		"300"
-							}
-						}
-					}
-					"FireSound"
-					{
-						"EffectName"		"Hero_Invoker.ProjectileImpact"
-						"Target"			"CASTER"
-					}
-					"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "Mindflay"
-					    "dur"			"%slowdur"
-					}
-					"Random"
-					{
-						"Chance"			"%chance"
-						"OnSuccess"
-						{
-							"RunScript"
-					    	{
-					    		"ScriptFile"	"game_mechanics.lua"
-					    		"Function"		"ApplyBuffStack"
-					    		"max"			"3"
-					    		"buff"			"modifier_shadoworb"
-					    		"self"			"1"
-					    	}
-						}
-					}
-	        	}
-	        }
-	        "channelling_fx_flay_cool"
-	        {
-	            "IsHidden" "1"
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "Duration" "0.29"
-	            "ThinkInterval"  "0.10"
-	            "OnIntervalThink"
-	            {
-	            	"FireEffect"
-					{
-						"EffectName"        "particles/econ/events/ti4/dagon_ti4.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "CASTER"
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_attack1"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-					"FireEffect"
-					{
-						"EffectName"        "particles/econ/events/ti4/dagon_ti4.vpcf"
-						"EffectAttachType"  "follow_hitloc"
-						"Target"            "CASTER"
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_attack2"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-	            }
-	        }
-	        "channelling_animation2"
-	        {
-	            "IsHidden" "1"
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "Duration" "1.05"
-	            "OverrideAnimation" "ACT_DOTA_CAST_ABILITY_1"
-	            "Properties"
-	            {
-	            	"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE" "0.70"
-	            }
-	        }
-	        "starting_animation2"
-	        {
-	            "IsHidden" "1"
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "Duration" "0.5"
-	            "OverrideAnimation" "ACT_DOTA_CAST_ABILITY_1"
-
-	            "Properties"
-	            {
-	            	"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE" "1.6"
-	            }
-
-	        }
-	        "delayanimation"
-	        {
-	            "IsHidden" "1"
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            "Duration" "0.5"
-
-	            "ThinkInterval"  "0.35"
-	            "OnIntervalThink"
-	            {
-	            	"ApplyModifier"
-	            	{
-	            		"ModifierName"	"animation_tick"
-	            		"Target" 		"CASTER"
-	            		"Duration"		"2.25"
-	            	}
-	            }
-	        }
-	        "animation_tick"
-	        {
-	            "IsHidden" "1"
-	            "IsPurgable"		"0"
-	            "IsBuff"			"1"
-	            "IsDebuff"			"0"
-	            "IsStunDebuff"		"0"
-	            
-	            "ThinkInterval"  "0.50"
-	            "OnIntervalThink"
-	            {
-	            	"ApplyModifier"
-	            	{
-	            		"ModifierName"	"starting_animation2"
-	            		"Target" 		"CASTER"
-	            	}
-	            }
-	        }
-	        "modifier_slow50"
-			{
-			    "Passive"          "0"    
-			    "TextureName"      "fix/mindblast4"
-
-			    "IsDebuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-
-			    "EffectName"       "particles/units/heroes/hero_night_stalker/nightstalker_change_ash.vpcf"
-			    "EffectAttachType"  "attach_hitloc"
-
-			    "Properties"
-			    {
-			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%slow"
-			    }
-			}
-			"modifier_shadoworb"
-			{
-			    "Duration"         "-1"
-			    "Passive"          "0"    
-			    "TextureName"      "enigma_midnight_pulse"
-			    "IsDebuff"         "0"
-			    "IsBuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "0"
-			    "ThinkInterval"  "0.5"
-			    "OnIntervalThink"
-			    {
-			    	"RunScript"
-			    	{
-			    		"ScriptFile"	"game_mechanics.lua"
-			    		"Function"		"ShadowOrbFX"
-			    	}
-			    }
-			}
+	    	"08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_orbs_chance" "15 15 30 30"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_orbs_max" "3"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_duration" "0 0 0 10"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_duration_tooltip" "10"
+		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_max_stacks" "0 0 0 5"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_max_stacks_tooltip" "5"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_shadow_dmg_pct" "0 0 0 25"
+		    }
+		    "15"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "mindbender_shadow_dmg_pct_tooltip" "25"
+		    }
+		    "16"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "knockback_force" "200"
+		    }
+		    "17"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "knockback_range" "300"
+		    }
 	    }
 	}
 
@@ -58615,7 +58305,7 @@
 		    		"ScriptFile"	"game_mechanics.lua"
 		    		"Function"		"ApplyBuffStack"
 		    		"max"			"3"
-		    		"buff"			"modifier_shadoworb"
+		    		"buff"			"modifier_shadow_cleric_shadow_orbs"
 		    		"self"			"1"
 		    	}
 				"FireSound"

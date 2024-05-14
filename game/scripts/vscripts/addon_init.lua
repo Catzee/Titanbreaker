@@ -31,3 +31,7 @@ LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_debuff", "modifiers/heroes/
 LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_instant_casts", "modifiers/heroes/spirit_voodoo/spirit_shock/modifier_spirit_voodoo_spirit_shock_instant_casts", LUA_MODIFIER_MOTION_NONE)
 -- silencer 3rd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_twilight_cleric_lightstream_buff", "modifiers/heroes/twilight_cleric/lightstream/modifier_twilight_cleric_lightstream_buff", LUA_MODIFIER_MOTION_NONE)
+-- dark seer
+LinkLuaModifier("modifier_shadow_cleric_mindstorm_mindbender", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_mindbender", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_shadow_orbs", "modifiers/heroes/shadow_cleric/modifier_shadow_cleric_shadow_orbs", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_mindstorm_debuff", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_debuff", LUA_MODIFIER_MOTION_NONE)

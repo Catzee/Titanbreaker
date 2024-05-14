@@ -3447,6 +3447,14 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.shadowdmg and caster:HasModifier("modifier_item_ancient_dot") then
         value = value + 0.25
     end
+    local shadowClericMindbenderModifier = caster:FindModifierByName("modifier_shadow_cleric_mindstorm_mindbender")
+    if event.shadowdmg and shadowClericMindbenderModifier then
+        local shadowClericMindbenderModifierAbility = shadowClericMindbenderModifier:GetAbility()
+        if(shadowClericMindbenderModifierAbility) then
+            local shadowDmgPerStack = shadowClericMindbenderModifierAbility:GetSpecialValueFor("mindbender_shadow_dmg_pct") / 100
+            value = value + shadowClericMindbenderModifier:GetStackCount() * shadowDmgPerStack
+        end
+    end
     if event.holydmg and caster:HasModifier("modifier_npc_dota_hero_legion2") and caster:HasModifier("modifier_fanatism") then
         local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
         if bonusfromms > 0 then
@@ -13998,37 +14006,6 @@ function StopChannelMaxRange( event )
 	end
 end
 
-function Mindflay( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	if event.ability ~= nil then
-		local vec1 = caster:GetAbsOrigin()+Vector(0,0,75)
-		local vec2 = caster:GetAbsOrigin()+Vector(0,0,75)
-		--local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf", PATTACH_ROOTBONE_FOLLOW, target)
-		--ParticleManager:SetParticleControl(particle, 0, vec1)
-		--ParticleManager:SetParticleControl(particle, 1, vec2)
-		--if target:HasModifier("modifier_swd") then
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow50", nil)
-
-		local myevent = {}
-		myevent.caster = caster
-		myevent.target = target
-		myevent.buff = "modifier_slow50"
-		myevent.ability = ability
-		myevent.dur = event.dur
-		ApplyBuff(myevent)
-		--end
-		local distance = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() - GetCastRangeBonus(caster)
-		if distance > 1000 or target:HasModifier("modifier_invisible") then
-			caster:Stop()
-		end
-	else
-		caster:Stop()
-		target:RemoveModifierByName("modifier_sh")
-	end
-end
-
 function DevouringPlague( event )
 	local caster = event.caster
 	local target = event.target
@@ -23356,14 +23333,6 @@ function JumpStomp( event )
                 end
             end
         end)
-    end
-end
-
-function ShadowOrbFX( event )
-    local caster = event.caster
-    if caster:GetModifierStackCount("modifier_shadoworb", nil) >= 3 then
-        local particle = ParticleManager:CreateParticle("particles/items3_fx/glimmer_cape_initial_flash_ember.vpcf", PATTACH_POINT_FOLLOW, caster)
-        ParticleManager:ReleaseParticleIndex(particle)
     end
 end
 
