@@ -25,25 +25,7 @@ function modifier_shadow_cleric_shadow_orbs:OnCreated()
     end
 
     self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-
     self:StartIntervalThink(0.5)
-end
-
-function modifier_shadow_cleric_shadow_orbs:OnStackCountChanged(oldStacksCount)
-    if(not IsServer()) then
-        return
-    end
-
-    ApplyBuffStack({
-        caster = self.parent,
-        target = self.parent,
-        ability = self.ability,
-        max = self.ability:GetSpecialValueFor("mindbender_max_stacks"),
-        dur = self.ability:GetSpecialValueFor("mindbender_duration"),
-        buff = "modifier_shadow_cleric_mindstorm_mindbender",
-        self = 1
-    })
 end
 
 function modifier_shadow_cleric_shadow_orbs:OnIntervalThink()

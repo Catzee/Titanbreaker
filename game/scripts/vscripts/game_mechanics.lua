@@ -29845,3 +29845,27 @@ function SoulwardenTotemShield(event)
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
     end
 end
+
+function TryAddShadowClearicShadowSphere(caster, ability, chance)
+    if(math.random(1, 100) <= chance) then
+        ApplyBuffStack({
+            caster = caster,
+            target = caster,
+            ability = ability,
+            max = 3,
+            buff = "modifier_shadow_cleric_shadow_orbs",
+            self = 1
+        })
+        for i=0,DOTA_MAX_ABILITIES-1 do
+            local ability = caster:GetAbilityByIndex(i)
+
+            if(ability == nil) then
+                break
+            end
+
+            if(ability.OnShadowClericShadowSphereGained) then
+                ability:OnShadowClericShadowSphereGained()
+            end
+        end
+    end
+end

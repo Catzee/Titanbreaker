@@ -74,6 +74,19 @@ function shadow1:OnChannelFinish(isInterrupt)
     end
 end
 
+function shadow1:OnShadowClericShadowSphereGained()
+    local caster = self:GetCaster()
+    ApplyBuffStack({
+        caster = caster,
+        target = caster,
+        ability = self,
+        max = self:GetSpecialValueFor("mindbender_max_stacks"),
+        dur = self:GetSpecialValueFor("mindbender_duration"),
+        buff = "modifier_shadow_cleric_mindstorm_mindbender",
+        self = 1
+    })
+end
+
 function shadow1:OnMindstormChannelTick(caster, target)
     local targetOrigin = target:GetAbsOrigin()
     local casterOrigin = caster:GetAbsOrigin()
@@ -127,16 +140,7 @@ function shadow1:OnMindstormChannelTick(caster, target)
         dur = self:GetSpecialValueFor("slowdur")
     })
 
-    if(math.random(1, 100) <= self:GetSpecialValueFor("shadow_orbs_chance")) then
-        ApplyBuffStack({
-            caster = caster,
-            target = target,
-            ability = self,
-            max = self:GetSpecialValueFor("shadow_orbs_max"),
-            buff = "modifier_shadow_cleric_shadow_orbs",
-            self = 1
-        })
-    end
+    TryAddShadowClearicShadowSphere(caster, self, self:GetSpecialValueFor("shadow_orbs_chance"))
 
     caster:ForcePlayActivityOnce(ACT_DOTA_CAST_ABILITY_1)
 end

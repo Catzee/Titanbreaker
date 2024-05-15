@@ -33840,49 +33840,44 @@
 	    	"08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "shadow_orbs_chance" "15 15 30 30"
+		        "shadow_orbs_chance" "15 30 30 30"
 		    }
 		    "09"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "shadow_orbs_max" "3"
+		        "mindbender_duration" "0 0 0 10"
 		    }
 		    "10"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_duration" "0 0 0 10"
+		        "mindbender_duration_tooltip" "10"
 		    }
 		    "11"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_duration_tooltip" "10"
+		        "mindbender_max_stacks" "0 0 0 5"
 		    }
 		    "12"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_max_stacks" "0 0 0 5"
+		        "mindbender_max_stacks_tooltip" "5"
 		    }
 		    "13"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_max_stacks_tooltip" "5"
+		        "mindbender_shadow_dmg_pct" "0 0 0 25"
 		    }
 		    "14"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_shadow_dmg_pct" "0 0 0 25"
+		        "mindbender_shadow_dmg_pct_tooltip" "25"
 		    }
 		    "15"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_shadow_dmg_pct_tooltip" "25"
-		    }
-		    "16"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
 		        "knockback_force" "200"
 		    }
-		    "17"
+		    "16"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "knockback_range" "300"
