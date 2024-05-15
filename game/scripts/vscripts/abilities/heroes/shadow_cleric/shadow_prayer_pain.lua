@@ -56,7 +56,7 @@ function shadow33:OnProjectileHit(target, location)
         ability = self,
         buff = "modifier_shadow_cleric_shadow_prayer_pain_debuff",
         dur = self:GetSpecialValueFor("duration"),
-        settickrate = 1
+        settickrate = self:GetSpecialValueFor("tick_interval")
     })
 
     return true

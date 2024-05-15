@@ -23,8 +23,6 @@ function modifier_shadow_cleric_shadow_prayer_pain_debuff:OnCreated()
     self.target = self:GetParent()
     
     self:DealDamageToOwner(false)
-
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("tick_interval"))
 end
 
 function modifier_shadow_cleric_shadow_prayer_pain_debuff:OnIntervalThink()

@@ -13,7 +13,7 @@ function shadow3:OnSpellStart()
     local spheresForCrit = self:GetSpecialValueFor("crit_shadow_spheres")
     local critDuration = self:GetSpecialValueFor("crit_duration")
 
-    if(critDuration > 0 and TryConsumeShadowClericShadowSpheres(caster, spheresForCrit)) then
+    if(critDuration > 0 and GetShadowClericShadowSpheres(caster) >= spheresForCrit) then
         caster:AddNewModifier(caster, self, "modifier_shadow_cleric_dream_feast_buff", { duration = critDuration })
     end
 
@@ -52,7 +52,7 @@ function shadow3:OnProjectileHit(target, location)
         ability = self,
         buff = "modifier_shadow_cleric_dream_feast_debuff",
         dur = self:GetSpecialValueFor("duration"),
-        settickrate = 1
+        settickrate = self:GetSpecialValueFor("tick_interval")
     })
 
     return true

@@ -33395,6 +33395,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "crit_shadow_spheres" "3"
 		    }
+		    "15"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tick_interval" "1.0"
+		    }
 		}
 
 		"OnProjectileHitUnit"

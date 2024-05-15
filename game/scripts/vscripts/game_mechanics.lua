@@ -1000,7 +1000,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = GetShadowClericShadowSpheres(target) + 1
+        local bonusfactor = caster:GetModifierStackCount("modifier_shadow_cleric_dream_feast_debuff", nil) + 1
         finaldamage = finaldamage*bonusfactor
     end
 
@@ -1921,11 +1921,17 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.shadowdmg and caster:HasModifier("modifier_critsha") then
-        critchance = 100*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
-            critpossible = false
+    local dreamFeastCritModifier = caster:FindModifierByName("modifier_shadow_cleric_dream_feast_buff")
+    if critpossible == true and event.shadowdmg and dreamFeastCritModifier then
+        local dreamFeastCritModifierAbility = dreamFeastCritModifier:GetAbility()
+        if(dreamFeastCritModifierAbility) then
+
+            critchance = dreamFeastCritModifierAbility:GetSpecialValueFor("crit_chance")*critchancefactor + flatCritChance
+            if math.random(1,100) <= critchance then
+                local critDmgFactor = dreamFeastCritModifierAbility:GetSpecialValueFor("crit_multiplier") / 100
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and event.voidhunter_crit and caster.voidhunter_crit then
@@ -29852,10 +29858,10 @@ function TryConsumeShadowClericShadowSpheres(caster, amount)
         return false
     end
 
-    local stacks = modifier:GetStackCount() - amount
+    local currentStacks = modifier:GetStackCount()
 
-    if(stacks >= 0) then
-        modifier:SetStackCount(stacks)
+    if(currentStacks >= amount) then
+        modifier:SetStackCount(currentStacks - amount)
         return true
     end
 

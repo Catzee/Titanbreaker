@@ -18,16 +18,13 @@ function modifier_shadow_cleric_dream_feast_debuff:OnCreated()
     self.caster = self.ability:GetCaster()
     self.target = self:GetParent()
     
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("tick_interval"))
+    local shadowSpheres = GetShadowClericShadowSpheres(self.caster)
+    if(TryConsumeShadowClericShadowSpheres(self.caster, shadowSpheres)) then
+        self:SetStackCount(shadowSpheres)
+    end
 end
 
 function modifier_shadow_cleric_dream_feast_debuff:OnIntervalThink()
-    self:DealDamageToOwner()
-end
-
-function modifier_shadow_cleric_dream_feast_debuff:DealDamageToOwner()
-    isDot = isDot and 1 or nil
-
     DamageUnit({
         caster = self.caster,
         target = self.target,
