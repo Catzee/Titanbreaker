@@ -107,7 +107,7 @@ function shadow11:OnProjectileHit(target, location)
     local caster = self:GetCaster()
 
     local shadowSphereChance = 100
-    TryAddShadowClearicShadowSphere(caster, self, shadowSphereChance)
+    TryAddShadowClericShadowSphere(caster, self, shadowSphereChance)
 
     EmitSoundOn("Hero_Warlock.FatalBondsDamage", target)
 
@@ -148,10 +148,10 @@ function shadow11:OnProjectileHit(target, location)
             shadowPrayerAbility:OnSpellStart(target)
         end
 
-        target._shadowClericShadow11SecondInnerCd = true
-        local shadowPrayerInnerCd = self:GetSpecialValueFor("shadow_prayer_pain_inner_cd") * GetInnerCooldownFactor(caster)
+        caster._shadowClericShadow11SecondInnerCd = true
+        local shadowPrayerInnerCd = 5 + self:GetSpecialValueFor("shadow_prayer_pain_inner_cd") * GetInnerCooldownFactor(caster)
         Timers:CreateTimer(shadowPrayerInnerCd, function()
-            target._shadowClericShadow11SecondInnerCd  = nil
+            caster._shadowClericShadow11SecondInnerCd  = nil
         end)
     end
 

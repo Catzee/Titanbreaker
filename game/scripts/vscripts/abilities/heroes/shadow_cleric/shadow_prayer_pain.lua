@@ -100,7 +100,7 @@ function shadow33:OnAbilityCriticalStrike(caster, target, multicastChance)
 end
 
 function shadow33:OnUnitDamaged(event)
-    if(event.target:HasModifier("modifier_swd") == false) then
+    if(event.target:HasModifier("modifier_shadow_cleric_dream_feast_debuff") == false) then
         return
     end
 

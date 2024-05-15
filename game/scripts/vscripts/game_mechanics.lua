@@ -1000,7 +1000,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = target:GetModifierStackCount("modifier_swd", nil)
+        local bonusfactor = GetShadowClericShadowSpheres(target) + 1
         finaldamage = finaldamage*bonusfactor
     end
 
@@ -14010,25 +14010,6 @@ function StopChannelMaxRange( event )
 	if distance > max or target:HasModifier("modifier_invisible") then
 		caster:Stop()
 	end
-end
-
-function DevouringPlague( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-    if ability:GetLevel() >= 3 then
-        target.devouringsource = caster
-    else
-        target.devouringsource = nil
-    end
-	if caster:HasModifier("modifier_shadoworb") then
-		event.addstacks = caster:GetModifierStackCount("modifier_shadoworb", nil) + 1
-        if event.addstacks > 3 then
-            ability:ApplyDataDrivenModifier(caster, caster, "modifier_critsha", {Duration = 2.5})
-        end
-	end
-	caster:RemoveModifierByName("modifier_shadoworb")
-	ApplyBuffStack(event)
 end
 
 function ShadowFear( event )
@@ -29841,7 +29822,7 @@ function SoulwardenTotemShield(event)
 end
 
 -- Dark Seer helper functions
-function TryAddShadowClearicShadowSphere(caster, ability, chance)
+function TryAddShadowClericShadowSphere(caster, ability, chance)
     if(math.random(1, 100) <= chance) then
         ApplyBuffStack({
             caster = caster,
@@ -29865,7 +29846,7 @@ function TryAddShadowClearicShadowSphere(caster, ability, chance)
     end
 end
 
-function TryConsumeShadowClearicShadowSpheres(caster, amount)
+function TryConsumeShadowClericShadowSpheres(caster, amount)
     local modifier = caster:FindModifierByName("modifier_shadow_cleric_shadow_orbs")
     if(modifier == nil) then
         return false
@@ -29881,11 +29862,6 @@ function TryConsumeShadowClearicShadowSpheres(caster, amount)
     return false
 end
 
-function GetShadowClearicShadowSpheres(caster)
-    local modifier = caster:FindModifierByName("modifier_shadow_cleric_shadow_orbs")
-    if(modifier == nil) then
-        return 0
-    end
-
-    return modifier:GetStackCount()
+function GetShadowClericShadowSpheres(caster)
+    return caster:GetModifierStackCount("modifier_shadow_cleric_shadow_orbs", nil)
 end

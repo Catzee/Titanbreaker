@@ -36,3 +36,5 @@ LinkLuaModifier("modifier_shadow_cleric_mindstorm_mindbender", "modifiers/heroes
 LinkLuaModifier("modifier_shadow_cleric_shadow_orbs", "modifiers/heroes/shadow_cleric/modifier_shadow_cleric_shadow_orbs", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_mindstorm_debuff", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_shadow_prayer_pain_debuff", "modifiers/heroes/shadow_cleric/shadow_prayer_pain/modifier_shadow_cleric_shadow_prayer_pain_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_dream_feast_buff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_dream_feast_debuff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_debuff", LUA_MODIFIER_MOTION_NONE)

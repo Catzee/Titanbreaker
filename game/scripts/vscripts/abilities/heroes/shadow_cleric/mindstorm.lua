@@ -141,7 +141,7 @@ function shadow1:OnMindstormChannelTick(caster, target)
     })
 
     local shadowSphereChance = self:GetSpecialValueFor("shadow_orbs_chance")
-    TryAddShadowClearicShadowSphere(caster, self, shadowSphereChance)
+    TryAddShadowClericShadowSphere(caster, self, shadowSphereChance)
 
     caster:ForcePlayActivityOnce(ACT_DOTA_CAST_ABILITY_1)
 end

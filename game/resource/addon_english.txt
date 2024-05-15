@@ -1757,6 +1757,7 @@
 		"DOTA_Tooltip_Ability_shadow11_stun_duration"  "Stun Duration:" 
 		"DOTA_Tooltip_Ability_shadow11_dmgfromstat"    "%Intellect to Damage:" 
 		"DOTA_Tooltip_Ability_shadow11_spelldmg"    "%Spellpower Factor:"  
+		"DOTA_Tooltip_Ability_shadow11_aoe"    		"Area of Effect:"  
 
 		//1.9.5
 		"DOTA_Tooltip_Ability_Numbing_Cut"  "Numbing Smash"  

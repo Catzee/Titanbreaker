@@ -33294,7 +33294,8 @@
 
 	"shadow3"
 	{
-        "BaseClass"             "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/shadow_cleric/dream_feast"
         "AbilityTextureName"    "fix/dream3"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -33324,17 +33325,17 @@
 
 	    "AbilitySpecial"
 		{
-		    "03"
+		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "200 250 250 250"
 		    }
-		    "04"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "200 250 250 250"
 		    }
-		    "04"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "tentacle" "0 0 1 1"
@@ -33344,39 +33345,60 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "res" "0 0 0 -5"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "duration" "5"
 		    }
-		    "04"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "frenzy" "0 0 0 0.1"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "frenzy_tooltip" "10"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "frenzy_max" "2"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "frenzy_max_tooltip" "200"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_multiplier" "0 200 200 200"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_chance" "0 100 100 100"
+		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_duration" "0 2.5 2.5 2.5"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_duration_tooltip" "2.5"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "crit_shadow_spheres" "3"
 		    }
 		}
 
 		"OnProjectileHitUnit"
 		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_swd"
-				"Target" 		"TARGET"
-			}
-			"FireSound"
-			{
-				"EffectName"		"Hero_Warlock.FatalBonds"
-				"Target"			"TARGET"
-			}
-			
-			"RunScript"
-	    	{
-	    		"ScriptFile"	"game_mechanics.lua"
-	    		"Function"		"DevouringPlague"
-	    		"buff"			"modifier_swd"
-	    		"dur"			"%duration"
-	    		"settickrate"	"1"
-	    	}
 	    	"SpawnUnit"
 			{
 				"UnitName"			"npc_dota_creature_shadow_tentacle"
@@ -33412,167 +33434,6 @@
 			    		"Function"		"SetLookDirection"
 			    	}
 				}
-			}
-		}
-
-        "OnSpellStart"
-        {
-        		"TrackingProjectile"
-				{
-					"Target"           "TARGET"
-				    "EffectName"       "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
-				    "Dodgeable"        "1"
-				    "ProvidesVision"   "1"
-				    "VisionRadius"     "300"
-				    "MoveSpeed"        "800"
-				    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-				}
-				"FireSound"
-				{
-					"EffectName"		"Hero_Warlock.Attack"
-					"Target"			"CASTER"
-				}
-        }
-
-        "precache"
-		{
-		    "particle"	"particles/units/heroes/hero_bane/bane_sap_explode.vpcf"
-		    "particle"  "particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf"
-		    "particle"  "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-		    "particle"  "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
-		    "particle"  "particles/units/heroes/hero_bane/bane_nightmare_inkblots_thick.vpcf"
-		    "particle"  "particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage_low.vpcf"
-		    "particle"  "particles/status_fx/status_effect_fiendsgrip.vpcf"
-		    "particle"  "particles/units/unit_greevil/greevil_blackhole_n.vpcf"
-		    "particle"  "particles/econ/events/ti9/fountain_regen_ti9_lvl3.vpcf"
-		}
-
-        "Modifiers"
-        {	
-        	"modifier_critsha"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"1"
-        		"IsDebuff"			"0"
-        	
-        		"EffectName"		"particles/econ/events/ti9/fountain_regen_ti9_lvl3.vpcf"
-        		"EffectAttachType"	"attach_hitloc"
-        	}
-        	"modifier_tentacle_root"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"1"
-				"IsPurgable"       "0"
-				"StatusEffectName" 		"particles/status_fx/status_effect_fiendsgrip.vpcf" 	   
-				"StatusEffectPriority"  "20"
-				"Properties"
-				{
-					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"        "particles/units/unit_greevil/greevil_blackhole_n.vpcf"
-						"EffectAttachType"  "attach_hitloc"
-						"Target"            "TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-				}
-   				"Aura"          	"modifier_rooted_self_slow"
-   				"Aura_Radius"   	"350"
-   				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-   				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-   				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-   				"Aura_ApplyToCaster" "0"
-   				
-			}
-        	"modifier_rooted_self_slow"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"1"
-				"IsPurgable"       "1"
-
-				"TextureName"	"fix/shadow_tentacle"
- 				"ThinkInterval"  "1.0"
- 				"OnIntervalThink"
- 				{
- 					//"RunScript"
-					//{
-					//    "ScriptFile"    "game_mechanics.lua"
-					//    "Function"      "DamageUnit"
-					//    "damage"			"%AbilityDamage"
-					//    "spelldamagefactor"	"%dmgfromstataoe"
-					//    "attributefactor"	"%dmgfromstataoe"
-					//    "shadowdmg"	"1"
-					//}
- 				}
-   				"Properties"
-   				{
-   				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-10"
-   				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%res"
-   				}
-			}
-	        "modifier_swd"
-			{
-			    //"Duration"         "5"
-			    "Passive"          "0"    
-
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-			    "IsDebuff"			"1"
-			    "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-			    "ThinkInterval" "1"
-			    "OnIntervalThink"
-			    {
-			        "RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "DamageUnit"
-					    "damage"			"%AbilityDamage"
-					    "spelldamagefactor"	"%spelldmg"
-					    "attributefactor"	"%dmgfromstat"
-					    "shadowdmg"	"1"
-					    //"lifesteal" 	"%healpercent"
-					    "shadoworb"		"1"
-					    //"vampiricemb"	"%healally"
-					    "isdot"	"1"
-					    "spellcastfrenzy"	"%frenzy"
-			    		"spellcastfrenzy_max"	"2"
-					}
-			    }
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"       "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    		"ControlPointEntities"
-			    		{
-			    			"TARGET"	"attach_hitloc"
-			    			"TARGET"	"attach_hitloc"
-			    			"TARGET"	"attach_hitloc"
-			    			"CASTER"	"attach_hitloc"
-			    			"CASTER"	"attach_hitloc"
-			    			"CASTER"	"attach_hitloc"
-			    		}
-			    	}
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"        "particles/units/heroes/hero_bane/bane_nightmare_inkblots_thick.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
 			}
 		}
 	}
