@@ -140,7 +140,8 @@ function shadow1:OnMindstormChannelTick(caster, target)
         dur = self:GetSpecialValueFor("slowdur")
     })
 
-    TryAddShadowClearicShadowSphere(caster, self, self:GetSpecialValueFor("shadow_orbs_chance"))
+    local shadowSphereChance = self:GetSpecialValueFor("shadow_orbs_chance")
+    TryAddShadowClearicShadowSphere(caster, self, shadowSphereChance)
 
     caster:ForcePlayActivityOnce(ACT_DOTA_CAST_ABILITY_1)
 end

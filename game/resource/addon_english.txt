@@ -1752,7 +1752,7 @@
 
 		"DOTA_Tooltip_Ability_shadow11"  "Mindshatter"  
 		
-		"DOTA_Tooltip_Ability_shadow11_buffduration"    "Stun Duration:" 
+		"DOTA_Tooltip_Ability_shadow11_stun_duration"  "Stun Duration:" 
 		"DOTA_Tooltip_Ability_shadow11_dmgfromstat"    "%Intellect to Damage:" 
 		"DOTA_Tooltip_Ability_shadow11_spelldmg"    "%Spellpower Factor:"  
 
@@ -6375,7 +6375,7 @@
 		//2.8
 		"DOTA_Tooltip_Ability_fury2_armor"  "Armor Reduction per stack:"
 		"DOTA_Tooltip_Ability_Terror_ShoutFury_dmgfromstat"    "%Base Damage dealt:"
-		"DOTA_Tooltip_Ability_shadow11_Description"  "Deal Shadow Damage in a small area around the target. 2 secs casttime.\n\nHas 3 charges and refreshes every 10 secs.\n\n<font color=\"#00EE00\">Generates 1 Shadow Sphere per target hit (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Area increased from 250 to 350 and also stun for 2 secs (with an inner cooldown of 5 secs). \nRank 4: Each cast reduces the cooldown of your 5th and 6th Ability by 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_shadow11_Description"  "Deal Shadow Damage in a small area around the target. 2 secs casttime.\n\nHas 3 charges and refreshes every 10 secs.\n\n<font color=\"#00EE00\">Generates 1 Shadow Sphere per target hit (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and stun damaged enemies for %stun_duration_tooltip% secs (with an inner cooldown of %stun_inner_cd% secs). \nRank 3: Area increased and for each damaged enemy launch Shadow Prayer Pain towards him (with an inner cooldown of %shadow_prayer_pain_inner_cd% secs). \nRank 4: Each cast reduces the cooldown of your 5th and 6th Ability by %cdr_flat_tooltip% secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Ice_Bolt_Description"  "Deal Frost Damage and slow by 50%%. Applies a Winter's Chill stack to you, tripling the Damage of Frost Shatter when you have gathered 2 stacks. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased damage. \nRank 3: Passive chance to crit with Ice Bolt. \nRank 4: Critical Strikes with Ice Bolt deal 50%% increased Damage.\n\n</font>"
 		"DOTA_Tooltip_Ability_RootsDruid_Description"  "Deal Nature Damage, root the target in place and reduce its Armor for 15 secs. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Improved Armor reduction and whenever you cast Entangle or Swift Winds, trigger a free Flourish. \nRank 3: Passively gain a Root Shield every 20 secs, decreasing the Damage of the next incoming Damage instance by 80%%, stacking twice. \nRank 4: Increased root duration and Damage and also deal Nature Damage every second while rooted. While the Armor reduction lasts, the enemy deals 15%% reduced Damage.\n\n</font>"
 		"DOTA_Tooltip_Ability_RootsDruid_bonusdmg"  "%Extra Damage taken:"

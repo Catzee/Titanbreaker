@@ -14286,18 +14286,6 @@ function CCTarget( event )
 	local caster = event.caster
 	local target = event.target
 	local power = 1.0
-    if event.innercd_shadow11 then
-        if caster.innercd_shadow11 then
-            return
-        else
-            Timers:CreateTimer(0.05, function()
-                caster.innercd_shadow11 = true
-                Timers:CreateTimer(event.innercd_shadow11 * GetInnerCooldownFactor(caster), function()
-                    caster.innercd_shadow11 = false
-                end)
-            end)
-        end
-    end
 	if event.curseblade then
 		power = GetCCPower(event)
 	end
