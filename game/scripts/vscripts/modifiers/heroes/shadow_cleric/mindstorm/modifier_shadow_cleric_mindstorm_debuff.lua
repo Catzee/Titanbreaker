@@ -6,7 +6,7 @@ modifier_shadow_cleric_mindstorm_debuff = class({
         return false 
     end,
     IsDebuff = function()
-		return false
+		return true
 	end,
     DeclareFunctions = function()
         return {

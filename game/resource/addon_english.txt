@@ -1592,7 +1592,9 @@
 		
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender"    "Mindbender"
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender_Description"    "Shadow Damage increased."
-		
+
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff"    "Mindstorm"
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff_Description"    "Movement speed slowed."
 
 		"DOTA_Tooltip_Ability_shadow5"  "Nightmare" 
 		"DOTA_Tooltip_Ability_shadow5_duration"    "Base Debuff Duration:" 
@@ -4188,7 +4190,7 @@
 		"DOTA_Tooltip_ability_Feral1_duration"                                            "Duration:"
 
 		"DOTA_Tooltip_ability_shadow33"                                                   "Shadow Prayer Pain"
-		"DOTA_Tooltip_ability_shadow33_Description"                                       "Deal Shadow Damage and apply a DoT, dealing Shadow damage every sec, stacking multiple times. \nDamage from this Ability will never be reflected.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Reduced cooldown. \nRank 4: Whenever this Ability lands a Critical Strike, launch another Shadow Prayer Pain towards the target. Has an inner cooldown of 5 secs.\n\n</font>"
+		"DOTA_Tooltip_ability_shadow33_Description"                                       "Deal Shadow Damage and apply a DoT, dealing Shadow damage every sec, stacking multiple times. \nDamage from this Ability will never be reflected.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage and reduced cooldown. \nRank 3: Whenever an enemy damaged by this ability and affected by Dream Feast at same time reduces current cooldown of this ability by %cdr_flat_dream_feast_tooltip% secs (with an inner cooldown of %cdr_flat_dream_feast_inner_cd% secs). \nRank 4: Whenever this Ability lands a Critical Strike, launch another Shadow Prayer Pain towards the target. Has an inner cooldown of %multicast_inner_cd% secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_shadow33_dmgfromstat"    "%Intellect to Damage initially and per Tick:" 
 		"DOTA_Tooltip_Ability_shadow33_spelldmg"    "%Spellpower Factor initially and per Tick:"
 		"DOTA_Tooltip_ability_shadow33_duration"                                          "Duration:"
@@ -4271,8 +4273,8 @@
 		"DOTA_Tooltip_modifier_silence_ring"                                              "Ring of Silence"
 		"DOTA_Tooltip_modifier_silence_ring_Description"                                  "Silenced."
 
-		"DOTA_Tooltip_modifier_swd_2"                                                     "Shadow Prayer Pain"
-		"DOTA_Tooltip_modifier_swd_2_Description"                                         "Damage over time."
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_prayer_pain_debuff"                   "Shadow Prayer Pain"
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_prayer_pain_debuff_Description"       "Damage over time."
 
 		"DOTA_Tooltip_modifier_shadow_cleric_shadow_orbs"                                 "Shadow Sphere"
 		"DOTA_Tooltip_modifier_shadow_cleric_shadow_orbs_Description"                     "Current amount of Shadow Spheres."

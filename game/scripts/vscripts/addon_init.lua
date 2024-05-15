@@ -35,3 +35,4 @@ LinkLuaModifier("modifier_twilight_cleric_lightstream_buff", "modifiers/heroes/t
 LinkLuaModifier("modifier_shadow_cleric_mindstorm_mindbender", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_mindbender", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_shadow_orbs", "modifiers/heroes/shadow_cleric/modifier_shadow_cleric_shadow_orbs", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_mindstorm_debuff", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_shadow_prayer_pain_debuff", "modifiers/heroes/shadow_cleric/shadow_prayer_pain/modifier_shadow_cleric_shadow_prayer_pain_debuff", LUA_MODIFIER_MOTION_NONE)

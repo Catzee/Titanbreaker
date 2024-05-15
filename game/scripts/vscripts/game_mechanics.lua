@@ -2630,19 +2630,15 @@ function DamageUnit( event )
     end
 
     if event.oncritswp and event.oncritswp > 0 and critpossible == false and not event.cannotcrit then
-    	if math.random(1,100) <= event.oncritswp and not caster:HasModifier("modifier_swd_2_proc_cd") and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() < 2500 then
-	    	event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-            if caster:HasModifier("modifier_class_darkseer") then
-                Timers:CreateTimer(0.3,function()
-                    event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-                    Timers:CreateTimer(0.3,function()
-                        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-                    end)
-                end)
+        local shadowPrayerPainAbility = caster:FindAbilityByName("shadow33")
+        if(shadowPrayerPainAbility ~= nil and shadowPrayerPainAbility.OnAbilityCriticalStrike) then
+            local status, errorMessage = pcall(function ()
+                shadowPrayerPainAbility:OnAbilityCriticalStrike(caster, target, event.oncritswp)
+            end)
+            if(status ~= true) then
+                print("shadowPrayerPainAbility.OnAbilityCriticalStrike error: ", errorMessage)
             end
-            local swpcd = 5 * GetInnerCooldownFactor(caster)
-            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_swd_2_proc_cd", {Duration = swpcd})
-    	end
+        end
     end
 
     if event.oncritbuff and was_crit then
@@ -3032,6 +3028,16 @@ function DamageUnit( event )
         ParticleManager:SetParticleControl(particle, 5, caster.Pet:GetAbsOrigin()+Vector(0,0,75))
         ParticleManager:ReleaseParticleIndex(particle)
         ApplyBuff({caster = caster, target = target, dur = 5, buff = "modifier_ghoul_res", ability = ability})
+    end
+
+    -- lua callback
+    if(event.luacallback and event.ability and event.ability.OnUnitDamaged) then
+        local status, errorMessage = pcall(function ()
+            event.ability:OnUnitDamaged(event)
+        end)
+        if(status ~= true) then
+            print("event.luacallback.OnUnitDamaged error: ", errorMessage)
+        end
     end
 
     if caster.pathdarknesslevel and caster.pathdarknesslevel >= 3 and caster:HasModifier("modifier_shadow_stance_def") then
@@ -29834,6 +29840,7 @@ function SoulwardenTotemShield(event)
     end
 end
 
+-- Dark Seer helper functions
 function TryAddShadowClearicShadowSphere(caster, ability, chance)
     if(math.random(1, 100) <= chance) then
         ApplyBuffStack({
@@ -29856,4 +29863,29 @@ function TryAddShadowClearicShadowSphere(caster, ability, chance)
             end
         end
     end
+end
+
+function TryConsumeShadowClearicShadowSpheres(caster, amount)
+    local modifier = caster:FindModifierByName("modifier_shadow_cleric_shadow_orbs")
+    if(modifier == nil) then
+        return false
+    end
+
+    local stacks = modifier:GetStackCount() - amount
+
+    if(stacks >= 0) then
+        modifier:SetStackCount(stacks)
+        return true
+    end
+
+    return false
+end
+
+function GetShadowClearicShadowSpheres(caster)
+    local modifier = caster:FindModifierByName("modifier_shadow_cleric_shadow_orbs")
+    if(modifier == nil) then
+        return 0
+    end
+
+    return modifier:GetStackCount()
 end

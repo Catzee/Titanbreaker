@@ -33579,7 +33579,8 @@
 
 	"shadow33"
 	{
-        "BaseClass"             "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/shadow_cleric/shadow_prayer_pain"
         "AbilityTextureName"    "fix/abaddon_borrowed_time_colored"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -33601,7 +33602,7 @@
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "15"
-	    "AbilityCooldown"         "15 15 10 10"
+	    "AbilityCooldown"         "15 10 10 10"
 	    "AbilityCastRange"        "600"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0 0.0 0.0 0.0"
@@ -33609,168 +33610,51 @@
 
 	    "AbilitySpecial"
 		{
-		    "03"
+		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "200 250 250 250"
 		    }
-		    "04"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "200 250 250 250"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "duration" "10"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "oncritswp" "0 0 0 100"
 		    }
-		}
-
-		"OnProjectileHitUnit"
-		{
-			"FireSound"
-			{
-				"EffectName"		"Hero_Warlock.FatalBondsDamage"
-				"Target"			"TARGET"
-			}
-			"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_bane/bane_sap_glowsmokebase.vpcf"
-				"EffectAttachType"  "attach_hitloc"
-				"Target"            "TARGET"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuff"
-			    "buff"			"modifier_swd_2"
-			    "dur"	"%duration"
-			    "settickrate"	"1"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "DamageUnit"
-			    "damage"			"%AbilityDamage"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "shadowdmg"	"1"
-			    "oncritswp"	"%oncritswp"
-			    "ignore_when_target_has_reflect"	"1"
-			}
-		}
-
-        "OnSpellStart"
-        {
-        		"TrackingProjectile"
-				{
-					"Target"           "TARGET"
-				    "EffectName"       "particles/fireball_16.vpcf"
-				    "Dodgeable"        "1"
-				    "ProvidesVision"   "1"
-				    "VisionRadius"     "300"
-				    "MoveSpeed"        "800"
-				    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-				}
-				"FireSound"
-				{
-					"EffectName"		"Hero_Warlock.Attack"
-					"Target"			"CASTER"
-				}
-        }
-
-        "precache"
-		{
-		    "particle"	"particles/units/heroes/hero_bane/bane_sap_explode.vpcf"
-		    "particle"  "particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf"
-		    "particle"  "particles/warlock_shadow_word_debuff_purple.vpcf"
-		    "particle"  "particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf"
-		    "particle"  "particles/units/heroes/hero_bane/bane_sap_glowsmokebase.vpcf"
-		    "particle"  "particles/fireball_16.vpcf"
-		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
-		}
-
-        "Modifiers"
-        {
-	        "modifier_swd_2"
-			{
-			    //"Duration"         "5"
-			    "Passive"          "0"    
-
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-			    "IsDebuff"			"1"
-			    "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-			    "ThinkInterval" "1"
-			    "OnIntervalThink"
-			    {
-			        "RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "DamageUnit"
-					    "damage"			"%AbilityDamage"
-					    "spelldamagefactor"	"%spelldmg"
-					    "attributefactor"	"%dmgfromstat"
-					    "shadowdmg"	"1"
-					    "oncritswp"	"%oncritswp"
-					    "isdot"	"1"
-					    "ignore_when_target_has_reflect"	"1"
-					}
-			    }
-			    "OnCreated"
-			    {
-			    	//"AttachEffect"
-			    	//{
-			    	//	"EffectName"       "particles/warlock_shadow_word_debuff_purple.vpcf"
-			    	//	"EffectAttachType"  "attach_hitloc"
-			    	//	"Target"            "TARGET"
-			    	//}
-			    }
-			}
-			"modifier_swd_2_proc"
-			{
-			    "Duration"         "0.2"
-			    "Passive"          "0"    
-
-			    "IsHidden"         "0"
-			    "IsPurgable"       "0"
-			    "IsDebuff"			"1"
-			    "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-			    "OnCreated"
-			    {
-			    	"TrackingProjectile"
-					{
-						"Target"           "TARGET"
-					    "EffectName"       "particles/fireball_16.vpcf"
-					    "Dodgeable"        "1"
-					    "ProvidesVision"   "1"
-					    "VisionRadius"     "300"
-					    "MoveSpeed"        "800"
-					    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-					}
-					"FireSound"
-					{
-						"EffectName"		"Hero_Warlock.Attack"
-						"Target"			"CASTER"
-					}
-			    }
-			}
-			"modifier_swd_2_proc_cd"
-			{
-			    //"Duration"         "10"
-			    "Passive"          "0"    
-
-			    "IsHidden"         "1"
-			    "IsPurgable"       "0"
-			    "IsDebuff"			"1"
-			}
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tick_interval" "1.0"
+		    }
+		    "06"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "multicast_inner_cd" "5"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "cdr_flat_dream_feast" "0 0 0.5 0.5"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "cdr_flat_dream_feast_tooltip" "0.5"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "cdr_flat_dream_feast_inner_cd" "0.25"
+		    }
 		}
 	}
 
