@@ -33448,6 +33448,21 @@
 		    "25"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_bonus_shadow_spheres_per_aa" "0 0 0 1"
+		    }
+		    "26"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_bonus_shadow_spheres_per_aa_tooltip" "1"
+		    }
+		    "27"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_bonus_shadow_spheres_per_aa_inner_cd" "1"
+		    }
+		    "28"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
 		        "max_shadow_spheres_consumed" "3"
 		    }
 		}

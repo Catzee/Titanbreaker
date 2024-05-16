@@ -26,6 +26,12 @@ modifier_shadow_cleric_dream_feast_tentacle = class({
 	GetModifierAura = function() 
         return "modifier_shadow_cleric_dream_feast_tentacle_debuff" 
     end,
+    DeclareFunctions = function()
+        return 
+        {
+            MODIFIER_EVENT_ON_ATTACK_LANDED
+        }
+    end,
     CheckState = function()
         return 
         {
@@ -48,6 +54,7 @@ function modifier_shadow_cleric_dream_feast_tentacle:OnCreated()
         return
     end
 
+    self.owner = self.ability:GetCaster()
     self.parent = self:GetParent()
     local parentOrigin = self.parent:GetAbsOrigin()
 
@@ -59,5 +66,36 @@ function modifier_shadow_cleric_dream_feast_tentacle:OnCreated()
 end
 
 function modifier_shadow_cleric_dream_feast_tentacle:OnRefresh()
-    self.auraRadius = self:GetAbility():GetSpecialValueFor("tentacle_aura_radius")
+    if(not IsServer()) then
+        return
+    end
+    self.ability = self:GetAbility()
+    self.auraRadius = self.ability:GetSpecialValueFor("tentacle_aura_radius")
+    self.shadowTentacleInnerCd = self.ability:GetSpecialValueFor("tentacle_bonus_shadow_spheres_per_aa_inner_cd")
+    self.shadowTentacleShadowSpheres = self.ability:GetSpecialValueFor("tentacle_bonus_shadow_spheres_per_aa")
+end
+
+function modifier_shadow_cleric_dream_feast_tentacle:OnAttackLanded(kv)
+    if(kv.attacker ~= self.parent) then
+        return
+    end
+
+    if(self.owner._shadowClericDreamFeastTentacleAAInnerCd) then
+        return
+    end
+
+    if(self.shadowTentacleShadowSpheres < 1) then
+        return
+    end
+    local sphereChance = 100
+    for i=1,self.shadowTentacleShadowSpheres do
+        TryAddShadowClericShadowSphere(self.owner, self.ability, sphereChance)
+    end
+
+    self.owner._shadowClericDreamFeastTentacleAAInnerCd = true
+    
+    local innerCd = self.shadowTentacleInnerCd * GetInnerCooldownFactor(self.owner)
+    Timers:CreateTimer(innerCd, function()
+        self.owner._shadowClericDreamFeastTentacleAAInnerCd  = nil
+    end)
 end
