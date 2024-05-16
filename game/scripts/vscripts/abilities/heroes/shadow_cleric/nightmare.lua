@@ -77,12 +77,19 @@ function shadow5:OnSpellStart()
     ParticleManager:ReleaseParticleIndex(particle)
 
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_recipient.vpcf", PATTACH_OVERHEAD_FOLLOW , caster)
+    ParticleManager:DestroyParticle(particle, false)
     ParticleManager:ReleaseParticleIndex(particle)   
 
     EmitSoundOn("Hero_TemplarAssassin.Trap.Trigger", caster)
     EmitSoundOn("abaddon_abad_laugh_01", caster)
 
     local attackSpeedAuraStacks = caster:GetModifierStackCount("modifier_shadow_cleric_nightmare_aura", nil)
+    local attackSpeedAuraDuration = self:GetSpecialValueFor("attack_speed_aura_duration_per_shadow_sphere") * (shadowSpheresFactor - 1)
+    local attackSpeedAuraDurationMin = self:GetSpecialValueFor("attack_speed_aura_min_duration")
+
+    if(attackSpeedAuraDuration < attackSpeedAuraDurationMin) then
+        attackSpeedAuraDuration = attackSpeedAuraDurationMin
+    end
 
     ApplyBuffStack({
         caster = caster,
@@ -92,7 +99,7 @@ function shadow5:OnSpellStart()
         max = 99999,
         buff = "modifier_shadow_cleric_nightmare_aura",
         ["self"] = 1,
-        dur = math.min(self:GetSpecialValueFor("attack_speed_aura_min_duration"), self:GetSpecialValueFor("attack_speed_aura_duration_per_shadow_sphere") * shadowSpheresFactor)
+        dur = attackSpeedAuraDuration
     })
 
     attackSpeedAuraStacks = caster:GetModifierStackCount("modifier_shadow_cleric_nightmare_aura", nil) - attackSpeedAuraStacks

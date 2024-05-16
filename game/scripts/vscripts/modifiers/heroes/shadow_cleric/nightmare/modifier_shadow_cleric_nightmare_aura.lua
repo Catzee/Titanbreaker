@@ -12,7 +12,7 @@ modifier_shadow_cleric_nightmare_aura = class({
         return true 
     end,
 	GetAuraSearchTeam = function() 
-        return DOTA_UNIT_TARGET_TEAM_ALLY
+        return DOTA_UNIT_TARGET_TEAM_FRIENDLY
     end,
 	GetAuraSearchType = function() 
         return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC

@@ -1520,6 +1520,15 @@ function DamageUnit( event )
     if caster:HasModifier("modifier_item_bootscrit_2") then
         critdmgbonusfactor = critdmgbonusfactor + 0.1
     end
+
+    local nightmareModifier = caster:FindModifierByName("modifier_shadow_cleric_nightmare_internal_buff")
+    if nightmareModifier then
+        local nightmareModifierAbility = nightmareModifier:GetAbility()
+        if(nightmareModifierAbility and event.isdot) then
+            critdmgbonusfactor = critdmgbonusfactor + (nightmareModifierAbility:GetSpecialValueFor("passive_bonus_critical_dmg_dot") / 100)
+        end
+    end
+
     if caster:HasModifier("modifier_pathbuff_049") then
         critdmgbonusfactor = critdmgbonusfactor + 0.25
     end

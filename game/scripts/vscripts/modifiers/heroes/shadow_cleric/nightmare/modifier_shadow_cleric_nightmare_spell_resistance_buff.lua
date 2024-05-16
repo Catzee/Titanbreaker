@@ -17,9 +17,6 @@ modifier_shadow_cleric_nightmare_spell_resistance_buff = class({
     GetModifierMagicalResistanceBonus = function(self)
         return self.bonusSpellResistance
     end,
-    GetAttributes = function()
-        return MODIFIER_ATTRIBUTE_MULTIPLE
-    end,
     GetEffectName = function()
         return "particles/items2_fx/unused_field_3.vpcf"
     end,
