@@ -40,3 +40,5 @@ LinkLuaModifier("modifier_shadow_cleric_dream_feast_buff", "modifiers/heroes/sha
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_debuff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_tentacle", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_tentacle", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_tentacle_debuff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_tentacle_debuff", LUA_MODIFIER_MOTION_NONE)
+-- for lua pets
+LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system_lua", LUA_MODIFIER_MOTION_NONE)

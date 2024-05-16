@@ -7,7 +7,10 @@ modifier_shadow_cleric_dream_feast_debuff = class({
     end,
     IsDebuff = function()
 		return true
-	end
+	end,
+    GetAttributes = function()
+        return MODIFIER_ATTRIBUTE_MULTIPLE
+    end
 })
 
 function modifier_shadow_cleric_dream_feast_debuff:OnCreated()
@@ -18,7 +21,7 @@ function modifier_shadow_cleric_dream_feast_debuff:OnCreated()
     self.caster = self.ability:GetCaster()
     self.target = self:GetParent()
     
-    local shadowSpheres = GetShadowClericShadowSpheres(self.caster)
+    local shadowSpheres = math.min(GetShadowClericShadowSpheres(self.caster), self.ability:GetSpecialValueFor("max_shadow_spheres_consumed"))
     if(TryConsumeShadowClericShadowSpheres(self.caster, shadowSpheres)) then
         self:SetStackCount(shadowSpheres)
     end

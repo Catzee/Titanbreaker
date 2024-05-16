@@ -8148,7 +8148,7 @@ end
 end
 end
 if alreadycast == 0 then
-  if target:HasModifier("modifier_pet_system") then
+  if target:HasModifier("modifier_pet_system") or target:HasModifier("modifier_pet_system_lua") then
     --patrol towards pet position, since we cant target it
     local order = 
     {
@@ -11912,7 +11912,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victimMaxHealth = victim:GetMaxHealth()
   local blockFactor = 1
   --stop pet aa dmg
-  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep") then
+  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep") then
     filterTable["damage"] = 0
     return true
   end

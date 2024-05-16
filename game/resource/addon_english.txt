@@ -1610,9 +1610,6 @@
 		"DOTA_Tooltip_modifier_fearsp"	"Nightmare"
 		"DOTA_Tooltip_modifier_fearsp_Description"	"All control is lost."
 
-		"DOTA_Tooltip_modifier_swd"	"Dream Feast"
-		"DOTA_Tooltip_modifier_swd_Description"	"Taking Damage over time."
-
 		"DOTA_Tooltip_Ability_spholy1"  "Flash of Heaven"  
 		"DOTA_Tooltip_Ability_spholy1_Description"  "Call a sacred flash of light from the sky, healing the target. In addition, the Cleric will be healed too, with 50%% effectiveness. 2 secs casttime."
 		"DOTA_Tooltip_Ability_spholy1_dmgfromstat"    "Intellect to Healing:"
@@ -2597,8 +2594,12 @@
 		"DOTA_Tooltip_Ability_shadow3_healpercent"    "%Max Health healed per tick:"
 		"DOTA_Tooltip_Ability_shadow3_duration"    "Duration:"  
 		
-		"DOTA_Tooltip_modifier_rooted_self_slow"	"Shadow Tentacle"
-		"DOTA_Tooltip_modifier_rooted_self_slow_Description"	"Slowing nearby enemies and possibly dealing area damage."
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff"	"Shadow Tentacle"
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff_Description"	"Movement speed slowed, shadow damage taken increased and spell resistance reduced."
+
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff"	"Dream Feast"
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff_Description"	"Damage over time."
+
 		"npc_dota_creature_shadow_tentacle"                                               "Shadow Tentacle"
 
 		"DOTA_Tooltip_Ability_shadow22"  "Silent Awakening" 
@@ -6654,7 +6655,7 @@
 		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies to wander around in panic, losing all control and increase all Shadow Damage dealt by 100%% for 6 secs.\n\n<font color=\"#00EE00\">Consume up to 3 Shadow Spheres, increasing the CC and buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased durations and whenever you are being attacked, fear the target for 3 secs, with an inner cooldown of 15 secs. \nRank 3: When cast, restore 50%% of max Mana and Heal for 50%% of max Health and increase Spell Resistance by 50 for 5 secs. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow6_duration"		"Duration: "
 		"DOTA_Tooltip_modifier_shadow_stance"                                             "Path of Darkness"
-		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to 3 Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with 3 Shadow Spheres, all Shadow Damage will Critical Strike for 200%% for 2.5 secs. \nRank 3: Summon a Shadow Tentacle at the target, slowing all nearby enemies by 10%% for 10 secs and causing them to take 25%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also reduces the Spell Resistance of nearby enemies by 5 and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal 10%% increased Damage, up to 200%%.\n\n</font>" 
+		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to %max_shadow_spheres_consumed% Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with %crit_shadow_spheres% Shadow Spheres, all Shadow Damage will Critical Strike for %crit_multiplier_tooltip%%% for %crit_duration_tooltip% secs. \nRank 3: Summon a Shadow Tentacle at the target that attacking enemies around for %tentacle_intsp%%% of Intellect and Spellpower for %tentacle_duration% secs, slowing all nearby enemies by %tentacle_movespeed_bonus_pct_tooltip%%% and causing them to take %tentacle_bonus_shadow_dmg_pct_tooltip%%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also reduces the Spell Resistance of nearby enemies by %tentacle_spellresistance_bonus_tooltip% and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal %frenzy_tooltip%%% increased Damage, up to %frenzy_max_tooltip%%%.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow1_Description"  "Channel for 3 secs, striking the target a total of 5 times, dealing Shadow Damage.\n\n<font color=\"#00EE00\">Each strike has a chance to generate 1 Shadow Sphere (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and increased Shadow Sphere chance. \nRank 3: Now also slow movement speed and gain a %knockback_tooltip%%% chance to knock enemies back, if they are closer than %knockback_range% yards. \nRank 4: Passively every time you gain Shadow Sphere you will gain a stack of Mindbender, increasing all Shadow Damage by %mindbender_shadow_dmg_pct_tooltip%%% for %mindbender_duration_tooltip% secs, stacking up to %mindbender_max_stacks_tooltip% times.\n\n</font>"
 
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems"                           "Arcane Ritual of Death"

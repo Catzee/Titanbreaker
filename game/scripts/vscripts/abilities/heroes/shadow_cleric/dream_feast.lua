@@ -4,9 +4,9 @@ function shadow3:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_sap_glowsmokebase.vpcf", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context)
-
     -- tentacle particles
     PrecacheResource("particle", "particles/status_fx/status_effect_fiendsgrip.vpcf", context)
+    PrecacheResource("particle", "particles/units/unit_greevil/greevil_blackhole_n.vpcf", context)
 end
 
 function shadow3:OnSpellStart()
@@ -66,6 +66,7 @@ function shadow3:OnProjectileHit(target, location)
         tentacle:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
         tentacle:AddNewModifier(caster, self, "modifier_phased", {duration = tentacleDuration})
         tentacle:AddNewModifier(caster, self, "modifier_shadow_cleric_dream_feast_tentacle", {duration = tentacleDuration})
+        tentacle:AddNewModifier(caster, self, "modifier_pet_system_lua", {duration = tentacleDuration, intsp = self:GetSpecialValueFor("tentacle_intsp")})
     end
     return true
 end

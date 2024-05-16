@@ -3590,8 +3590,14 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             value = value + GetAgilityCustom(caster) * 0.001
         end
     end
-    if event.shadowdmg and target and target:HasModifier("modifier_rooted_self_slow") then
-        value = value + 0.25
+    if event.shadowdmg and target then
+        local tentacleAuraModifier = target:FindModifierByName("modifier_shadow_cleric_dream_feast_tentacle_debuff")
+        if(tentacleAuraModifier) then
+            local tentacleAuraModifierAbility = tentacleAuraModifier:GetAbility()
+            if(tentacleAuraModifierAbility) then
+                value = value + (tentacleAuraModifierAbility:GetSpecialValueFor("tentacle_bonus_shadow_dmg_pct") / 100)
+            end
+        end
     end
     if event.shadowdmg and caster:HasModifier("modifier_nightmare_sp") then
         value = value + 1
@@ -6814,7 +6820,7 @@ function HealUnit( event )
     if target:HasModifier("modifier_denial_aura") then
         return
     end
-    if target:HasModifier("modifier_pet_system") then
+    if target:HasModifier("modifier_pet_system") or target:HasModifier("modifier_pet_system_lua") then
         return
     end
     if event.only_heal_on_caster_buff_condition and not caster:HasModifier(event.only_heal_on_caster_buff_condition) then
@@ -18667,7 +18673,7 @@ function ShowDamageTaken(event)
         event.attacker:RemoveModifierByName("modifier_invulnerable")
         event.ability:ApplyDataDrivenModifier(event.attacker, event.attacker, "modifier_disarmed", {Duration = -1})
     end
-    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
+    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_lua") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
         return
     end
     local damage = event.dmg

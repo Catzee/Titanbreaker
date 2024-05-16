@@ -1,6 +1,6 @@
 modifier_shadow_cleric_dream_feast_tentacle = class({
 	IsHidden = function() 
-        return false 
+        return true 
     end,
 	IsPurgable = function() 
         return false 
@@ -43,6 +43,19 @@ modifier_shadow_cleric_dream_feast_tentacle = class({
 
 function modifier_shadow_cleric_dream_feast_tentacle:OnCreated()
     self:OnRefresh()
+
+    if(not IsServer()) then
+        return
+    end
+
+    self.parent = self:GetParent()
+    local parentOrigin = self.parent:GetAbsOrigin()
+
+    local particle = ParticleManager:CreateParticle("particles/units/unit_greevil/greevil_blackhole_n.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parentOrigin, true)
+
+    self:AddParticle(particle, false, false, 1, false, false)
 end
 
 function modifier_shadow_cleric_dream_feast_tentacle:OnRefresh()

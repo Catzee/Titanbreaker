@@ -33343,37 +33343,37 @@
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "res" "0 0 0 -5"
+		        "duration" "5"
 		    }
 		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "duration" "5"
+		        "frenzy" "0 0 0 0.1"
 		    }
 		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy" "0 0 0 0.1"
+		        "frenzy_tooltip" "10"
 		    }
 		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_tooltip" "10"
+		        "frenzy_max" "2"
 		    }
 		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max" "2"
+		        "frenzy_max_tooltip" "200"
 		    }
 		    "09"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max_tooltip" "200"
+		        "crit_multiplier" "0 200 200 200"
 		    }
 		    "10"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "crit_multiplier" "0 200 200 200"
+		        "crit_multiplier_tooltip" "200"
 		    }
 		    "11"
 		    { 
@@ -33413,12 +33413,42 @@
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "tentacle_dmgfromstat" "200"
+		        "tentacle_intsp" "200"
 		    }
 		    "19"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "tentacle_spelldmg" "200"
+		        "tentacle_movespeed_bonus_pct" "0 0 -10 -10"
+		    }
+		    "20"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_movespeed_bonus_pct_tooltip" "-10"
+		    }
+		    "21"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_spellresistance_bonus" "0 0 0 -5"
+		    }
+		    "22"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_spellresistance_bonus_tooltip" "-5"
+		    }
+		    "23"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_bonus_shadow_dmg_pct" "0 0 25 25"
+		    }
+		    "24"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_bonus_shadow_dmg_pct_tooltip" "25"
+		    }
+		    "25"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "max_shadow_spheres_consumed" "3"
 		    }
 		}
 	}

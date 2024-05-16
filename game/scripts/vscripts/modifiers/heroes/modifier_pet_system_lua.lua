@@ -45,20 +45,15 @@ function modifier_pet_system_lua:OnCreated(kv)
     self.ability = self:GetAbility()
     self.parent = self:GetParent()
     self.owner = self.ability:GetCaster()
+    self.kv = kv
 
     PetSystem({
         caster = self.owner,
         target = self.parent,
         ability = self.ability,
-        intsp = kv.damage
+        intsp = self.kv.intsp,
         setpetowner = 1
     })
-
-    Timers:CreateTimer(kv.lifetime, function()
-        KillSummon({
-            target = self.parent
-        })
-    end)
 
     self:StartIntervalThink(5)
 end
@@ -68,7 +63,7 @@ function modifier_pet_system_lua:OnIntervalThink()
         caster = self.owner,
         target = self.parent,
         ability = self.ability,
-        intsp = kv.damage
+        intsp = self.kv.intsp
     })
 end
 
@@ -86,4 +81,12 @@ function modifier_pet_system_lua:OnAttackLanded(kv)
         attributefactor = 0.0,
         fromsummon = 1
     })
+end
+
+function modifier_pet_system_lua:OnDestroy()
+    if(not IsServer()) then
+        return
+    end
+
+    self.parent:ForceKill(false)
 end
