@@ -9,9 +9,3 @@ modifier_shadow_cleric_dream_feast_buff = class({
 		return false
 	end
 })
-
-function modifier_shadow_cleric_dream_feast_buff:OnCreated()
-    if(not IsServer()) then
-        return
-    end
-end

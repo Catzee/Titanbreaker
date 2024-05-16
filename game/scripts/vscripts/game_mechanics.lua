@@ -10523,10 +10523,6 @@ function SetTrapHunter( event )
 	event.caster.trap = event.target
 end
 
-function SetLookDirection( event )
-    event.target:SetForwardVector(Vector(0,1,0))
-end
-
 function TurnUnit( event )
     local target = event.target
     local angle = event.angle
@@ -15851,15 +15847,6 @@ function KillSummon(event)
 			UTIL_Remove(caster)
 		end
 	end)
-end
-
-function ShadowTentacleHealth(event)
-    local caster = event.caster
-    local target = event.target
-    local health = caster:GetHealth() * 0.2
-    target:SetBaseMaxHealth(health)
-    target:SetMaxHealth(health)                           
-    target:SetHealth(health)
 end
 
 function FrostwyrmAttack( event )

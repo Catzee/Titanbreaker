@@ -33400,46 +33400,26 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "tick_interval" "1.0"
 		    }
-		}
-
-		"OnProjectileHitUnit"
-		{
-	    	"SpawnUnit"
-			{
-				"UnitName"			"npc_dota_creature_shadow_tentacle"
-				"Target"			"TARGET"
-				"UnitCount"			"%tentacle"
-				"Duration"			"10"
-				"SpawnRadius"		"1"
-				"GrantsGold"		"0"
-				"GrantsXP"			"0"
-				"SpawnRadius"		"?75 200"
-				"OnSpawn"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_phased"
-						"Target"		"TARGET"
-						"Duration"		"8"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_tentacle_root"
-						"Target"		"TARGET"
-						"Duration"		"8"
-					}
-					"RunScript"
-			    	{
-			    		"ScriptFile"	"game_mechanics.lua"
-			    		"Function"		"ShadowTentacleHealth"
-			    	}
-					"RunScript"
-			    	{
-			    		"ScriptFile"	"game_mechanics.lua"
-			    		"Function"		"SetLookDirection"
-			    	}
-				}
-			}
+		    "16"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_duration" "10"
+		    }
+		    "17"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_aura_radius" "350"
+		    }
+		    "18"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_dmgfromstat" "200"
+		    }
+		    "19"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tentacle_spelldmg" "200"
+		    }
 		}
 	}
 
