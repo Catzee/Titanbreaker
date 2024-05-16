@@ -3599,8 +3599,12 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             end
         end
     end
-    if event.shadowdmg and caster:HasModifier("modifier_nightmare_sp") then
-        value = value + 1
+    local nightmareBuff = caster:FindModifierByName("modifier_shadow_cleric_nightmare_buff")
+    if event.shadowdmg and nightmareBuff then
+        local nightmareBuffAbility = nightmareBuff:GetAbility()
+        if(nightmareBuffAbility) then
+            value = value + (nightmareBuffAbility:GetSpecialValueFor("bonus_shadow_damage_pct") / 100)
+        end
     end
     if event.holydmg and caster:HasModifier("modifier_item_item_set_t4_aad_4") then
         value = value + 0.25
@@ -14018,19 +14022,6 @@ function StopChannelMaxRange( event )
 	if distance > max or target:HasModifier("modifier_invisible") then
 		caster:Stop()
 	end
-end
-
-function ShadowFear( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	if caster:HasModifier("modifier_shadoworb") then
-		event.dur = event.dur * (caster:GetModifierStackCount("modifier_shadoworb", nil) + 1)
-	end
-    if event.spselfbuff then
-        event.target = caster
-    end
-	ApplyBuff(event)
 end
 
 function HolyForm(event)

@@ -32363,7 +32363,8 @@
 
 	"shadow5"
 	{
-		"BaseClass"             "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/shadow_cleric/nightmare"
         "AbilityTextureName"    "fix/fear4"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -32387,7 +32388,6 @@
 	    "AbilityManaCost"         "5"
 	    "AbilityCooldown"         "60"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
-	    "AoERadius"               "600"
 
 	    "AbilitySpecial"
 		{
@@ -32396,312 +32396,119 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "duration" "1 1.5 1.5 1.5"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "duration2" "6 7 7 7"
 		    }
-		    "02"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "radius"    "600"
 		    }
-		    "01"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "mana" "0 0 50 50"
-		    }
-		    "03"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "0 0 0 500"
 		    }
-		    "04"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "0 0 0 500"
 		    }
-		    "04"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "chance" "0 0 0 15"
 		    }
-		    "01"
+		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "reduction" "0 0 5 5"
+		        "spell_resistance_duration" "5"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "spell_resistance_amount" "50"
+		    }
+		    "10"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_shadow_damage_pct" "100"
+		    }
+		    "11"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_spheres_max" "3"
+		    }
+		    "12"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "fear_force" "125"
+		    }
+		    "13"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "fear_tickrate" "1.2"
+		    }
+		    "14"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
+		    }
+		    "15"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "passive_bonus_critical_dmg_dot_tooltip" "50"
+		    }
+		    "16"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_shadow_damage_pct" "100"
+		    }
+		    "17"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura" "0 0 50 50"
+		    }
+		    "18"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_tooltip" "50"
+		    }
+		    "19"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_duration_per_shadow_sphere" "0 0 10 10"
+		    }
+		    "19"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_duration_per_shadow_sphere_tooltip" "10"
+		    }
+		    "20"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_min_duration" "0 0 10 10"
+		    }
+		    "20"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_min_duration_tooltip" "10"
+		    }
+		    "21"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_inner_cd" "25"
+		    }
+		    "22"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_radius" "900"
 		    }
 		}
-
-		"OnProjectileHitUnit"
-		{
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "DamageUnit"
-			    "damage"			"0.0"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "shadowdmg"	"1"
-			}
-		}
-
-        "OnSpellStart"
-        {
-        		"ApplyModifier"
-        		{
-        			"ModifierName"	"modifier_darkseerres"
-        			"Target" 		"CASTER"
-        			"Duration"		"%reduction"
-        		}
-		    	"RunScript"
-				{
-					"ScriptFile"	"game_mechanics.lua"
-					"Function"		"RestoreMana"
-					"amount"		"%mana"
-					"percent"	"1"
-				}
-				"RunScript"
-    			{
-    				"ScriptFile"	"game_mechanics.lua"
-    				"Function"		"HealUnit"
-    				"heal"			"0"
-    				"percenthp"		"%mana"
-    			}
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ShadowFear"
-				    "buff"			"modifier_nightmare_sp"
-				    "dur"	"%duration2"
-				    "spselfbuff"	"1"
-				}
-		        "ActOnTargets"
-		        {
-		        	"Target"
-		        	{
-		        		"Center"  	"CASTER"
-		        		"Radius" 	"%radius"
-		        		"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		        		"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		        	}
-		        	"Action"    
-		        	{
-		        		"RunScript"
-						{
-						    "ScriptFile"    "game_mechanics.lua"
-						    "Function"      "ShadowFear"
-						    "buff"			"modifier_fearsp_bonus"
-						    "dur"	"%duration"
-						}
-		        	}
-		        }
-		        "RemoveModifier"
-		        {
-		        	"ModifierName"	"modifier_shadoworb"
-		        	"Target" 		"CASTER"
-		        }
-		        "RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "ApplyBuff"
-				    "buff"			"modifier_shadow_armor"
-				    "dur"	"%armordur"
-				    "self"	"1"
-				}
-		        "FireEffect"
-			    {
-			        "EffectName" "particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
-			        "EffectAttachType" "attach_hitloc"
-			        "Target" "CASTER"
-			        "ControlPointEntities"
-			        {
-			        	"CASTER"	"attach_hitloc"
-			        	"CASTER"	"attach_hitloc"
-			        }
-			    }
-			    "FireEffect"
-			    {
-			    	"EffectName"        "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit.vpcf"
-			    	"EffectAttachType"  "follow_hitloc"
-			    	"Target"            "CASTER"
-			    }
-				"FireSound"
-				{
-					"EffectName"		"Hero_TemplarAssassin.Trap.Trigger"
-					"Target"			"CASTER"
-				}
-				"FireSound"
-				{
-					"EffectName"		"abaddon_abad_laugh_01"
-					"Target"			"CASTER"
-				}
-				"ApplyModifier"
-		    	{
-		    		"ModifierName"	"skull_animation"
-		    		"Target" 		"CASTER"
-		    	}
-        }
-
-
-
-        "Modifiers"
-        {	
-        	"modifier_darkseerres"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        	
-        		"EffectName"		"particles/items2_fx/unused_field_3.vpcf"
-        		"EffectAttachType"	"follow_origin"
-        	
-        		"Properties"
-        		{
-        			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"
-        		}
-        	}
-        	"modifier_fear_passive_sp"
-        	{
-        		"Passive"			"1"
-        		"IsHidden"			"1"
-        		"IsDebuff"			"0"
-        	
-        		"OnDealDamage"
-        		{
-        			"Random"
-        			{
-        				"Chance"			"%chance"
-        				"OnSuccess"
-        				{
-        					"TrackingProjectile"
-							{
-								"Target"           "UNIT"
-							    "EffectName"       "particles/shadow_skull.vpcf"
-							    "Dodgeable"        "1"
-							    "ProvidesVision"   "1"
-							    "VisionRadius"     "300"
-							    "MoveSpeed"        "350"
-							    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-							}
-        				}
-        			}
-        		}
-        	}
-        	"modifier_nightmare_sp"
-        	{
-        		"Passive"			"0"
-        		"IsHidden"			"0"
-        		"IsDebuff"			"0"
-        	
-        		"StatusEffectName" 		"particles/status_fx/status_effect_maledict.vpcf" 	   
-        		"StatusEffectPriority"  "15"
-        	}
-	        "modifier_fearsp_bonus"
-			{
-			    //"Duration"         "5"
-			    "Passive"          "0"    
-
-			    "IsBuff"			"0"
-			    "IsDebuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"        "particles/silencer_curse_purple.vpcf"
-			    		"EffectAttachType"  "follow_overhead"
-			    		"Target"            "TARGET"
-			    	}
-			    	"ApplyModifier"
-			    	{
-			    		"ModifierName"	"fear_animation"
-			    		"Target" 		"TARGET"
-			    		"Duration"		"%duration"
-			    	}
-			    	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "KnockBack"
-					    "fixedforce"		"125"
-					    "random"		"1"
-					}
-					"FireEffect"
-			    	{
-			    		"EffectName"        "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit_ring.vpcf"
-			    		"EffectAttachType"  "follow_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
-
-			    "OnDestroy"
-			    {
-			    	"FireEffect"
-			    	{
-			    		"EffectName"        "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit_ray.vpcf"
-			    		"EffectAttachType"  "follow_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
-
-			     "States"
-			    {
-			        "MODIFIER_STATE_STUNNED"      "MODIFIER_STATE_VALUE_ENABLED"
-			    }
-
-			    "ThinkInterval"  "1.2"
-			    "OnIntervalThink"
-			    {
-			    	"ApplyModifier"
-			    	{
-			    		"ModifierName"	"fear_animation"
-			    		"Target" 		"TARGET"
-			    		"Duration"		"%duration"
-			    	}
-			    	"FireEffect"
-			    	{
-			    		"EffectName"        "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit_ring.vpcf"
-			    		"EffectAttachType"  "follow_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "KnockBack"
-					    "fixedforce"		"125"
-					    "random"		"1"
-					}
-			    }
-
-			}
-			"fear_animation"
-	        {
-	            "IsHidden" "1"
-	            "Duration" "1.05"
-	            "OverrideAnimation" "ACT_DOTA_FLAIL"
-	        }
-	        "skull_animation"
-	        {
-	            "IsHidden" "1"
-	            "Duration" "1.5"
-	            "EffectName" "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_recipient.vpcf"
-			    "EffectAttachType"  "follow_overhead"
-	        }
-		}
-		"precache"
-		{
-			"particle"  "particles/nightstalker_black_nihility_void_swarm_model_self2.vpcf"
-			"particle"  "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit_ring.vpcf"
-			"particle"  "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit_ray.vpcf"
-			"particle"  "particles/silencer_curse_purple.vpcf"
-			"soundfile"	"soundevents/voscripts/game_sounds_vo_abaddon.vsndevts"
-			"particle"  "particles/shadow_armor.vpcf"
-			"particle"  "particles/shadow_skull.vpcf"
-			"particle"  "particles/status_fx/status_effect_maledict.vpcf"
-		}
     }
+
     "bear6"
 	{
 		"BaseClass"             "ability_datadriven"

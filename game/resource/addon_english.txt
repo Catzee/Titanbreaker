@@ -1602,7 +1602,14 @@
 		"DOTA_Tooltip_Ability_shadow5_chance"    "%Shadowghost chance:"
 		"DOTA_Tooltip_Ability_shadow5_dmgfromstat"    "%Shadowghost Intellect and Spellpower factor:"
 
-		
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_debuff"	"Nightmare"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_debuff_Description"	"Loss of control."
+
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_spell_resistance_buff"	"Night Armor"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_spell_resistance_buff_Description"	"Spell Resistance increased."
+
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff"	"Nightmare"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff_Description"	"Shadow Damage increased."
 
 		"DOTA_Tooltip_modifier_holystance"	"Awakened State"
 		"DOTA_Tooltip_modifier_holystance_Description"	"Gives access to Healing Spells."
@@ -2595,7 +2602,7 @@
 		"DOTA_Tooltip_Ability_shadow3_duration"    "Duration:"  
 		
 		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff"	"Shadow Tentacle"
-		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff_Description"	"Movement speed slowed, shadow damage taken increased and spell resistance reduced."
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff_Description"	"Movement Speed slowed, Shadow Damage taken increased and Spell Resistance reduced."
 
 		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff"	"Dream Feast"
 		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff_Description"	"Damage over time."
@@ -4265,9 +4272,6 @@
 
 		"DOTA_Tooltip_modifier_ghoul_transform"                                           "Ghoul Transform"
 		"DOTA_Tooltip_modifier_ghoul_transform_Description"                               "Enraging at 5 stacks."
-
-		"DOTA_Tooltip_modifier_fearsp_bonus"                                              "Feared"
-		"DOTA_Tooltip_modifier_fearsp_bonus_Description"                                  "Loss of control."
 
 		"DOTA_Tooltip_modifier_shadow_armor"                                              "Shadow Armor"
 		"DOTA_Tooltip_modifier_shadow_armor_Description"                                  "All damage taken decreased."
@@ -6652,7 +6656,7 @@
 		"DOTA_Tooltip_Ability_Arcane2_speed"    "%Movement Bonus:"
 		"DOTA_Tooltip_Ability_shadow6"  "Path of Darkness"
 		"DOTA_Tooltip_Ability_shadow6_Description"  "Shadow Worms will follow you on your Path, protecting you, decreasing all Damage taken by 50%%.<font color=\"#FFBB00\">\n\nRank 2: Damage reduction increased to 75%%. \nRank 3: Heal for 1%% of max Health whenever dealing Damage while under the effect. \nRank 4: Increased duration and 25%% increased Movement Speed while under the effect.\n\n</font>" 
-		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies to wander around in panic, losing all control and increase all Shadow Damage dealt by 100%% for 6 secs.\n\n<font color=\"#00EE00\">Consume up to 3 Shadow Spheres, increasing the CC and buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased durations and whenever you are being attacked, fear the target for 3 secs, with an inner cooldown of 15 secs. \nRank 3: When cast, restore 50%% of max Mana and Heal for 50%% of max Health and increase Spell Resistance by 50 for 5 secs. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
+		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies to wander around in panic, losing all control and increase all Shadow Damage dealt by %bonus_shadow_damage_pct%%% for duration of effect. In addition grants Night Armor that increases Spell Resistance by %spell_resistance_amount% for %spell_resistance_duration% secs.\n\n<font color=\"#00EE00\">Consume up to %shadow_spheres_max% Shadow Spheres, increasing the CC and Shadow Damage buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Passively increases Ability Critical Strike Damage caused by Damage Over Time for %passive_bonus_critical_dmg_dot_tooltip%%%. \nRank 3: When cast gain an aura that increases Attack Speed of all summons in %attack_speed_aura_radius% yards by %attack_speed_aura_tooltip% for %attack_speed_aura_duration_per_shadow_sphere_tooltip% secs per Shadow Sphere consumed (min duration is %attack_speed_aura_min_duration_tooltip% secs) with an inner cooldown of %attack_speed_aura_inner_cd% secs, stacking with an independent duration. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow6_duration"		"Duration: "
 		"DOTA_Tooltip_modifier_shadow_stance"                                             "Path of Darkness"
 		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to %max_shadow_spheres_consumed% Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with %crit_shadow_spheres% Shadow Spheres, all Shadow Damage will Critical Strike for %crit_multiplier_tooltip%%% for %crit_duration_tooltip% secs. \nRank 3: Summon a Shadow Tentacle at the target that attacking enemies around for %tentacle_intsp%%% of Intellect and Spellpower for %tentacle_duration% secs, slowing all nearby enemies by %tentacle_movespeed_bonus_pct_tooltip%%% and causing them to take %tentacle_bonus_shadow_dmg_pct_tooltip%%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also generates %tentacle_bonus_shadow_spheres_per_aa_tooltip% Shadow Sphere(s) with each attack (with an inner cooldown of %tentacle_bonus_shadow_spheres_per_aa_inner_cd% secs), reduces the Spell Resistance of nearby enemies by %tentacle_spellresistance_bonus_tooltip% and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal %frenzy_tooltip%%% increased Damage, up to %frenzy_max_tooltip%%%.\n\n</font>" 
@@ -8621,9 +8625,6 @@
 
 		"DOTA_Tooltip_modifier_shadow_stance_def"                                         "Shadow Stance"
 		"DOTA_Tooltip_modifier_shadow_stance_def_Description"                             ""
-
-		"DOTA_Tooltip_modifier_nightmare_sp"                                              "Nightmare"
-		"DOTA_Tooltip_modifier_nightmare_sp_Description"                                  ""
 
 		"DOTA_Tooltip_modifier_storm_shield"                                              "Storm Shield"
 		"DOTA_Tooltip_modifier_storm_shield_Description"                                  ""
@@ -10693,8 +10694,6 @@
 		"DOTA_Tooltip_modifier_shamandef_Description"                                   " "
 		"DOTA_Tooltip_modifier_invokerres"                                               "Arcane Chains Shield"
 		"DOTA_Tooltip_modifier_invokerres_Description"                                   " "
-		"DOTA_Tooltip_modifier_darkseerres"                                               "Night Shield"
-		"DOTA_Tooltip_modifier_darkseerres_Description"                                   " "
 		"DOTA_Tooltip_modifier_maidenres"                                               "Frostspike Shield"
 		"DOTA_Tooltip_modifier_maidenres_Description"                                   " "
 		"DOTA_Tooltip_modifier_trickster"                                               "Trickster"
