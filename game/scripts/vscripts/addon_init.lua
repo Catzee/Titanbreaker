@@ -46,5 +46,6 @@ LinkLuaModifier("modifier_shadow_cleric_nightmare_internal_buff", "modifiers/her
 LinkLuaModifier("modifier_shadow_cleric_nightmare_spell_resistance_buff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_spell_resistance_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_aura", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_aura_buff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_nightmare_aura_inner_cd", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura_inner_cd", LUA_MODIFIER_MOTION_NONE)
 -- for lua pets
 LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system_lua", LUA_MODIFIER_MOTION_NONE)

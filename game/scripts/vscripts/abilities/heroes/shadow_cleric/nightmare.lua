@@ -83,6 +83,14 @@ function shadow5:OnSpellStart()
     EmitSoundOn("Hero_TemplarAssassin.Trap.Trigger", caster)
     EmitSoundOn("abaddon_abad_laugh_01", caster)
 
+    self:TryApplyAttackSpeedAura(caster)
+end
+
+function shadow5:TryApplyAttackSpeedAura(caster)
+    if(caster:HasModifier("modifier_shadow_cleric_nightmare_aura_inner_cd")) then
+        return
+    end
+    
     local attackSpeedAuraStacks = caster:GetModifierStackCount("modifier_shadow_cleric_nightmare_aura", nil)
     local attackSpeedAuraDuration = self:GetSpecialValueFor("attack_speed_aura_duration_per_shadow_sphere") * (shadowSpheresFactor - 1)
     local attackSpeedAuraDurationMin = self:GetSpecialValueFor("attack_speed_aura_min_duration")
@@ -102,6 +110,9 @@ function shadow5:OnSpellStart()
         dur = attackSpeedAuraDuration
     })
 
+    local innerCd = self:GetSpecialValueFor("attack_speed_aura_inner_cd") * GetInnerCooldownFactor(caster)
+    caster:AddNewModifier(caster, self, "modifier_shadow_cleric_nightmare_aura_inner_cd", {duration = innerCd})
+    
     attackSpeedAuraStacks = caster:GetModifierStackCount("modifier_shadow_cleric_nightmare_aura", nil) - attackSpeedAuraStacks
 
     if(attackSpeedAuraStacks > 0) then

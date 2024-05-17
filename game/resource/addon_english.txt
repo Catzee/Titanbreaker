@@ -6664,6 +6664,8 @@
 
 		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura" 							  "Nightmare Aura"
 		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_Description" 				  "Increases Attack Speed of summons nearby."
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_inner_cd" 					  "Nightmare Aura - Inner Cooldown"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_inner_cd_Description" 		  ""
 
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems"                           "Arcane Ritual of Death"
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems_Description"               "Begin an Arcane Ritual, causing several Arcane Bolts to be launched at random enemies from random locations."
