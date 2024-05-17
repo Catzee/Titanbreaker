@@ -32454,54 +32454,59 @@
 		    "14"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
+		        "fear_inner_cd" "25"
 		    }
 		    "15"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot_tooltip" "50"
+		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
 		    }
 		    "16"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "bonus_shadow_damage_pct" "100"
+		        "passive_bonus_critical_dmg_dot_tooltip" "50"
 		    }
 		    "17"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura" "0 0 50 50"
+		        "bonus_shadow_damage_pct" "100"
 		    }
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_tooltip" "50"
+		        "attack_speed_aura" "0 0 50 50"
 		    }
 		    "19"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_tooltip" "50"
+		    }
+		    "20"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_duration_per_shadow_sphere" "0 0 10 10"
 		    }
-		    "19"
+		    "21"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_duration_per_shadow_sphere_tooltip" "10"
 		    }
-		    "20"
+		    "22"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_min_duration" "0 0 10 10"
 		    }
-		    "20"
+		    "23"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_min_duration_tooltip" "10"
 		    }
-		    "21"
+		    "24"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_inner_cd" "25"
 		    }
-		    "22"
+		    "25"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_radius" "900"

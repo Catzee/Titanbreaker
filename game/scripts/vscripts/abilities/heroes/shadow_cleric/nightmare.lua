@@ -41,14 +41,24 @@ function shadow5:OnSpellStart()
         shadowSpheresFactor = shadowSpheresFactor + shadowSpheres
     end
 
+    local innerCd = self:GetSpecialValueFor("fear_inner_cd") * GetInnerCooldownFactor(caster)
+
     for _, enemy in pairs(enemies) do
-        ApplyBuff({
-            caster = caster,
-            target = enemy,
-            ability = self,
-            dur = self:GetSpecialValueFor("duration") * shadowSpheresFactor,
-            buff = "modifier_shadow_cleric_nightmare_debuff"
-        })
+        if(enemy._shadowClearicShadow5FearInnerCd == nil) then
+            ApplyBuff({
+                caster = caster,
+                target = enemy,
+                ability = self,
+                dur = self:GetSpecialValueFor("duration") * shadowSpheresFactor,
+                buff = "modifier_shadow_cleric_nightmare_debuff"
+            })
+            
+            enemy._shadowClearicShadow5FearInnerCd = true
+
+            Timers:CreateTimer(innerCd, function()
+                enemy._shadowClearicShadow5FearInnerCd = nil
+            end)
+        end
     end
 
     ApplyBuff({
@@ -112,7 +122,7 @@ function shadow5:TryApplyAttackSpeedAura(caster)
 
     local innerCd = self:GetSpecialValueFor("attack_speed_aura_inner_cd") * GetInnerCooldownFactor(caster)
     caster:AddNewModifier(caster, self, "modifier_shadow_cleric_nightmare_aura_inner_cd", {duration = innerCd})
-    
+
     attackSpeedAuraStacks = caster:GetModifierStackCount("modifier_shadow_cleric_nightmare_aura", nil) - attackSpeedAuraStacks
 
     if(attackSpeedAuraStacks > 0) then
