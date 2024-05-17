@@ -32125,7 +32125,8 @@
 
 	"shadow6"
 	{
-		"BaseClass"             "ability_datadriven"
+        "BaseClass"    "ability_lua"
+        "ScriptFile"    "abilities/heroes/shadow_cleric/path_of_darkness"
         "AbilityTextureName"    "fix/abaddon_borrowed_time_colored_2"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -32154,211 +32155,79 @@
 	    	"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "duration" "8 8 8 10"
+		        "duration" "8"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgtaken" "-50 -75 -75 -75"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "ms" "0 0 0 25"
+		        "inner_cd" "20"
+		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_dmgfromstat" "200"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_spelldmg" "200"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_tickrate" "1"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_radius" "600"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_mana_shield_hp" "50"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_mana_shield_mana" "1"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_mana_shield_dmg_reduction_pct" "75"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "shadow_worms_mana_shield_duration" "45"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "damage_proc_armor" "20"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "damage_proc_spell_resistance" "50"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "damage_proc_duration" "3"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "damage_proc_inner_cd" "15"
 		    }
 	    }
-
-        "OnSpellStart"
-        {
-        	"RunScript"
-	    	{
-	    		"ScriptFile"	"game_mechanics.lua"
-	    		"Function"		"SetPathDarknessLevel"
-	    	}
-	    	"ApplyModifier"
-	    	{
-	    		"ModifierName"	"modifier_shadow_stance_def"
-	    		"Target" 		"CASTER"
-	    		"Duration"		"%duration"
-	    	}
-	    	"FireSound"
-	    	{
-	    		"EffectName"	"Hero_Dark_Seer.Wall_of_Replica_Start"
-	    		"Target" 		"CASTER"
-	    	}
-	    	"FireSound"
-	    	{
-	    		"EffectName"	"dark_seer_dkseer_respawn_04"
-	    		"Target" 		"CASTER"
-	    	}
-	    	"RunScript"
-	    	{
-	    		"ScriptFile"	"game_mechanics.lua"
-	    		"Function"		"ShadowPriestFormCheck"
-	    	}
-        }
-        "precache"
-		{
-			"particle"  "particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
-			"particle"  "particles/econ/items/silencer/silencer_ti6/silencer_last_word_status_ti6.vpcf"
-		}
-
-		"Modifiers"
-		{
-			"modifier_shadow_form_ds"
-	        {
-	            "Passive"  "0"
-	            "IsHidden" "0"
-	            "OnCreated"
-	            {
-	            	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ShapeshiftShadowPriest"
-					}
-	            }
-	            "OnDestroy"
-	            {
-	            	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ShapeshiftShadowPriestEnd"
-					}
-	            }
-	        } 
-			"modifier_shadow_stance"
-			{
-				"Passive"			"0"
-				"IsPurgable"		"0"
-				"IsBuff"			"1"
-				"IsDebuff"			"0"
-				"IsStunDebuff"		"0"
-				"IsHidden"	"0"
-
-				//"StatusEffectName"     "particles/status_fx/status_effect_keeper_spirit_form.vpcf"
-    			//"StatusEffectPriority" "15"
-    			"StatusEffectName"     "particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
-    			"StatusEffectPriority" "15"
-    			"OnCreated"
-    			{
-    				"AttachEffect"
-    				{
-    					"EffectName"        "particles/econ/items/silencer/silencer_ti6/silencer_last_word_status_ti6.vpcf"
-    					"EffectAttachType"  "attach_hitloc"
-    					"Target"            "TARGET"
-    				}
-    			}
-				"ThinkInterval"  "1.0"
-				"OnIntervalThink"
-				{
-					"RunScript"
-			    	{
-			    		"ScriptFile"	"game_mechanics.lua"
-			    		"Function"		"SetBuffStack"
-			    		"buff"			"modifier_shadow_stance"
-			    		//"self"			"1"
-			    		//"dur"			"%duration"
-			    	}
-				}
-			}
-			"modifier_shadow_stance_def"
-			{
-				"Passive"			"0"
-				"IsPurgable"		"0"
-				"IsBuff"			"1"
-				"IsDebuff"			"0"
-				"IsStunDebuff"		"0"
-				"IsHidden"	"0"
-				"EffectName" "particles/shadow_armor.vpcf"
-			    "EffectAttachType"  "attach_hitloc"
-			    "OnCreated"
-    			{
-    				"AttachEffect"
-    				{
-    					"EffectName"        "particles/econ/items/silencer/silencer_ti6/silencer_last_word_status_ti6.vpcf"
-    					"EffectAttachType"  "attach_hitloc"
-    					"Target"            "TARGET"
-    				}
-    			}  
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ms"
-				}
-			}
-			"modifier_holystance"
-			{
-				"Duration"	"-1"
-				"Passive"			"0"
-				"IsPurgable"		"0"
-				"IsBuff"			"1"
-				"IsDebuff"			"0"
-				"IsStunDebuff"		"0"
-				"IsHidden"	"0"
-
-				//"StatusEffectName"     "particles/status_fx/status_effect_keeper_spirit_form.vpcf"
-    			//"StatusEffectPriority" "15"
-    			"StatusEffectName"     "particles/status_fx/status_effect_guardian_angel.vpcf"
-    			"StatusEffectPriority" "15"
-		
-			}
-			"modifier_shadowstance"
-			{
-				"Duration"	"1"
-				"Passive"			"0"
-				"IsPurgable"		"0"
-				"IsBuff"			"1"
-				"IsDebuff"			"0"
-				"IsStunDebuff"		"0"
-				"IsHidden"	"1"
-
-				//"StatusEffectName"     "particles/status_fx/status_effect_keeper_spirit_form.vpcf"
-    			//"StatusEffectPriority" "15"
-    			//"StatusEffectName"     "particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
-    			//"StatusEffectPriority" "8"
-		
-			}
-			"modifier_selffxshadow"
-			{
-			    "Duration"         "1"
-			    "Passive"          "0"    
-
-			    "IsBuff"			"1"
-			    "IsDebuff"         "0"
-			    "IsHidden"         "1"
-			    "IsPurgable"       "0"
-
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"        "particles/units/heroes/hero_templar_assassin/templar_assassin_meld.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
-			}
-			"modifier_selffx"
-			{
-			    //"Duration"         "1"
-			    "Passive"          "0"    
-
-			    "IsBuff"			"1"
-			    "IsDebuff"         "0"
-			    "IsHidden"         "1"
-			    "IsPurgable"       "0"
-
-			    "OnCreated"
-			    {
-			    	"AttachEffect"
-			    	{
-			    		"EffectName"        "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_glow_focal.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
-			}
-		}
-
     }
 
 	"shadow5"

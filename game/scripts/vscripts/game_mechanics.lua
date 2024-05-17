@@ -3055,16 +3055,6 @@ function DamageUnit( event )
         end
     end
 
-    if caster.pathdarknesslevel and caster.pathdarknesslevel >= 3 and caster:HasModifier("modifier_shadow_stance_def") then
-        local tab = {}
-        tab.caster = caster
-        tab.target = caster
-        tab.heal = 0
-        tab.percenthp = 1
-        tab.ability = event.ability
-        HealUnit(tab)
-    end
-
 	if event.lifestealowner ~= nil and caster.owner then
 		local tab = {}
 		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_double_edge_src_rope.vpcf", PATTACH_POINT_FOLLOW, caster.owner)
@@ -23310,10 +23300,6 @@ function JumpStomp( event )
     end
 end
 
-function SetPathDarknessLevel( event )
-    event.caster.pathdarknesslevel = event.ability:GetLevel()
-end
-
 function AttackRandomHero( unit )
     Timers:CreateTimer(0.1, function()
         --local all = HeroList:GetAllHeroes()
@@ -29543,35 +29529,6 @@ function CorruptedCoilProc(event)
             end
         end
     end 
-end
-
-function ShadowPriestFormCheck(event)
-    local caster = event.caster
-    local ability = event.ability
-    if caster:HasModifier("modifier_class_ds2") then
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_shadow_form_ds", {Duration = 30})
-    end 
-end
-
-function ShapeshiftShadowPriest(event)
-    local caster = event.caster
-    local target = event.target
-    local ability = event.ability
-    caster.dsModel = caster:GetModelName()
-    caster:SetModel("models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl")
-    caster:SetOriginalModel("models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl")
-    caster:SetModelScale(1.25)
-end
-
-function ShapeshiftShadowPriestEnd(event)
-    local caster = event.caster
-    local target = event.target
-    local ability = event.ability
-    if caster.dsModel then
-        caster:SetModel(caster.dsModel)
-        caster:SetOriginalModel(caster.dsModel)
-        caster:SetModelScale(1)
-    end
 end
 
 function FrostknightCheck(event)

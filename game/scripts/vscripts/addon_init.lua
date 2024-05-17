@@ -32,14 +32,19 @@ LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_instant_casts", "modifiers/
 -- silencer 3rd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_twilight_cleric_lightstream_buff", "modifiers/heroes/twilight_cleric/lightstream/modifier_twilight_cleric_lightstream_buff", LUA_MODIFIER_MOTION_NONE)
 -- dark seer
-LinkLuaModifier("modifier_shadow_cleric_mindstorm_mindbender", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_mindbender", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: shadow orbs
 LinkLuaModifier("modifier_shadow_cleric_shadow_orbs", "modifiers/heroes/shadow_cleric/modifier_shadow_cleric_shadow_orbs", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: mindstorm
+LinkLuaModifier("modifier_shadow_cleric_mindstorm_mindbender", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_mindbender", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_mindstorm_debuff", "modifiers/heroes/shadow_cleric/mindstorm/modifier_shadow_cleric_mindstorm_debuff", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: shadow prayer pain
 LinkLuaModifier("modifier_shadow_cleric_shadow_prayer_pain_debuff", "modifiers/heroes/shadow_cleric/shadow_prayer_pain/modifier_shadow_cleric_shadow_prayer_pain_debuff", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: dream feast
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_buff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_debuff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_tentacle", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_tentacle", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_dream_feast_tentacle_debuff", "modifiers/heroes/shadow_cleric/dream_feast/modifier_shadow_cleric_dream_feast_tentacle_debuff", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: nightmare
 LinkLuaModifier("modifier_shadow_cleric_nightmare_buff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_debuff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_internal_buff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_internal_buff", LUA_MODIFIER_MOTION_NONE)
@@ -47,5 +52,12 @@ LinkLuaModifier("modifier_shadow_cleric_nightmare_spell_resistance_buff", "modif
 LinkLuaModifier("modifier_shadow_cleric_nightmare_aura", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_aura_buff", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_shadow_cleric_nightmare_aura_inner_cd", "modifiers/heroes/shadow_cleric/nightmare/modifier_shadow_cleric_nightmare_aura_inner_cd", LUA_MODIFIER_MOTION_NONE)
+-- dark seer: path of darkness
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_armor_buff", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_armor_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_buff", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_internal_buff", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_internal_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_mana_shield_buff", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_mana_shield_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_summons_buff", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_summons_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_buff_inner_cd", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_buff_inner_cd", LUA_MODIFIER_MOTION_NONE)
 -- for lua pets
 LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system_lua", LUA_MODIFIER_MOTION_NONE)
