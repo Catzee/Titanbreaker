@@ -8,6 +8,7 @@ function shadow6:Precache(context)
 	PrecacheResource("particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_status_ti6.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_cleric_mana_shield.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_cleric_darkness_armor.vpcf", context)
 end
 
 function shadow6:OnSpellStart()
