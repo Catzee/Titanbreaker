@@ -32160,7 +32160,7 @@
 		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgtaken" "-50 -75 -75 -75"
+		        "dmgtaken" "50 75 75 75"
 		    }
 		    "03"
 		    { 

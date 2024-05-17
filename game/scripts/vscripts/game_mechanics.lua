@@ -3579,10 +3579,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     --if event.firedmg and caster:HasModifier("modifier_burning_nether") then
     --    value = value + 0.25
     --end
-    local shadow_stance_cleric = caster:GetModifierStackCount("modifier_shadow_stance", nil)
-    if event.shadowdmg and shadow_stance_cleric > 0 then
-        value = value + 0.05 * shadow_stance_cleric
-    end
     if event.chaosdmg then
         local dh_agi_talent = caster:FindAbilityByName("terror3")
         if dh_agi_talent and dh_agi_talent:GetLevel() >= 4 then
@@ -7887,10 +7883,6 @@ function GetSpellhaste( caster, event )
         end
         if name == "modifier_whiterobe" then
             speedbonus = speedbonus + GetStrengthCustom(caster) / 200
-        end
-        local shadow_stance_cleric = caster:GetModifierStackCount("modifier_shadow_stance", nil)
-        if shadow_stance_cleric > 0 and name == "modifier_shadow_stance" then
-            speedbonus = speedbonus + 0.05 * shadow_stance_cleric
         end
         local keeper1_stacks = caster:GetModifierStackCount("modifier_keeper_spellhaste", nil)
         if keeper1_stacks > 0 and name == "modifier_keeper_spellhaste" then
@@ -26103,11 +26095,12 @@ function GetTotalDamageTakenFactor(caster, attacker)
             factor = factor * 0.6
         end
     end
-    if caster:HasModifier("modifier_shadow_stance_def") then
-        if caster:FindAbilityByName("shadow6"):GetLevel() >= 2 then
-            factor = factor * 0.25
-        else
-            factor = factor * 0.5
+	local pathOfDarknessModifier = caster:FindModifierByName("modifier_shadow_cleric_path_of_darkness_buff")
+    if pathOfDarknessModifier then
+        local pathOfDarknessModifierAbility = pathOfDarknessModifier:GetAbility()
+        if(pathOfDarknessModifierAbility) then
+            local dmgFactor = 1 - (pathOfDarknessModifierAbility:GetSpecialValueFor("dmgtaken") / 100)
+            factor = factor * dmgFactor
         end
     end
     if caster:HasModifier("modifier_slaught_def") then
