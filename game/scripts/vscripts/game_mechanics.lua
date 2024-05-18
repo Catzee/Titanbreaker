@@ -6423,7 +6423,7 @@ end
 
 function CheckForCC( target )
     if target:HasModifier("modifier_stunned") or target:HasModifier("modifier_delay_impale") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("glacier_trap") or target:HasModifier("modifier_rootedfx") 
-        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") or buff == "modifier_shadow_cleric_nightmare_debuff"
+        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") or target:HasModifier("modifier_shadow_cleric_nightmare_debuff")
         or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
         or target:HasModifier("modifier_confused_unbreakable") or target:HasModifier("modifier_frostarmorbuff") or target:HasModifier("modifier_iceexplode") or target:HasModifier("modifier_stomp")
         or target:HasModifier("modifier_voodoo_datadriven")
