@@ -1594,7 +1594,7 @@
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender_Description"    "Shadow Damage increased."
 
 		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff"    "Mindstorm"
-		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff_Description"    "Movement speed slowed."
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff_Description"    "Movement Speed slowed."
 
 		"DOTA_Tooltip_Ability_shadow5"  "Nightmare" 
 		"DOTA_Tooltip_Ability_shadow5_duration"    "Base Debuff Duration:" 
@@ -1610,9 +1610,6 @@
 
 		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff"	"Nightmare"
 		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff_Description"	"Shadow Damage increased."
-
-		"DOTA_Tooltip_modifier_holystance"	"Awakened State"
-		"DOTA_Tooltip_modifier_holystance_Description"	"Gives access to Healing Spells."
 
 		"DOTA_Tooltip_modifier_fearsp"	"Nightmare"
 		"DOTA_Tooltip_modifier_fearsp_Description"	"All control is lost."
@@ -2867,9 +2864,6 @@
 		"DOTA_Tooltip_Ability_shadow4_healfactor"    "%Damage to Healing on Self:" 
 		"DOTA_Tooltip_Ability_shadow4_healfactor2"    "%Damage to Healing on Allies:" 
 		"DOTA_Tooltip_Ability_shadow4_buffduration"    "Duration:" 
-
-		"DOTA_Tooltip_modifier_shadow4"	"Shadow Sphere"
-		"DOTA_Tooltip_modifier_shadow4_Description"	"Damage will cause Healing."
 
 		// 2.9.6 iron talon
 		"DOTA_Tooltip_Ability_item_irontalon"  "<font color=\"#32cd32\">Iron Talon"  
@@ -6659,7 +6653,6 @@
 		"DOTA_Tooltip_Ability_shadow6_dmgtaken"		"%Damage Reduction:"
 		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies (with an inner cooldown of %fear_inner_cd% secs for each enemy) to wander around in panic, losing all control and increase all Shadow Damage dealt by %bonus_shadow_damage_pct%%% for duration of effect. In addition grants Night Armor that increases Spell Resistance by %spell_resistance_amount% for %spell_resistance_duration% secs.\n\n<font color=\"#00EE00\">Consume up to %shadow_spheres_max% Shadow Spheres, increasing the CC and Shadow Damage buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Passively increases Ability Critical Strike Damage for Damage Over Time effects by %passive_bonus_critical_dmg_dot_tooltip%%%. \nRank 3: When cast gain an aura that increases Attack Speed of all summons in %attack_speed_aura_radius% yards by %attack_speed_aura_tooltip% for %attack_speed_aura_duration_per_shadow_sphere_tooltip% secs per Shadow Sphere consumed (minimum duration is %attack_speed_aura_min_duration_tooltip% secs) with an inner cooldown of %attack_speed_aura_inner_cd% secs, stacking with an independent duration. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow6_duration"		"Duration: "
-		"DOTA_Tooltip_modifier_shadow_stance"                                             "Path of Darkness"
 		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to %max_shadow_spheres_consumed% Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with %crit_shadow_spheres% Shadow Spheres, all Shadow Damage will Critical Strike for %crit_multiplier_tooltip%%% for %crit_duration_tooltip% secs. \nRank 3: Summon a Shadow Tentacle at the target that attacking enemies around for %tentacle_intsp%%% of Intellect and Spellpower for %tentacle_duration% secs, slowing all nearby enemies by %tentacle_movespeed_bonus_pct_tooltip%%% and causing them to take %tentacle_bonus_shadow_dmg_pct_tooltip%%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also generates %tentacle_bonus_shadow_spheres_per_aa_tooltip% Shadow Sphere(s) with each attack (with an inner cooldown of %tentacle_bonus_shadow_spheres_per_aa_inner_cd% secs), reduces the Spell Resistance of nearby enemies by %tentacle_spellresistance_bonus_tooltip% and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal %frenzy_tooltip%%% increased Damage, up to %frenzy_max_tooltip%%%.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow1_Description"  "Channel for 3 secs, striking the target a total of 5 times, dealing Shadow Damage.\n\n<font color=\"#00EE00\">Each strike has a chance to generate 1 Shadow Sphere (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and increased Shadow Sphere chance. \nRank 3: Now also slow movement speed and gain a %knockback_tooltip%%% chance to knock enemies back, if they are closer than %knockback_range% yards. \nRank 4: Passively every time you gain Shadow Sphere you will gain a stack of Mindbender, increasing all Shadow Damage by %mindbender_shadow_dmg_pct_tooltip%%% for %mindbender_duration_tooltip% secs, stacking up to %mindbender_max_stacks_tooltip% times.\n\n</font>"
 
@@ -8290,9 +8283,6 @@
 		"DOTA_Tooltip_modifier_as_jungle"                                                 "Cobra Reflexes"
 		"DOTA_Tooltip_modifier_as_jungle_Description"                                     "Attack Speed increased."
 
-		"DOTA_Tooltip_modifier_swd_2_proc"                                                "Shadow Proc"
-		"DOTA_Tooltip_modifier_swd_2_proc_Description"                                    ""
-
 		"DOTA_Tooltip_modifier_arcane_asslow_friend"                                      "Arcane Slow"
 		"DOTA_Tooltip_modifier_arcane_asslow_friend_Description"                          ""
 
@@ -8637,9 +8627,6 @@
 		"DOTA_Tooltip_modifier_pve_affix_shrink_buff"                          "Shrinking"
 		"DOTA_Tooltip_ability_pve_affix_shrinking"                                "Shrinking"
 		"DOTA_Tooltip_ability_pve_affix_shrinking_Description"                    "Starts with 75%% increased Damage and 75%% Damage reduction, but shrinks each second, losing 1%% Damage and Damage reduction per sec."
-
-		"DOTA_Tooltip_modifier_shadow_stance_def"                                         "Shadow Stance"
-		"DOTA_Tooltip_modifier_shadow_stance_def_Description"                             ""
 
 		"DOTA_Tooltip_modifier_storm_shield"                                              "Storm Shield"
 		"DOTA_Tooltip_modifier_storm_shield_Description"                                  ""
@@ -10825,7 +10812,6 @@
 		"DOTA_Tooltip_modifier_equilibrium_Description"                                  "The reward for a balanced lifestyle!"
 		"DOTA_Tooltip_modifier_black_grimoire"                                              "Black Grimoire"
 		"DOTA_Tooltip_modifier_bm2"                                              "Berserker Blades"
-		"DOTA_Tooltip_modifier_shadow_form_ds"                                              "Shadow Priest"
 		"DOTA_Tooltip_modifier_156_active"                                              "Tower of Resistance"
 		"DOTA_Tooltip_modifier_divinedef_active"                                              "Divine Blessing"
 		

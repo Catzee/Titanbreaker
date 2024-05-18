@@ -7,7 +7,10 @@ modifier_shadow_cleric_path_of_darkness_mana_shield_buff = class({
     end,
     IsDebuff = function()
 		return false
-	end
+	end,
+    GetTexture = function()
+        return "fix/shadow_cleric_mana_shield"
+    end
 })
 
 function modifier_shadow_cleric_path_of_darkness_mana_shield_buff:OnCreated()
