@@ -6196,10 +6196,10 @@ function COverthrowGameMode:OnThink()
      local steamid = PlayerResource:GetSteamAccountID(playerid)
      if steamid == 331083980 or steamid == 295988718 or steamid == 365408273 or steamid == 324725164 or steamid == 312858974 or steamid == 374517205 or steamid == 324725164 or steamid == 119503233 or 
        steamid == 376982804 or steamid == 380880662 or steamid == 383610783 or steamid == 383689050 or steamid == 383856994 or steamid == 301230370 or steamid == 445970633 or steamid == 169589001 or steamid == 212685045 or steamid == 433543739
-       or steamid == 100437970 or steamid == 247058932 or steamid == 433543739 or steamid == 207219111 or steamid == 138250514 or steamid == 100678658 or steamid == 422948593 or steamid == 365686150 or steamid == 366222608
+       or steamid == 100437970 or steamid == 433543739 or steamid == 207219111 or steamid == 138250514 or steamid == 100678658 or steamid == 422948593 or steamid == 365686150 or steamid == 366222608
        or steamid == 125456719 or steamid == 189981798 or steamid == 197202228 or steamid == 173962066 or steamid == 136581278 or steamid == 418116710 or steamid == 171034086 or steamid == 121416239 or steamid == 343733493 
        or steamid == 188237126 or steamid == 197202228 or steamid == 836575036 or steamid == 29497558 then -- or steamid == 39460724 then
-        --GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+        --GameRules:SetGameWinner(DOTA_TEAM_BADGUYS) -- unbanned: 247058932
         hero.cheater = true
       end
     end
