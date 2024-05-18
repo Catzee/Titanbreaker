@@ -32177,52 +32177,42 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "shadow_worms_spelldmg" "200"
 		    }
-		    "05"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "shadow_worms_tickrate" "1"
 		    }
-		    "05"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "shadow_worms_radius" "600"
 		    }
-		    "07"
+		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "shadow_worms_mana_shield_hp" "50"
 		    }
-		    "07"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "shadow_worms_mana_shield_mana" "1"
-		    }
-		    "07"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "shadow_worms_mana_shield_dmg_reduction_pct" "75"
-		    }
-		    "08"
+		    "09"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "shadow_worms_mana_shield_duration" "45"
 		    }
-		    "07"
+		    "10"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "damage_proc_armor" "20"
 		    }
-		    "07"
+		    "11"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "damage_proc_spell_resistance" "50"
 		    }
-		    "07"
+		    "12"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "damage_proc_duration" "3"
 		    }
-		    "08"
+		    "13"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "damage_proc_inner_cd" "15"

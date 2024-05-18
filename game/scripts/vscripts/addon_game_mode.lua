@@ -12109,6 +12109,13 @@ function COverthrowGameMode:FilterDamage( filterTable )
   if victim:HasModifier("modifier_mana_shield") then
     hppermana = hppermana + 40
   end
+  local pathOfDarknessManaShield = victim:FindModifierByName("modifier_shadow_cleric_path_of_darkness_mana_shield_buff")
+  if(pathOfDarknessManaShield) then
+    local pathOfDarknessManaShieldAbility = pathOfDarknessManaShield:GetAbility()
+    if(pathOfDarknessManaShieldAbility) then
+      hppermana = hppermana + pathOfDarknessManaShieldAbility:GetSpecialValueFor("shadow_worms_mana_shield_hp")
+    end
+  end
   local absorbFactor = 0.75
   if victim.talents and victim.talents[33] and victim.talents[33] > 0 and not victim.resourcesystem then
     local level = victim.talents[33]
