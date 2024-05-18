@@ -18,6 +18,6 @@ function modifier_shadow_cleric_path_of_darkness_mana_shield_buff:OnCreated()
     self.parent = self:GetParent()
 
     local particle = ParticleManager:CreateParticle("particles/shadow_cleric_mana_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-    ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+    ParticleManager:SetParticleControl(particle, 1, Vector(0, 0, 25))
     self:AddParticle(particle, false, false, 1, false, false)
 end
