@@ -6410,7 +6410,7 @@ end
 
 function IsHardCC( buff )
     if buff == "modifier_stunned" or buff == "modifier_delay_impale" or buff == "modifier_deepfreeze" or buff == "glacier_trap" or buff == "modifier_rootedfx" 
-        or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" 
+        or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" or buff == "modifier_shadow_cleric_nightmare_debuff"
         or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_fearsp" or buff == "modifier_confused"
         or buff == "modifier_confused_unbreakable" or buff == "modifier_frostarmorbuff" or buff == "modifier_iceexplode" or buff == "modifier_stomp"
         or buff == "modifier_voodoo_datadriven"
@@ -6423,7 +6423,7 @@ end
 
 function CheckForCC( target )
     if target:HasModifier("modifier_stunned") or target:HasModifier("modifier_delay_impale") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("glacier_trap") or target:HasModifier("modifier_rootedfx") 
-        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") 
+        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") or buff == "modifier_shadow_cleric_nightmare_debuff"
         or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
         or target:HasModifier("modifier_confused_unbreakable") or target:HasModifier("modifier_frostarmorbuff") or target:HasModifier("modifier_iceexplode") or target:HasModifier("modifier_stomp")
         or target:HasModifier("modifier_voodoo_datadriven")
@@ -22351,14 +22351,6 @@ function TalentOnAttacked( event )
             caster.elusiveness = true
             Timers:CreateTimer(45 * GetInnerCooldownFactor(caster), function()
                 caster.elusiveness = false
-            end)
-        end
-        local abil = caster:FindAbilityByName("shadow5")
-        if abil and abil:GetLevel() >= 2 and not caster.shadow5CDS then
-            caster.shadow5CDS = true
-            ApplyBuff({caster = caster, target = attacker, ability = abil, buff = "modifier_fearsp_bonus", dur = 3})
-            Timers:CreateTimer(15 * GetInnerCooldownFactor(caster), function()
-                caster.shadow5CDS = false
             end)
         end
     end
