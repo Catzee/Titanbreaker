@@ -66,13 +66,10 @@ function modifier_shadow_cleric_path_of_darkness_shadow_priest_form:AdjustMindsh
         if(self.parent:IsAlive()) then
             modifier_shadow_cleric_path_of_darkness_shadow_priest_form:RestoreCharges(self.parent, abilityName)
         else
-            print("Ded guy")
             Timers:CreateTimer(1, function()
                 if(self.parent:IsAlive()) then
-                    print("Ez charges")
-                    modifier_shadow_cleric_path_of_darkness_shadow_priest_form.RestoreCharges(self.parent, abilityName)
+                    modifier_shadow_cleric_path_of_darkness_shadow_priest_form.RestoreCharges(nil, self.parent, abilityName)
                 else
-                    print("Still ded")
                     return 1
                 end
             end)
