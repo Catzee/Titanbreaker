@@ -89,7 +89,8 @@ function shadow6:OnProjectileHit(target, location)
         spelldamagefactor = self:GetSpecialValueFor("shadow_worms_spelldmg"),
         attributefactor = self:GetSpecialValueFor("shadow_worms_dmgfromstat"),
         shadowdmg = 1,
-        fromsummon = 1
+        fromsummon = 1,
+        ignore_when_target_has_reflect = 1
     })
 
     return true
