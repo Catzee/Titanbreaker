@@ -93,10 +93,10 @@ function shadow5:OnSpellStart()
     EmitSoundOn("Hero_TemplarAssassin.Trap.Trigger", caster)
     EmitSoundOn("abaddon_abad_laugh_01", caster)
 
-    self:TryApplyAttackSpeedAura(caster)
+    self:TryApplyAttackSpeedAura(caster, shadowSpheresFactor)
 end
 
-function shadow5:TryApplyAttackSpeedAura(caster)
+function shadow5:TryApplyAttackSpeedAura(caster, shadowSpheresFactor)
     if(caster:HasModifier("modifier_shadow_cleric_nightmare_aura_inner_cd")) then
         return
     end

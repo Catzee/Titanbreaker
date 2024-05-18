@@ -1,4 +1,4 @@
-modifier_shadow_cleric_path_of_darkness_buff = class({
+modifier_shadow_cleric_path_of_darkness_summons_buff = class({
 	IsHidden = function() 
         return false 
     end,
@@ -10,28 +10,27 @@ modifier_shadow_cleric_path_of_darkness_buff = class({
 	end
 })
 
-function modifier_shadow_cleric_path_of_darkness_buff:OnCreated()
+function modifier_shadow_cleric_path_of_darkness_summons_buff:OnCreated()
     if(not IsServer()) then
         return
     end
     
     self:OnRefresh()
 
-    self.ability = self:GetAbility()
     self.caster = self.ability:GetCaster()
     self:OnIntervalThink()
     self:StartIntervalThink(self.ability:GetSpecialValueFor("shadow_worms_tickrate"))
 end
 
-function modifier_shadow_cleric_path_of_darkness_buff:OnRefresh()
+function modifier_shadow_cleric_path_of_darkness_summons_buff:OnRefresh()
     if(not IsServer()) then
         return
     end
-
+    self.ability = self:GetAbility()
     self.attackRange = self.ability:GetSpecialValueFor("shadow_worms_radius")
 end
 
-function modifier_shadow_cleric_path_of_darkness_buff:OnIntervalThink()
+function modifier_shadow_cleric_path_of_darkness_summons_buff:OnIntervalThink()
     local target = FindClosestEnemy({caster = self.caster, radius = self.attackRange})
 
     if(not target) then
