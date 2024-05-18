@@ -10562,7 +10562,7 @@ end
  --	    }
  --	)
  --end
- CheckForHeroChargeAbilities(hero)
+ COverthrowGameMode:CheckForHeroChargeAbilities(hero)
 
  if heroName == "npc_dota_hero_lion" then
   hero.temple_class = 11
@@ -18585,7 +18585,7 @@ function AddTempleClassAbility( hero, ability, random ) --nil = random
     if ability_name == "WarriorCharge" or ability_name == "Shield_Reflect" or ability_name == "Terror_ShoutProt" or ability_name == "Terror_ShoutFury" or ability_name == "Terror_Shout" then
       added_ability:SetLevel(1)
     end
-    CheckForHeroChargeAbilities(hero)
+    COverthrowGameMode:CheckForHeroChargeAbilities(hero)
     --end )
     if false then
       for i=0, 15 do
@@ -19997,7 +19997,8 @@ function CheckForClassQuestRewards(questname)
       end)
     end
 
-    function CheckForHeroChargeAbilities( hero )
+    function COverthrowGameMode:CheckForHeroChargeAbilities( hero )
+      -- If the way how charge abilitites initialized ever changes at least ds class item needs adjustments (item_class_ds2)
       local abilityName = "dh1"
       local ability = hero:FindAbilityByName(abilityName)
       if ability and not hero[abilityName .."_is_init"] then
@@ -20029,7 +20030,7 @@ function CheckForClassQuestRewards(questname)
         hero:AddNewModifier(hero, ability, "modifier_charges",
         {
           max_count = 3,
-          start_count = 1,
+          start_count = 0, -- 1, 0 because of ds class item to prevent some weird possible abuse (at least one charge will be reached 100% during ml selection window)
           replenish_time = 10
         }
         )

@@ -6672,10 +6672,10 @@
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff_inner_cd_Description"      ""
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff" 			  		      "Path of Darkness"
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff_Description"  		      "Damage Reduction increased."
-		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_summons_buff" 			      "Path of Darkness - Shadow Worms"
-		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_summons_buff_Description"       "Shadow Worms attacking enemies nearby."
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_mana_shield_buff" 		      "Shadow Apparations"
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_mana_shield_buff_Description"   "Absorbing Damage."
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form" 		      "Shadow Priest Form"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form_Description"   ""
 
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems"                           "Arcane Ritual of Death"
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems_Description"               "Begin an Arcane Ritual, causing several Arcane Bolts to be launched at random enemies from random locations."
@@ -10961,9 +10961,9 @@
 		"DOTA_Tooltip_ability_item_class_skele2_bonus_stat1"                              "Strength:"
 
 		"DOTA_Tooltip_ability_item_class_ds2"                                          "<font color=\"#00ffff\">[Ancient] Preacher's Reach"
-		"DOTA_Tooltip_ability_item_class_ds2_Description"                              "When you cast Path of Darkness, morph into Shadow Priest Form for 30 secs, causing Mindshatter to refresh twice as fast and increasing Cast Range by 450."
-		"DOTA_Tooltip_ability_item_class_ds2_bonus_stat1"                              "Spellpower:"
-		"DOTA_Tooltip_ability_item_class_ds2_bonus_stat2"                              "%Max Health:"
+		"DOTA_Tooltip_ability_item_class_ds2_Description"                              "When you cast Path of Darkness, morph into Shadow Priest Form for %duration% secs, causing Mindshatter to deal only %mindshatter_damage_factor%%% of base damage, but having 0 cooldown and projectile speed increased by %bonus_projectile_speed%."
+		"DOTA_Tooltip_ability_item_class_ds2_bonus_spellpower"                             "Spellpower:"
+		"DOTA_Tooltip_ability_item_class_ds2_bonus_intellect"                              "Intellect:"
 
 		"DOTA_Tooltip_ability_item_class_sven2"                                          "<font color=\"#00ffff\">[Ancient] Swords of Snow"
 		"DOTA_Tooltip_ability_item_class_sven2_Description"                              "Whenever you are at 5 stacks of the Frostknight buff, morph into a Frostgolem, increasing your Ability Critical Strike Damage by 30%% for every 100 Agility, when dealing single target Damage."

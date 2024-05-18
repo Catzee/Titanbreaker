@@ -66041,12 +66041,27 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "75"
+	            "bonus_spellpower"    "75"
 	        }
-	        "01"
+	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_intellect"    "75"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_projectile_speed"    "300"
+	        }
+	        "04"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "duration"    "30"
+	        }
+	        "05"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "mindshatter_damage_factor"    "25" // 25% of intended ability damage
 	        }
 	    }
 
@@ -66056,6 +66071,11 @@
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1"
+
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
+	            }
 	        } 
 	    }
 	}

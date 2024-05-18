@@ -53,6 +53,17 @@ function shadow11:OnSpellStart()
         FIND_ANY_ORDER, 
         false)
     
+    local bonusProjectileSpeed = 0
+    local projectileDamageFactor = 1
+    local dsClassItemModifier = caster:FindModifierByName("modifier_class_ds2")
+    if(dsClassItemModifier) then
+        local dsClassItemModifierAbility = dsClassItemModifier:GetAbility()
+        if(dsClassItemModifierAbility) then
+            bonusProjectileSpeed = dsClassItemModifierAbility:GetSpecialValueFor("bonus_projectile_speed")
+            projectileDamageFactor = dsClassItemModifierAbility:GetSpecialValueFor("mindshatter_damage_factor") / 100
+        end
+    end
+
     local projectile = {
         Target = nil,
         Source = caster,
@@ -60,10 +71,13 @@ function shadow11:OnSpellStart()
         EffectName = "particles/fireball_17.vpcf",
         bDodgeable = true,
         bProvidesVision = true,
-        iMoveSpeed = 550,
+        iMoveSpeed = 550 + bonusProjectileSpeed,
         iVisionRadius = 300,
         iVisionTeamNumber = casterTeam,
-        iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+        iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
+        ExtraData = {
+            damageFactor = projectileDamageFactor
+        }
     }
 
     for _, enemy in pairs(enemies) do
@@ -99,7 +113,7 @@ function shadow11:OnSpellStart()
 	})
 end
 
-function shadow11:OnProjectileHit(target, location)
+function shadow11:OnProjectileHit_ExtraData(target, location, extraData)
     if(target == nil) then
         return true
     end
@@ -137,8 +151,8 @@ function shadow11:OnProjectileHit(target, location)
         target = target,
         ability = self,
         damage = 0,
-        spelldamagefactor = self:GetSpecialValueFor("spelldmg"),
-        attributefactor = self:GetSpecialValueFor("dmgfromstat"),
+        spelldamagefactor = self:GetSpecialValueFor("spelldmg") * extraData.damageFactor,
+        attributefactor = self:GetSpecialValueFor("dmgfromstat") * extraData.damageFactor,
         shadowdmg = 1
     })
 

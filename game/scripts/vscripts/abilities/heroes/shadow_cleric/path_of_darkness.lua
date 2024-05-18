@@ -9,6 +9,9 @@ function shadow6:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_cleric_mana_shield.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_cleric_darkness_armor.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_cleric_darkness_armor.vpcf", context)
+    -- class item
+    PrecacheResource("model", "models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl", context)
 end
 
 function shadow6:OnSpellStart()
@@ -46,6 +49,20 @@ function shadow6:OnSpellStart()
             dur = self:GetSpecialValueFor("shadow_worms_mana_shield_duration"),
             buff = "modifier_shadow_cleric_path_of_darkness_mana_shield_buff"
         })
+    end
+
+    local dsClassItemModifier = caster:FindModifierByName("modifier_class_ds2")
+    if(dsClassItemModifier) then
+        local dsClassItemModifierAbility = dsClassItemModifier:GetAbility()
+        if(dsClassItemModifierAbility) then
+            ApplyBuff({
+                caster = caster,
+                target = caster,
+                ability = self,
+                dur = dsClassItemModifierAbility:GetSpecialValueFor("duration"),
+                buff = "modifier_shadow_cleric_path_of_darkness_shadow_priest_form"
+            })
+        end
     end
 
     EmitSoundOn("Hero_Dark_Seer.Wall_of_Replica_Start", caster)

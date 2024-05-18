@@ -1,6 +1,6 @@
 modifier_shadow_cleric_path_of_darkness_summons_buff = class({
 	IsHidden = function() 
-        return false 
+        return true 
     end,
 	IsPurgable = function() 
         return false 

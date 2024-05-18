@@ -57726,7 +57726,7 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "stun_inner_cd" "5"
+		        "stun_inner_cd" "6"
 		    }
 		    "04"
 		    { 

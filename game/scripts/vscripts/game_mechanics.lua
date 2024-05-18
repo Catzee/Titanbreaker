@@ -280,8 +280,12 @@ function GetSpellpower(event)
         spelldamagefromitem = spelldamagefromitem + 200
         factor = factor + 0.1
     end
-    if caster:HasModifier("modifier_class_ds2") then
-        spelldamagefromitem = spelldamagefromitem + 75
+    local dsClassItem2Modifier = caster:FindModifierByName("modifier_class_ds2")
+    if dsClassItem2Modifier then
+        local dsClassItem2ModifierAbility = dsClassItem2Modifier:GetAbility()
+        if(dsClassItem2ModifierAbility) then
+            spelldamagefromitem = spelldamagefromitem + dsClassItem2ModifierAbility:GetSpecialValueFor("bonus_spellpower")
+        end
     end
     if caster:HasModifier("modifier_rune") then
         spelldamagefromitem = spelldamagefromitem + 75 + 10 * caster:GetModifierStackCount("modifier_rune_sp", nil)
@@ -14754,9 +14758,6 @@ end
 
 function GetChargesBonusRefreshCooldown(caster, ability)
     local factor = 1
-    if caster:HasModifier("modifier_shadow_form_ds") and ability:GetName() == "shadow11" and caster:HasModifier("modifier_class_ds2") then
-        factor = factor * 0.5
-    end
     if caster:HasModifier("modifier_mage_2") then
         factor = factor * 0.5
     end
@@ -19801,9 +19802,6 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     if hero:HasModifier("modifier_bloodbrother") then
         percent_bonus = percent_bonus + 0.25
     end
-    if hero:HasModifier("modifier_class_ds2") then
-        percent_bonus = percent_bonus + 0.1
-    end
     if HeroHasNeutralItem(hero, "item_neutral_3") then
         percent_bonus = percent_bonus + 0.2
     end
@@ -20109,9 +20107,6 @@ function GetCastRangeBonus(hero)
     end
     if hero:HasModifier("modifier_new32") then
         bonus = bonus + 300
-    end
-    if hero:HasModifier("modifier_shadow_form_ds") and hero:HasModifier("modifier_class_ds2") then
-        bonus = bonus + 450
     end
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_6") >= 1 then
         bonus = bonus + 300
