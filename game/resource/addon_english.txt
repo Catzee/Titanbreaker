@@ -6669,6 +6669,8 @@
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_mana_shield_buff_Description"   "Absorbing Damage."
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form" 		      "Shadow Priest Form"
 		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form_Description"   ""
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_armor_buff" 		      			"Darkness Armor"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_armor_buff_Description"   		"Armor and Spell Resistance increased."
 
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems"                           "Arcane Ritual of Death"
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems_Description"               "Begin an Arcane Ritual, causing several Arcane Bolts to be launched at random enemies from random locations."

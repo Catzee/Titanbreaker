@@ -12190,7 +12190,29 @@ function COverthrowGameMode:FilterDamage( filterTable )
           victim:RemoveModifierByName("modifier_talent_moonglaive_shield")
         end
       end
-	  
+
+      -- ds path of darkness rank 4 that blocks single damage instance
+      local pathOfDarknessAbility = victim:FindAbilityByName("shadow6")
+      if pathOfDarknessAbility ~= nil and pathOfDarknessAbility:GetLevel() > 3 and victim._shadowClearicShadow6ArmorInnerCd == nil then
+        local block_factor = 1
+        newdamage = newdamage * (1 - block_factor)
+
+        ApplyBuff({
+          caster = victim,
+          target = victim,
+          ability = pathOfDarknessAbility,
+          dur = pathOfDarknessAbility:GetSpecialValueFor("damage_proc_duration"),
+          buff = "modifier_shadow_cleric_path_of_darkness_armor_buff"
+        })
+
+        victim._shadowClearicShadow6ArmorInnerCd = true
+
+        local innerCd = pathOfDarknessAbility:GetSpecialValueFor("damage_proc_inner_cd") * GetInnerCooldownFactor(victim)
+        Timers:CreateTimer(innerCd, function()
+          victim._shadowClearicShadow6ArmorInnerCd = nil
+        end)
+      end
+
       -- np swift winds block damage shield
       local swiftWindsBlocks = victim:GetModifierStackCount("modifier_druid_evasion_h", nil)
       if swiftWindsBlocks > 0 and victim.combat_system_ability and newdamage >= 5 then
