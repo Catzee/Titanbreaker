@@ -19,7 +19,7 @@ var save_cooldown = 0;
 var autosell = 0;
 var autosellArti = 0;
 var autosellSouls = 0;
-var main_stats_detailed = false;
+// var main_stats_detailed = false;
 
 var hpPerStr = 10; //20;
 var physDmgPerStr = 0.1;
@@ -2618,10 +2618,23 @@ function exp_scale(x, xp, exp){
     return x * x * xp * exp + x * xp * (1-exp);
 }
 
+function GetLocalPlayerSelectedUnit() {
+    let selectedUnit = Players.GetQueryUnit(Game.GetLocalPlayerID())
+    if(selectedUnit < 0) {
+        selectedUnit = Players.GetLocalPlayerPortraitUnit()
+    }
+    return selectedUnit;
+}
+
 function onUnitChanged(args)
 {   
     //$.Msg("unit changed");
-    var unit = Players.GetLocalPlayerPortraitUnit();
+    var unit = GetLocalPlayerSelectedUnit();
+
+    if(unit > -1) {
+        UpdateMainStatsUI(unit);
+    }
+    
     //$.Msg(unit);
     if (unit != null){
         //$.Msg("unit selected");
@@ -2636,10 +2649,11 @@ function onUnitChanged(args)
             }
         }
         if(id != -1){
-            //$.Msg(id);
             selectedHeroPlayerID = id;
             UpdateInventory();
             UpdateTalentTree(-1);
+            // OLD STATS UI
+            //UpdateMainStatsUI();
         }
     }//else{
     //    $("#selectedid").text = "selected unit: " + unit2;
@@ -3109,11 +3123,12 @@ function UpdateInventory(args)
             }
         }
     }
+    /* OLD STATS UI
     if(main_stats != null){
         if(main_stats[player] != null){
             UpdateMainStatsUI();
         }
-    }
+    } */
     UpdateGoldUI();
     if(hero_stats == null){
         hero_stats = new Array(20);
@@ -3513,6 +3528,7 @@ function TalentPointUpdate(args)
     $(panel).text = "Unspent Path Points: "+talentpoints;
 }
 
+/* OLD STATS UI
 function UpdateMainStatsUI(){
     if(selectedHeroPlayerID >= 0){
         var strDetails = "";
@@ -3544,14 +3560,14 @@ function UpdateMainStatsUI(){
         $("#ui_int").text = intText;
         $("#ui_level").text = levelText;
     }
-}
+} */
 
 function UpdateGoldUI(){
     if(selectedHeroPlayerID >= 0){
         $("#ui_gold").text = gold_stat[selectedHeroPlayerID] + " Gold";
     }
 }
-
+/* OLD STATS UI
 function MainStatsHover(args){
     if(args == 1){
         main_stats_detailed = true;
@@ -3559,7 +3575,7 @@ function MainStatsHover(args){
         main_stats_detailed = false;
     }
     UpdateMainStatsUI();
-}
+} */
 
 function TalentHovered(args){
     //text
@@ -3888,8 +3904,77 @@ function SetMainStats(args)
     main_stats[id][0] = args.str;
     main_stats[id][1] = args.agi;
     main_stats[id][2] = args.int;
-    main_stats[id][3] = String(args.level) + "\n(" + String(args.levelPercentage) + "%)";
-    //UpdateMainStatsUI();
+    // OLD STATS UI
+    // main_stats[id][3] = String(args.level) + "\n(" + String(args.levelPercentage) + "%)";
+    main_stats[id][3] = args.level;
+    main_stats[id][4] = args.levelPercentage;
+}
+
+function UpdateMainStatsUI(selectedPlayerUnit)
+{
+    let isHero = Entities.IsHero(selectedPlayerUnit);
+
+    // Hide xp progress bar if not hero
+    if(customXpContainer != undefined) {
+        customXpContainer.SetHasClass("ShowXPBar", isHero);
+    }
+
+    // Update level label
+    if(customLevelLabel != undefined) {
+        customLevelLabel.text = isHero ? main_stats[selectedHeroPlayerID][3] : Entities.GetLevel(selectedPlayerUnit);
+    }
+
+    // Update xp progress bar
+    if(isHero) {
+        if(customLevelProgressBar != undefined) {
+            customLevelProgressBar.value = main_stats[selectedHeroPlayerID][4];
+        }
+
+        if(customLevelProgressBlurBar != undefined) {
+            customLevelProgressBlurBar.value = main_stats[selectedHeroPlayerID][4];
+        }
+    }
+}
+
+let customXpContainer = undefined;
+let customLevelLabel = undefined;
+let customLevelProgressBar = undefined;
+let customLevelProgressBlurBar = undefined;
+
+function InjectIntoDotaUI()
+{
+    let DOTA_HUD_ROOT = $.GetContextPanel().GetParent().GetParent().GetParent();
+    
+    if(DOTA_HUD_ROOT == null) {
+        return;
+    }
+
+    let dotaXpContainer = DOTA_HUD_ROOT.FindChildTraverse("xp");
+
+    // Replaces dota level/xp circle with custom one
+    if(dotaXpContainer) {
+        dotaXpContainer.style.visibility = "collapse";
+        dotaXpContainer._customXpContainer.style.visibility="visible";
+        if(dotaXpContainer._customXpContainer == undefined) {
+            let dotaXpContainerParent = dotaXpContainer.GetParent();
+
+            customXpContainer = $.CreatePanel('Panel', dotaXpContainerParent, '');
+            customXpContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_xp_container.xml', false, false);
+            dotaXpContainerParent.MoveChildAfter(customXpContainer, dotaXpContainer);
+
+            dotaXpContainer._customXpContainer = customXpContainer;
+        } else
+        {
+            customXpContainer = dotaXpContainer._customXpContainer;
+        }
+
+        customLevelLabel = customXpContainer.FindChildTraverse("LevelLabel");
+        customLevelProgressBar = customXpContainer.FindChildTraverse("CircularXPProgress");
+        customLevelProgressBlurBar = customXpContainer.FindChildTraverse("CircularXPProgressBlur");
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI.");
+    }
 }
 
 function SetUIStats(args)
@@ -3992,7 +4077,13 @@ function TrySendReconnectEvent()
     RegisterKeyBind("K", TeleporterMenu);
     RegisterKeyBind("N", ToggleAggroMeter);
 	
+    /*
+        dota_player_update_query_unit - support for seperate/query unit hud or whatever it named minority of players using
+        dota_player_update_selected_unit - support for default hud that majority of players using
+    */
+    GameEvents.Subscribe('dota_player_update_query_unit', onUnitChanged);
     GameEvents.Subscribe("dota_player_update_selected_unit", onUnitChanged);
+
     //GameEvents.SendCustomGameEventToServer( "gamemode_vote", { "player_id" : Players.GetLocalPlayer(), "mode_id" : wins } );
     $.FindChildInContext("#table").visible = false;
     $.FindChildInContext("#leaderboard").visible = false;
@@ -4058,8 +4149,14 @@ function TrySendReconnectEvent()
         for (var j = 1; j <= max_talents; j++) {
             talents[i][j] = 0;
         }
-        main_stats[i] = new Array(4);
-        for (var j = 0; j < 4; j++) {
+        /* OLD STATS UI
+        main_stats[i] = new Array(5);
+        for (var j = 0; j < 5; j++) {
+            main_stats[i][j] = 0;
+        }
+        */
+        main_stats[i] = new Array(5);
+        for (var j = 0; j < 5; j++) {
             main_stats[i][j] = 0;
         }
     }
@@ -4100,6 +4197,8 @@ function TrySendReconnectEvent()
     PeriodicUpdate();
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
+
+    InjectIntoDotaUI();
 
     GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
     // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...

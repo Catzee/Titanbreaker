@@ -673,6 +673,7 @@
 		</Panel>
 	-->
 
+<!--
 		<Panel  class="HeroStats" onmouseover="MainStatsHover(1)" onmouseout="MainStatsHover(2)" style="margin-bottom: 0px; vertical-align: bottom; horizontal-align: right; margin-right: 63.5%; background-color: #101010; border-style: solid; border-color: grey; border-width: 2px; min-width: 200px;">
 			<Panel style="flow-children: right;">
 				<Panel style="flow-children: down; vertical-align: center;">
@@ -685,6 +686,7 @@
 				</Panel>
 			</Panel>
 		</Panel>
+-->
 
 		<Panel id="questlogingame" hittest="false" style="min-width: 200px;">
 			<Button onactivate="ToggleLeftMenu()" style="width: 100%;">
