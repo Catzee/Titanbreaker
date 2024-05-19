@@ -20398,6 +20398,11 @@ function COverthrowGameMode:PingHeroLevel(params)
   if(hero ~= targetHero) then
     return
   end
+  COverthrowGameMode._pingHeroLevelCd = COverthrowGameMode._pingHeroLevelCd or {}
+
+  if(COverthrowGameMode._pingHeroLevelCd[playerId] ~= nil) then
+    return
+  end
 
   local heroLevel = GetHeroLevel(targetHero)
   local heroLevelPct = targetHero.levelPercentage
@@ -20412,4 +20417,10 @@ function COverthrowGameMode:PingHeroLevel(params)
       -- Is this even possible?
     end
   end
+
+  COverthrowGameMode._pingHeroLevelCd[playerId] = true
+
+  Timers:CreateTimer(2, function()
+    COverthrowGameMode._pingHeroLevelCd[playerId] = nil
+  end)
 end

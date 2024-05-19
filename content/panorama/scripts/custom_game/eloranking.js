@@ -3971,13 +3971,21 @@ function UpdateMainStatsUI(selectedPlayerUnit)
     }
 }
 
+let pingHeroLevelCd = false;
+
 function PingHeroLevel()
 {
-    if(!GameUI.IsAltDown()) {
+    if(!GameUI.IsAltDown() || pingHeroLevelCd) {
         return;
     }
 
     GameEvents.SendCustomGameEventToServer("pingherolevel", { "player_id" : Game.GetLocalPlayerID(), "target_player_unit": GetLocalPlayerSelectedUnit() });
+
+    pingHeroLevelCd = true;
+
+    $.Schedule(2, function() {
+        pingHeroLevelCd = false;
+    })
 }
 
 let customXpContainer = undefined;
