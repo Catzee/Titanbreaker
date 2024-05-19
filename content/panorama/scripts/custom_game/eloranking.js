@@ -3956,14 +3956,17 @@ function UpdateMainStatsUI(selectedPlayerUnit)
     if(isHero) {
         if(customStrLabel != undefined) {
             customStrLabel.text = main_stats[selectedHeroPlayerID][0];
+            customStrLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][0] >= 10000);
         }
 
         if(customAgiLabel != undefined) {
             customAgiLabel.text = main_stats[selectedHeroPlayerID][1];
+            customAgiLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][1] >= 10000);
         }
 
         if(customIntLabel != undefined) {
             customIntLabel.text = main_stats[selectedHeroPlayerID][2];
+            customIntLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][2] >= 10000);
         }
     }
 }
