@@ -4026,6 +4026,29 @@ function InjectIntoDotaUI()
     {
         $.Msg("Valve break something or did major changes to UI (can't replace str/agi/int labels).");
     }
+
+    // Hides aghs/shard display because its unused and adds filler to make ui not look weird
+    let aghsShardContainer = DOTA_HUD_ROOT.FindChildTraverse("AghsStatusContainer");
+
+    if(aghsShardContainer) {
+        aghsShardContainer.style.visibility = "collapse";
+
+        let filler = undefined
+        if(aghsShardContainer._fillerPanel == undefined) {
+            let aghsShardContainerParent = aghsShardContainer.GetParent();
+
+            filler = $.CreatePanel('Panel', aghsShardContainerParent, '');
+            aghsShardContainerParent.MoveChildAfter(filler, aghsShardContainer);
+
+            aghsShardContainer._fillerPanel = filler;
+        } else
+        {
+            filler = aghsShardContainer._fillerPanel;
+        }
+
+        filler.style.width = "20px;"
+        filler.style.height = "62px";
+    }
 }
 
 function SetUIStats(args)
