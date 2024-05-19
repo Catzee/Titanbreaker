@@ -4,20 +4,26 @@
 		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
         <include src="file://{resources}/styles/custom_game/dota_hud/dota_str_agi_int_container.css" />
 	</styles>
-	<Panel class="Reborn DOTAHUDStrAgiIntCustom ShowStrAgiInt HighlightAgility" style="width: fit-children;">
-		<Panel id="Strength" class="AttrIconContainer">
+	<Panel class="Reborn DOTAHUDStrAgiIntCustom ShowStrAgiInt" style="width: fit-children;">
+		<Panel id="Strength" class="AttrIconContainer" style="margin-right: 3px;">
 			<Panel class="HighlightStatIcon" hittest="false" />
 			<Label id="StrengthSumLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="StrengthLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="StrengthModifierLabel" class="MonoNumbersFont StatModifier" text="0" />
 			<Panel id="StrengthIcon" class="StatIcon" hittest="false" />
 		</Panel>
-		<Panel id="Agility" class="AttrIconContainer">
+		<Panel id="Agility" class="AttrIconContainer" style="margin-right: 3px;">
 			<Panel class="HighlightStatIcon" hittest="false" />
 			<Label id="AgilitySumLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="AgilityLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="AgilityModifierLabel" class="MonoNumbersFont StatModifier" text="0" />
 			<Panel id="AgilityIcon" class="StatIcon" hittest="false" />
 		</Panel>
-		<Panel id="Intelligence" class="AttrIconContainer">
+		<Panel id="Intelligence" class="AttrIconContainer" style="margin-right: 3px;">
 			<Panel class="HighlightStatIcon" hittest="false" />
 			<Label id="IntelligenceSumLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="IntelligenceLabel" class="StatLabel" text="0" hittest="false" />
+			<Label id="IntelligenceModifierLabel" class="MonoNumbersFont StatModifier" text="0" />
 			<Panel id="IntelligenceIcon" class="StatIcon" hittest="false" />
 		</Panel>
 	</Panel>
