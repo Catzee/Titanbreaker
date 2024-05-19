@@ -6808,7 +6808,7 @@ all[i]:RemoveModifierByName("modifier_silencer_int_steal")
 all[i]:RemoveModifierByName("modifier_fanatism")
 all[i]:RemoveModifierByName("modifier_elementalfury")
 all[i]:RemoveModifierByName("modifier_combopoint")
-all[i]:RemoveModifierByName("modifier_shadoworb")
+--all[i]:RemoveModifierByName("modifier_shadoworb")
 all[i]:RemoveModifierByName("modifier_stealthrogue")
 all[i]:RemoveModifierByName("modifier_stealthcat")
 all[i]:RemoveModifierByName("modifier_invisible")
@@ -6950,7 +6950,7 @@ all[i]:RemoveModifierByName("modifier_silencer_int_steal")
 all[i]:RemoveModifierByName("modifier_fanatism")
 all[i]:RemoveModifierByName("modifier_elementalfury")
 all[i]:RemoveModifierByName("modifier_combopoint")
-all[i]:RemoveModifierByName("modifier_shadoworb")
+--all[i]:RemoveModifierByName("modifier_shadoworb")
 all[i]:RemoveModifierByName("modifier_stealthrogue")
 all[i]:RemoveModifierByName("modifier_stealthcat")
 all[i]:RemoveModifierByName("modifier_invisible")
@@ -8148,7 +8148,7 @@ end
 end
 end
 if alreadycast == 0 then
-  if target:HasModifier("modifier_pet_system") then
+  if target:HasModifier("modifier_pet_system") or target:HasModifier("modifier_pet_system_lua") then
     --patrol towards pet position, since we cant target it
     local order = 
     {
@@ -10562,7 +10562,7 @@ end
  --	    }
  --	)
  --end
- CheckForHeroChargeAbilities(hero)
+ COverthrowGameMode:CheckForHeroChargeAbilities(hero)
 
  if heroName == "npc_dota_hero_lion" then
   hero.temple_class = 11
@@ -11912,7 +11912,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victimMaxHealth = victim:GetMaxHealth()
   local blockFactor = 1
   --stop pet aa dmg
-  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep") then
+  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep") then
     filterTable["damage"] = 0
     return true
   end
@@ -12109,6 +12109,13 @@ function COverthrowGameMode:FilterDamage( filterTable )
   if victim:HasModifier("modifier_mana_shield") then
     hppermana = hppermana + 40
   end
+  local pathOfDarknessManaShield = victim:FindModifierByName("modifier_shadow_cleric_path_of_darkness_mana_shield_buff")
+  if(pathOfDarknessManaShield) then
+    local pathOfDarknessManaShieldAbility = pathOfDarknessManaShield:GetAbility()
+    if(pathOfDarknessManaShieldAbility) then
+      hppermana = hppermana + pathOfDarknessManaShieldAbility:GetSpecialValueFor("shadow_worms_mana_shield_hp")
+    end
+  end
   local absorbFactor = 0.75
   if victim.talents and victim.talents[33] and victim.talents[33] > 0 and not victim.resourcesystem then
     local level = victim.talents[33]
@@ -12183,7 +12190,29 @@ function COverthrowGameMode:FilterDamage( filterTable )
           victim:RemoveModifierByName("modifier_talent_moonglaive_shield")
         end
       end
-	  
+
+      -- ds path of darkness rank 4 that blocks single damage instance
+      local pathOfDarknessAbility = victim:FindAbilityByName("shadow6")
+      if pathOfDarknessAbility ~= nil and pathOfDarknessAbility:GetLevel() > 3 and victim._shadowClearicShadow6ArmorInnerCd == nil then
+        local block_factor = 1
+        newdamage = newdamage * (1 - block_factor)
+
+        ApplyBuff({
+          caster = victim,
+          target = victim,
+          ability = pathOfDarknessAbility,
+          dur = pathOfDarknessAbility:GetSpecialValueFor("damage_proc_duration"),
+          buff = "modifier_shadow_cleric_path_of_darkness_armor_buff"
+        })
+
+        victim._shadowClearicShadow6ArmorInnerCd = true
+
+        local innerCd = pathOfDarknessAbility:GetSpecialValueFor("damage_proc_inner_cd") * GetInnerCooldownFactor(victim)
+        Timers:CreateTimer(innerCd, function()
+          victim._shadowClearicShadow6ArmorInnerCd = nil
+        end)
+      end
+
       -- np swift winds block damage shield
       local swiftWindsBlocks = victim:GetModifierStackCount("modifier_druid_evasion_h", nil)
       if swiftWindsBlocks > 0 and victim.combat_system_ability and newdamage >= 5 then
@@ -18578,7 +18607,7 @@ function AddTempleClassAbility( hero, ability, random ) --nil = random
     if ability_name == "WarriorCharge" or ability_name == "Shield_Reflect" or ability_name == "Terror_ShoutProt" or ability_name == "Terror_ShoutFury" or ability_name == "Terror_Shout" then
       added_ability:SetLevel(1)
     end
-    CheckForHeroChargeAbilities(hero)
+    COverthrowGameMode:CheckForHeroChargeAbilities(hero)
     --end )
     if false then
       for i=0, 15 do
@@ -19990,7 +20019,8 @@ function CheckForClassQuestRewards(questname)
       end)
     end
 
-    function CheckForHeroChargeAbilities( hero )
+    function COverthrowGameMode:CheckForHeroChargeAbilities( hero )
+      -- If the way how charge abilitites initialized ever changes at least ds class item needs adjustments (item_class_ds2)
       local abilityName = "dh1"
       local ability = hero:FindAbilityByName(abilityName)
       if ability and not hero[abilityName .."_is_init"] then
@@ -20022,7 +20052,7 @@ function CheckForClassQuestRewards(questname)
         hero:AddNewModifier(hero, ability, "modifier_charges",
         {
           max_count = 3,
-          start_count = 1,
+          start_count = 0, -- 1, 0 because of ds class item to prevent some weird possible abuse (at least one charge will be reached 100% during ml selection window)
           replenish_time = 10
         }
         )

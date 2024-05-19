@@ -12724,13 +12724,13 @@
 
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"0"		// Damage range min.
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"2.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"550"		// Range within a target can be acquired.
-		"AttackRange"				"450"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"1"		// Range within a target can be acquired.
+		"AttackRange"				"75"		// Range within a target can be attacked.
 		"ProjectileModel"            "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
 		"ProjectileSpeed"            "750"
 
@@ -12764,7 +12764,7 @@
 		//"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"	 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"UnitRelationshipClass"	 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		
 		// Vision
 		//----------------------------------------------------------------
@@ -12794,8 +12794,8 @@
 
 			//Level Up Parameters
 			//-----------------------------------------------------------------
-			"HPGain"					"100"
-			"DamageGain"				"5"
+			"HPGain"					"500"
+			"DamageGain"				"0"
 			"ArmorGain"					"0"
 			"MagicResistGain"			"0"
 			"MoveSpeedGain"				"0"

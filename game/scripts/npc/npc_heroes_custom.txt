@@ -2569,8 +2569,8 @@
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
 		"Ability13"		"special_bonus_magic_resistance_15"
-		"Ability14"		"special_bonus_armor_8"
-		"Ability15"		"special_bonus_spell_amplify_10"
+		"Ability14"		"special_bonus_hp_100"
+		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_vision_200"
 		"Ability17"		"special_bonus_intelligence_35"
 

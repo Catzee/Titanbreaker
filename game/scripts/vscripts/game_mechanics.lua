@@ -280,8 +280,12 @@ function GetSpellpower(event)
         spelldamagefromitem = spelldamagefromitem + 200
         factor = factor + 0.1
     end
-    if caster:HasModifier("modifier_class_ds2") then
-        spelldamagefromitem = spelldamagefromitem + 75
+    local dsClassItem2Modifier = caster:FindModifierByName("modifier_class_ds2")
+    if dsClassItem2Modifier then
+        local dsClassItem2ModifierAbility = dsClassItem2Modifier:GetAbility()
+        if(dsClassItem2ModifierAbility) then
+            spelldamagefromitem = spelldamagefromitem + dsClassItem2ModifierAbility:GetSpecialValueFor("bonus_spellpower")
+        end
     end
     if caster:HasModifier("modifier_rune") then
         spelldamagefromitem = spelldamagefromitem + 75 + 10 * caster:GetModifierStackCount("modifier_rune_sp", nil)
@@ -1000,7 +1004,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = target:GetModifierStackCount("modifier_swd", nil)
+        local bonusfactor = caster:GetModifierStackCount("modifier_shadow_cleric_dream_feast_debuff", nil) + 1
         finaldamage = finaldamage*bonusfactor
     end
 
@@ -1520,6 +1524,15 @@ function DamageUnit( event )
     if caster:HasModifier("modifier_item_bootscrit_2") then
         critdmgbonusfactor = critdmgbonusfactor + 0.1
     end
+
+    local nightmareModifier = caster:FindModifierByName("modifier_shadow_cleric_nightmare_internal_buff")
+    if nightmareModifier then
+        local nightmareModifierAbility = nightmareModifier:GetAbility()
+        if(nightmareModifierAbility and event.isdot) then
+            critdmgbonusfactor = critdmgbonusfactor + (nightmareModifierAbility:GetSpecialValueFor("passive_bonus_critical_dmg_dot") / 100)
+        end
+    end
+
     if caster:HasModifier("modifier_pathbuff_049") then
         critdmgbonusfactor = critdmgbonusfactor + 0.25
     end
@@ -1921,11 +1934,17 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and event.shadowdmg and caster:HasModifier("modifier_critsha") then
-        critchance = 100*critchancefactor + flatCritChance
-        if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
-            critpossible = false
+    local dreamFeastCritModifier = caster:FindModifierByName("modifier_shadow_cleric_dream_feast_buff")
+    if critpossible == true and event.shadowdmg and dreamFeastCritModifier then
+        local dreamFeastCritModifierAbility = dreamFeastCritModifier:GetAbility()
+        if(dreamFeastCritModifierAbility) then
+
+            critchance = dreamFeastCritModifierAbility:GetSpecialValueFor("crit_chance")*critchancefactor + flatCritChance
+            if math.random(1,100) <= critchance then
+                local critDmgFactor = dreamFeastCritModifierAbility:GetSpecialValueFor("crit_multiplier") / 100
+                finaldamage = finaldamage*critDmgFactor*critdmgbonusfactor
+                critpossible = false
+            end
         end
     end
     if critpossible == true and event.voidhunter_crit and caster.voidhunter_crit then
@@ -2630,19 +2649,15 @@ function DamageUnit( event )
     end
 
     if event.oncritswp and event.oncritswp > 0 and critpossible == false and not event.cannotcrit then
-    	if math.random(1,100) <= event.oncritswp and not caster:HasModifier("modifier_swd_2_proc_cd") and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() < 2500 then
-	    	event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-            if caster:HasModifier("modifier_class_darkseer") then
-                Timers:CreateTimer(0.3,function()
-                    event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-                    Timers:CreateTimer(0.3,function()
-                        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_swd_2_proc", nil)
-                    end)
-                end)
+        local shadowPrayerPainAbility = caster:FindAbilityByName("shadow33")
+        if(shadowPrayerPainAbility ~= nil and shadowPrayerPainAbility.OnAbilityCriticalStrike) then
+            local status, errorMessage = pcall(function ()
+                shadowPrayerPainAbility:OnAbilityCriticalStrike(caster, target, event.oncritswp)
+            end)
+            if(status ~= true) then
+                print("shadowPrayerPainAbility.OnAbilityCriticalStrike error: ", errorMessage)
             end
-            local swpcd = 5 * GetInnerCooldownFactor(caster)
-            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_swd_2_proc_cd", {Duration = swpcd})
-    	end
+        end
     end
 
     if event.oncritbuff and was_crit then
@@ -3034,14 +3049,14 @@ function DamageUnit( event )
         ApplyBuff({caster = caster, target = target, dur = 5, buff = "modifier_ghoul_res", ability = ability})
     end
 
-    if caster.pathdarknesslevel and caster.pathdarknesslevel >= 3 and caster:HasModifier("modifier_shadow_stance_def") then
-        local tab = {}
-        tab.caster = caster
-        tab.target = caster
-        tab.heal = 0
-        tab.percenthp = 1
-        tab.ability = event.ability
-        HealUnit(tab)
+    -- lua callback
+    if(event.luacallback and event.ability and event.ability.OnUnitDamaged) then
+        local status, errorMessage = pcall(function ()
+            event.ability:OnUnitDamaged(event)
+        end)
+        if(status ~= true) then
+            print("event.luacallback.OnUnitDamaged error: ", errorMessage)
+        end
     end
 
 	if event.lifestealowner ~= nil and caster.owner then
@@ -3447,6 +3462,14 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.shadowdmg and caster:HasModifier("modifier_item_ancient_dot") then
         value = value + 0.25
     end
+    local shadowClericMindbenderModifier = caster:FindModifierByName("modifier_shadow_cleric_mindstorm_mindbender")
+    if event.shadowdmg and shadowClericMindbenderModifier then
+        local shadowClericMindbenderModifierAbility = shadowClericMindbenderModifier:GetAbility()
+        if(shadowClericMindbenderModifierAbility) then
+            local shadowDmgPerStack = shadowClericMindbenderModifierAbility:GetSpecialValueFor("mindbender_shadow_dmg_pct") / 100
+            value = value + shadowClericMindbenderModifier:GetStackCount() * shadowDmgPerStack
+        end
+    end
     if event.holydmg and caster:HasModifier("modifier_npc_dota_hero_legion2") and caster:HasModifier("modifier_fanatism") then
         local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
         if bonusfromms > 0 then
@@ -3560,21 +3583,27 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     --if event.firedmg and caster:HasModifier("modifier_burning_nether") then
     --    value = value + 0.25
     --end
-    local shadow_stance_cleric = caster:GetModifierStackCount("modifier_shadow_stance", nil)
-    if event.shadowdmg and shadow_stance_cleric > 0 then
-        value = value + 0.05 * shadow_stance_cleric
-    end
     if event.chaosdmg then
         local dh_agi_talent = caster:FindAbilityByName("terror3")
         if dh_agi_talent and dh_agi_talent:GetLevel() >= 4 then
             value = value + GetAgilityCustom(caster) * 0.001
         end
     end
-    if event.shadowdmg and target and target:HasModifier("modifier_rooted_self_slow") then
-        value = value + 0.25
+    if event.shadowdmg and target then
+        local tentacleAuraModifier = target:FindModifierByName("modifier_shadow_cleric_dream_feast_tentacle_debuff")
+        if(tentacleAuraModifier) then
+            local tentacleAuraModifierAbility = tentacleAuraModifier:GetAbility()
+            if(tentacleAuraModifierAbility) then
+                value = value + (tentacleAuraModifierAbility:GetSpecialValueFor("tentacle_bonus_shadow_dmg_pct") / 100)
+            end
+        end
     end
-    if event.shadowdmg and caster:HasModifier("modifier_nightmare_sp") then
-        value = value + 1
+    local nightmareBuff = caster:FindModifierByName("modifier_shadow_cleric_nightmare_buff")
+    if event.shadowdmg and nightmareBuff then
+        local nightmareBuffAbility = nightmareBuff:GetAbility()
+        if(nightmareBuffAbility) then
+            value = value + (nightmareBuffAbility:GetSpecialValueFor("bonus_shadow_damage_pct") / 100)
+        end
     end
     if event.holydmg and caster:HasModifier("modifier_item_item_set_t4_aad_4") then
         value = value + 0.25
@@ -6381,7 +6410,7 @@ end
 
 function IsHardCC( buff )
     if buff == "modifier_stunned" or buff == "modifier_delay_impale" or buff == "modifier_deepfreeze" or buff == "glacier_trap" or buff == "modifier_rootedfx" 
-        or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" 
+        or buff == "modifier_rootedpull" or buff == "modifier_sap" or buff == "modifier_fear2" or buff == "modifier_fearsp_bonus" or buff == "modifier_shadow_cleric_nightmare_debuff"
         or buff == "modifier_sap2" or buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_fearsp" or buff == "modifier_confused"
         or buff == "modifier_confused_unbreakable" or buff == "modifier_frostarmorbuff" or buff == "modifier_iceexplode" or buff == "modifier_stomp"
         or buff == "modifier_voodoo_datadriven"
@@ -6394,7 +6423,7 @@ end
 
 function CheckForCC( target )
     if target:HasModifier("modifier_stunned") or target:HasModifier("modifier_delay_impale") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("glacier_trap") or target:HasModifier("modifier_rootedfx") 
-        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") 
+        or target:HasModifier("modifier_rootedpull") or target:HasModifier("modifier_sap") or target:HasModifier("modifier_fear2") or target:HasModifier("modifier_fearsp_bonus") or target:HasModifier("modifier_shadow_cleric_nightmare_debuff")
         or target:HasModifier("modifier_sap2") or target:HasModifier("modifier_cyclone_self") or target:HasModifier("modifer_peaceful_guardian_cyclone_debuff") or target:HasModifier("modifier_fearsp") or target:HasModifier("modifier_confused")
         or target:HasModifier("modifier_confused_unbreakable") or target:HasModifier("modifier_frostarmorbuff") or target:HasModifier("modifier_iceexplode") or target:HasModifier("modifier_stomp")
         or target:HasModifier("modifier_voodoo_datadriven")
@@ -6794,7 +6823,7 @@ function HealUnit( event )
     if target:HasModifier("modifier_denial_aura") then
         return
     end
-    if target:HasModifier("modifier_pet_system") then
+    if target:HasModifier("modifier_pet_system") or target:HasModifier("modifier_pet_system_lua") then
         return
     end
     if event.only_heal_on_caster_buff_condition and not caster:HasModifier(event.only_heal_on_caster_buff_condition) then
@@ -7858,10 +7887,6 @@ function GetSpellhaste( caster, event )
         end
         if name == "modifier_whiterobe" then
             speedbonus = speedbonus + GetStrengthCustom(caster) / 200
-        end
-        local shadow_stance_cleric = caster:GetModifierStackCount("modifier_shadow_stance", nil)
-        if shadow_stance_cleric > 0 and name == "modifier_shadow_stance" then
-            speedbonus = speedbonus + 0.05 * shadow_stance_cleric
         end
         local keeper1_stacks = caster:GetModifierStackCount("modifier_keeper_spellhaste", nil)
         if keeper1_stacks > 0 and name == "modifier_keeper_spellhaste" then
@@ -10501,10 +10526,6 @@ end
 
 function SetTrapHunter( event )
 	event.caster.trap = event.target
-end
-
-function SetLookDirection( event )
-    event.target:SetForwardVector(Vector(0,1,0))
 end
 
 function TurnUnit( event )
@@ -13998,69 +14019,6 @@ function StopChannelMaxRange( event )
 	end
 end
 
-function Mindflay( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	if event.ability ~= nil then
-		local vec1 = caster:GetAbsOrigin()+Vector(0,0,75)
-		local vec2 = caster:GetAbsOrigin()+Vector(0,0,75)
-		--local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf", PATTACH_ROOTBONE_FOLLOW, target)
-		--ParticleManager:SetParticleControl(particle, 0, vec1)
-		--ParticleManager:SetParticleControl(particle, 1, vec2)
-		--if target:HasModifier("modifier_swd") then
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow50", nil)
-
-		local myevent = {}
-		myevent.caster = caster
-		myevent.target = target
-		myevent.buff = "modifier_slow50"
-		myevent.ability = ability
-		myevent.dur = event.dur
-		ApplyBuff(myevent)
-		--end
-		local distance = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() - GetCastRangeBonus(caster)
-		if distance > 1000 or target:HasModifier("modifier_invisible") then
-			caster:Stop()
-		end
-	else
-		caster:Stop()
-		target:RemoveModifierByName("modifier_sh")
-	end
-end
-
-function DevouringPlague( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-    if ability:GetLevel() >= 3 then
-        target.devouringsource = caster
-    else
-        target.devouringsource = nil
-    end
-	if caster:HasModifier("modifier_shadoworb") then
-		event.addstacks = caster:GetModifierStackCount("modifier_shadoworb", nil) + 1
-        if event.addstacks > 3 then
-            ability:ApplyDataDrivenModifier(caster, caster, "modifier_critsha", {Duration = 2.5})
-        end
-	end
-	caster:RemoveModifierByName("modifier_shadoworb")
-	ApplyBuffStack(event)
-end
-
-function ShadowFear( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	if caster:HasModifier("modifier_shadoworb") then
-		event.dur = event.dur * (caster:GetModifierStackCount("modifier_shadoworb", nil) + 1)
-	end
-    if event.spselfbuff then
-        event.target = caster
-    end
-	ApplyBuff(event)
-end
-
 function HolyForm(event)
 
 	local hero = event.caster
@@ -14309,18 +14267,6 @@ function CCTarget( event )
 	local caster = event.caster
 	local target = event.target
 	local power = 1.0
-    if event.innercd_shadow11 then
-        if caster.innercd_shadow11 then
-            return
-        else
-            Timers:CreateTimer(0.05, function()
-                caster.innercd_shadow11 = true
-                Timers:CreateTimer(event.innercd_shadow11 * GetInnerCooldownFactor(caster), function()
-                    caster.innercd_shadow11 = false
-                end)
-            end)
-        end
-    end
 	if event.curseblade then
 		power = GetCCPower(event)
 	end
@@ -14812,9 +14758,6 @@ end
 
 function GetChargesBonusRefreshCooldown(caster, ability)
     local factor = 1
-    if caster:HasModifier("modifier_shadow_form_ds") and ability:GetName() == "shadow11" and caster:HasModifier("modifier_class_ds2") then
-        factor = factor * 0.5
-    end
     if caster:HasModifier("modifier_mage_2") then
         factor = factor * 0.5
     end
@@ -15893,15 +15836,6 @@ function KillSummon(event)
 			UTIL_Remove(caster)
 		end
 	end)
-end
-
-function ShadowTentacleHealth(event)
-    local caster = event.caster
-    local target = event.target
-    local health = caster:GetHealth() * 0.2
-    target:SetBaseMaxHealth(health)
-    target:SetMaxHealth(health)                           
-    target:SetHealth(health)
 end
 
 function FrostwyrmAttack( event )
@@ -18722,7 +18656,7 @@ function ShowDamageTaken(event)
         event.attacker:RemoveModifierByName("modifier_invulnerable")
         event.ability:ApplyDataDrivenModifier(event.attacker, event.attacker, "modifier_disarmed", {Duration = -1})
     end
-    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
+    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_lua") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
         return
     end
     local damage = event.dmg
@@ -19868,9 +19802,6 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     if hero:HasModifier("modifier_bloodbrother") then
         percent_bonus = percent_bonus + 0.25
     end
-    if hero:HasModifier("modifier_class_ds2") then
-        percent_bonus = percent_bonus + 0.1
-    end
     if HeroHasNeutralItem(hero, "item_neutral_3") then
         percent_bonus = percent_bonus + 0.2
     end
@@ -20176,9 +20107,6 @@ function GetCastRangeBonus(hero)
     end
     if hero:HasModifier("modifier_new32") then
         bonus = bonus + 300
-    end
-    if hero:HasModifier("modifier_shadow_form_ds") and hero:HasModifier("modifier_class_ds2") then
-        bonus = bonus + 450
     end
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_6") >= 1 then
         bonus = bonus + 300
@@ -22425,14 +22353,6 @@ function TalentOnAttacked( event )
                 caster.elusiveness = false
             end)
         end
-        local abil = caster:FindAbilityByName("shadow5")
-        if abil and abil:GetLevel() >= 2 and not caster.shadow5CDS then
-            caster.shadow5CDS = true
-            ApplyBuff({caster = caster, target = attacker, ability = abil, buff = "modifier_fearsp_bonus", dur = 3})
-            Timers:CreateTimer(15 * GetInnerCooldownFactor(caster), function()
-                caster.shadow5CDS = false
-            end)
-        end
     end
     --[[
     if caster.talents then
@@ -23357,18 +23277,6 @@ function JumpStomp( event )
             end
         end)
     end
-end
-
-function ShadowOrbFX( event )
-    local caster = event.caster
-    if caster:GetModifierStackCount("modifier_shadoworb", nil) >= 3 then
-        local particle = ParticleManager:CreateParticle("particles/items3_fx/glimmer_cape_initial_flash_ember.vpcf", PATTACH_POINT_FOLLOW, caster)
-        ParticleManager:ReleaseParticleIndex(particle)
-    end
-end
-
-function SetPathDarknessLevel( event )
-    event.caster.pathdarknesslevel = event.ability:GetLevel()
 end
 
 function AttackRandomHero( unit )
@@ -26174,11 +26082,12 @@ function GetTotalDamageTakenFactor(caster, attacker)
             factor = factor * 0.6
         end
     end
-    if caster:HasModifier("modifier_shadow_stance_def") then
-        if caster:FindAbilityByName("shadow6"):GetLevel() >= 2 then
-            factor = factor * 0.25
-        else
-            factor = factor * 0.5
+	local pathOfDarknessModifier = caster:FindModifierByName("modifier_shadow_cleric_path_of_darkness_buff")
+    if pathOfDarknessModifier then
+        local pathOfDarknessModifierAbility = pathOfDarknessModifier:GetAbility()
+        if(pathOfDarknessModifierAbility) then
+            local dmgFactor = 1 - (pathOfDarknessModifierAbility:GetSpecialValueFor("dmgtaken") / 100)
+            factor = factor * dmgFactor
         end
     end
     if caster:HasModifier("modifier_slaught_def") then
@@ -29602,35 +29511,6 @@ function CorruptedCoilProc(event)
     end 
 end
 
-function ShadowPriestFormCheck(event)
-    local caster = event.caster
-    local ability = event.ability
-    if caster:HasModifier("modifier_class_ds2") then
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_shadow_form_ds", {Duration = 30})
-    end 
-end
-
-function ShapeshiftShadowPriest(event)
-    local caster = event.caster
-    local target = event.target
-    local ability = event.ability
-    caster.dsModel = caster:GetModelName()
-    caster:SetModel("models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl")
-    caster:SetOriginalModel("models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl")
-    caster:SetModelScale(1.25)
-end
-
-function ShapeshiftShadowPriestEnd(event)
-    local caster = event.caster
-    local target = event.target
-    local ability = event.ability
-    if caster.dsModel then
-        caster:SetModel(caster.dsModel)
-        caster:SetOriginalModel(caster.dsModel)
-        caster:SetModelScale(1)
-    end
-end
-
 function FrostknightCheck(event)
     local caster = event.caster
     local target = event.target
@@ -29875,4 +29755,49 @@ function SoulwardenTotemShield(event)
     for _, ally in pairs(allies) do
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
     end
+end
+
+-- Dark Seer helper functions
+function TryAddShadowClericShadowSphere(caster, ability, chance)
+    if(math.random(1, 100) <= chance) then
+        ApplyBuffStack({
+            caster = caster,
+            target = caster,
+            ability = ability,
+            max = 3,
+            buff = "modifier_shadow_cleric_shadow_orbs",
+            self = 1
+        })
+        for i=0,DOTA_MAX_ABILITIES-1 do
+            local ability = caster:GetAbilityByIndex(i)
+
+            if(ability == nil) then
+                break
+            end
+
+            if(ability.OnShadowClericShadowSphereGained) then
+                ability:OnShadowClericShadowSphereGained()
+            end
+        end
+    end
+end
+
+function TryConsumeShadowClericShadowSpheres(caster, amount)
+    local modifier = caster:FindModifierByName("modifier_shadow_cleric_shadow_orbs")
+    if(modifier == nil) then
+        return false
+    end
+
+    local currentStacks = modifier:GetStackCount()
+
+    if(currentStacks >= amount) then
+        modifier:SetStackCount(currentStacks - amount)
+        return true
+    end
+
+    return false
+end
+
+function GetShadowClericShadowSpheres(caster)
+    return caster:GetModifierStackCount("modifier_shadow_cleric_shadow_orbs", nil)
 end

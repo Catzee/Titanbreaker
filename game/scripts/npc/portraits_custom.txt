@@ -1,0 +1,39 @@
+"Portraits"
+{
+	"Version"		"1"
+	
+	"models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl"
+	{
+		"PortraitLightPosition"		"150.94 14.03 265.25"
+		"PortraitLightAngles"		"80.62 234.46 0.00"
+		"PortraitLightFOV"		"88"
+		"PortraitLightDistance"		"298"
+		"PortraitLightColor"		"169 169 169"
+		"PortraitShadowColor"		"0 0 0"
+		"PortraitShadowScale"		"5.000000"
+		"PortraitAmbientColor"		"111 117 151"
+		"PortraitAmbientScale"		"5.000000"
+		"PortraitSpecularColor"		"251 74 84"
+		"PortraitBackgroundColor1"		"0.550000 0.450000 0.600000"
+		"PortraitBackgroundColor2"		"0.550000 0.450000 0.600000"
+		"PortraitBackgroundColor3"		"0.550000 0.450000 0.600000"
+		"PortraitBackgroundColor4"		"0.550000 0.450000 0.600000"
+		"PortraitBackgroundTexture"		"materials/portraits_card/portrait_backgrounds/full_view_background.vmat"
+		"PortraitAnimationCycle"		"0.000000"
+		"PortraitAnimationRate"		"1.000000"
+		"PortraitHideHero"		"0"
+		"PortraitLightScale"		"1.000000"
+		"PortraitGroundShadowScale"		"1.500000"
+		"PortraitAmbientDirection"		"47.040 -23.680 -63.850"
+		"PortraitAnimationActivity"		"ACT_DOTA_IDLE"
+		"cameras"
+		{
+			"default"
+			{
+				"PortraitPosition"		"215.90 -44.63 100.55"
+				"PortraitAngles"		"352.41 167.17 0.00"
+				"PortraitFOV"		"20"
+			}
+		}
+	}
+}

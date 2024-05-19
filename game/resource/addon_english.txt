@@ -1588,10 +1588,13 @@
 		"DOTA_Tooltip_Ability_shadow1_spelldmg"    "%Spellpower Factor:" 
 		"DOTA_Tooltip_Ability_shadow1_slow"    "%Slow:" 
 		"DOTA_Tooltip_Ability_shadow1_slowdur"    "Slow Duration:"
-
+		"DOTA_Tooltip_Ability_shadow1_shadow_orbs_chance"    "%Shadow Sphere Chance:"
 		
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender"    "Mindbender"
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_mindbender_Description"    "Shadow Damage increased."
 
-		
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff"    "Mindstorm"
+		"DOTA_Tooltip_modifier_shadow_cleric_mindstorm_debuff_Description"    "Movement Speed slowed."
 
 		"DOTA_Tooltip_Ability_shadow5"  "Nightmare" 
 		"DOTA_Tooltip_Ability_shadow5_duration"    "Base Debuff Duration:" 
@@ -1599,16 +1602,17 @@
 		"DOTA_Tooltip_Ability_shadow5_chance"    "%Shadowghost chance:"
 		"DOTA_Tooltip_Ability_shadow5_dmgfromstat"    "%Shadowghost Intellect and Spellpower factor:"
 
-		
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_debuff"	"Nightmare"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_debuff_Description"	"Loss of control."
 
-		"DOTA_Tooltip_modifier_holystance"	"Awakened State"
-		"DOTA_Tooltip_modifier_holystance_Description"	"Gives access to Healing Spells."
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_spell_resistance_buff"	"Night Armor"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_spell_resistance_buff_Description"	"Spell Resistance increased."
+
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff"	"Nightmare"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_buff_Description"	"Shadow Damage increased."
 
 		"DOTA_Tooltip_modifier_fearsp"	"Nightmare"
 		"DOTA_Tooltip_modifier_fearsp_Description"	"All control is lost."
-
-		"DOTA_Tooltip_modifier_swd"	"Dream Feast"
-		"DOTA_Tooltip_modifier_swd_Description"	"Taking Damage over time."
 
 		"DOTA_Tooltip_Ability_spholy1"  "Flash of Heaven"  
 		"DOTA_Tooltip_Ability_spholy1_Description"  "Call a sacred flash of light from the sky, healing the target. In addition, the Cleric will be healed too, with 50%% effectiveness. 2 secs casttime."
@@ -1751,9 +1755,10 @@
 
 		"DOTA_Tooltip_Ability_shadow11"  "Mindshatter"  
 		
-		"DOTA_Tooltip_Ability_shadow11_buffduration"    "Stun Duration:" 
+		"DOTA_Tooltip_Ability_shadow11_stun_duration"  "Stun Duration:" 
 		"DOTA_Tooltip_Ability_shadow11_dmgfromstat"    "%Intellect to Damage:" 
 		"DOTA_Tooltip_Ability_shadow11_spelldmg"    "%Spellpower Factor:"  
+		"DOTA_Tooltip_Ability_shadow11_aoe"    		"Area of Effect:"  
 
 		//1.9.5
 		"DOTA_Tooltip_Ability_Numbing_Cut"  "Numbing Smash"  
@@ -2593,8 +2598,12 @@
 		"DOTA_Tooltip_Ability_shadow3_healpercent"    "%Max Health healed per tick:"
 		"DOTA_Tooltip_Ability_shadow3_duration"    "Duration:"  
 		
-		"DOTA_Tooltip_modifier_rooted_self_slow"	"Shadow Tentacle"
-		"DOTA_Tooltip_modifier_rooted_self_slow_Description"	"Slowing nearby enemies and possibly dealing area damage."
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff"	"Shadow Tentacle"
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_tentacle_debuff_Description"	"Movement Speed slowed, Shadow Damage taken increased and Spell Resistance reduced."
+
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff"	"Dream Feast"
+		"DOTA_Tooltip_modifier_shadow_cleric_dream_feast_debuff_Description"	"Damage over time."
+
 		"npc_dota_creature_shadow_tentacle"                                               "Shadow Tentacle"
 
 		"DOTA_Tooltip_Ability_shadow22"  "Silent Awakening" 
@@ -2855,9 +2864,6 @@
 		"DOTA_Tooltip_Ability_shadow4_healfactor"    "%Damage to Healing on Self:" 
 		"DOTA_Tooltip_Ability_shadow4_healfactor2"    "%Damage to Healing on Allies:" 
 		"DOTA_Tooltip_Ability_shadow4_buffduration"    "Duration:" 
-
-		"DOTA_Tooltip_modifier_shadow4"	"Shadow Sphere"
-		"DOTA_Tooltip_modifier_shadow4_Description"	"Damage will cause Healing."
 
 		// 2.9.6 iron talon
 		"DOTA_Tooltip_Ability_item_irontalon"  "<font color=\"#32cd32\">Iron Talon"  
@@ -4187,7 +4193,7 @@
 		"DOTA_Tooltip_ability_Feral1_duration"                                            "Duration:"
 
 		"DOTA_Tooltip_ability_shadow33"                                                   "Shadow Prayer Pain"
-		"DOTA_Tooltip_ability_shadow33_Description"                                       "Deal Shadow Damage and apply a DoT, dealing Shadow damage every sec, stacking multiple times. \nDamage from this Ability will never be reflected.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Reduced cooldown. \nRank 4: Whenever this Ability lands a Critical Strike, launch another Shadow Prayer Pain towards the target. Has an inner cooldown of 5 secs.\n\n</font>"
+		"DOTA_Tooltip_ability_shadow33_Description"                                       "Deal Shadow Damage and apply a DoT, dealing Shadow damage every sec, stacking multiple times. \nDamage from this Ability will never be reflected.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage and reduced cooldown. \nRank 3: Whenever an enemy damaged by this ability and affected by Dream Feast at same time reduces current cooldown of this ability by %cdr_flat_dream_feast_tooltip% secs (with an inner cooldown of %cdr_flat_dream_feast_inner_cd% secs). \nRank 4: Whenever this Ability lands a Critical Strike, launch another Shadow Prayer Pain towards the target. Has an inner cooldown of %multicast_inner_cd% secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_shadow33_dmgfromstat"    "%Intellect to Damage initially and per Tick:" 
 		"DOTA_Tooltip_Ability_shadow33_spelldmg"    "%Spellpower Factor initially and per Tick:"
 		"DOTA_Tooltip_ability_shadow33_duration"                                          "Duration:"
@@ -4261,20 +4267,17 @@
 		"DOTA_Tooltip_modifier_ghoul_transform"                                           "Ghoul Transform"
 		"DOTA_Tooltip_modifier_ghoul_transform_Description"                               "Enraging at 5 stacks."
 
-		"DOTA_Tooltip_modifier_fearsp_bonus"                                              "Feared"
-		"DOTA_Tooltip_modifier_fearsp_bonus_Description"                                  "Loss of control."
-
 		"DOTA_Tooltip_modifier_shadow_armor"                                              "Shadow Armor"
 		"DOTA_Tooltip_modifier_shadow_armor_Description"                                  "All damage taken decreased."
 
 		"DOTA_Tooltip_modifier_silence_ring"                                              "Ring of Silence"
 		"DOTA_Tooltip_modifier_silence_ring_Description"                                  "Silenced."
 
-		"DOTA_Tooltip_modifier_swd_2"                                                     "Shadow Prayer Pain"
-		"DOTA_Tooltip_modifier_swd_2_Description"                                         "Damage over time."
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_prayer_pain_debuff"                   "Shadow Prayer Pain"
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_prayer_pain_debuff_Description"       "Damage over time."
 
-		"DOTA_Tooltip_modifier_shadoworb"                                                 "Shadow Sphere"
-		"DOTA_Tooltip_modifier_shadoworb_Description"                                     " "
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_orbs"                                 "Shadow Sphere"
+		"DOTA_Tooltip_modifier_shadow_cleric_shadow_orbs_Description"                     "Current amount of Shadow Spheres."
 
 		"DOTA_Tooltip_ability_Ghoul_Dark_Mirror"                                          "Dark Mirror"
 		"DOTA_Tooltip_ability_Ghoul_Dark_Mirror_Description"                              "Whenever the target tries to inflict a negative debuff, it will instead afflict itself."
@@ -6374,7 +6377,7 @@
 		//2.8
 		"DOTA_Tooltip_Ability_fury2_armor"  "Armor Reduction per stack:"
 		"DOTA_Tooltip_Ability_Terror_ShoutFury_dmgfromstat"    "%Base Damage dealt:"
-		"DOTA_Tooltip_Ability_shadow11_Description"  "Deal Shadow Damage in a small area around the target. 2 secs casttime.\n\nHas 3 charges and refreshes every 10 secs.\n\n<font color=\"#00EE00\">Generates 1 Shadow Sphere per target hit (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Area increased from 250 to 350 and also stun for 2 secs (with an inner cooldown of 5 secs). \nRank 4: Each cast reduces the cooldown of your 5th and 6th Ability by 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_shadow11_Description"  "Deal Shadow Damage in a small area around the target. 2 secs casttime.\n\nHas 3 charges and refreshes every 10 secs.\n\n<font color=\"#00EE00\">Generates 1 Shadow Sphere per target hit (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and stun damaged enemies for %stun_duration_tooltip% secs (with an inner cooldown of %stun_inner_cd% secs). \nRank 3: Area increased and for each damaged enemy launch Shadow Prayer Pain towards him (with an inner cooldown of %shadow_prayer_pain_inner_cd% secs). \nRank 4: Each cast reduces the cooldown of your 5th and 6th Ability by %cdr_flat_tooltip% secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Ice_Bolt_Description"  "Deal Frost Damage and slow by 50%%. Applies a Winter's Chill stack to you, tripling the Damage of Frost Shatter when you have gathered 2 stacks. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased damage. \nRank 3: Passive chance to crit with Ice Bolt. \nRank 4: Critical Strikes with Ice Bolt deal 50%% increased Damage.\n\n</font>"
 		"DOTA_Tooltip_Ability_RootsDruid_Description"  "Deal Nature Damage, root the target in place and reduce its Armor for 15 secs. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Improved Armor reduction and whenever you cast Entangle or Swift Winds, trigger a free Flourish. \nRank 3: Passively gain a Root Shield every 20 secs, decreasing the Damage of the next incoming Damage instance by 80%%, stacking twice. \nRank 4: Increased root duration and Damage and also deal Nature Damage every second while rooted. While the Armor reduction lasts, the enemy deals 15%% reduced Damage.\n\n</font>"
 		"DOTA_Tooltip_Ability_RootsDruid_bonusdmg"  "%Extra Damage taken:"
@@ -6646,12 +6649,28 @@
 		"DOTA_Tooltip_Ability_Arcane1_Description"  "Channel for 3 secs, launching an Arcane Damage dealing missile at the target every second. \n\n<font color=\"#00EE00\">Each missile has a chance to generate 1 stack of Arcane Power. When you reach 10 stacks, allows the use of Meteor Crash for 5 times. Capped at 20 stacks.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Doubled missile fire rate and increased total damage, at the cost of greatly increased mana cost. \nRank 4: When channeled until the end, generate 1 additional Arcane Power.\n\n</font>"
 		"DOTA_Tooltip_Ability_Arcane2_speed"    "%Movement Bonus:"
 		"DOTA_Tooltip_Ability_shadow6"  "Path of Darkness"
-		"DOTA_Tooltip_Ability_shadow6_Description"  "Shadow Worms will follow you on your Path, protecting you, decreasing all Damage taken by 50%%.<font color=\"#FFBB00\">\n\nRank 2: Damage reduction increased to 75%%. \nRank 3: Heal for 1%% of max Health whenever dealing Damage while under the effect. \nRank 4: Increased duration and 25%% increased Movement Speed while under the effect.\n\n</font>" 
-		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies to wander around in panic, losing all control and increase all Shadow Damage dealt by 100%% for 6 secs.\n\n<font color=\"#00EE00\">Consume up to 3 Shadow Spheres, increasing the CC and buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased durations and whenever you are being attacked, fear the target for 3 secs, with an inner cooldown of 15 secs. \nRank 3: When cast, restore 50%% of max Mana and Heal for 50%% of max Health and increase Spell Resistance by 50 for 5 secs. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
+		"DOTA_Tooltip_Ability_shadow6_Description"  "Shadow Worms will follow you on your Path (with an inner cooldown of %inner_cd% secs), protecting you and decreasing all Damage taken.<font color=\"#FFBB00\">\n\nRank 2: Damage reduction increased and when cast summons additional Shadow Worms that attacks closest enemy in %shadow_worms_radius% yards for %shadow_worms_dmgfromstat%%% of Intellect and %shadow_worms_spelldmg%%% of Spellpower every second for %duration% secs. \nRank 3: When cast you will summon Shadow Apparations that will follow you and absorb 75% of all Damage taken at the cost of 1 Mana per %shadow_worms_mana_shield_hp% Health for %shadow_worms_mana_shield_duration% secs. \nRank 4: Passively every time you receive damage Shadow Worms will block this Damage Instance and grant you Darkness Armor that increases Armor by %damage_proc_armor% and Spell Resistance by %damage_proc_spell_resistance% for %damage_proc_duration% secs with an inner cooldown of %damage_proc_inner_cd% secs.\n\n</font>" 
+		"DOTA_Tooltip_Ability_shadow6_dmgtaken"		"%Damage Reduction:"
+		"DOTA_Tooltip_Ability_shadow5_Description"  "Cause all nearby enemies (with an inner cooldown of %fear_inner_cd% secs for each enemy) to wander around in panic, losing all control and increase all Shadow Damage dealt by %bonus_shadow_damage_pct%%% for duration of effect. In addition grants Night Armor that increases Spell Resistance by %spell_resistance_amount% for %spell_resistance_duration% secs.\n\n<font color=\"#00EE00\">Consume up to %shadow_spheres_max% Shadow Spheres, increasing the CC and Shadow Damage buff duration by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Passively increases Ability Critical Strike Damage for Damage Over Time effects by %passive_bonus_critical_dmg_dot_tooltip%%%. \nRank 3: When cast gain an aura that increases Attack Speed of all summons in %attack_speed_aura_radius% yards by %attack_speed_aura_tooltip% for %attack_speed_aura_duration_per_shadow_sphere_tooltip% secs per Shadow Sphere consumed (minimum duration is %attack_speed_aura_min_duration_tooltip% secs) with an inner cooldown of %attack_speed_aura_inner_cd% secs, stacking with an independent duration. \nRank 4: Passively, whenever you deal Damage, you have a chance to summon a Shadowghost, slowly traveling towards the target, dealing Shadow damage on arrival.\n\n</font>" 
 		"DOTA_Tooltip_Ability_shadow6_duration"		"Duration: "
-		"DOTA_Tooltip_modifier_shadow_stance"                                             "Path of Darkness"
-		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to 3 Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with 3 Shadow Spheres, all Shadow Damage will Critical Strike for 200%% for 2.5 secs. \nRank 3: Summon a Shadow Tentacle at the target, slowing all nearby enemies by 10%% for 10 secs and causing them to take 25%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also reduces the Spell Resistance of nearby enemies by 5 and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal 10%% increased Damage, up to 200%%.\n\n</font>" 
-		"DOTA_Tooltip_Ability_shadow1_Description"  "Channel for 3 secs, striking the target a total of 5 times, dealing Shadow Damage.\n\n<font color=\"#00EE00\">Each strike has a 15%% chance to generate 1 Shadow Sphere (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Shadow Sphere chance increased to 30%%. \nRank 4: Now also slow movement by 30%% and gain a 25%% chance to knock enemies back if they are closer than 300 yards. In addition Mindstorm gains a 30%% to deal Pure Damage instead of Magical Damage.\n\n</font>"
+		"DOTA_Tooltip_Ability_shadow3_Description"  "Feast on an enemy's dream, dealing high Shadow Damage every sec.\n\n<font color=\"#00EE00\">Consume up to %max_shadow_spheres_consumed% Shadow Spheres, increasing the damage by 100%% per instance.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and when cast with %crit_shadow_spheres% Shadow Spheres, all Shadow Damage will Critical Strike for %crit_multiplier_tooltip%%% for %crit_duration_tooltip% secs. \nRank 3: Summon a Shadow Tentacle at the target that attacking enemies around for %tentacle_intsp%%% of Intellect and Spellpower for %tentacle_duration% secs, slowing all nearby enemies by %tentacle_movespeed_bonus_pct_tooltip%%% and causing them to take %tentacle_bonus_shadow_dmg_pct_tooltip%%% increased Shadow Damage from all sources. \nRank 4: The Shadow Tentacle also generates %tentacle_bonus_shadow_spheres_per_aa_tooltip% Shadow Sphere(s) with each attack (with an inner cooldown of %tentacle_bonus_shadow_spheres_per_aa_inner_cd% secs), reduces the Spell Resistance of nearby enemies by %tentacle_spellresistance_bonus_tooltip% and also gain Spell Fury, causing consecutive Dream Feast Damage on the same target to deal %frenzy_tooltip%%% increased Damage, up to %frenzy_max_tooltip%%%.\n\n</font>" 
+		"DOTA_Tooltip_Ability_shadow1_Description"  "Channel for 3 secs, striking the target a total of 5 times, dealing Shadow Damage.\n\n<font color=\"#00EE00\">Each strike has a chance to generate 1 Shadow Sphere (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and increased Shadow Sphere chance. \nRank 3: Now also slow movement speed and gain a %knockback_tooltip%%% chance to knock enemies back, if they are closer than %knockback_range% yards. \nRank 4: Passively every time you gain Shadow Sphere you will gain a stack of Mindbender, increasing all Shadow Damage by %mindbender_shadow_dmg_pct_tooltip%%% for %mindbender_duration_tooltip% secs, stacking up to %mindbender_max_stacks_tooltip% times.\n\n</font>"
+
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura" 							  "Nightmare Aura"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_Description" 				  "Increases Attack Speed of summons nearby."
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_inner_cd" 					  "Nightmare Aura - Inner Cooldown"
+		"DOTA_Tooltip_modifier_shadow_cleric_nightmare_aura_inner_cd_Description" 		  ""
+
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff_inner_cd" 			      "Path of Darkness - Inner Cooldown"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff_inner_cd_Description"      ""
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff" 			  		      "Path of Darkness"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_buff_Description"  		      "Damage Reduction increased."
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_mana_shield_buff" 		      "Shadow Apparations"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_mana_shield_buff_Description"   "Absorbing Damage."
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form" 		      "Shadow Priest Form"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_shadow_priest_form_Description"   ""
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_armor_buff" 		      			"Darkness Armor"
+		"DOTA_Tooltip_modifier_shadow_cleric_path_of_darkness_armor_buff_Description"   		"Armor and Spell Resistance increased."
 
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems"                           "Arcane Ritual of Death"
 		"DOTA_Tooltip_ability_pve_temple_invoker_arcane_totems_Description"               "Begin an Arcane Ritual, causing several Arcane Bolts to be launched at random enemies from random locations."
@@ -8266,9 +8285,6 @@
 		"DOTA_Tooltip_modifier_as_jungle"                                                 "Cobra Reflexes"
 		"DOTA_Tooltip_modifier_as_jungle_Description"                                     "Attack Speed increased."
 
-		"DOTA_Tooltip_modifier_swd_2_proc"                                                "Shadow Proc"
-		"DOTA_Tooltip_modifier_swd_2_proc_Description"                                    ""
-
 		"DOTA_Tooltip_modifier_arcane_asslow_friend"                                      "Arcane Slow"
 		"DOTA_Tooltip_modifier_arcane_asslow_friend_Description"                          ""
 
@@ -8613,12 +8629,6 @@
 		"DOTA_Tooltip_modifier_pve_affix_shrink_buff"                          "Shrinking"
 		"DOTA_Tooltip_ability_pve_affix_shrinking"                                "Shrinking"
 		"DOTA_Tooltip_ability_pve_affix_shrinking_Description"                    "Starts with 75%% increased Damage and 75%% Damage reduction, but shrinks each second, losing 1%% Damage and Damage reduction per sec."
-
-		"DOTA_Tooltip_modifier_shadow_stance_def"                                         "Shadow Stance"
-		"DOTA_Tooltip_modifier_shadow_stance_def_Description"                             ""
-
-		"DOTA_Tooltip_modifier_nightmare_sp"                                              "Nightmare"
-		"DOTA_Tooltip_modifier_nightmare_sp_Description"                                  ""
 
 		"DOTA_Tooltip_modifier_storm_shield"                                              "Storm Shield"
 		"DOTA_Tooltip_modifier_storm_shield_Description"                                  ""
@@ -10688,8 +10698,6 @@
 		"DOTA_Tooltip_modifier_shamandef_Description"                                   " "
 		"DOTA_Tooltip_modifier_invokerres"                                               "Arcane Chains Shield"
 		"DOTA_Tooltip_modifier_invokerres_Description"                                   " "
-		"DOTA_Tooltip_modifier_darkseerres"                                               "Night Shield"
-		"DOTA_Tooltip_modifier_darkseerres_Description"                                   " "
 		"DOTA_Tooltip_modifier_maidenres"                                               "Frostspike Shield"
 		"DOTA_Tooltip_modifier_maidenres_Description"                                   " "
 		"DOTA_Tooltip_modifier_trickster"                                               "Trickster"
@@ -10806,7 +10814,6 @@
 		"DOTA_Tooltip_modifier_equilibrium_Description"                                  "The reward for a balanced lifestyle!"
 		"DOTA_Tooltip_modifier_black_grimoire"                                              "Black Grimoire"
 		"DOTA_Tooltip_modifier_bm2"                                              "Berserker Blades"
-		"DOTA_Tooltip_modifier_shadow_form_ds"                                              "Shadow Priest"
 		"DOTA_Tooltip_modifier_156_active"                                              "Tower of Resistance"
 		"DOTA_Tooltip_modifier_divinedef_active"                                              "Divine Blessing"
 		
@@ -10942,9 +10949,9 @@
 		"DOTA_Tooltip_ability_item_class_skele2_bonus_stat1"                              "Strength:"
 
 		"DOTA_Tooltip_ability_item_class_ds2"                                          "<font color=\"#00ffff\">[Ancient] Preacher's Reach"
-		"DOTA_Tooltip_ability_item_class_ds2_Description"                              "When you cast Path of Darkness, morph into Shadow Priest Form for 30 secs, causing Mindshatter to refresh twice as fast and increasing Cast Range by 450."
-		"DOTA_Tooltip_ability_item_class_ds2_bonus_stat1"                              "Spellpower:"
-		"DOTA_Tooltip_ability_item_class_ds2_bonus_stat2"                              "%Max Health:"
+		"DOTA_Tooltip_ability_item_class_ds2_Description"                              "When you cast Path of Darkness, morph into Shadow Priest Form for %duration% secs, causing Mindshatter to deal only %mindshatter_damage_factor%%% of base damage, but having 0 cooldown and projectile speed increased by %bonus_projectile_speed%."
+		"DOTA_Tooltip_ability_item_class_ds2_bonus_spellpower"                             "Spellpower:"
+		"DOTA_Tooltip_ability_item_class_ds2_bonus_intellect"                              "Intellect:"
 
 		"DOTA_Tooltip_ability_item_class_sven2"                                          "<font color=\"#00ffff\">[Ancient] Swords of Snow"
 		"DOTA_Tooltip_ability_item_class_sven2_Description"                              "Whenever you are at 5 stacks of the Frostknight buff, morph into a Frostgolem, increasing your Ability Critical Strike Damage by 30%% for every 100 Agility, when dealing single target Damage."
