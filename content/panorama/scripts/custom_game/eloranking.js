@@ -3971,6 +3971,15 @@ function UpdateMainStatsUI(selectedPlayerUnit)
     }
 }
 
+function PingHeroLevel()
+{
+    if(!GameUI.IsAltDown()) {
+        return;
+    }
+
+    GameEvents.SendCustomGameEventToServer("pingherolevel", { "player_id" : Game.GetLocalPlayerID(), "target_player_unit": GetLocalPlayerSelectedUnit() });
+}
+
 let customXpContainer = undefined;
 let customLevelLabel = undefined;
 let customLevelProgressBar = undefined;
@@ -4000,6 +4009,10 @@ function InjectIntoDotaUI()
             customXpContainer = $.CreatePanel('Panel', dotaXpContainerParent, '');
             customXpContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_xp_container.xml', false, false);
             dotaXpContainerParent.MoveChildAfter(customXpContainer, dotaXpContainer);
+
+            customXpContainer.SetPanelEvent("onactivate", function() {
+                PingHeroLevel();
+            });
 
             dotaXpContainer._customXpContainer = customXpContainer;
         } else

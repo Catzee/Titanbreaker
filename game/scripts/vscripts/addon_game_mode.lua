@@ -2564,6 +2564,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "playerconnected", Dynamic_Wrap( COverthrowGameMode, 'OnPlayerConnected' ) )
       CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
       CustomGameEventManager:RegisterListener( "pickupallitems", Dynamic_Wrap( COverthrowGameMode, 'TryPickupAllItems' ) )
+      CustomGameEventManager:RegisterListener( "pingherolevel", Dynamic_Wrap( COverthrowGameMode, 'PingHeroLevel' ) )
 
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
@@ -20355,7 +20356,7 @@ function COverthrowGameMode:SendLeaderboard(params)
   local player = PlayerResource:GetPlayer(params.PlayerID)
 
   -- Disconnected player or broken request
-  if(player == null) then
+  if(player == nil) then
     return
   end
 
@@ -20373,4 +20374,42 @@ function COverthrowGameMode:SendLeaderboard(params)
   end
 
   CustomGameEventManager:Send_ServerToPlayer(player, "getleaderboardresponse", { data = COverthrowGameMode._leaderboardData } )
+end
+
+function COverthrowGameMode:PingHeroLevel(params)
+  local playerId = params["player_id"]
+  local player = PlayerResource:GetPlayer(playerId)
+
+  -- Disconnected player or broken request
+  if(player == nil) then
+    return
+  end
+
+  local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+
+  if(hero == nil) then
+    return
+  end
+
+  -- Localization tags or html tags will require more panorama hacks so like this for now
+  -- Also can't make it support different player without panorama hacks...
+  local targetHero = EntIndexToHScript(params.target_player_unit)
+
+  if(hero ~= targetHero) then
+    return
+  end
+
+  local heroLevel = GetHeroLevel(targetHero)
+  local heroLevelPct = targetHero.levelPercentage
+  local maxPossibleLevel = #COverthrowGameMode.levelTable
+  
+  if(heroLevel == maxPossibleLevel) then
+    Say(player, "I'm at max level!", true)
+  else
+    if(hero.levelPercentage < 100) then
+      Say(player, "I need "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+    else
+      -- Is this even possible?
+    end
+  end
 end
