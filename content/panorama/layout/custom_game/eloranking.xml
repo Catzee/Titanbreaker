@@ -1098,10 +1098,10 @@
 						</Panel>
 					</Panel>
 				</Panel>
-				<Label class="ButtTextBigGold" text="Artifact Information" style="font-size: 18px;"/>
-				<Label class="ButtTextBigGold" text="Artifact Items can be acquired from Bosses, Mobs and Quests, like normal Items." style="color:white; font-size: 16px;"/>
-				<Label class="ButtTextBigGold" text="They exist in Epic, Legendary, Immortal and [Ancient] Immortal Item quality." style="color:white; font-size: 16px;"/>
 				<Panel  class="Runeword" style="horizontal-align: center; width: 850px;">
+					<Label class="WeaponHeaderWhite" text="Artifact Information" style="font-size: 22px; color:orange; margin-bottom:10px; margin-top: 10px;" />
+					<Label class="WeaponStats" text="Artifact Items can be acquired from Bosses and Mobs like normal Items." style="font-size: 16px; color:white; height: 40px;" />
+					<Label class="WeaponStats" text="They exist in Epic, Legendary, Immortal and [Ancient] Immortal, Divine and Mythical Item quality." style="font-size: 16px; color:white; height: 40px;" />
 					<Label class="WeaponHeaderWhite" text="Special Artifact Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Label class="WeaponStats" text="Special Artifact Traits, Path Bonuses and Rune Words can roll on Artifacts of Immortal or better quality." style="font-size: 16px; color:white; height: 40px;" />
 					<Label class="WeaponHeaderWhite" text="Unique Glove Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
@@ -1496,7 +1496,7 @@
 						<Label class="WeaponHeaderWhite" text="-------------------------------------------" style="color:white; margin-bottom:6px;" />
 						<Label class="WeaponHeaderWhite" text="Healing" style="color:white; margin-bottom:4px;" />
 						<Label class="WeaponStats" id="herostats5" text="+ 0%" style="color:lime;font-size: 20px;margin-bottom:6px;" />
-						<Label class="WeaponHeaderWhite" text="Cooldown Reduction" style="color:white; margin-bottom:4px;" />
+						<Label class="WeaponHeaderWhite" text="Cooldown Reduction (capped at 66%)" style="color:white; margin-bottom:4px;" />
 						<Label class="WeaponStats" id="herostats6" text="+ 0%" style="color:lime;font-size: 20px;margin-bottom:6px;" />
 						<Label class="WeaponHeaderWhite" text="Aggro Caused" style="color:white; margin-bottom:4px;" />
 						<Label class="WeaponStats" id="herostats7" text="100%" style="color:lime;font-size: 20px;margin-bottom:6px;" />
