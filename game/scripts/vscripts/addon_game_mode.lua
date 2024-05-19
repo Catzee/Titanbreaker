@@ -13931,7 +13931,7 @@ function RefreshTalents(event, args)
         if player then
           local hero = player:GetAssignedHero()
           if(hero) then
-            CustomGameEventManager:Send_ServerToPlayer(player, "getautosellresponse", { autosell = hero.autosell, autosellArti = hero.autosellArti, autosellSouls = hero.autosellSouls })
+            CustomGameEventManager:Send_ServerToPlayer(player, "getautosellresponse", { autosell = hero.autosell, autosellArti = hero.autosellArti, autosellSpecial = hero.autosellSpecial })
           end
         end
       end
@@ -13940,7 +13940,7 @@ function RefreshTalents(event, args)
         local id = args['player_id']
         local index = args['index']
         local indexArti = args['indexArti']
-        local indexSouls = args['indexSouls']
+        local indexSpecial = args['indexSpecial']
         local player = PlayerResource:GetPlayer(id)
 
         if player then
@@ -13952,8 +13952,8 @@ function RefreshTalents(event, args)
             if(indexArti ~= nil) then
               hero.autosellArti = indexArti
             end
-            if(indexSouls ~= nil) then
-              hero.autosellSouls = indexSouls
+            if(indexSpecial ~= nil) then
+              hero.autosellSpecial = indexSpecial
             end
           end
         end
