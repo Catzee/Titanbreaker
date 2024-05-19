@@ -3910,6 +3910,14 @@ function SetMainStats(args)
     main_stats[id][4] = args.levelPercentage;
 }
 
+function OnTooltipVisible(object) {
+    if(object.paneltype != "DOTATooltipUnitDamageArmor") {
+        return;
+    }
+
+    $.Msg("Stats tooltip");
+}
+
 function UpdateMainStatsUI(selectedPlayerUnit)
 {
     let isHero = Entities.IsHero(selectedPlayerUnit);
@@ -3976,7 +3984,7 @@ function InjectIntoDotaUI()
     let dotaXpContainer = DOTA_HUD_ROOT.FindChildTraverse("xp");
 
     // Replaces dota level/xp circle with custom one
-    if(dotaXpContainer) {
+    if(dotaXpContainer != undefined) {
         dotaXpContainer.style.visibility = "collapse";
 
         if(dotaXpContainer._customXpContainer == undefined) {
@@ -4003,7 +4011,7 @@ function InjectIntoDotaUI()
     let dotaStrAgiIntContainer = DOTA_HUD_ROOT.FindChildTraverse("stragiint");
 
     // Replaces str/agi/int labels with custom ones
-    if(dotaStrAgiIntContainer) {
+    if(dotaStrAgiIntContainer != undefined) {
         dotaStrAgiIntContainer.style.visibility = "collapse";
         
         if(dotaStrAgiIntContainer._customStrAgiIntContainer == undefined) {
@@ -4030,7 +4038,7 @@ function InjectIntoDotaUI()
     // Hides aghs/shard display because its unused and adds filler to make ui not look weird
     let aghsShardContainer = DOTA_HUD_ROOT.FindChildTraverse("AghsStatusContainer");
 
-    if(aghsShardContainer) {
+    if(aghsShardContainer != undefined) {
         aghsShardContainer.style.visibility = "collapse";
 
         let filler = undefined
@@ -4048,6 +4056,9 @@ function InjectIntoDotaUI()
 
         filler.style.width = "20px;"
         filler.style.height = "62px";
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't replace aghs/shard display).");
     }
 }
 
@@ -4275,6 +4286,9 @@ function TrySendReconnectEvent()
     GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
     // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
     $.Schedule(1, TrySendReconnectEvent);
+
+    // Override dota hero stats tooltip and fill it with custom values
+    $.RegisterForUnhandledEvent('TooltipVisible', OnTooltipVisible);
 
     // Always run it last since it may fail one day
     InjectIntoDotaUI();
