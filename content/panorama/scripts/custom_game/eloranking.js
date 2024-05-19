@@ -3934,12 +3934,36 @@ function UpdateMainStatsUI(selectedPlayerUnit)
             customLevelProgressBlurBar.value = main_stats[selectedHeroPlayerID][4];
         }
     }
+
+    // Hide str/agi/int if not hero
+    if(customStrAgiIntContainer != undefined) {
+        customStrAgiIntContainer.SetHasClass("ShowStrAgiInt", isHero);
+    }
+
+    // Update str/agi/int
+    if(isHero) {
+        if(customStrLabel != undefined) {
+            customStrLabel.text = main_stats[selectedHeroPlayerID][0];
+        }
+
+        if(customAgiLabel != undefined) {
+            customAgiLabel.text = main_stats[selectedHeroPlayerID][1];
+        }
+
+        if(customIntLabel != undefined) {
+            customIntLabel.text = main_stats[selectedHeroPlayerID][2];
+        }
+    }
 }
 
 let customXpContainer = undefined;
 let customLevelLabel = undefined;
 let customLevelProgressBar = undefined;
 let customLevelProgressBlurBar = undefined;
+let customStrAgiIntContainer = undefined;
+let customStrLabel = undefined;
+let customAgiLabel = undefined;
+let customIntLabel = undefined;
 
 function InjectIntoDotaUI()
 {
@@ -3954,7 +3978,7 @@ function InjectIntoDotaUI()
     // Replaces dota level/xp circle with custom one
     if(dotaXpContainer) {
         dotaXpContainer.style.visibility = "collapse";
-        dotaXpContainer._customXpContainer.style.visibility="visible";
+
         if(dotaXpContainer._customXpContainer == undefined) {
             let dotaXpContainerParent = dotaXpContainer.GetParent();
 
@@ -3973,7 +3997,34 @@ function InjectIntoDotaUI()
         customLevelProgressBlurBar = customXpContainer.FindChildTraverse("CircularXPProgressBlur");
     } else
     {
-        $.Msg("Valve break something or did major changes to UI.");
+        $.Msg("Valve break something or did major changes to UI (can't replace xp bar).");
+    }
+
+    let dotaStrAgiIntContainer = DOTA_HUD_ROOT.FindChildTraverse("stragiint");
+
+    // Replaces str/agi/int labels with custom ones
+    if(dotaStrAgiIntContainer) {
+        dotaStrAgiIntContainer.style.visibility = "collapse";
+        
+        if(dotaStrAgiIntContainer._customStrAgiIntContainer == undefined) {
+            let dotaStrAgiIntContainerParent = dotaStrAgiIntContainer.GetParent();
+
+            customStrAgiIntContainer = $.CreatePanel('Panel', dotaStrAgiIntContainerParent, '');
+            customStrAgiIntContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_str_agi_int_container.xml', false, false);
+            dotaStrAgiIntContainerParent.MoveChildAfter(customStrAgiIntContainer, dotaStrAgiIntContainer);
+
+            dotaStrAgiIntContainer._customStrAgiIntContainer = customStrAgiIntContainer;
+        } else
+        {
+            customStrAgiIntContainer = dotaStrAgiIntContainer._customStrAgiIntContainer;
+        }
+
+        customStrLabel = customStrAgiIntContainer.FindChildTraverse("StrengthSumLabel");
+        customAgiLabel = customStrAgiIntContainer.FindChildTraverse("AgilitySumLabel");
+        customIntLabel = customStrAgiIntContainer.FindChildTraverse("IntelligenceSumLabel");
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't replace str/agi/int labels).");
     }
 }
 
@@ -4198,11 +4249,12 @@ function TrySendReconnectEvent()
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
 
-    InjectIntoDotaUI();
-
     GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
     // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
     $.Schedule(1, TrySendReconnectEvent);
+
+    // Always run it last since it may fail one day
+    InjectIntoDotaUI();
 })();
 
 function DisableTalentTree(){

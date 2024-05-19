@@ -1,0 +1,24 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/dota_hud/dota_str_agi_int_container.css" />
+	</styles>
+	<Panel class="Reborn DOTAHUDStrAgiIntCustom ShowStrAgiInt HighlightAgility" style="width: fit-children;">
+		<Panel id="Strength" class="AttrIconContainer">
+			<Panel class="HighlightStatIcon" hittest="false" />
+			<Label id="StrengthSumLabel" class="StatLabel" text="0" hittest="false" />
+			<Panel id="StrengthIcon" class="StatIcon" hittest="false" />
+		</Panel>
+		<Panel id="Agility" class="AttrIconContainer">
+			<Panel class="HighlightStatIcon" hittest="false" />
+			<Label id="AgilitySumLabel" class="StatLabel" text="0" hittest="false" />
+			<Panel id="AgilityIcon" class="StatIcon" hittest="false" />
+		</Panel>
+		<Panel id="Intelligence" class="AttrIconContainer">
+			<Panel class="HighlightStatIcon" hittest="false" />
+			<Label id="IntelligenceSumLabel" class="StatLabel" text="0" hittest="false" />
+			<Panel id="IntelligenceIcon" class="StatIcon" hittest="false" />
+		</Panel>
+	</Panel>
+</root>
