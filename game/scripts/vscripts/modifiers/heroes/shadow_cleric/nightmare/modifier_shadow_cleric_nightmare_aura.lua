@@ -30,6 +30,12 @@ modifier_shadow_cleric_nightmare_aura = class({
 
 function modifier_shadow_cleric_nightmare_aura:OnCreated()
     self:OnRefresh()
+
+    if(not IsServer()) then
+        return
+    end
+
+    self.ownerPlayerId = self:GetParent():GetPlayerOwnerID()
 end
 
 function modifier_shadow_cleric_nightmare_aura:OnRefresh()
@@ -41,7 +47,7 @@ function modifier_shadow_cleric_nightmare_aura:OnRefresh()
 end
 
 function modifier_shadow_cleric_nightmare_aura:GetAuraEntityReject(target)
-    if(target.owner ~= nil) then
+    if(target.owner ~= nil and target:GetPlayerOwnerID() == self.ownerPlayerId) then
         return false
     end
 
