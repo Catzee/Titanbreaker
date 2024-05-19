@@ -7300,7 +7300,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 							end
 						end
-
+						
 						--autosell feature
 						local isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
 						if hero and isAutoSell then
@@ -7558,45 +7558,56 @@ function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedIt
 		end
 	else
 		if(itemdrop) then
+			local specialItemsFilter = hero.autosellSpecial and hero.autosellSpecial or 0
 			local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
 
-			-- Auto Sell: All Souls
+			-- Don't Auto Sell Souls and Temple Shard
 			local isSoulProtected = true
-			if(isSoulDrop and hero.autosellSouls == 0) then
+			if(isSoulDrop and (specialItemsFilter == 0 or specialItemsFilter == 2)) then
 				isSoulProtected = false
 			end
 
+			local isTempleShardDrop = spawnedItem == "item_set_t2_combine_token"
+			local isTempleShardProtected = true
+
+			-- Auto Sell: Temple Shard
+			if(isTempleShardDrop and specialItemsFilter == 0) then
+				isTempleShardProtected = false
+			end
+
+			local isSpecialItemProtected = isSoulProtected and isTempleShardProtected
+
 			-- Auto Sell: Common Items and below
 			if(hero.autosell == 2) then
-				isAutoSell = lootquality <= 1 and isSoulProtected
+				isAutoSell = lootquality <= 1 and isSpecialItemProtected
 			end
 			-- Auto Sell: Uncommon Items and below
 			if(hero.autosell == 4) then
-				isAutoSell = lootquality <= 2 and isSoulProtected
+				isAutoSell = lootquality <= 2 and isSpecialItemProtected
 			end
 			-- Auto Sell: Rare Items and below
 			if(hero.autosell == 6) then
-				isAutoSell = lootquality <= 3 and isSoulProtected
+				isAutoSell = lootquality <= 3 and isSpecialItemProtected
 			end
 			-- Auto Sell: Epic Items and below
 			if(hero.autosell == 8) then
-				isAutoSell = lootquality <= 4 and isSoulProtected
+				isAutoSell = lootquality <= 4 and isSpecialItemProtected
 			end
 			-- Auto Sell: Legendary Items and below
 			if(hero.autosell == 10) then
-				isAutoSell = lootquality <= 5 and isSoulProtected
+				isAutoSell = lootquality <= 5 and isSpecialItemProtected
 			end
 			-- Auto Sell: Immortal Items and below
 			if(hero.autosell == 12) then
-				isAutoSell = lootquality <= 6 and isSoulProtected
+				isAutoSell = lootquality <= 6 and isSpecialItemProtected
 			end
 			-- Auto Sell: Divine Items and below
 			if(hero.autosell == 14) then
-				isAutoSell = lootquality <= 7 and isSoulProtected
+				isAutoSell = lootquality <= 7 and isSpecialItemProtected
 			end
 			-- Auto Sell: Mythical Items and below
 			if(hero.autosell == 16) then
-				isAutoSell = lootquality <= 8 and isSoulProtected
+				isAutoSell = lootquality <= 8 and isSpecialItemProtected
 			end
 		end
 	end

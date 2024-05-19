@@ -18,7 +18,7 @@ var last_shop_item_panel = null;
 var save_cooldown = 0;
 var autosell = 0;
 var autosellArti = 0;
-var autosellSouls = 0;
+var autosellSpecial = 0;
 // var main_stats_detailed = false;
 
 var hpPerStr = 10; //20;
@@ -3224,14 +3224,14 @@ function OnAutoSellFiltersResponse(args)
         }
     }
 
-    if(args.autosellSouls != undefined)
+    if(args.autosellSpecial != undefined)
     {
-        for(let i = 0; i < autoSellSoulsOptions.length; i ++)
+        for(let i = 0; i < autoSellSpecialOptions.length; i ++)
         {
-            if(autoSellSoulsOptions[i].value == args.autosellSouls)
+            if(autoSellSpecialOptions[i].value == args.autosellSpecial)
             {
-                autosellSouls = i;
-                SetAutoSellSoulsText(autosellSouls);
+                autosellSpecial = i;
+                SetAutoSellSpecialText(autosellSpecial);
                 break;
             }
         }
@@ -3350,38 +3350,42 @@ function SetAutoSellArtiText(autosellIndex)
     $("#autoselltext2").text = autoSellArtiOptions[autosellIndex].text;
 }
 
-var autoSellSoulsOptions = [
+var autoSellSpecialOptions = [
     {
-        text: "Don't Auto Sell Souls",
+        text: "Don't Auto Sell Souls and Temple Shard",
         value: 0
     },
     {
-        text: "Auto Sell: All Souls",
+        text: "Auto Sell: Temple Shard",
         value: 2
+    },
+    {
+        text: "Auto Sell: All Souls and Temple Shard",
+        value: 4
     }
 ];
 
-function SetAutoSellSouls(isForwardDirection) {
-    autosellSouls = autosellSouls + (isForwardDirection ? 1 : -1);
-    let autoSellOptionsLastIndex = autoSellSoulsOptions.length - 1;
+function SetAutoSellSpecial(isForwardDirection) {
+    autosellSpecial = autosellSpecial + (isForwardDirection ? 1 : -1);
+    let autoSellOptionsLastIndex = autoSellSpecialOptions.length - 1;
 
-    if(autosellSouls < 0) {
-        autosellSouls = autoSellOptionsLastIndex;
+    if(autosellSpecial < 0) {
+        autosellSpecial = autoSellOptionsLastIndex;
     }
 
-    if(autosellSouls > autoSellOptionsLastIndex)
+    if(autosellSpecial > autoSellOptionsLastIndex)
     {
-        autosellSouls = 0;
+        autosellSpecial = 0;
     }
 
-    SetAutoSellSoulsText(autosellSouls);
+    SetAutoSellSpecialText(autosellSpecial);
     
-    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSouls": autoSellSoulsOptions[autosellSouls].value} );
+    GameEvents.SendCustomGameEventToServer( "setautosell", { "player_id": Players.GetLocalPlayer(), "indexSpecial": autoSellSpecialOptions[autosellSpecial].value} );
 }
 
-function SetAutoSellSoulsText(autosellSouls)
+function SetAutoSellSpecialText(autosellSpecial)
 {
-    $("#autoselltext3").text = autoSellSoulsOptions[autosellSouls].text;
+    $("#autoselltext3").text = autoSellSpecialOptions[autosellSpecial].text;
 }
 
 function ToggleAutoSellFiltersVisibility()
