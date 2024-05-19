@@ -3555,8 +3555,8 @@
 				<Button id="QuestlogButton4" class="Butt" onactivate="SetAutoSellArtifacts(true)" oncontextmenu="SetAutoSellArtifacts(false)">	
 					<Label class="ButtText AutoSellFilterLabel" id="autoselltext2" text="Don't Auto Sell Artifacts" />			
 				</Button>
-				<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSouls(true)" oncontextmenu="SetAutoSellSouls(false)">	
-					<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls" />			
+				<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSpecial(true)" oncontextmenu="SetAutoSellSpecial(false)">	
+					<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls and Temple Shard" />			
 				</Button>
 			</Panel>
 		</Panel>
