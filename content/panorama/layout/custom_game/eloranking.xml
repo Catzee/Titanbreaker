@@ -953,7 +953,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon4" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon4type" text="[Head]" />
 						<Label class="WeaponHeaderSmall" id="weapon4ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon4image" src="" />
+						<Image class="WeaponImageSmall" id="weapon4image" src="file://{images}/items/fixe/nohead.png" />
 						<Label class="WeaponStats" id="weapon4stats1" text="" />
 						<Label class="WeaponStats" id="weapon4stats2" text="" />
 						<Label class="WeaponStats" id="weapon4stats3" text="" />
@@ -965,7 +965,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon7" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon7type" text="[Shoulder]" />
 						<Label class="WeaponHeaderSmall" id="weapon7ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon7image" src="" />
+						<Image class="WeaponImageSmall" id="weapon7image" src="file://{images}/items/fixe/noshoulder.png" />
 						<Label class="WeaponStats" id="weapon7stats1" text="" />
 						<Label class="WeaponStats" id="weapon7stats2" text="" />
 						<Label class="WeaponStats" id="weapon7stats3" text="" />
@@ -979,7 +979,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon8" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon8type" text="[Amulet]" />
 						<Label class="WeaponHeaderSmall" id="weapon8ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon8image" src="" />
+						<Image class="WeaponImageSmall" id="weapon8image" src="file://{images}/items/fixe/noamulet.png" />
 						<Label class="WeaponStats" id="weapon8stats1" text="" />
 						<Label class="WeaponStats" id="weapon8stats2" text="" />
 						<Label class="WeaponStats" id="weapon8stats3" text="" />
@@ -992,7 +992,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon5" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon5type" text="[Chest]" />
 						<Label class="WeaponHeaderSmall" id="weapon5ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon5image" src="" />
+						<Image class="WeaponImageSmall" id="weapon5image" src="file://{images}/items/fixe/nochest.png" />
 						<Label class="WeaponStats" id="weapon5stats1" text="" />
 						<Label class="WeaponStats" id="weapon5stats2" text="" />
 						<Label class="WeaponStats" id="weapon5stats3" text="" />
@@ -1004,7 +1004,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon11" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon11type" text="[Cape]" />
 						<Label class="WeaponHeaderSmall" id="weapon11ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon11image" src="" />
+						<Image class="WeaponImageSmall" id="weapon11image" src="file://{images}/items/fixe/nocape.png" />
 						<Label class="WeaponStats" id="weapon11stats1" text="" />
 						<Label class="WeaponStats" id="weapon11stats2" text="" />
 						<Label class="WeaponStats" id="weapon11stats3" text="" />
@@ -1018,7 +1018,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon9" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon9type" text="[Gloves]" />
 						<Label class="WeaponHeaderSmall" id="weapon9ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon9image" src="" />
+						<Image class="WeaponImageSmall" id="weapon9image" src="file://{images}/items/fixe/nogloves.png" />
 						<Label class="WeaponStats" id="weapon9stats1" text="" />
 						<Label class="WeaponStats" id="weapon9stats2" text="" />
 						<Label class="WeaponStats" id="weapon9stats3" text="" />
@@ -1030,7 +1030,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon10" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon10type" text="[Legs]" />
 						<Label class="WeaponHeaderSmall" id="weapon10ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon10image" src="" />
+						<Image class="WeaponImageSmall" id="weapon10image" src="file://{images}/items/fixe/nolegs.png" />
 						<Label class="WeaponStats" id="weapon10stats1" text="" />
 						<Label class="WeaponStats" id="weapon10stats2" text="" />
 						<Label class="WeaponStats" id="weapon10stats3" text="" />
@@ -1042,7 +1042,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon3" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon3type" text="[Ring]" />
 						<Label class="WeaponHeaderSmall" id="weapon3ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon3image" src="" />
+						<Image class="WeaponImageSmall" id="weapon3image" src="file://{images}/items/fixe/noring.png" />
 						<Label class="WeaponStats" id="weapon3stats1" text="" />
 						<Label class="WeaponStats" id="weapon3stats2" text="" />
 						<Label class="WeaponStats" id="weapon3stats3" text="" />
@@ -1056,7 +1056,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon1" text="" />	
 						<Label class="WeaponHeaderSmall" id="weapon1type" text="[Main Hand]" />
 						<Label class="WeaponHeaderSmall" id="weapon1ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon1image" src="" />
+						<Image class="WeaponImageSmall" id="weapon1image" src="file://{images}/items/fixe/noweapon.png" />
 						<Label class="WeaponStats" id="weapon1stats1" text="" />
 						<Label class="WeaponStats" id="weapon1stats2" text="" />
 						<Label class="WeaponStats" id="weapon1stats3" text="" />
@@ -1068,7 +1068,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon6" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon6type" text="[Boots]" />
 						<Label class="WeaponHeaderSmall" id="weapon6ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon6image" src="" />
+						<Image class="WeaponImageSmall" id="weapon6image" src="file://{images}/items/fixe/noboots.png" />
 						<Label class="WeaponStats" id="weapon6stats1" text="" />
 						<Label class="WeaponStats" id="weapon6stats2" text="" />
 						<Label class="WeaponStats" id="weapon6stats3" text="" />
@@ -1080,7 +1080,7 @@
 						<Label class="WeaponHeaderWhite" id="weapon2" text="" />
 						<Label class="WeaponHeaderSmall" id="weapon2type" text="[Off Hand]" />
 						<Label class="WeaponHeaderSmall" id="weapon2ilevel" text="Item Level" style="color:yellow;"/>
-						<Image class="WeaponImageSmall" id="weapon2image" src="" />
+						<Image class="WeaponImageSmall" id="weapon2image" src="file://{images}/items/fixe/nooffhand.png" />
 						<Label class="WeaponStats" id="weapon2stats1" text="" />
 						<Label class="WeaponStats" id="weapon2stats2" text="" />
 						<Label class="WeaponStats" id="weapon2stats3" text="" />
