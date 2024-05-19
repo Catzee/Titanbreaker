@@ -1101,7 +1101,7 @@
 				<Panel  class="Runeword" style="horizontal-align: center; width: 850px;">
 					<Label class="WeaponHeaderWhite" text="Artifact Information" style="font-size: 22px; color:orange; margin-bottom:10px; margin-top: 10px;" />
 					<Label class="WeaponStats" text="Artifact Items can be acquired from Bosses and Mobs like normal Items." style="font-size: 16px; color:white; height: 40px;" />
-					<Label class="WeaponStats" text="They exist in Epic, Legendary, Immortal and [Ancient] Immortal, Divine and Mythical Item quality." style="font-size: 16px; color:white; height: 40px;" />
+					<Label class="WeaponStats" text="They exist in Epic, Legendary, Immortal, [Ancient] Immortal, Divine and Mythical Item quality." style="font-size: 16px; color:white; height: 40px;" />
 					<Label class="WeaponHeaderWhite" text="Special Artifact Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Label class="WeaponStats" text="Special Artifact Traits, Path Bonuses and Rune Words can roll on Artifacts of Immortal or better quality." style="font-size: 16px; color:white; height: 40px;" />
 					<Label class="WeaponHeaderWhite" text="Unique Glove Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
