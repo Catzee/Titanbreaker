@@ -72,7 +72,7 @@ function modifier_pet_system_lua:OnAttackLanded(kv)
 
     DamageUnit({
         caster = self.owner,
-        target = self.parent,
+        target = kv.target,
         ability = self.ability,
         damage = self.parent:GetAttackDamage(),
         spelldamagefactor = 0.0,
