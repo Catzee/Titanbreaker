@@ -3914,12 +3914,55 @@ function SetMainStats(args)
     main_stats[id][4] = args.levelPercentage;
 }
 
+let customXpContainer = undefined;
+let customLevelLabel = undefined;
+let customLevelProgressBar = undefined;
+let customLevelProgressBlurBar = undefined;
+let customStrAgiIntContainer = undefined;
+let customStrLabel = undefined;
+let customAgiLabel = undefined;
+let customIntLabel = undefined;
+let customStrStatsLabel = undefined;
+let customStrModifierStatsLabel = undefined;
+let customAgiStatsLabel = undefined;
+let customAgiModifierStatsLabel = undefined;
+let customIntStatsLabel = undefined;
+let customIntModifierStatsLabel = undefined;
+
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
         return;
     }
 
-    $.Msg("Stats tooltip");
+    InjectIntoDotaHeroStatsTooltip();
+
+    UpdateMainStatsUI(GetLocalPlayerSelectedUnit());
+}
+
+function GetDotaHudRoot()
+{
+    return $.GetContextPanel().GetParent().GetParent().GetParent();
+}
+
+function InjectIntoDotaHeroStatsTooltip()
+{
+    let dotaHudRoot = GetDotaHudRoot();
+    
+    if(dotaHudRoot == null || dotaHudRoot._isDotaHeroStatsTooltipInjected) {
+        return;
+    }
+
+    // str/agi/int unit stats labels
+    customStrStatsLabel = dotaHudRoot.FindChildTraverse("BaseStrengthLabel");
+    customStrModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusStrengthLabel");
+    
+    customAgiStatsLabel = dotaHudRoot.FindChildTraverse("BaseAgilityLabel");
+    customAgiModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusAgilityabel"); // intended typo
+
+    customIntStatsLabel = dotaHudRoot.FindChildTraverse("BaseIntelligenceLabel");
+    customIntModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusIntelligenceLabel");
+
+    dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
 }
 
 function UpdateMainStatsUI(selectedPlayerUnit)
@@ -3968,6 +4011,30 @@ function UpdateMainStatsUI(selectedPlayerUnit)
             customIntLabel.text = main_stats[selectedHeroPlayerID][2];
             customIntLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][2] >= 10000);
         }
+
+        if(customStrStatsLabel != undefined) {
+            customStrStatsLabel.text = main_stats[selectedHeroPlayerID][0];
+        }
+
+        if(customStrModifierStatsLabel != undefined) {
+            customStrModifierStatsLabel.text = "";
+        }
+
+        if(customAgiStatsLabel != undefined) {
+            customAgiStatsLabel.text = main_stats[selectedHeroPlayerID][1];
+        }
+
+        if(customAgiModifierStatsLabel != undefined) {
+            customAgiModifierStatsLabel.text = "";
+        }
+
+        if(customIntStatsLabel != undefined) {
+            customIntStatsLabel.text = main_stats[selectedHeroPlayerID][2];
+        }
+
+        if(customIntModifierStatsLabel != undefined) {
+            customIntModifierStatsLabel.text = "";
+        }
     }
 }
 
@@ -3988,24 +4055,15 @@ function PingHeroLevel()
     })
 }
 
-let customXpContainer = undefined;
-let customLevelLabel = undefined;
-let customLevelProgressBar = undefined;
-let customLevelProgressBlurBar = undefined;
-let customStrAgiIntContainer = undefined;
-let customStrLabel = undefined;
-let customAgiLabel = undefined;
-let customIntLabel = undefined;
-
 function InjectIntoDotaUI()
 {
-    let DOTA_HUD_ROOT = $.GetContextPanel().GetParent().GetParent().GetParent();
+    let dotaHudRoot = GetDotaHudRoot();
     
-    if(DOTA_HUD_ROOT == null) {
+    if(dotaHudRoot == null) {
         return;
     }
 
-    let dotaXpContainer = DOTA_HUD_ROOT.FindChildTraverse("xp");
+    let dotaXpContainer = dotaHudRoot.FindChildTraverse("xp");
 
     // Replaces dota level/xp circle with custom one
     if(dotaXpContainer != undefined) {
@@ -4036,7 +4094,7 @@ function InjectIntoDotaUI()
         $.Msg("Valve break something or did major changes to UI (can't replace xp bar).");
     }
 
-    let dotaStrAgiIntContainer = DOTA_HUD_ROOT.FindChildTraverse("stragiint");
+    let dotaStrAgiIntContainer = dotaHudRoot.FindChildTraverse("stragiint");
 
     // Replaces str/agi/int labels with custom ones
     if(dotaStrAgiIntContainer != undefined) {
@@ -4064,7 +4122,7 @@ function InjectIntoDotaUI()
     }
 
     // Hides aghs/shard display because its unused and adds filler to make ui not look weird
-    let aghsShardContainer = DOTA_HUD_ROOT.FindChildTraverse("AghsStatusContainer");
+    let aghsShardContainer = dotaHudRoot.FindChildTraverse("AghsStatusContainer");
 
     if(aghsShardContainer != undefined) {
         aghsShardContainer.style.visibility = "collapse";
