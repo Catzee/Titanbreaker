@@ -10916,10 +10916,10 @@ else
       --end
     end)
 
-  if hero.resourcesystem and not (heroName == "npc_dota_hero_dazzle") then
-    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    CustomGameEventManager:Send_ServerToPlayer(player, "set_mana_per_int", { mana = 0 } )
-  end
+  --if hero.resourcesystem and not (heroName == "npc_dota_hero_dazzle") then
+    --local player = PlayerResource:GetPlayer(hero:GetPlayerID())
+    --CustomGameEventManager:Send_ServerToPlayer(player, "set_mana_per_int", { mana = 0 } )
+  --end
 
   --armor adjust
   --if hero.combat_system_ability then

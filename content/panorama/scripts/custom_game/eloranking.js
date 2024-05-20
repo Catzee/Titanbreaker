@@ -21,6 +21,8 @@ var autosellArti = 0;
 var autosellSpecial = 0;
 // var main_stats_detailed = false;
 
+/*
+OLD STATS UI
 var hpPerStr = 10; //20;
 var physDmgPerStr = 0.1;
 var armorPerAgi = 0.04;
@@ -34,6 +36,7 @@ function SetManaPerInt(args){
     manaPerInt = args.mana;
     $.Msg(manaPerInt);
 }
+*/
 
 function EloOnClientCheckIn(args) {
 
@@ -3912,6 +3915,15 @@ function SetMainStats(args)
     // main_stats[id][3] = String(args.level) + "\n(" + String(args.levelPercentage) + "%)";
     main_stats[id][3] = args.level;
     main_stats[id][4] = args.levelPercentage;
+    main_stats[id][5] = args.maxHpFromStr;
+    main_stats[id][6] = args.physDmgFromStr;
+    main_stats[id][7] = args.attackSpeedFromAgi;
+    main_stats[id][8] = args.armorFromAgi;
+    main_stats[id][9] = args.criticalStrikeDamageFromAgi;
+    main_stats[id][10] = args.manaFromInt;
+    main_stats[id][11] = args.abilityDamageFromInt;
+    main_stats[id][12] = args.spellResistanceFromInt;
+    main_stats[id][13] = args.resourcetype;
 }
 
 let customXpContainer = undefined;
@@ -4041,7 +4053,8 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             }
     
             if(customStrBonusLabel != undefined) {
-                customStrBonusLabel.text = "= " + (str * hpPerStr) + " Max Health and " + (str * physDmgPerStr).toFixed(1) + "% Physical Damage";
+                let totalPhysDmg = (main_stats[selectedHeroPlayerID][6] * 100).toFixed(1);
+                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5] + " Max Health and " + totalPhysDmg + "% Physical Damage";
             }
     
             if(customStrPrimaryBonusLabel != undefined) {
@@ -4058,7 +4071,8 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             }
     
             if(customAgiBonusLabel != undefined) {
-                customAgiBonusLabel.text = "= " + (asPerAgi * agi).toFixed(1) + " Attack Speed and +" + (agi * armorPerAgi).toFixed(1) + " Armor and +" + (agi * abilCritPerAgi).toFixed(1) + "% Crit Damage";
+                let totalCritDmg = (main_stats[selectedHeroPlayerID][9] * 100).toFixed(1)
+                customAgiBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][7].toFixed(1) + " Attack Speed, " + main_stats[selectedHeroPlayerID][8].toFixed(1) + " Armor and " + totalCritDmg + "% Critical Strike Damage";
             }
     
             if(customAgiPrimaryBonusLabel != undefined) {
@@ -4076,14 +4090,13 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
     
             if(customIntBonusLabel != undefined) {
                 let intDetails = "";
-                let mres = int * mresPerInt;
-                if(mres > 50){
-                    mres = 50
-                }
-                if(manaPerInt > 0){
-                    intDetails = "= " + manaPerInt * int + " Mana, " + (int * abilDmgPerInt).toFixed(1) + "% Ability Damage and " + (mres).toFixed(1) + " Spell Resistance";
+                let totalAbDmg = (main_stats[selectedHeroPlayerID][11] * 100).toFixed(1);
+                let totalSpellResistance = main_stats[selectedHeroPlayerID][12].toFixed(1);
+
+                if(main_stats[selectedHeroPlayerID][13] == undefined) {
+                    intDetails = "= " + main_stats[selectedHeroPlayerID][10] + " Max Mana, " + totalAbDmg + "% Ability Damage and " + totalSpellResistance + " Spell Resistance";
                 }else{
-                    intDetails = "= " + (int * abilDmgPerInt).toFixed(1) + "% Ability Damage,  " + (mres).toFixed(1) + " Spell Resistance";
+                    intDetails = "= " + totalAbDmg + "% Ability Damage,  " + totalSpellResistance + " Spell Resistance";
                 }
 
                 customIntBonusLabel.text = intDetails;
@@ -4288,7 +4301,8 @@ function TrySendReconnectEvent()
     GameEvents.Subscribe("toggle_stash_set_number", SetStashToggleNumber);
     GameEvents.Subscribe("set_main_stats", SetMainStats);
     GameEvents.Subscribe("stats", SetUIStats);
-    GameEvents.Subscribe("set_mana_per_int", SetManaPerInt);
+    // OLD STATS UI
+    //GameEvents.Subscribe("set_mana_per_int", SetManaPerInt);
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
