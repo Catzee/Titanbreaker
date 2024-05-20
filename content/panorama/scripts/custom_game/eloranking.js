@@ -3923,7 +3923,9 @@ function SetMainStats(args)
     main_stats[id][10] = args.manaFromInt;
     main_stats[id][11] = args.abilityDamageFromInt;
     main_stats[id][12] = args.spellResistanceFromInt;
-    main_stats[id][13] = args.resourcetype;
+    main_stats[id][13] = args.resourceType;
+    main_stats[id][14] = args.spellHaste;
+    main_stats[id][15] = args.damageReduction;
 }
 
 let customXpContainer = undefined;
@@ -3946,6 +3948,8 @@ let customIntStatsLabel = undefined;
 let customIntModifierStatsLabel = undefined;
 let customIntBonusLabel = undefined;
 let customIntPrimaryBonusLabel = undefined;
+let customSpellHasteLabel = undefined;
+let customDamageReductionLabel = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -3987,6 +3991,54 @@ function InjectIntoDotaHeroStatsTooltip()
     customIntModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusIntelligenceLabel");
     customIntBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDetails");
     customIntPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDamageLabel");
+
+    // Adds custom spell haste row to unit stats tooltip
+    let manaRegenRow = dotaHudRoot.FindChildTraverse("ManaRegenRow");
+
+    if(manaRegenRow != undefined) {
+        if(manaRegenRow._customSpellHasteLabel == undefined) {
+            let attackContainerParent = manaRegenRow.GetParent();
+            let spellHasteRow = $.CreatePanel("Panel", attackContainerParent, '');
+            spellHasteRow.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_hud_stats_row.xml', false, false);
+            attackContainerParent.MoveChildAfter(spellHasteRow, manaRegenRow);
+            
+            let customSpellHasteRowLabel = spellHasteRow.FindChildTraverse("StatLabel");
+            if(customSpellHasteRowLabel != undefined) {
+                customSpellHasteRowLabel.text = "Spellhaste:";
+            }
+            customSpellHasteLabel = spellHasteRow.FindChildTraverse("StatValue");
+            manaRegenRow._customSpellHasteLabel = customSpellHasteLabel
+        }
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't add spell haste row).");
+    }
+
+    customSpellHasteLabel = manaRegenRow._customSpellHasteLabel;
+
+    // Adds custom damage reduction row to unit stats tooltip
+    let healthRegenRow = dotaHudRoot.FindChildTraverse("HealthRegenRow");
+
+    if(healthRegenRow != undefined) {
+        if(healthRegenRow._customDamageReductionLabel == undefined) {
+            let defenseContainerParent = healthRegenRow.GetParent();
+            let damageReductionRow = $.CreatePanel("Panel", defenseContainerParent, '');
+            damageReductionRow.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_hud_stats_row.xml', false, false);
+            defenseContainerParent.MoveChildAfter(damageReductionRow, healthRegenRow);
+            
+            let customDamageReductionRowLabel = damageReductionRow.FindChildTraverse("StatLabel");
+            if(customDamageReductionRowLabel != undefined) {
+                customDamageReductionRowLabel.text = "Damage Red.:";
+            }
+            customDamageReductionLabel = damageReductionRow.FindChildTraverse("StatValue");
+            healthRegenRow._customDamageReductionLabel = customDamageReductionLabel
+        }
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't add spell haste row).");
+    }
+
+    customDamageReductionLabel = healthRegenRow._customDamageReductionLabel;
 
     //dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
 }
@@ -4107,6 +4159,15 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
                 customIntPrimaryBonusLabel.style.visibility = "collapse";
             }
         }
+    }
+
+    // Update spellhaste & damage reduction rows
+    if(customSpellHasteLabel != undefined) {
+        customSpellHasteLabel.text = (main_stats[selectedHeroPlayerID][14] * 100).toFixed(1) + "%";
+    }
+
+    if(customDamageReductionLabel != undefined) {
+        customDamageReductionLabel.text = (100 - (main_stats[selectedHeroPlayerID][15] * 100)).toFixed(1) + "%";
     }
 }
 

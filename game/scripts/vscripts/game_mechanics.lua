@@ -20925,7 +20925,9 @@ function PassiveStatCalculation(event)
         manaFromInt = manaFromInt,
         abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
         spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
-        resourcetype = hero.resourcesystem
+        resourceType = hero.resourcesystem,
+        spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
+        damageReduction = GetTotalDamageTakenFactor(hero, nil)
     })
 
     --now we have calculated all basic stats, lets apply them!
