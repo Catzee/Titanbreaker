@@ -3924,10 +3924,16 @@ let customAgiLabel = undefined;
 let customIntLabel = undefined;
 let customStrStatsLabel = undefined;
 let customStrModifierStatsLabel = undefined;
+let customStrBonusLabel = undefined;
+let customStrPrimaryBonusLabel = undefined;
 let customAgiStatsLabel = undefined;
 let customAgiModifierStatsLabel = undefined;
+let customAgiBonusLabel = undefined;
+let customAgiPrimaryBonusLabel = undefined;
 let customIntStatsLabel = undefined;
 let customIntModifierStatsLabel = undefined;
+let customIntBonusLabel = undefined;
+let customIntPrimaryBonusLabel = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -3936,7 +3942,7 @@ function OnTooltipVisible(object) {
 
     InjectIntoDotaHeroStatsTooltip();
 
-    UpdateMainStatsUI(GetLocalPlayerSelectedUnit());
+    UpdateMainStatsUI(GetLocalPlayerSelectedUnit(), true);
 }
 
 function GetDotaHudRoot()
@@ -3948,24 +3954,32 @@ function InjectIntoDotaHeroStatsTooltip()
 {
     let dotaHudRoot = GetDotaHudRoot();
     
+    /*
+    Seems dota recreate them every time...
     if(dotaHudRoot == null || dotaHudRoot._isDotaHeroStatsTooltipInjected) {
         return;
-    }
+    } */
 
     // str/agi/int unit stats labels
     customStrStatsLabel = dotaHudRoot.FindChildTraverse("BaseStrengthLabel");
     customStrModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusStrengthLabel");
-    
+    customStrBonusLabel = dotaHudRoot.FindChildTraverse("StrengthDetails");
+    customStrPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("StrengthDamageLabel");
+
     customAgiStatsLabel = dotaHudRoot.FindChildTraverse("BaseAgilityLabel");
     customAgiModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusAgilityabel"); // intended typo
+    customAgiBonusLabel = dotaHudRoot.FindChildTraverse("AgilityDetails");
+    customAgiPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("AgilityDamageLabel");
 
     customIntStatsLabel = dotaHudRoot.FindChildTraverse("BaseIntelligenceLabel");
     customIntModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusIntelligenceLabel");
+    customIntBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDetails");
+    customIntPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDamageLabel");
 
-    dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
+    //dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
 }
 
-function UpdateMainStatsUI(selectedPlayerUnit)
+function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
 {
     let isHero = Entities.IsHero(selectedPlayerUnit);
 
@@ -3997,43 +4011,88 @@ function UpdateMainStatsUI(selectedPlayerUnit)
 
     // Update str/agi/int
     if(isHero) {
+        let str = main_stats[selectedHeroPlayerID][0];
+        let agi = main_stats[selectedHeroPlayerID][1];
+        let int = main_stats[selectedHeroPlayerID][2];
+
         if(customStrLabel != undefined) {
-            customStrLabel.text = main_stats[selectedHeroPlayerID][0];
-            customStrLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][0] >= 10000);
+            customStrLabel.text = str;
+            customStrLabel.SetHasClass("BigNumber", str >= 10000);
         }
 
         if(customAgiLabel != undefined) {
-            customAgiLabel.text = main_stats[selectedHeroPlayerID][1];
-            customAgiLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][1] >= 10000);
+            customAgiLabel.text = agi;
+            customAgiLabel.SetHasClass("BigNumber", agi >= 10000);
         }
 
         if(customIntLabel != undefined) {
-            customIntLabel.text = main_stats[selectedHeroPlayerID][2];
-            customIntLabel.SetHasClass("BigNumber", main_stats[selectedHeroPlayerID][2] >= 10000);
+            customIntLabel.text = int;
+            customIntLabel.SetHasClass("BigNumber", int >= 10000);
         }
 
-        if(customStrStatsLabel != undefined) {
-            customStrStatsLabel.text = main_stats[selectedHeroPlayerID][0];
-        }
+        // Units stats tooltip
+        if(isUnitStatsTooltip != undefined) {
+            if(customStrStatsLabel != undefined) {
+                customStrStatsLabel.text = str;
+            }
+    
+            if(customStrModifierStatsLabel != undefined) {
+                customStrModifierStatsLabel.text = "";
+            }
+    
+            if(customStrBonusLabel != undefined) {
+                customStrBonusLabel.text = "= " + (str * hpPerStr) + " Max Health and " + (str * physDmgPerStr).toFixed(1) + "% Physical Damage";
+            }
+    
+            if(customStrPrimaryBonusLabel != undefined) {
+                customStrPrimaryBonusLabel.text = "";
+                customStrPrimaryBonusLabel.style.visibility = "collapse";
+            }
+    
+            if(customAgiStatsLabel != undefined) {
+                customAgiStatsLabel.text = agi;
+            }
+    
+            if(customAgiModifierStatsLabel != undefined) {
+                customAgiModifierStatsLabel.text = "";
+            }
+    
+            if(customAgiBonusLabel != undefined) {
+                customAgiBonusLabel.text = "= " + (asPerAgi * agi).toFixed(1) + " Attack Speed and +" + (agi * armorPerAgi).toFixed(1) + " Armor and +" + (agi * abilCritPerAgi).toFixed(1) + "% Crit Damage";
+            }
+    
+            if(customAgiPrimaryBonusLabel != undefined) {
+                customAgiPrimaryBonusLabel.text = "";
+                customAgiPrimaryBonusLabel.style.visibility = "collapse";
+            }
+    
+            if(customIntStatsLabel != undefined) {
+                customIntStatsLabel.text = int;
+            }
+    
+            if(customIntModifierStatsLabel != undefined) {
+                customIntModifierStatsLabel.text = "";
+            }
+    
+            if(customIntBonusLabel != undefined) {
+                let intDetails = "";
+                let mres = int * mresPerInt;
+                if(mres > 50){
+                    mres = 50
+                }
+                if(manaPerInt > 0){
+                    intDetails = "= " + manaPerInt * int + " Mana, " + (int * abilDmgPerInt).toFixed(1) + "% Ability Damage and " + (mres).toFixed(1) + " Spell Resistance";
+                }else{
+                    intDetails = "= " + (int * abilDmgPerInt).toFixed(1) + "% Ability Damage,  " + (mres).toFixed(1) + " Spell Resistance";
+                }
 
-        if(customStrModifierStatsLabel != undefined) {
-            customStrModifierStatsLabel.text = "";
-        }
-
-        if(customAgiStatsLabel != undefined) {
-            customAgiStatsLabel.text = main_stats[selectedHeroPlayerID][1];
-        }
-
-        if(customAgiModifierStatsLabel != undefined) {
-            customAgiModifierStatsLabel.text = "";
-        }
-
-        if(customIntStatsLabel != undefined) {
-            customIntStatsLabel.text = main_stats[selectedHeroPlayerID][2];
-        }
-
-        if(customIntModifierStatsLabel != undefined) {
-            customIntModifierStatsLabel.text = "";
+                customIntBonusLabel.text = intDetails;
+            }
+    
+            if(customIntPrimaryBonusLabel != undefined) {
+                customIntPrimaryBonusLabel.text = "";
+                customIntPrimaryBonusLabel.style.visibility = "collapse";
+            }
         }
     }
 }
