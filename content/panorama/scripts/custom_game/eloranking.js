@@ -2633,10 +2633,6 @@ function onUnitChanged(args)
 {   
     //$.Msg("unit changed");
     var unit = GetLocalPlayerSelectedUnit();
-
-    if(unit > -1) {
-        UpdateMainStatsUI(unit);
-    }
     
     //$.Msg(unit);
     if (unit != null){
@@ -2661,6 +2657,10 @@ function onUnitChanged(args)
     }//else{
     //    $("#selectedid").text = "selected unit: " + unit2;
     //}
+
+    if(unit > -1) {
+        UpdateMainStatsUI(unit);
+    }
 }
 
 function GetSelectedUnit()
@@ -3950,6 +3950,10 @@ let customIntBonusLabel = undefined;
 let customIntPrimaryBonusLabel = undefined;
 let customSpellHasteLabel = undefined;
 let customDamageReductionLabel = undefined;
+let manaRegenProgressBar = undefined;
+let manaRegenProgressBackgroundBar = undefined;
+let manaRegenProgressBarParticle = undefined;
+let manaRegenLabel = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -4161,13 +4165,73 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
         }
     }
 
-    // Update spellhaste & damage reduction rows
+    // Update unit stats spellhaste row
     if(customSpellHasteLabel != undefined) {
-        customSpellHasteLabel.text = (main_stats[selectedHeroPlayerID][14] * 100).toFixed(1) + "%";
+        let spellHasteValue = 0;
+        if(isHero) {
+            spellHasteValue = (main_stats[selectedHeroPlayerID][14] * 100).toFixed(1);
+        }
+        customSpellHasteLabel.text = spellHasteValue + "%";
     }
 
+    // Update unit stats damage reduction row
     if(customDamageReductionLabel != undefined) {
-        customDamageReductionLabel.text = (100 - (main_stats[selectedHeroPlayerID][15] * 100)).toFixed(1) + "%";
+        let damageReductionValue = 0;
+        if(isHero) {
+            damageReductionValue = (100 - (main_stats[selectedHeroPlayerID][15] * 100)).toFixed(1);
+        }
+        customDamageReductionLabel.text = damageReductionValue + "%";
+    }
+
+    // Modify mana progress bar color to match resource type
+    if(manaRegenProgressBar != undefined && manaRegenProgressBarParticle != undefined 
+        && manaRegenLabel != undefined && manaRegenProgressBackgroundBar != undefined) {
+        let resourceType = main_stats[selectedHeroPlayerID][13];
+        if(!isHero) {
+            resourceType = undefined;
+        }
+        /*
+            undefined - mana (blue, default)
+            1 - rage (red)
+            2 - energy? (purple)
+            3 - corruption (green)
+            4 - energy?, dazzle only (purple)
+            5 - focus (orange)
+        */
+        if(resourceType == undefined) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #2b4287 ), color-stop( 0.2, #4165ce ), color-stop( .5, #4a73ea), to( #2b4287 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "50deg";
+            manaRegenLabel.style.color = "#83C2FE";
+        }
+
+        if(resourceType == 1) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #771919 ), color-stop( .43, #811717), to( #7d0707 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #410404 ), color-stop( 0.43, #630c0c ), to( #5e0808 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "243deg";
+            manaRegenLabel.style.color = "#ff0000";
+        }
+
+        if(resourceType == 2 || resourceType == 4) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #ab44e6 ), color-stop( .43, #853baf), to( #5a1781 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #402152 ), color-stop( 0.43, #38174b ), to( #340d4a ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "190deg";
+            manaRegenLabel.style.color = "#ac5cda";
+        }
+
+        if(resourceType == 3) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #1a3d1c ), color-stop( .43, #0b360d), to( #065c0b ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #132a14 ), color-stop( 0.43, #09160a ), to( #053008 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "20deg";
+            manaRegenLabel.style.color = "#10ff1e";
+        }
+
+        if(resourceType == 5) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #f06509 ), color-stop( .43, #d77e43), to( #994a15 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #5e2b09 ), color-stop( .43, #754626), to( #5e2e0e ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "270deg";
+            manaRegenLabel.style.color = "#ff9500";
+        }
     }
 }
 
@@ -4277,7 +4341,32 @@ function InjectIntoDotaUI()
         filler.style.height = "62px";
     } else
     {
-        $.Msg("Valve break something or did major changes to UI (can't replace aghs/shard display).");
+        $.Msg("Valve break something or did major changes to UI (can't hide aghs/shard display).");
+    }
+
+    // Allowes to change mana bar color based on resource type (mana, rage, corruption, etc)
+    manaRegenProgressBar = dotaHudRoot.FindChildTraverse("ManaProgress_Left");
+
+    if(manaRegenProgressBar == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar).");
+    }
+
+    manaRegenProgressBarParticle = dotaHudRoot.FindChildTraverse("ManaBurner");
+
+    if(manaRegenProgressBarParticle == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar particle).");
+    }
+
+    manaRegenProgressBackgroundBar = dotaHudRoot.FindChildTraverse("ManaProgress_Right");
+    
+    if(manaRegenProgressBackgroundBar == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar background).");
+    }
+
+    manaRegenLabel = dotaHudRoot.FindChildTraverse("ManaRegenLabel");
+
+    if(manaRegenLabel == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana regen label).");
     }
 }
 
