@@ -4187,6 +4187,9 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
     if(manaRegenProgressBar != undefined && manaRegenProgressBarParticle != undefined 
         && manaRegenLabel != undefined && manaRegenProgressBackgroundBar != undefined) {
         let resourceType = main_stats[selectedHeroPlayerID][13];
+
+        let isEnergySupported = false;
+
         if(!isHero) {
             resourceType = undefined;
         }
@@ -4198,18 +4201,12 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             4 - energy?, dazzle only (purple)
             5 - focus (orange)
         */
-        if(resourceType == undefined) {
-            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #2b4287 ), color-stop( 0.2, #4165ce ), color-stop( .5, #4a73ea), to( #2b4287 ) )";
-            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) )";
-            manaRegenProgressBarParticle.style.hueRotation = "50deg";
-            manaRegenLabel.style.color = "#83C2FE";
-        }
-
         if(resourceType == 1) {
             manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #771919 ), color-stop( .43, #811717), to( #7d0707 ) )";
             manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #410404 ), color-stop( 0.43, #630c0c ), to( #5e0808 ) )";
             manaRegenProgressBarParticle.style.hueRotation = "243deg";
             manaRegenLabel.style.color = "#ff0000";
+            isEnergySupported = true;
         }
 
         if(resourceType == 2 || resourceType == 4) {
@@ -4217,6 +4214,7 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #402152 ), color-stop( 0.43, #38174b ), to( #340d4a ) )";
             manaRegenProgressBarParticle.style.hueRotation = "190deg";
             manaRegenLabel.style.color = "#ac5cda";
+            isEnergySupported = true;
         }
 
         if(resourceType == 3) {
@@ -4224,6 +4222,7 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #132a14 ), color-stop( 0.43, #09160a ), to( #053008 ) )";
             manaRegenProgressBarParticle.style.hueRotation = "20deg";
             manaRegenLabel.style.color = "#10ff1e";
+            isEnergySupported = true;
         }
 
         if(resourceType == 5) {
@@ -4231,6 +4230,14 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #5e2b09 ), color-stop( .43, #754626), to( #5e2e0e ) )";
             manaRegenProgressBarParticle.style.hueRotation = "270deg";
             manaRegenLabel.style.color = "#ff9500";
+            isEnergySupported = true;
+        }
+
+        if(resourceType == undefined || !isEnergySupported) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #2b4287 ), color-stop( 0.2, #4165ce ), color-stop( .5, #4a73ea), to( #2b4287 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "50deg";
+            manaRegenLabel.style.color = "#83C2FE";
         }
     }
 }
