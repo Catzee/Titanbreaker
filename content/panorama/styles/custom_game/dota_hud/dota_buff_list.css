@@ -1,0 +1,87 @@
+.HIDE_ACTION_PANEL .customBuffs,
+.HIDE_ACTION_PANEL .customDebuffs
+{
+    visibility: collapse;
+}
+
+.customBuffs {
+    margin-bottom: 171px;
+    margin-left: 50%;
+    horizontal-align: left;
+    vertical-align: bottom;
+    flow-children: right-wrap;
+    transition-property: opacity, transform;
+    transition-duration: 0.12s;
+    transform: translateY(0px) rotateX(180deg);
+}
+
+.customDebuffs {
+    margin-bottom: 171px;
+    margin-right: 50%;
+    horizontal-align: right;
+    vertical-align: bottom;
+    flow-children: left-wrap;
+    transition-property: opacity, transform;
+    transition-duration: 0.12s;
+    transform: translateY(0px) rotateX(180deg);
+}
+
+.HasAbilityToSpend .customDebuffs,
+.HasAbilityToSpend .customBuffs,
+.HasSecondaryAbilities .customDebuffs,
+.HasSecondaryAbilities .customBuffs {
+    transform: translateY(32px) rotateX(180deg);
+}
+
+.IsLocalPlayerSpectating .HasSecondaryAbilities .customDebuffs,
+.IsLocalPlayerSpectating .HasSecondaryAbilities .customBuffs {
+    transform: translateY(0px) rotateX(180deg);
+}
+
+.HUDFlipped .HasAbilityToSpend .customDebuffs,
+.HUDFlipped .HasAbilityToSpend .customBuffs,
+.HUDFlipped .HasSecondaryAbilities .customDebuffs,
+.HUDFlipped .HasSecondaryAbilities .customBuffs {
+    transform: translateY(32px) scaleX(-1) rotateX(180deg);
+}
+
+.IsLocalPlayerSpectating.HUDFlipped .HasSecondaryAbilities .customDebuffs,
+.IsLocalPlayerSpectating.HUDFlipped .HasSecondaryAbilities .customBuffs {
+    transform: translateY(0px) scaleX(-1) rotateX(180deg);
+}
+
+.SpectatorDVRControlsVisible .customBuffs,
+.SpectatorDVRControlsVisible .customDebuffs {
+    transform: translateY(48px) rotateX(180deg);
+}
+
+.HUDFlipped.SpectatorDVRControlsVisible .customBuffs,
+.HUDFlipped.SpectatorDVRControlsVisible .customDebuffs {
+    transform: translateY(48px) scaleX(-1) rotateX(180deg);
+}
+
+.SpectatorDVRControlsVisible .HasSecondaryAbilities .customBuffs,
+.SpectatorDVRControlsVisible .HasSecondaryAbilities .customDebuffs {
+    transform: translateY(48px) rotateX(180deg);
+}
+
+.HUDFlipped.SpectatorDVRControlsVisible .HasSecondaryAbilities .customBuffs,
+.HUDFlipped.SpectatorDVRControlsVisible .HasSecondaryAbilities .customDebuffs {
+    transform: translateY(48px) scaleX(-1) rotateX(180deg);
+}
+
+.HUDFlipped .customBuffs {
+    flow-children: right-wrap;
+    horizontal-align: right;
+    margin-left: 0%;
+    margin-right: 50%;
+    transform: ScaleX(-1) rotateX(180deg);
+}
+
+.HUDFlipped .customDebuffs {
+    flow-children: left-wrap;
+    horizontal-align: left;
+    margin-right: 0%;
+    margin-left: 50%;
+    transform: ScaleX(-1) rotateX(180deg);
+}

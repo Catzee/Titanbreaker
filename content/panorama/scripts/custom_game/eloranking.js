@@ -3954,6 +3954,8 @@ let manaRegenProgressBar = undefined;
 let manaRegenProgressBackgroundBar = undefined;
 let manaRegenProgressBarParticle = undefined;
 let manaRegenLabel = undefined;
+let customBuffsContainer = undefined;
+let customDebuffsContainer = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -4374,6 +4376,52 @@ function InjectIntoDotaUI()
 
     if(manaRegenLabel == undefined) {
         $.Msg("Valve break something or did major changes to UI (can't find mana regen label).");
+    }
+
+    // Replaces dota buffs container with custom one that support multiple rows
+    let buffsContainer = dotaHudRoot.FindChildTraverse("buffs");
+
+    if(buffsContainer != undefined) {
+        buffsContainer.style.visibility = "collapse";
+        
+        if(buffsContainer._customBuffsContainer == undefined) {
+            let buffsContainerParent = buffsContainer.GetParent();
+
+            customBuffsContainer = $.CreatePanel('Panel', buffsContainerParent, '');
+            customBuffsContainer.SetHasClass("customBuffs", true);
+            customBuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
+            buffsContainerParent.MoveChildAfter(customBuffsContainer, buffsContainer);
+
+            buffsContainer._customBuffsContainer = customStrAgiIntContainer;
+        } else
+        {
+            customBuffsContainer = buffsContainer._customBuffsContainer;
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find buffs container).");
+    }
+
+    // Replaces dota debuffs container with custom one that support multiple rows
+    let debuffsContainer = dotaHudRoot.FindChildTraverse("debuffs");
+
+    if(debuffsContainer != undefined) {
+        debuffsContainer.style.visibility = "collapse";
+        
+        if(debuffsContainer._customDebuffsContainer == undefined) {
+            let debuffsContainerParent = debuffsContainer.GetParent();
+
+            customDebuffsContainer = $.CreatePanel('Panel', debuffsContainerParent, '');
+            customDebuffsContainer.SetHasClass("customDebuffs", true);
+            customDebuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
+            debuffsContainerParent.MoveChildAfter(customDebuffsContainer, debuffsContainer);
+
+            debuffsContainer._customDebuffsContainer = customStrAgiIntContainer;
+        } else
+        {
+            customDebuffsContainer = debuffsContainer._customDebuffsContainer;
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find debuffs container).");
     }
 }
 
