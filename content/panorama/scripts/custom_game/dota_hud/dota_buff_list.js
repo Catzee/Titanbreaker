@@ -16,7 +16,7 @@ function UpdateBuffs(panel, isBuffs)
     let selectedUnit = GetLocalPlayerSelectedUnit();
     let buffSerialsToUse = [];
 
-    for(let i = 0; i < BUFF_LIST_INITIAL_CHILDRENS; i++)
+    for(let i = 0; i <= Entities.GetNumBuffs(selectedUnit); i++)
     {
         let buffSerial = Entities.GetBuff(selectedUnit, i);
 
@@ -45,8 +45,8 @@ function UpdateBuffs(panel, isBuffs)
 
         buffSerialsToUse.push(buffSerial);
     }
-
-    for(let i = 0; i < BUFF_LIST_CHILDRENS_PER_ROW; i++) {
+    
+    for(let i = 0; i < BUFF_LIST_INITIAL_CHILDRENS; i++) {
         if(buffSerialsToUse[i] != undefined) {
             panel._childrens[i].SetHasClass("Hidden", false);
             UpdateBuffPanel(panel._childrens[i], selectedUnit, buffSerialsToUse[i]);
