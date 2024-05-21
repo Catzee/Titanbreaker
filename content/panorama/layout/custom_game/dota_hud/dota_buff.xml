@@ -6,6 +6,8 @@
 	<Panel class="DOTABuff">
 		<Button class="BuffBorder">
 			<Image id="BuffImage" scaling="stretch-to-fit-y-preserve-aspect" />
+			<DOTAAbilityImage id="BuffImageAbility" scaling="stretch-to-fit-y-preserve-aspect"/>
+			<DOTAItemImage id="BuffImageItem" scaling="stretch-to-fit-y-preserve-aspect"/>
 			<Panel id="CircularDuration" />
 			<Label id="StackCount" text="0" />
 		</Button>
