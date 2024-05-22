@@ -1,4 +1,4 @@
-let BUFF_LIST_CHILDRENS_PER_ROW = 13;
+let BUFF_LIST_CHILDRENS_PER_ROW = 12;
 let BUFF_LIST_MAX_ROWS = 4;
 let BUFF_LIST_INITIAL_CHILDRENS = BUFF_LIST_MAX_ROWS * BUFF_LIST_CHILDRENS_PER_ROW;
 let BUFF_LIST_TICKRATE = 0.05;
@@ -66,17 +66,24 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     let stacksCount = Buffs.GetStackCount(selectedUnit, buffSerial);
     let textureName = Buffs.GetTexture(selectedUnit, buffSerial);
     let buffAbility = Buffs.GetAbility(selectedUnit, buffSerial);
-    let buffAbilityName = Abilities.GetAbilityName(buffAbility);
     let isItem = Abilities.IsItem(buffAbility);
+    let isCustomIcon = textureName.indexOf("fix/") !== -1;
+    let pathToIcon = "";
     
-    if(buffAbilityName == textureName) {
-        panel.SetHasClass("is_custom_icon", false);
-        panel.SetHasClass("is_ability", !isItem);
-        panel.SetHasClass("is_item", isItem);
+    if(isCustomIcon) {
+        if(isItem) {
+            textureName = textureName.replace("item_", "");
+            pathToIcon = "raw://resource/flash3/images/items/" + textureName + ".png";
+        } else {
+            pathToIcon = "raw://resource/flash3/images/spellicons/" + textureName + ".png";
+        }
     } else {
-        panel.SetHasClass("is_custom_icon", true);
-        panel.SetHasClass("is_ability", false);
-        panel.SetHasClass("is_item", false);
+        if(isItem) {
+            textureName = textureName.replace("item_", "");
+            pathToIcon = "file://{images}/items/" + textureName + ".png";
+        } else {
+            pathToIcon = "file://{images}/spellicons/" + textureName + ".png";
+        }
     }
 
     panel._queryUnit = selectedUnit;
@@ -85,10 +92,7 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     panel.SetHasClass("has_stacks", stacksCount > 0);
 
     panel._stacksLabel.text = stacksCount;
-    panel._abilityImagePanel.abilityname = buffAbilityName;
-    panel._itemImagePanel.itemname = buffAbilityName;
-    panel._customImagePanel.SetImage("raw://resource/flash3/images/spellicons/" + textureName + ".png");
-
+    panel._imagePanel.SetImage(pathToIcon);
     var buffDurationDeg = Math.max(0, 360 * (Buffs.GetRemainingTime(selectedUnit, buffSerial) / Buffs.GetDuration(selectedUnit, buffSerial)))
 	if(Buffs.GetDuration(selectedUnit, buffSerial) == -1 || Buffs.GetRemainingTime(selectedUnit, buffSerial) < 0) { 
         buffDurationDeg = 360; 
@@ -109,9 +113,7 @@ function InitializeChildrens(panel, isBuffs)
         buffPanel.SetHasClass("Hidden", true);
         buffPanel.SetHasClass("is_undispellable", true); // looks better with it and no way to get this at panorama...
         buffPanel.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff.xml', false, false);
-        buffPanel._abilityImagePanel = buffPanel.FindChildTraverse("BuffImageAbility");
-        buffPanel._itemImagePanel = buffPanel.FindChildTraverse("BuffImageItem");
-        buffPanel._customImagePanel = buffPanel.FindChildTraverse("BuffImage");
+        buffPanel._imagePanel = buffPanel.FindChildTraverse("BuffImage");
         buffPanel._stacksLabel = buffPanel.FindChildTraverse("StackCount");
         buffPanel._durationPanel = buffPanel.FindChildTraverse("CircularDuration");
         buffPanel._queryUnit = -1;

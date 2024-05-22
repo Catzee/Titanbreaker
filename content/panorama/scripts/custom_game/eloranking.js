@@ -4382,7 +4382,7 @@ function InjectIntoDotaUI()
     let buffsContainer = dotaHudRoot.FindChildTraverse("buffs");
 
     if(buffsContainer != undefined) {
-        buffsContainer.style.visibility = "collapse";
+        buffsContainer.style.visibility = "visible";
         
         if(buffsContainer._customBuffsContainer == undefined) {
             let buffsContainerParent = buffsContainer.GetParent();
@@ -4405,7 +4405,7 @@ function InjectIntoDotaUI()
     let debuffsContainer = dotaHudRoot.FindChildTraverse("debuffs");
 
     if(debuffsContainer != undefined) {
-        debuffsContainer.style.visibility = "collapse";
+        debuffsContainer.style.visibility = "visible";
         
         if(debuffsContainer._customDebuffsContainer == undefined) {
             let debuffsContainerParent = debuffsContainer.GetParent();
