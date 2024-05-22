@@ -6,6 +6,6 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/dota_hud/dota_buff_list.js" />
 	</scripts>
-	<Panel>
+	<Panel hittest="false" hittestchildren="true">
 	</Panel>
 </root>
