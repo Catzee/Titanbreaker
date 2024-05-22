@@ -4352,7 +4352,7 @@ function InjectIntoDotaUI()
             filler = aghsShardContainer._fillerPanel;
         }
 
-        filler.style.width = "20px;"
+        filler.style.width = "5px;"
         filler.style.height = "62px";
     } else
     {
@@ -4398,7 +4398,7 @@ function InjectIntoDotaUI()
             customBuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
             buffsContainerParent.MoveChildAfter(customBuffsContainer, buffsContainer);
 
-            buffsContainer._customBuffsContainer = customStrAgiIntContainer;
+            buffsContainer._customBuffsContainer = customBuffsContainer;
         } else
         {
             customBuffsContainer = buffsContainer._customBuffsContainer;
@@ -4421,7 +4421,7 @@ function InjectIntoDotaUI()
             customDebuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
             debuffsContainerParent.MoveChildAfter(customDebuffsContainer, debuffsContainer);
 
-            debuffsContainer._customDebuffsContainer = customStrAgiIntContainer;
+            debuffsContainer._customDebuffsContainer = customDebuffsContainer;
         } else
         {
             customDebuffsContainer = debuffsContainer._customDebuffsContainer;
