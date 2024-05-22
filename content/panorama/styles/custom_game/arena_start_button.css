@@ -50,6 +50,11 @@
     border-color: grey;
 }
 
+.HUDFlipped .StashButtonsContainer
+{
+   	horizontal-align: left;
+}
+
 .GoldUIClass
 {
 	flow-children: down;
