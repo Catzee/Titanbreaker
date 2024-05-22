@@ -4588,7 +4588,7 @@ function TrySendReconnectEvent()
     runeword_id = new Array(20);
     pathword = new Array(10);
     pathword_id = new Array(10);
-    main_stats = new Array(10);
+    main_stats = new Array(15);
     gold_stat = new Array(10);
     //talents
     talents = new Array(10);
@@ -4605,7 +4605,7 @@ function TrySendReconnectEvent()
         }
         */
         main_stats[i] = new Array(5);
-        for (var j = 0; j < 5; j++) {
+        for (var j = 0; j < 15; j++) {
             main_stats[i][j] = 0;
         }
     }
