@@ -4504,6 +4504,11 @@ function ShowPossibleRuneWords()
     $("#RuneWordsContainer").ToggleClass("Hidden");
 }
 
+function OpenDiscordURL()
+{
+    $.DispatchEvent("ExternalBrowserGoToURL", $.GetContextPanel(), "https://discord.gg/as8MzdJ");
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 

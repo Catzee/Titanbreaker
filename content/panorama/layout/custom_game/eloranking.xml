@@ -2162,8 +2162,8 @@
 				<Panel  class="TableCol" >
 					<Label class="TextTalentHead" text="Path Information" style="font-size: 28px;horizontal-align: center; color: lime;margin-top: 15px;"/>
 					<Label class="TextGold" text="Path Points are gained whenever you level up,\nfrom level 15 onwards, every 2nd Level." style="font-size: 17px;horizontal-align: left;"/>
-					<Label class="TextGold" text="Path Talents are unlocked row by row, starting from the top.\nTo unlock a new row, you need to spend atleast 3 Path Points\nin that Path." style="font-size: 17px;horizontal-align: left;"/>
-					<Label class="TextGold" text="Path Talents are naturally capped at Level 3. With Bonuses from\nArtifacts, Souls and Divines, they can go up to Level 10.\nThere are no Bonuses for the last row." style="font-size: 17px;horizontal-align: left;"/>
+					<Label class="TextGold" text="Path Talents are unlocked row by row, starting from the top.\nTo unlock a new row, you need to spend at least 3 Path Points\nin that Path." style="font-size: 17px;horizontal-align: left;"/>
+					<Label class="TextGold" text="Path Talents are naturally capped at Level 3. With Bonuses from\nArtifacts, Souls and Divines, they can go up to Level 10." style="font-size: 17px;horizontal-align: left;"/>
 					<Label  id="talentpoints" text="Unspent Path Points: 0" style="font-size: 24px;horizontal-align: center;margin-top: 25px; color: white;"/>
 					<Panel class="TableRow" style="horizontal-align:center;margin-top: 10px;">
 						<Button class="SellPanel" onactivate="ToggleResetPathPressed()">
@@ -3302,13 +3302,33 @@
 			
 		</Panel>
 
-		<Panel id="rewards" style="horizontal-align: center;">
-			
+		<Panel id="rewards" style="horizontal-align: center; overflow: squish scroll; border: 2px solid grey; background-image: none; background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555a ), to( #22222a ) );">
 				<Label class="RewardHeader" html="true" text="Guide" style="font-size: 48px;"/>
+				<Label class="RewardText" text="Use mouse wheel to scroll" style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardHeader" html="true" text="Community" style="color: orange;"/>
+				<Panel style="flow-children: right; horizontal-align: center;">
+					<Label class="RewardText" text="Join our discord server if you need help or have questions:" style="vertical-align: center; font-size: 18px;" />
+					<Button onactivate="OpenDiscordURL()" style="margin: 0px; margin-top: 6px; flow-children: right;">
+						<Label class="WeaponHeaderWhite" text="https://discord.gg/as8MzdJ" style="text-decoration: underline; font-size: 18px; margin: 0px; margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+						<Label class="WeaponHeaderWhite" text="(click on this url)" style="font-size: 18px; margin: 0px; margin-left: 5px; margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+					</Button>
+				</Panel>
 				<Label class="RewardHeader" html="true" text="Gameplay" style="color: orange;"/>
-				<Label class="RewardText" text="Titanbreaker is a 5 player dungeon crawler RPG with permanent character saving and an emphasis on teamplay." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="Each Hero has 5 lives at the beginning of the game, after which he will no longer be resurrected." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="There are 13 Acts to defeat, each one being slightly harder than the previous." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="Titanbreaker is a 5 player dungeon crawler RPG with permanent character saving and an emphasis on teamplay. It can be played with less players but it will be hard." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="Each player will be revived 5 times after dying, after that they have to start a new game or they stay and observe the remaining heroes who are still alive." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="Currently the maximum hero level is 100. When you level up, you gain 13 Ability Points, plus 1 at Level 40, 60, 80 and 100." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="All creatures have an aggro system, causing them to attack whoever damages them the most. It is advised to pick at least 1 Tank and 1 Healer to survive longer." style="font-size: 18px;horizontal-align: center;"  />
+				<Label class="RewardText" text="Item drop rules: For each player an individual roll is performed to check if an item drops, whenever a creature is killed." style="font-size: 18px;horizontal-align: center;"  />
+				<Label class="RewardText" text="Bosses and Champions drop an item with a 100% chance, while killing a complete trash mob camp roughly has a total 2% chance to drop an item." style="font-size: 18px;horizontal-align: center;"  />
+				<Label class="RewardText" text="Item quality when killing a Boss is as follows: Legendary 0.1%, Epic 1%, Rare 10%, Common 25%, rolled in that order, if none of these dropped, a white item will drop." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="The first Act has the difficulty you select at the start of the game. Each following Act is 10% more difficult compared to the initial difficulty setting." style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="For example, if you select Monster Level 2, the Act difficulties will be 200% for the first Act, 220% for the 2nd Act, 240% for the third Act and so on."  style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="Item drop quality increases faster than difficulty does, as an incentive to play on challening Monster Levels, the formula is: LootQuality = ( ZoneDifficulty * 1.25 ) - 0.25."  style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="For example a Zone with Monster Level 2 would lead to LootQuality = 2 * 1.25 - 0.25 = 2.25 = 225% loot quality."  style="font-size: 18px;horizontal-align: center;" />
+				<Label class="RewardText" text="This LootQuality factor is multiplied on top of the drop chance, so it would for example increase the Epic drop chance on bosses from 1% to 1% * 225% = 2.25%. Experience scales exponetially." style="font-size: 18px;horizontal-align: center;"  />
+				<Label class="RewardText" text="Summons from Abilities and Companions from Items, like the ones from the Dragon Set series, deal Damage whenever they attack." style="font-size: 18px;horizontal-align: center;"  />
+				<Label class="RewardText" text="However, the damage dealt acts as if it were Damage done by an Ability of its master, meaning it will cause aggro and can for example benefit from Ability Critical Strikes on items worn by the master." style="font-size: 18px;horizontal-align: center;" />				
+				<Label class="RewardText" text="There are 13 Acts to defeat, each one being slightly harder than the previous." style="font-size: 18px;horizontal-align: center;"/>
 				<Label class="RewardText" text="After defeating an Act, you should go to the Titan Temple, using the Teleporter, and defeat the corresponding Titan there. Do this for all 10 Titans, after which\nyou must defeat the Final Boss in the Temple. After that, clear Act 12 and do the escort Quest at the end. Then clear Act 13.\nNow you have cleared all content, but you can still fight the remaining Bosses in the Mogushan Arena for extra Loot and Boss Kill Score." style="font-size: 18px;horizontal-align: center;" />
 				<Label class="RewardText" text="You can increase the Monster Level at the start of the game, which makes enemies stronger but also rewards better loot and higher Boss Kill Score for the Leaderboard." style="font-size: 18px;horizontal-align: center;" />
 				<Label class="RewardText" text="The more Bosses you kill in a single game, the better the drop chances for Items become, as incentive to beat as many Acts per run as possible. Also some rare items like [Singularities], which are the only Items that can be placed in the neutral Item slot, only drop after beating all 13 Acts [weak ones on Monster Level 20 or higher and strong ones on Monster Level 500 or higher]." style="font-size: 18px;horizontal-align: center;" />
@@ -3322,8 +3342,6 @@
 				<Label class="RewardText" text="This Shop also sells recipes that are required to combine Item Sets." style="font-size: 18px;horizontal-align: center;" />
 				<Label class="RewardHeader" html="true" text="Crafting" style="color: orange;"/>
 				<Label class="RewardText" text="Later in the game there also is the Molten Forge located in Act 8 (requires playing on Monster Level 10), where you can craft Artifacts for Gold." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardHeader" html="true" text="Community" style="color: orange;"/>
-				<Label class="RewardText" text="Join our discord server if you need help or have questions: https://discord.gg/as8MzdJ." style="font-size: 18px;horizontal-align: center;" />
 				<!--Label class="RewardText" text="Which Items drop on which Monster Level setting in which Act? Find answers here!" style="font-size: 20px; margin-bottom:20px;" />
 				<Label class="RewardHeader" html="true" text="Monster Level 1 - 7.5" style="color: orange;"/>
 				<Label class="RewardText" text="Legendary Items and Sets are the best Items you can farm in this Monster Level range. Try getting as many as possible to qualify for Monster Level 10." style="font-size: 18px;horizontal-align: left;" />
