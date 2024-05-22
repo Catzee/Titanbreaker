@@ -10940,7 +10940,7 @@
 			{
 			    "Duration"         "20"
 			    "Passive"          "0"
-			    //"TextureName"      "lich_dark_ritual"
+			    //"TextureName"      "fix/lich_dark_ritual"
 			    "IsDebuff"         "0"
 			    "IsBuff"         "1"
 			    "IsHidden"         "0"
@@ -28379,7 +28379,7 @@
 			{
 			    "Duration"         "20"
 			    "Passive"          "0"    
-			    "TextureName"      "lich_dark_ritual"
+			    "TextureName"      "fix/lich_dark_ritual"
 			    "IsDebuff"         "0"
 			    "IsBuff"         "1"
 			    "IsHidden"         "0"
@@ -74100,7 +74100,7 @@
 	            "IsBuff"			"1"
 	            "IsDebuff"			"0"
 	            "IsStunDebuff"		"0"
-	            "TextureName" "lich_dark_ritual"
+	            "TextureName" "fix/lich_dark_ritual"
 	            "OnCreated"
 	            {
 	            	"FireEffect"
@@ -100044,7 +100044,7 @@
 	"act13_as" 
 	{
 	    "BaseClass" "ability_datadriven"
-	    "AbilityTextureName"    "lich_dark_ritual"
+	    "AbilityTextureName"    "fix/lich_dark_ritual"
 	    "MaxLevel" "1"
 	    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "Modifiers"

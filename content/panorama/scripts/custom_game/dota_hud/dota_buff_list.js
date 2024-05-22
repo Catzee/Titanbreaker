@@ -80,11 +80,13 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     } else {
         if(isItem) {
             textureName = textureName.replace("item_", "");
-            pathToIcon = "file://{images}/items/" + textureName + ".png";
-        } else {
-            pathToIcon = "file://{images}/spellicons/" + textureName + ".png";
         }
+        pathToIcon = "file://{images}/spellicons/" + textureName + ".png";
     }
+
+    //panel.SetHasClass("is_custom", isCustomIcon);
+    //panel.SetHasClass("is_item", isItem);
+    //panel.SetHasClass("is_ability", !isItem);
 
     panel._queryUnit = selectedUnit;
     panel._buffSerial = buffSerial;
@@ -132,7 +134,8 @@ function InitializeChildrens(panel, isBuffs)
     }
 
     let buffWidth = 40;
-    let buffHeight = 40;
+    let buffHeightMargin = 2;
+    let buffHeight = 40 + buffHeightMargin;
     let buffMargins = 4;
     let bandAidFix = 5;
     panel.style.maxWidth = ((BUFF_LIST_CHILDRENS_PER_ROW * (buffWidth + buffMargins)) + bandAidFix) + "px";
