@@ -4491,7 +4491,7 @@ function FillRuneWords()
             runeWordPanel.FindChildTraverse("RuneWordImage").SetImage(runeWordImage + ".png");
     
             let runeText = $.Localize("#rune" + i).split("\n\n");
-            runeWordPanel.FindChildTraverse("RuneWordText").text = "<span class='RuneWordHeader'>" + runeText[0] + "</span><br>" + runeText[1];
+            runeWordPanel.FindChildTraverse("RuneWordText").text = "<span class='RuneWordHeader'>" + runeText[1] + "</span><br>" + runeText[0];
         }
     } catch (e)
     {
