@@ -2496,7 +2496,7 @@ function RuneWordEquipped(args)
     var runetext = "+ " + ((String)(power)) + " ";
     var text = "#rune"+args.word;
     runetext = runetext + $.Localize( text );
-    
+
     //save data
     runeword[player] = runetext;
     runeword_id[player] = args.word;
@@ -2980,14 +2980,20 @@ function UpdateInventory(args)
     //update runeword
     //runeword_id[player] = 10;
     //runeword[player] = "asdf asdfasd sdfjsidfj sdfio sdfodf + w234 ";
+    let runeWordText = $("#runewordtext");
+    let runeWordImage = $("#runewordimage");
+
     if(runeword != null && runeword[player] != null){
-        $("#runewordtext").text = runeword[player];
+        runeWordText.text = runeword[player];
         var image_path = GetRunewordImageByID(runeword_id[player])+".png";
-        $("#runewordimage").SetImage(image_path);
+        runeWordImage.SetImage(image_path);
+        runeWordImage.style.visibility = "visible";
     }else{
-        $("#runewordtext").text = "incomplete";
-        $("#runewordimage").SetImage("");
+        runeWordText.text = "Incomplete Rune Word: find more Artifacts with Rune Words";
+        runeWordImage.SetImage("");
+        runeWordImage.style.visibility = "collapse";
     }
+
     var max_runewords = 20;
     if(pathword != null && pathword[player] != null){
         //$.Msg(pathword[player]);
@@ -4467,6 +4473,37 @@ function TrySendReconnectEvent()
     }
 }
 
+function FillRuneWords()
+{
+    try
+    {
+        let container = $("#RuneWordsContainer");
+        container.RemoveAndDeleteChildren();
+    
+        for(let i = 1; i < 99999; i++) {
+            let runeWordImage = GetRunewordImageByID(i);
+            if(runeWordImage == undefined || runeWordImage.length < 1) {
+                break;
+            }
+    
+            let runeWordPanel = $.CreatePanel('Panel', container, '');
+            runeWordPanel.BLoadLayoutSnippet("RuneWordContainer");
+            runeWordPanel.FindChildTraverse("RuneWordImage").SetImage(runeWordImage + ".png");
+    
+            let runeText = $.Localize("#rune" + i).split("\n\n");
+            runeWordPanel.FindChildTraverse("RuneWordText").text = "<span class='RuneWordHeader'>" + runeText[0] + "</span><br>" + runeText[1];
+        }
+    } catch (e)
+    {
+        $.Msg(e);
+    }
+}
+
+function ShowPossibleRuneWords()
+{
+    $("#RuneWordsContainer").ToggleClass("Hidden");
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -4647,13 +4684,16 @@ function TrySendReconnectEvent()
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
 
+    FillRuneWords();
+
     GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
     // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
     $.Schedule(1, TrySendReconnectEvent);
 
+
     // Override dota hero stats tooltip and fill it with custom values
     $.RegisterForUnhandledEvent('TooltipVisible', OnTooltipVisible);
-
+    
     // Always run it last since it may fail one day
     InjectIntoDotaUI();
 })();

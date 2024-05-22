@@ -19,6 +19,12 @@
 				</Panel>
 			</Panel>
 		</snippet>
+        <snippet name="RuneWordContainer">
+			<Panel  class="TableRow" style="horizontal-align: left; margin-bottom: 5px;">	
+				<Image class="RunewordImage" id="RuneWordImage" style="border-radius: 5px;" src="" />
+				<Label class="WeaponStats" id="RuneWordText" html="true" text="" style="vertical-align: center; color: white;" />
+			</Panel>
+		</snippet>
 	</snippets>
 
 	<Panel class="OverthrowLoadingRoot" hittest="false">
@@ -1092,11 +1098,19 @@
 					</Panel>
 				</Panel>
 				<Panel  class="WeaponRow">
-					<Panel  class="Runeword">
-						<Label class="WeaponHeaderWhite" text="Rune Word" style="color:white; margin-bottom:10px;" />
-						<Panel  class="TableRow">	
-							<Image class="RunewordImage" id="runewordimage" src="" />
+					<Panel class="Runeword">
+						<Label class="WeaponHeaderWhite" text="Rune Word" style="font-size: 22px; color:orange; margin-bottom:10px; margin-top: 10px;" />
+						<Label class="WeaponStats" text="Artifacts (Head, Chest, Boots) gives you different Rune Words with different Rune Power." style="font-size: 16px; color:white; height: 40px;" />
+						<Label class="WeaponStats" text="You will get some bonus with value based on total Rune Power and Rune Words you have." style="font-size: 16px; color:white; height: 40px;" />
+						<Panel  class="TableRow" style="horizontal-align: center; margin-bottom: 5px;">	
+							<Image class="RunewordImage" id="runewordimage" style="border-radius: 5px;" src="" />
 							<Label class="WeaponStats" id="runewordtext" text="incomplete" style="color:lime;" />
+						</Panel>
+						<Panel class="TableRow" style="flow-children: down; horizontal-align: left; margin-bottom: 5px; width: 100%;">	
+							<Button class="SellPanel" onactivate="ShowPossibleRuneWords()" style="margin-top: 6px; horizontal-align: center;">
+								<Label class="WeaponHeaderWhite"  text="Show possible Rune Words" style="font-size: 16px; margin-left: 5px; margin-right: 5px;margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+							</Button>
+							<Panel id="RuneWordsContainer" class="Hidden" style="flow-children: down; padding-left: 5px; padding-top: 5px;"/>
 						</Panel>
 					</Panel>
 				</Panel>

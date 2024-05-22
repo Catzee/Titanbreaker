@@ -1555,3 +1555,15 @@
 	margin-top: -8px;
 	margin-right: 0px;
 }
+
+.RuneWordHeader
+{
+	font-size: 18px; 
+	color:gold; 
+	horizontal-align: left;
+}
+
+#RuneWordsContainer.Hidden
+{
+	visibility: collapse;
+}
