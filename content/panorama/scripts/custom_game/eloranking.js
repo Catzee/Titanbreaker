@@ -3138,7 +3138,8 @@ function UpdateInventory(args)
             UpdateMainStatsUI();
         }
     } */
-    UpdateGoldUI();
+    // OLD GOLD UI
+    //UpdateGoldUI();
     if(hero_stats == null){
         hero_stats = new Array(20);
         for (var i = 0; i < 20; i++) {
@@ -3575,11 +3576,14 @@ function UpdateMainStatsUI(){
     }
 } */
 
+/* OLD GOLD UI
 function UpdateGoldUI(){
     if(selectedHeroPlayerID >= 0){
         $("#ui_gold").text = gold_stat[selectedHeroPlayerID] + " Gold";
     }
 }
+*/
+
 /* OLD STATS UI
 function MainStatsHover(args){
     if(args == 1){
@@ -3962,6 +3966,7 @@ let manaRegenProgressBarParticle = undefined;
 let manaRegenLabel = undefined;
 let customBuffsContainer = undefined;
 let customDebuffsContainer = undefined;
+let customGoldLabel = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -4248,6 +4253,11 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             manaRegenLabel.style.color = "#83C2FE";
         }
     }
+
+    // Update gold label
+    if(customGoldLabel != null) {
+        customGoldLabel.text = gold_stat[selectedHeroPlayerID];
+    }
 }
 
 let pingHeroLevelCd = false;
@@ -4428,6 +4438,35 @@ function InjectIntoDotaUI()
         }
     } else {
         $.Msg("Valve break something or did major changes to UI (can't find debuffs container).");
+    }
+
+    // Replaces dota current gold label with custom one
+    let shopButton = dotaHudRoot.FindChildTraverse("ShopButton");
+
+    if(shopButton != undefined) {
+        let shopLabel = shopButton.FindChildTraverse("GoldLabel");
+
+        if(shopLabel != undefined) {
+            shopLabel.style.visibility = "collapse";
+        
+            if(shopLabel._customGoldLabel == undefined) {   
+                customGoldLabel = $.CreatePanel('Label', shopButton, '');
+                customGoldLabel.SetHasClass("MonoNumbersFont", true);
+                customGoldLabel.SetHasClass("ShopButtonValueLabel", true);
+                customGoldLabel.style.opacity = "1";
+                shopButton.MoveChildAfter(customGoldLabel, shopLabel);
+    
+                shopLabel._customGoldLabel = customGoldLabel;
+            } else
+            {
+                customGoldLabel = shopLabel._customGoldLabel;
+            }
+        } else
+        {
+            $.Msg("Valve break something or did major changes to UI (can't find gold label).");
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find gold label).");
     }
 }
 
