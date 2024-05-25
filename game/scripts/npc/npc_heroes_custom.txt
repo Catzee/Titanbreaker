@@ -1,9 +1,14 @@
 // Dota Heroes File
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+
+// FOR FUTURE REFERENCE:
+// In order to disable facet hero key here must be unique and not match dota one (npc_dota_hero_riki_titanbreaker) + empty facets block
+// In order to disable innate abilities replace every unused slot with generic_hidden to override valve kv innate ability (be aware of 32 abilities cap that you may reach because valve adding abilities during runtime)
+
 "DOTAHeroes"
 {
-	"npc_dota_hero_riki"
+	"npc_dota_hero_riki_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_riki"
@@ -14,7 +19,9 @@
 		"Ability4"					"hawk4"
 		"Ability5"					"hawk7"
 		"Ability6"					"hawk6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_agility_20"
 		"Ability12"		"special_bonus_evasion_20"
@@ -23,6 +30,10 @@
 		"Ability15"		"special_bonus_magic_resistance_10"
 		"Ability16"		"special_bonus_mp_regen_2"
 		"Ability17"		"special_bonus_agility_40"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -76,7 +87,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_ursa"
+	"npc_dota_hero_ursa_titanbreaker"
 	{
 		"DisableWearables"		"1"
 		"override_hero"				"npc_dota_hero_ursa"
@@ -88,7 +99,9 @@
 		"Ability4"					"bear4"
 		"Ability5"					"bear5"
 		"Ability6"					"bear6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -97,6 +110,10 @@
 		"Ability15"		"special_bonus_hp_100"
 		"Ability16"		"special_bonus_armor_12"
 		"Ability17"		"special_bonus_strength_25"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -150,7 +167,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_furion"
+	"npc_dota_hero_furion_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_furion"
@@ -161,7 +178,9 @@
 		"Ability4"					"RootsDruid" 
 		"Ability5"					"CycloneDruid"
 		"Ability6"					"Shapeshift"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_magic_resistance_35"
@@ -170,6 +189,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_lifesteal_10"
 		"Ability17"		"special_bonus_all_stats_20"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -225,7 +248,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_witch_doctor"
+	"npc_dota_hero_witch_doctor_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_witch_doctor"
@@ -236,7 +259,9 @@
 		"Ability4"					"resto4"
 		"Ability5"					"resto5"
 		"Ability6"					"resto6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_15"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_cast_range_150"
@@ -245,6 +270,10 @@
 		"Ability15"		"special_bonus_intelligence_35"
 		"Ability16"		"special_bonus_magic_resistance_35"
 		"Ability17"		"special_bonus_all_stats_20"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -301,7 +330,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_oracle"
+	"npc_dota_hero_oracle_titanbreaker"
 	{
 		//"DisableWearables"		"1"
 		"override_hero"				"npc_dota_hero_oracle"
@@ -312,7 +341,9 @@
 		"Ability4"					"holy4"
 		"Ability5"					"holy55"
 		"Ability6"					"holy6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_armor_6"
@@ -321,6 +352,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_lifesteal_10"
 		"Ability17"		"special_bonus_intelligence_35"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -375,7 +410,7 @@
 
 		"Team"          "BAD"
 	}
-	"npc_dota_hero_keeper_of_the_light"
+	"npc_dota_hero_keeper_of_the_light_titanbreaker"
 	{
 		//"DisableWearables"		"1"
 		"override_hero"				"npc_dota_hero_keeper_of_the_light"
@@ -386,7 +421,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -395,6 +432,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_hp_100"
 		"Ability17"		"special_bonus_intelligence_35"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -450,7 +491,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_warlock"
+	"npc_dota_hero_warlock_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_warlock"
@@ -461,7 +502,9 @@
 		"Ability4"					"dark_ranger_life_drain" 
 		"Ability5"					"Fear_Warlock"
 		"Ability6"					"Felhunter"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -470,6 +513,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_25"
 		"Ability17"		"special_bonus_all_stats_20"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -523,7 +570,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_pugna"
+	"npc_dota_hero_pugna_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_pugna"
@@ -534,7 +581,9 @@
 		"Ability4"					"destro4"
 		"Ability5"					"Shadowfury"
 		"Ability6"					"destro6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_armor_5"
@@ -543,6 +592,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_spell_amplify_6"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -595,7 +648,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_grimstroke"
+	"npc_dota_hero_grimstroke_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_grimstroke"
@@ -606,7 +659,9 @@
 		"Ability4"					"demo4"
 		"Ability5"					"demo5"
 		"Ability6"					"demo6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_armor_6"
@@ -615,6 +670,10 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_all_stats_20"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 		"ModelScale"				"0.66"
@@ -667,7 +726,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_lion"
+	"npc_dota_hero_lion_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_lion"
@@ -678,7 +737,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_day_vision_400"
 		"Ability12"		"special_bonus_intelligence_30"
@@ -687,6 +748,10 @@
 		"Ability15"		"special_bonus_armor_12"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_intelligence_35"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 		"ModelScale"				"0.66"
@@ -739,7 +804,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_skeleton_king"
+	"npc_dota_hero_skeleton_king_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_skeleton_king"
@@ -750,7 +815,9 @@
 		"Ability4"					"Death_For_Life"
 		"Ability5"					"Deafening_Coil"
 		"Ability6"					"Fatal_Grasp"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_hp_700"
@@ -759,6 +826,10 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_magic_resistance_25"
 		"Ability17"		"special_bonus_strength_25"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -814,7 +885,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_sven"
+	"npc_dota_hero_sven_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_sven"
@@ -825,7 +896,9 @@
 		"Ability4"					"frostdk4"
 		"Ability5"					"frostdk5"
 		"Ability6"					"frostdk6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_armor_12"
@@ -834,6 +907,10 @@
 		"Ability15"		"special_bonus_attack_speed_100"
 		"Ability16"		"special_bonus_strength_25"
 		"Ability17"		"special_bonus_attack_damage_55"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -889,7 +966,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_abaddon"
+	"npc_dota_hero_abaddon_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_abaddon"
@@ -900,7 +977,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -909,6 +988,10 @@
 		"Ability15"		"special_bonus_hp_100"
 		"Ability16"		"special_bonus_strength_25"
 		"Ability17"		"special_bonus_attack_speed_100"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -964,7 +1047,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_pudge"
+	"npc_dota_hero_pudge_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_pudge"
@@ -975,7 +1058,9 @@
 		"Ability4"					"unholy_5"
 		"Ability5"					"unholy_4"
 		"Ability6"					"unholy_6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_15"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -984,6 +1069,10 @@
 		"Ability15"		"special_bonus_attack_speed_100"
 		"Ability16"		"special_bonus_armor_12"
 		"Ability17"		"special_bonus_mp_regen_2"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -1039,7 +1128,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_phantom_assassin"
+	"npc_dota_hero_phantom_assassin_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_phantom_assassin"
@@ -1050,7 +1139,9 @@
 		"Ability4"					"Ambush" 
 		"Ability5"					"Shadow_Blend"
 		"Ability6"					"Shadow_Walk"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -1059,6 +1150,10 @@
 		"Ability15"		"special_bonus_hp_100"
 		"Ability16"		"special_bonus_mp_125"
 		"Ability17"		"special_bonus_agility_40"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -1111,7 +1206,7 @@
 		"Team"          "GOOD"
 	}	
 
-	"npc_dota_hero_slark"
+	"npc_dota_hero_slark_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_slark"
@@ -1122,7 +1217,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_12"
@@ -1131,6 +1228,10 @@
 		"Ability15"		"special_bonus_attack_speed_100"
 		"Ability16"		"special_bonus_vision_200"
 		"Ability17"		"special_bonus_attack_damage_55"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -1183,7 +1284,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_antimage"
+	"npc_dota_hero_antimage_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_antimage"
@@ -1194,7 +1295,9 @@
 		"Ability4"					"dh3" 
 		"Ability5"					"dh5"
 		"Ability6"					"dh6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_evasion_25"
@@ -1203,6 +1306,10 @@
 		"Ability15"		"special_bonus_magic_resistance_10"
 		"Ability16"		"special_bonus_mp_regen_2"
 		"Ability17"		"special_bonus_agility_40"
+
+		"Facets"
+		{
+		}
 
 		"UnitLabel"         "hero"
 
@@ -1254,7 +1361,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_templar_assassin"
+	"npc_dota_hero_templar_assassin_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_templar_assassin"
@@ -1265,7 +1372,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_cooldown_reduction_10"
 		"Ability12"		"special_bonus_hp_100"
@@ -1274,7 +1383,11 @@
 		"Ability15"		"special_bonus_magic_resistance_10"
 		"Ability16"		"special_bonus_mp_regen_2"
 		"Ability17"		"special_bonus_agility_40"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1325,7 +1438,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_terrorblade"
+	"npc_dota_hero_terrorblade_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_terrorblade"
@@ -1336,7 +1449,9 @@
 		"Ability4"					"terror4" 
 		"Ability5"					"terror5"
 		"Ability6"					"terror6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_evasion_25"
@@ -1345,7 +1460,11 @@
 		"Ability15"		"special_bonus_magic_resistance_10"
 		"Ability16"		"special_bonus_lifesteal_10"
 		"Ability17"		"special_bonus_strength_25"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1397,7 +1516,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_bounty_hunter"
+	"npc_dota_hero_bounty_hunter_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_bounty_hunter"
@@ -1408,7 +1527,9 @@
 		"Ability4"					"combat4" 
 		"Ability5"					"combat5"
 		"Ability6"					"combat6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_respawn_reduction_15"
@@ -1417,7 +1538,11 @@
 		"Ability15"		"special_bonus_magic_resistance_15"
 		"Ability16"		"special_bonus_mp_regen_2"
 		"Ability17"		"special_bonus_agility_40"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1468,7 +1593,7 @@
 
 		"Team"          "GOOD"
 	}	
-	"npc_dota_hero_juggernaut"
+	"npc_dota_hero_juggernaut_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_juggernaut"
@@ -1479,7 +1604,9 @@
 		"Ability4"					"deadly4"
 		"Ability5"					"deadly5"
 		"Ability6"					"deadly6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_15"
@@ -1488,7 +1615,11 @@
 		"Ability15"		"special_bonus_hp_regen_4"
 		"Ability16"		"special_bonus_agility_40"
 		"Ability17"		"special_bonus_attack_damage_55"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1539,7 +1670,7 @@
 
 		"Team"          "GOOD"
 	}	
-	"npc_dota_hero_axe"
+	"npc_dota_hero_axe_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_axe"
@@ -1550,7 +1681,9 @@
 		"Ability4"					"Knee_Breaker" 
 		"Ability5"					"Sword_Storm"
 		"Ability6"					"Switch_Battle_Stance"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -1559,7 +1692,11 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_strength_25"
-
+		
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"0.94"
 
 		"UnitLabel"         "hero"
@@ -1615,7 +1752,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_beastmaster"
+	"npc_dota_hero_beastmaster_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_beastmaster"
@@ -1626,7 +1763,9 @@
 		"Ability4"					"fury4"
 		"Ability5"					"fury5"
 		"Ability6"					"fury6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_armor_8"
@@ -1635,7 +1774,11 @@
 		"Ability15"		"special_bonus_vision_200"
 		"Ability16"		"special_bonus_hp_100"
 		"Ability17"		"special_bonus_attack_damage_55"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1687,7 +1830,7 @@
 		"Team"          "GOOD"
 	}		
 
-	"npc_dota_hero_dragon_knight"
+	"npc_dota_hero_dragon_knight_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_dragon_knight"
@@ -1698,8 +1841,9 @@
 		"Ability4"					"Protect4" 
 		"Ability5"					"Protect5"
 		"Ability6"					"Switch_Battle_Stance_Prot"
-		//"Ability7"					"warrior_2"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_hp_700"
@@ -1708,7 +1852,11 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_armor_15"
 		"Ability17"		"special_bonus_strength_25"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1759,7 +1907,7 @@
 
 		"Team"          "GOOD"
 	}	
-	"npc_dota_hero_mars"
+	"npc_dota_hero_mars_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_mars"
@@ -1770,7 +1918,9 @@
 		"Ability4"					"mars4" 
 		"Ability5"					"mars5"
 		"Ability6"					"mars6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_hp_700"
@@ -1779,7 +1929,11 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_armor_15"
 		"Ability17"		"special_bonus_strength_25"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1830,7 +1984,7 @@
 
 		"Team"          "GOOD"
 	}	
-	"npc_dota_hero_omniknight"
+	"npc_dota_hero_omniknight_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_omniknight"
@@ -1841,7 +1995,9 @@
 		"Ability4"					"Prayer_Of_Protection" 
 		"Ability5"					"Guardian"
 		"Ability6"					"Holy_Shield"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_cooldown_reduction_10"
 		"Ability12"		"special_bonus_lifesteal_10"
@@ -1850,7 +2006,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_intelligence_35"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1902,7 +2062,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_phantom_lancer"
+	"npc_dota_hero_phantom_lancer_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_phantom_lancer"
@@ -1915,7 +2075,9 @@
 		"Ability4"					"pala4" 
 		"Ability5"					"pala5"
 		"Ability6"					"pala6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_attack_speed_100"
@@ -1924,7 +2086,11 @@
 		"Ability15"		"special_bonus_hp_100"
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_evasion_20"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -1976,7 +2142,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_shadow_shaman"
+	"npc_dota_hero_shadow_shaman_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_shadow_shaman"
@@ -1987,7 +2153,9 @@
 		"Ability4"					"Lavaburst" 
 		"Ability5"					"serpent_twins"
 		"Ability6"					"Lightning_Storm"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_armor_5"
 		"Ability11"		"special_bonus_spell_amplify_5"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -1996,7 +2164,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_movement_speed_50"
 		"Ability17"		"special_bonus_intelligence_35"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2049,7 +2221,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_disruptor"
+	"npc_dota_hero_disruptor_titanbreaker"
 	{
 		"override_hero"				"npc_dota_hero_disruptor"
 		"AbilityLayout"     "6"
@@ -2059,7 +2231,14 @@
 		"Ability4"					"Lavaburst" 
 		"Ability5"					"serpent_twins"
 		"Ability6"					"Lightning_Storm"
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2112,7 +2291,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_crystal_maiden"
+	"npc_dota_hero_crystal_maiden_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_crystal_maiden"
@@ -2123,7 +2302,9 @@
 		"Ability4"					"Ice_Armor" 
 		"Ability5"					"Polymorph"
 		"Ability6"					"Waterelemental"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_armor_12"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2132,7 +2313,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_25"
 		"Ability17"		"special_bonus_intelligence_35"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2185,7 +2370,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_vengefulspirit"
+	"npc_dota_hero_vengefulspirit_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_vengefulspirit"
@@ -2196,7 +2381,9 @@
 		"Ability4"					"moon4" 
 		"Ability5"					"moon5"
 		"Ability6"					"moon6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2205,7 +2392,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_25"
 		"Ability17"		"special_bonus_all_stats_20"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 		"ModelScale"				"0.9"
 
@@ -2258,7 +2449,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_enchantress"
+	"npc_dota_hero_enchantress_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_enchantress"
@@ -2269,7 +2460,9 @@
 		"Ability4"					"ench4"
 		"Ability5"					"ench5"
 		"Ability6"					"ench6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_15"
 		"Ability11"		"special_bonus_magic_resistance_10"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2278,7 +2471,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_hp_100"
 		"Ability17"		"special_bonus_all_stats_20"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 		"ModelScale"				"0.8"
 
@@ -2331,7 +2528,7 @@
 
 		"Team"          "GOOD"
 	}
-	"npc_dota_hero_lina"
+	"npc_dota_hero_lina_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_lina"
@@ -2342,8 +2539,9 @@
 		"Ability4"					"Dragon_Claw" 
 		"Ability5"					"Polymorph"
 		"Ability6"					"fire6"
-		//"Ability7"					"mage_1"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2352,7 +2550,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_spell_amplify_10"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2405,7 +2607,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_invoker"
+	"npc_dota_hero_invoker_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_invoker"
@@ -2416,9 +2618,10 @@
 		"Ability4"					"Arcane4"
 		"Ability5"					"Arcane7"
 		"Ability6"					"Arcane6"
-		"Ability7"					"combat_system"
-
-		// First row of talents will not work unless some invoker abilities present in hero kv (level up order ignored by client)...
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
+		// First row of talents will not work unless some invoker abilities present in hero kv (level up order ignored by client) so let dota fill 10-16 slots with vanilla invoker abilities...
 		"Ability17"		"special_bonus_unique_nether_wizard_1"
 		"Ability18"		"special_bonus_unique_nether_wizard_2"
 		"Ability19"		"special_bonus_unique_nether_wizard_3"
@@ -2427,7 +2630,12 @@
 		"Ability22"		"special_bonus_unique_nether_wizard_6"
 		"Ability23"		"special_bonus_unique_nether_wizard_7"
 		"Ability24"		"special_bonus_unique_nether_wizard_8"
+		"Ability25"		"generic_hidden"
 
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2480,7 +2688,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_silencer"
+	"npc_dota_hero_silencer_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_silencer"
@@ -2491,7 +2699,9 @@
 		"Ability4"					"disc7" 
 		"Ability5"					"Shadow_Creeper"
 		"Ability6"					"Fear_of_Dark"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cast_range_150"
@@ -2500,7 +2710,11 @@
 		"Ability15"		"special_bonus_lifesteal_10"
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_cooldown_reduction_10"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2553,7 +2767,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_dark_seer"
+	"npc_dota_hero_dark_seer_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_dark_seer"
@@ -2564,7 +2778,9 @@
 		"Ability4"					"shadow3"
 		"Ability5"					"shadow5"
 		"Ability6"					"shadow6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2573,7 +2789,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_vision_200"
 		"Ability17"		"special_bonus_intelligence_35"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		"ModelScale"				"0.89"
@@ -2631,7 +2851,7 @@
 	}
 	
 
-	"npc_dota_hero_drow_ranger"
+	"npc_dota_hero_drow_ranger_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_drow_ranger"
@@ -2642,7 +2862,9 @@
 		"Ability4"					"Mindfreezing_Shot" 
 		"Ability5"					"frost_lake"
 		"Ability6"					"glacier_crack_spell"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_mp_regen_2"
@@ -2651,7 +2873,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_vision_200"
 		"Ability17"		"special_bonus_agility_40"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2704,7 +2930,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_clinkz"
+	"npc_dota_hero_clinkz_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_clinkz"
@@ -2715,7 +2941,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_magic_resistance_15"
@@ -2724,7 +2952,11 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_attack_damage_55"
 		"Ability17"		"special_bonus_vision_200"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2777,7 +3009,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_elder_titan"
+	"npc_dota_hero_elder_titan_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_elder_titan"
@@ -2789,7 +3021,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2798,7 +3032,11 @@
 		"Ability15"		"special_bonus_armor_10"
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_magic_resistance_35"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -2856,7 +3094,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_bristleback"
+	"npc_dota_hero_bristleback_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_bristleback"
@@ -2867,7 +3105,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2876,7 +3116,11 @@
 		"Ability15"		"special_bonus_mp_125"
 		"Ability16"		"special_bonus_attack_damage_55"
 		"Ability17"		"special_bonus_strength_25"
-
+		
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"0.94"
 
 		"UnitLabel"         "hero"
@@ -2932,7 +3176,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_ogre_magi"
+	"npc_dota_hero_ogre_magi_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_ogre_magi"
@@ -2943,7 +3187,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_armor_10"
@@ -2952,7 +3198,11 @@
 		"Ability15"		"special_bonus_cooldown_reduction_10"
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_magic_resistance_30"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -3010,7 +3260,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_mirana"
+	"npc_dota_hero_mirana_titanbreaker"
 	{
 		"override_hero"				"npc_dota_hero_mirana"
 		"AbilityLayout"     "6"
@@ -3020,7 +3270,14 @@
 		"Ability4"					"Mindfreezing_Shot" 
 		"Ability5"					"frost_lake"
 		"Ability6"					"glacier_crack_spell"
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 		"ModelScale"				"1.1"
 
@@ -3074,7 +3331,7 @@
 		"Team"          "BAD"
 	}	
 
-	"npc_dota_hero_windrunner"
+	"npc_dota_hero_windrunner_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_windrunner"
@@ -3085,7 +3342,9 @@
 		"Ability4"					"wind4"
 		"Ability5"					"wind5"
 		"Ability6"					"wind7"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_magic_resistance_15"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_respawn_reduction_15"
@@ -3094,7 +3353,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_attack_damage_55"
 		"Ability17"		"special_bonus_agility_40"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -3149,7 +3412,7 @@
 		"Team"          "BAD"
 	}	
 
-	"npc_dota_hero_sniper"
+	"npc_dota_hero_sniper_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_sniper"
@@ -3162,7 +3425,9 @@
 		"Ability4"					"Beastrage" 
 		"Ability5"					"Beastheal"
 		"Ability6"					"Bear"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -3171,7 +3436,11 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_vision_200"
 		"Ability17"		"special_bonus_attack_damage_55"
-
+		
+		"Facets"
+		{
+		}
+		
 		"UnitLabel"         "hero"
 
 		//"AttackRate"				"1000"
@@ -3224,7 +3493,7 @@
 		"Team"          "BAD"
 	}	
 
-	"npc_dota_hero_dazzle"
+	"npc_dota_hero_dazzle_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_dazzle"
@@ -3235,7 +3504,9 @@
 		"Ability4"					"Feral1" 
 		"Ability5"					"Feral5"
 		"Ability6"					"ShapeshiftFeral"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_all_stats_15"
 		"Ability12"		"special_bonus_armor_10"
@@ -3245,7 +3516,10 @@
 		"Ability16"		"special_bonus_magic_resistance_15"
 		"Ability17"		"special_bonus_all_stats_20"
 
-
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"0.80"
 
 		//"AnimationPlaybackRate"		"0.3"
@@ -3306,7 +3580,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_bloodseeker"
+	"npc_dota_hero_bloodseeker_titanbreaker"
 	{
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_bloodseeker"
@@ -3317,7 +3591,9 @@
 		"Ability4"					"Ghost5"
 		"Ability5"					"Ghost4"
 		"Ability6"					"Ghost6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_strength_20"
@@ -3327,7 +3603,10 @@
 		"Ability16"		"special_bonus_attack_damage_55"
 		"Ability17"		"special_bonus_all_stats_20"
 
-
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"1.00"
 
 		//"AnimationPlaybackRate"		"0.3"
@@ -3388,7 +3667,7 @@
 		"Team"          "GOOD"
 	}
 
-	"npc_dota_hero_legion_commander"
+	"npc_dota_hero_legion_commander_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_legion_commander"
@@ -3399,7 +3678,9 @@
 		"Ability4"					"Retri4"
 		"Ability5"					"Retri5"
 		"Ability6"					"Retri6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_vision_200"
@@ -3409,7 +3690,10 @@
 		"Ability16"		"special_bonus_agility_40"
 		"Ability17"		"special_bonus_attack_damage_55"
 
-
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"1.00"
 
 		//"AnimationPlaybackRate"		"0.3"
@@ -3470,7 +3754,7 @@
 		"Team"          "BAD"
 	}
 
-	"npc_dota_hero_chen"
+	"npc_dota_hero_chen_titanbreaker"
 	{
 		"DisableWearables"  "0"
 		"override_hero"				"npc_dota_hero_chen"
@@ -3481,7 +3765,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_all_stats_15"
 		"Ability12"		"special_bonus_hp_700"
@@ -3491,7 +3777,10 @@
 		"Ability16"		"special_bonus_all_stats_20"
 		"Ability17"		"special_bonus_strength_25"
 
-
+		"Facets"
+		{
+		}
+		
 		"ModelScale"				"0.90"
 
 		//"AnimationPlaybackRate"		"0.3"

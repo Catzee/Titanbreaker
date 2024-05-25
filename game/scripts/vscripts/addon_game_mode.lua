@@ -15,6 +15,7 @@ if COverthrowGameMode == nil then
 end
 
 COverthrowGameMode.nextBossID = 1
+
 ---------------------------------------------------------------------------
 -- Required .lua files
 ---------------------------------------------------------------------------
@@ -10563,8 +10564,7 @@ end
  --	)
  --end
  COverthrowGameMode:CheckForHeroChargeAbilities(hero)
-
- COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero) 
+ --COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero) 
 
  if heroName == "npc_dota_hero_lion" then
   hero.temple_class = 11
@@ -20378,6 +20378,10 @@ function COverthrowGameMode:SendLeaderboard(params)
 end
 
 function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)
+   -- Use this as last resort only because in future valve may add "ability_crash_game" and this code will delete it with crash...
+  if(true) then
+    return
+  end
   -- If this approach will stop working you can try parse heroes kv with code below and determine valid abilities using it...
   --COverthrowGameMode._heroesKV = COverthrowGameMode._heroesKV or LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
