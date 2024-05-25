@@ -6,7 +6,7 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/overthrow_scoreboard.js" />
 	</scripts>
-	<Panel class="ScoreboardLeft">
+	<Panel class="ScoreboardLeft" style="visibility: collapse;">
 		<Panel class="VictoryPanel">
 			<Label id="Goal" text="#Goal" />
 			<Label id="VictoryPoints" text="999" />

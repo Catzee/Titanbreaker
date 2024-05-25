@@ -2565,6 +2565,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "playerconnected", Dynamic_Wrap( COverthrowGameMode, 'OnPlayerConnected' ) )
       CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
       CustomGameEventManager:RegisterListener( "pickupallitems", Dynamic_Wrap( COverthrowGameMode, 'TryPickupAllItems' ) )
+      CustomGameEventManager:RegisterListener( "pingherolevel", Dynamic_Wrap( COverthrowGameMode, 'PingHeroLevel' ) )
 
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
@@ -10917,10 +10918,10 @@ else
       --end
     end)
 
-  if hero.resourcesystem and not (heroName == "npc_dota_hero_dazzle") then
-    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    CustomGameEventManager:Send_ServerToPlayer(player, "set_mana_per_int", { mana = 0 } )
-  end
+  --if hero.resourcesystem and not (heroName == "npc_dota_hero_dazzle") then
+    --local player = PlayerResource:GetPlayer(hero:GetPlayerID())
+    --CustomGameEventManager:Send_ServerToPlayer(player, "set_mana_per_int", { mana = 0 } )
+  --end
 
   --armor adjust
   --if hero.combat_system_ability then
@@ -20357,7 +20358,7 @@ function COverthrowGameMode:SendLeaderboard(params)
   local player = PlayerResource:GetPlayer(params.PlayerID)
 
   -- Disconnected player or broken request
-  if(player == null) then
+  if(player == nil) then
     return
   end
 
@@ -20375,6 +20376,67 @@ function COverthrowGameMode:SendLeaderboard(params)
   end
 
   CustomGameEventManager:Send_ServerToPlayer(player, "getleaderboardresponse", { data = COverthrowGameMode._leaderboardData } )
+end
+
+function COverthrowGameMode:PingHeroLevel(params)
+  local playerId = params["player_id"]
+  local player = PlayerResource:GetPlayer(playerId)
+
+  -- Disconnected player or broken request
+  if(player == nil) then
+    return
+  end
+
+  local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+
+  if(hero == nil) then
+    return
+  end
+
+  COverthrowGameMode._pingHeroLevelCd = COverthrowGameMode._pingHeroLevelCd or {}
+
+  if(COverthrowGameMode._pingHeroLevelCd[playerId] ~= nil) then
+    return
+  end
+
+  local targetHero = nil
+
+  if(params.target_player_unit_entindex ~= nil and params.target_player_unit_name ~= nil) then
+    targetHero = EntIndexToHScript(params.target_player_unit_entindex)
+  else
+    targetHero = hero
+  end
+
+  --"DOTA_XP_Alert_Ally_Capped"	"<font color='%s1'>%s2</font> is at max level!"
+  --"DOTA_XP_Alert_Ally"		"<font color='%s1'>%s2</font> needs <font color='#DAAF01'>%s3 XP</font> to reach <font color='#DAAF01'>Level %s4</font>"
+
+  local heroLevel = GetHeroLevel(targetHero)
+  local heroLevelPct = targetHero.levelPercentage
+  local maxPossibleLevel = #COverthrowGameMode.levelTable
+  
+  if(heroLevel == maxPossibleLevel) then
+    if(targetHero == hero) then
+      Say(player, "I'm at max level!", true)
+    else
+      Say(player, tostring(params.target_player_unit_name).." at max level!", true)
+    end
+  else
+    if(hero.levelPercentage < 100) then
+      if(targetHero == hero) then
+        Say(player, "I need "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+      else
+        Say(player, tostring(params.target_player_unit_name).." needs "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+      end
+    else
+      -- Is this even possible?
+    end
+  end
+
+  COverthrowGameMode._pingHeroLevelCd[playerId] = true
+
+  Timers:CreateTimer(2, function()
+    COverthrowGameMode._pingHeroLevelCd[playerId] = nil
+  end)
 end
 
 function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)

@@ -19,8 +19,10 @@ var save_cooldown = 0;
 var autosell = 0;
 var autosellArti = 0;
 var autosellSpecial = 0;
-var main_stats_detailed = false;
+// var main_stats_detailed = false;
 
+/*
+OLD STATS UI
 var hpPerStr = 10; //20;
 var physDmgPerStr = 0.1;
 var armorPerAgi = 0.04;
@@ -34,6 +36,7 @@ function SetManaPerInt(args){
     manaPerInt = args.mana;
     $.Msg(manaPerInt);
 }
+*/
 
 function EloOnClientCheckIn(args) {
 
@@ -2493,7 +2496,7 @@ function RuneWordEquipped(args)
     var runetext = "+ " + ((String)(power)) + " ";
     var text = "#rune"+args.word;
     runetext = runetext + $.Localize( text );
-    
+
     //save data
     runeword[player] = runetext;
     runeword_id[player] = args.word;
@@ -2618,10 +2621,19 @@ function exp_scale(x, xp, exp){
     return x * x * xp * exp + x * xp * (1-exp);
 }
 
+function GetLocalPlayerSelectedUnit() {
+    let selectedUnit = Players.GetQueryUnit(Game.GetLocalPlayerID())
+    if(selectedUnit < 0) {
+        selectedUnit = Players.GetLocalPlayerPortraitUnit()
+    }
+    return selectedUnit;
+}
+
 function onUnitChanged(args)
 {   
     //$.Msg("unit changed");
-    var unit = Players.GetLocalPlayerPortraitUnit();
+    var unit = GetLocalPlayerSelectedUnit();
+    
     //$.Msg(unit);
     if (unit != null){
         //$.Msg("unit selected");
@@ -2636,14 +2648,19 @@ function onUnitChanged(args)
             }
         }
         if(id != -1){
-            //$.Msg(id);
             selectedHeroPlayerID = id;
             UpdateInventory();
             UpdateTalentTree(-1);
+            // OLD STATS UI
+            //UpdateMainStatsUI();
         }
     }//else{
     //    $("#selectedid").text = "selected unit: " + unit2;
     //}
+
+    if(unit > -1) {
+        UpdateMainStatsUI(unit);
+    }
 }
 
 function GetSelectedUnit()
@@ -2797,7 +2814,7 @@ function GetRunewordImageByID(id){
         return path+"queenofpain_shadow_strike";
     }
     if(id == 28){
-        return path+"skeleton_king_vampiric_aura";
+        return path+"skeleton_king_bone_guard";
     }
     if(id == 29){
         return path+"visage_grave_chill";
@@ -2963,14 +2980,20 @@ function UpdateInventory(args)
     //update runeword
     //runeword_id[player] = 10;
     //runeword[player] = "asdf asdfasd sdfjsidfj sdfio sdfodf + w234 ";
+    let runeWordText = $("#runewordtext");
+    let runeWordImage = $("#runewordimage");
+
     if(runeword != null && runeword[player] != null){
-        $("#runewordtext").text = runeword[player];
+        runeWordText.text = runeword[player];
         var image_path = GetRunewordImageByID(runeword_id[player])+".png";
-        $("#runewordimage").SetImage(image_path);
+        runeWordImage.SetImage(image_path);
+        runeWordImage.style.visibility = "visible";
     }else{
-        $("#runewordtext").text = "incomplete";
-        $("#runewordimage").SetImage("");
+        runeWordText.text = "Incomplete Rune Word: find more Artifacts with Rune Words";
+        runeWordImage.SetImage("");
+        runeWordImage.style.visibility = "collapse";
     }
+
     var max_runewords = 20;
     if(pathword != null && pathword[player] != null){
         //$.Msg(pathword[player]);
@@ -3109,12 +3132,14 @@ function UpdateInventory(args)
             }
         }
     }
+    /* OLD STATS UI
     if(main_stats != null){
         if(main_stats[player] != null){
             UpdateMainStatsUI();
         }
-    }
-    UpdateGoldUI();
+    } */
+    // OLD GOLD UI
+    //UpdateGoldUI();
     if(hero_stats == null){
         hero_stats = new Array(20);
         for (var i = 0; i < 20; i++) {
@@ -3517,6 +3542,7 @@ function TalentPointUpdate(args)
     $(panel).text = "Unspent Path Points: "+talentpoints;
 }
 
+/* OLD STATS UI
 function UpdateMainStatsUI(){
     if(selectedHeroPlayerID >= 0){
         var strDetails = "";
@@ -3548,14 +3574,17 @@ function UpdateMainStatsUI(){
         $("#ui_int").text = intText;
         $("#ui_level").text = levelText;
     }
-}
+} */
 
+/* OLD GOLD UI
 function UpdateGoldUI(){
     if(selectedHeroPlayerID >= 0){
         $("#ui_gold").text = gold_stat[selectedHeroPlayerID] + " Gold";
     }
 }
+*/
 
+/* OLD STATS UI
 function MainStatsHover(args){
     if(args == 1){
         main_stats_detailed = true;
@@ -3563,7 +3592,7 @@ function MainStatsHover(args){
         main_stats_detailed = false;
     }
     UpdateMainStatsUI();
-}
+} */
 
 function TalentHovered(args){
     //text
@@ -3717,7 +3746,9 @@ function ShowTempleDifficultyPanel(args)
 function CountdownSelection(time){
     if(time > 0){
         $.Schedule(1, function(){
-            time = time - 1;
+            if(Game.IsGamePaused() == false) {
+                time = time - 1;
+            }
             if($("#TimeSelection") != null){
                 $("#TimeSelection").text = "Time Remaining: ".concat((String)(time));
                 CountdownSelection(time);
@@ -3846,7 +3877,7 @@ function SetTempleDifficultyLoader(args)
         $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop";
     }
     if (args.value >= 500){
-        $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Artifact Amulets and Mythical Set Tokens can drop.";
+        $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Mythical Set Tokens can drop.";
     }
 
     //if (args.value < 10.0){
@@ -3892,8 +3923,596 @@ function SetMainStats(args)
     main_stats[id][0] = args.str;
     main_stats[id][1] = args.agi;
     main_stats[id][2] = args.int;
-    main_stats[id][3] = String(args.level) + "\n(" + String(args.levelPercentage) + "%)";
-    //UpdateMainStatsUI();
+    // OLD STATS UI
+    // main_stats[id][3] = String(args.level) + "\n(" + String(args.levelPercentage) + "%)";
+    main_stats[id][3] = args.level;
+    main_stats[id][4] = args.levelPercentage;
+    main_stats[id][5] = args.maxHpFromStr;
+    main_stats[id][6] = args.physDmgFromStr;
+    main_stats[id][7] = args.attackSpeedFromAgi;
+    main_stats[id][8] = args.armorFromAgi;
+    main_stats[id][9] = args.criticalStrikeDamageFromAgi;
+    main_stats[id][10] = args.manaFromInt;
+    main_stats[id][11] = args.abilityDamageFromInt;
+    main_stats[id][12] = args.spellResistanceFromInt;
+    main_stats[id][13] = args.resourceType;
+    main_stats[id][14] = args.spellHaste;
+    main_stats[id][15] = args.damageReduction;
+}
+
+let customXpContainer = undefined;
+let customLevelLabel = undefined;
+let customLevelProgressBar = undefined;
+let customLevelProgressBlurBar = undefined;
+let customStrAgiIntContainer = undefined;
+let customStrLabel = undefined;
+let customAgiLabel = undefined;
+let customIntLabel = undefined;
+let customStrStatsLabel = undefined;
+let customStrModifierStatsLabel = undefined;
+let customStrBonusLabel = undefined;
+let customStrPrimaryBonusLabel = undefined;
+let customAgiStatsLabel = undefined;
+let customAgiModifierStatsLabel = undefined;
+let customAgiBonusLabel = undefined;
+let customAgiPrimaryBonusLabel = undefined;
+let customIntStatsLabel = undefined;
+let customIntModifierStatsLabel = undefined;
+let customIntBonusLabel = undefined;
+let customIntPrimaryBonusLabel = undefined;
+let customSpellHasteLabel = undefined;
+let customDamageReductionLabel = undefined;
+let manaRegenProgressBar = undefined;
+let manaRegenProgressBackgroundBar = undefined;
+let manaRegenProgressBarParticle = undefined;
+let manaRegenLabel = undefined;
+let customBuffsContainer = undefined;
+let customDebuffsContainer = undefined;
+let customGoldLabel = undefined;
+
+function OnTooltipVisible(object) {
+    if(object.paneltype != "DOTATooltipUnitDamageArmor") {
+        return;
+    }
+
+    InjectIntoDotaHeroStatsTooltip();
+
+    UpdateMainStatsUI(GetLocalPlayerSelectedUnit(), true);
+}
+
+function GetDotaHudRoot()
+{
+    return $.GetContextPanel().GetParent().GetParent().GetParent();
+}
+
+function InjectIntoDotaHeroStatsTooltip()
+{
+    let dotaHudRoot = GetDotaHudRoot();
+    
+    /*
+    Seems dota recreate them every time...
+    if(dotaHudRoot == null || dotaHudRoot._isDotaHeroStatsTooltipInjected) {
+        return;
+    } */
+
+    // str/agi/int unit stats labels
+    customStrStatsLabel = dotaHudRoot.FindChildTraverse("BaseStrengthLabel");
+    customStrModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusStrengthLabel");
+    customStrBonusLabel = dotaHudRoot.FindChildTraverse("StrengthDetails");
+    customStrPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("StrengthDamageLabel");
+
+    customAgiStatsLabel = dotaHudRoot.FindChildTraverse("BaseAgilityLabel");
+    customAgiModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusAgilityabel"); // intended typo
+    customAgiBonusLabel = dotaHudRoot.FindChildTraverse("AgilityDetails");
+    customAgiPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("AgilityDamageLabel");
+
+    customIntStatsLabel = dotaHudRoot.FindChildTraverse("BaseIntelligenceLabel");
+    customIntModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusIntelligenceLabel");
+    customIntBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDetails");
+    customIntPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDamageLabel");
+
+    // Adds custom spell haste row to unit stats tooltip
+    let manaRegenRow = dotaHudRoot.FindChildTraverse("ManaRegenRow");
+
+    if(manaRegenRow != undefined) {
+        if(manaRegenRow._customSpellHasteLabel == undefined) {
+            let attackContainerParent = manaRegenRow.GetParent();
+            let spellHasteRow = $.CreatePanel("Panel", attackContainerParent, '');
+            spellHasteRow.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_hud_stats_row.xml', false, false);
+            attackContainerParent.MoveChildAfter(spellHasteRow, manaRegenRow);
+            
+            let customSpellHasteRowLabel = spellHasteRow.FindChildTraverse("StatLabel");
+            if(customSpellHasteRowLabel != undefined) {
+                customSpellHasteRowLabel.text = "Spellhaste:";
+            }
+            customSpellHasteLabel = spellHasteRow.FindChildTraverse("StatValue");
+            manaRegenRow._customSpellHasteLabel = customSpellHasteLabel
+        }
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't add spell haste row).");
+    }
+
+    customSpellHasteLabel = manaRegenRow._customSpellHasteLabel;
+
+    // Adds custom damage reduction row to unit stats tooltip
+    let healthRegenRow = dotaHudRoot.FindChildTraverse("HealthRegenRow");
+
+    if(healthRegenRow != undefined) {
+        if(healthRegenRow._customDamageReductionLabel == undefined) {
+            let defenseContainerParent = healthRegenRow.GetParent();
+            let damageReductionRow = $.CreatePanel("Panel", defenseContainerParent, '');
+            damageReductionRow.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_hud_stats_row.xml', false, false);
+            defenseContainerParent.MoveChildAfter(damageReductionRow, healthRegenRow);
+            
+            let customDamageReductionRowLabel = damageReductionRow.FindChildTraverse("StatLabel");
+            if(customDamageReductionRowLabel != undefined) {
+                customDamageReductionRowLabel.text = "Damage Red.:";
+            }
+            customDamageReductionLabel = damageReductionRow.FindChildTraverse("StatValue");
+            healthRegenRow._customDamageReductionLabel = customDamageReductionLabel
+
+            // Disables slow resist label added in 7.36
+            let slowResistLabel = defenseContainerParent.FindChildTraverse("SlowResistRow");
+            if(slowResistLabel != undefined) {
+                slowResistLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't hide slow resist row).");
+            }
+        }
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't add damage reduction row).");
+    }
+
+    customDamageReductionLabel = healthRegenRow._customDamageReductionLabel;
+
+    //dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
+}
+
+function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
+{
+    let isHero = Entities.IsHero(selectedPlayerUnit);
+
+    // Hide xp progress bar if not hero
+    if(customXpContainer != undefined) {
+        customXpContainer.SetHasClass("ShowXPBar", isHero);
+    }
+
+    // Update level label
+    if(customLevelLabel != undefined) {
+        customLevelLabel.text = isHero ? main_stats[selectedHeroPlayerID][3] : Entities.GetLevel(selectedPlayerUnit);
+    }
+
+    // Update xp progress bar
+    if(isHero) {
+        if(customLevelProgressBar != undefined) {
+            customLevelProgressBar.value = main_stats[selectedHeroPlayerID][4];
+        }
+
+        if(customLevelProgressBlurBar != undefined) {
+            customLevelProgressBlurBar.value = main_stats[selectedHeroPlayerID][4];
+        }
+    }
+
+    // Hide str/agi/int if not hero
+    if(customStrAgiIntContainer != undefined) {
+        customStrAgiIntContainer.SetHasClass("ShowStrAgiInt", isHero);
+    }
+
+    // Update str/agi/int
+    if(isHero) {
+        let str = main_stats[selectedHeroPlayerID][0];
+        let agi = main_stats[selectedHeroPlayerID][1];
+        let int = main_stats[selectedHeroPlayerID][2];
+
+        if(customStrLabel != undefined) {
+            customStrLabel.text = str;
+            customStrLabel.SetHasClass("BigNumber", str >= 10000);
+        }
+
+        if(customAgiLabel != undefined) {
+            customAgiLabel.text = agi;
+            customAgiLabel.SetHasClass("BigNumber", agi >= 10000);
+        }
+
+        if(customIntLabel != undefined) {
+            customIntLabel.text = int;
+            customIntLabel.SetHasClass("BigNumber", int >= 10000);
+        }
+
+        // Units stats tooltip
+        if(isUnitStatsTooltip != undefined) {
+            if(customStrStatsLabel != undefined) {
+                customStrStatsLabel.text = str;
+            }
+    
+            if(customStrModifierStatsLabel != undefined) {
+                customStrModifierStatsLabel.text = "";
+            }
+    
+            if(customStrBonusLabel != undefined) {
+                let totalPhysDmg = (main_stats[selectedHeroPlayerID][6] * 100).toFixed(1);
+                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5] + " Max Health and " + totalPhysDmg + "% Physical Damage";
+            }
+    
+            if(customStrPrimaryBonusLabel != undefined) {
+                customStrPrimaryBonusLabel.text = "";
+                customStrPrimaryBonusLabel.style.visibility = "collapse";
+            }
+    
+            if(customAgiStatsLabel != undefined) {
+                customAgiStatsLabel.text = agi;
+            }
+    
+            if(customAgiModifierStatsLabel != undefined) {
+                customAgiModifierStatsLabel.text = "";
+            }
+    
+            if(customAgiBonusLabel != undefined) {
+                let totalCritDmg = (main_stats[selectedHeroPlayerID][9] * 100).toFixed(1)
+                customAgiBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][7].toFixed(1) + " Attack Speed, " + main_stats[selectedHeroPlayerID][8].toFixed(1) + " Armor and " + totalCritDmg + "% Critical Strike Damage";
+            }
+    
+            if(customAgiPrimaryBonusLabel != undefined) {
+                customAgiPrimaryBonusLabel.text = "";
+                customAgiPrimaryBonusLabel.style.visibility = "collapse";
+            }
+    
+            if(customIntStatsLabel != undefined) {
+                customIntStatsLabel.text = int;
+            }
+    
+            if(customIntModifierStatsLabel != undefined) {
+                customIntModifierStatsLabel.text = "";
+            }
+    
+            if(customIntBonusLabel != undefined) {
+                let intDetails = "";
+                let totalAbDmg = (main_stats[selectedHeroPlayerID][11] * 100).toFixed(1);
+                let totalSpellResistance = main_stats[selectedHeroPlayerID][12].toFixed(1);
+
+                if(main_stats[selectedHeroPlayerID][13] == undefined) {
+                    intDetails = "= " + main_stats[selectedHeroPlayerID][10] + " Max Mana, " + totalAbDmg + "% Ability Damage and " + totalSpellResistance + " Spell Resistance";
+                }else{
+                    intDetails = "= " + totalAbDmg + "% Ability Damage,  " + totalSpellResistance + " Spell Resistance";
+                }
+
+                customIntBonusLabel.text = intDetails;
+            }
+    
+            if(customIntPrimaryBonusLabel != undefined) {
+                customIntPrimaryBonusLabel.text = "";
+                customIntPrimaryBonusLabel.style.visibility = "collapse";
+            }
+        }
+    }
+
+    // Update unit stats spellhaste row
+    if(customSpellHasteLabel != undefined) {
+        let spellHasteValue = 0;
+        if(isHero) {
+            spellHasteValue = (main_stats[selectedHeroPlayerID][14] * 100).toFixed(1);
+        }
+        customSpellHasteLabel.text = spellHasteValue + "%";
+    }
+
+    // Update unit stats damage reduction row
+    if(customDamageReductionLabel != undefined) {
+        let damageReductionValue = 0;
+        if(isHero) {
+            damageReductionValue = (100 - (main_stats[selectedHeroPlayerID][15] * 100)).toFixed(1);
+        }
+        customDamageReductionLabel.text = damageReductionValue + "%";
+    }
+
+    // Modify mana progress bar color to match resource type
+    if(manaRegenProgressBar != undefined && manaRegenProgressBarParticle != undefined 
+        && manaRegenLabel != undefined && manaRegenProgressBackgroundBar != undefined) {
+        let resourceType = main_stats[selectedHeroPlayerID][13];
+
+        let isEnergySupported = false;
+
+        if(!isHero) {
+            resourceType = undefined;
+        }
+        /*
+            undefined - mana (blue, default)
+            1 - rage (red)
+            2 - energy? (purple)
+            3 - corruption (green)
+            4 - energy?, dazzle only (purple)
+            5 - focus (orange)
+        */
+        if(resourceType == 1) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #771919 ), color-stop( .43, #811717), to( #7d0707 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #410404 ), color-stop( 0.43, #630c0c ), to( #5e0808 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "243deg";
+            manaRegenLabel.style.color = "#ff0000";
+            isEnergySupported = true;
+        }
+
+        if(resourceType == 2 || resourceType == 4) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #ab44e6 ), color-stop( .43, #853baf), to( #5a1781 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #402152 ), color-stop( 0.43, #38174b ), to( #340d4a ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "190deg";
+            manaRegenLabel.style.color = "#ac5cda";
+            isEnergySupported = true;
+        }
+
+        if(resourceType == 3) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #1a3d1c ), color-stop( .43, #0b360d), to( #065c0b ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #132a14 ), color-stop( 0.43, #09160a ), to( #053008 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "20deg";
+            manaRegenLabel.style.color = "#10ff1e";
+            isEnergySupported = true;
+        }
+
+        if(resourceType == 5) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #f06509 ), color-stop( .43, #d77e43), to( #994a15 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 100% 100%, from( #5e2b09 ), color-stop( .43, #754626), to( #5e2e0e ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "270deg";
+            manaRegenLabel.style.color = "#ff9500";
+            isEnergySupported = true;
+        }
+
+        if(resourceType == undefined || !isEnergySupported) {
+            manaRegenProgressBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #2b4287 ), color-stop( 0.2, #4165ce ), color-stop( .5, #4a73ea), to( #2b4287 ) )";
+            manaRegenProgressBackgroundBar.style.backgroundColor = "gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) )";
+            manaRegenProgressBarParticle.style.hueRotation = "50deg";
+            manaRegenLabel.style.color = "#83C2FE";
+        }
+    }
+
+    // Update gold label
+    if(customGoldLabel != null) {
+        customGoldLabel.text = gold_stat[selectedHeroPlayerID];
+    }
+}
+
+let pingHeroLevelCd = false;
+
+function PingHeroLevel()
+{
+    if(!GameUI.IsAltDown() || pingHeroLevelCd) {
+        return;
+    }
+
+    // Most likely this will always produce english string if possible...
+    let targetPlayerUnit = GetLocalPlayerSelectedUnit();
+    let targetPlayerUnitName = undefined;
+
+    if(targetPlayerUnit > -1) {
+        targetPlayerUnitName = $.Localize("#" + Entities.GetUnitName(targetPlayerUnit));
+    } else {
+        targetPlayerUnitName = undefined;
+    }
+
+    GameEvents.SendCustomGameEventToServer("pingherolevel", { 
+        "player_id" : Game.GetLocalPlayerID(), 
+        "target_player_unit_entindex": targetPlayerUnit,
+        "target_player_unit_name" : targetPlayerUnitName
+    });
+
+    pingHeroLevelCd = true;
+
+    $.Schedule(2, function() {
+        pingHeroLevelCd = false;
+    })
+}
+
+function InjectIntoDotaUI()
+{
+    let dotaHudRoot = GetDotaHudRoot();
+    
+    if(dotaHudRoot == null) {
+        return;
+    }
+
+    let dotaXpContainer = dotaHudRoot.FindChildTraverse("xp");
+
+    // Replaces dota level/xp circle with custom one
+    if(dotaXpContainer != undefined) {
+        dotaXpContainer.style.visibility = "collapse";
+
+        if(dotaXpContainer._customXpContainer == undefined) {
+            let dotaXpContainerParent = dotaXpContainer.GetParent();
+
+            customXpContainer = $.CreatePanel('Panel', dotaXpContainerParent, '');
+            customXpContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_xp_container.xml', false, false);
+            dotaXpContainerParent.MoveChildAfter(customXpContainer, dotaXpContainer);
+
+            customXpContainer.SetPanelEvent("onactivate", function() {
+                PingHeroLevel();
+            });
+
+            dotaXpContainer._customXpContainer = customXpContainer;
+        } else
+        {
+            customXpContainer = dotaXpContainer._customXpContainer;
+        }
+
+        customLevelLabel = customXpContainer.FindChildTraverse("LevelLabel");
+        customLevelProgressBar = customXpContainer.FindChildTraverse("CircularXPProgress");
+        customLevelProgressBlurBar = customXpContainer.FindChildTraverse("CircularXPProgressBlur");
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't replace xp bar).");
+    }
+
+    let dotaStrAgiIntContainer = dotaHudRoot.FindChildTraverse("stragiint");
+
+    // Replaces str/agi/int labels with custom ones
+    if(dotaStrAgiIntContainer != undefined) {
+        dotaStrAgiIntContainer.style.visibility = "collapse";
+        
+        if(dotaStrAgiIntContainer._customStrAgiIntContainer == undefined) {
+            let dotaStrAgiIntContainerParent = dotaStrAgiIntContainer.GetParent();
+
+            customStrAgiIntContainer = $.CreatePanel('Panel', dotaStrAgiIntContainerParent, '');
+            customStrAgiIntContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_str_agi_int_container.xml', false, false);
+            dotaStrAgiIntContainerParent.MoveChildAfter(customStrAgiIntContainer, dotaStrAgiIntContainer);
+
+            dotaStrAgiIntContainer._customStrAgiIntContainer = customStrAgiIntContainer;
+        } else
+        {
+            customStrAgiIntContainer = dotaStrAgiIntContainer._customStrAgiIntContainer;
+        }
+
+        customStrLabel = customStrAgiIntContainer.FindChildTraverse("StrengthSumLabel");
+        customAgiLabel = customStrAgiIntContainer.FindChildTraverse("AgilitySumLabel");
+        customIntLabel = customStrAgiIntContainer.FindChildTraverse("IntelligenceSumLabel");
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't replace str/agi/int labels).");
+    }
+
+    // Hides aghs/shard display because its unused and adds filler to make ui not look weird
+    let aghsShardContainer = dotaHudRoot.FindChildTraverse("AghsStatusContainer");
+
+    if(aghsShardContainer != undefined) {
+        aghsShardContainer.style.visibility = "collapse";
+
+        let filler = undefined
+        if(aghsShardContainer._fillerPanel == undefined) {
+            let aghsShardContainerParent = aghsShardContainer.GetParent();
+
+            filler = $.CreatePanel('Panel', aghsShardContainerParent, '');
+            aghsShardContainerParent.MoveChildAfter(filler, aghsShardContainer);
+
+            aghsShardContainer._fillerPanel = filler;
+        } else
+        {
+            filler = aghsShardContainer._fillerPanel;
+        }
+
+        filler.style.width = "5px;"
+        filler.style.height = "62px";
+    } else
+    {
+        $.Msg("Valve break something or did major changes to UI (can't hide aghs/shard display).");
+    }
+
+    // Allowes to change mana bar color based on resource type (mana, rage, corruption, etc)
+    manaRegenProgressBar = dotaHudRoot.FindChildTraverse("ManaProgress_Left");
+
+    if(manaRegenProgressBar == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar).");
+    }
+
+    manaRegenProgressBarParticle = dotaHudRoot.FindChildTraverse("ManaBurner");
+
+    if(manaRegenProgressBarParticle == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar particle).");
+    }
+
+    manaRegenProgressBackgroundBar = dotaHudRoot.FindChildTraverse("ManaProgress_Right");
+    
+    if(manaRegenProgressBackgroundBar == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana bar background).");
+    }
+
+    manaRegenLabel = dotaHudRoot.FindChildTraverse("ManaRegenLabel");
+
+    if(manaRegenLabel == undefined) {
+        $.Msg("Valve break something or did major changes to UI (can't find mana regen label).");
+    }
+
+    // Replaces dota buffs container with custom one that support multiple rows
+    let buffsContainer = dotaHudRoot.FindChildTraverse("buffs");
+
+    if(buffsContainer != undefined) {
+        buffsContainer.style.visibility = "collapse";
+        
+        if(buffsContainer._customBuffsContainer == undefined) {
+            let buffsContainerParent = buffsContainer.GetParent();
+
+            customBuffsContainer = $.CreatePanel('Panel', buffsContainerParent, '');
+            customBuffsContainer.SetHasClass("customBuffs", true);
+            customBuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
+            buffsContainerParent.MoveChildAfter(customBuffsContainer, buffsContainer);
+
+            buffsContainer._customBuffsContainer = customBuffsContainer;
+        } else
+        {
+            customBuffsContainer = buffsContainer._customBuffsContainer;
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find buffs container).");
+    }
+
+    // Replaces dota debuffs container with custom one that support multiple rows
+    let debuffsContainer = dotaHudRoot.FindChildTraverse("debuffs");
+
+    if(debuffsContainer != undefined) {
+        debuffsContainer.style.visibility = "collapse";
+        
+        if(debuffsContainer._customDebuffsContainer == undefined) {
+            let debuffsContainerParent = debuffsContainer.GetParent();
+
+            customDebuffsContainer = $.CreatePanel('Panel', debuffsContainerParent, '');
+            customDebuffsContainer.SetHasClass("customDebuffs", true);
+            customDebuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff_list.xml', false, false);
+            debuffsContainerParent.MoveChildAfter(customDebuffsContainer, debuffsContainer);
+
+            debuffsContainer._customDebuffsContainer = customDebuffsContainer;
+        } else
+        {
+            customDebuffsContainer = debuffsContainer._customDebuffsContainer;
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find debuffs container).");
+    }
+
+    // Replaces dota current gold label with custom one
+    let shopButton = dotaHudRoot.FindChildTraverse("ShopButton");
+
+    if(shopButton != undefined) {
+        let shopLabel = shopButton.FindChildTraverse("GoldLabel");
+
+        if(shopLabel != undefined) {
+            shopLabel.style.visibility = "collapse";
+        
+            if(shopLabel._customGoldLabel == undefined) {   
+                customGoldLabel = $.CreatePanel('Label', shopButton, '');
+                customGoldLabel.SetHasClass("MonoNumbersFont", true);
+                customGoldLabel.SetHasClass("ShopButtonValueLabel", true);
+                customGoldLabel.style.opacity = "1";
+                shopButton.MoveChildAfter(customGoldLabel, shopLabel);
+    
+                shopLabel._customGoldLabel = customGoldLabel;
+            } else
+            {
+                customGoldLabel = shopLabel._customGoldLabel;
+            }
+        } else
+        {
+            $.Msg("Valve break something or did major changes to UI (can't find gold label).");
+        }
+    } else {
+        $.Msg("Valve break something or did major changes to UI (can't find gold label).");
+    }
+
+    // Hides facets and innate ability ui
+    let talentsTree = dotaHudRoot.FindChildTraverse("StatBranch");
+    if(talentsTree != undefined) {
+        let parent = talentsTree.GetParent();
+        let childsCount = parent.GetChildCount();
+
+        for(let i = 0; i < childsCount; i++) {
+            let child = parent.GetChild(i);
+
+            if(child == undefined) {
+                break;
+            }
+
+            if(child.paneltype === "DOTAInnateDisplay") {
+                child.style.visibility = "collapse";
+                break;
+            }
+        }
+    }
 }
 
 function SetUIStats(args)
@@ -3938,6 +4557,42 @@ function TrySendReconnectEvent()
     }
 }
 
+function FillRuneWords()
+{
+    try
+    {
+        let container = $("#RuneWordsContainer");
+        container.RemoveAndDeleteChildren();
+    
+        for(let i = 1; i < 99999; i++) {
+            let runeWordImage = GetRunewordImageByID(i);
+            if(runeWordImage == undefined || runeWordImage.length < 1) {
+                break;
+            }
+    
+            let runeWordPanel = $.CreatePanel('Panel', container, '');
+            runeWordPanel.BLoadLayoutSnippet("RuneWordContainer");
+            runeWordPanel.FindChildTraverse("RuneWordImage").SetImage(runeWordImage + ".png");
+    
+            let runeText = $.Localize("#rune" + i).split("\n\n");
+            runeWordPanel.FindChildTraverse("RuneWordText").text = "<span class='RuneWordHeader'>" + runeText[1] + "</span><br>" + runeText[0];
+        }
+    } catch (e)
+    {
+        $.Msg(e);
+    }
+}
+
+function ShowPossibleRuneWords()
+{
+    $("#RuneWordsContainer").ToggleClass("Hidden");
+}
+
+function OpenDiscordURL()
+{
+    $.DispatchEvent("ExternalBrowserGoToURL", $.GetContextPanel(), "https://discord.gg/as8MzdJ");
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -3977,7 +4632,8 @@ function TrySendReconnectEvent()
     GameEvents.Subscribe("toggle_stash_set_number", SetStashToggleNumber);
     GameEvents.Subscribe("set_main_stats", SetMainStats);
     GameEvents.Subscribe("stats", SetUIStats);
-    GameEvents.Subscribe("set_mana_per_int", SetManaPerInt);
+    // OLD STATS UI
+    //GameEvents.Subscribe("set_mana_per_int", SetManaPerInt);
     GameEvents.Subscribe("temple_difficulty_mode_update", SetDifficultyModeText);
     GameEvents.Subscribe("set_gold", SetGold);
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
@@ -3996,7 +4652,13 @@ function TrySendReconnectEvent()
     RegisterKeyBind("K", TeleporterMenu);
     RegisterKeyBind("N", ToggleAggroMeter);
 	
+    /*
+        dota_player_update_query_unit - support for seperate/query unit hud or whatever it named minority of players using
+        dota_player_update_selected_unit - support for default hud that majority of players using
+    */
+    GameEvents.Subscribe('dota_player_update_query_unit', onUnitChanged);
     GameEvents.Subscribe("dota_player_update_selected_unit", onUnitChanged);
+
     //GameEvents.SendCustomGameEventToServer( "gamemode_vote", { "player_id" : Players.GetLocalPlayer(), "mode_id" : wins } );
     $.FindChildInContext("#table").visible = false;
     $.FindChildInContext("#leaderboard").visible = false;
@@ -4052,7 +4714,7 @@ function TrySendReconnectEvent()
     runeword_id = new Array(20);
     pathword = new Array(10);
     pathword_id = new Array(10);
-    main_stats = new Array(10);
+    main_stats = new Array(15);
     gold_stat = new Array(10);
     //talents
     talents = new Array(10);
@@ -4062,8 +4724,14 @@ function TrySendReconnectEvent()
         for (var j = 1; j <= max_talents; j++) {
             talents[i][j] = 0;
         }
-        main_stats[i] = new Array(4);
-        for (var j = 0; j < 4; j++) {
+        /* OLD STATS UI
+        main_stats[i] = new Array(5);
+        for (var j = 0; j < 5; j++) {
+            main_stats[i][j] = 0;
+        }
+        */
+        main_stats[i] = new Array(5);
+        for (var j = 0; j < 15; j++) {
             main_stats[i][j] = 0;
         }
     }
@@ -4105,9 +4773,18 @@ function TrySendReconnectEvent()
     //ShowTempleDifficultyPanel(10000); //todo disable
     //DisableTalentTree();
 
+    FillRuneWords();
+
     GameEvents.Subscribe("playerconnectedresponse", OnPlayerConnectedResponse);
     // Tries inform server that some guy connected first time or reconnected (spams server until he finally processed request)...
     $.Schedule(1, TrySendReconnectEvent);
+
+
+    // Override dota hero stats tooltip and fill it with custom values
+    $.RegisterForUnhandledEvent('TooltipVisible', OnTooltipVisible);
+    
+    // Always run it last since it may fail one day
+    InjectIntoDotaUI();
 })();
 
 function DisableTalentTree(){

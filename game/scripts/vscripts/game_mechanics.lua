@@ -1474,11 +1474,7 @@ function DamageUnit( event )
     end
     --agility stat
     if caster:IsRealHero() then
-        local extra = 0
-        if caster.talents[116] > 0 then
-            extra = 0.0001 * caster.talents[116]
-        end
-        critdmgbonusfactor = critdmgbonusfactor + (0.0005 + extra) * GetAgilityCustom(caster)
+        critdmgbonusfactor = critdmgbonusfactor + GetCriticalStrikeDamageBonusFromAgi(caster, GetAgilityCustom(caster))
     end
     if caster:HasModifier("modifier_class_sven2") and caster:GetModifierStackCount("modifier_froststr", nil) >= 5 and not event.isaoe then
         critdmgbonusfactor = critdmgbonusfactor + 0.003 * GetAgilityCustom(caster)
@@ -3430,7 +3426,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.1 *caster:GetModifierStackCount("modifier_ele_thunder_stacks", nil)
     end
     if dmgtype == 1 and caster:IsRealHero() then
-        value = value + 0.001 * GetStrengthCustom(caster) --0.0008
+        value = value + GetPhysicalDamageBonusFromStr(caster, GetStrengthCustom(caster))
     end
     if event.holydmg and caster:HasModifier("modifier_class_sanct2") and caster:GetName() == "npc_dota_hero_phantom_lancer" then
         value = value + 0.5 * caster:Script_GetMagicalArmorValue(false, nil)
@@ -4824,7 +4820,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     --    multiplicative_bonus = multiplicative_bonus * 1.5
     --end
     if caster:IsRealHero() then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.00015 * GetIntellectCustom(caster)) -0.0001
+        multiplicative_bonus = multiplicative_bonus * (1 + GetAbilityDamageBonusFromInt(caster, GetIntellectCustom(caster))) -0.0001
     end
     if caster.astral_ability_200 and process_procs then
         caster.astral_ability_200 = nil
@@ -19703,7 +19699,7 @@ end
 function GetAttackSpeedBonus( hero, armor, strength, agility )
     local static_bonus = 0
     if agility >= 1 then
-        static_bonus = static_bonus + 0.05 * agility
+        static_bonus = static_bonus + GetAttackSpeedBonusFromAgi(hero, agility)
     end
     local frostdk6 = hero:FindAbilityByName("frostdk6")
     if frostdk6 and frostdk6:GetLevel() >= 4 then
@@ -20117,6 +20113,55 @@ end
 function GetRequiredAttackRangeBonuses( hero )
     local bonus = GetInterstellarStat(hero)
     return bonus
+end
+
+function GetMaxHpBonusFromStr(hero, str)
+    local hpPerStr = 10
+    if hero.talents[3] and hero.talents[3] > 0 then
+        hpPerStr = hpPerStr + 0.5 + 0.5 * hero.talents[3]
+    end
+
+    return str * hpPerStr
+end
+
+function GetPhysicalDamageBonusFromStr(hero, str)
+    return 0.001 * str --0.0008 
+end
+
+function GetAttackSpeedBonusFromAgi(hero, agility)
+    return 0.05 * agility
+end
+
+function GetArmorBonusFromAgi(hero, agility)
+    return 0.04 * agility
+end
+
+function GetCriticalStrikeDamageBonusFromAgi(hero, agility)
+    local extra = 0
+    if hero.talents[116] > 0 then
+        extra = 0.0001 * hero.talents[116]
+    end
+    return (0.0005 + extra) * agility
+end
+
+function GetMaxManaBonusFromInt(hero, int)
+    local manaPerInt = 1 --10 --12
+    if hero.resourcesystem then
+        manaPerInt = 0.0 --0.1
+    end
+    return manaPerInt * int
+end
+
+function GetAbilityDamageBonusFromInt(hero, int)
+    return 0.00015 * GetIntellectCustom(hero)
+end
+
+function GetSpellResistanceBonusFromInt(hero, int)
+    local mresPerInt = 0.01
+    if GetLevelOfAbility(hero, "ench3") >= 4 then
+        mresPerInt = mresPerInt * 2
+    end
+    return mresPerInt * int
 end
 
 function PassiveStatCalculation(event)
@@ -20802,11 +20847,8 @@ function PassiveStatCalculation(event)
 
     --now we can calc real AA and AS and mana and HP, (primary attribute must give aa dmg): order is important! important: need to substract what we already have at the end
     --Mana
-    local manaPerInt = 1 --10 --12
-    if hero.resourcesystem then
-        manaPerInt = 0.0 --0.1
-    end
-    local maxManaBonusesFromNonItems = realBaseStats[INT] * manaPerInt + hero.talents[120] * 100
+    local manaFromInt = GetMaxManaBonusFromInt(hero, realBaseStats[INT])
+    local maxManaBonusesFromNonItems = manaFromInt + hero.talents[120] * 100
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_5") >= 1 then
         maxManaBonusesFromNonItems = maxManaBonusesFromNonItems + 500
     end
@@ -20831,7 +20873,8 @@ function PassiveStatCalculation(event)
         realBaseStatsToApply[MANA] = extraEnergy
     end
     --Armor
-    baseStats[ARM] = hero:GetPhysicalArmorValue(false) + 0.04 * realBaseStats[AGI] + GetArmorStaticBonus( hero, realBaseStats[STR], realBaseStats[AGI], realBaseStats[MANA], magicres )
+    local armorFromAgi = GetArmorBonusFromAgi(hero, realBaseStats[AGI])
+    baseStats[ARM] = hero:GetPhysicalArmorValue(false) + armorFromAgi + GetArmorStaticBonus( hero, realBaseStats[STR], realBaseStats[AGI], realBaseStats[MANA], magicres )
     baseStatsPercentFactor[ARM] = 1 + GetArmorPercentageBonus(hero, baseStatsPercentFactor[STR])
     realBaseStats[ARM] = baseStats[ARM] * baseStatsPercentFactor[ARM]
     realBaseStatsToApply[ARM] = realBaseStats[ARM] - hero:GetPhysicalArmorValue(false)
@@ -20842,11 +20885,8 @@ function PassiveStatCalculation(event)
     realBaseStats[AS] = baseStats[AS] * baseStatsPercentFactor[AS]
     realBaseStatsToApply[AS] = realBaseStats[AS] - passiveASBonus
     --HP
-    local hpPerStr = 10
-    if hero.talents[3] and hero.talents[3] > 0 then
-        hpPerStr = hpPerStr + 0.5 + 0.5 * hero.talents[3]
-    end
-    baseStats[HP] = hero:GetMaxHealth() + realBaseStats[STR] * hpPerStr + GetHealthStaticBonus( hero, realBaseStats[STR], realBaseStats[AGI], realBaseStats[INT], realBaseStats[ARM], magicres, realBaseStats[MANA] )
+    local maxHpBonusFromStr = GetMaxHpBonusFromStr(hero, realBaseStats[STR])
+    baseStats[HP] = hero:GetMaxHealth() + maxHpBonusFromStr + GetHealthStaticBonus( hero, realBaseStats[STR], realBaseStats[AGI], realBaseStats[INT], realBaseStats[ARM], magicres, realBaseStats[MANA] )
     baseStatsPercentFactor[HP] = 1 + GetHealthPercentageBonus( hero, realBaseStats[ARM], magicres )
     hero.hpPercentValue = baseStatsPercentFactor[HP] - 1
     realBaseStats[HP] = baseStats[HP] * baseStatsPercentFactor[HP]
@@ -20867,6 +20907,28 @@ function PassiveStatCalculation(event)
     --    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
     --    hero:SetModifierStackCount(buff, ability, realBaseStats[ARM] - armorCap)
     --end
+
+    --update new UI
+    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
+    CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
+        id = hero:GetPlayerID(), 
+        str = math.floor(realBaseStats[STR]), 
+        agi = math.floor(realBaseStats[AGI]), 
+        int = math.floor(realBaseStats[INT]), 
+        level = hero.level, 
+        levelPercentage = hero.levelPercentage,
+        maxHpFromStr = maxHpBonusFromStr,
+        physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
+        attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
+        armorFromAgi = armorFromAgi,
+        criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
+        manaFromInt = manaFromInt,
+        abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
+        spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
+        resourceType = hero.resourcesystem,
+        spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
+        damageReduction = GetTotalDamageTakenFactor(hero, nil)
+    })
 
     --now we have calculated all basic stats, lets apply them!
     for i = 4, totalAttributes do --str int agi already applied
@@ -20892,9 +20954,7 @@ function PassiveStatCalculation(event)
             end
         end
     end
-    --update new UI
-    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {id = hero:GetPlayerID(), str = math.floor(realBaseStats[STR]), agi = math.floor(realBaseStats[AGI]), int = math.floor(realBaseStats[INT]), level = hero.level, levelPercentage = hero.levelPercentage})
+    
     --pathwords
     --local pathwords = GetPathBonusesFromPathWords(hero)
     --local pathSynergies = GetPathSynergyBonuses(hero)
@@ -21501,11 +21561,7 @@ function PassiveStatCalculation(event)
                 if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_7") >= 1 then
                     value5 = 35
                 end
-                local mresPerInt = 0.01
-                if GetLevelOfAbility(hero, "ench3") >= 4 then
-                    mresPerInt = mresPerInt * 2
-                end
-                local value6 = realBaseStats[INT] * mresPerInt --intellect stat mres
+                local value6 = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]) --intellect stat mres
                 local finalValue = ((100 - value1) / 100) * ((100 - value2) / 100) * ((100 - value3) / 100) * ((100 - value4) / 100) * ((100 - value5) / 100) * ((100 - value6) / 100) --diminishing calculation, result is damage factor: 0.2 means 80% reduction
                 finalValue = (1 - finalValue) * 100
                 if finalValue >= 1 then

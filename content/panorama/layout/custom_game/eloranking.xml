@@ -19,6 +19,12 @@
 				</Panel>
 			</Panel>
 		</snippet>
+        <snippet name="RuneWordContainer">
+			<Panel  class="TableRow" style="horizontal-align: left; margin-bottom: 5px;">	
+				<Image class="RunewordImage" id="RuneWordImage" style="border-radius: 5px;" src="" />
+				<Label class="WeaponStats" id="RuneWordText" html="true" text="" style="vertical-align: center; color: white;" />
+			</Panel>
+		</snippet>
 	</snippets>
 
 	<Panel class="OverthrowLoadingRoot" hittest="false">
@@ -152,21 +158,92 @@
 		</Panel>
 
 
-		<Panel class="WeaponChoice" id="selectdiffipanel" hittest="false">
+		<Panel class="WeaponChoice" id="selectdiffipanel" hittest="false" style="height: 550px; margin-top: 0px;">
 			<Label class="WeaponStatsRight" id="TimeSelection" text="Time Remaining: 20" style="margin-top: 5px; font-weight: bold;" />
-			<Label class="RewardHeader" html="true" text="Choose Monster Level" style="font-size: 30px; margin-top: 10px; margin-bottom: 5px; font-weight: bold;"/>
-			<Panel  class="WeaponRow">
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(-1)">
+			<Label class="RewardHeader" html="true" text="Choose Monster Level" style="font-size: 30px; margin-top: 10px; margin-bottom: 2px; font-weight: bold;"/>
+			<Label class="RewardHeader" id="diffiselection" html="true" text="Level: 1" style="font-size: 20px; margin-top: 2px; margin-bottom: 7px; font-weight: bold; color: white;"/>
+			<Panel class="WeaponRow">
+				<Panel  class="VoteButton" onactivate="TempleVote(-1)" style="vertical-align:center; horizontal-align:center; border-width: 3px;">
 					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
 						<Label class="SelectionButton" id="easierbutton" text="Easier" visible="false" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: lime;"/>
 					</Button>
 				</Panel>
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(0)">
-					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
-						<Label class="SelectionButton" id="diffiselection" text="Level: 1" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: white;"/>
-					</Button>
+				<Panel  class="DropTable" style="margin-left: 10px; margin-right: 10px;">
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="" /> 
+						</Panel>
+						<Panel>
+							<Label class="WeaponStats" text="Drop Chance" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Mythical" style="color:#7733ff;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="mythical2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Divine" style="color:gold;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="divine2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Immortal" style="color:aqua;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="immortal2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Legendary" style="color:orange;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="legendary2" text="0.3%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Epic" style="color:magenta;" /> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="epic2" text="3%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Rare" style="color:royalblue;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="rare2" text="10%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Common" style="color:lawngreen;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="common2" text="25%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Experience" style="color:white;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="Exp2" text="100%" /> 
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(1)">
+
+				<Panel  class="VoteButton" onactivate="TempleVote(1)" style="vertical-align:center; horizontal-align:center; border-width: 3px;">
 					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
 						<Label class="SelectionButton" text="Harder" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: orange;" />
 					</Button>
@@ -194,84 +271,8 @@
 					</Button>
 				</Panel>
 			</Panel-->
-			<Panel  class="DropTable">
-
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="" /> 
-				 	</Panel>
-				 	<Panel>
-				 		<Label class="WeaponStats" text="Drop Chance" /> 
-				 	</Panel>
-
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Mythical" style="color:#7733ff;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="mythical2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Divine" style="color:gold;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="divine2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Immortal" style="color:aqua;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="immortal2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Legendary" style="color:orange;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="legendary2" text="0.3%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Epic" style="color:magenta;" /> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="epic2" text="3%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Rare" style="color:royalblue;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="rare2" text="10%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Common" style="color:lawngreen;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="common2" text="25%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Experience" style="color:white;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="Exp2" text="100%" /> 
-				 	</Panel>
-				 </Panel>
-			</Panel>
 			<Panel  class="WeaponRow">
-				<Label class="WeaponStats" id="hardmode" html="true" text="" style="color: orange; font-size: 22px;" />
+				<Label class="WeaponStats VerticalScrollBarVisible" id="hardmode" html="true" text="" style="color: orange; font-size: 22px; padding-left: 20px; padding-right: 20px;" />
 			</Panel>
 		</Panel>
 
@@ -673,6 +674,7 @@
 		</Panel>
 	-->
 
+<!--
 		<Panel  class="HeroStats" onmouseover="MainStatsHover(1)" onmouseout="MainStatsHover(2)" style="margin-bottom: 0px; vertical-align: bottom; horizontal-align: right; margin-right: 63.5%; background-color: #101010; border-style: solid; border-color: grey; border-width: 2px; min-width: 200px;">
 			<Panel style="flow-children: right;">
 				<Panel style="flow-children: down; vertical-align: center;">
@@ -685,6 +687,7 @@
 				</Panel>
 			</Panel>
 		</Panel>
+-->
 
 		<Panel id="questlogingame" hittest="false" style="min-width: 200px;">
 			<Button onactivate="ToggleLeftMenu()" style="width: 100%;">
@@ -1090,11 +1093,19 @@
 					</Panel>
 				</Panel>
 				<Panel  class="WeaponRow">
-					<Panel  class="Runeword">
-						<Label class="WeaponHeaderWhite" text="Rune Word" style="color:white; margin-bottom:10px;" />
-						<Panel  class="TableRow">	
-							<Image class="RunewordImage" id="runewordimage" src="" />
+					<Panel class="Runeword">
+						<Label class="WeaponHeaderWhite" text="Rune Word" style="font-size: 22px; color:orange; margin-bottom:10px; margin-top: 10px;" />
+						<Label class="WeaponStats" text="Artifacts (Head, Chest, Boots) gives you different Rune Words with different Rune Power." style="font-size: 16px; color:white; height: 40px;" />
+						<Label class="WeaponStats" text="You will get some bonus with value based on total Rune Power and Rune Words you have." style="font-size: 16px; color:white; height: 40px;" />
+						<Panel  class="TableRow" style="horizontal-align: center; margin-bottom: 5px;">	
+							<Image class="RunewordImage" id="runewordimage" style="border-radius: 5px;" src="" />
 							<Label class="WeaponStats" id="runewordtext" text="incomplete" style="color:lime;" />
+						</Panel>
+						<Panel class="TableRow" style="flow-children: down; horizontal-align: left; margin-bottom: 5px; width: 100%;">	
+							<Button class="SellPanel" onactivate="ShowPossibleRuneWords()" style="margin-top: 6px; horizontal-align: center;">
+								<Label class="WeaponHeaderWhite"  text="Show possible Rune Words" style="font-size: 16px; margin-left: 5px; margin-right: 5px;margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+							</Button>
+							<Panel id="RuneWordsContainer" class="Hidden" style="flow-children: down; padding-left: 5px; padding-top: 5px;"/>
 						</Panel>
 					</Panel>
 				</Panel>
@@ -1580,7 +1591,9 @@
 				<Label class="ButtTextBigGold" text="Spell Resistance from Artifacts is capped at 35." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Percentage Bonuses from multiple Artifacts\nstack additively (for example +5% Damage and\n+10% Damage results in +15% Damage)." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Spellhaste increases the tick rate of Channeled Abilities\nbut only up to 200%." style="color:white; font-size: 16px; horizontal-align: left;"/>
-				<Label class="ButtTextBigGold" text="When you have more than 1 core Healer (Divine Crusader /\nHoly Cleric / Twilight Cleric / Peaceful Guardian / Spirit Voodoo)\nin your party, there will be a Healing output penalty\nfor all players: 2 Healers = 25% Output, 3 Healers = 10% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>
+				<Label class="ButtTextBigGold" text="When you have more than 1 core Healer (Divine Crusader /\nHoly Cleric / Twilight Cleric / Peaceful Guardian / Spirit Voodoo)\nin your party, there will be a Healing output penalty\nfor all players:" style="color:white; font-size: 16px; horizontal-align: left;"/>
+				<Label class="ButtTextBigGold" text="2 Healers = 25% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>
+				<Label class="ButtTextBigGold" text="3 Healers = 10% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Hero Class Information" style="font-size: 24px;"/>
 				<Label class="ButtTextBigGold" text="Each Class has a different passive Bonus:\nBrawler: + 10% increased Armor\nDeathbringer: + 10% Strength\nCrusader: + 10% Healing caused and received\nShadowstalker: +10% Pure Damage chance\nGuardian: + 5% All Attributes\nDemonslayer: + 25 Movement and Attack Speed\nShaolin: +15% Ability Crit Damage\nRanger: + 10% Agility\nVoodoo: + 15 Spell Resistance\nWizard: + 10% Intellect\nWitcher: + 10% max Mana and Health\nCleric: + 10% Mana Regeneration and Spellpower" style="font-size: 16px; horizontal-align: left; color:white;"/>
 				<!--Label class="ButtTextBigGold" text="Temple Heroes" style="font-size: 24px;"/>
@@ -2022,7 +2035,7 @@
 			</Panel>
 		</Panel>
 
-		<Panel class="Talent" id="talenttooltip" >
+		<Panel class="Talent" id="talenttooltip" style="z-index: 9000;">
 			<Panel class="TalentButton">	
 				<Image class="TalentImage" id="talenttooltipimage" src="file://{images}/spellicons/bear2.png"  />
 				<Label class="ButtTextBigGold" id="talenttooltiptext" text="+ 5% Strength" style="font-size: 16px;"/>
@@ -2146,8 +2159,8 @@
 				<Panel  class="TableCol" >
 					<Label class="TextTalentHead" text="Path Information" style="font-size: 28px;horizontal-align: center; color: lime;margin-top: 15px;"/>
 					<Label class="TextGold" text="Path Points are gained whenever you level up,\nfrom level 15 onwards, every 2nd Level." style="font-size: 17px;horizontal-align: left;"/>
-					<Label class="TextGold" text="Path Talents are unlocked row by row, starting from the top.\nTo unlock a new row, you need to spend atleast 3 Path Points\nin that Path." style="font-size: 17px;horizontal-align: left;"/>
-					<Label class="TextGold" text="Path Talents are naturally capped at Level 3. With Bonuses from\nArtifacts, Souls and Divines, they can go up to Level 10.\nThere are no Bonuses for the last row." style="font-size: 17px;horizontal-align: left;"/>
+					<Label class="TextGold" text="Path Talents are unlocked row by row, starting from the top.\nTo unlock a new row, you need to spend at least 3 Path Points\nin that Path." style="font-size: 17px;horizontal-align: left;"/>
+					<Label class="TextGold" text="Path Talents are naturally capped at Level 3. With Bonuses from\nArtifacts, Souls and Divines, they can go up to Level 10." style="font-size: 17px;horizontal-align: left;"/>
 					<Label  id="talentpoints" text="Unspent Path Points: 0" style="font-size: 24px;horizontal-align: center;margin-top: 25px; color: white;"/>
 					<Panel class="TableRow" style="horizontal-align:center;margin-top: 10px;">
 						<Button class="SellPanel" onactivate="ToggleResetPathPressed()">
@@ -3286,62 +3299,88 @@
 			
 		</Panel>
 
-		<Panel id="rewards" style="horizontal-align: center;">
-			
-				<Label class="RewardHeader" html="true" text="Guide" style="font-size: 48px;"/>
-				<Label class="RewardHeader" html="true" text="Gameplay" style="color: orange;"/>
-				<Label class="RewardText" text="Titanbreaker is a 5 player dungeon crawler RPG with permanent character saving and an emphasis on teamplay." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="Each Hero has 5 lives at the beginning of the game, after which he will no longer be resurrected." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="There are 13 Acts to defeat, each one being slightly harder than the previous." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="After defeating an Act, you should go to the Titan Temple, using the Teleporter, and defeat the corresponding Titan there. Do this for all 10 Titans, after which\nyou must defeat the Final Boss in the Temple. After that, clear Act 12 and do the escort Quest at the end. Then clear Act 13.\nNow you have cleared all content, but you can still fight the remaining Bosses in the Mogushan Arena for extra Loot and Boss Kill Score." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="You can increase the Monster Level at the start of the game, which makes enemies stronger but also rewards better loot and higher Boss Kill Score for the Leaderboard." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="The more Bosses you kill in a single game, the better the drop chances for Items become, as incentive to beat as many Acts per run as possible. Also some rare items like [Singularities], which are the only Items that can be placed in the neutral Item slot, only drop after beating all 13 Acts [weak ones on Monster Level 20 or higher and strong ones on Monster Level 500 or higher]." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="Heroes in Titanbreaker usually fit into the category of Tank, Healer or DPS. Ideally you should have one Tank and one Healer in your group." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="Heroes in Titanbreaker are highly customized and often use custom Mana Systems and Combo Points." style="font-size: 18px;horizontal-align: center;" />
-				<!--Image class="ItemImage" src="file://{images}/items/chest.png"  style="horizontal-align: center;"/-->
-				<Label class="RewardHeader" html="true" text="Item Shop and Recipes" style="color: orange;"/>
-				<Label class="RewardText" text="The standard Dota Shop is disabled in Titanbreaker." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="You can use it to browse for Items, but you can not buy Items there." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="Instead there is a Blacksmith (tab on the left), where you can buy Items up to Epic quality for Gold." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardText" text="This Shop also sells recipes that are required to combine Item Sets." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardHeader" html="true" text="Crafting" style="color: orange;"/>
-				<Label class="RewardText" text="Later in the game there also is the Molten Forge located in Act 8 (requires playing on Monster Level 10), where you can craft Artifacts for Gold." style="font-size: 18px;horizontal-align: center;" />
-				<Label class="RewardHeader" html="true" text="Community" style="color: orange;"/>
-				<Label class="RewardText" text="Join our discord server if you need help or have questions: https://discord.gg/as8MzdJ." style="font-size: 18px;horizontal-align: center;" />
-				<!--Label class="RewardText" text="Which Items drop on which Monster Level setting in which Act? Find answers here!" style="font-size: 20px; margin-bottom:20px;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 1 - 7.5" style="color: orange;"/>
-				<Label class="RewardText" text="Legendary Items and Sets are the best Items you can farm in this Monster Level range. Try getting as many as possible to qualify for Monster Level 10." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Also try getting good Artifact Weapons in Mainhand and Offhand." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 10" style="color: orange;"/>
-				<Label class="RewardText" text="Immortal Items start dropping. Try replacing your Legendaries with Immortals." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 20" style="color: orange;"/>
-				<Label class="RewardText" text="Artifact Chest Armor starts dropping. Try getting one and continue farming Immortals." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 30" style="color: orange;"/>
-				<Label class="RewardText" text="Immortal 2 piece Sets start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards). Try completing a 2 piece Set." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Also Artifact Rings start dropping. Try getting a good one." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 40" style="color: orange;"/>
-				<Label class="RewardText" text="Immortal 3 piece Sets start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards). Try completing a 3 piece Set." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Also the drop chance for Artifacts increases from 25% to 50%." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 50" style="color: orange;"/>
-				<Label class="RewardText" text="Artifact Head Armor starts dropping. This means that you can complete Runewords now. Try getting a good Runeword." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Also Mythic Dust can be obtained via Quests. Try getting as much Mythic Dust as possible to forge your Artifacts to a higher Level." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 75" style="color: orange;"/>
-				<Label class="RewardText" text="Dreamshards start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards, Act 11 Bosses have a 20x higher chance)." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Use them to upgrade your Legendary and Immortal Sets to a higher Level." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Also most Teleporters are unlocked from the start." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 100" style="color: orange;"/>
-				<Label class="RewardText" text="[Ancient] Immortal Items start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards)." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Some [Ancient] Immortal Items only drop from a specific Act 11 Boss (2-3 unique Items per Boss)." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="Act 12 drops some exclusive [Ancient] Item Sets." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="[Ancient] Souls for the first 3 Path rows start dropping exclusively in Arena." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="[Ancient] Souls for the last 2 Path rows start dropping exclusively from Act 11 Bosses with a low drop rate. The drop rate increases on higher Monster Levels." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 150" style="color: orange;"/>
-				<Label class="RewardText" text="[Ancient] Immortal Artifact Helm, Chest and Boots start dropping." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardHeader" html="true" text="Monster Level 200" style="color: orange;"/>
-				<Label class="RewardText" text="[Ancient] Immortal Artifact Mainhand, Offhand and Rings start dropping." style="font-size: 18px;horizontal-align: left;" />
-				<Label class="RewardText" text="The Quest called Divine Relics rewards [Divine] Items." style="font-size: 18px;horizontal-align: left;" />
-				<Image class="ItemImage" src="file://{images}/items/chest.png"  style="horizontal-align: center;"/-->
-			
+		<Panel id="rewards">
+			<Label class="RewardHeader" html="true" text="Guide" style="font-size: 48px;"/>
+			<Panel class="GuideTextContainer">
+				<Panel class="GuideTextContainerWithScroll VerticalScrollBarVisible">
+					<Label class="RewardHeader" html="true" text="Community" style="color: orange;"/>
+					<Panel style="flow-children: right; horizontal-align: center;">
+						<Label class="RewardText" text="Join our discord server if you need help or have questions:" style="vertical-align: center; font-size: 18px;" />
+						<Button onactivate="OpenDiscordURL()" style="margin: 0px; margin-top: 6px; flow-children: right;">
+							<Label class="WeaponHeaderWhite" text="https://discord.gg/as8MzdJ" style="text-decoration: underline; font-size: 18px; margin: 0px; margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+							<Label class="WeaponHeaderWhite" text="(click on this url)" style="font-size: 18px; margin: 0px; margin-left: 5px; margin-top: 5px;margin-bottom: 10px; horizontal-align: center; vertical-align: center;" />
+						</Button>
+					</Panel>
+					<Label class="RewardHeader" html="true" text="Gameplay" style="color: orange;"/>
+					<Label class="RewardText" text="Titanbreaker is a 5 player dungeon crawler RPG with permanent character saving and an emphasis on teamplay. It can be played with less players but it will be hard." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Each player will be revived 5 times after dying, after that they have to start a new game or they stay and observe the remaining heroes who are still alive." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Currently the maximum hero level is 100. When you level up, you gain 13 Ability Points, plus 1 at Level 40, 60, 80 and 100." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="All creatures have an aggro system, causing them to attack whoever damages them the most. It is advised to pick at least 1 Tank and 1 Healer to survive longer." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="Item drop rules: For each player an individual roll is performed to check if an item drops, whenever a creature is killed." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="Bosses and Champions drop an item with a 100% chance, while killing a complete trash mob camp roughly has a total 2% chance to drop an item." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="Item quality when killing a Boss is as follows: Legendary 0.1%, Epic 1%, Rare 10%, Common 25%, rolled in that order, if none of these dropped, a white item will drop." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="The first Act has the difficulty you select at the start of the game. Each following Act is 10% more difficult compared to the initial difficulty setting." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="For example, if you select Monster Level 2, the Act difficulties will be 200% for the first Act, 220% for the 2nd Act, 240% for the third Act and so on."  style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Item drop quality increases faster than difficulty does, as an incentive to play on challening Monster Levels, the formula is: LootQuality = ( ZoneDifficulty * 1.25 ) - 0.25."  style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="For example a Zone with Monster Level 2 would lead to LootQuality = 2 * 1.25 - 0.25 = 2.25 = 225% loot quality." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="This LootQuality factor is multiplied on top of the drop chance, so it would for example increase the Epic drop chance on bosses from 1% to 1% * 225% = 2.25%." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Experience scales exponetially." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="Summons from Abilities and Companions from Items, like the ones from the Dragon Set series, deal Damage whenever they attack." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="However, the damage dealt acts as if it were Damage done by an Ability of its master, meaning it will cause aggro." style="font-size: 18px;horizontal-align: center;"  />
+					<Label class="RewardText" text="This for example mean that summons benefit from Ability Critical Strikes on items worn by the master." style="font-size: 18px;horizontal-align: center;" />				
+					<Label class="RewardText" text="There are 13 Acts to defeat, each one being slightly harder than the previous." style="font-size: 18px;horizontal-align: center;"/>
+					<Label class="RewardText" text="After defeating an Act, you should go to the Titan Temple, using the Teleporter, and defeat the corresponding Titan there." style="font-size: 18px;horizontal-align: center;" />		
+					<Label class="RewardText" text="Do this for all 10 Titans, after which you must defeat the Final Boss in the Temple. After that, clear Act 12 and do the escort Quest at the end. Then clear Act 13." style="font-size: 18px;horizontal-align: center;" />		
+					<Label class="RewardText" text="Now you have cleared all content, but you can still fight the remaining Bosses in the Mogushan Arena for extra Loot and Boss Kill Score." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="You can increase the Monster Level at the start of the game, which makes enemies stronger but also rewards better loot and higher Boss Kill Score for the Leaderboard." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="The more Bosses you kill in a single game, the better the drop chances for Items become, as incentive to beat as many Acts per run as possible." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Also some rare items like [Singularities], which are the only Items that can be placed in the neutral Item slot" style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="[Singularities] drop after beating all 13 Acts: weak ones on [Monster Level 20] or higher and strong ones on [Monster Level 500] or higher." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Heroes in Titanbreaker usually fit into the category of Tank, Healer or DPS. Ideally you should have one Tank and one Healer in your group." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Heroes in Titanbreaker are highly customized and often use custom Mana Systems and Combo Points." style="font-size: 18px;horizontal-align: center;" />
+					<!--Image class="ItemImage" src="file://{images}/items/chest.png"  style="horizontal-align: center;"/-->
+					<Label class="RewardHeader" html="true" text="Item Shop and Recipes" style="color: orange;"/>
+					<Label class="RewardText" text="The standard Dota Shop is disabled in Titanbreaker." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="You can use it to browse for Items, but you can not buy Items there." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="Instead there is a Blacksmith (tab on the left), where you can buy Items up to Epic quality for Gold." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardText" text="This Shop also sells recipes that are required to combine Item Sets." style="font-size: 18px;horizontal-align: center;" />
+					<Label class="RewardHeader" html="true" text="Crafting" style="color: orange;"/>
+					<Label class="RewardText" text="Later in the game there also is the Molten Forge located in Act 8 (requires playing on [Monster Level 10]), where you can craft Artifacts for Gold." style="font-size: 18px;horizontal-align: center; margin-bottom: 30px;" />
+					<!--Label class="RewardText" text="Which Items drop on which Monster Level setting in which Act? Find answers here!" style="font-size: 20px; margin-bottom:20px;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 1 - 7.5" style="color: orange;"/>
+					<Label class="RewardText" text="Legendary Items and Sets are the best Items you can farm in this Monster Level range. Try getting as many as possible to qualify for Monster Level 10." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Also try getting good Artifact Weapons in Mainhand and Offhand." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 10" style="color: orange;"/>
+					<Label class="RewardText" text="Immortal Items start dropping. Try replacing your Legendaries with Immortals." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 20" style="color: orange;"/>
+					<Label class="RewardText" text="Artifact Chest Armor starts dropping. Try getting one and continue farming Immortals." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 30" style="color: orange;"/>
+					<Label class="RewardText" text="Immortal 2 piece Sets start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards). Try completing a 2 piece Set." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Also Artifact Rings start dropping. Try getting a good one." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 40" style="color: orange;"/>
+					<Label class="RewardText" text="Immortal 3 piece Sets start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards). Try completing a 3 piece Set." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Also the drop chance for Artifacts increases from 25% to 50%." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 50" style="color: orange;"/>
+					<Label class="RewardText" text="Artifact Head Armor starts dropping. This means that you can complete Runewords now. Try getting a good Runeword." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Also Mythic Dust can be obtained via Quests. Try getting as much Mythic Dust as possible to forge your Artifacts to a higher Level." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 75" style="color: orange;"/>
+					<Label class="RewardText" text="Dreamshards start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards, Act 11 Bosses have a 20x higher chance)." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Use them to upgrade your Legendary and Immortal Sets to a higher Level." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Also most Teleporters are unlocked from the start." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 100" style="color: orange;"/>
+					<Label class="RewardText" text="[Ancient] Immortal Items start dropping from all Challenge Bosses (Act 7 - Act 11, Mogushan Arena round 4 onwards)." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Some [Ancient] Immortal Items only drop from a specific Act 11 Boss (2-3 unique Items per Boss)." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="Act 12 drops some exclusive [Ancient] Item Sets." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="[Ancient] Souls for the first 3 Path rows start dropping exclusively in Arena." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="[Ancient] Souls for the last 2 Path rows start dropping exclusively from Act 11 Bosses with a low drop rate. The drop rate increases on higher Monster Levels." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 150" style="color: orange;"/>
+					<Label class="RewardText" text="[Ancient] Immortal Artifact Helm, Chest and Boots start dropping." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardHeader" html="true" text="Monster Level 200" style="color: orange;"/>
+					<Label class="RewardText" text="[Ancient] Immortal Artifact Mainhand, Offhand and Rings start dropping." style="font-size: 18px;horizontal-align: left;" />
+					<Label class="RewardText" text="The Quest called Divine Relics rewards [Divine] Items." style="font-size: 18px;horizontal-align: left;" />
+					<Image class="ItemImage" src="file://{images}/items/chest.png"  style="horizontal-align: center;"/-->
+				</Panel>
+			</Panel>
 		</Panel>
 		<Panel id="questmenu" style="overflow: scroll;">
 			<Panel class="TableCol">
@@ -3504,15 +3543,7 @@
 		</Panel>
 		<Panel class="StashButtonsContainer" hittest="false" id="ToggleStash" style="z-index: -9000;">
 			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-				<Button class="SellButton" onactivate="PickupAllItemsOnGround(false)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
-					<Panel  class="TableRow">
-						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items_with_stash.png" />
-						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up All Items"/>
-					</Panel>
-				</Button>
-			</Panel>
-			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground that dropped in current game and tries move them into your hero inventory or stash')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" oncontextmenu="PickupAllItemsOnGround(false)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash. Use right mouse button to only pickup items dropped in current game.')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
 					<Panel  class="TableRow">
 						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items.png" />
 						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up Items"/>
@@ -3536,9 +3567,12 @@
 				</Button>
 			</Panel>
 		</Panel>
+		<!--
+			OLD GOLD UI
 		<Panel class="GoldUIClass" hittest="false" style="width: 160px; height: 50px; z-index: -9000;">
 			<Label class="ButtText" id="ui_gold" text="Gold" style="color:gold; font-size: 24px;" />			
 		</Panel>
+		-->
 		<Panel class="WeaponList" hittest="false" id="SellListStart" style="margin-right: 200px;">
 
 		</Panel>

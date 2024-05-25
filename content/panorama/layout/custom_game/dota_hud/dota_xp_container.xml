@@ -1,0 +1,21 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/dota_hud/dota_xp_container.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/dota_hud/dota_xp_container.js" />
+	</scripts>
+	<Panel class="DotaXP ShowXPBar ShowLevel Reborn" hittest="true" hittestchildren="false" onmouseover="OnTooltip()" onmouseout="OnHideTooltip()">
+		<Panel id="LevelBackground" hittest="false"/>
+		<Label id="LevelLabel" class="MonoNumbersFont" text="1" hittest="false"/>
+		<CircularProgressBar id="CircularXPProgress" hittest="false" min="0" max="100" value="0"/>
+		<CircularProgressBar id="CircularXPProgressBlur" hittest="false" min="0" max="100" value="0"/>
+        <!--
+		<Label id="XPLabel" text="#DOTA_Hud_XP" hittest="false" />
+		<Label id="LifetimeLabel" class="MonoNumbersFont" text="#DOTA_Hud_Lifetime" hittest="false" />
+		<ProgressBar id="LifetimeProgress" class="MonoNumbersFont" hittest="false" />
+        -->
+	</Panel>
+</root>

@@ -50,6 +50,11 @@
     border-color: grey;
 }
 
+.HUDFlipped .StashButtonsContainer
+{
+   	horizontal-align: left;
+}
+
 .GoldUIClass
 {
 	flow-children: down;
@@ -466,12 +471,39 @@
 {
     width: 80%;
     height: 80%;
-    background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
 	vertical-align: top;
 	margin-top: 50px;
 	margin-left: 250px;
 	flow-children: down;
-	//overflow: scroll;
+	horizontal-align: center; 
+	border: 2px solid grey; 
+	background-image: url('s2r://panorama/images/bg_hero_png.vtex');
+	background-size: 100% 100%;
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555a ), to( #22222a ) );
+	overflow: squish squish; 
+	box-shadow: inset grey 2px 2px 2px 2px;
+}
+
+.GuideTextContainer
+{
+	overflow: squish squish; 
+	horizontal-align: center;
+	vertical-align: top;
+	flow-children: down;
+	max-height: 93%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #000000 ) );
+	border: 2px solid white;
+	margin: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.GuideTextContainerWithScroll
+{
+	overflow: squish scroll; 
+	flow-children: down;
+	width: 100%;
 }
 
 #questmenu
@@ -1554,4 +1586,108 @@
 	margin-left: 0px;
 	margin-top: -8px;
 	margin-right: 0px;
+}
+
+.RuneWordHeader
+{
+	font-size: 18px; 
+	color:gold; 
+	horizontal-align: left;
+}
+
+#RuneWordsContainer.Hidden
+{
+	visibility: collapse;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar,
+.HorizontalScrollBarVisible HTMLVerticalScrollBar {
+    width: 8px;
+    height: 100%;
+    horizontal-align: right;
+    layout-position: fixed;
+
+    transition-property: transform;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar .ScrollThumb,
+.VerticalScrollBarVisible HTMLVerticalScrollBar .ScrollThumb {
+    width: 8px;
+    min-height: 32px;
+    background-color: #566767;
+    border-top: 1px solid #aaaaaa22;
+    border-right: 1px solid #000000aa;
+
+    transition-property: background-color, transform, position;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar:hover .ScrollThumb,
+.VerticalScrollBarVisible HTMLVerticalScrollBar:hover .ScrollThumb {
+    background-color: #566767;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar:active .ScrollThumb,
+.VerticalScrollBarVisible HTMLVerticalScrollBar:active .ScrollThumb {
+    background-color: #566767;
+}
+
+.HorizontalScrollBarVisible HorizontalScrollBar,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar {
+    height: 8px;
+    width: 100%;
+    layout-position: fixed;
+    vertical-align: bottom;
+    box-shadow: fill #00000055 2px -1px 3px 1px;
+
+    transition-property: transform;
+}
+
+.HorizontalScrollBarVisible HorizontalScrollBar .ScrollThumb,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar .ScrollThumb {
+    height: 8px;
+    min-width: 32px;
+    border-top: 1px solid #aaaaaa22;
+    border-bottom: 1px solid #000000aa;
+    background-color: #566767;
+    transition-property: background-color, transform, position;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+.HorizontalScrollBarVisible HorizontalScrollBar:hover .ScrollThumb,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar:hover .ScrollThumb {
+    background-color: #566767;
+}
+
+.HorizontalScrollBarVisible HorizontalScrollBar:active .ScrollThumb,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar:active .ScrollThumb {
+    background-color: #566767;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar,
+.VerticalScrollBarVisible VerticalScrollBar .ScrollThumb,
+.HorizontalScrollBarVisible HorizontalScrollBar,
+.HorizontalScrollBarVisible HorizontalScrollBar .ScrollThumb HTMLHorizontalScrollBar,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar .ScrollThumb,
+.VerticalScrollBarVisible HTMLVerticalScrollBar,
+.VerticalScrollBarVisible HTMLVerticalScrollBar .ScrollThumb {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.VerticalScrollBarVisible VerticalScrollBar.MouseDown,
+.VerticalScrollBarVisible VerticalScrollBar.MouseDown .ScrollThumb,
+.HorizontalScrollBarVisible HorizontalScrollBar.MouseDown,
+.HorizontalScrollBarVisible HorizontalScrollBar.MouseDown .ScrollThumb HTMLHorizontalScrollBar.MouseDown,
+.HorizontalScrollBarVisible HTMLHorizontalScrollBar.MouseDown .ScrollThumb,
+.VerticalScrollBarVisible HTMLVerticalScrollBar.MouseDown,
+.VerticalScrollBarVisible HTMLVerticalScrollBar.MouseDown .ScrollThumb {
+    transition-duration: 0s;
+}
+
+#hardmode
+{
+	overflow: squish scroll;
 }

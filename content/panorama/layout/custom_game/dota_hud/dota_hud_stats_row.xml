@@ -1,0 +1,15 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hud/tooltip_unit_damage_armor.vcss_c" />
+	</styles>
+    <Panel>
+        <Panel class="StatRow">
+            <Label id="StatLabel" text="Stat Name" class="StatName" />
+            <Panel class="LeftRightFlow">
+                <Label id="StatValue" text="0" class="BaseValue" />
+                <Label id="StatValueBonus" text="" class="BonusValue" />
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

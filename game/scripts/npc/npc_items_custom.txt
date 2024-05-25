@@ -31250,37 +31250,37 @@
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_fire"
+	            "TextureName"	"fix/dmg_fire"
 	        }
 	        "modifier_dmgitem_holy"
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_holy"
+	            "TextureName"	"fix/dmg_holy"
 	        }
 	        "modifier_dmgitem_shadow"
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_shadow"
+	            "TextureName"	"fix/dmg_shadow"
 	        }
 	        "modifier_dmgitem_nature"
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_nature"
+	            "TextureName"	"fix/dmg_nature"
 	        }
 	        "modifier_dmgitem_frost"
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_frost"
+	            "TextureName"	"fix/dmg_frost"
 	        }
 	        "modifier_dmgitem_arcane"
 	        {
 	            "Passive"  "0"
 	            "IsHidden" "0" 
-	            "TextureName"	"dmg_arcane"
+	            "TextureName"	"fix/dmg_arcane"
 	        }
 	        "modifier_dmgitem_chaos"
 	        {
