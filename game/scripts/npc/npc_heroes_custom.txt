@@ -1,6 +1,11 @@
 // Dota Heroes File
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+
+// FOR FUTURE REFERENCE:
+// In order to disable facet hero key here must be unique and not match dota one (npc_dota_hero_riki_titanbreaker) + empty facets block
+// In order to disable innate abilities replace every unused slot with generic_hidden to override valve kv innate ability (be aware of 32 abilities cap that you may reach because valve adding abilities during runtime)
+
 "DOTAHeroes"
 {
 	"npc_dota_hero_riki_titanbreaker"
@@ -14,7 +19,9 @@
 		"Ability4"					"hawk4"
 		"Ability5"					"hawk7"
 		"Ability6"					"hawk6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_agility_20"
 		"Ability12"		"special_bonus_evasion_20"
@@ -92,7 +99,9 @@
 		"Ability4"					"bear4"
 		"Ability5"					"bear5"
 		"Ability6"					"bear6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -169,7 +178,9 @@
 		"Ability4"					"RootsDruid" 
 		"Ability5"					"CycloneDruid"
 		"Ability6"					"Shapeshift"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_magic_resistance_35"
@@ -248,7 +259,9 @@
 		"Ability4"					"resto4"
 		"Ability5"					"resto5"
 		"Ability6"					"resto6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_15"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_cast_range_150"
@@ -328,7 +341,9 @@
 		"Ability4"					"holy4"
 		"Ability5"					"holy55"
 		"Ability6"					"holy6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_armor_6"
@@ -406,7 +421,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -485,7 +502,9 @@
 		"Ability4"					"dark_ranger_life_drain" 
 		"Ability5"					"Fear_Warlock"
 		"Ability6"					"Felhunter"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -562,7 +581,9 @@
 		"Ability4"					"destro4"
 		"Ability5"					"Shadowfury"
 		"Ability6"					"destro6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_armor_5"
@@ -638,7 +659,9 @@
 		"Ability4"					"demo4"
 		"Ability5"					"demo5"
 		"Ability6"					"demo6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_armor_6"
@@ -714,7 +737,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_day_vision_400"
 		"Ability12"		"special_bonus_intelligence_30"
@@ -790,7 +815,9 @@
 		"Ability4"					"Death_For_Life"
 		"Ability5"					"Deafening_Coil"
 		"Ability6"					"Fatal_Grasp"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_hp_700"
@@ -869,7 +896,9 @@
 		"Ability4"					"frostdk4"
 		"Ability5"					"frostdk5"
 		"Ability6"					"frostdk6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_armor_12"
@@ -948,7 +977,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -1027,7 +1058,9 @@
 		"Ability4"					"unholy_5"
 		"Ability5"					"unholy_4"
 		"Ability6"					"unholy_6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_15"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -1106,7 +1139,9 @@
 		"Ability4"					"Ambush" 
 		"Ability5"					"Shadow_Blend"
 		"Ability6"					"Shadow_Walk"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -1182,7 +1217,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_12"
@@ -1258,7 +1295,9 @@
 		"Ability4"					"dh3" 
 		"Ability5"					"dh5"
 		"Ability6"					"dh6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_evasion_25"
@@ -1333,7 +1372,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_cooldown_reduction_10"
 		"Ability12"		"special_bonus_hp_100"
@@ -1408,7 +1449,9 @@
 		"Ability4"					"terror4" 
 		"Ability5"					"terror5"
 		"Ability6"					"terror6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_30"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_evasion_25"
@@ -1484,7 +1527,9 @@
 		"Ability4"					"combat4" 
 		"Ability5"					"combat5"
 		"Ability6"					"combat6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_respawn_reduction_15"
@@ -1559,7 +1604,9 @@
 		"Ability4"					"deadly4"
 		"Ability5"					"deadly5"
 		"Ability6"					"deadly6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_30"
 		"Ability12"		"special_bonus_magic_resistance_15"
@@ -1634,7 +1681,9 @@
 		"Ability4"					"Knee_Breaker" 
 		"Ability5"					"Sword_Storm"
 		"Ability6"					"Switch_Battle_Stance"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_day_vision_400"
@@ -1714,7 +1763,9 @@
 		"Ability4"					"fury4"
 		"Ability5"					"fury5"
 		"Ability6"					"fury6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_armor_8"
@@ -1790,8 +1841,9 @@
 		"Ability4"					"Protect4" 
 		"Ability5"					"Protect5"
 		"Ability6"					"Switch_Battle_Stance_Prot"
-		//"Ability7"					"warrior_2"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_hp_700"
@@ -1866,7 +1918,9 @@
 		"Ability4"					"mars4" 
 		"Ability5"					"mars5"
 		"Ability6"					"mars6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_hp_700"
@@ -1941,7 +1995,9 @@
 		"Ability4"					"Prayer_Of_Protection" 
 		"Ability5"					"Guardian"
 		"Ability6"					"Holy_Shield"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_cooldown_reduction_10"
 		"Ability12"		"special_bonus_lifesteal_10"
@@ -2019,7 +2075,9 @@
 		"Ability4"					"pala4" 
 		"Ability5"					"pala5"
 		"Ability6"					"pala6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_attack_speed_100"
@@ -2095,7 +2153,9 @@
 		"Ability4"					"Lavaburst" 
 		"Ability5"					"serpent_twins"
 		"Ability6"					"Lightning_Storm"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_armor_5"
 		"Ability11"		"special_bonus_spell_amplify_5"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -2171,7 +2231,10 @@
 		"Ability4"					"Lavaburst" 
 		"Ability5"					"serpent_twins"
 		"Ability6"					"Lightning_Storm"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
+
 		"Facets"
 		{
 		}
@@ -2239,7 +2302,9 @@
 		"Ability4"					"Ice_Armor" 
 		"Ability5"					"Polymorph"
 		"Ability6"					"Waterelemental"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_armor_12"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2316,7 +2381,9 @@
 		"Ability4"					"moon4" 
 		"Ability5"					"moon5"
 		"Ability6"					"moon6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_20"
 		"Ability11"		"special_bonus_intelligence_30"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2393,7 +2460,9 @@
 		"Ability4"					"ench4"
 		"Ability5"					"ench5"
 		"Ability6"					"ench6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_15"
 		"Ability11"		"special_bonus_magic_resistance_10"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2470,8 +2539,9 @@
 		"Ability4"					"Dragon_Claw" 
 		"Ability5"					"Polymorph"
 		"Ability6"					"fire6"
-		//"Ability7"					"mage_1"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2548,9 +2618,10 @@
 		"Ability4"					"Arcane4"
 		"Ability5"					"Arcane7"
 		"Ability6"					"Arcane6"
-		"Ability7"					"combat_system"
-
-		// First row of talents will not work unless some invoker abilities present in hero kv (level up order ignored by client)...
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
+		// First row of talents will not work unless some invoker abilities present in hero kv (level up order ignored by client) so let dota fill 10-16 slots with vanilla invoker abilities...
 		"Ability17"		"special_bonus_unique_nether_wizard_1"
 		"Ability18"		"special_bonus_unique_nether_wizard_2"
 		"Ability19"		"special_bonus_unique_nether_wizard_3"
@@ -2559,7 +2630,8 @@
 		"Ability22"		"special_bonus_unique_nether_wizard_6"
 		"Ability23"		"special_bonus_unique_nether_wizard_7"
 		"Ability24"		"special_bonus_unique_nether_wizard_8"
-		
+		"Ability25"		"generic_hidden"
+
 		"Facets"
 		{
 		}
@@ -2627,7 +2699,9 @@
 		"Ability4"					"disc7" 
 		"Ability5"					"Shadow_Creeper"
 		"Ability6"					"Fear_of_Dark"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cast_range_150"
@@ -2704,7 +2778,9 @@
 		"Ability4"					"shadow3"
 		"Ability5"					"shadow5"
 		"Ability6"					"shadow6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_35"
 		"Ability11"		"special_bonus_intelligence_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -2786,7 +2862,9 @@
 		"Ability4"					"Mindfreezing_Shot" 
 		"Ability5"					"frost_lake"
 		"Ability6"					"glacier_crack_spell"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_mp_regen_2"
@@ -2863,7 +2941,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_magic_resistance_15"
@@ -2941,7 +3021,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -3023,7 +3105,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_cooldown_reduction_10"
@@ -3103,7 +3187,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_intelligence_25"
 		"Ability12"		"special_bonus_armor_10"
@@ -3184,7 +3270,10 @@
 		"Ability4"					"Mindfreezing_Shot" 
 		"Ability5"					"frost_lake"
 		"Ability6"					"glacier_crack_spell"
-		
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
+
 		"Facets"
 		{
 		}
@@ -3253,7 +3342,9 @@
 		"Ability4"					"wind4"
 		"Ability5"					"wind5"
 		"Ability6"					"wind7"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_magic_resistance_15"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_respawn_reduction_15"
@@ -3334,7 +3425,9 @@
 		"Ability4"					"Beastrage" 
 		"Ability5"					"Beastheal"
 		"Ability6"					"Bear"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_attack_speed_50"
 		"Ability12"		"special_bonus_magic_resistance_10"
@@ -3411,7 +3504,9 @@
 		"Ability4"					"Feral1" 
 		"Ability5"					"Feral5"
 		"Ability6"					"ShapeshiftFeral"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_all_stats_15"
 		"Ability12"		"special_bonus_armor_10"
@@ -3496,7 +3591,9 @@
 		"Ability4"					"Ghost5"
 		"Ability5"					"Ghost4"
 		"Ability6"					"Ghost6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_agility_25"
 		"Ability12"		"special_bonus_strength_20"
@@ -3581,7 +3678,9 @@
 		"Ability4"					"Retri4"
 		"Ability5"					"Retri5"
 		"Ability6"					"Retri6"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_strength_20"
 		"Ability12"		"special_bonus_vision_200"
@@ -3666,7 +3765,9 @@
 		"Ability4"					"empty_spell3"
 		"Ability5"					"empty_spell4"
 		"Ability6"					"empty_spell5"
-
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
 		"Ability10"		"special_bonus_movement_speed_25"
 		"Ability11"		"special_bonus_all_stats_15"
 		"Ability12"		"special_bonus_hp_700"
