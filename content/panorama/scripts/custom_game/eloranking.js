@@ -4805,6 +4805,3 @@ function DisableTalentTree(){
     $.Msg(newUI);
     $.Msg("disabled talent tree");
 }
-
-$.FindChildInContext("#selectdiffipanel").visible = true;
-$("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Mythical Set Tokens can drop.";
