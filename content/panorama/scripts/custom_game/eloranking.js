@@ -4268,7 +4268,21 @@ function PingHeroLevel()
         return;
     }
 
-    GameEvents.SendCustomGameEventToServer("pingherolevel", { "player_id" : Game.GetLocalPlayerID(), "target_player_unit": GetLocalPlayerSelectedUnit() });
+    // Most likely this will always produce english string if possible...
+    let targetPlayerUnit = GetLocalPlayerSelectedUnit();
+    let targetPlayerUnitName = undefined;
+
+    if(targetPlayerUnit > -1) {
+        targetPlayerUnitName = $.Localize("#" + Entities.GetUnitName(targetPlayerUnit));
+    } else {
+        targetPlayerUnitName = undefined;
+    }
+
+    GameEvents.SendCustomGameEventToServer("pingherolevel", { 
+        "player_id" : Game.GetLocalPlayerID(), 
+        "target_player_unit_entindex": targetPlayerUnit,
+        "target_player_unit_name" : targetPlayerUnitName
+    });
 
     pingHeroLevelCd = true;
 

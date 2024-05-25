@@ -20393,28 +20393,40 @@ function COverthrowGameMode:PingHeroLevel(params)
     return
   end
 
-  -- Localization tags or html tags will require more panorama hacks so like this for now
-  -- Also can't make it support different player without panorama hacks...
-  local targetHero = EntIndexToHScript(params.target_player_unit)
-
-  if(hero ~= targetHero) then
-    return
-  end
   COverthrowGameMode._pingHeroLevelCd = COverthrowGameMode._pingHeroLevelCd or {}
 
   if(COverthrowGameMode._pingHeroLevelCd[playerId] ~= nil) then
     return
   end
 
+  local targetHero = nil
+
+  if(params.target_player_unit_entindex ~= nil and params.target_player_unit_name ~= nil) then
+    targetHero = EntIndexToHScript(params.target_player_unit_entindex)
+  else
+    targetHero = hero
+  end
+
+  --"DOTA_XP_Alert_Ally_Capped"	"<font color='%s1'>%s2</font> is at max level!"
+  --"DOTA_XP_Alert_Ally"		"<font color='%s1'>%s2</font> needs <font color='#DAAF01'>%s3 XP</font> to reach <font color='#DAAF01'>Level %s4</font>"
+
   local heroLevel = GetHeroLevel(targetHero)
   local heroLevelPct = targetHero.levelPercentage
   local maxPossibleLevel = #COverthrowGameMode.levelTable
   
   if(heroLevel == maxPossibleLevel) then
-    Say(player, "I'm at max level!", true)
+    if(targetHero == hero) then
+      Say(player, "I'm at max level!", true)
+    else
+      Say(player, tostring(params.target_player_unit_name).." at max level!", true)
+    end
   else
     if(hero.levelPercentage < 100) then
-      Say(player, "I need "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+      if(targetHero == hero) then
+        Say(player, "I need "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+      else
+        Say(player, tostring(params.target_player_unit_name).." needs "..tostring(100-hero.levelPercentage).."% XP to reach Level "..tostring(heroLevel+1), true)
+      end
     else
       -- Is this even possible?
     end
