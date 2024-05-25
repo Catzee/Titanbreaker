@@ -3,7 +3,6 @@
 		<include src="file://{resources}/scripts/custom_game/custom_ui_manifest.js" />
 	</scripts>
 	<Panel>
-		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
 		<CustomUIElement type="Hud"					layoutfile="file://{resources}/layout/custom_game/overthrow_item_notification.xml" />
 		<!--<CustomUIElement type="GameSetup"			layoutfile="file://{resources}/layout/custom_game/team_select.xml" /> -->
 		<CustomUIElement type="FlyoutScoreboard"	layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml" />
@@ -14,6 +13,8 @@
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/eloranking.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
     	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" /> 
+
+		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/titanbreaker_scoreboard_top.xml" />
 
 		<!--<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/weapon_choice.xml" />-->
 	</Panel>

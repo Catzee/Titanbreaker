@@ -2038,7 +2038,7 @@
 			</Panel>
 		</Panel>
 
-		<Panel class="Talent" id="talenttooltip" >
+		<Panel class="Talent" id="talenttooltip" style="z-index: 9000;">
 			<Panel class="TalentButton">	
 				<Image class="TalentImage" id="talenttooltipimage" src="file://{images}/spellicons/bear2.png"  />
 				<Label class="ButtTextBigGold" id="talenttooltiptext" text="+ 5% Strength" style="font-size: 16px;"/>
