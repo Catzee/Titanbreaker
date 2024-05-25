@@ -2814,7 +2814,7 @@ function GetRunewordImageByID(id){
         return path+"queenofpain_shadow_strike";
     }
     if(id == 28){
-        return path+"skeleton_king_vampiric_aura";
+        return path+"skeleton_king_bone_guard";
     }
     if(id == 29){
         return path+"visage_grave_chill";
