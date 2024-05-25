@@ -4482,6 +4482,26 @@ function InjectIntoDotaUI()
     } else {
         $.Msg("Valve break something or did major changes to UI (can't find gold label).");
     }
+
+    // Hides facets and innate ability ui
+    let talentsTree = dotaHudRoot.FindChildTraverse("StatBranch");
+    if(talentsTree != undefined) {
+        let parent = talentsTree.GetParent();
+        let childsCount = parent.GetChildCount();
+
+        for(let i = 0; i < childsCount; i++) {
+            let child = parent.GetChild(i);
+
+            if(child == undefined) {
+                break;
+            }
+
+            if(child.paneltype === "DOTAInnateDisplay") {
+                child.style.visibility = "collapse";
+                break;
+            }
+        }
+    }
 }
 
 function SetUIStats(args)
