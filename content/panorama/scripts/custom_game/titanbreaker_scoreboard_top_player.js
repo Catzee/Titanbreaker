@@ -4,10 +4,6 @@ function PortraitClicked() {
     Players.PlayerPortraitClicked($.GetContextPanel().GetAttributeInt("player_id", -1), GameUI.IsControlDown(), GameUI.IsAltDown());
 }
 
-function PortraitClicked() {
-    Players.PlayerPortraitClicked($.GetContextPanel().GetAttributeInt("player_id", -1), GameUI.IsControlDown(), GameUI.IsAltDown());
-}
-
 function GetLivesAmount(playerId)
 {
     let playerHero = Players.GetPlayerHeroEntityIndex(playerId)
