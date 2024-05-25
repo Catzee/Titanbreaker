@@ -158,21 +158,92 @@
 		</Panel>
 
 
-		<Panel class="WeaponChoice" id="selectdiffipanel" hittest="false">
+		<Panel class="WeaponChoice" id="selectdiffipanel" hittest="false" style="height: 550px; margin-top: 0px;">
 			<Label class="WeaponStatsRight" id="TimeSelection" text="Time Remaining: 20" style="margin-top: 5px; font-weight: bold;" />
-			<Label class="RewardHeader" html="true" text="Choose Monster Level" style="font-size: 30px; margin-top: 10px; margin-bottom: 5px; font-weight: bold;"/>
-			<Panel  class="WeaponRow">
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(-1)">
+			<Label class="RewardHeader" html="true" text="Choose Monster Level" style="font-size: 30px; margin-top: 10px; margin-bottom: 2px; font-weight: bold;"/>
+			<Label class="RewardHeader" id="diffiselection" html="true" text="Level: 1" style="font-size: 20px; margin-top: 2px; margin-bottom: 7px; font-weight: bold; color: white;"/>
+			<Panel class="WeaponRow">
+				<Panel  class="VoteButton" onactivate="TempleVote(-1)" style="vertical-align:center; horizontal-align:center; border-width: 3px;">
 					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
 						<Label class="SelectionButton" id="easierbutton" text="Easier" visible="false" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: lime;"/>
 					</Button>
 				</Panel>
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(0)">
-					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
-						<Label class="SelectionButton" id="diffiselection" text="Level: 1" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: white;"/>
-					</Button>
+				<Panel  class="DropTable" style="margin-left: 10px; margin-right: 10px;">
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="" /> 
+						</Panel>
+						<Panel>
+							<Label class="WeaponStats" text="Drop Chance" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Mythical" style="color:#7733ff;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="mythical2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Divine" style="color:gold;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="divine2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Immortal" style="color:aqua;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="immortal2" text="0.0%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Legendary" style="color:orange;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="legendary2" text="0.3%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Epic" style="color:magenta;" /> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="epic2" text="3%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Rare" style="color:royalblue;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="rare2" text="10%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Common" style="color:lawngreen;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="common2" text="25%" /> 
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Panel class="TableCell">
+							<Label class="WeaponStats" text="Experience" style="color:white;"/> 
+						</Panel>
+						<Panel class="TableCell">
+							<Label class="DropChanceChooser" id="Exp2" text="100%" /> 
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel  class="VoteButton" style="border-width: 3px;" onactivate="TempleVote(1)">
+
+				<Panel  class="VoteButton" onactivate="TempleVote(1)" style="vertical-align:center; horizontal-align:center; border-width: 3px;">
 					<Button class="WeaponButton" style="vertical-align:center; horizontal-align:center;">
 						<Label class="SelectionButton" text="Harder" style="font-size: 24px; font-weight: bold; vertical-align:center; horizontal-align:center; color: orange;" />
 					</Button>
@@ -200,84 +271,8 @@
 					</Button>
 				</Panel>
 			</Panel-->
-			<Panel  class="DropTable">
-
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="" /> 
-				 	</Panel>
-				 	<Panel>
-				 		<Label class="WeaponStats" text="Drop Chance" /> 
-				 	</Panel>
-
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Mythical" style="color:#7733ff;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="mythical2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Divine" style="color:gold;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="divine2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Immortal" style="color:aqua;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="immortal2" text="0.0%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Legendary" style="color:orange;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="legendary2" text="0.3%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Epic" style="color:magenta;" /> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="epic2" text="3%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Rare" style="color:royalblue;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="rare2" text="10%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Common" style="color:lawngreen;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="common2" text="25%" /> 
-				 	</Panel>
-				 </Panel>
-				 <Panel  class="TableRow">
-				 	<Panel class="TableCell">
-				 		<Label class="WeaponStats" text="Experience" style="color:white;"/> 
-				 	</Panel>
-				 	<Panel class="TableCell">
-				 		<Label class="DropChanceChooser" id="Exp2" text="100%" /> 
-				 	</Panel>
-				 </Panel>
-			</Panel>
 			<Panel  class="WeaponRow">
-				<Label class="WeaponStats" id="hardmode" html="true" text="" style="color: orange; font-size: 22px;" />
+				<Label class="WeaponStats VerticalScrollBarVisible" id="hardmode" html="true" text="" style="color: orange; font-size: 22px; padding-left: 20px; padding-right: 20px;" />
 			</Panel>
 		</Panel>
 

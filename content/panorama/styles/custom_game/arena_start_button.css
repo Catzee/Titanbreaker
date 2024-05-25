@@ -481,6 +481,7 @@
 	background-size: 100% 100%;
 	background-color: gradient( linear, 0% 0%, 50% 100%, from( #55555a ), to( #22222a ) );
 	overflow: squish squish; 
+	box-shadow: inset grey 2px 2px 2px 2px;
 }
 
 .GuideTextContainer
@@ -1684,4 +1685,9 @@
 .VerticalScrollBarVisible HTMLVerticalScrollBar.MouseDown,
 .VerticalScrollBarVisible HTMLVerticalScrollBar.MouseDown .ScrollThumb {
     transition-duration: 0s;
+}
+
+#hardmode
+{
+	overflow: squish scroll;
 }
