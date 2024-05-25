@@ -4051,10 +4051,19 @@ function InjectIntoDotaHeroStatsTooltip()
             }
             customDamageReductionLabel = damageReductionRow.FindChildTraverse("StatValue");
             healthRegenRow._customDamageReductionLabel = customDamageReductionLabel
+
+            // Disables slow resist label added in 7.36
+            let slowResistLabel = defenseContainerParent.FindChildTraverse("SlowResistRow");
+            if(slowResistLabel != undefined) {
+                slowResistLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't hide slow resist row).");
+            }
         }
     } else
     {
-        $.Msg("Valve break something or did major changes to UI (can't add spell haste row).");
+        $.Msg("Valve break something or did major changes to UI (can't add damage reduction row).");
     }
 
     customDamageReductionLabel = healthRegenRow._customDamageReductionLabel;
