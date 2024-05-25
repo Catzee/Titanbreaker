@@ -20357,7 +20357,7 @@ function PassiveStatCalculation(event)
     local baseStatsPercentFactor = {1,1,1,1,1}
     baseStats[STR] = hero:GetStrength()
     baseStats[AGI] = hero:GetAgility()
-    baseStats[INT] = hero:GetIntellect()
+    baseStats[INT] = hero:GetIntellect(false)
     baseStats[AA] = hero:GetAttackDamage()
     baseStats[HP] = hero:GetMaxHealth()
     baseStats[MANA] = hero:GetMaxMana()
@@ -20831,7 +20831,7 @@ function PassiveStatCalculation(event)
         hero:SetModifierStackCount(buff, ability, agiStat)
     end
     --int
-    local intStat = hero:GetIntellect()
+    local intStat = hero:GetIntellect(false)
     if intStat < 1 then
         intStat = 0
         hero:RemoveModifierByName("modifier_int_custom")
@@ -21751,7 +21751,7 @@ function PassiveStatCalculation(event)
             end
         end
         if hero:GetPrimaryAttribute() == 2 then
-            penalty = hero:GetIntellect()
+            penalty = hero:GetIntellect(false)
             buff = "modifier_int_custom"
             if penalty >= 1 then
                 ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
@@ -21765,7 +21765,7 @@ function PassiveStatCalculation(event)
         end
         if hero:GetPrimaryAttribute() == 0 or hero:GetPrimaryAttribute() == 1 then
             if hero.resourcesystem and hero.resourcesystem ~= 4 then
-                penalty = hero:GetIntellect()
+                penalty = hero:GetIntellect(false)
                 buff = "modifier_int_custom_penalty"
                 if penalty >= 1 then
                     ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
@@ -21919,7 +21919,7 @@ function GetIntellectCustom( hero )
     --if hero:GetPrimaryAttribute() == 2 then
         return hero:GetModifierStackCount("modifier_int_custom", nil)
     --else
-    --    return hero:GetIntellect()
+    --    return hero:GetIntellect(false)
     --end
 end
 
