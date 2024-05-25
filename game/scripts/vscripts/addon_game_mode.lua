@@ -10564,6 +10564,8 @@ end
  --end
  COverthrowGameMode:CheckForHeroChargeAbilities(hero)
 
+ COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero) 
+
  if heroName == "npc_dota_hero_lion" then
   hero.temple_class = 11
 end
@@ -20373,4 +20375,50 @@ function COverthrowGameMode:SendLeaderboard(params)
   end
 
   CustomGameEventManager:Send_ServerToPlayer(player, "getleaderboardresponse", { data = COverthrowGameMode._leaderboardData } )
+end
+
+function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)
+  -- If this approach will stop working you can try parse heroes kv with code below and determine valid abilities using it...
+  --COverthrowGameMode._heroesKV = COverthrowGameMode._heroesKV or LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+
+  local allowedAbilities = {}
+  --local heroName = hero:GetUnitName()
+  --local heroKV = COverthrowGameMode._heroesKV[heroName]
+  --for i=0, DOTA_MAX_ABILITIES do
+  --  if(heroKV["Ability"..tostring(i)] ~= nil) then
+  --    allowedAbilities[heroKV["Ability"..tostring(i)]] = true
+  --  end
+  --end
+
+  -- valve things (can be referenced in c++ and crash if removed)
+  allowedAbilities["ability_capture"] = true
+  allowedAbilities["abyssal_underlord_portal_warp"] = true
+  allowedAbilities["twin_gate_portal_warp"] = true
+  allowedAbilities["ability_lamp_use"] = true
+  allowedAbilities["ability_pluck_famango"] = true
+
+  for i=0, DOTA_MAX_ABILITIES-1 do
+    local ability = hero:GetAbilityByIndex(i)
+    if(ability ~= nil) then
+      local abilityClass = ability:GetClassname()
+      local abilityName = ability:GetAbilityName()
+      -- skip datadriven and lua abilities
+      if(abilityClass ~= "ability_datadriven" and abilityClass ~= "ability_lua") then
+        local abilityName = ability:GetAbilityName()
+        if(allowedAbilities[abilityName] == nil) then
+          local isTalent = string.sub(abilityName, 1, string.len("special_bonus_")) == "special_bonus_"
+          if(isTalent == false) then
+            --print("Destroy ", abilityName)
+            hero:RemoveAbilityByHandle(ability)
+          else
+            --print("Keep ", abilityName)
+          end
+        else
+          --print("Keep ", abilityName)
+        end
+      else
+        --print("Keep ", abilityName)
+      end
+    end
+  end
 end
