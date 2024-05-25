@@ -250,20 +250,6 @@
     height: 20px;
 }
 
-#UltimateIndicatorContainer {
-    horizontal-align: center;
-    width: 20px;
-    height: 20px;
-    margin-top: 32px;
-}
-
-.player_ultimate_not_leveled #UltimateIndicatorContainer {
-    visibility: visible;
-}
-
-.not_local_player_team #UltimateIndicatorContainer {
-    visibility: collapse;
-}
 
 .UltimateIndicatorShared {
     width: 100%;
@@ -328,41 +314,37 @@
     vertical-align: middle;
 }
 
-#UltimateIndicatorBG {
-    background-image: url("s2r://panorama/images/fantasy_craft/gem_shape_heart_png.vtex");
-    wash-color: rgb(73, 17, 7);
+#LivesContainer {
+    horizontal-align: right;
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+    visibility: visible;
+    margin-right: 0px;
 }
 
-.player_ultimate_hidden #UltimateIndicatorBG {
-    opacity: 0;
+#LivesBG {
+    background-image: none;
+    width: 32px;
+    height: 32px;
 }
 
-#UltimateIndicator {
-    opacity: 0;
+#LivesLabel
+{
+    horizontal-align: right;
+    text-align: center;
+    font-size: 13px; 
+    color: white;
+    margin-right: 2px;
+    font-weight: bold;
+    text-shadow: 0px 0px 4px 2.0 black;
+    font-family: titleFont;
+    background-color: gradient( radial, 50% 100%, 0% 0%, 50% 100%, from( #000000ee ), to( #00000009 ) );
 }
 
-.player_ultimate_ready #UltimateIndicator {
-    opacity: 1;
-    background-image: url("s2r://panorama/images/fantasy_craft/gem_shape_heart_png.vtex");
-    wash-color: rgb(73, 17, 7);
-}
-
-.player_ultimate_no_mana #UltimateIndicator {
-    opacity: 1;
-    background-image: url("s2r://panorama/images/fantasy_craft/gem_shape_heart_png.vtex");
-    wash-color: rgb(73, 17, 7);
-}
-
-.player_ultimate_not_leveled #UltimateIndicator {
-    opacity: 1;
-    background-image: url("s2r://panorama/images/fantasy_craft/gem_shape_heart_png.vtex");
-    wash-color: rgb(73, 17, 7);
-}
-
-.player_ultimate_cooldown #UltimateIndicator {
-    opacity: 1;
-    background-image: url("s2r://panorama/images/fantasy_craft/gem_shape_heart_png.vtex");
-    wash-color: rgb(73, 17, 7);
+#LivesLabel.Hidden
+{
+    visibility: collapse;
 }
 
 .RespawnSkullIcon

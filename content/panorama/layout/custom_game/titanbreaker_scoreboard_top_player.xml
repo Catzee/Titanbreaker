@@ -19,12 +19,11 @@
 			</Button>
 			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
 		</Panel>
-		<Panel hittest="false" id="UltimateIndicatorContainer">
-			<Panel hittest="false" id="UltimateIndicatorBG" class="UltimateIndicatorShared" />
-			<Panel hittest="false" id="UltimateIndicator" class="UltimateIndicatorShared" />
-			<Label text="5" style="text-align: center; horizontal-align: center; font-size: 14px; color: white; margin-top: 2px; "/>
+		<Panel hittest="false" id="LivesContainer">
+			<Panel hittest="false" id="LivesBG"/>
+			<Label id="LivesLabel" text="5"/>
 		</Panel>
-		<Button id="TipButton" class="DotaPlusDarkButton" onactivate="TipClicked();">
+		<Button id="TipButton" class="DotaPlusDarkButton" visibility="colalpse">
 			<Panel id="TipIcon" />
 			<Label text="#DOTA_Scoreboard_Tip" hittest="false" />
 		</Button>
