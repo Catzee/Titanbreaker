@@ -20762,6 +20762,15 @@ function PassiveStatCalculation(event)
     if hero.primary_bonus_system then
         baseStats[hero:GetPrimaryAttribute()+1] = baseStats[hero:GetPrimaryAttribute()+1] + hero.primary_bonus_system
     end
+    -- bonus stats per lvl past dota 25 lvl
+    local heroLevelForBonusStatsPerLvl = hero:GetLevel()
+    hero._dotaMaxLevelForBonusStatsPerLvl = hero._dotaMaxLevelForBonusStatsPerLvl or GameRules:GetGameModeEntity():GetCustomHeroMaxLevel()
+    if(heroLevelForBonusStatsPerLvl == hero._dotaMaxLevelForBonusStatsPerLvl) then
+        local missingLevelsForBonusStats = math.max(0, GetHeroLevel(hero) - heroLevelForBonusStatsPerLvl)
+        baseStats[STR] = baseStats[STR] + (missingLevelsForBonusStats * hero:GetStrengthGain())
+        baseStats[AGI] = baseStats[AGI] + (missingLevelsForBonusStats * hero:GetAgilityGain())
+        baseStats[INT] = baseStats[INT] + (missingLevelsForBonusStats * hero:GetIntellectGain())
+    end
     --percentage
     baseStatsPercentFactor[STR] = baseStatsPercentFactor[STR] + GetStrengthPercentageBonus(hero, primary_stats_percent_bonus)
     baseStatsPercentFactor[AGI] = baseStatsPercentFactor[AGI] + GetAgilityPercentageBonus(hero, primary_stats_percent_bonus)

@@ -4103,9 +4103,9 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
 
     // Update str/agi/int
     if(isHero) {
-        let str = main_stats[selectedHeroPlayerID][0];
-        let agi = main_stats[selectedHeroPlayerID][1];
-        let int = main_stats[selectedHeroPlayerID][2];
+        let str = main_stats[selectedHeroPlayerID][0].toFixed();
+        let agi = main_stats[selectedHeroPlayerID][1].toFixed();
+        let int = main_stats[selectedHeroPlayerID][2].toFixed();
 
         if(customStrLabel != undefined) {
             customStrLabel.text = str;
@@ -4134,7 +4134,7 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
     
             if(customStrBonusLabel != undefined) {
                 let totalPhysDmg = (main_stats[selectedHeroPlayerID][6] * 100).toFixed(1);
-                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5] + " Max Health and " + totalPhysDmg + "% Physical Damage";
+                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5].toFixed() + " Max Health and " + totalPhysDmg + "% Physical Damage";
             }
     
             if(customStrPrimaryBonusLabel != undefined) {
@@ -4152,7 +4152,7 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
     
             if(customAgiBonusLabel != undefined) {
                 let totalCritDmg = (main_stats[selectedHeroPlayerID][9] * 100).toFixed(1)
-                customAgiBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][7].toFixed(1) + " Attack Speed, " + main_stats[selectedHeroPlayerID][8].toFixed(1) + " Armor and " + totalCritDmg + "% Critical Strike Damage";
+                customAgiBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][7].toFixed(0) + " Attack Speed, " + main_stats[selectedHeroPlayerID][8].toFixed(0) + " Armor and " + totalCritDmg + "% Critical Strike Damage";
             }
     
             if(customAgiPrimaryBonusLabel != undefined) {
@@ -4174,7 +4174,7 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
                 let totalSpellResistance = main_stats[selectedHeroPlayerID][12].toFixed(1);
 
                 if(main_stats[selectedHeroPlayerID][13] == undefined) {
-                    intDetails = "= " + main_stats[selectedHeroPlayerID][10] + " Max Mana, " + totalAbDmg + "% Ability Damage and " + totalSpellResistance + " Spell Resistance";
+                    intDetails = "= " + main_stats[selectedHeroPlayerID][10].toFixed() + " Max Mana, " + totalAbDmg + "% Ability Damage and " + totalSpellResistance + " Spell Resistance";
                 }else{
                     intDetails = "= " + totalAbDmg + "% Ability Damage,  " + totalSpellResistance + " Spell Resistance";
                 }
