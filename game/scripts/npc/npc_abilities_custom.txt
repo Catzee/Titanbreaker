@@ -73616,7 +73616,7 @@
 	        }
 	        "modifier_dfe"
 	        {
-	        	"TextureName"	"jakiro_dual_breath"
+	        	"TextureName"	"fix/127"
 	        	"Passive"			"0"
 	        	"IsHidden"			"0"
 	        	"IsDebuff"			"0"
