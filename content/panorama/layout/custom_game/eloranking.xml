@@ -1582,7 +1582,8 @@
 				<Label class="ButtTextBigGold" text="They are based on the last Ability Damage Instance\nyou caused right before the snapshot happens." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Cooldown Reduction considers the last Ability\ncast before the snapshot happens." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Hero Attributes Information" style="font-size: 24px;"/>
-				<Label class="ButtTextBigGold" text="The default DotA stats are altered in Titanbreaker.\nYou can find details when hovering over your main stats UI.\n\nMelee Heroes start with 30 Spell Resistance (not Healers)\n+50 Health per Hero Level" style="font-size: 16px; horizontal-align: left; color:white;"/>
+				<Label class="ButtTextBigGold" text="The default DotA stats are altered in Titanbreaker.\nYou can find details when hovering over your main stats UI.\n\nMelee Heroes start with 30 Spell Resistance (not Healers)" style="font-size: 16px; horizontal-align: left; color:white;"/>
+				<Label id="MaxHealthPerLvlLabel" class="ButtTextBigGold" text="+(LOADING) Max Health per Hero Level" style="font-size: 16px; horizontal-align: left; color:white;"/>
 				<Label class="ButtTextBigGold" text="There are 2 effects that modify the Damage of Abilities\non a percentage basis: % Damage and % Elemental\nDamage(Fire, Frost, Arcane, Physical...). % Damage\nfrom any sourcestacks multiplicatively,\nwhile % Elemental Damage stacks additively." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Ability Damage can also be affected by non-percentage based\nElemental Damage. For example + 10 Fire Damage causes\neach Fire Damage instance to add 10 Damage to its base\nDamage, ignoring the scaling of the Ability but receiving\nother Bonuses." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<!--Label class="ButtTextBigGold" text="Attack Power increases the Damage\nfor Strength and Agility Heroes.\nSpellpower increases the\nDamage of Intellect Heroes." style="color:white; font-size: 16px; horizontal-align: left;"/-->
@@ -1590,7 +1591,7 @@
 				<Label class="ButtTextBigGold" text="Effects that modify Critical Strike Chances\nand Damage stack additively." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Spell Resistance from Artifacts is capped at 35." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Percentage Bonuses from multiple Artifacts\nstack additively (for example +5% Damage and\n+10% Damage results in +15% Damage)." style="color:white; font-size: 16px; horizontal-align: left;"/>
-				<Label class="ButtTextBigGold" text="Spellhaste increases the tick rate of Channeled Abilities\nbut only up to 200%." style="color:white; font-size: 16px; horizontal-align: left;"/>
+				<Label id="ChannelSpellHasteLabel" class="ButtTextBigGold" text="Spellhaste increases the tick rate of Channeled Abilities\nbut only up to (LOADING) %." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="When you have more than 1 core Healer (Divine Crusader /\nHoly Cleric / Twilight Cleric / Peaceful Guardian / Spirit Voodoo)\nin your party, there will be a Healing output penalty\nfor all players:" style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="2 Healers = 25% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="3 Healers = 10% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>

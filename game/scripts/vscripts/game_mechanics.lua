@@ -20115,10 +20115,12 @@ function GetRequiredAttackRangeBonuses( hero )
     return bonus
 end
 
+-- Be aware that this also called once per connection from panorama to display right value in hero stats window
 function GetMaxHpBonusPerHeroLevel(hero)
     return 25
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetMaxHpBonusFromStr(hero, str)
     local hpPerStr = 10
     if hero.talents[3] and hero.talents[3] > 0 then
@@ -20128,18 +20130,22 @@ function GetMaxHpBonusFromStr(hero, str)
     return str * hpPerStr
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetPhysicalDamageBonusFromStr(hero, str)
     return 0.001 * str --0.0008 
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetAttackSpeedBonusFromAgi(hero, agility)
     return 0.05 * agility
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetArmorBonusFromAgi(hero, agility)
     return 0.04 * agility
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetCriticalStrikeDamageBonusFromAgi(hero, agility)
     local extra = 0
     if hero.talents[116] > 0 then
@@ -20148,6 +20154,7 @@ function GetCriticalStrikeDamageBonusFromAgi(hero, agility)
     return (0.0005 + extra) * agility
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetMaxManaBonusFromInt(hero, int)
     local manaPerInt = 1 --10 --12
     if hero.resourcesystem then
@@ -20156,10 +20163,12 @@ function GetMaxManaBonusFromInt(hero, int)
     return manaPerInt * int
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetAbilityDamageBonusFromInt(hero, int)
     return 0.00015 * GetIntellectCustom(hero)
 end
 
+-- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetSpellResistanceBonusFromInt(hero, int)
     local mresPerInt = 0.01
     if GetLevelOfAbility(hero, "ench3") >= 4 then
@@ -27934,6 +27943,7 @@ function ChannelTickSystem( event )
     end
 end
 
+-- Be aware that this called once per connection from panorama to display right value in hero stats window
 function GetChannelSpellhasteCap( caster )
     local cap = 3 --2
     --if caster:HasModifier("modifier_wing") or caster:HasModifier("modifier_wing2") then

@@ -2695,11 +2695,27 @@ function COverthrowGameMode:OnPlayerConnected(params)
     -- Restore talents data for that client
     SendAllTalentsToPlayer(player, playerId)
     -- Restore toggle stash button
-    COverthrowGameMode:SendStashInfo(player)
-
+    COverthrowGameMode:SendStashInfo(player, playerId)
+    -- Update hero stats window values to match actual ones
+    COverthrowGameMode:SendHeroStatsInfo(player, playerId)
+    
     -- Allows next reconnect requests spam
     COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
   end)
+end
+
+function COverthrowGameMode:SendHeroStatsInfo(player, playerId)
+  local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+
+  if(hero == nil) then
+    return
+  end
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "getherostatsvaluesresponse",
+  {
+    channelSpellhasteCap = GetChannelSpellhasteCap(hero),
+    bonusMaxHpPerLvl = GetMaxHpBonusPerHeroLevel(hero)
+  })
 end
 
 function COverthrowGameMode:SendStashInfo(player)
