@@ -19737,7 +19737,7 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
 end
 
 function GetHealthStaticBonus( hero, strength, agility, intellect, armor, magicres, maxMana )
-    local static_bonus = 25 * (hero:GetLevel() - 1) + 200 --bugged, must use getherolevel here but would lead to op hp in lategame
+    local static_bonus = (GetMaxHpBonusPerHeroLevel(hero) * GetHeroLevel(hero))
     if hero.talents[120] and hero.talents[120] > 0 then
         static_bonus = static_bonus + 0.1 * hero.talents[120] * maxMana
     end
@@ -20113,6 +20113,10 @@ end
 function GetRequiredAttackRangeBonuses( hero )
     local bonus = GetInterstellarStat(hero)
     return bonus
+end
+
+function GetMaxHpBonusPerHeroLevel(hero)
+    return 25
 end
 
 function GetMaxHpBonusFromStr(hero, str)
