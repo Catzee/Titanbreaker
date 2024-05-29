@@ -13,8 +13,6 @@ LinkLuaModifier("modifier_bonus_cast_range", "modifiers/modifier_bonus_cast_rang
 --LinkLuaModifier("modifier_path_health_buff", "modifiers/modifier_path_health_buff", LUA_MODIFIER_MOTION_NONE)
 -- fix for death with pl 6th ability buff due to heal after damage
 LinkLuaModifier("modifier_godschosen_2", "modifiers/heroes/sanctified_crusader/shield_of_vengeance/modifier_godschosen_2", LUA_MODIFIER_MOTION_NONE)
--- swipe of ursa proc duration fix
-LinkLuaModifier("modifier_swipe_of_ursa_proc", "modifiers/path_talents/modifier_swipe_of_ursa_proc", LUA_MODIFIER_MOTION_NONE)
 -- omniknight 2nd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_divine_crusarder_holy_judgement_buff", "modifiers/heroes/divine_crusarder/holy_judgement/modifier_divine_crusarder_holy_judgement_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_divine_crusarder_holy_judgement_wisdom", "modifiers/heroes/divine_crusarder/holy_judgement/modifier_divine_crusarder_holy_judgement_wisdom", LUA_MODIFIER_MOTION_NONE)
@@ -63,3 +61,7 @@ LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_buff_inner_cd", "modifi
 LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_shadow_priest_form", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_shadow_priest_form", LUA_MODIFIER_MOTION_NONE)
 -- for lua pets
 LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system_lua", LUA_MODIFIER_MOTION_NONE)
+-- frostwyrm fury (path talent)
+LinkLuaModifier("modifier_frostwyrm_fury_buff", "modifiers/path_talents/modifier_frostwyrm_fury_buff", LUA_MODIFIER_MOTION_NONE)
+-- swipe of ursa proc duration fix (divine item)
+LinkLuaModifier("modifier_swipe_of_ursa_proc", "modifiers/path_talents/modifier_swipe_of_ursa_proc", LUA_MODIFIER_MOTION_NONE)
