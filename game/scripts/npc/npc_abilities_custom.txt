@@ -74041,7 +74041,7 @@
 	            "IsBuff"			"1"
 	            "IsDebuff"			"0"
 	            "IsStunDebuff"		"0"
-	            "TextureName" "skeleton_king_vampiric_aura"
+	            "TextureName" "fix/101"
 	            "ThinkInterval"  "2.0"
 	            "OnIntervalThink"
 	            {
@@ -97900,7 +97900,7 @@
 	"pve_act_affix_reincarnation" 
 	{
 	    "BaseClass" "ability_datadriven"
-	    "AbilityTextureName"    "skeleton_king_vampiric_aura"
+	    "AbilityTextureName"    "fix/skeleton_king_bone_guard"
 	    "MaxLevel" "1"
 	    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
