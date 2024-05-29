@@ -12295,19 +12295,6 @@ function COverthrowGameMode:FilterDamage( filterTable )
               newdamage = 0
             end
           end
-          --wolf rider
-          if victim.talents and victim.talents[60] and victim.talents[60] > 0 then
-            local bonusfromms = victim:GetMoveSpeedModifier(victim:GetBaseMoveSpeed(), true) - 300
-            bonusfromms = bonusfromms * 0.0005 * victim.talents[60]
-            local wolf_dmg_factor = (1 - bonusfromms)
-            if wolf_dmg_factor < 0.5 then
-              wolf_dmg_factor = 0.5
-            end
-            newdamage = newdamage * wolf_dmg_factor
-            if newdamage < 0 then
-              newdamage = 0
-            end
-          end
 
           --ML 500 max hit block
           if (COverthrowGameMode.jungledifficulty >= 500 and victim:HasModifier("pve_boss_extra_resistances")) or victim:HasModifier("modifier_pve_act_affix_giant") then

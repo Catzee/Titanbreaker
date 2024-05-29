@@ -26330,6 +26330,16 @@ function GetTotalDamageTakenFactor(caster, attacker)
         end
         factor = factor * (1 - 0.05 * stacksSwordBoard)
     end
+    --wolf rider
+    if caster.talents and caster.talents[60] and caster.talents[60] > 0 then
+      local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
+      bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
+      local wolf_dmg_factor = (1 - bonusfromms)
+      if wolf_dmg_factor < 0.5 then
+        wolf_dmg_factor = 0.5
+      end
+      factor = factor * wolf_dmg_factor
+    end
     return factor
 end
 
