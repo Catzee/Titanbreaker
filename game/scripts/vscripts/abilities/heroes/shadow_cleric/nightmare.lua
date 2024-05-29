@@ -61,13 +61,18 @@ function shadow5:OnSpellStart()
         end
     end
 
-    ApplyBuff({
-        caster = caster,
-        target = caster,
-        ability = self,
-        dur = self:GetSpecialValueFor("spell_resistance_duration"),
-        buff = "modifier_shadow_cleric_nightmare_spell_resistance_buff"
-    })
+    if(self:IsAltCasted() and caster:HasModifier("modifier_shadow_cleric_nightmare_spell_resistance_inner_cd") == false) then
+        ApplyBuff({
+            caster = caster,
+            target = caster,
+            ability = self,
+            dur = self:GetSpecialValueFor("spell_resistance_duration"),
+            buff = "modifier_shadow_cleric_nightmare_spell_resistance_buff"
+        })
+
+        local innerCd = self:GetSpecialValueFor("spell_resistance_inner_cd") * GetInnerCooldownFactor(caster)
+        caster:AddNewModifier(caster, self, "modifier_shadow_cleric_nightmare_spell_resistance_inner_cd", {duration = innerCd})
+    end
     
     ApplyBuff({
         caster = caster,

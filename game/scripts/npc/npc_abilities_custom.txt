@@ -32226,7 +32226,7 @@
         "ScriptFile"    "abilities/heroes/shadow_cleric/nightmare"
         "AbilityTextureName"    "fix/fear4"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -32293,79 +32293,84 @@
 		    "10"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "bonus_shadow_damage_pct" "100"
+		        "spell_resistance_inner_cd" "30"
 		    }
 		    "11"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "shadow_spheres_max" "3"
+		        "bonus_shadow_damage_pct" "100"
 		    }
 		    "12"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "fear_force" "125"
+		        "shadow_spheres_max" "3"
 		    }
 		    "13"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "fear_tickrate" "1.2"
+		        "fear_force" "125"
 		    }
 		    "14"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "fear_inner_cd" "25"
+		        "fear_tickrate" "1.2"
 		    }
 		    "15"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
+		        "fear_inner_cd" "25"
 		    }
 		    "16"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot_tooltip" "50"
+		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
 		    }
 		    "17"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "bonus_shadow_damage_pct" "100"
+		        "passive_bonus_critical_dmg_dot_tooltip" "50"
 		    }
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura" "0 0 50 50"
+		        "bonus_shadow_damage_pct" "100"
 		    }
 		    "19"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_tooltip" "50"
+		        "attack_speed_aura" "0 0 50 50"
 		    }
 		    "20"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_duration_per_shadow_sphere" "0 0 10 10"
+		        "attack_speed_aura_tooltip" "50"
 		    }
 		    "21"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_duration_per_shadow_sphere_tooltip" "10"
+		        "attack_speed_aura_duration_per_shadow_sphere" "0 0 10 10"
 		    }
 		    "22"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_min_duration" "0 0 10 10"
+		        "attack_speed_aura_duration_per_shadow_sphere_tooltip" "10"
 		    }
 		    "23"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_min_duration_tooltip" "10"
+		        "attack_speed_aura_min_duration" "0 0 10 10"
 		    }
 		    "24"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "attack_speed_aura_inner_cd" "25"
+		        "attack_speed_aura_min_duration_tooltip" "10"
 		    }
 		    "25"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "attack_speed_aura_inner_cd" "25"
+		    }
+		    "26"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "attack_speed_aura_radius" "900"

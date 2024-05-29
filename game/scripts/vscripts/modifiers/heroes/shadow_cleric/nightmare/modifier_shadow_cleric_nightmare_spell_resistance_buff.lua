@@ -22,6 +22,9 @@ modifier_shadow_cleric_nightmare_spell_resistance_buff = class({
     end,
     GetEffectAttachType = function()
         return PATTACH_ABSORIGIN_FOLLOW
+    end,
+    GetTexture = function()
+        return "fix/shadow2"
     end
 })
 
