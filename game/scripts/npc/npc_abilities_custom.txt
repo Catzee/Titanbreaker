@@ -53700,12 +53700,12 @@
 	    "AbilitySpecial"
 		{
 		    
-		    "03"
+		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "750 1000 1000 1000"
 		    }
-		    "03"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "str" "0 0 5 5"
@@ -53715,25 +53715,35 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "strdur" "0 0 12 12"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "worm" "0 0 1 1"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "critdmg" "1 1 1.5 1.5"
 		    }
-		    "01"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "4"
 		    }
-		    "01"
+		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "heal" "0 100 100 100"
+		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "worm_str_to_dmg_pct" "100"
+		    }
+		    "09"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "worm_duration" "9"
 		    }
 		}
 
@@ -53909,7 +53919,7 @@
 						"UnitName"			"dummy_blood_worm"
 						"Target"			"TARGET"
 						"UnitCount"			"%worm"
-						"Duration"			"9"
+						"Duration"			"%worm_duration"
 						"SpawnRadius"		"10"
 						"GrantsGold"		"0"
 						"GrantsXP"			"0"
@@ -53971,6 +53981,12 @@
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "WormTargetAttack"
 					}
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "str"	"%worm_str_to_dmg_pct"
+					}
 				}
 				"ThinkInterval"  "2.0"
 				"OnIntervalThink"
@@ -53979,6 +53995,12 @@
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "WormTargetAttack"
+					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "str"	"%worm_str_to_dmg_pct"
 					}
 				}
 			
@@ -53996,9 +54018,10 @@
 					    "Function"      "DamageUnit"
 					    "damage"			"0.0"
 					    "spelldamagefactor"	"0.0"
-					    "attributefactor"	"100"
+					    "attributefactor"	"%worm_str_to_dmg_pct"
 					    "critdmgbonusfactor"	"%critdmg"
 					    "ignore_when_target_has_reflect" "1"
+						"fromsummon"	"1"
 					}
 				}
 			}

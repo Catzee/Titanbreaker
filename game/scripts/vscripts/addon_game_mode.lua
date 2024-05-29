@@ -11931,7 +11931,9 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victimMaxHealth = victim:GetMaxHealth()
   local blockFactor = 1
   --stop pet aa dmg
-  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep") then
+  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") 
+    or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep")
+    or attacker:HasModifier("modifier_blood_worm") then
     filterTable["damage"] = 0
     return true
   end
