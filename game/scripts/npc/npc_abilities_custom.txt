@@ -32226,7 +32226,7 @@
         "ScriptFile"    "abilities/heroes/shadow_cleric/nightmare"
         "AbilityTextureName"    "fix/fear4"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
@@ -32293,12 +32293,12 @@
 		    "10"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "bonus_shadow_damage_pct" "100"
+		        "spell_resistance_inner_cd" "30"
 		    }
 		    "11"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "shadow_spheres_max" "3"
+		        "bonus_shadow_damage_pct" "100"
 		    }
 		    "12"
 		    { 
@@ -33130,11 +33130,6 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "tentacle_bonus_shadow_spheres_per_aa_inner_cd" "1"
-		    }
-		    "28"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "max_shadow_spheres_consumed" "3"
 		    }
 		}
 	}
