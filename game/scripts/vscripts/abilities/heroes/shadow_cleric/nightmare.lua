@@ -35,7 +35,7 @@ function shadow5:OnSpellStart()
         FIND_ANY_ORDER, 
         false)
 
-    local shadowSpheres = math.min(self:GetSpecialValueFor("shadow_spheres_max"), GetShadowClericShadowSpheres(caster))
+    local shadowSpheres = GetShadowClericShadowSpheres(caster)
     local shadowSpheresFactor = 1
     if(TryConsumeShadowClericShadowSpheres(caster, shadowSpheres)) then
         shadowSpheresFactor = shadowSpheresFactor + shadowSpheres
