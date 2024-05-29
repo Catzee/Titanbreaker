@@ -4593,6 +4593,14 @@ function OpenDiscordURL()
     $.DispatchEvent("ExternalBrowserGoToURL", $.GetContextPanel(), "https://discord.gg/as8MzdJ");
 }
 
+function OnHeroStatsValuesResponse(args)
+{
+    let hpPerLevel = args["bonusMaxHpPerLvl"].toFixed();
+    let channelSpellhasteCap = ((args["channelSpellhasteCap"]-1)*100).toFixed();
+    $("#ChannelSpellHasteLabel").text = "Spellhaste increases the tick rate of Channeled Abilities\nbut only up to " + channelSpellhasteCap + "%.";
+    $("#MaxHealthPerLvlLabel").text = "+" + hpPerLevel + " Max Health per Hero Level";
+}
+
 (function () {
     //$.Msg("Elo StatCollection Client Loaded");
 
@@ -4639,6 +4647,7 @@ function OpenDiscordURL()
     GameEvents.Subscribe("additemstoshop", AddItemsToShop);
     GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
     GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
+    GameEvents.Subscribe("getherostatsvaluesresponse", OnHeroStatsValuesResponse);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
