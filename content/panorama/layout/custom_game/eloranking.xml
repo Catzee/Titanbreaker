@@ -3544,7 +3544,7 @@
 		</Panel>
 		<Panel class="StashButtonsContainer" hittest="false" id="ToggleStash" style="z-index: -9000;">
 			<Panel class="SellPanel" style="margin-top: 0px; width: 100%;">
-				<Button class="SellButton" onactivate="PickupAllItemsOnGround(true)" oncontextmenu="PickupAllItemsOnGround(false)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash. Use right mouse button to only pickup items dropped in current game.')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
+				<Button class="SellButton" onactivate="PickupAllItemsOnGround(false)" oncontextmenu="PickupAllItemsOnGround(true)" onmouseover="DOTAShowTextTooltip('Picking up all items from ground and tries move them into your hero inventory or stash. Use right mouse button to only pickup items dropped in current game.')" onmouseout="DOTAHideTextTooltip()" style="width: 100%;">	
 					<Panel  class="TableRow">
 						<Image class="ItemImage" style="width: 40px; height: 35px;" src="file://{images}/custom_game/pickup_all_items.png" />
 						<Label class="ButtTextBig" style="font-size: 16px;" text="Pick Up Items"/>
