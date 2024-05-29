@@ -7964,8 +7964,10 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + caster.spellhaste_system_bonus / 100
     end
 
-    local frostwyrmFuryBonus = caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (0.1 + 0.05 * caster.talents[104])
-    speedbonus = speedbonus + frostwyrmFuryBonus
+    if caster.talents and caster.talents[104] and caster.talents[104] > 0 then
+        local frostwyrmFuryBonus = caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (0.1 + 0.05 * caster.talents[104])
+        speedbonus = speedbonus + frostwyrmFuryBonus
+    end
 
     return speedbonus
 end
@@ -19730,7 +19732,9 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
         static_bonus = static_bonus + 15 * hero.talents[80]
     end
 
-    static_bonus = static_bonus + hero:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (10 + 5 * hero.talents[104])
+    if hero.talents and hero.talents[104] and hero.talents[104] > 0 then
+        static_bonus = static_bonus + hero:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (10 + 5 * hero.talents[104])
+    end
 
     if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance then
         local factor = 100

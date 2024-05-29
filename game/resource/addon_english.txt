@@ -10714,6 +10714,8 @@
 		"DOTA_Tooltip_modifier_rond_Description"                                   " "
 		"DOTA_Tooltip_modifier_dfe"                                               "Dragonfury"
 		"DOTA_Tooltip_modifier_dfe_Description"                                   " "
+		"DOTA_Tooltip_modifier_frostwyrm_fury_buff"                               "Frostwyrm Fury"
+		"DOTA_Tooltip_modifier_frostwyrm_fury_buff_Description"                   " "
 
 		"temple_wolf_bat"                                                             "Bloodwolf Bat"
 		"temple_shadow_hound"                                                             "Hell Hound"
