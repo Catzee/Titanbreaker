@@ -14560,7 +14560,7 @@ function GlobalOnAbilityExecuted( event )
         end
         if caster.talents[104] and caster.talents[104] > 0 then
             local bonus = 10 + 5 * caster.talents[104]
-            local duration = 15
+            local duration = 5
             local cap = 450 + 50 * caster.talents[104]
             local valueToAdd = cap - caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil)
 
