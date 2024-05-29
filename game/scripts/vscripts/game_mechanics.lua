@@ -7963,6 +7963,10 @@ function GetSpellhaste( caster, event )
     if caster.spellhaste_system_bonus and caster.spellhaste_system_bonus > 0 then
         speedbonus = speedbonus + caster.spellhaste_system_bonus / 100
     end
+
+    local frostwyrmFuryBonus = caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (0.1 + 0.05 * caster.talents[104])
+    speedbonus = speedbonus + frostwyrmFuryBonus
+
     return speedbonus
 end
 
@@ -14553,19 +14557,22 @@ function GlobalOnAbilityExecuted( event )
                 end)
             end
         end
-        if caster.talents[104] and caster.talents[104] > 0 and caster:GetIncreasedAttackSpeed(false) <= (8.5 + 0.5 * caster.talents[104]) then
+        if caster.talents[104] and caster.talents[104] > 0 then
             local bonus = 10 + 5 * caster.talents[104]
             local duration = 5
             local cap = 450 + 50 * caster.talents[104]
-            if not caster.frostwyrmFury then
-                caster.frostwyrmFury = 0
-            end
-            if caster.frostwyrmFury < cap then
-                AddSpellhaste(caster, bonus, duration)
-                AddAttackSpeed(caster, bonus, duration)
-                caster.frostwyrmFury = caster.frostwyrmFury + bonus
+            local currentValue = caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * bonus
+
+            if currentValue < cap then
+                local buff = caster:AddNewModifier(caster, nil, "modifier_frostwyrm_fury_buff", {duration = duration})
+                buff:IncrementStackCount()
+                --AddSpellhaste(caster, bonus, duration)
+                --AddAttackSpeed(caster, bonus, duration)
+                --caster.frostwyrmFury = caster.frostwyrmFury + bonus
                 Timers:CreateTimer(duration, function()
-                    caster.frostwyrmFury = caster.frostwyrmFury - bonus
+                    if(buff ~= nil and buff:IsNull() == false) then
+                        buff:DecrementStackCount()
+                    end
                 end)
                 --print(caster.frostwyrmFury)
             end
@@ -19722,6 +19729,9 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
     if hero.talents[80] and hero.talents[80] > 0 then
         static_bonus = static_bonus + 15 * hero.talents[80]
     end
+
+    static_bonus = static_bonus + hero:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) * (10 + 5 * hero.talents[104])
+
     if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance then
         local factor = 100
         if hero:HasModifier("modifier_stormgiant") then
