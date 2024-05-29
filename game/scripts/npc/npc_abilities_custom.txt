@@ -33131,11 +33131,6 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "tentacle_bonus_shadow_spheres_per_aa_inner_cd" "1"
 		    }
-		    "28"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "max_shadow_spheres_consumed" "3"
-		    }
 		}
 	}
 
