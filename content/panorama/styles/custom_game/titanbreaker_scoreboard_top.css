@@ -108,20 +108,19 @@
 #LogoAndScore {
     height: 100%;
     width: 64px;
-    horizontal-align: center;
+    horizontal-align: left;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a00 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
 }
 
 #IngameTime {
-    vertical-align: bottom;
+    vertical-align: center;
     horizontal-align: center;
     color: white;
     font-size: 14px;
     font-weight: bold;
     text-shadow: 4px 4px 4px black;
-    margin-bottom: 4px;
-    margin-left: 1px;
     text-overflow: clip;
-    padding-left: 24px;
+    padding-top: 6px;
 }
 
 #TeamStatus {
@@ -136,7 +135,8 @@
 
 #TeamOverlayBar {
     width: 100%;
-    height: 77px;
+    height: 42px;
+    margin-left: -25px;
 }
 
 #LocalTeamOverlay {
