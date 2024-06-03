@@ -20,7 +20,8 @@
 			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
 		</Panel>
 		<Panel hittest="false" id="LivesContainer">
-			<Panel hittest="false" id="LivesBG"/>
+			<Image id="LivesImage" scaling="stretch-to-fit-y-preserve-aspect" src="s2r://panorama/images/spellicons/pangolier_heartpiercer.png"/>
+			<Panel id="LivesBorder" />
 			<Label id="LivesLabel" text="5"/>
 		</Panel>
 		<Button id="TipButton" class="DotaPlusDarkButton" visibility="colalpse">

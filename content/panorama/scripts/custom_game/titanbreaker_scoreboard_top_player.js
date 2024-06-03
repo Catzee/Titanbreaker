@@ -1,4 +1,5 @@
 let LIVES_LABEL = undefined;
+let LIVES_CONTAINER = undefined;
 
 function PortraitClicked() {
     Players.PlayerPortraitClicked($.GetContextPanel().GetAttributeInt("player_id", -1), GameUI.IsControlDown(), GameUI.IsAltDown());
@@ -29,15 +30,18 @@ function AutoUpdateLivesLabel()
     if(playerId > -1 && LIVES_LABEL != undefined) {
         let totalLives = GetLivesAmount(playerId);
         LIVES_LABEL.text = totalLives;
-        LIVES_LABEL.SetHasClass("Hidden", totalLives == 0);
+        if(LIVES_CONTAINER != undefined) {
+            LIVES_CONTAINER.SetHasClass("Hidden", totalLives == 0);
+        }
     }
 
-    $.Schedule(1, function() {
+    $.Schedule(0.25, function() {
         AutoUpdateLivesLabel();
     })
 }
 
 (function() {
-    LIVES_LABEL = $.GetContextPanel().FindChildTraverse("LivesLabel")
+    LIVES_LABEL = $.GetContextPanel().FindChildTraverse("LivesLabel");
+    LIVES_CONTAINER = $.GetContextPanel().FindChildTraverse("LivesContainer");
     AutoUpdateLivesLabel();
 })();

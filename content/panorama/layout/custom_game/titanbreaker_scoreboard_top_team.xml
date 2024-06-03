@@ -3,17 +3,18 @@
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
         <include src="file://{resources}/styles/custom_game/titanbreaker_scoreboard_top.css" />
 	</styles>
-	<Panel hittest="false" class="ScoreboardTeamWrapper">
+	<scripts>
+        <include src="file://{resources}/scripts/custom_game/titanbreaker_scoreboard_top_team.js" />
+	</scripts>
+	<Panel hittest="false" class="ScoreboardTeamWrapper" hittestchildren="true">
 		<Panel hittest="false" id="ScoreboardTeam">
-			<Panel id="LocalTeamOverlay"/>
-			<Panel hittest="false" id="PlayersContainer" style="visibility: visible;"/>
-			<Panel hittest="false" id="TeamOverlayBar" style="visibility: collapse;">
-				<Panel hittest="false" id="TeamDarkenWash" />
+			<Panel id="LocalTeamOverlay" hittest="false"/>
+			<Panel hittest="false" id="TeamOverlayBar" style="visibility: visible;">
 				<Panel hittest="false" id="LogoAndScore">
-					<Panel hittest="false" id="TeamLogo" />
-					<Label hittest="false" id="TeamScore" text="999" />
+					<Label hittest="true" id="IngameTime" text="00:00" onactivate="OnIngameTimeClicked()"/>
 				</Panel>
 			</Panel>
+			<Panel hittest="false" id="PlayersContainer" style="visibility: visible;"/>
 		</Panel>
 		<Panel hittest="false" id="TeamOverlayXMLFile" />
 	</Panel>
