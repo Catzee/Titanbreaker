@@ -7611,7 +7611,8 @@ function HealUnit( event )
             caster.ability_stats_heal = {}
         end
         local index = -1
-        if event.ability then
+        -- here and below ability can be null because removed already (dazzle and maybe someone else)
+        if event.ability and event.ability:IsNull() == false then
             index = event.ability:GetAbilityIndex()
         end
         if index >= 0 then
