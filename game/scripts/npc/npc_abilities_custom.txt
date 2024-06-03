@@ -64242,9 +64242,9 @@
 	"Fatal_Throw"
 	{
         "BaseClass"             "ability_datadriven"
-        "AbilityTextureName"    "phantom_assassin_stifling_dagger"
+        "AbilityTextureName"    "cruel_shadowstalker_fatal_throw"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
@@ -64271,12 +64271,12 @@
 
 	    "AbilitySpecial"
 	    {
-	    	"03"
+	    	"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "0"
 		    }
-		    "03"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "auto" "300 350 350 350"
@@ -64286,15 +64286,20 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "slowdur" "1.5 1.5 3 3"
 		    }
-		    "03"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "silencedur" "0.1"
-		    }
-		    "03"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "pure" "0 0 25 25"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_duration" "5"
+		    }
+		    "06"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_inner_cd" "10"
 		    }
 	    }
 
@@ -64334,7 +64339,6 @@
 			{
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "FatalThrowHit"
-			    "silence"		"%silencedur"
 		    	"slow"			"%slowdur"
 		    	"damage"			"0.0"
 			    "attributefactor"	"%dmgfromstat"
@@ -64373,6 +64377,16 @@
 			    {
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-50"
 			    }
+			}
+
+	        "modifier_fatal_throw_inner_cd"
+			{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "0"
 			}
 		}
 	}
