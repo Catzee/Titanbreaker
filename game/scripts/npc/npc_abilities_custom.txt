@@ -64299,7 +64299,7 @@
 		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "silence_inner_cd" "10"
+		        "silence_inner_cd" "5"
 		    }
 	    }
 
