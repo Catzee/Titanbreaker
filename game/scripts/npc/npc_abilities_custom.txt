@@ -64255,7 +64255,7 @@
 	"Fatal_Throw"
 	{
         "BaseClass"             "ability_datadriven"
-        "AbilityTextureName"    "cruel_shadowstalker_fatal_throw"
+        "AbilityTextureName"    "fix/cruel_shadowstalker_fatal_throw"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
