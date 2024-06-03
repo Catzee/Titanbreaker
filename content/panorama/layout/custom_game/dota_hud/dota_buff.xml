@@ -6,7 +6,7 @@
 	<Panel class="DOTABuff" hittest="true" >
 		<Button class="BuffBorder">
 			<DOTAAbilityImage id="BuffImageDefault" abilityname="rubick_empty1" scaling="stretch-to-fit-y-preserve-aspect"/>
-			<DOTAItemImage id="BuffItemImage" abilityname="rubick_empty1" scaling="stretch-to-fit-y-preserve-aspect"/>
+			<DOTAItemImage id="BuffItemImage" scaling="stretch-to-fit-y-preserve-aspect"/>
 			<Image id="BuffImage" scaling="stretch-to-fit-y-preserve-aspect"/>
 			<Panel id="CircularDuration" />
 			<Label id="StackCount" text="0" />
