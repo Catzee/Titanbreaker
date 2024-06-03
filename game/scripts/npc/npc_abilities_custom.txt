@@ -40530,7 +40530,7 @@
         "BaseClass"             "ability_datadriven"
         "AbilityTextureName"    "fix/lance"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
@@ -40557,35 +40557,40 @@
 	    //"AoERadius"               "400"
 	    "AbilitySpecial"
 		{
-			"03"
+			"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "1000 1500 1500 1500"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "slow" "-25 -45 -45 -45"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "4.0 6.0 6.0 6.0"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "crit" "0 0 0 5"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffdurationInterrupt" "1.0"
+		        "silence_duration" "1.0"
 		    }
-		    "01"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "ms" "0 0 2.5 2.5"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_inner_cd" "10"
 		    }
 		}
 
@@ -40617,8 +40622,7 @@
 				"RunScript"
 				{
 				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "SpellInterrupt"
-				    "dur"		"%buffdurationInterrupt"
+				    "Function"      "SacredSpearHit"
 				}
 				"ApplyModifier"
 				{
@@ -40713,6 +40717,15 @@
 			    {
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "50"
 			    }
+			}
+	        "modifier_sacred_spear_inner_cd"
+			{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "0"
 			}
         }
 

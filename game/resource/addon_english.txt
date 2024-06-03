@@ -3280,8 +3280,11 @@
 		"DOTA_Tooltip_Ability_Soul_Burn_percent"    "%Mana burned depending on your Max Mana:" 
 
 		//3.8
-		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target. If the target is spellcasting, silence it.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target. If the target is spellcasting and Alt-Cast is activated, silence it for %silence_duration% secs with an inner cooldown of %silence_inner_cd% secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Retri2_slow"    "%Slow Amount:" 
+
+		"DOTA_Tooltip_modifier_sacred_spear_inner_cd"	"Sacred Spear - Inner Cooldown"
+		"DOTA_Tooltip_modifier_sacred_spear_inner_cd_Description"	""
 
 		"DOTA_Tooltip_Ability_combat7"  "Corrosive Strike"  
 		"DOTA_Tooltip_Ability_combat7_Description"  "Deal damage and apply a Corrosive Poison to the target, corroding the target's armor, and generating 2 Focus Points. Also slows by 30%% for 3 secs."

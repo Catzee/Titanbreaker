@@ -9225,6 +9225,14 @@ function FatalThrowHit(event)
 	end
 end
 
+function SacredSpearHit(event)
+    if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
+        SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
+        local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
+        event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_sacred_spear_inner_cd", { duration = innerCd})
+    end
+end
+
 function ListContainsString( list, text )
     for i=1, #list do
         if list[i] == text then
