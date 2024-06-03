@@ -35296,6 +35296,8 @@
 							    "attributefactor"	"0.0"
 							    "spelldamagefactor"	"0.0"
 							    "includeauto"	"%spindmg"
+							    "fromsummon"	"1"
+							    "isaoe"		"1"
 							    "t3bonus"	"1"
 							    "untamed"	"2"
 							}

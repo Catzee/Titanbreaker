@@ -1353,7 +1353,7 @@
 		"DOTA_Tooltip_Ability_fury5"  "Violent Charge"  
 		
 		"DOTA_Tooltip_Ability_fury3"  "Wild Throw"  
-		"DOTA_Tooltip_Ability_fury3_Description"  "Throw your Axe at the target, dealing damage and if the target is casting, silence it. When the target is more than 300 yards away, the Damage is doubled and the target is stunned for 2 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased damage, longer silence. \nRank 3: Gain bonus Attack Speed when cast and reduce the cooldown by 2 secs. \nRank 4: Summon a spinning axe at the target location, dealing area damage every second.\n\n</font>"
+		"DOTA_Tooltip_Ability_fury3_Description"  "Throw your Axe at the target, dealing damage and if the target is casting, silence it. When the target is more than 300 yards away, the Damage is doubled and the target is stunned for 2 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased damage, longer silence. \nRank 3: Gain bonus Attack Speed when cast and reduce the cooldown by 2 secs. \nRank 4: Summon a spinning axe at the target location, dealing area summon damage every second.\n\n</font>"
 		"DOTA_Tooltip_Ability_fury3_dmgfromstat"    "%Base Damage dealt:" 
 		"DOTA_Tooltip_Ability_fury3_dmgfromstatmax"    "%Base Damage dealt (high distance):" 
 		"DOTA_Tooltip_Ability_fury3_buffdurationInterrupt"    "Silence on interrupt:" 
