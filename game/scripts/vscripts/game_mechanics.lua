@@ -1004,7 +1004,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = caster:GetModifierStackCount("modifier_shadow_cleric_dream_feast_debuff", nil) + 1
+        local bonusfactor = event.shadoworb + 1
         finaldamage = finaldamage*bonusfactor
     end
 

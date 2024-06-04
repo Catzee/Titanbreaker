@@ -36,7 +36,7 @@ function modifier_shadow_cleric_dream_feast_debuff:OnIntervalThink()
         spelldamagefactor = self.ability:GetSpecialValueFor("spelldmg"),
         attributefactor = self.ability:GetSpecialValueFor("dmgfromstat"),
         shadowdmg = 1,
-        shadoworb = 1,
+        shadoworb = self:GetStackCount(),
         isdot = 1,
         spellcastfrenzy = self.ability:GetSpecialValueFor("frenzy"),
         spellcastfrenzy_max = self.ability:GetSpecialValueFor("frenzy_max")
