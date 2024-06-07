@@ -155,17 +155,17 @@ function shadow11:OnProjectileHit_ExtraData(target, location, extraData)
         attributefactor = self:GetSpecialValueFor("dmgfromstat") * extraData.damageFactor,
         shadowdmg = 1
     })
-
-    if(caster._shadowClericShadow11SecondInnerCd == nil and self:GetLevel() >= 3) then
+    
+    if(target._shadowClericShadow11SecondInnerCd == nil and self:GetLevel() >= 3) then
         local shadowPrayerAbility = caster:FindAbilityByName("shadow33")
         if(shadowPrayerAbility ~= nil and shadowPrayerAbility:GetLevel() > 0) then
             shadowPrayerAbility:OnSpellStart(target)
         end
 
-        caster._shadowClericShadow11SecondInnerCd = true
-        local shadowPrayerInnerCd = 5 + self:GetSpecialValueFor("shadow_prayer_pain_inner_cd") * GetInnerCooldownFactor(caster)
+        target._shadowClericShadow11SecondInnerCd = true
+        local shadowPrayerInnerCd = self:GetSpecialValueFor("shadow_prayer_pain_inner_cd") * GetInnerCooldownFactor(caster)
         Timers:CreateTimer(shadowPrayerInnerCd, function()
-            caster._shadowClericShadow11SecondInnerCd  = nil
+            target._shadowClericShadow11SecondInnerCd  = nil
         end)
     end
 
