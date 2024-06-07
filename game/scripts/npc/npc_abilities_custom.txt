@@ -46116,7 +46116,8 @@
 
 	"RegrowthFeral"
 	{
-		"BaseClass"             "ability_datadriven"
+		"BaseClass"    "ability_lua"
+		"ScriptFile"    "abilities/heroes/wild_guardian/renew"
         "AbilityTextureName"    "furion_wrath_of_nature"
 
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -46138,22 +46139,38 @@
 	    // Stats
 	    "AbilitySpecial"
 		{
-			"02"
+			"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "15 30 30 30"
 		    }
-		    "04"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstathot" "50"
 		    }
-		    "04"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmgtick" "50"
 		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_armor" "10"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "tick_interval" "3"
+		    }
+		    "06"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "bonus_crit_chance_pct" "100"
+		    }
 		}
+
 	    "AbilityManaCost"         "100"
 
 	    "AbilityCooldown"         "0.0"
@@ -46163,28 +46180,6 @@
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    //"AoERadius"               "250"
 
-        "OnSpellStart"
-        {
-			"FireSound"
-			{
-				"EffectName"		"DOTA_Item.HealingSalve.Activate"
-				"Target"			"TARGET"
-			}
-			"FireEffect"
-			{
-			    "Target" "TARGET"
-			    "EffectName" "particles/units/heroes/hero_treant/treant_overgrowth_vine_glow_trail.vpcf"
-			    "EffectAttachType" "attach_hitloc"
-			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuff"
-			    "buff"			"modifier_regrowth2"
-			    "dur"	"%buffduration"
-			}
-        }
-
 		"precache"
 		{
 		    "particle"  "particles/castbar.vpcf"
@@ -46192,47 +46187,6 @@
 		    "particle"  "particles/units/heroes/hero_treant/treant_overgrowth_vine_glow_trail.vpcf"
 		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 		}
-		"Modifiers"
-        {
-	        "modifier_regrowth2"
-			{
-			    "Passive"          "0"    
-
-			    "IsDebuff"         "0"
-			    "IsBuff"         "1"
-			    "IsHidden"         "0"
-			    "IsPurgable"       "1"
-
-			    "Properties"
-			    {
-			    	"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"
-			    }
-
-			    "TextureName"	"furion_wrath_of_nature"
-
-			    "EffectName"       "particles/units/heroes/hero_oracle/oracle_purifyingflames_heal.vpcf"
-			    "EffectAttachType"  "follow_hitloc"
-
-	            "ThinkInterval"  "3.0"
-			    "OnIntervalThink"
-			    {
-			    	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "HealUnit"
-					    "heal"			"%AbilityHealing"
-					    "spelldamagefactor"	"%spelldmgtick"
-					    "attributefactor"	"%dmgfromstathot"
-					    "attributechangeall"	"1"
-					    "critchancefactor"	"2.0"
-					    "isdot"	"1"
-					}
-			    }
-
-			}
-
-		}
-
 	}
 
 	"Feral1"
