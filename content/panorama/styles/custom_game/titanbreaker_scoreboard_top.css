@@ -42,13 +42,6 @@
     margin-right: M_EXTRA_PADDING;
 }
 
-#TeamLogo {
-    horizontal-align: left;
-    vertical-align: top;
-    width: 24px;
-    height: 24px;
-}
-
 .ScoreboardTeamWrapper.no_players {
     visibility: collapse;
 }
@@ -115,24 +108,19 @@
 #LogoAndScore {
     height: 100%;
     width: 64px;
+    horizontal-align: left;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a00 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
 }
 
-#TeamScore {
-    vertical-align: bottom;
-    horizontal-align: left;
+#IngameTime {
+    vertical-align: center;
+    horizontal-align: center;
     color: white;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: bold;
     text-shadow: 4px 4px 4px black;
-    margin-bottom: 4px;
-    margin-left: 1px;
     text-overflow: clip;
-}
-
-#TeamDarkenWash {
-    width: 100%;
-    height: 42px;
-    background-color: gradient(linear, 25px 0%, 40px 0%, from(black), to(transparent));
+    padding-top: 6px;
 }
 
 #TeamStatus {
@@ -147,7 +135,8 @@
 
 #TeamOverlayBar {
     width: 100%;
-    height: 48px;
+    height: 42px;
+    margin-left: -25px;
 }
 
 #LocalTeamOverlay {
@@ -315,18 +304,13 @@
 }
 
 #LivesContainer {
-    horizontal-align: right;
-    width: 20px;
-    height: 20px;
-    margin-top: 25px;
+    horizontal-align: center;
+    width: 28px;
+    height: 28px;
+    margin-top: 30px;
     visibility: visible;
     margin-right: 0px;
-}
-
-#LivesBG {
-    background-image: none;
-    width: 32px;
-    height: 32px;
+    opacity: 1;
 }
 
 #LivesLabel
@@ -342,9 +326,54 @@
     background-color: gradient( radial, 50% 100%, 0% 0%, 50% 100%, from( #000000ee ), to( #00000009 ) );
 }
 
-#LivesLabel.Hidden
+.player_dead #LivesContainer,
+.Hidden #LivesContainer
 {
     visibility: collapse;
+}
+
+.LivesBorder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: fill #00000099 0px 0px 4px 0px;
+}
+
+#LivesLabel {
+    width: 100%;
+    max-height: 16px;
+    text-shadow: 0px 0px 2px 2 #000000;
+    color: white;
+    margin: 0px;
+    horizontal-align: center;
+    vertical-align: center;
+    font-family: monospaceNumbersFont;
+    font-size: 16px;
+    text-align: center;
+    text-overflow: shrink;
+}
+
+#LivesBorder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: url("s2r://panorama/images/hud/reborn/buff_outline_psd.vtex");
+    background-size: 95% 95%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    wash-color: #8bdd4f;
+}
+
+#LivesImage {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset #000000aa 0px 1px 16px 1px;
+    border: 1px solid black;
 }
 
 .RespawnSkullIcon

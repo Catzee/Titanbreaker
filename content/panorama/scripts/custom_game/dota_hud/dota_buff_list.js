@@ -69,7 +69,9 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     let isItem = Abilities.IsItem(buffAbility);
     let isCustomIcon = textureName.indexOf("fix/") !== -1;
     let pathToIcon = "";
-    
+        
+    panel.SetHasClass("is_item", false);
+
     if(isCustomIcon) {
         if(isItem) {
             textureName = textureName.replace("item_", "");
@@ -78,8 +80,10 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
             pathToIcon = "raw://resource/flash3/images/spellicons/" + textureName + ".png";
         }
     } else {
-        if(isItem) {
-            textureName = textureName.replace("item_", "");
+        if(isItem && textureName.indexOf("item_") !== -1) {
+            panel.SetHasClass("is_item", true);
+            panel._itemImagePanel.itemname = Abilities.GetAbilityName(buffAbility);
+            //textureName = textureName.replace("item_", "");
         }
         pathToIcon = "file://{images}/spellicons/" + textureName + ".png";
     }
@@ -116,6 +120,7 @@ function InitializeChildrens(panel, isBuffs)
         buffPanel.SetHasClass("is_undispellable", true); // looks better with it and no way to get this at panorama...
         buffPanel.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff.xml', false, false);
         buffPanel._imagePanel = buffPanel.FindChildTraverse("BuffImage");
+        buffPanel._itemImagePanel = buffPanel.FindChildTraverse("BuffItemImage");
         buffPanel._stacksLabel = buffPanel.FindChildTraverse("StackCount");
         buffPanel._durationPanel = buffPanel.FindChildTraverse("CircularDuration");
         buffPanel._queryUnit = -1;

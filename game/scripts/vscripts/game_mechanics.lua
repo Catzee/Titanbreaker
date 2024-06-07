@@ -20915,7 +20915,8 @@ function PassiveStatCalculation(event)
     realBaseStats[ARM] = baseStats[ARM] * baseStatsPercentFactor[ARM]
     realBaseStatsToApply[ARM] = realBaseStats[ARM] - hero:GetPhysicalArmorValue(false)
     --AS
-    local passiveASBonus = hero:GetAttackSpeed(true) * 100 - 100
+    local baseAttackSpeed = 100 -- 100 is base attack speed that will be hardcoded for now because very unlikely this will be ever changed in tb (since some dota patch some heroes have different base attack speed)
+    local passiveASBonus = hero:GetAttackSpeed(true) * 100 - baseAttackSpeed
     baseStats[AS] = GetAttackSpeedBonus(hero, realBaseStats[ARM], realBaseStats[STR], realBaseStats[AGI]) + passiveASBonus   --100 base AS are given but in fact theyre not doing anything
     baseStatsPercentFactor[AS] = 1
     realBaseStats[AS] = baseStats[AS] * baseStatsPercentFactor[AS]
@@ -20963,7 +20964,8 @@ function PassiveStatCalculation(event)
         spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
         resourceType = hero.resourcesystem,
         spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
-        damageReduction = GetTotalDamageTakenFactor(hero, nil)
+        damageReduction = GetTotalDamageTakenFactor(hero, nil),
+        attackSpeed = realBaseStats[AS] + baseAttackSpeed
     })
 
     --now we have calculated all basic stats, lets apply them!

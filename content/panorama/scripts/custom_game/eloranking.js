@@ -3938,6 +3938,7 @@ function SetMainStats(args)
     main_stats[id][13] = args.resourceType;
     main_stats[id][14] = args.spellHaste;
     main_stats[id][15] = args.damageReduction;
+    main_stats[id][16] = args.attackSpeed;
 }
 
 let customXpContainer = undefined;
@@ -3969,6 +3970,8 @@ let manaRegenLabel = undefined;
 let customBuffsContainer = undefined;
 let customDebuffsContainer = undefined;
 let customGoldLabel = undefined;
+let customAttackSpeedLabel = undefined;
+let customAttackSpeedUnitStatsLabel = undefined;
 
 function OnTooltipVisible(object) {
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
@@ -4010,6 +4013,25 @@ function InjectIntoDotaHeroStatsTooltip()
     customIntModifierStatsLabel = dotaHudRoot.FindChildTraverse("BonusIntelligenceLabel");
     customIntBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDetails");
     customIntPrimaryBonusLabel = dotaHudRoot.FindChildTraverse("IntelligenceDamageLabel");
+
+    // Adds custom attack speed row to unit stats tooltip
+    let attackContainer = dotaHudRoot.FindChildTraverse("AttackContainer");
+    if(attackContainer != undefined) {
+        if(attackContainer._customAttackSpeedLabel == undefined) {
+            let dotaAttackSpeedLabel = attackContainer.FindChildTraverse("AttackSpeed");
+            if(dotaAttackSpeedLabel != undefined) {
+                dotaAttackSpeedLabel.style.visibility = "collapse";
+
+                let dotaAttackSpeedLabelParent = dotaAttackSpeedLabel.GetParent();
+                let customAttackSpeedRowLabel = $.CreatePanel("Label", dotaAttackSpeedLabelParent, '');
+                customAttackSpeedRowLabel.SetHasClass("BaseValue", true);
+                dotaAttackSpeedLabelParent.MoveChildAfter(customAttackSpeedRowLabel, dotaAttackSpeedLabel);
+                attackContainer._customAttackSpeedLabel = customAttackSpeedRowLabel;
+            }
+        }
+    }
+
+    customAttackSpeedUnitStatsLabel = attackContainer._customAttackSpeedLabel;
 
     // Adds custom spell haste row to unit stats tooltip
     let manaRegenRow = dotaHudRoot.FindChildTraverse("ManaRegenRow");
@@ -4101,6 +4123,15 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
         customStrAgiIntContainer.SetHasClass("ShowStrAgiInt", isHero);
     }
 
+    let selectedUnitAttackSpeed = 0;
+    if(isHero) {
+        // Heroes attack speed can go over cap for attack speed based effects so we display it instead of dota provided attack speed
+        selectedUnitAttackSpeed = main_stats[selectedHeroPlayerID][16].toFixed(0);
+    } else
+    {
+        selectedUnitAttackSpeed = (Entities.GetAttackSpeed(selectedPlayerUnit) * 100).toFixed(0);
+    }
+
     // Update str/agi/int
     if(isHero) {
         let str = main_stats[selectedHeroPlayerID][0].toFixed();
@@ -4126,46 +4157,76 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
         if(isUnitStatsTooltip != undefined) {
             if(customStrStatsLabel != undefined) {
                 customStrStatsLabel.text = str;
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change str value in unit stats tooltip).");
             }
     
             if(customStrModifierStatsLabel != undefined) {
                 customStrModifierStatsLabel.text = "";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change str modifier value in unit stats tooltip).");
             }
     
             if(customStrBonusLabel != undefined) {
                 let totalPhysDmg = (main_stats[selectedHeroPlayerID][6] * 100).toFixed(1);
                 customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5].toFixed() + " Max Health and " + totalPhysDmg + "% Physical Damage";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change str bonuses label in unit stats tooltip).");
             }
     
             if(customStrPrimaryBonusLabel != undefined) {
                 customStrPrimaryBonusLabel.text = "";
                 customStrPrimaryBonusLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change str primary bonus label in unit stats tooltip).");
             }
     
             if(customAgiStatsLabel != undefined) {
                 customAgiStatsLabel.text = agi;
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change agi value label in unit stats tooltip).");
             }
     
             if(customAgiModifierStatsLabel != undefined) {
                 customAgiModifierStatsLabel.text = "";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change agi modifier label in unit stats tooltip).");
             }
     
             if(customAgiBonusLabel != undefined) {
                 let totalCritDmg = (main_stats[selectedHeroPlayerID][9] * 100).toFixed(1)
                 customAgiBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][7].toFixed(0) + " Attack Speed, " + main_stats[selectedHeroPlayerID][8].toFixed(0) + " Armor and " + totalCritDmg + "% Critical Strike Damage";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change agi bonuses label in unit stats tooltip).");
             }
     
             if(customAgiPrimaryBonusLabel != undefined) {
                 customAgiPrimaryBonusLabel.text = "";
                 customAgiPrimaryBonusLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change agi primary bonuses label in unit stats tooltip).");
             }
     
             if(customIntStatsLabel != undefined) {
                 customIntStatsLabel.text = int;
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change int value label in unit stats tooltip).");
             }
     
             if(customIntModifierStatsLabel != undefined) {
                 customIntModifierStatsLabel.text = "";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change int modifier label in unit stats tooltip).");
             }
     
             if(customIntBonusLabel != undefined) {
@@ -4180,13 +4241,37 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
                 }
 
                 customIntBonusLabel.text = intDetails;
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change int bonuses label in unit stats tooltip).");
             }
     
             if(customIntPrimaryBonusLabel != undefined) {
                 customIntPrimaryBonusLabel.text = "";
                 customIntPrimaryBonusLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't change int primary bonuses label in unit stats tooltip).");
             }
         }
+    }
+    
+    // Update attack speed label in hero stats tooltip
+    if(isUnitStatsTooltip != undefined) {
+        if(customAttackSpeedUnitStatsLabel != undefined) {
+            customAttackSpeedUnitStatsLabel.text = selectedUnitAttackSpeed;
+        } else
+        {
+           $.Msg("Valve break something or did major changes to UI (can't change attack speed label in unit stats tooltip).");
+        }
+    }
+    
+    // Update attack speed label in hero stats region
+    if(customAttackSpeedLabel != undefined) {
+        customAttackSpeedLabel.text = selectedUnitAttackSpeed;
+    } else
+    {
+       $.Msg("Valve break something or did major changes to UI (can't change attack speed label in hero stats region).");
     }
 
     // Update unit stats spellhaste row
@@ -4513,6 +4598,12 @@ function InjectIntoDotaUI()
             }
         }
     }
+    
+    // Attack speed label
+    let statsRegion = dotaHudRoot.FindChildTraverse("stats");
+    if(statsRegion != undefined) {
+        customAttackSpeedLabel = dotaHudRoot.FindChildTraverse("AttackSpeedLabelBase");
+    }
 }
 
 function SetUIStats(args)
@@ -4723,7 +4814,7 @@ function OnHeroStatsValuesResponse(args)
     runeword_id = new Array(20);
     pathword = new Array(10);
     pathword_id = new Array(10);
-    main_stats = new Array(15);
+    main_stats = new Array(10);
     gold_stat = new Array(10);
     //talents
     talents = new Array(10);
@@ -4739,8 +4830,8 @@ function OnHeroStatsValuesResponse(args)
             main_stats[i][j] = 0;
         }
         */
-        main_stats[i] = new Array(5);
-        for (var j = 0; j < 15; j++) {
+        main_stats[i] = new Array(16);
+        for (var j = 0; j <= 16; j++) {
             main_stats[i][j] = 0;
         }
     }
