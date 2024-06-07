@@ -40532,7 +40532,7 @@
         "BaseClass"             "ability_datadriven"
         "AbilityTextureName"    "fix/lance"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
@@ -40559,35 +40559,40 @@
 	    //"AoERadius"               "400"
 	    "AbilitySpecial"
 		{
-			"03"
+			"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "1000 1500 1500 1500"
 		    }
-		    "01"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "slow" "-25 -45 -45 -45"
 		    }
-		    "01"
+		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "4.0 6.0 6.0 6.0"
 		    }
-		    "01"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "crit" "0 0 0 5"
 		    }
-		    "01"
+		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffdurationInterrupt" "1.0"
+		        "silence_duration" "1.0"
 		    }
-		    "01"
+		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "ms" "0 0 2.5 2.5"
+		    }
+		    "07"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_inner_cd" "10"
 		    }
 		}
 
@@ -40619,8 +40624,7 @@
 				"RunScript"
 				{
 				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "SpellInterrupt"
-				    "dur"		"%buffdurationInterrupt"
+				    "Function"      "SacredSpearHit"
 				}
 				"ApplyModifier"
 				{
@@ -40715,6 +40719,15 @@
 			    {
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "50"
 			    }
+			}
+	        "modifier_sacred_spear_inner_cd"
+			{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "0"
 			}
         }
 
@@ -64244,9 +64257,9 @@
 	"Fatal_Throw"
 	{
         "BaseClass"             "ability_datadriven"
-        "AbilityTextureName"    "phantom_assassin_stifling_dagger"
+        "AbilityTextureName"    "fix/cruel_shadowstalker_fatal_throw"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
@@ -64273,12 +64286,12 @@
 
 	    "AbilitySpecial"
 	    {
-	    	"03"
+	    	"01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "dmgfromstat" "0"
 		    }
-		    "03"
+		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "auto" "300 350 350 350"
@@ -64288,15 +64301,20 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "slowdur" "1.5 1.5 3 3"
 		    }
-		    "03"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "silencedur" "0.1"
-		    }
-		    "03"
+		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "pure" "0 0 25 25"
+		    }
+		    "05"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_duration" "5"
+		    }
+		    "06"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "silence_inner_cd" "5"
 		    }
 	    }
 
@@ -64336,7 +64354,6 @@
 			{
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "FatalThrowHit"
-			    "silence"		"%silencedur"
 		    	"slow"			"%slowdur"
 		    	"damage"			"0.0"
 			    "attributefactor"	"%dmgfromstat"
@@ -64375,6 +64392,16 @@
 			    {
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-50"
 			    }
+			}
+
+	        "modifier_fatal_throw_inner_cd"
+			{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "0"
 			}
 		}
 	}

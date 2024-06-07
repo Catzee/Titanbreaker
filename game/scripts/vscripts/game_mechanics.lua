@@ -9195,7 +9195,11 @@ function FatalThrowHit(event)
 		--myevent.ability = event.ability
 		--myevent.dur = caster.FatalThrowCP*event.silence
 		--ApplyBuff(myevent)
-        SpellInterrupt({caster = caster, target = target, dur = 5, ability = event.ability})
+        if(caster:HasModifier("modifier_fatal_throw_inner_cd") == false and event.ability:IsAltCasted()) then
+            SpellInterrupt({caster = caster, target = target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
+            local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
+            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_fatal_throw_inner_cd", { duration = innerCd})
+        end
 
         if caster.fatalThrowBonus and caster.fatalThrowBonus >= 1 then
             event.fatalThrowBonus = 1
@@ -9219,6 +9223,14 @@ function FatalThrowHit(event)
             ChainProjectile( caster, target, event.ability, 1, "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", {target}, "Hero_PhantomAssassin.Dagger.Cast", 0.25, 600 )
         end
 	end
+end
+
+function SacredSpearHit(event)
+    if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
+        SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
+        local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
+        event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_sacred_spear_inner_cd", { duration = innerCd})
+    end
 end
 
 function ListContainsString( list, text )

@@ -252,10 +252,12 @@
 		"DOTA_Tooltip_modifier_cobra_poison_Description"                                  " "
 
 		"DOTA_Tooltip_Ability_Fatal_Throw"  "Fatal Throw"  
-		"DOTA_Tooltip_Ability_Fatal_Throw_Description"  "A ranged throw of your weapon, dealing Damage and Slowing by 50%%.\nInterrupts Spellcasting with a 5 sec Silence when used with at least 1 Focus Point.\n\n<font color=\"#00EE00\">Consumes up to 3 Focus Points to increase the Damage and Slow duration.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage, removed resource cost and greatly reduced cooldown. \nRank 3: Longer slow duration and a 25%% chance to deal Pure Damage with Fatal Throw. \nRank 4: When cast with 3 Focus Points, Blink behind the target and cause 3 Auto Attacks.\n\n</font>"
+		"DOTA_Tooltip_Ability_Fatal_Throw_Description"  "A ranged throw of your weapon, dealing Damage and Slowing by 50%%.\nInterrupts Spellcasting when Alt-Cast is activated with a %silence_duration% sec Silence when used with at least 1 Focus Point (with an inner cooldown of %silence_inner_cd% secs).\n\n<font color=\"#00EE00\">Consumes up to 3 Focus Points to increase the Damage and Slow duration.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage, removed resource cost and greatly reduced cooldown. \nRank 3: Longer slow duration and a 25%% chance to deal Pure Damage with Fatal Throw. \nRank 4: When cast with 3 Focus Points, Blink behind the target and cause 3 Auto Attacks.\n\n</font>"
 		"DOTA_Tooltip_Ability_Fatal_Throw_auto"    "%Base Damage dealt per Focus Point:" 
 		"DOTA_Tooltip_ability_Fatal_Throw_slowdur"                                        "Slow duration per Focus Point:"
-		"DOTA_Tooltip_ability_Fatal_Throw_silencedur"                                     "Silence duration per Focus Point:"
+
+		"DOTA_Tooltip_modifier_fatal_throw_inner_cd"	"Fatal Throw - Inner Cooldown"
+		"DOTA_Tooltip_modifier_fatal_throw_inner_cd_Description"	""
 
 		"DOTA_Tooltip_Ability_Ambush"  "Ambush"  
 		
@@ -3278,8 +3280,11 @@
 		"DOTA_Tooltip_Ability_Soul_Burn_percent"    "%Mana burned depending on your Max Mana:" 
 
 		//3.8
-		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target. If the target is spellcasting, silence it.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target. If the target is spellcasting and Alt-Cast is activated, silence it for %silence_duration% secs with an inner cooldown of %silence_inner_cd% secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Retri2_slow"    "%Slow Amount:" 
+
+		"DOTA_Tooltip_modifier_sacred_spear_inner_cd"	"Sacred Spear - Inner Cooldown"
+		"DOTA_Tooltip_modifier_sacred_spear_inner_cd_Description"	""
 
 		"DOTA_Tooltip_Ability_combat7"  "Corrosive Strike"  
 		"DOTA_Tooltip_Ability_combat7_Description"  "Deal damage and apply a Corrosive Poison to the target, corroding the target's armor, and generating 2 Focus Points. Also slows by 30%% for 3 secs."
