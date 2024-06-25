@@ -2388,7 +2388,7 @@
 		"Ability2"					"Frost_Shatter"
 		"Ability3"					"Ice_Nova" 
 		"Ability4"					"Ice_Armor" 
-		"Ability5"					"Polymorph"
+		"Ability5"					"frost_ray"
 		"Ability6"					"Waterelemental"
 		"Ability7"		"generic_hidden"
 		"Ability8"		"generic_hidden"

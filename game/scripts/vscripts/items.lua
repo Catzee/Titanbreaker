@@ -684,7 +684,40 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 3
 	end
 	if attribute == " % Shapeshifter" then
-		return 0.3
+		return 0.75
+	end
+	if attribute == " % Lion King" then
+		return 0.75
+	end
+	if attribute == " % Overheat" then
+		return 1
+	end
+	if attribute == " % Mountain King" then
+		return 0.04
+	end
+	if attribute == " % Sacred Protection" then
+		return 0.35
+	end
+	if attribute == " % Overpower" then
+		return 2
+	end
+	if attribute == " % Cold Chain" then
+		return 0.25
+	end
+	if attribute == " % Almighty" then
+		return 0.2
+	end
+	if attribute == " % Conjurer" then
+		return 0.02
+	end
+	if attribute == " % Hunter" then
+		return 1
+	end
+	if attribute == " % Balance of Power" then
+		return 0.04
+	end
+	if attribute == " % Supercharge" then
+		return 0.03
 	end
 	if attribute == " % Berserker" then
 		return 1
@@ -724,7 +757,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 2
 	end
 	if attribute == " % Wrath of Zeus" then
-		return 0.35
+		return 0.5
 	end
 	if attribute == " % Hand of God" then
 		return 0.4
@@ -781,7 +814,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 	if attribute == " % Chivalry" then
 		return 0.25
 	end
-	if attribute == " % Mountain Giant" then
+	if attribute == " % Boulder Giant" then
 		return 0.25
 	end
 	if attribute == " % Thunder Giant" then
@@ -1074,7 +1107,7 @@ COverthrowGameMode.GeneratedItemData = {
     {"fof", " % Fist of Fire", "Glowing", "Glowing", "Glow"},
     {"ffe", " % Frost Fever", "Fever", "Frosty", "Fever"},
     
-    {"shw", " % Shadow Warrior", "Night", "Nightly", "Night"},
+    {"shw", " % Shadow Warrior", "Night", "Nightly", "Nights"},
     {"und", " % Underlord", "Underlord", "Lordly", "Underlords"},
     {"woz", " % Wrath of Zeus", "Zeus", "Zeus'", "Zeus"},
     {"hog", " % Hand of God", "Godlike", "Godlike", "Gods"},
@@ -1096,11 +1129,22 @@ COverthrowGameMode.GeneratedItemData = {
     {"swi", " % Swift Mending", "Healing", "Healing", "Healing"},
     {"div", " % Divine Shield", "Shielding", "Shielding", "Shields"},
     {"chi", " % Chivalry", "Chivalry", "Knightly", "Chivalry"},
-    {"mou", " % Mountain Giant", "Mountain", "Giant", "Mountains"},
-    {"thu", " % Thunder Giant", "Thunder", "Giant", "Thunder"},
+    {"mou", " % Boulder Giant", "Boulder", "Boulder", "Boulders"},
+    {"thu", " % Thunder Giant", "Thunder", "Thunderous", "Thunder"},
     {"alc", " % Alchemist", "Alchemist", "Toxic", "Alchemists"},
     {"mwo", " Manaworm", "Manaworm", "Manaworm", "Manaworms"},
     {"mma", " % Massive Massacre", "Massacre", "Massive", "Massacre"},
+    {"lio", " % Lion King", "Lion King", "Lion King's", "Lion Kings"},
+    {"mtk", " % Mountain King", "Mountain King", "Mountainous", "Mountain Kings"},
+    {"sup", " Supercharge", "Supercharge", "Supercharging", "Supercharges"},
+    {"alm", " % Almighty", "Almighty", "Almighty", "Almighty Gods"},
+    {"bop", " % Balance of Power", "Balance of Power", "Balanced", "Balance of Power"},
+    {"con", " % Conjurer", "Conjurer", "Conjuring", "Conjurers"},
+    {"hun", " % Hunter", "Hunter", "Hunting", "Hunters"},
+    {"sac", " % Sacred Protection", "Sacred Protection", "Protective", "Protection"},
+    {"ovp", " % Overpower", "Overpowered", "Overpowering", "Overpowering"},
+    {"coc", " % Cold Chain", "Cold", "Cool", "Cold"},
+    {"ovh", " % Overheat", "Overheating", "Overheated", "Overheating"},
     {"met", " % Metamorphosis", "Metamorphosis", "Morphing", "Metamorphosis"} --must be last! to track end of list
 
     --[[path
@@ -1358,7 +1402,25 @@ COverthrowGameMode.PathTalentNames = {
 	"Ambush",
 	"Preparation",
 	"Killing Spree",
-	"Phantom Shade"
+	"Phantom Shade",
+	"Vitality",
+	"Flurry",
+	"Tunnel Vision",
+	"Witch Doctor",
+	"Jungle Roamer",
+	"Unpredictable",
+	"Troll Regeneration",
+	"Poison Darts",
+	"Voodoo Magic",
+	"Fresh Blood",
+	"Bloodthirst",
+	"Gargantuan",
+	"Tribal Power",
+	"Slash and Burn",
+	"Stampede",
+	"Aspect of the Jungle",
+	"Duelist",
+	"Aspect of the Snake"
 }
 
 function IsStatAllowedForItemSlot(stat, slot, quality)
@@ -1386,7 +1448,10 @@ function IsStatAllowedForItemSlot(stat, slot, quality)
 			return false
 		end
 	end
-	if (slot ~= 2 or (quality and quality <= 5)) and (stat == "ffe" or stat == "fof" or stat == "woz" or stat == "und" or stat == "shw" or stat == "nec" or stat == "hog") then
+	if (slot ~= 1 or (quality and quality <= 5)) and (stat == "lio" or stat == "alm" or stat == "bop" or stat == "con" or stat == "hun" or stat == "coc" or stat == "mtk" or stat == "ovh" or stat == "ovp") then
+		return false --mainhand
+	end
+	if (slot ~= 2 or (quality and quality <= 5)) and (stat == "ffe" or stat == "fof" or stat == "woz" or stat == "und" or stat == "shw" or stat == "nec" or stat == "hog" or stat == "sac" or stat == "sup") then
 		return false --offhand
 	end
 	if slot ~= 2 and stat == "blo" then
@@ -5937,7 +6002,8 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		"item_gloves2",
 		"item_cdr",
 		"item_strarm",
-		"item_intreg"
+		"item_intreg",
+		"item_hpregen1"
 	}
 	--items[1] = --white
 	--{
@@ -5992,7 +6058,9 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		"item_caster55",
 		"item_activepriest",
 		"item_crit1",
-		"item_crit2"
+		"item_crit2",
+		"item_mana2",
+		"item_hpregen2",
 	}
 	items[3] = -- rare <font color=\"#0000ff\">
 	{
@@ -6579,7 +6647,7 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 			table.insert(items[10], "item_class_bounty")
 			table.insert(items[10], "item_rune")
 			table.insert(items[10], "item_class_pa2")
-			
+			table.insert(items[12], "item_divine_phys")
 		end
 		if (unit and unit.act and unit.act == 3) or always_show_boss_specific_drops then
 			table.insert(items[5], "item_endgame13")
@@ -6667,7 +6735,6 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 			table.insert(items[10], "item_class_dh2")
 			table.insert(items[10], "item_class_ds2")
 			table.insert(items[12], "item_pathbuff_156")
-			
 		end
 		if (unit and unit.act and unit.act == 8) or always_show_boss_specific_drops then --forge
 			table.insert(items[5], "item_dreihander")
@@ -6770,7 +6837,7 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 			table.insert(items[10], "item_class_sven2")
 			table.insert(items[12], "item_wise_eye")
 			table.insert(items[12], "item_icelotus")
-			
+			table.insert(items[12], "item_divine_frost")
 		end
 		--cain chest bonus rewards
 		if (unit and unit.main_quest_boss and (unit.main_quest_boss == 13 or unit.main_quest_boss == 14 or unit.main_quest_boss == 15)) or always_show_boss_specific_drops then
@@ -6825,7 +6892,8 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		"item_elements4",
 		"item_new82",
 		"item_new72",
-		"item_new32"
+		"item_new32",
+		"item_purgeblade3"
 	}
 	if COverthrowGameMode.jungledifficulty >= 500 then
 		table.insert(items[13], "item_set_t4_combine_token")

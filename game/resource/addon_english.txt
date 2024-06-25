@@ -422,7 +422,7 @@
 		"DOTA_Tooltip_modifier_piercearmoritem3_Description"	"Armor decreased."
 
 		// Units 
-		"npc_dota_creature_waterelemental"	"Tide Elemental"
+		"npc_dota_creature_waterelemental"	"Ice Elemental"
 		
 		"npc_dota_creature_shadow_creeper"	"Shadowbeast"
 		"npc_dota_creature_ghostwolf"	"Spirit Beast"
@@ -451,7 +451,7 @@
 		"npc_dota_hero_bloodseeker"	"Savage Voodoo"
 		"npc_dota_hero_riki"	"Dire Shadowstalker"
 
-		"DOTA_Tooltip_Ability_Waterelemental"  "Tide Elemental"  
+		"DOTA_Tooltip_Ability_Waterelemental"  "Ice Elemental"  
 		
 		//"DOTA_Tooltip_Ability_Waterelemental_SummonHealth"    "Health:"  
 		"DOTA_Tooltip_ability_Waterelemental_deep"                                        "Deepfrost duration:"
@@ -496,12 +496,13 @@
 		"DOTA_Tooltip_ability_Ice_Armor_enemy"                                            "%Duration on enemies:"
 
 		"DOTA_Tooltip_Ability_Polymorph"  "Chicken"  
-		"DOTA_Tooltip_Ability_Polymorph_Description"  "Transforms the enemy into a chicken, rendering them harmless. Damage breaks the effect. 2 secs casttime.\nIn addition, the target takes 8%% increased damage from magical damage.<font color=\"#FFBB00\">\n\nRank 2: Longer duration and the target now takes 15%% increased magical damage from all sources. Stacks multiple times. \nRank 3: Deal 25%% increased Elemental Damag for 20 secs when cast and reduce the cooldown of your other Abilities by 5 secs. \nRank 4: Reduced cooldown and passively gain 0.25%% increased Elemental Damage per point of Movement Speed above 300.\n\n</font>"
+		"DOTA_Tooltip_Ability_Polymorph_Description"  "Transforms the enemy into a chicken, rendering them harmless. Damage breaks the effect. 2 secs casttime.\nIn addition, reduce the target's Spell Resistance by 15 for 20 secs, stacking multiple times.<font color=\"#FFBB00\">\n\nRank 2: Longer CC duration and now also steal the Spell Resistance. \nRank 3: Gain +25%% Elemental Damage for 20 secs when cast and reduce the cooldown of your other Abilities by 5 secs. \nRank 4: Reduced cooldown and passively gain 0.25%% increased Elemental Damage per point of Movement Speed above 300.\n\n</font>"
 		"DOTA_Tooltip_Ability_Polymorph_duration"    "Duration:" 
 		"DOTA_Tooltip_ability_Polymorph_bonusdmg"                                         "%Magical bonus damage after cast:"
 		"DOTA_Tooltip_ability_Polymorph_bonusduration"                                    "Bonus damage duration:"
 		"DOTA_Tooltip_modifier_polybonusdamage"                                           "Arcane Focus"
 		"DOTA_Tooltip_modifier_polybonusdamage_Description"                               "Magical damage increased."
+		"DOTA_Tooltip_modifier_poly_steal"                                           "Steal Magic"
 
 		"DOTA_Tooltip_modifier_polybonusdamage_enemy"                                           "Magical Weakening"
 		"DOTA_Tooltip_modifier_polybonusdamage_enemy_Description"                               "Taking more magical damage."
@@ -796,15 +797,22 @@
 		"DOTA_Tooltip_Ability_item_hp1"  "Ring of Life"  
 		"DOTA_Tooltip_Ability_item_hp1_bonus_stat1"	"Health: +"
 
+		"DOTA_Tooltip_Ability_item_hpregen1"  "Seeds of Rejuvenation"  
+		"DOTA_Tooltip_Ability_item_hpregen1_bonus_stat1"	"Health Regeneration: +"
+
+		"DOTA_Tooltip_Ability_item_hpregen2"  "Stone of Vitality"  
+		"DOTA_Tooltip_Ability_item_hpregen2_bonus_stat1"	"Health Regeneration: +"
+
 		"DOTA_Tooltip_Ability_item_mana2"  "Arcane Orb"  
 		"DOTA_Tooltip_Ability_item_mana2_bonus_stat1"	"Mana: +"
+		"DOTA_Tooltip_Ability_item_mana2_bonus_stat2"	"Resource Regeneration: +"
 
 		"DOTA_Tooltip_Ability_item_hp2"  "<font color=\"#32cd32\">Stone of Life"  
 		"DOTA_Tooltip_Ability_item_hp2_Description"  "This secret orb possesses the unique essence of life, and thus can only affect the wielder once."
 		"DOTA_Tooltip_Ability_item_hp2_bonus_stat1"	"Health: +"
 
 		"DOTA_Tooltip_Ability_item_manareg1"  "Mask of Renewal"  
-		"DOTA_Tooltip_Ability_item_manareg1_bonus_stat1"	"Mana Regeneration: +"
+		"DOTA_Tooltip_Ability_item_manareg1_bonus_stat1"	"Resource Regeneration: +"
 
 		"DOTA_Tooltip_Ability_item_manareg2"  "Sapphire of Recovery"  
 		"DOTA_Tooltip_Ability_item_manareg2_bonus_stat1"	"Mana Regeneration: +"
@@ -812,7 +820,7 @@
 		"DOTA_Tooltip_Ability_item_bootsmana"  "<font color=\"#32cd32\">Arcana Treads"  
 		"DOTA_Tooltip_Ability_item_bootsmana_bonus_stat1"	"Movement Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsmana_bonus_stat2"	"Intellect: +"
-		"DOTA_Tooltip_Ability_item_bootsmana_bonus_stat3"	"Manaregeneration: +"
+		"DOTA_Tooltip_Ability_item_bootsmana_bonus_stat3"	"Resource Regeneration: +"
 
 		"DOTA_Tooltip_Ability_item_bootstime"  "<font color=\"#ff69b4\">Timetravelers"  
 		"DOTA_Tooltip_Ability_item_bootstime_Description"	"The cooldown of all Spells is decreased by 15%%." 
@@ -885,9 +893,9 @@
 		"DOTA_Tooltip_Ability_item_lifepatron_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_lifepatron_bonus_stat2"	"Mana: +"
 
-		"DOTA_Tooltip_Ability_item_caster2"  "<font color=\"#32cd32\">Manastaff of Renewal"  
+		"DOTA_Tooltip_Ability_item_caster2"  "<font color=\"#32cd32\">Staff of Renewal"  
 		"DOTA_Tooltip_Ability_item_caster2_bonus_stat1"	"Intellect: +"
-		"DOTA_Tooltip_Ability_item_caster2_bonus_stat2"	"Manaregeneration: +"
+		"DOTA_Tooltip_Ability_item_caster2_bonus_stat2"	"Resource Regeneration: +"
 
 		"DOTA_Tooltip_Ability_item_caster3"  "<font color=\"#4D6BFF\">The Sane Sorcerer"  
 		"DOTA_Tooltip_Ability_item_caster3_bonus_stat1"	"Intellect: +"
@@ -930,15 +938,8 @@
 		"DOTA_Tooltip_Ability_item_shield3_bonus_stat1"	"Armor: +"
 		"DOTA_Tooltip_Ability_item_shield3_bonus_stat2"	"Spell Resistance: +"
 
-		"DOTA_Tooltip_Ability_item_allstats2"  "Gem of Twisted Energy"  
-		"DOTA_Tooltip_Ability_item_allstats2_bonus_stat1"	"All Attributes: +"
-		"DOTA_Tooltip_Ability_item_allstats2_bonus_stat2"	"Health: +"
-		"DOTA_Tooltip_Ability_item_allstats2_bonus_stat3"	"Mana: +"
-
 		"DOTA_Tooltip_Ability_item_allstats3"  "<font color=\"#4D6BFF\">Rich Man's Chestguard"  
 		"DOTA_Tooltip_Ability_item_allstats3_bonus_stat1"	"All Attributes: +"
-
-		
 
 		"DOTA_Tooltip_Ability_item_aura2"  "<font color=\"#ff69b4\">Marching Drums of Bravery"  
 		"DOTA_Tooltip_Ability_item_aura2_bonus_stat1"	"Attack Speed Aura: +"
@@ -958,7 +959,7 @@
 		"DOTA_Tooltip_Ability_item_endgame8"  "<font color=\"#ff8c00\">Outburst of Fury"  
 		"DOTA_Tooltip_Ability_item_endgame8_Description"  "Auto Attacks have a 22%% chance to cause an Outburst of Fury, increasing Attack Speed by 275 and Movement Speed by 25%% for 5 secs. Can only proc once every 20 secs."
 		"DOTA_Tooltip_Ability_item_endgame8_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_endgame8_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_endgame8_bonus_stat2"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_endgame8_bonus_stat3"	"Attack Speed: +"
 		//"DOTA_Tooltip_Ability_item_endgame8_Lore" "It is back."
 
@@ -974,7 +975,7 @@
 		"DOTA_Tooltip_Ability_item_endgame2"  "<font color=\"#ff8c00\">Penetrating Chopper"  
 		"DOTA_Tooltip_Ability_item_endgame2_Description"  "Auto Attacks reduce the victim's Armor by 2 for 6 secs."
 		"DOTA_Tooltip_Ability_item_endgame2_bonus_stat1"	"Strength: +"
-		"DOTA_Tooltip_Ability_item_endgame2_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_endgame2_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_endgame2_Lore" "Chop Chop."
 
 		"DOTA_Tooltip_Ability_item_armoraxe"  "<font color=\"#66ffff\">Reaper's Claw"  
@@ -988,12 +989,12 @@
 		"DOTA_Tooltip_Ability_item_weapon11_Lore" "Chop."
 
 		"DOTA_Tooltip_Ability_item_endgame3"  "<font color=\"#ff8c00\">Bloody Ballista"  
-		"DOTA_Tooltip_Ability_item_endgame3_Description"  "Auto Attacks have a 10%% chance to crit for 200%% of normal damage."
+		"DOTA_Tooltip_Ability_item_endgame3_Description"  "Auto Attacks have a 10%% chance to Critical Strike for 200%%."
 		"DOTA_Tooltip_Ability_item_endgame3_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_endgame3_Lore" "There will be blood."
 
 		"DOTA_Tooltip_Ability_item_bootsblood2"  "<font color=\"#ff8c00\">Bloodstriders"  
-		"DOTA_Tooltip_Ability_item_bootsblood2_Description"  "Auto Attacks have a 20%% chance to crit for 150%% of normal damage."
+		"DOTA_Tooltip_Ability_item_bootsblood2_Description"  "Auto Attacks have a 20%% chance to Critical Strike for 150%%."
 		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat1"	"Movement Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat3"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat2"	"Attack Damage: +"
@@ -1010,7 +1011,7 @@
 
 		"DOTA_Tooltip_Ability_item_endgame13"  "<font color=\"#ff8c00\">Eternal Moonshine"  
 		"DOTA_Tooltip_Ability_item_endgame13_bonus_stat1"	"Intellect: +"
-		"DOTA_Tooltip_Ability_item_endgame13_bonus_stat3"	"Manaregeneration: +"
+		"DOTA_Tooltip_Ability_item_endgame13_bonus_stat3"	"Resource Regeneration: +"
 
 		"DOTA_Tooltip_Ability_item_endgame5"  "<font color=\"#ff8c00\">Unsteady Astral Mace"  
 		"DOTA_Tooltip_Ability_item_endgame5_Description"  "Abilities have a 8%% chance to crit for 135%% of normal damage.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
@@ -1935,8 +1936,8 @@
 		"DOTA_Tooltip_Ability_Fatal_Grasp"  "Fatal Grip"  
 		"DOTA_Tooltip_Ability_Fatal_Grasp_buffduration"  "Root Duration:"
 
-		"DOTA_Tooltip_modifier_rootedfx"	"Rooted"
-		"DOTA_Tooltip_modifier_rootedfx_Description"	"Can not move."
+		"DOTA_Tooltip_modifier_rootedfx"	"Stunned"
+		"DOTA_Tooltip_modifier_rootedfx_Description"	"Stunned in a block of ice."
 
 		"DOTA_Tooltip_modifier_unholyheal"	"Corrupted Soul"
 		"DOTA_Tooltip_modifier_unholyheal_Description"	"Can not be healed and health absorbing shields have no effect."
@@ -1964,8 +1965,9 @@
 		"DOTA_Tooltip_Ability_item_stunitem_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_stunitem_Lore" "They will feel it in their bones."
 
-		"DOTA_Tooltip_Ability_item_stunitem2"  "<font color=\"#ff69b4\">Sacred Edge"  
+		"DOTA_Tooltip_Ability_item_stunitem2"  "<font color=\"#ff69b4\">Jagged Edge"  
 		"DOTA_Tooltip_Ability_item_stunitem2_bonus_stat1"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_stunitem2_bonus_stat2"	"%Physical Elemental Damage: +"
 		//"DOTA_Tooltip_Ability_item_stunitem2_Lore" "They will feel it in their spine."
 
 		"DOTA_Tooltip_Ability_item_allstats2up"  "<font color=\"#4D6BFF\">Ring of the Spirithawk"  
@@ -2048,7 +2050,7 @@
 		//"DOTA_Tooltip_ability_frostdk4_first_hit"           "First hit extra Skeletons:"
 
 		"DOTA_Tooltip_Ability_frostdk5"  "Blizzard"  
-		"DOTA_Tooltip_Ability_frostdk5_Description"  "Summon a Blizzard around you, dealing Physical Frost Damage every second to nearby enemies and increasing the Armor of nearby allies. After the Blizzard ends, incapacitate all enemies inside the Blizzard in an Ice Block.<font color=\"#FFBB00\">\n\nRank 2: Reduce all Damage taken by 75%% during Blizzard. \nRank 3: Gain greatly increased Attack Speed while under the effect and increased Armor bonus for nearby allies. \nRank 4: Reduced cooldown, removed resource cost and also grant your Summons and Companions 50%% increased Damage for 15 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_frostdk5_Description"  "Summon a Blizzard around you, dealing Physical Frost Damage every second to nearby enemies and increasing the Armor of nearby allies. After the Blizzard ends, incapacitate all enemies inside the Blizzard in an Ice Block.<font color=\"#FFBB00\">\n\nRank 2: Reduce all Damage taken by 75%% during Blizzard. \nRank 3: Gain greatly increased Attack Speed while under the effect, increased Armor bonus for nearby allies and increase all AOE Damage by 100%% while active. \nRank 4: Reduced cooldown, removed resource cost and also grant your Summons and Companions 50%% increased Damage for 15 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_frostdk5_buffduration"    "Ice Block Duration:"
 		"DOTA_Tooltip_Ability_frostdk5_duration"    "Blizzard Duration:"
 		"DOTA_Tooltip_Ability_frostdk5_bonusarmor"    "Armor Bonus:"
@@ -3415,9 +3417,11 @@
 		"DOTA_Tooltip_ability_item_silverblood"                                           "<font color=\"#ff8c00\">[Ancient] Silverblood Lance"
 		"DOTA_Tooltip_ability_item_silverblood_Description"                               "\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_silverblood_bonus_stat1"                               "Strength: +"
+		"DOTA_Tooltip_ability_item_silverblood_bonus_stat2"                               "Health Regeneration: +"
 		"DOTA_Tooltip_ability_item_silverblood2"                                           "<font color=\"#66ffff\">Titanblood Mace"
 		"DOTA_Tooltip_ability_item_silverblood2_Description"                               "<h1>Titanblood</h1>Increase all Damage done by your Abilities by 25%% for 10 secs.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_silverblood2_bonus_stat1"                               "Strength: +"
+		"DOTA_Tooltip_ability_item_silverblood2_bonus_stat2"                               "Health Regeneration: +"
 		"DOTA_Tooltip_modifier_item_silverblood2_active"                                  "Titanblood"
 		"DOTA_Tooltip_modifier_item_silverblood2_active_Description"                      " "
 		"DOTA_Tooltip_ability_item_silverblood3"                                           "<font color=\"#66ffff\">Bloodrage, Call of the Ram"
@@ -3550,7 +3554,7 @@
 		"DOTA_Tooltip_Ability_moon10_duration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_moon6"  "Moon and Sun"  
-		"DOTA_Tooltip_Ability_moon6_amount"    "%Mana and Health Regeneration:"  
+		"DOTA_Tooltip_Ability_moon6_amount"    "%Mana Regeneration:"  
 
 		"DOTA_Tooltip_modifier_moonfire"	"Moonburn"
 		"DOTA_Tooltip_modifier_moonfire_Description"	"Taking damage over time."
@@ -3854,6 +3858,8 @@
 
 		"DOTA_Tooltip_modifier_blood_shield"                                               "Shield"
 		"DOTA_Tooltip_modifier_blood_shield_Description"                                   "Blocking damage instances."
+		"DOTA_Tooltip_modifier_blood_shield2"                                               "Shield"
+		"DOTA_Tooltip_modifier_blood_shield2_Description"                                   "Blocking damage instances."
 
 		"DOTA_Tooltip_modifier_eternallife"                                               "Eternallife"
 		"DOTA_Tooltip_modifier_eternallife_Description"                                   " "
@@ -4533,6 +4539,7 @@
 		"DOTA_Tooltip_ability_item_shield_aggro_bonus_stat4"                              "Strength:"
 		"DOTA_Tooltip_ability_item_shield_aggro_bonus_stat2"                              "Health:"
 		"DOTA_Tooltip_ability_item_shield_aggro_bonus_stat3"                              "Armor:"
+		"DOTA_Tooltip_ability_item_shield_aggro_bonus_stat5"                              "Block:"
 
 		"DOTA_Tooltip_ability_item_wolf_belt"                                             "<font color=\"#4D6BFF\">Winterhide Belt"
 		"DOTA_Tooltip_ability_item_wolf_belt_bonus_stat1"                                 "Strength:"
@@ -6066,8 +6073,15 @@
 		"DOTA_Tooltip_ability_dh3_res"														"%Spell Resistance:"
 		"DOTA_Tooltip_ability_dh3_dmg"														"%Agility to Damage per Second:"
 
-		"DOTA_Tooltip_ability_dh4_Description"                                            "Fire a Felbeam from your eyes towards the targeted location for 3 secs, dealing Physical Chaos Damage 3 times per sec. You can not move, attack or cast spells while under the effect, but you can change the Felbeam's direction.<font color=\"#FFBB00\">\n\nRank 2: When cast, cover yourself in Fel Flames, dealing Chaos Damage twice per second to nearby enemies. \nRank 3: Passively increase the damage of all Ability Critical Strikes you cause by 15%% and whenever you deal Chaos Damage, there is a 5%% chance to cause a Fel Blast, dealing 250%% of your Strength plus Agility as Physical Chaos Damage to up to 5 enemies around the target. \nRank 4: Damage increased and while channeling and 2 secs after, you take 90%% less Damage.\n\n</font>"
+		"DOTA_Tooltip_ability_dh4_Description"                                            "Fire a Felbeam from your eyes towards the targeted location for 3 secs, dealing Physical Chaos Damage 3 times per sec. You can not move, attack or cast spells while under the effect, but you can change the Felbeam's direction.\nBenefits from Channeled Ability Damage Bonuses.<font color=\"#FFBB00\">\n\nRank 2: When cast, cover yourself in Fel Flames, dealing Chaos Damage twice per second to nearby enemies. \nRank 3: Passively increase the damage of all Ability Critical Strikes you cause by 15%% and whenever you deal Chaos Damage, there is a 5%% chance to cause a Fel Blast, dealing 250%% of your Strength plus Agility as Physical Chaos Damage to up to 5 enemies around the target. \nRank 4: Damage increased and while channeling and 2 secs after, you take 90%% less Damage.\n\n</font>"
 		"DOTA_Tooltip_ability_dh4_dmg"                                            "%Fel Flames Agility to Damage:"
+
+		"DOTA_Tooltip_ability_frost_ray"  														"Frost Rays"
+		"DOTA_Tooltip_ability_frost_ray_Description"                                            "Stand still and fire 3 Frost Rays in a cone, dealing Frost Damage twice per sec. You can not move or attack or cast spells while under the effect, but you can change its direction.\nWhile active and 2 secs after, gain 75%% Damage Reduction.\nBenefits from Channeled Ability Damage Bonuses. <font color=\"#FFBB00\">\n\nRank 2: 20%% chance to stun enemies in a block of ice and when Frost Ray hits a Boss, reduce its cooldown by 0.25 secs. \nRank 3: Every Damage interval, the Damage of Frost Ray is increased by 10%%.\nRank 4: While active, increase all Summon Damage by 100%%.\n\n</font>"
+		"DOTA_Tooltip_ability_frost_ray_dmgfromstat"                                            "%Intellect and Spellpower to Damage:"
+		"DOTA_Tooltip_ability_frost_ray_buffduration"                                            "Duration:"
+
+		"DOTA_Tooltip_modifier_frostray"	"Frost Rays"
 
 		"DOTA_Tooltip_ability_dh5_Description"                                            "Gain 90%% Evasion, 50%% Movement Speed and generate 15 Felpower per sec for 5 secs.<font color=\"#FFBB00\">\n\nRank 2: Reduce all Damage taken while under the effect. \nRank 3: Increase the Felpower gain to 45 per sec and passively gain + 1 Chaos Damage per Point of Agility. \nRank 4: Open a Nether Rift, granting yourself and all nearby allies invisibility for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_ability_dh5_portaldmg"                                               "%Nether Spike Agility to Damage:"
@@ -6394,7 +6408,7 @@
 		"temple_chest"                                                                     "Loot Hoarder"
 		"temple_chest_2"                                                                     "Artifact Thief"
 		"temple_chest_3"                                                                     "Gold Bandit"
-		"DOTA_Tooltip_Ability_wind1_Description"  "An instant shot dealing Nature Damage, but the damage is decreased the closer the target is.<font color=\"#FFBB00\">\n\nRank 2: Instead of firing 1 Arrow, Fire 3 Arrows very quickly with reduced Damage. \nRank 3: If after 3 secs the target is more than 350 yards away from you, launch another Arrow. Passively gain 25 Attack Speed per sec when standing still and whenever you cast Cobra Shot, stacking up to 10 times and being removed when moving. \nRank 4: When cast, reduce the cooldown of your 6th Ability by 4 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_wind1_Description"  "An instant shot dealing Nature Damage, but the damage is decreased the closer the target is.<font color=\"#FFBB00\">\n\nRank 2: Instead of firing 1 Arrow, Fire 2 Arrows with reduced Damage. \nRank 3: If after 3 secs the target is more than 350 yards away from you, launch another Arrow. Passively gain 25 Attack Speed per sec when standing still and whenever you cast Cobra Shot, stacking up to 10 times and being removed when moving. \nRank 4: When cast, reduce the cooldown of your 6th Ability by 4 secs.\n\n</font>"
 		"DOTA_Tooltip_ability_pve_temple_aoe_impale_random"                             "Impaling Madness"
 		"DOTA_Tooltip_ability_pve_temple_aoe_impale_random_Description"                 "Launch a series of high damage dealing Impales in random directions."
 		//2.9
@@ -6440,8 +6454,9 @@
 
 		"DOTA_Tooltip_ability_item_wolf_cloak_3"                                            "<font color=\"#66ffff\">Sacred Armor"
 		"DOTA_Tooltip_ability_item_wolf_cloak_3_bonus_stat1"                                "Intellect:"
-		"DOTA_Tooltip_ability_item_wolf_cloak_3_bonus_stat2"                                "Mana Regeneration:"
+		"DOTA_Tooltip_ability_item_wolf_cloak_3_bonus_stat2"                                "Resource Regeneration:"
 		"DOTA_Tooltip_ability_item_wolf_cloak_3_bonus_stat4"                                "Armor Aura:"
+		"DOTA_Tooltip_ability_item_wolf_cloak_3_bonus_stat5"                                "Block:"
 
 		"DOTA_Tooltip_Ability_moon2_Description"  "Deal Arcane Damage instantly as well as every 1.5 secs. If used with 5 Moon Charges, reduce the remaining cooldown of Tidal Wave and Moonlight by 8 secs.\n\n<font color=\"#00EE00\">Grants 1 Sun Charge.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and DoT Damage. \nRank 3: Whenever you consume 5 Moon charges, fire a Moon Glaive at all enemies within 900 yards, applying Moonburn's Damage effects. \nRank 4: The DoT now ticks every sec and lasts 6 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_moon1_Description"  "Deal Nature Damage. If used with 5 Sun Charges, reduce the remaining cooldown of Entangling Roots and Rise of Nature by 8 secs. 2 secs casttime.\n\n<font color=\"#00EE00\">Grants 1 Moon Charge.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Benefits 50%% more from Critical Strike chances. \nRank 4: Heal for 50%% of max Health, with an inner cooldown of 20 secs.\n\n</font>"
@@ -6577,6 +6592,7 @@
 		"DOTA_Tooltip_ability_item_silverblood4"                                           "<font color=\"#00ffff\">[Ancient] Orc Helmet"
 		"DOTA_Tooltip_ability_item_silverblood4_Description"                               "Increases the effectiveness of Colossal Strikes by 100%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_silverblood4_bonus_stat1"                               "Strength: +"
+		"DOTA_Tooltip_ability_item_silverblood4_bonus_stat2"                               "Health Regeneration: +"
 		"DOTA_Tooltip_ability_item_windforce4"                                           "<font color=\"#00ffff\">[Ancient] Nightelf Hood"
 		"DOTA_Tooltip_ability_item_windforce4_Description"                               "Increases the Damage of The Stars Aligned by 25%% and reduces its cooldown by 5 secs.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_windforce4_bonus_stat1"                               "Agility: +"
@@ -6708,7 +6724,7 @@
 		"DOTA_Tooltip_ability_boss1_aafrenzy_time_2_Description"                          "Each Attack increases the Auto Attack Damage by 10%%. Resets when not attacking for 5 secs."
 
 		"DOTA_Tooltip_modifier_ice_armor_2"                                                 "Crystal Skin"
-		"DOTA_Tooltip_Ability_Ice_Armor_Description"  "Cover the target with Ice, preventing it from taking any damage but also preventing it from performing any actions. Can be cast on allies and enemies.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and when the Frost Block ends, reduce all Damage taken by 75%% for 4 secs. \nRank 3: Gain 3 instant Ice Bolt or Chicken casts when cast and passively reduce all Damage Taken by 2% for every 5 Armor, capped at 50%%. \nRank 4: Full duration on enemies and allies will also gain an Ice Armor for 60 secs, increasing Armor by 10 and slowing Attack and Movement Speed by 10%% for 25 secs when taking damage.\n\n</font>"
+		"DOTA_Tooltip_Ability_Ice_Armor_Description"  "Cover the target with Ice, preventing it from taking any damage but also preventing it from performing any actions. Can be cast on allies and enemies.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown and when the Frost Block ends, reduce all Damage taken by 75%% for 4 secs. \nRank 3: Gain 3 instant Ice Bolt casts when cast and passively reduce all Damage Taken by 2% for every 5 Armor, capped at 50%%. \nRank 4: Full duration on enemies and allies will also gain an Ice Armor for 60 secs, increasing Armor by 10 and slowing Attack and Movement Speed by 10%% for 25 secs when taking damage.\n\n</font>"
 		
 		"DOTA_Tooltip_modifier_ice_nova_bonus"                                                 "Ice Rage"
 		"DOTA_Tooltip_Ability_Ghoul_Nuke_Description"  "Take away a percentage of the target's current Health and heal the master. Causes Aggro for the Master.\nWhen used on targets below 6%% / 6%% / 6%% / 12%% of max Health, set their Health to 1%%."
@@ -7292,7 +7308,7 @@
 		"DOTA_Tooltip_modifier_ancient_hp_aura"                                           "Battleflag Aura"
 		"DOTA_Tooltip_modifier_ancient_hp_aura_Description"                               " "
 		"DOTA_Tooltip_pve_boss_extra_resistances"                                           "Boss"
-		"DOTA_Tooltip_pve_boss_extra_resistances_Description"                               "Bosses have improved Defenses. On high Monster Levels their Auto Attack Damage and Movement Speed is increased. On Monster Level 500 and higher they also gain the Titan Shelter effect, causing them to not take more than 20%% of max Health in a single Damage instance."
+		"DOTA_Tooltip_pve_boss_extra_resistances_Description"                               "Bosses have improved Defenses. On high Monster Levels their Auto Attack Damage and Movement Speed is increased. On Monster Level 500 and higher they also gain the Titan Shelter effect, causing them to not take more than 25%% of max Health in a single Damage instance."
 		"DOTA_Tooltip_modifier_talent_lifeblood"                                           "Lifeblood"
 		"DOTA_Tooltip_modifier_talent_lifeblood_Description"                               "Damage increased."
 		
@@ -7558,7 +7574,7 @@
 		"DOTA_Tooltip_ability_item_nature"                                             "<font color=\"#00ffff\">[Ancient] Nature's Decay"
 		"DOTA_Tooltip_ability_item_nature_Description"                                 "All Nature Damage is increased by 50%%.\nAll Damage over Time is increased by 50%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		
-		"DOTA_Tooltip_Ability_moon6_Description"  "Swap between Moon and Sun stance, each having different Abilities. In Moon stance you generate Mana every 5 secs and in Sun stance you generate Health every 5 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Mana and Health Regeneration and passively gain 750 extra Health and 15 Spell Resistance. \nRank 3: Gain Spellpower equal to 150%% of your Strength plus Agility. \nRank 4: Passively gain the Astral Sun Aura, increasing all Arcane, Nature and Fire Damage of nearby allies by 25%%. Also, after having cast Starbeam, Starfall, Moonburn, Wrath of Nature, Entangling Roots and Sunburn, cause 3 Astral Shocks, dealing Arcane Damage to nearby enemies for 500%% of your Spellpower.\n\n</font>"
+		"DOTA_Tooltip_Ability_moon6_Description"  "Swap between Moon and Sun stance, each having different Abilities. In Moon stance you generate Mana every 5 secs and in Sun stance you Heal every 5 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Mana Regeneration and Healing and passively gain 750 extra Health and 15 Spell Resistance. \nRank 3: Gain Spellpower equal to 150%% of your Strength plus Agility. \nRank 4: Passively gain the Astral Sun Aura, increasing all Arcane, Nature and Fire Damage of nearby allies by 25%%. Also, after having cast Starbeam, Starfall, Moonburn, Wrath of Nature, Entangling Roots and Sunburn, cause 3 Astral Shocks, dealing Arcane Damage to nearby enemies for 500%% of your Spellpower.\n\n</font>"
 		
 		"DOTA_Tooltip_Ability_Feral5_Description"  "Leap towards the target, strike it for Physical Damage and stun it.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage and Stun Duration, decreased Cooldown and 50%% Damage Reduction for 3 secs when cast. \nRank 3: You now strike and stun all targets in a 300 area around the target and whenever you deal AOE Damage, restore 3%% of max Energy. \nRank 4: When cast, gain the Wild Wolf effect for 10 secs, increasing Strength and Agility by 25%%. \n\n</font>"
 		
@@ -7570,7 +7586,7 @@
 		
 		"DOTA_Tooltip_Ability_Switch_Battle_Stance_Prot_Description"  "Swap between an Aggressive and Defensive Battle Stance. In both Stances, Armor is increased by 5. Each Stance has different Abilities.<font color=\"#FFBB00\">\n\nRank 2: Improved Commander's Shout and Armor Bonus increased to 10. \nRank 3: Passively increase your Ability Critical Strike Damage by 1%% per 2 Armor and also reduce the cooldown of Shield Reflect. \nRank 4: Increase the base stun duration of Charge and passively increase all stun durations by 25%% and whenever you stun a target, restore 5%% of max health and deal 25%% of your current health as damage.\n\n</font>"
 		
-		"DOTA_Tooltip_Ability_Waterelemental_Description"  "Summon a Tide Elemental automatically attacking the target you cast Ice Bolt on, with Attack Damage based on your Intellect and Spellpower. Can cast Ice Bolt, Ice Nova and Deep Frost.<font color=\"#FFBB00\">\n\nRank 2: Increased Pet Auto Attack and Ice Bolt Damage. \nRank 3: New Ability - Storm of Ice. \nRank 4: Longer Deepfrost duration and passively increase all Ability Critical Strike Damage by 1%% per Armor you have.\n\n</font>"
+		"DOTA_Tooltip_Ability_Waterelemental_Description"  "Summon an Ice Elemental automatically attacking the target you cast Ice Bolt on, with Attack Damage based on your Intellect and Spellpower. Can cast Ice Bolt, Ice Nova and Deep Frost.<font color=\"#FFBB00\">\n\nRank 2: Increased Pet Auto Attack and Ice Bolt Damage. \nRank 3: New Ability - Storm of Ice. \nRank 4: Longer Deepfrost duration and passively increase all Ability Critical Strike Damage by 1%% per Armor you have.\n\n</font>"
 		
 		"DOTA_Tooltip_Ability_fire6_Description"  "Burst forward, reduce all Damage taken by 30%% and gain increased movement speed for 3 secs.<font color=\"#FFBB00\">\n\nRank 2: Remove all slows when cast and take 60%% less damage while under the effect. \nRank 3: Increased duration, reduced cooldown and also increase all Fire Damage done by 50%% while under the effect. \nRank 4: When casting, launch 3 Fire Lances at every target in a 600 radius around you. Does not hit targets affected by breakable CC.\n\n</font>"
 		
@@ -7582,6 +7598,7 @@
 		"DOTA_Tooltip_ability_item_dragonshield_Description"                               "Increases the level of Overwhelm by 2."
 		"DOTA_Tooltip_ability_item_dragonshield_bonus_stat1"                               "Health: +"
 		"DOTA_Tooltip_ability_item_dragonshield_bonus_stat3"                               "Armor: +"
+		"DOTA_Tooltip_ability_item_dragonshield_bonus_stat4"                               "Block: +"
 		"DOTA_Tooltip_ability_item_dragonshield_bonus_stat2"                               "%Companion Damage: +"
 
 		"DOTA_Tooltip_Ability_Felhunter_Description"  "Summon a Voidhunter to passively follow you and attack the target you last Auto Attacked for 250%% of your Intellect and Spellpower as Shadow Damage. <font color=\"#FFBB00\">\n\nRank 2: Passively gain the Presence of the Void Aura, increasing Health by 20%% and all Healing received by 20%%. \nRank 3: Gain the Demonic Mastery buff, passively increasing all Damage done by your Summons and Companions by 50%% and causing Voidhunter Attacks to apply Haunting Terror to all enemies within 300 yards around him. \nRank 4: The Aura now also grants 5 Armor and when you summon the Voidhunter, increase all Shadow Damage by 100%%, heal 3%% of max Health every sec and reduce all Damage taken by 25%% for 12 secs.\n\n</font>"
@@ -8528,11 +8545,11 @@
 		"DOTA_Tooltip_ability_item_bighit_2_lore"                                 	 		"The Executioner is on your side now."
 
 		"DOTA_Tooltip_ability_item_channel"                                               "<font color=\"#ff8c00\">[Ancient] Crow Caller"
-		"DOTA_Tooltip_ability_item_channel_Description"                                   "After dealing Damage or Healing with a Channeling Ability, increase all Damage and Healing by 40%% for 6 secs.\n+1 Murder of Crows"
+		"DOTA_Tooltip_ability_item_channel_Description"                                   "After dealing Damage or Healing with a Channeling Ability, increase all Damage and Healing by 30%% for 6 secs.\n+1 Murder of Crows"
 		"DOTA_Tooltip_ability_item_channel_bonus_stat1"                                   "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_channel_2"                                             "<font color=\"#ffd700\">[Divine] Hell's Scream"
-		"DOTA_Tooltip_ability_item_channel_2_Description"                                 "After dealing Damage or Healing with a Channeling Ability, increase all Damage and Healing by 75%% for 6 secs.\n+2 Murder of Crows"
+		"DOTA_Tooltip_ability_item_channel_2_Description"                                 "After dealing Damage or Healing with a Channeling Ability, increase all Damage and Healing by 50%% for 6 secs.\n+2 Murder of Crows"
 		"DOTA_Tooltip_ability_item_channel_2_bonus_stat1"                                 "Primary Attribute: +"
 
 		"DOTA_Tooltip_ability_item_titanarmor"                                            "<font color=\"#ff8c00\">[Ancient] Royal Carapace"
@@ -8546,6 +8563,7 @@
 		"DOTA_Tooltip_ability_item_titanarmor_2_bonus_stat1"                              "Primary Attribute: +"
 		"DOTA_Tooltip_ability_item_titanarmor_2_bonus_stat2"                                "Armor: +"
 		"DOTA_Tooltip_ability_item_titanarmor_2_bonus_stat3"                                "Health: +"
+		"DOTA_Tooltip_ability_item_titanarmor_2_bonus_stat4"                                "Block: +"
 
 		"DOTA_Tooltip_ability_item_bloodlust"                                             "<font color=\"#ff8c00\">[Ancient] Belt of Bloodlust"
 		"DOTA_Tooltip_ability_item_bloodlust_Description"                                 "After having cast your first 4 Abilities, gain 100 Attack Speed, Spellhaste and Primary Attribute for 12 secs.\n"
@@ -8890,7 +8908,7 @@
 		"DOTA_Tooltip_Ability_item_longbow2_bonus_stat4"	"Activation Resource Gain: +"
 
 		"DOTA_Tooltip_ability_item_class_jungle"                                          "<font color=\"#00ffff\">[Ancient] Bow of Iris"
-		"DOTA_Tooltip_ability_item_class_jungle_Description"                              "<font color=\"#00EE00\">Increases the Damage of Viper Poison and Serpent Poison by 300%%."
+		"DOTA_Tooltip_ability_item_class_jungle_Description"                              "<font color=\"#00EE00\">Increases the Damage of Viper Poison and Serpent Poison by 300%% and whenever they deal Damage, restore 3 Focus.\n<font color=\"#00EE00\">Enemies affected by either Poison deal 25%% reduced Damage to you."
 		"DOTA_Tooltip_ability_item_class_jungle_bonus_stat1"                              "Attack Damage:"
 
 		"DOTA_Tooltip_ability_item_class_snow"                                          "<font color=\"#00ffff\">[Ancient] Snowfalcon"
@@ -9614,7 +9632,7 @@
 		"DOTA_Tooltip_ability_pve_act_affix_arcaneshield_Description"                     "Increased Spell Resistances and whenever taking Damage, there is a chance to launch an Arcane Missile back at the source."
 
 		"DOTA_Tooltip_ability_pve_act_affix_giant"                                        "Giant"
-		"DOTA_Tooltip_ability_pve_act_affix_giant_Description"                            "Has increased Auto Attack Damage and Giant Block, causing it to not take more than 15%% of max Health in a single Damage instance."
+		"DOTA_Tooltip_ability_pve_act_affix_giant_Description"                            "Has increased Auto Attack Damage and Giant Block, causing it to not take more than 20%% of max Health in a single Damage instance."
 
 		"DOTA_Tooltip_modifier_affix_avenger"                                             "Avenging"
 		"DOTA_Tooltip_modifier_affix_avenger_Description"                                 " "
@@ -9722,6 +9740,8 @@
 		"DOTA_Tooltip_Ability_item_crowndefender2"  "<font color=\"#7733ff\">[Mythical] Crown Defender"  
 		"DOTA_Tooltip_Ability_item_crowndefender2_Description"  "<h1>Save the Crown</h1>Taunt nearby enemies for 5 secs.\nGrizzly's Power now grants 7.5%% increased Strength per Level."
 		"DOTA_Tooltip_Ability_item_crowndefender2_bonus_stat1"	"Health: +"
+		"DOTA_Tooltip_Ability_item_crowndefender2_bonus_stat2"	"Health Regeneration: +"
+		"DOTA_Tooltip_Ability_item_crowndefender2_bonus_stat3"	"Block: +"
 
 		"DOTA_Tooltip_Ability_item_critmaster2"  "<font color=\"#7733ff\">[Mythical] Godslayer"  
 		"DOTA_Tooltip_Ability_item_critmaster2_Description"  "When you land a Critical Strike with a Damaging Ability and the previous Ability Damage instance was a Critical Strike too, increase the total Damage by 100%%."
@@ -10176,7 +10196,7 @@
 		"DOTA_Tooltip_ability_item_rider_boots_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Four Horsemen\n+2 for the Path Talent Wolf Rider</font>"
 		"DOTA_Tooltip_ability_item_rider_boots_stat1"  "Movespeed: + "
 		"DOTA_Tooltip_ability_item_firestone"  "<font color=\"#ffd700\">[Divine] Sacred Firestone"
-		"DOTA_Tooltip_ability_item_firestone_Description"  "<font color=\"#FF6600\">Whenever you deal Holy Damage, it is now of type Fire instead and deals 100% increased Damage.</font>"
+		"DOTA_Tooltip_ability_item_firestone_Description"  "<font color=\"#FF6600\">Whenever you deal Holy Damage, it is now of type Fire instead and deals 100% increased Damage.\n<font color=\"#FF6600\">Rain of Arrows fires 5 additional waves.\n<font color=\"#FF6600\">Dragon Claw deals its Damage twice."
 		"DOTA_Tooltip_ability_item_firestone_stat1"  "Spell Resistance: + "
 		"DOTA_Tooltip_ability_item_thunderclub"  "<font color=\"#ffd700\">[Divine] Hurricane Harpoon"
 		"DOTA_Tooltip_ability_item_thunderclub_Description"  "<font color=\"#FF6600\">+1 Typhoon Thunder\nWhenever you are being attacked, there is a 50% chance to strike back with a Typhoon Thunder.</font>"
@@ -10222,6 +10242,13 @@
 		"DOTA_Tooltip_ability_item_divinedef_Description"  "<h1>Divine Blessing</h1><font color=\"#FF6600\">After 3 secs, purge the target from all debuffs and heal it for 15% of max Health.</font>"
 		"DOTA_Tooltip_ability_item_divinedef_stat1"  "%Max Health: + "
 		"DOTA_Tooltip_ability_item_divinedef_stat2"  "%Damage Reduction: + "
+		"DOTA_Tooltip_ability_item_divinedef_stat3"  "Block: + "
+		"DOTA_Tooltip_ability_item_divine_phys"  "<font color=\"#ffd700\">[Divine] Mithril Crescent"
+		"DOTA_Tooltip_ability_item_divine_phys_stat1"  "Primary Attribute: + "
+		"DOTA_Tooltip_ability_item_divine_phys_stat2"  "%Physical Elemental Damage: + "
+		"DOTA_Tooltip_ability_item_divine_frost"  "<font color=\"#ffd700\">[Divine] Blizzard Shards"
+		"DOTA_Tooltip_ability_item_divine_frost_Description"  "<font color=\"#FF6600\">Blizzard Path now procs its Damage 3 times.\n<font color=\"#FF6600\">When dealing Frost Damage against enemies affected by Blizzard Path, the Ability Damage is increased by 50%%.\n<font color=\"#FF6600\">Ice Storm Path always procs Blizzard Path."
+		"DOTA_Tooltip_ability_item_divine_frost_stat1"  "Primary Attribute: + "
 		
 		"DOTA_Tooltip_ability_item_mastery_091_002"  "<font color=\"#00ffff\">[Ancient] Soul - Dreadsteed [+2]"
 		"DOTA_Tooltip_ability_item_mastery_091_002_Description"  "<font color=\"#FF6600\">Souls increase the Level of a Path Talent, but are unique and must be equipped in your backpack in order to become active.</font>"
@@ -10830,7 +10857,7 @@
 
 
 		"DOTA_Tooltip_ability_item_class_jungle2"                                          "<font color=\"#00ffff\">[Ancient] Hot Hunter Hood"
-		"DOTA_Tooltip_ability_item_class_jungle2_Description"                              "<font color=\"#00EE00\">While under the Flaming Arrows Buff, increase all Fire Damage by 20%% for every 100 Points of Agility."
+		"DOTA_Tooltip_ability_item_class_jungle2_Description"                              "<font color=\"#00EE00\">While under the Flaming Arrows Buff, increase all Fire Damage by 20%% for every 100 Points of Agility.\n<font color=\"#00EE00\">Each wave of Rain of Arrows increases its Damage by 20%%."
 		"DOTA_Tooltip_ability_item_class_jungle2_bonus_stat1"                              "Agility:"
 
 		"DOTA_Tooltip_ability_item_class_drow2"                                          "<font color=\"#00ffff\">[Ancient] Icy Hunter Hood"
@@ -10936,7 +10963,7 @@
 		"DOTA_Tooltip_Ability_item_strarm_bonus_stat2"	"Armor: +"
 
 		"DOTA_Tooltip_ability_item_class_mars2"                                          "<font color=\"#00ffff\">[Ancient] Spear of Swiftness"
-		"DOTA_Tooltip_ability_item_class_mars2_Description"                              "Iron Shaolin: Gain 5%% Damage Reduction for every 100 Points of Agility, up to 50%%."
+		"DOTA_Tooltip_ability_item_class_mars2_Description"                              "Iron Shaolin: Gain 3%% Damage Reduction for every 100 Points of Agility, up to 35%%."
 		"DOTA_Tooltip_ability_item_class_mars2_bonus_stat1"                              "Strength:"
 		"DOTA_Tooltip_ability_item_class_mars2_bonus_stat2"                              "Agility:"
 
@@ -10964,9 +10991,10 @@
 		"DOTA_Tooltip_ability_item_class_ds2_bonus_intellect"                              "Intellect:"
 
 		"DOTA_Tooltip_ability_item_class_sven2"                                          "<font color=\"#00ffff\">[Ancient] Swords of Snow"
-		"DOTA_Tooltip_ability_item_class_sven2_Description"                              "Whenever you are at 5 stacks of the Frostknight buff, morph into a Frostgolem, increasing your Ability Critical Strike Damage by 30%% for every 100 Agility, when dealing single target Damage."
+		"DOTA_Tooltip_ability_item_class_sven2_Description"                              "Whenever you are at 5 stacks of the Frostknight buff, morph into a Frostgolem, increasing your Ability Critical Strike Damage by 30%% for every 100 Agility, when dealing Single Target Damage."
 		"DOTA_Tooltip_ability_item_class_sven2_bonus_stat1"                              "Strength:"
 		"DOTA_Tooltip_ability_item_class_sven2_bonus_stat2"                              "Agility:"
+		"DOTA_Tooltip_ability_item_class_sven2_bonus_stat3"                              "Ability Charges: +"
 
 		"DOTA_Tooltip_ability_item_class_sham2"                                          "<font color=\"#00ffff\">[Ancient] Mirror Mask"
 		"DOTA_Tooltip_ability_item_class_sham2_Description"                              "Whenever Rock Shield heals a target different from you, it will also heal yourself and reduce the cooldown of Meditation by 1 sec."
@@ -10981,7 +11009,7 @@
 		"DOTA_Tooltip_ability_item_class_riki2_lore"                              		"Usually daggers are small... but this one isn't. It requires a lot of strength, just to pick up."
 
 		"DOTA_Tooltip_ability_item_class_bounty2"                                          "<font color=\"#00ffff\">[Ancient] Tunic of Tempo"
-		"DOTA_Tooltip_ability_item_class_bounty2_Description"                              "Fatal Shadowstalker: For every Point of Movement Speed above 350, gain 1%% increased Agility."
+		"DOTA_Tooltip_ability_item_class_bounty2_Description"                              "Fatal Shadowstalker: For every 2 Points of Movement Speed above 350, gain 1%% increased Agility."
 		"DOTA_Tooltip_ability_item_class_bounty2_bonus_stat1"                              "Agility:"
 		"DOTA_Tooltip_ability_item_class_bounty2_bonus_stat2"                              "%Evasion:"
 
@@ -11020,6 +11048,52 @@
 		"DOTA_Tooltip_Ability_warrior_3"  "Decimate"
 		"DOTA_Tooltip_Ability_warrior_3_Description"  "Whenever you stun an enemy, cause them to Bleed for 500%% of Strength per sec and reduce their Damage by 20%% for 5 secs."
 		"DOTA_Tooltip_modifier_warrior3"                                              "Knight Tactics"
-		
+
+		"temple_sand_boss_8"                                                             "Rusty, Roaming Colossus"
+		"DOTA_Tooltip_ability_pve_massive"                                "Massive"
+		"DOTA_Tooltip_ability_pve_massive_Description"                    "Auto Attacks deal higher Damage than usual."
+		"DOTA_Tooltip_ability_pve_hardened_skin"                                "Iron Armor"
+		"DOTA_Tooltip_ability_pve_hardened_skin_Description"                    "Blocks the first 50 Damage instances."
+		"DOTA_Tooltip_ability_pve_desert_sand"                                "Desert Sand"
+		"DOTA_Tooltip_ability_pve_desert_sand_Description"                    "Blends with the desert sand, causing Auto Attacks against him to sometimes miss."
+		"DOTA_Tooltip_ability_pve_rusty_rage"                                "Rusty Rage"
+		"DOTA_Tooltip_ability_pve_rusty_rage_Description"                    "Goes into a Rage briefly, increasing Attack Speed, but then needs to stay rooted temporarily to repair its rusty state."
+
+		"DOTA_Tooltip_ability_pve_temple_stompingcharge_notrandom2"                                "Rabies"
+		"DOTA_Tooltip_ability_pve_temple_stompingcharge_notrandom2_Description"                                "Charge forward multiple times and deal Damage."
+		"DOTA_Tooltip_ability_pve_temple_self_heal_with_stun"                                "Leeching Claws"
+		"DOTA_Tooltip_ability_pve_temple_self_heal_with_stun_Description"                                "Stun all nearby enemies, then start casting a self Heal."
+
+
+		"temple_sand_boss_2_2"	"Aerogon, Flying Plague"
+		"DOTA_Tooltip_ability_pve_generated_spell_poison_bolt_healdebuff"                                "Venom Bolt"
+		"DOTA_Tooltip_ability_pve_generated_spell_poison_bolt_healdebuff_Description"                                "Deals Damage and reduces Healing."
+		"DOTA_Tooltip_ability_pve_generated_spell_curve_claws"                                "Curved Darts"
+		"DOTA_Tooltip_ability_pve_generated_spell_curve_claws_Description"                                "Curved Darts dealing Damage and slowing on impact."
+		"DOTA_Tooltip_ability_pve_generated_spell_targeted_split_arrow_nature"                                "Splitting Spears"
+		"DOTA_Tooltip_ability_pve_generated_spell_targeted_split_arrow_nature_Description"                                "Splitting Spears dealing Damage and destroying Armor."
+		"DOTA_Tooltip_ability_pve_generated_spell_poison_pools"                                "Plague Pools"
+		"DOTA_Tooltip_ability_pve_generated_spell_poison_pools_Description"                                "Plague Pools lingering on the ground, applying a stacking DoT."
+
+		"DOTA_Tooltip_modifier_talent_tunnel"                                              "Tunnel Vision"
+		"DOTA_Tooltip_modifier_talent_thirst"                                              "Bloodthirst"
+		"DOTA_Tooltip_modifier_talent_duelist"                                              "Duelist"
+
+		"temple_water_boss_8"	"Rivermaw"
+		"DOTA_Tooltip_ability_pve_generated_spell_curve_targeted_zigzag_water"                                "Wild Splashes"
+		"DOTA_Tooltip_ability_pve_generated_spell_curve_targeted_zigzag_water_Description"                                "Wild Splashes on the water cause dangerous erratic waves, dealing Damage and reducing Spell Resistance on impact."
+		"DOTA_Tooltip_ability_pve_temple_dot_closest"                                "Snapjaw"
+		"DOTA_Tooltip_ability_pve_temple_dot_closest_Description"                                "After a short delay, a brutal snap with its mighty jaws hits the closest enemy, causing high Physical Bleed Damage over time. Can not be dispelled."
+		"DOTA_Tooltip_ability_pve_dive_and_strike"                                "Dive and Surprise"
+		"DOTA_Tooltip_ability_pve_dive_and_strike_Description"                                "Dive underwater, becoming invisible. Then, after a short delay, reappear and strike the area for high Magical Damage."
+		"DOTA_Tooltip_ability_pve_crocodile_skin"                                "Crocodile Skin"
+		"DOTA_Tooltip_ability_pve_crocodile_skin_Description"                                "Its thick skin reduces the chance to get Critically Hit by Abilities."
+
+		"DOTA_Tooltip_Ability_item_purgeblade3"  "<font color=\"#7733ff\">[Mythical] Decontamination"  
+		"DOTA_Tooltip_Ability_item_purgeblade3_Description"  "<h1>Liberation</h1>Free yourself from all negative debuffs after a 1 sec delay.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat2"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat3"	"Intellect: +"
+		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat4"	"Health: +"
 	}
 }

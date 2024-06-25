@@ -114,6 +114,9 @@ function GetEnergyBonusFactor( event )
   if hero.talents and hero.talents[26] then
     energygain = energygain + 0.05 * hero.talents[26]
   end
+  if hero.talents and hero.talents[157] > 0 then
+    energygain = energygain + 0.1 * hero.talents[157]
+  end
   if hero.talents and hero.talents[74] and hero.talents[74] > 0 then
     energygain = energygain - 0.5
   end

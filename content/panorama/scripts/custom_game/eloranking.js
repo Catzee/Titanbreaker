@@ -8,7 +8,7 @@ var playerheroingame = false;
 var spectator = false;
 var mythicslots = 11;
 var stats_amount = 14;
-var max_talents = 163; //145; //121;
+var max_talents = 181; //145; //121;
 var path_reset_toggle = false;
 var temple_hero_reset_level_toggle = false;
 var last_loot_table_panel = null;
@@ -3877,7 +3877,10 @@ function SetTempleDifficultyLoader(args)
         $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop";
     }
     if (args.value >= 500){
-        $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Mythical Set Tokens can drop.";
+        $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Mythical Set Tokens can drop.<br>● 25% Healing Malus";
+    }
+    if (args.value >= 1000){
+        $("#hardmode").text = "<br>● [Ancient] Legendaries added to Legendary Drop Table<br>● Immortal Items can drop<br>● Immortal Set Items added to Immortal Drop Table<br>● [Ancient] Immortals and Souls for first 3 rows added to Immortal Drop Table<br>● Tier 2 Singularities for full clears<br>● All Teleporters unlocked from the start<br>● [Ancient] Immortal Sets, remaining Souls and Temple Shards added to Immortal Drop Table<br>● [Divine] Items can drop<br>● [Mythical] Items and Artifacts can drop<br>● Mythical Set Tokens can drop.<br>● 50% Healing Malus";
     }
 
     //if (args.value < 10.0){
@@ -3928,7 +3931,7 @@ function SetMainStats(args)
     main_stats[id][3] = args.level;
     main_stats[id][4] = args.levelPercentage;
     main_stats[id][5] = args.maxHpFromStr;
-    main_stats[id][6] = args.physDmgFromStr;
+    main_stats[id][6] = args.regenFromStr;
     main_stats[id][7] = args.attackSpeedFromAgi;
     main_stats[id][8] = args.armorFromAgi;
     main_stats[id][9] = args.criticalStrikeDamageFromAgi;
@@ -3939,6 +3942,8 @@ function SetMainStats(args)
     main_stats[id][14] = args.spellHaste;
     main_stats[id][15] = args.damageReduction;
     main_stats[id][16] = args.attackSpeed;
+    main_stats[id][17] = args.blockFromStr;
+    main_stats[id][18] = args.block;
 }
 
 let customXpContainer = undefined;
@@ -3963,6 +3968,7 @@ let customIntBonusLabel = undefined;
 let customIntPrimaryBonusLabel = undefined;
 let customSpellHasteLabel = undefined;
 let customDamageReductionLabel = undefined;
+let customBlockLabel = undefined;
 let manaRegenProgressBar = undefined;
 let manaRegenProgressBackgroundBar = undefined;
 let manaRegenProgressBarParticle = undefined;
@@ -4072,7 +4078,19 @@ function InjectIntoDotaHeroStatsTooltip()
                 customDamageReductionRowLabel.text = "Damage Red.:";
             }
             customDamageReductionLabel = damageReductionRow.FindChildTraverse("StatValue");
-            healthRegenRow._customDamageReductionLabel = customDamageReductionLabel
+            healthRegenRow._customDamageReductionLabel = customDamageReductionLabel;
+
+            // new block label
+            let blockRow = $.CreatePanel("Panel", defenseContainerParent, '');
+            blockRow.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_hud_stats_row.xml', false, false);
+            defenseContainerParent.MoveChildAfter(blockRow, healthRegenRow);
+            
+            let customBlockRowLabel = blockRow.FindChildTraverse("StatLabel");
+            if(customBlockRowLabel != undefined) {
+                customBlockRowLabel.text = "Block:";
+            }
+            customBlockLabel = blockRow.FindChildTraverse("StatValue");
+            healthRegenRow._customBlockLabel = customBlockLabel;
 
             // Disables slow resist label added in 7.36
             let slowResistLabel = defenseContainerParent.FindChildTraverse("SlowResistRow");
@@ -4082,6 +4100,14 @@ function InjectIntoDotaHeroStatsTooltip()
             {
                 $.Msg("Valve break something or did major changes to UI (can't hide slow resist row).");
             }
+            // Disables status resist label
+            let statusResistLabel = defenseContainerParent.FindChildTraverse("StatusResistRow");
+            if(statusResistLabel != undefined) {
+                statusResistLabel.style.visibility = "collapse";
+            } else
+            {
+                $.Msg("Valve break something or did major changes to UI (can't hide status resist row).");
+            }
         }
     } else
     {
@@ -4089,6 +4115,7 @@ function InjectIntoDotaHeroStatsTooltip()
     }
 
     customDamageReductionLabel = healthRegenRow._customDamageReductionLabel;
+    customBlockLabel = healthRegenRow._customBlockLabel;
 
     //dotaHudRoot._isDotaHeroStatsTooltipInjected = true;
 }
@@ -4170,8 +4197,9 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             }
     
             if(customStrBonusLabel != undefined) {
-                let totalPhysDmg = (main_stats[selectedHeroPlayerID][6] * 100).toFixed(1);
-                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5].toFixed() + " Max Health and " + totalPhysDmg + "% Physical Damage";
+                let regenFromStr = (main_stats[selectedHeroPlayerID][6]).toFixed(1);
+                let blockFromStr = (main_stats[selectedHeroPlayerID][17]).toFixed(0);
+                customStrBonusLabel.text = "= " + main_stats[selectedHeroPlayerID][5].toFixed() + " Max Health, " + regenFromStr + " Health Regeneration and " + blockFromStr + " Damage Block.";
             } else
             {
                 $.Msg("Valve break something or did major changes to UI (can't change str bonuses label in unit stats tooltip).");
@@ -4290,6 +4318,15 @@ function UpdateMainStatsUI(selectedPlayerUnit, isUnitStatsTooltip)
             damageReductionValue = (100 - (main_stats[selectedHeroPlayerID][15] * 100)).toFixed(1);
         }
         customDamageReductionLabel.text = damageReductionValue + "%";
+    }
+
+    // Update unit stats block row
+    if(customBlockLabel != undefined) {
+        let blockValue = 0;
+        if(isHero) {
+            blockValue = (main_stats[selectedHeroPlayerID][18]).toFixed(0);
+        }
+        customBlockLabel.text = blockValue;
     }
 
     // Modify mana progress bar color to match resource type
@@ -4830,8 +4867,8 @@ function OnHeroStatsValuesResponse(args)
             main_stats[i][j] = 0;
         }
         */
-        main_stats[i] = new Array(16);
-        for (var j = 0; j <= 16; j++) {
+        main_stats[i] = new Array(18);
+        for (var j = 0; j <= 18; j++) {
             main_stats[i][j] = 0;
         }
     }

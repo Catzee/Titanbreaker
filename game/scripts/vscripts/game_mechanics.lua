@@ -352,6 +352,10 @@ function GetSpellpower(event)
                 spelldamagefromitem = spelldamagefromitem + bonusfromms
             end
         end
+        if caster.talents[171] > 0 then
+            local missingMana = caster:GetMaxMana() - caster:GetMana()
+            spelldamagefromitem = spelldamagefromitem + missingMana * (0.1 * caster.talents[171])
+        end
         spelldamagefromitem = spelldamagefromitem + caster:GetMana() * (0.03 * caster.talents[34])
     end
 	spelldamagefromitem = spelldamagefromitem * factor
@@ -461,6 +465,13 @@ function DamageUnit( event )
     end
 
     --elemental changes
+    local elementalDamageTypes = CountElementalDamageTypes(event)
+    if elementalDamageTypes == 0 then
+        if caster.talents and caster.talents[176] > 0 and math.random(1,100) <= caster.talents[176] * 33.34 then
+            event.firedmg = 1
+            event.slashAndBurn = 1
+        end
+    end
     if event.changefiredmgtoarcane then
         if event.changefiredmgtoarcane == 1 then
             event.firedmg = nil
@@ -894,12 +905,13 @@ function DamageUnit( event )
     --stat scaling
     if caster:IsHero() then
         local shapeshifter = GetShapeshifterStat(caster)
+        local lionKing = GetLionKingStat(caster)
     	if event.attributechangeint ~= nil then
     		finaldamage = finaldamage + GetIntellectCustom(caster)*attribute_scaling/100.0
     	elseif event.attributechangestr ~= nil then
     		finaldamage = finaldamage + (GetStrengthCustom(caster) + 0.01 * shapeshifter * GetAgilityCustom(caster))*attribute_scaling/100.0
     	elseif event.attributechangeagi ~= nil then
-    		finaldamage = finaldamage + GetAgilityCustom(caster)*attribute_scaling/100.0
+    		finaldamage = finaldamage + (GetAgilityCustom(caster) + 0.01 * shapeshifter * GetStrengthCustom(caster))*attribute_scaling/100.0
     	elseif event.attributechangeall ~= nil then
     		finaldamage = finaldamage + GetAgilityCustom(caster)*attribute_scaling/100.0 + GetStrengthCustom(caster)*attribute_scaling/100.0 + GetIntellectCustom(caster)*attribute_scaling/100.0
         elseif event.attributechangestragi ~= nil then
@@ -908,6 +920,9 @@ function DamageUnit( event )
     		finaldamage = finaldamage + GetPrimaryStatValueCustom(caster) * attribute_scaling / 100
             if caster:GetPrimaryAttribute() == 0 then
                 finaldamage = finaldamage + 0.01 * shapeshifter * GetAgilityCustom(caster) * attribute_scaling / 100
+            end
+            if caster:GetPrimaryAttribute() == 1 then
+                finaldamage = finaldamage + 0.01 * lionKing * GetStrengthCustom(caster) * attribute_scaling / 100
             end
     	end
         if caster.talents[75] > 0 then
@@ -1129,7 +1144,7 @@ function DamageUnit( event )
             finaldamage = finaldamage + (caster:GetAttackDamage() + GetSpellpower(event)) * 0.1 * caster.talents[2]
         end
         if caster.talents[128] > 0 and event.isaoe then
-            finaldamage = finaldamage + (GetAllStats(caster) + GetSpellpower(event)) * (0.5 + 0.5 * caster.talents[128])
+            finaldamage = finaldamage + (GetAllStatsCustom(caster) + GetSpellpower(event)) * caster.talents[128]
         end
         --if caster.talents[148] > 0 then
         --    finaldamage = finaldamage + (GetStrengthCustom(caster) + GetAgilityCustom(caster)) * 0.25 * caster.talents[148]
@@ -1565,6 +1580,14 @@ function DamageUnit( event )
     if not armortocrit then
         armortocrit = caster:FindAbilityByName("temple_brawler_defstance")
     end
+    local mountainKing = GetMountainKingStat(caster)
+    if mountainKing > 0 then
+        local stunBonusFactor = 1
+        if IsTargetStunned(target) then
+            stunBonusFactor = 2
+        end
+        critdmgbonusfactor = critdmgbonusfactor + GetStrengthCustom(caster) * stunBonusFactor * mountainKing / 10000 --4000 str = 160% bonus -> 5% per 100 str
+    end
     if armortocrit and armortocrit:GetLevel() >= 3 then
         critdmgbonusfactor = critdmgbonusfactor + 0.005 * caster:GetPhysicalArmorValue(false)
     end
@@ -1587,6 +1610,12 @@ function DamageUnit( event )
     if caster.talents and caster.talents[79] and (event.fromcompanion or event.fromsummon or event.ComesFromPet) then
         critdmgbonusfactor = critdmgbonusfactor + 0.25 * caster.talents[79]
     end
+
+    --anti crit effects
+    if target:HasModifier("modifier_pve_crocodile_skin") then
+        critchancefactor = critchancefactor * 0.35
+    end
+
     local flatCritChance = GetFlatCritChance(caster) * critchancefactor
     if critpossible == true and is_very_big_hit and caster.talents and caster.talents[62] and caster.talents[62] > 0 then
         critchance = critchancefactor * 4 * caster.talents[62] + flatCritChance
@@ -1970,7 +1999,7 @@ function DamageUnit( event )
     if critpossible == true and caster.talents and caster.talents[139] > 0 and ability and ability:GetLevel() == 3 then
         critchance = 5*critchancefactor*caster.talents[139] + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*2*critdmgbonusfactor
+            finaldamage = finaldamage*5*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -2416,7 +2445,7 @@ function DamageUnit( event )
     --print("get ab damage call " .. ability:GetName())
     if ability then
         ability_bonus = GetAbilityDamageModifierMultiplicative(event, caster, real_caster, target, ability, behindtarget, is_very_big_hit, is_500_big_hit, isaoe, true, was_crit, was_consecutive_crit, pure_dmg, is_pet_dmg)
-        elemental_bonus = GetElementalDamageModifierAdditive(event, caster, real_caster, target, ability, behindtarget, true, dmgtype)
+        elemental_bonus = GetElementalDamageModifierAdditive(event, caster, real_caster, target, ability, behindtarget, true, dmgtype, was_crit)
     end
 
     if event.shadowdmg then
@@ -2924,20 +2953,12 @@ function DamageUnit( event )
                 end
                 local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1, max = caster.talents[7] * 33}
                 ApplyBuffStack(myevent)
-                --[[if false and math.random(1,100) <= caster.talents[7] and not event.maul_proc then
-                    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf", PATTACH_ABSORIGIN, target)
-                    ParticleManager:ReleaseParticleIndex(particle)
-                    EmitSoundOn("DOTA_Item.BladeMail.Activate", target)
-                    local tab = {}
-                    tab.caster = caster
-                    tab.target = target
-                    tab.damage = 0.0
-                    tab.spelldamagefactor = 0.0
-                    tab.attributefactor = 400
-                    tab.ability = event.ability
-                    tab.maul_proc = true
-                    DamageUnit(tab)
-                end]]
+            end
+            if target and target.isboss and caster.talents[179] and caster.talents[179] > 0 then
+                local buff = "modifier_talent_duelist"
+                local dot_dur = 10
+                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1}
+                ApplyBuffStack(myevent)
             end
         end
 
@@ -3304,7 +3325,7 @@ function GetDragonBonusDamage( event, caster )
 end
 
 function GetSummonBonusDamage( event, caster, empower_stacks )
-    local value = 1
+    local value = 1 + caster:GetMana() * GetConjurerStat(caster) / 10000
     if not event.fromsummon and not event.ComesFromPet then
         return value
     end
@@ -3321,6 +3342,12 @@ function GetSummonBonusDamage( event, caster, empower_stacks )
         end
         if caster.talents[11] and caster.talents[11] > 0 then
             value = value * (1 + 0.1 * caster.talents[11])
+        end
+        if caster.stampedeBonus then
+            value = value * (1 + 0.05 * caster.talents[177] * caster.stampedeBonus)
+        end
+        if caster:HasModifier("modifier_ray_summon") then
+            value = value * 2
         end
     end
     local unholy_3 = caster:FindAbilityByName("unholy_3")
@@ -3405,7 +3432,7 @@ function HasMutationEffect(caster)
     return caster.inMonkeyKingForm or caster:HasModifier("modifier_shadow_form_ds") or caster:HasModifier("modifier_demon_form") or caster:HasModifier("modifier_path_shadowform") or caster:HasModifier("modifier_crowfall") or caster:HasModifier("modifier_catform") or caster:HasModifier("modifier_metamorph_terror") or caster:HasModifier("modifier_metamorph_dh") or caster:HasModifier("modifier_stormcrow") or caster:HasModifier("modifier_plague_form") or (caster:HasModifier("modifier_bear_roar_armor") and caster:HasModifier("modifier_class_ursa2"))
 end
 
-function GetElementalDamageModifierAdditive( event, caster, real_caster, target, ability, behindtarget, process_procs, dmgtype )
+function GetElementalDamageModifierAdditive( event, caster, real_caster, target, ability, behindtarget, process_procs, dmgtype, wascrit )
     local value = 1
     if event.frostdmg and caster:HasModifier("modifier_class_invoker") then -- and caster:HasModifier("modifier_arcane_barrage_bonus") then
         event.arcanedmg = 1
@@ -3413,20 +3440,11 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if GetMetamorphosisStat(caster) >= 1 and HasMutationEffect(caster) then
         value = value + 0.01 * GetMetamorphosisStat(caster)
     end
-    if dmgtype == 1 and event.isdot and caster:HasModifier("modifier_big") then
-        value = value + 0.15
-    end
-    if dmgtype == 1 and event.isdot and caster:HasModifier("modifier_big2") then
-        value = value + 0.25
-    end
     if (event.firedmg or event.naturedmg or event.frostdmg) and GetLevelOfAbility(caster, "Ghost4") >= 3 and caster:HasModifier("modifier_stormaurabuff1") then
         value = value + 0.5 + 0.001 * GetLowestMainAttribute(caster)
     end
     if event.naturedmg then
         value = value + 0.1 *caster:GetModifierStackCount("modifier_ele_thunder_stacks", nil)
-    end
-    if dmgtype == 1 and caster:IsRealHero() then
-        value = value + GetPhysicalDamageBonusFromStr(caster, GetStrengthCustom(caster))
     end
     if event.holydmg and caster:HasModifier("modifier_class_sanct2") and caster:GetName() == "npc_dota_hero_phantom_lancer" then
         value = value + 0.5 * caster:Script_GetMagicalArmorValue(false, nil)
@@ -3458,6 +3476,18 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.shadowdmg and caster:HasModifier("modifier_item_ancient_dot") then
         value = value + 0.25
     end
+    if event.frostdmg then
+        local coldChainStacks = caster:GetModifierStackCount("modifier_coc", nil)
+        if coldChainStacks > 0 then
+            value = value + GetColdChainStat(caster) * coldChainStacks / 100
+        end 
+    end
+    if event.firedmg then
+        local overheat = GetOverheatStat(caster)
+        if wascrit and overheat > 0 then
+            value = value + overheat * 0.01 * caster:GetIncreasedAttackSpeed(false)
+        end 
+    end
     local shadowClericMindbenderModifier = caster:FindModifierByName("modifier_shadow_cleric_mindstorm_mindbender")
     if event.shadowdmg and shadowClericMindbenderModifier then
         local shadowClericMindbenderModifierAbility = shadowClericMindbenderModifier:GetAbility()
@@ -3477,9 +3507,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     end
     if event.chaosdmg and caster:HasModifier("modifier_item_chaos_dh") then
         value = value + 0.15
-    end
-    if dmgtype == 1 and caster:HasModifier("modifier_guardian_temple_phys") then
-        value = value + 0.3
     end
     if event.shadowdmg then
         local demonbolt = caster:FindAbilityByName("demo2")
@@ -3524,16 +3551,10 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.shadowdmg and caster.shw and caster.shw > 0 then
         value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
     end
-    if dmgtype == 1 and caster.shw and caster.shw > 0 then
-        value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
-    end
     if event.naturedmg and caster.woz and caster.woz > 0 then
         value = value + 0.01 * caster:GetIncreasedAttackSpeed(false) * caster.woz
     end
     if event.chaosdmg and caster.und and caster.und > 0 then
-        value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
-    end
-    if dmgtype == 1 and caster.und and caster.und > 0 then
         value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
     end
     if event.arcanedmg and caster.nec and caster.nec > 0 and caster.hpPercentValue and caster.manaPercentValue then
@@ -3559,9 +3580,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.5
     end
     if event.arcanedmg and caster:HasModifier("modifier_pathbuff_081") and caster:HasModifier("modifier_skyfall") and caster:HasModifier("modifier_crit_moon_cd") then
-        value = value + 0.5
-    end
-    if dmgtype == 1 and caster:HasModifier("modifier_pathbuff_089") and caster:HasModifier("modifier_crowfall") and caster:HasModifier("modifier_talent_enrage") then
         value = value + 0.5
     end
     if event.naturedmg and caster:HasModifier("modifier_pathbuff_089") and caster:HasModifier("modifier_crowfall") and caster:HasModifier("modifier_talent_enrage") then
@@ -3656,12 +3674,43 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.5
     end
     if caster.talents then
+        if dmgtype == 1 then -- physical
+            if caster:HasModifier("modifier_divine_phys") then
+                value = value + 0.75
+            end
+            if event.isdot and caster:HasModifier("modifier_big") then
+                value = value + 0.15
+            end
+            if event.isdot and caster:HasModifier("modifier_big2") then
+                value = value + 0.25
+            end
+            if caster:HasModifier("modifier_pathbuff_089") and caster:HasModifier("modifier_crowfall") and caster:HasModifier("modifier_talent_enrage") then
+                value = value + 0.5
+            end
+            if caster.und and caster.und > 0 then
+                value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
+            end
+            if caster.shw and caster.shw > 0 then
+                value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
+            end
+            if caster:HasModifier("modifier_guardian_temple_phys") then
+                value = value + 0.3
+            end
+            if caster:HasModifier("modifier_mythic_physicaldmg") then
+                value = value + caster:GetModifierStackCount("modifier_mythic_physicaldmg", nil)/100
+            end
+            if caster:HasModifier("modifier_item_stunitem2") then
+                value = value + 0.1
+            end
+            if dmgtype == 1 and caster:GetPrimaryAttribute() == 0 and caster.talents[148] > 0 then
+                value = value + caster.talents[148] * GetPhysicalDamageBonusFromStr(caster, GetStrengthCustom(caster))
+            end
+            value = value + 0.2 * caster.talents[100] + 0.15 * caster.talents[50]
+        end
         if caster.talents[100] and event.chaosdmg then
             value = value + 0.2 * caster.talents[100]
         end
-        if caster.talents[100] and dmgtype == 1 then
-            value = value + 0.2 * caster.talents[100]
-        end
+        
         if caster.talents[16] and event.naturedmg then
             value = value + 0.15 * caster.talents[16]
         end
@@ -3857,10 +3906,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.chaosdmg and caster:HasModifier("modifier_mythic_chaosdmg") then
         value = value + caster:GetModifierStackCount("modifier_mythic_chaosdmg", nil)/100
     end
-    if dmgtype == 1 and caster:HasModifier("modifier_mythic_physicaldmg") then
-        value = value + caster:GetModifierStackCount("modifier_mythic_physicaldmg", nil)/100
-    end
-
     if event.naturedmg and caster:HasModifier("modifier_ranger_as_bonus_surv") then
         value = value + 0.5
     end
@@ -4431,6 +4476,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if event.firestone then
         multiplicative_bonus = multiplicative_bonus * 2
     end
+    if event.slashAndBurn then
+        multiplicative_bonus = multiplicative_bonus * 1.25
+    end
     if event.fromcompanion and caster:HasModifier("modifier_bloodbrother") and GetCompanionCount(caster) == 1 then
         multiplicative_bonus = multiplicative_bonus * 3.5
     end
@@ -4444,7 +4492,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if target then
         hp_percent = target:GetHealth() / target:GetMaxHealth()
     end
+    if caster.talents and caster.talents[172] > 0 then
+        multiplicative_bonus = multiplicative_bonus * (1 + caster:GetHealthRegen() * 0.0003 * caster.talents[172])
+    end
     if process_procs and caster.talents and ability then
+        if event.useDamageEscalation then
+            multiplicative_bonus = multiplicative_bonus * GetDamageEscalation(caster)
+        end
         local endBossItem = caster:HasModifier("modifier_endboss")
         if target and target.real_boss and endBossItem then
             multiplicative_bonus = multiplicative_bonus * 1.75
@@ -4455,6 +4509,16 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.endBossUsed and not endBossItem then
             multiplicative_bonus = multiplicative_bonus * 0.25
         end
+        if target and not target.real_boss and caster.talents[167] then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[167])
+        end
+        if caster.lastAbilityCausingDamage ~= ability and caster.talents[168] > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[168])
+        end
+        local overpower = GetOverpowerStat(caster)
+        if overpower > 0 and wascrit then
+            multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(ability:GetLevel()) * overpower / 10000)
+        end
         if caster.songIceFire1Cast and caster.talents and caster:GetAbilityByIndex(1) == ability and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
                 local bonusFactor = 2
@@ -4463,6 +4527,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 end
                 event.firedmg = 1
                 multiplicative_bonus = multiplicative_bonus * bonusFactor
+                RestoreResource({caster = caster, amount = 2 * caster.talents[129], flat = true})
             end
             caster.songIceFire1Cast = false
         elseif caster.songIceFire2Cast and caster.talents and caster:GetAbilityByIndex(0) == ability and caster.talents[129] > 0 then
@@ -4473,8 +4538,19 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 end
                 event.frostdmg = 1
                 multiplicative_bonus = multiplicative_bonus * bonusFactor
+                RestoreResource({caster = caster, amount = 2 * caster.talents[129], flat = true})
             end
             caster.songIceFire2Cast = false
+        end
+
+        if isaoe and caster:HasModifier("modifier_blizzard2") and GetLevelOfAbility(caster, "frostdk5") >= 3 then
+            multiplicative_bonus = multiplicative_bonus * 2
+        end
+
+        if event.frostdmg then
+            if caster:HasModifier("modifier_divine_frost") and target and target:HasModifier("modifier_slowtalent") then
+                multiplicative_bonus = multiplicative_bonus * 1.5
+            end
         end
     end
     if process_procs and caster:HasModifier("modifier_summoner") then
@@ -4576,10 +4652,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_critmass") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[122])
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.5 * caster.talents[122])
     end
     if caster:HasModifier("modifier_savagery") then
-        local bonus = 0.05 + 0.15 * caster.talents[131]
+        local bonus = 0.3 * caster.talents[131]
         if is_pet_dmg then
             bonus = bonus * 2
         end
@@ -4820,7 +4896,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     --    multiplicative_bonus = multiplicative_bonus * 1.5
     --end
     if caster:IsRealHero() then
-        multiplicative_bonus = multiplicative_bonus * (1 + GetAbilityDamageBonusFromInt(caster, GetIntellectCustom(caster))) -0.0001
+        multiplicative_bonus = multiplicative_bonus * (1 + GetAbilityDamageBonusFromInt(caster, GetIntellectCustom(caster))) * (1 + GetAbilityDamageBonusFromLowestAttribute(caster)) - 0.0001
     end
     if caster.astral_ability_200 and process_procs then
         caster.astral_ability_200 = nil
@@ -4994,9 +5070,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     if caster.channel_item_bonus then
         if caster:HasModifier("modifier_item_channel_2") then
-            multiplicative_bonus = multiplicative_bonus * 1.75
+            multiplicative_bonus = multiplicative_bonus * 1.5
         else
-            multiplicative_bonus = multiplicative_bonus * 1.4
+            multiplicative_bonus = multiplicative_bonus * 1.3
         end
     end
     if caster.ability_combo_6_bonus and (caster:HasModifier("modifier_item_titanarmor") or caster:HasModifier("modifier_item_titanarmor_2")) then
@@ -5059,6 +5135,14 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         --if isaoe and caster.talents[104] and caster.talents[104] > 0 and caster:HasModifier("modifier_deathchill") then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[104])
         --end
+        local buffstacks = caster:GetModifierStackCount("modifier_talent_thirst", nil)
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks * caster.talents[173])
+        if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
+        end
+        if caster.flurryDmg and caster.flurryDmg > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[164])
+        end
         if caster.spearspeed then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * math.min(75, caster.spearspeed))
         end
@@ -5077,30 +5161,34 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.talents[155] > 0 then
             local highestAbility = GetHighestCooldownAbility(caster)
             if highestAbility and highestAbility:GetCooldown(highestAbility:GetLevel() - 1) > 0 then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[155])
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.333 * caster.talents[155])
             end
         end
         if caster.talents[156] > 0 then
             if GetTotalDamageTakenFactor(caster) <= 0.5 then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[156])
+                local dmgBonus = 0.15
+                if caster.super_aggro_tank then
+                    dmgBonus = dmgBonus * 3
+                end
+                multiplicative_bonus = multiplicative_bonus * (1 + dmgBonus * caster.talents[156])
             end
         end
         if caster.talents[140] > 0 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[140] * CountMutationEffects(caster))
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[140] * CountMutationEffects(caster))
         end
         if caster.talents[127] > 0 then
             if process_procs and CountElementalDamageTypes(event) >= 2 then
                 ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_dfe", ability = caster.combat_system_ability})
             end
             if caster:HasModifier("modifier_dfe") then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[127])
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[127])
             end
         end
         if caster.talents[46] and caster.talents[46] > 0 and caster:HasModifier("modifier_bloodwolf_buff") then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[46])
         end
         if caster.talents[143] > 0 and GiantsOnCooldown(caster) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[143])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[143])
         end
         if process_procs and caster.talents[125] > 0 then
             multiplicative_bonus = multiplicative_bonus * GetButterflyDamageFactor(caster, ability)
@@ -5125,7 +5213,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             multiplicative_bonus = multiplicative_bonus * (1 + 0.002 * caster.talents[113] * GetTotalAbilityCooldowns(caster))
         end
         if caster.talents[110] and caster.talents[110] > 0 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[110])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[110])
         end
         if caster.talents[107] and caster.talents[107] > 0 and caster:HasModifier("modifier_lonedruid") then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.07 * caster.talents[107])
@@ -5197,10 +5285,16 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             end
             multiplicative_bonus = multiplicative_bonus * (1 + dmgPerStack * talent111_buff)
         end
-        if caster.talents and caster.talents[7] and caster.talents[7] > 0 then
+        if caster.talents[7] and caster.talents[7] > 0 then
             local talent7_buff = caster:GetModifierStackCount("modifier_talent_maul", nil)
             local dmgPerMaul = 0.005
             multiplicative_bonus = multiplicative_bonus * (1 + dmgPerMaul * talent7_buff)
+        end
+        local lvl179 = caster.talents[179]
+        if lvl179 > 0 then
+            local stacks = caster:GetModifierStackCount("modifier_talent_duelist", nil)
+            local dmgPerStack = 0.005 + 0.005 * lvl179
+            multiplicative_bonus = multiplicative_bonus * (1 + dmgPerStack * stacks)
         end
         if caster.talents[9] and caster.talents[9] > 0 then
             local factor = (1 + 0.001 * caster.talents[9] * caster:GetPhysicalArmorValue(false))
@@ -5246,8 +5340,8 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.talents[60] and caster.talents[60] > 0 then
             local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
             bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
-            if bonusfromms > 0.5 then
-                bonusfromms = 0.5
+            if bonusfromms > 0.45 then
+                bonusfromms = 0.45
             end
             if bonusfromms > 0 then
                 multiplicative_bonus = multiplicative_bonus * (1 + bonusfromms)
@@ -5832,9 +5926,21 @@ function CriticalStrikeFX(casterarg, targetarg, amountarg, dmgorheal, crit) --dm
 end
 
 function DamageAOEDelayed( event )
-	Timers:CreateTimer(event.delay,function() 
-		DamageAOE(event)
-	end)
+    local times = 1
+    if event.times then
+        times = event.times
+    end
+    local initialDelay = event.delay
+    local delayPerRound = 1
+    if event.delayPerRound then
+        delayPerRound = event.delayPerRound
+    end
+
+    for i=1, times do
+    	Timers:CreateTimer(initialDelay + delayPerRound * (i - 1),function() 
+    		DamageAOE(event)
+    	end)
+    end
 end
 
 function DamageUnitDelayed(event)
@@ -6026,6 +6132,8 @@ function DamageAOE( event )
         return
     end
 
+    IncreaseDamageEscalation(caster2, event)
+
 	local event2 = {
 		caster = caster2,
 		target = target2,
@@ -6050,7 +6158,8 @@ function DamageAOE( event )
         changedmgtypetophys = event.changedmgtypetophys,
         classitemdmgfactor = event.classitemdmgfactor,
         classitemdmgfactorbuff = event.classitemdmgfactorbuff,
-        swordstorm = event.swordstorm
+        swordstorm = event.swordstorm,
+        useDamageEscalation = useDamageEscalation
 	}
     if event.rainofarrows then
         event2.rainofarrows = 1
@@ -6428,6 +6537,10 @@ function CheckForCC( target )
     else
         return false
     end
+end
+
+function IsTargetStunned(target)
+    return target and (target:HasModifier("modifier_stunned") or target:HasModifier("modifier_deepfreeze"))
 end
 
 function CheckForSilence( target )
@@ -7286,7 +7399,7 @@ function HealUnit( event )
     if critpossible == true and caster.talents and caster.talents[139] > 0 and ability and ability:GetLevel() == 3 then
         critchance = 5*critchancefactor*caster.talents[139]
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*1.5*critdmgbonusfactor
+            event.heal = event.heal*5*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -7521,6 +7634,9 @@ function HealUnit( event )
     end
     if caster:IsRealHero() then
         caster.heal_bonus = healing_bonus
+
+        -- healing malus for high ml
+        event.heal = event.heal - GetHealingMalus() * event.heal
     end
     event.heal = event.heal * healing_bonus
     if caster and caster:IsHero() then
@@ -7740,6 +7856,13 @@ function Bookoflight(event)
 	end
 end
 
+function RestoreResourceConditional( event )
+    local caster = event.caster
+    if caster:HasModifier(event.buff) then
+        RestoreResource(event)
+    end
+end
+
 function RestoreResource( event)
     local caster = event.caster
     if IsManaHero(caster) or caster:HasModifier("modifier_catform_off") then
@@ -7935,38 +8058,45 @@ function GetSpellhaste( caster, event )
     if GetLevelOfAbility(caster, "ench1") >= 3 then
         speedbonus = speedbonus + 0.5
     end
-    if caster.talents and caster.talents[15] then
-        speedbonus = speedbonus + caster.talents[15] * 0.2
-    end
-    speedbonus = speedbonus + 0.01 * caster:GetModifierStackCount("modifier_mythic_sph", nil)
-    if caster.talents and caster.talents[119] and caster.talents[119] > 0 then
-        local factor = 0.005
-        if caster:HasModifier("modifier_stormgiant") then
-            factor = factor * 2
+    if caster.talents then
+        if caster.talents[15] then
+            speedbonus = speedbonus + caster.talents[15] * 0.2
         end
-        local passiveASBonus = caster:GetAttackSpeed(true) * 100 - 100
-        local bonus = passiveASBonus * factor
-        if bonus > 0 then
-            speedbonus = speedbonus + bonus
+
+        speedbonus = speedbonus + 0.01 * caster:GetModifierStackCount("modifier_mythic_sph", nil)
+        speedbonus = speedbonus + 0.03 * caster:GetModifierStackCount("modifier_talent_tunnel", nil) * caster.talents[165]
+
+        if caster.talents[119] and caster.talents[119] > 0 then
+            local factor = 0.005
+            if caster:HasModifier("modifier_stormgiant") then
+                factor = factor * 2
+            end
+            local passiveASBonus = caster:GetAttackSpeed(true) * 100 - 100
+            local bonus = passiveASBonus * factor
+            if bonus > 0 then
+                speedbonus = speedbonus + bonus
+            end
+        end
+
+        if caster.talents[26] and caster.talents[26] > 0 then
+            local int_to_haste = 0.0003 * caster.talents[26] * GetIntellectCustom(caster)
+            local haste_cap = 0.7 + 0.1 * caster.talents[26]
+            if int_to_haste > haste_cap then
+                int_to_haste = haste_cap
+            end
+            speedbonus = speedbonus + int_to_haste
+        end
+        if caster.talents[32] and caster.talents[32] > 0 then
+            speedbonus = speedbonus + 0.3 * caster.talents[32]
+        end
+        if caster.talents[104] and caster.talents[104] > 0 then
+            speedbonus = speedbonus + (caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) / 100)
         end
     end
-    if caster.talents and caster.talents[26] and caster.talents[26] > 0 then
-        local int_to_haste = 0.0003 * caster.talents[26] * GetIntellectCustom(caster)
-        local haste_cap = 0.7 + 0.1 * caster.talents[26]
-        if int_to_haste > haste_cap then
-            int_to_haste = haste_cap
-        end
-        speedbonus = speedbonus + int_to_haste
-    end
-    if caster.talents and caster.talents[32] and caster.talents[32] > 0 then
-        speedbonus = speedbonus + 0.3 * caster.talents[32]
-    end
+    
+    
     if caster.spellhaste_system_bonus and caster.spellhaste_system_bonus > 0 then
         speedbonus = speedbonus + caster.spellhaste_system_bonus / 100
-    end
-
-    if caster.talents and caster.talents[104] and caster.talents[104] > 0 then
-        speedbonus = speedbonus + (caster:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil) / 100)
     end
 
     return speedbonus
@@ -8185,27 +8315,27 @@ function ChannelManaFixStart( event )
     	--print("casttime " .. event.casttime)
     	if event.casttime == 2.5 then
     		particle = ParticleManager:CreateParticle("particles/castbar25.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-    	elseif event.casttime >= 5 then
+    	elseif event.casttime >= 3.3 then
     		particle = ParticleManager:CreateParticle("particles/castbar5.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 0.35 then --almost instant, wont be noticable
+		elseif event.casttime < 0.36 then --almost instant, wont be noticable
 			particle = ParticleManager:CreateParticle("particles/castbar02.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 1.77 and event.casttime >= 1.63 then
+		elseif event.casttime < 1.77 and event.casttime >= 1.63 then
 			particle = ParticleManager:CreateParticle("particles/castbar16.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 1.96 and event.casttime >= 1.78 then
+		elseif event.casttime < 1.98 and event.casttime >= 1.77 then
 			particle = ParticleManager:CreateParticle("particles/castbar1.92.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 2.45 and event.casttime >= 2.3 then
+		elseif event.casttime < 2.75 and event.casttime >= 2.3 then
 			particle = ParticleManager:CreateParticle("particles/castbar2.4.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 1.62 and event.casttime >= 1.53 then
+		elseif event.casttime < 1.63 and event.casttime >= 1.53 then
 			particle = ParticleManager:CreateParticle("particles/castbar160.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 1.52 and event.casttime >= 1.3 then
+		elseif event.casttime < 1.53 and event.casttime >= 1.3 then
 			particle = ParticleManager:CreateParticle("particles/castbar14.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 2.2 and event.casttime >= 2.03 then
+		elseif event.casttime < 2.3 and event.casttime >= 2.03 then
 			particle = ParticleManager:CreateParticle("particles/castbar21.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		elseif event.casttime == 1 then
 			particle = ParticleManager:CreateParticle("particles/castbar1.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		elseif event.casttime <= 2.02 and event.casttime >= 1.98 then
+		elseif event.casttime < 2.03 and event.casttime >= 1.98 then
 			particle = ParticleManager:CreateParticle("particles/castbar.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-    	elseif event.casttime <= 3.25 and event.casttime >= 2.75 then
+    	elseif event.casttime < 3.3 and event.casttime >= 2.75 then
     		particle = ParticleManager:CreateParticle("particles/castbar3.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
         elseif event.casttime >= 0.36 and event.casttime < 0.5 then
             particle = ParticleManager:CreateParticle("particles/castbar04.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -8227,8 +8357,7 @@ function ChannelManaFixStart( event )
     --if particle then
     --    ParticleManager:ReleaseParticleIndex(particle)
     --end
-    
-    --print("casttime "..event.casttime)
+
     --Set IsCasting
     caster.IsCasting = 1
     caster.Castbar = particle
@@ -8498,12 +8627,10 @@ function OutOfCombatCounter( event )
 			caster.ooc = 8
 		end
 		caster.ooc = caster.ooc - 1
-		if caster.ooc < 0 then
-			caster.ooc = 0
-		end
-		--print(caster:GetName())
-		--print(caster.ooc)
-		if caster.ooc == 0 then
+		--if caster.ooc < 0 then
+		--	caster.ooc = 0
+		--end
+		if caster.ooc <= 0 then
 			--mount
 			local heroName = caster:GetUnitName()
             local mount_speed = 50
@@ -8596,7 +8723,11 @@ function OutOfCombatManaReg( event )
 		if distance < 25.0 and (GetMapName() == "10vs10_city_raid" or COverthrowGameMode.junglemode) and caster:GetHealth() / caster:GetMaxHealth() < 1.0 then
 			--city raid hp regen
 			--if GetMapName() == "10vs10_city_raid" then
-                HealUnit({caster = caster, target = caster, ability = event.ability, heal = caster:GetMaxHealth()*0.03, ignore_temple_class_penalty = true})
+                local healPercent = 0.03
+                if caster.ooc < -5 then
+                    healPercent = healPercent * 2
+                end
+                HealUnit({caster = caster, target = caster, ability = event.ability, heal = caster:GetMaxHealth() * healPercent, ignore_temple_class_penalty = true})
 				--caster:SetHealth(caster:GetHealth()+caster:GetMaxHealth()*0.03)
 				local particle = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_POINT_FOLLOW, caster)
                 ParticleManager:ReleaseParticleIndex(particle)
@@ -11506,7 +11637,7 @@ function IceBlock(event)
 	local healamount = event.heal
     local qualities = COverthrowGameMode:GetAllArtifactItemQuality(caster)
 	local table = {}
-	if caster:GetTeamNumber()==target:GetTeamNumber() then
+	if caster:GetTeamNumber() == target:GetTeamNumber() then
 		--table.Duration = event.duration
 		--event.ability:ApplyDataDrivenModifier(caster, target, "modifier_frostarmorbuff", table)
 
@@ -14324,6 +14455,17 @@ function GlobalOnTakeDamage(event)
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_wog", {Duration = 8})
         caster:SetModifierStackCount("modifier_wog", caster.combat_system_ability, GetWrathOfGodStat(caster))
     end
+    if caster.talents then
+        if caster.talents[166] > 0 and caster:GetHealth() / caster:GetMaxHealth() < 0.5 and not caster.talent166cd then
+            caster.talent166cd = true
+            Timers:CreateTimer(0.05, function()
+                PurgeUnit({caster = caster, target = caster, purgefx = "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf"})
+            end)
+            Timers:CreateTimer(75 - 15 * caster.talents[166], function()
+                caster.talent166cd = false
+            end)
+        end
+    end
 end
 
 function OnSummonDamage(caster, target, ability)
@@ -14336,6 +14478,9 @@ function GlobalOnAttackLanded( event )
     local caster = event.caster
     local target = event.target
     if caster.talents then
+        if caster.flurryAbility then
+            CheckForFlurryProc(event)
+        end
         if caster.talents[118] and caster.talents[118] > 0 and math.random(1,100) <= 10 and not caster.moltenCD then
             caster.moltenCD = true
             RestoreResource({caster = caster, amount = 3 * caster.talents[118]})
@@ -14417,6 +14562,10 @@ function GlobalOnAbilityExecuted( event )
     local caster = event.caster
     local target = event.target
     local ability = event.event_ability
+    local coldChain = GetColdChainStat(caster)
+    if coldChain > 0 and ability and ability:GetCooldown(ability:GetLevel()-1) >= 15 then
+        ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 7, buff = "modifier_coc", max = 25})
+    end
     if GetLevelOfAbility(caster, "bear2") >= 2 and ability and ability:GetName() == "bear2" then
         local myevent = {caster = caster, amount = 100, ability = ability, chooseability = 2 }
         ReduceCooldown(myevent)
@@ -14550,9 +14699,9 @@ function GlobalOnAbilityExecuted( event )
                 caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_path36cd", {Duration = dur})
             end
         end
-        if caster.talents[148] and caster.talents[148] > 0 and caster:GetPrimaryAttribute() == 0 and ability == caster:GetAbilityByIndex(2) then
-            ApplyBuffStack({ caster = caster, target = caster, buff = "modifier_wms", ability = caster.combat_system_ability, max = 10, dur = 5})
-        end
+        --if caster.talents[148] and caster.talents[148] > 0 and caster:GetPrimaryAttribute() == 0 and ability == caster:GetAbilityByIndex(2) then
+        --    ApplyBuffStack({ caster = caster, target = caster, buff = "modifier_wms", ability = caster.combat_system_ability, max = 10, dur = 5})
+        --end
         local destro4 = caster:FindAbilityByName("destro4")
         if destro4 and destro4:GetLevel() >= 2 and (ability:GetName() == "destro4" or ability:GetName() == "Shadowfury") then
             destro4:ApplyDataDrivenModifier(caster, caster, "modifier_destro_def", {Duration = 3})
@@ -14630,7 +14779,7 @@ function GlobalOnAbilityExecuted( event )
         if event.event_ability and event.event_ability.is_casttime_ability then
             chance = 20
         end
-        if caster.talents[29] and caster.talents[29] > 0 and target and caster ~= target and target:GetTeamNumber() ~= caster:GetTeamNumber() and math.random(1,100) <= chance then
+        if caster.talents[29] > 0 and target and caster ~= target and target:GetTeamNumber() ~= caster:GetTeamNumber() and math.random(1,100) <= chance then
             local baseDuration = 0.4
             local duration = baseDuration
             if caster:HasModifier("modifier_pathbuff_029") and math.random(1,100) <= 25 then
@@ -14644,6 +14793,14 @@ function GlobalOnAbilityExecuted( event )
             end
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, target, "modifier_cast_firenova", {Duration = duration})
         end
+        chance = 5 * caster.talents[170]
+        if math.random(1,100) <= chance and target and target:GetTeamNumber() ~= caster:GetTeamNumber() then
+            ApplyBuff({ caster = caster, target = target, dur = 5, buff = "modifier_darts", ability = caster.combat_system_ability})
+            local particle = ParticleManager:CreateParticle("particles/necronomicon_archer_manaburn_green.vpcf", PATTACH_WORLDORIGIN, caster)
+            ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:ReleaseParticleIndex(particle)
+        end
         if HeroHasNeutralItem(caster, "item_neutral_27") and ability == caster:GetAbilityByIndex(4) then
             ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_stormbringer", ability = caster.combat_system_ability})
             local particle = ParticleManager:CreateParticle("particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -14651,10 +14808,10 @@ function GlobalOnAbilityExecuted( event )
             ParticleManager:ReleaseParticleIndex(particle)
             EmitSoundOn("Ability.GushCast", caster)
         end
-        if caster.talents[93] and caster.talents[93] > 0 and ability == caster:GetAbilityByIndex(4) then
+        if caster.talents[93] > 0 and ability == caster:GetAbilityByIndex(4) then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_boneshield", {Duration = 1 + 2 * caster.talents[93]})
         end
-        if caster.talents[97] and caster.talents[97] > 0 and ability == caster:GetAbilityByIndex(3) and not caster:HasModifier("modifier_bloodflow_cd") then
+        if caster.talents[97] > 0 and ability == caster:GetAbilityByIndex(3) and not caster:HasModifier("modifier_bloodflow_cd") then
             local dur = 2.5 + 0.5 * caster.talents[97]
             if dur > 8 then
                 dur = 8
@@ -14665,7 +14822,7 @@ function GlobalOnAbilityExecuted( event )
         if caster.talents[101] and caster.talents[101] > 0 and ability == caster:GetAbilityByIndex(5) then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_path_unholyaura", {Duration = 3 + caster.talents[101]})
         end
-        if caster.talents and caster.talents[7] and caster.talents[7] > 0 and target and target:GetTeamNumber() == caster:GetTeamNumber() then
+        if caster.talents[7] and caster.talents[7] > 0 and target and target:GetTeamNumber() == caster:GetTeamNumber() then
             local buff = "modifier_talent_maul"
             local dot_dur = 5
             if caster:HasModifier("modifier_item_ancient_grizzly") then
@@ -14747,12 +14904,15 @@ function GlobalOnAbilityExecuted( event )
         if caster.talents[150] and caster.talents[150] > 0 and target and target:GetTeamNumber() ~= caster:GetTeamNumber() then
             local chance = 1 + 2 * caster.talents[150]
             if math.random(1,100) <= chance then
-                ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = 3, buff = "modifier_shieldShatter"})
+                ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = 4, buff = "modifier_shieldShatter"})
             end
         end
         if caster.talents[162] and caster.talents[162] > 0 and ability == caster:GetAbilityByIndex(3) and not caster:HasModifier("modifier_phantomShadeCD") then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_phantomShadeCD", {Duration = 30 * GetInnerCooldownFactor(caster)})
-            ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 1 + caster.talents[162]})
+            ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 2 * caster.talents[162]})
+        end
+        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 then
+            caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "stampede_summon_proc", nil)
         end
     end
 end
@@ -14863,7 +15023,7 @@ function GetCooldownReductionFactor( caster, ability )
     if caster.talents and caster.talents[154] and caster.talents[154] >= 1 and ability:IsItem() then
         factor = factor * (1 - 0.15 * caster.talents[154])
         --trickster proc
-        caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_trickster", {duration = 5})
+        caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_trickster", {duration = 10})
     end
     if caster:HasModifier("modifier_mythic_cd") then
         factor = factor * (100 - caster:GetModifierStackCount("modifier_mythic_cd", nil)) / 100
@@ -15201,9 +15361,11 @@ function AbilityComboProcs(caster, ability)
             AddSpellhaste(caster, 75 * caster.talents[147], 5)
             AddAttackSpeed(caster, 75 * caster.talents[147], 5)
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_darkInit", {Duration = 5})
-            Timers:CreateTimer(30 * GetInnerCooldownFactor(caster), function()
+            Timers:CreateTimer(15 * GetInnerCooldownFactor(caster), function()
                 caster.darkInitiation = false
             end)
+            local particle = ParticleManager:CreateParticle("particles/items3_fx/glimmer_cape_initial.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+            ParticleManager:ReleaseParticleIndex(particle)
         end
     end
 end
@@ -15222,8 +15384,8 @@ function CooldownProcs( caster, ability, cd )
     if caster:HasModifier("modifier_class_bm2") and ability and (ability:GetName() == "WarriorCharge" or ability:GetName() == "Shield_Reflect" or ability:GetName() == "Terror_ShoutFury") then
         caster:FindAbilityByName("fury6"):ApplyDataDrivenModifier(caster, caster, "modifier_bm2", {Duration = 7})
     end
-    if ability and cd and cd >= 45 and caster and caster.talents and caster.talents[158] > 0 then
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 1 + caster.talents[158]})
+    if ability and cd and cd >= 45 and caster and caster.talents and caster.talents[159] > 0 then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 1 + caster.talents[159]})
     end
     if GetInnerFireStat(caster) >= 1 and cd and cd >= 30 then
         ApplyBuffStack({caster = caster, target = caster, buff = "modifier_innerfire", ability = caster.combat_system_ability, dur = 10, addstacks = 1, max = 5})
@@ -16008,6 +16170,11 @@ function ShadowCreeperTargetSet(event)
 	caster.creepertarget = event.target
 end
 
+function ShadowCreeperTargetSetFromLastDamage(event)
+    local caster = event.caster
+    caster.creepertarget = caster.last_damaged_target
+end
+
 function BloodWormTargetSet(event)
 	local caster = event.caster
 	caster.wormtarget = event.target
@@ -16635,6 +16802,9 @@ function ReduceCooldown( event )
         end
     end
     if event.buffcondition and not caster:HasModifier(event.buffcondition) then
+        return
+    end
+    if event.onlyBoss and event.target and not event.target.isboss then
         return
     end
     if event.setcastmoon4 and caster:HasModifier("modifier_class_venge") then
@@ -19257,7 +19427,20 @@ function ForwardPosition(event)
     local caster = event.caster
     local target = event.target
     caster.eyebeamdummy = target
-    local pos = caster:GetAbsOrigin() + caster:GetForwardVector()*event.range
+    local forwardVector = caster:GetForwardVector()
+    local pos = caster:GetAbsOrigin() + forwardVector * event.range
+    target:SetAbsOrigin(pos)
+end
+
+function InitializeFrostRayDummy(event)
+    local caster = event.caster
+    local target = event.target
+    local index = event.index
+    if not caster.frostraydummies then
+        caster.frostraydummies = {}
+    end
+    caster.frostraydummies[index] = target
+    local pos = GetFrostRayPositionByIndex(caster, index)
     target:SetAbsOrigin(pos)
 end
 
@@ -19278,17 +19461,54 @@ function EyeBeamPosUpdate(event)
     end
 end
 
+function GetFrostRayPositionByIndex(caster, index)
+    local rotations = {0, -30, 30}
+    local forwardVector = caster:GetForwardVector()
+    forwardVector = RotateVectorAroundAngle(forwardVector, rotations[index])
+    local pos = caster:GetAbsOrigin() + forwardVector * 600
+    return pos
+end
+
+function FrostRayPosUpdate(event)
+    local caster = event.caster
+    for i=1, 3 do
+        local target = caster.frostraydummies[i]
+        if target and not target:IsNull() then
+            local pos = GetFrostRayPositionByIndex(caster, i)
+            target:SetAbsOrigin(pos)
+            if caster.frostrayfx and caster.frostrayfx[i] then
+                local height = 137
+                ParticleManager:SetParticleControl(caster.frostrayfx[i], 0, caster:GetAbsOrigin()+Vector(0,0,height))
+                ParticleManager:SetParticleControl(caster.frostrayfx[i], 1, target:GetAbsOrigin()+Vector(0,0,100))
+            end
+        end
+    end
+end
+
 function EyeBeamFX(event)
     local caster = event.caster
     local target = caster.eyebeamdummy
     if target and not target:IsNull() then
         local particle = ParticleManager:CreateParticle("particles/eye_beam_2.vpcf", PATTACH_ABSORIGIN, target)
         caster.eyebeamdummyfx = particle
-        --ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin()+Vector(0,0,100), true)
-        --ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_origin", target:GetAbsOrigin()+Vector(0,0,200), true)
         ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin()+Vector(0,0,137))
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()+Vector(0,0,100))
-        --ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0,0,200))
+    end
+end
+
+function FrostRayFX(event)
+    local caster = event.caster
+    if not caster.frostrayfx then
+        caster.frostrayfx = {}
+    end
+    for i=1, 3 do
+        local target = caster.frostraydummies[i]
+        if target and not target:IsNull() then
+            local particle = ParticleManager:CreateParticle("particles/frost_ray.vpcf", PATTACH_ABSORIGIN, target)
+            caster.frostrayfx[i] = particle
+            ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin()+Vector(0,0,137))
+            ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()+Vector(0,0,100))
+        end
     end
 end
 
@@ -19504,7 +19724,7 @@ function GetAgilityPercentageBonus( hero, primary_stats_percent_bonus )
     if hero:HasModifier("modifier_class_bounty2") and hero:GetName() == "npc_dota_hero_bounty_hunter" then
         local bonusfromms = hero:GetMoveSpeedModifier(hero:GetBaseMoveSpeed(), true) - 350
         if bonusfromms > 0 then
-            percent_bonus = percent_bonus + 0.01 * bonusfromms
+            percent_bonus = percent_bonus + 0.005 * bonusfromms
         end
     end
     return percent_bonus * GetAgilityPercentageBonusEffectiveness(hero)
@@ -19636,6 +19856,9 @@ function GetArmorStaticBonus( hero, strength, agility, mana, magicres )
     if hero.talents[91] and hero.talents[91] > 0 then
         static_bonus = static_bonus + 1 * hero.talents[91]
     end
+    if hero.talents[56] and hero.talents[56] > 0 then
+        static_bonus = static_bonus + 2 * hero.talents[56]
+    end
     if hero.talents[139] and hero.talents[139] > 0 then
         static_bonus = static_bonus + CountAbilitiesWithLevel(hero, 2) * 3 * hero.talents[139]
     end
@@ -19719,7 +19942,7 @@ function GetManaPercentageBonus( hero )
 end
 
 function GetAttackSpeedBonus( hero, armor, strength, agility )
-    local static_bonus = 0
+    local static_bonus = hero.talents[15] * 30 + hero.talents[178] * 50
     if agility >= 1 then
         static_bonus = static_bonus + GetAttackSpeedBonusFromAgi(hero, agility)
     end
@@ -19759,14 +19982,16 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
     if hero.talents[139] and hero.talents[139] > 0 then
         static_bonus = static_bonus + CountAbilitiesWithLevel(hero, 1) * 25 * hero.talents[139]
     end
-    local value = hero.talents[15] * 30 + static_bonus
-    return value
+    return static_bonus
 end
 
 function GetHealthStaticBonus( hero, strength, agility, intellect, armor, magicres, maxMana )
     local static_bonus = (GetMaxHpBonusPerHeroLevel(hero) * GetHeroLevel(hero))
     if hero.talents[120] and hero.talents[120] > 0 then
         static_bonus = static_bonus + 0.1 * hero.talents[120] * maxMana
+    end
+    if hero.talents[163] and hero.talents[163] > 0 then
+        static_bonus = static_bonus + 5 * hero.talents[163] * GetHeroLevel(hero)
     end
     if hero.talents[65] and hero.talents[65] > 0 then
         static_bonus = static_bonus + 250 * hero.talents[65]
@@ -19775,11 +20000,7 @@ function GetHealthStaticBonus( hero, strength, agility, intellect, armor, magicr
         static_bonus = static_bonus + 1500 * hero.talents[115]
     end
     if hero.talents[14] and hero.talents[14] > 0 then
-        if hero:IsRangedAttacker() then
-            static_bonus = static_bonus + (0.5 + 0.5 * hero.talents[14]) * agility
-        else
-            static_bonus = static_bonus + (1.5 + 0.5 * hero.talents[14]) * agility
-        end
+        static_bonus = static_bonus + (0.5 + 0.5 * hero.talents[14]) * agility
     end
     if hero.talents[128] and hero.talents[128] > 0 then
         static_bonus = static_bonus + intellect * (0.5 + 0.5 * hero.talents[128])
@@ -19813,6 +20034,9 @@ end
 
 function GetHealthPercentageBonus( hero, armor, magicres )
     local percent_bonus = hero.talents[67] * 0.07 + GetGlobalHPAuraStat()
+    if hero.talents[156] > 0 and not hero.super_aggro_tank then
+        percent_bonus = percent_bonus + 0.1 * hero.talents[156]
+    end
     if hero:HasModifier("modifier_item_item_set_t4_str_4") then
         percent_bonus = percent_bonus + 0.15
     end
@@ -19865,8 +20089,58 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     return percent_bonus
 end
 
+function GetHealthRegeneration(hero, strength)
+    local value = GetHealthRegenFromStrength(strength)
+    local maxHealth = hero:GetMaxHealth()
+    if hero.talents[166] and hero.talents[166] > 0 then
+        value = value + hero.talents[166] * GetHeroLevel(hero)
+    end
+    if hero.talents[169] and hero.talents[169] > 0 then
+        value = value + maxHealth * (0.005 + 0.005 * hero.talents[169])
+    end
+    if hero:HasModifier("modifier_defstance") and hero:FindAbilityByName("fury6") then
+        value = value + maxHealth * 0.01
+    end
+    if hero:HasModifier("modifier_item_hpreg1") then
+        value = value + 3
+    end
+    if hero:HasModifier("modifier_hpregen2") then
+        value = value + 15
+    end
+    if hero:HasModifier("modifier_item_druid_glove_regen") then
+        value = value + 5
+    end
+    if hero:HasModifier("modifier_item_activedh") then
+        value = value + 5
+    end
+    if hero:HasModifier("modifier_item_powerhelm") then
+        value = value + 50
+    end
+    if hero:HasModifier("modifier_item_silverblood") then
+        value = value + 10
+    end
+    if hero:HasModifier("modifier_item_silverblood2") then
+        value = value + 25
+    end
+    if hero:HasModifier("modifier_item_silverblood4") then
+        value = value + 60
+    end
+    if hero:HasModifier("modifier_crowndefender2") then
+        value = value + 100
+    end
+    
+    return value * GetHealthRegenerationFactor(hero)
+end
+
+function GetHealthRegenerationFactor(hero)
+    local value = 1
+    local buffstacks = hero:GetModifierStackCount("modifier_talent_thirst", nil)
+    value = value + 0.05 * buffstacks * hero.talents[173]
+    return value
+end
+
 function GetAutoAttackDamageStaticBonus( hero, str, agi, int )
-    local value = hero.talents[18] * 50 + hero.talents[146] * 0.2 * agi + hero.talents[12] * 0.25 * str
+    local value = hero.talents[18] * 50 + hero.talents[146] * 0.333 * agi + hero.talents[12] * 0.25 * str
     if hero:HasModifier("modifier_dominance") then
         value = value + hero.talents[84] * 0.25 * (str + agi + int)
     end
@@ -19874,48 +20148,44 @@ function GetAutoAttackDamageStaticBonus( hero, str, agi, int )
 end
 
 function GetAutoAttackDamagePercentBonus( hero )
-    local value = hero.talents[49] * 0.25 + hero.talents[120] * 0.1
+    local value = (1 + hero.talents[49] * 0.25) * (1 + hero.talents[120] * 0.1)
     if hero:HasModifier("modifier_furycharge") then
-        value = value + 1
+        value = value * 2
     end
     if hero:HasModifier("modifier_item_needleaa") then
-        value = value + 0.25
+        value = value * 1.25
     end
     if hero:HasModifier("modifier_aaa2") then
-        value = value + 0.25
+        value = value * 1.25
     end
     if hero:HasModifier("modifier_crusader_mount") then
-        value = value + 0.5
+        value = value * 1.5
     end
     if hero:HasModifier("modifier_cloakitem") then
-        value = value + 0.25
+        value = value * 1.25
     end
-    --local ability = hero:FindAbilityByName("rogue1")
-    --if ability and ability:GetLevel() >= 4 then
-    --    value = value + 0.25
-    --end
     if hero:HasModifier("modifier_exorcism_aura") then
         local ability = hero:FindAbilityByName("Retri5")
         if ability and ability:GetLevel() >= 3 then
-            value = value + 0.5
+            value = value * 1.5
         end
     end
     if hero:HasModifier("modifier_pala_dmg") then
-        value = value + 0.3
+        value = value * 1.3
     end
     if hero:HasModifier("modifier_lightningfury") then
         local ability = hero:FindAbilityByName("Ghost1")
         if ability and ability:GetLevel() >= 3 then
-            value = value + 2
+            value = value * 3
         end
     end
     local buffstacks = hero:GetModifierStackCount("modifier_abil_bonus_5_percent", nil)
     if buffstacks >= 1 then
-        value = value + 0.2 * buffstacks
+        value = value * (1 + 0.2 * buffstacks)
     end
     buffstacks = hero:GetModifierStackCount("modifier_crowfall", nil)
     if buffstacks >= 1 then
-        value = value + 0.02 * buffstacks
+        value = value * (1 + 0.02 * buffstacks)
     end
     return value
 end
@@ -20157,9 +20427,8 @@ function GetMaxHpBonusFromStr(hero, str)
     return str * hpPerStr
 end
 
--- Be aware that this also called over time from panorama to display right value in hero stats tooltip
 function GetPhysicalDamageBonusFromStr(hero, str)
-    return 0.001 * str --0.0008 
+    return 0.0003 * str --0.001 * str 0.0008 
 end
 
 -- Be aware that this also called over time from panorama to display right value in hero stats tooltip
@@ -20178,7 +20447,15 @@ function GetCriticalStrikeDamageBonusFromAgi(hero, agility)
     if hero.talents[116] > 0 then
         extra = 0.0001 * hero.talents[116]
     end
-    return (0.0005 + extra) * agility
+    return (0.0005 + extra) * agility * GetCriticalStrikeDamageBonusFromAgiFactor(hero)
+end
+
+function GetCriticalStrikeDamageBonusFromAgiFactor(hero)
+    local factor = 1
+    if hero.talents[162] > 0 then
+        factor = factor * (1 + 0.3333 * hero.talents[162])
+    end
+    return factor
 end
 
 -- Be aware that this also called over time from panorama to display right value in hero stats tooltip
@@ -20202,6 +20479,10 @@ function GetSpellResistanceBonusFromInt(hero, int)
         mresPerInt = mresPerInt * 2
     end
     return mresPerInt * int
+end
+
+function GetAbilityDamageBonusFromLowestAttribute(hero, attribute)
+    return GetLowestMainAttribute(hero) * GetBalanceOfPowerStat(hero) / 10000
 end
 
 function PassiveStatCalculation(event)
@@ -20247,8 +20528,7 @@ function PassiveStatCalculation(event)
             isUpdateTickEvery10secs = true
         end
     end
-    --mana regen
-    SetManaRegeneration(hero, GetManaRegenerationPerSec(hero))
+    
     CheckForMaxManaCap(hero)
     --mres
     local castRangeBonus = GetCastRangeBonus(hero)
@@ -20408,7 +20688,7 @@ function PassiveStatCalculation(event)
             primary_stats_percent_bonus = primary_stats_percent_bonus + 0.05 * hero.talents[65]
         end
         if hero.talents[10] and hero.talents[10] > 0 then --and hero:GetMoveSpeedModifier(hero:GetBaseMoveSpeed()) < 300 then
-            primary_stats_static_bonus = primary_stats_static_bonus + 15 * hero.talents[10]
+            primary_stats_static_bonus = primary_stats_static_bonus + 10 * hero.talents[10]
         end
         if hero:HasModifier("modifier_item_ancient_primary") then
             primary_stats_percent_bonus = primary_stats_percent_bonus + 0.1
@@ -20782,6 +21062,12 @@ function PassiveStatCalculation(event)
         if hero:HasModifier("modifier_endboss") then
             primary_stats_static_bonus = primary_stats_static_bonus + 75
         end
+        if hero:HasModifier("modifier_divine_phys") then
+            primary_stats_static_bonus = primary_stats_static_bonus + 75
+        end
+        if hero:HasModifier("modifier_divine_frost") then
+            primary_stats_static_bonus = primary_stats_static_bonus + 75
+        end
     end
     --finish raw stat calculation: grab other static bonuses
     --static:
@@ -20791,9 +21077,16 @@ function PassiveStatCalculation(event)
     elseif hero:HasModifier("modifier_wing") then
         wingsOfDominanceStatsPerLevel = wingsOfDominanceStatsPerLevel * 1.5
     end
-    baseStats[STR] = baseStats[STR] + hero.runeword[5] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[63] * 15 + hero.talents[46] * 15 + hero.talents[10] * 15 + GetGlobalStrengthAuraStat() + GetAllStats(hero)
-    baseStats[AGI] = baseStats[AGI] + hero.runeword[1] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[40] * 15 + hero.talents[46] * 15 + GetGlobalAgilityAuraStat() + GetAllStats(hero)
-    baseStats[INT] = baseStats[INT] + hero.runeword[2] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[35] * 30 + GetGlobalIntellectAuraStat() + GetAllStats(hero)
+
+    local hunterAgi = (hero:GetMoveSpeedModifier(hero:GetBaseMoveSpeed(), true) - 250) * GetHunterStat(hero) / 100
+    if hunterAgi < 0 then
+        hunterAgi = 0
+    end
+
+    local allStatsBonus = GetAllStatsBonus(hero)
+    baseStats[STR] = baseStats[STR] + hero.runeword[5] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[63] * 15 + hero.talents[46] * 15 + hero.talents[10] * 10 + GetGlobalStrengthAuraStat() + allStatsBonus
+    baseStats[AGI] = baseStats[AGI] + hero.runeword[1] + hero.runeword[16] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[40] * 15 + hero.talents[46] * 15 + hero.talents[178] * 50 + GetGlobalAgilityAuraStat() + allStatsBonus + hunterAgi
+    baseStats[INT] = baseStats[INT] + hero.runeword[2] + wingsOfDominanceStatsPerLevel * hero.talents[84] + hero.talents[35] * 30 + GetGlobalIntellectAuraStat() + allStatsBonus + hero.talents[180] * 50
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_8") >= 1 then
         baseStats[INT] = baseStats[INT] + 75
     end
@@ -20897,7 +21190,7 @@ function PassiveStatCalculation(event)
     --now we can calc real AA and AS and mana and HP, (primary attribute must give aa dmg): order is important! important: need to substract what we already have at the end
     --Mana
     local manaFromInt = GetMaxManaBonusFromInt(hero, realBaseStats[INT])
-    local maxManaBonusesFromNonItems = manaFromInt + hero.talents[120] * 100
+    local maxManaBonusesFromNonItems = manaFromInt + hero.talents[120] * 100 + hero.talents[180] * 50
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_5") >= 1 then
         maxManaBonusesFromNonItems = maxManaBonusesFromNonItems + 500
     end
@@ -20960,26 +21253,31 @@ function PassiveStatCalculation(event)
 
     --update new UI
     local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
-        id = hero:GetPlayerID(), 
-        str = math.floor(realBaseStats[STR]), 
-        agi = math.floor(realBaseStats[AGI]), 
-        int = math.floor(realBaseStats[INT]), 
-        level = hero.level, 
-        levelPercentage = hero.levelPercentage,
-        maxHpFromStr = maxHpBonusFromStr,
-        physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
-        attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
-        armorFromAgi = armorFromAgi,
-        criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
-        manaFromInt = manaFromInt,
-        abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
-        spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
-        resourceType = hero.resourcesystem,
-        spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
-        damageReduction = GetTotalDamageTakenFactor(hero, nil),
-        attackSpeed = realBaseStats[AS] + baseAttackSpeed
-    })
+    if isUpdateTickEvery5secs then
+        CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
+            id = hero:GetPlayerID(), 
+            str = math.floor(realBaseStats[STR]), 
+            agi = math.floor(realBaseStats[AGI]), 
+            int = math.floor(realBaseStats[INT]), 
+            level = hero.level, 
+            levelPercentage = hero.levelPercentage,
+            maxHpFromStr = maxHpBonusFromStr,
+            --physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
+            blockFromStr = GetDamageBlockFromStrength(realBaseStats[STR]),
+            block = GetDamageBlock(hero),
+            regenFromStr = GetHealthRegenFromStrength(realBaseStats[STR]),
+            attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
+            armorFromAgi = armorFromAgi,
+            criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
+            manaFromInt = manaFromInt,
+            abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
+            spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
+            resourceType = hero.resourcesystem,
+            spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
+            damageReduction = GetTotalDamageTakenFactor(hero, nil),
+            attackSpeed = realBaseStats[AS] + baseAttackSpeed
+        })
+    end
 
     --now we have calculated all basic stats, lets apply them!
     for i = 4, totalAttributes do --str int agi already applied
@@ -20994,7 +21292,7 @@ function PassiveStatCalculation(event)
                 --AAA needs special treatment: requires aaplying AA first
                 hero:CalculateStatBonus(true)
                 baseStats[AAA] = hero:GetAverageTrueAttackDamage(hero) + GetAutoAttackDamageStaticBonus(hero, realBaseStats[STR], realBaseStats[AGI], realBaseStats[INT]) --static AAA can be already there from items
-                baseStatsPercentFactor[AAA] = (1 + GetAutoAttackDamagePercentBonus(hero)) * GetAbilityDamageModifierMultiplicative({caster = hero}, hero, hero, nil, ability, false, false, false, false, false, false, false, false, false) * GetElementalDamageModifierAdditive({caster = hero}, hero, hero, nil, ability, false, false, 1, false) --ability damage % and physical % now also grant AA %
+                baseStatsPercentFactor[AAA] = GetAutoAttackDamagePercentBonus(hero) * GetAbilityDamageModifierMultiplicative({caster = hero}, hero, hero, nil, ability, false, false, false, false, false, false, false, false, false) * GetElementalDamageModifierAdditive({caster = hero}, hero, hero, nil, ability, false, false, 1, false, false) --ability damage % and physical % now also grant AA %
                 realBaseStats[AAA] = baseStats[AAA] * baseStatsPercentFactor[AAA]
                 realBaseStatsToApply[AAA] = realBaseStats[AAA] - hero:GetAverageTrueAttackDamage(hero)
                 --apply
@@ -21015,8 +21313,10 @@ function PassiveStatCalculation(event)
     --local classringbonus = GetClassRingPower(hero) --unused?
     local amuletpathbonus = GetArtifactPathBonus(hero, 8)
     local ringpathbonus = GetArtifactPathBonus(hero, 3)
+    local primalPowerBonusCount = 0
+    local pathBonuses = GetPathBonuses(hero, isUpdateTickEvery5secs)
     for i=1, COverthrowGameMode.maxtalents do
-        local soul_item_bonus = 0
+        local soul_item_bonus = pathBonuses[i]
         local path_word_bonus = 0
         for k=1, 3 do
             if i == soul[k][1] then
@@ -21051,317 +21351,12 @@ function PassiveStatCalculation(event)
         --if pathSynergies and pathSynergies[i] and pathSynergies[i] >= 1 then
             --soul_item_bonus = soul_item_bonus + pathSynergies[i]
         --end
-        if i == 87 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[13]
-        end
-        if i == 6 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[24]
-        end
-        if i == 8 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[26]
-        end
-        if i == 49 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[15]
-        end
-        if i == 17 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[12]
-        end
-        if i == 53 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[20]
-        end
-        if i == 135 then --genesis
-            soul_item_bonus = soul_item_bonus + hero.runeword[22]
-        end
-        if i == 92 or i == 104 then --frostmourne
-            soul_item_bonus = soul_item_bonus + hero.runeword[23]
-        end
-        --new runewords
-        if i == 101 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[28]
-        end
-        if i == 78 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[29]
-        end
-        if i == 36 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[30]
-        end
-        if i == 96 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[31]
-        end
-        if i == 89 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[32]
-        end
-        if i == 22 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[33]
-        end
-        if i == 57 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[34]
-        end
-        if i == 117 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[35]
-        end
-        if i == 51 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[36]
-        end
-
-        if i == 145 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[41]
-        end
-        if i == 146 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[46]
-        end
-        if i == 147 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[37]
-        end
-        if i == 148 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[47]
-        end
-        if i == 152 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[42]
-        end
-        if i == 154 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[48]
-        end
-        if i == 155 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[44]
-        end
-        if i == 156 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[45]
-        end
-        if i == 158 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[38]
-        end
-        if i == 159 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[39]
-        end
-        if i == 161 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[43]
-        end
-        if i == 162 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[40]
-        end
-
-        if i == 70 and hero:HasModifier("modifier_item_night_shoulders") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 86 and hero:HasModifier("modifier_new3") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 86 and hero:HasModifier("modifier_new32") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 71 and hero:HasModifier("modifier_item_dragonshield") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 104 and hero:HasModifier("modifier_item_frostmourne") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 2 and hero:HasModifier("modifier_item_ancient_wolf") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        --new set perks
-        if i == 63 and hero:HasModifier("modifier_item_item_set_t4_agi_4") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 41 and hero:HasModifier("modifier_item_wolf_sword") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 41 and hero:HasModifier("modifier_item_wolf_sword_2") then
-            soul_item_bonus = soul_item_bonus + 3
-        end
-        if i == 13 and hero:HasModifier("modifier_item_set_agi_dmg_full_tiger") then
-            soul_item_bonus = soul_item_bonus + 3
-        end
-        if i == 13 and hero:HasModifier("modifier_item_set_agi_dmg_full_t1_2") then
-            soul_item_bonus = soul_item_bonus + 3
-        end
-        if i == 50 and hero:HasModifier("modifier_item_set_str_tank_full_t1_dream") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 81 and hero:HasModifier("modifier_item_set_agi_skyfall") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 51 and hero:HasModifier("modifier_item_set_str_t3_2_full_dream") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 75 and hero:HasModifier("modifier_item_set_agi_t3_2_shad_ref") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 57 and hero:HasModifier("modifier_npc_dota_hero_pugna") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 67 and hero:HasModifier("modifier_pathbuff_096") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 63 and hero:HasModifier("modifier_pathbuff_105") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        
-        if i == 15 and hero:HasModifier("modifier_pathbuff_098") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        
-        if i == 15 and hero:HasModifier("modifier_npc_dota_hero_dragon_knight") and hero:HasModifier("modifier_shieldbash") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 73 and hero:HasModifier("modifier_npc_dota_hero_riki") and hero:HasModifier("modifier_shadowstep1") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 69 and hero:HasModifier("modifier_item_aura_ancient") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 76 and hero:HasModifier("modifier_item_intmana") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 79 and hero:HasModifier("modifier_item_channel") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 79 and hero:HasModifier("modifier_item_channel_2") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 59 and hero:HasModifier("modifier_item_ancient_dmg") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if (i == 25 or i == 26 or i == 32) and hero:HasModifier("modifier_dragonmind") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 4 or i == 10 or i == 12) and hero:HasModifier("modifier_dragonmind2") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        --end set perks
-        if i == 47 and hero:HasModifier("modifier_item_ancient_wolf") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 47 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[14]
-        end
-        if i == 33 and hero:HasModifier("modifier_item_ancient_dragon") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 5 and hero:HasModifier("modifier_ancient_allstats") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 18 and hero:HasModifier("modifier_item_dmg5") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 3
-        end
-        if i == 53 and hero:HasModifier("modifier_item_dmg5") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 11 and hero:HasModifier("modifier_item_ancient_primary_heal") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 50 and hero:HasModifier("modifier_item_ancient_primary_heal") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 53 and hero:HasModifier("modifier_class_fury") and hero:HasModifier("modifier_furycharge") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 84 and hero:HasModifier("modifier_pathbuff_057") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 37 or i == 38) and hero:HasModifier("modifier_pathbuff_060") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 34 and hero:HasModifier("modifier_item_winterbreeze4") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 20 and hero:HasModifier("modifier_item_ancient_elune") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 3
-        end
-        if i == 56 and hero:HasModifier("modifier_item_ancient_primary") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 36 and hero:HasModifier("modifier_item_ancient_primary") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 49 and hero:HasModifier("modifier_item_ancient_grizzly") and hero.talents_clicked and hero.talents_clicked[i] and hero.talents_clicked[i] > 0 then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 46 then
-            if hero:HasModifier("modifier_item_crit_pure_immortal_2") then
-                soul_item_bonus = soul_item_bonus + 2
-            end
-            soul_item_bonus = soul_item_bonus + hero.runeword[11]
-        end
-        if i == 55 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[10]
-        end
-        if i == 32 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[17]
-        end
-        if i == 69 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[8]
-        end
-        if i == 22 and hero:HasModifier("modifier_moonlighttiger") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 135 and HeroHasNeutralItem(hero, "item_neutral_1") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 138 and HeroHasNeutralItem(hero, "item_neutral_27") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 127 and HeroHasNeutralItem(hero, "item_neutral_23") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 13 or i == 14 or i == 15) and HeroHasNeutralItem(hero, "item_neutral_24") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 128 and HeroHasNeutralItem(hero, "item_neutral_8") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 125 and HeroHasNeutralItem(hero, "item_neutral_10") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 141 and HeroHasNeutralItem(hero, "item_neutral_12") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 142 and HeroHasNeutralItem(hero, "item_neutral_11") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 131 and HeroHasNeutralItem(hero, "item_neutral_13") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 143 and HeroHasNeutralItem(hero, "item_neutral_18") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if i == 136 and hero:HasModifier("modifier_thunderclub") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 35 or i == 86) and HeroHasNeutralItem(hero, "item_neutral_20") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if (i == 23 or i == 126) and HeroHasNeutralItem(hero, "item_neutral_21") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 31 or i == 34) and HeroHasNeutralItem(hero, "item_neutral_4") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if (i == 121 or i == 123) and HeroHasNeutralItem(hero, "item_neutral_17") then
-            soul_item_bonus = soul_item_bonus + 1
-        end
-        if (i == 60 or i == 139) and hero:HasModifier("modifier_rider_boots") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 23 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[9]
-        end
-        if i == 29 then
-            soul_item_bonus = soul_item_bonus + hero.runeword[21]
-        end
-        if (i == 39 or i == 40 or i == 42) and hero:HasModifier("modifier_ancient_def_wolf") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if (i == 145 or i == 147 or i == 159 or i == 162) and hero:HasModifier("modifier_nameless") then
-            soul_item_bonus = soul_item_bonus + 2
-        end
-        if i == 73 and hero:HasModifier("modifier_item_rogueblades2") and hero:GetUnitName() == "npc_dota_hero_riki" then
-            soul_item_bonus = soul_item_bonus + 1
-        end
 
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
-        --if i == 39 then
-        --    new_talent_value = 3
+
+        -- test
+        --if i == 30 then
+            --new_talent_value = 3
         --end
         
         --new divine doubling soul items
@@ -21378,15 +21373,6 @@ function PassiveStatCalculation(event)
             if i == 132 then
                 pathBonus = 2
             end
-            --if i == 1 or i == 13 or i == 25 or i == 37 then
-            --    pathbuff_factor = 3
-            --end
-            --if i == 15 or i == 17 then
-            --    pathbuff_factor = 3
-            --end
-            --if i == -1 then
-            --    pathbuff_factor = 1
-            --end
             --ravencraft fixes
             if i == 88 and not hero:HasModifier("modifier_path_088_ability_points") then
                 --not activated gives 0 extra points
@@ -21405,7 +21391,6 @@ function PassiveStatCalculation(event)
         end
         --update talent tree when it changes, for ALL players
         
-
         local showStatistics = false
         if showStatistics then
             if not COverthrowGameMode.CalculatedPathStatistics then
@@ -21418,8 +21403,8 @@ function PassiveStatCalculation(event)
         --if i == 95 then
         --    new_talent_value = 10
         --end
-        --if i == 111 then
-        --    new_talent_value = 5
+        --if i == 132 then
+        --    new_talent_value = 3
         --end
         --new bottom row path caps
         if new_talent_value > 3 and (i == 125 or i == 129 or i == 134 or i == 137 or i == 142 or i == 143 or i == 144 or i == 160) then
@@ -21436,8 +21421,9 @@ function PassiveStatCalculation(event)
             end
         end
 
-        if hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147) then
+        if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147) then
             new_talent_value = new_talent_value + hero.talents[132]
+            primalPowerBonusCount = primalPowerBonusCount + 1
         end
         local maxPathLevel = 1000 --10
         --genesis
@@ -21455,387 +21441,279 @@ function PassiveStatCalculation(event)
         end
         hero.talents[i] = new_talent_value
         hero.talents_without_pathwords[i] = new_talent_value - path_word_bonus
-        --tests
-        --hero.talents[66] = 3
-        --hero.talents[85] = 3
-        --hero.talents[57] = 3
-        local level = hero.talents[i]
-        
-        if level > 0 or i == 1 or i == 5 or i == 13 or i == 14 or i == 15 or i == 18 or i == 20 or i == 25 or i == 26 or i == 18 or i == 34 or i == 52 or i == 67 or (i == 25 and hero.runeword[2] > 0) 
-                or i == 27 or (i == 30 and hero.runeword[10] > 0) then
-            if i == 1 then
-                --some buffs must be added first
-                if (hero:HasModifier("modifier_invisible") or hero:HasModifier("modifier_oocmana")) and hero.talents and hero.talents[70] and hero.talents[70] > 0 then
-                    local buff = "modifier_path_from_shadows"
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = 14.9})
-                    hero.fromTheShadows = 1 + 0.1 * hero.talents[70]
-                end
-            end
-            if i == 14 then
-                local buff = "modifier_movement"
-                hero:RemoveModifierByName(buff)
-                local static_bonus = level * 5
-                if hero.talents[80] and hero.talents[80] > 0 then
-                    static_bonus = static_bonus + 3 * hero.talents[80]
-                end
-                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_1") >= 1 then
-                    static_bonus = static_bonus + 5
-                end
-                if hero.talents[139] and hero.talents[139] > 0 then
-                    static_bonus = static_bonus + CountAbilitiesWithLevel(hero, 1) * 3 * hero.talents[139]
-                end
-                local value = static_bonus
-                if value >= 1 then
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, value)
-                end
-            end
-            if i == 15 then
-                --evasion
-                if level > 0 then
-                    local value = level * 5
-                    if value > 30 then
-                        value = 30
-                    end
-                    ability:ApplyDataDrivenModifier(hero, hero, "modifier_evasion", {Duration = dur})
-                    hero:SetModifierStackCount("modifier_evasion", ability, value)
-                end
-            end
-            if i == 24 then
-                local buff = "modifier_talent_crit"
-                hero:RemoveModifierByName(buff)
-                local value = level * 2 -- + hero.runeword[8]
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, value)
-                --shield buff
-                local refresh_base_time = 25
-                if not hero:IsRangedAttacker() then
-                    refresh_base_time = 20
-                end
-                local refresh_time = refresh_base_time - GetAgilityCustom(hero) / 50
-                if refresh_time <= 5 then
-                    refresh_time = 5
-                end
-                if hero.moonglaive_shield then
-                    hero.moonglaive_shield = hero.moonglaive_shield + updateEveryXSecs
-                    if hero.moonglaive_shield >= refresh_time then
-                        hero.moonglaive_shield = hero.moonglaive_shield - refresh_time
-                        --print(hero.moonglaive_shield)
-                        local myevent = {}
-                        myevent.caster = hero
-                        myevent.target = hero
-                        myevent.buff = "modifier_talent_moonglaive_shield"
-                        myevent.ability = ability
-                        myevent.addstacks = 1
-                        local max_stack = 4
-                        myevent.max = max_stack
-                        ApplyBuffStack(myevent)
-                    end
-                else
-                    hero.moonglaive_shield = 5
-                end
-            end
-            if i == 20 then
-                if level <= 0 then
-                    hero.standsstill = 0
-                    hero:RemoveModifierByName("modifier_careful_aim")
-                else
-                    StandStill({caster = hero})
-                end
-            end
-            if i == 23 then
-                local buff = "modifier_aa_starfall"
-                hero:RemoveModifierByName(buff)
-                local value = level
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, value)
-            end
-            if i == 26 and isUpdateTickEvery5secs then
-                local percent_bonus = 0.01 * level
-                local flat_bonus = 10 * level
-                if not hero.resourcesystem then --mana user
-                    if hero.talents[74] and hero.talents[74] > 0 and not hero:HasModifier("modifier_oocmana") then
-                        if hero:GetMana() / hero:GetMaxMana() > 0.25 then
-                            percent_bonus = percent_bonus - 0.15
-                            hero.path_sacrifice_souls_paid = 4
-                        else
-                            hero.path_sacrifice_souls_paid = false
-                        end
-                    end
-                else
-                    hero.path_sacrifice_souls_paid = 4 --energy users dont pay here
-                end
-                if hero:HasModifier("modifier_item_item_set_t4_int_4") then
-                    percent_bonus = percent_bonus + 0.01
-                end
-                if percent_bonus ~= 0 then
-                    local value = hero:GetMaxMana() * percent_bonus + flat_bonus
-                    local myevent = {caster = hero, target = hero, amount = value}
-                    RestoreMana(myevent)
-                end
-            end
-            if i == 58 and isUpdateTickEvery5secs then
-                if not hero:HasModifier("modifier_oocmana") and hpPercent >= 0.65 then
-                    --hero:SetHealth(hero:GetHealth() - hero:GetMaxHealth() * 0.15)
-                    hpPercent = hpPercent - 0.15
-                    hero.lifeblood = 1 + 0.1 * level
-                    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf", PATTACH_POINT_FOLLOW, hero)
-                    ParticleManager:ReleaseParticleIndex(particle)
-                    ability:ApplyDataDrivenModifier(hero, hero, "modifier_talent_lifeblood", {Duration = 5})
-                    AddHeroResource({caster = hero, amount = (0.5 + 0.5 * level), percent = true, energy = 5 * level, energypercent = true})
-                end
-            end
-            if i == 27 then
-                local buff = "modifier_spellres"
-                hero:RemoveModifierByName(buff)
-                local value1 = 0
-                if level >= 1 then
-                    value1 = 5 + level * 5
-                end
-                local value2 = hero.runeword[4]
-                local value3 = 0
-                if hero.talents[91] and hero.talents[91] > 0 then
-                    value3 = 1 * hero.talents[91]
-                end
-                if value1 > 75 then
-                    value1 = 75
-                end
-                local value4 = 0
-                local pala4 = hero:FindAbilityByName("pala4")
-                if pala4 and pala4:GetLevel() >= 4 then
-                    value4 = realBaseStats[INT] * 0.02
-                    if value4 > 25 then
-                        value4 = 25
-                    end
-                end
-                local value5 = 0
-                if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_7") >= 1 then
-                    value5 = 35
-                end
-                local value6 = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]) --intellect stat mres
-                local finalValue = ((100 - value1) / 100) * ((100 - value2) / 100) * ((100 - value3) / 100) * ((100 - value4) / 100) * ((100 - value5) / 100) * ((100 - value6) / 100) --diminishing calculation, result is damage factor: 0.2 means 80% reduction
-                finalValue = (1 - finalValue) * 100
-                if finalValue >= 1 then
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, finalValue)
-                end
-            end
-            if i == 46 then
-                local buff = "modifier_talent_beastmaster"
-                hero:RemoveModifierByName(buff)
-                local value = level
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, value)
-            end
-            if i == 21 then
-                local buff = "modifier_talent_glass_cannon"
-                hero:RemoveModifierByName(buff)
-                local value = level
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, value)
-            end
-            if i == 52 and isUpdateTickEvery5secs then
-                if level > 0 then
-                    local myevent = {}
-                    myevent.caster = hero
-                    myevent.target = hero
-                    myevent.buff = "modifier_talent_tiger_prowl"
-                    myevent.ability = ability
-                    myevent.dur = -1
-                    myevent.addstacks = 5
-                    local max_stack = 10
-                    if hero:HasModifier("modifier_item_ancient_elune") then
-                        max_stack = 15
-                    end
-                    myevent.max = max_stack
-                    ApplyBuffStack(myevent)
-                else
-                    hero:RemoveModifierByName("modifier_talent_tiger_prowl")
-                end
-            end
-            if i == 65 then
-                if not hero:HasModifier("modifier_oocmana") then
-                    local buff = "modifier_movement_minus"
-                    hero:RemoveModifierByName(buff)
-                    local value = 15
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, value)
-                end
-            end
-            if i == 85 then -- and isUpdateTickEvery5secs then
-                local buff = "modifier_stormcrow"
-                --hero:RemoveModifierByName(buff)
-                local value = CountNearbyEnemies(hero, 900)
-				
-                hero.nearby_enemies = value
-				
-                --ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                --hero:SetModifierStackCount(buff, ability, value)
-                local feast_threshold = 3
-                if hero:HasModifier("modifier_pathbuff_075") then
-                    feast_threshold = 2
-                end
+    end
 
-                if value >= feast_threshold then
-                	--PathFeastForCrowsAOE(hero)
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = 4 + 2 * level})
-                end
-            end
-            if i == 88 then
-                if not hero.path_all_knowing_crow_points_given then
-                    hero.path_all_knowing_crow_points_given = 0
-                end
-                if level > hero.path_all_knowing_crow_points_given then
-                    local missing_points = level - hero.path_all_knowing_crow_points_given
-                    hero:SetAbilityPoints(hero:GetAbilityPoints() + missing_points)
-                    hero.path_all_knowing_crow_points_given = hero.path_all_knowing_crow_points_given + missing_points
-                end
-            end
-            --[[
-            if i == 104 then
-                local ability5 = hero:GetAbilityByIndex(4)
-                local ability6 = hero:GetAbilityByIndex(5)
-                if ability5 and ability5:GetCooldownTimeRemaining() > 0 and ability6 and ability6:GetCooldownTimeRemaining() > 0 and not hero:HasModifier("modifier_deathchill_cd") then
-                    local dur = 10
-                    ability:ApplyDataDrivenModifier(hero, hero, "modifier_deathchill", {Duration = dur})
-                    ability:ApplyDataDrivenModifier(hero, hero, "modifier_deathchill_cd", {Duration = dur * 2})
-                end
-            end]]
-            if i == 106 and isUpdateTickEvery5secs then
-                ability:ApplyDataDrivenModifier(hero, hero, "modifier_guardianshield", {Duration = -1})
-            end
-            if i == 107 then
-                local value = CountNearbyEnemies(hero, 450)
-                if value <= 0 then
-                    ability:ApplyDataDrivenModifier(hero, hero, "modifier_lonedruid", {Duration = 60})
-                    if isUpdateTickEvery5secs then
-                        local myevent = {caster = hero, target = hero, attributefactor = 50 * level, heal = 0, ability = ability}
-                        Timers:CreateTimer(0.25, function()
-                            HealUnit(myevent)
-                            AddAttackSpeed(hero, 250, 5)
-                        end)
-                    end
+    -- spell res bonuses
+    local buff = "modifier_spellres"
+    hero:RemoveModifierByName(buff)
+    local value1 = 0
+    if hero.talents[23] >= 1 then
+        value1 = 5 + hero.talents[23] * 5
+    end
+    if value1 > 75 then
+        value1 = 75
+    end
+    local value2 = hero.runeword[4]
+    local value3 = 0
+    if hero.talents[91] and hero.talents[91] > 0 then
+        value3 = 1 * hero.talents[91]
+    end
+    local value4 = 0
+    local pala4 = hero:FindAbilityByName("pala4")
+    if pala4 and pala4:GetLevel() >= 4 then
+        value4 = realBaseStats[INT] * 0.02
+        if value4 > 25 then
+            value4 = 25
+        end
+    end
+    local value5 = 0
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_7") >= 1 then
+        value5 = 35
+    end
+    local value6 = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]) --intellect stat mres
+    -- lizard wizard
+    local value7 = 0
+    if hero.talents[56] > 0 then
+        value7 = 2 * hero.talents[56]
+    end
+    -- snake aspect
+    local value8 = 0
+    if hero.talents[180] > 0 then
+        value8 = 5 * hero.talents[180]
+    end
+    local value9 = 0
+    if hero.talents[116] > 0 then
+        value9 = hero.talents[116] * 0.00333 * GetAgilityCustom(hero)
+        if value9 > 30 then
+            value9 = 30
+        end
+    end
+    local finalValue = ((100 - value1) / 100) * ((100 - value2) / 100) * ((100 - value3) / 100) * ((100 - value4) / 100) * ((100 - value5) / 100) * ((100 - value6) / 100) * ((100 - value7) / 100) * ((100 - value8) / 100) * ((100 - value9) / 100) --diminishing calculation, result is damage factor: 0.2 means 80% reduction
+    finalValue = (1 - finalValue) * 100
+    if finalValue >= 1 then
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, finalValue)
+    end
+    -- end spell res bonus
+
+    local level = hero.talents[26]
+    if isUpdateTickEvery5secs then
+        local percent_bonus = 0.01 * level
+        local flat_bonus = 10 * level
+        if not hero.resourcesystem then --mana user
+            if hero.talents[74] > 0 and not hero:HasModifier("modifier_oocmana") then
+                if hero:GetMana() / hero:GetMaxMana() > 0.25 then
+                    percent_bonus = percent_bonus - 0.15
+                    hero.path_sacrifice_souls_paid = 4
                 else
-                    hero:RemoveModifierByName("modifier_lonedruid")
+                    hero.path_sacrifice_souls_paid = false
                 end
             end
-            if i == 109 then
-                local max_stack = 10
-                local myevent = {caster = hero, target = hero, buff = "modifier_stoneskin", ability = ability, dur = -1, addstacks = 1, max = max_stack}
-                ApplyBuffStack(myevent)
-            end
-            if i == 116 then
-                local buff = "modifier_spellres2"
-                hero:RemoveModifierByName(buff)
-                local value = level * 0.00333 * GetAgilityCustom(hero)
-                if value > 30 then
-                    value = 30
-                end
-                if value >= 1 then
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, value)
-                end
-            end
-            if i == 115 then
-                local buff = "modifier_attackspeed_minus"
-                hero:RemoveModifierByName(buff)
-                local value = level * 25
-                if value >= 1 then
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, value)
-                end
-            end
-            
+        else
+            hero.path_sacrifice_souls_paid = 4 --energy users dont pay here
+        end
+        if hero:HasModifier("modifier_item_item_set_t4_int_4") then
+            percent_bonus = percent_bonus + 0.01
+        end
+        if percent_bonus ~= 0 then
+            local value = hero:GetMaxMana() * percent_bonus + flat_bonus
+            local myevent = {caster = hero, target = hero, amount = value}
+            RestoreMana(myevent)
+        end
+    end
+    level = hero.talents[1]
+    if level > 0 then
+        if (hero:HasModifier("modifier_invisible") or hero:HasModifier("modifier_oocmana")) and hero.talents[70] > 0 then
+            buff = "modifier_path_from_shadows"
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = 14.9})
+            hero.fromTheShadows = 1 + 0.1 * hero.talents[70]
         end
     end
 
+    --movement
+    level = hero.talents[14]
+    buff = "modifier_movement"
+    hero:RemoveModifierByName(buff)
+    local static_bonus = level * 5 + 3 * hero.talents[80] + 5 * hero.talents[178] + hero.talents[139] * 3 * CountAbilitiesWithLevel(hero, 1)
+    if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_1") >= 1 then
+        static_bonus = static_bonus + 5
+    end
+    if static_bonus >= 1 then
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, static_bonus)
+    end
 
-    
-    --local buff = "modifier_dmg_from_primary"
-    --ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
-    --hero:SetModifierStackCount(buff, ability, dmgFromPrimaryAttribute)
-
-    --[[ new penalties to counter base stat gains 
-        local agility = hero:GetAgility()
-        local penalty = agility * 0.103 --0.1228
-                           -- 0.076 = 1armor per 15
-        if hero.talents and hero.talents[19] and hero.talents[19] > 0 then
-            local factor_melee_ranged = 0.006
-            if not hero:IsRangedAttacker() then
-                factor_melee_ranged = factor_melee_ranged * 1.25
-            end
-            penalty = penalty - factor_melee_ranged * hero.talents[19] * agility
+    level = hero.talents[15]
+    if level > 0 then
+        local value = level * 5
+        if value > 30 then
+            value = 30
         end
-        local buff = "modifier_armor_penalty"
+        ability:ApplyDataDrivenModifier(hero, hero, "modifier_evasion", {Duration = dur})
+        hero:SetModifierStackCount("modifier_evasion", ability, value)
+    end
+    level = hero.talents[24]
+    if level > 0 then
+        buff = "modifier_talent_crit"
         hero:RemoveModifierByName(buff)
-        if penalty >= 1 then
-            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-            hero:SetModifierStackCount(buff, ability, penalty)
+        local value = level * 3
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, value)
+        --shield buff
+        local refresh_base_time = 25
+        if not hero:IsRangedAttacker() then
+            refresh_base_time = 20
         end
-        penalty = agility * 49/50
-        buff = "modifier_attackspeed_penalty"
+        local refresh_time = refresh_base_time - GetAgilityCustom(hero) / 50
+        if refresh_time <= 5 then
+            refresh_time = 5
+        end
+        if hero.moonglaive_shield then
+            hero.moonglaive_shield = hero.moonglaive_shield + updateEveryXSecs
+            if hero.moonglaive_shield >= refresh_time then
+                hero.moonglaive_shield = hero.moonglaive_shield - refresh_time
+                local myevent = {}
+                myevent.caster = hero
+                myevent.target = hero
+                myevent.buff = "modifier_talent_moonglaive_shield"
+                myevent.ability = ability
+                myevent.addstacks = 1
+                local max_stack = 4
+                myevent.max = max_stack
+                ApplyBuffStack(myevent)
+            end
+        else
+            hero.moonglaive_shield = 5
+        end
+    end
+    level = hero.talents[20]
+    if level > 0 then
+        StandStill({caster = hero})
+    elseif hero:HasModifier("modifier_careful_aim") then
+        hero.standsstill = 0
+        hero:RemoveModifierByName("modifier_careful_aim")
+    end
+    level = hero.talents[23]
+    if level > 0 then
+        buff = "modifier_aa_starfall"
         hero:RemoveModifierByName(buff)
-        if penalty >= 1 then
-            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-            hero:SetModifierStackCount(buff, ability, penalty)
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, level)
+    end
+    level = hero.talents[58]
+    if level > 0 and isUpdateTickEvery5secs then
+        if not hero:HasModifier("modifier_oocmana") and hpPercent >= 0.65 then
+            hpPercent = hpPercent - 0.15
+            hero.lifeblood = 1 + 0.1 * level
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf", PATTACH_POINT_FOLLOW, hero)
+            ParticleManager:ReleaseParticleIndex(particle)
+            ability:ApplyDataDrivenModifier(hero, hero, "modifier_talent_lifeblood", {Duration = 5})
+            AddHeroResource({caster = hero, amount = (2 * level), percent = true, energy = 15 * level, energypercent = true})
         end
-        if hero:GetPrimaryAttribute() == 0 then
-            penalty = hero:GetStrength()
-            buff = "modifier_str_custom"
-            if penalty >= 1 then
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
-                hero:SetModifierStackCount(buff, ability, penalty)
-            end
-            buff = "modifier_str_custom_penalty"
-            if penalty >= 1 then
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, penalty)
-            end
+    end
+    level = hero.talents[46]
+    if level > 0 then
+        buff = "modifier_talent_beastmaster"
+        hero:RemoveModifierByName(buff)
+        local value = level
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, value)
+    end
+    level = hero.talents[21]
+    if level > 0 then
+        buff = "modifier_talent_glass_cannon"
+        hero:RemoveModifierByName(buff)
+        local value = level
+        ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+        hero:SetModifierStackCount(buff, ability, value)
+    end
+    level = hero.talents[52]
+    if level > 0 and isUpdateTickEvery5secs then
+        local myevent = {}
+        myevent.caster = hero
+        myevent.target = hero
+        myevent.buff = "modifier_talent_tiger_prowl"
+        myevent.ability = ability
+        myevent.dur = -1
+        myevent.addstacks = 5
+        local max_stack = 10
+        if hero:HasModifier("modifier_item_ancient_elune") then
+            max_stack = 15
         end
-        if hero:GetPrimaryAttribute() == 1 then
-            penalty = hero:GetAgility() * 0.06
-            buff = "modifier_ms_penalty"
+        myevent.max = max_stack
+        ApplyBuffStack(myevent)
+    end
+    level = hero.talents[65]
+    if level > 0 then
+        if not hero:HasModifier("modifier_oocmana") then
+            buff = "modifier_movement_minus"
             hero:RemoveModifierByName(buff)
-            if penalty >= 1 then
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, penalty)
-            end
+            local value = 15
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+            hero:SetModifierStackCount(buff, ability, value)
         end
-        if hero:GetPrimaryAttribute() == 2 then
-            penalty = hero:GetIntellect(false)
-            buff = "modifier_int_custom"
-            if penalty >= 1 then
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
-                hero:SetModifierStackCount(buff, ability, penalty)
-            end
-            buff = "modifier_int_custom_penalty"
-            if penalty >= 1 then
-                ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                hero:SetModifierStackCount(buff, ability, penalty)
-            end
+    end
+    level = hero.talents[85]
+    if level > 0 then
+        buff = "modifier_stormcrow"
+        local value = CountNearbyEnemies(hero, 900)
+        hero.nearby_enemies = value
+        local feast_threshold = 3
+        if hero:HasModifier("modifier_pathbuff_075") then
+            feast_threshold = 2
         end
-        if hero:GetPrimaryAttribute() == 0 or hero:GetPrimaryAttribute() == 1 then
-            if hero.resourcesystem and hero.resourcesystem ~= 4 then
-                penalty = hero:GetIntellect(false)
-                buff = "modifier_int_custom_penalty"
-                if penalty >= 1 then
-                    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
-                    hero:SetModifierStackCount(buff, ability, penalty)
-                end
-                hero:SetBaseManaRegen(0)
+        if value >= feast_threshold then
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = 4 + 2 * level})
+        end
+    end
+    level = hero.talents[88]
+    if level > 0 then
+        if not hero.path_all_knowing_crow_points_given then
+            hero.path_all_knowing_crow_points_given = 0
+        end
+        if level > hero.path_all_knowing_crow_points_given then
+            local missing_points = level - hero.path_all_knowing_crow_points_given
+            hero:SetAbilityPoints(hero:GetAbilityPoints() + missing_points)
+            hero.path_all_knowing_crow_points_given = hero.path_all_knowing_crow_points_given + missing_points
+        end
+    end
+    level = hero.talents[106]
+    if level > 0 and isUpdateTickEvery5secs then
+        ability:ApplyDataDrivenModifier(hero, hero, "modifier_guardianshield", {Duration = -1})
+    end
+    level = hero.talents[115]
+    if level > 0 then
+        buff = "modifier_attackspeed_minus"
+        hero:RemoveModifierByName(buff)
+        local value = level * 25
+        if value >= 1 then
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
+            hero:SetModifierStackCount(buff, ability, value)
+        end
+    end
+    level = hero.talents[109]
+    if level > 0 then
+        local max_stack = 10
+        local myevent = {caster = hero, target = hero, buff = "modifier_stoneskin", ability = ability, dur = -1, addstacks = 1, max = max_stack}
+        ApplyBuffStack(myevent)
+    end
+    level = hero.talents[107]
+    if level > 0 then
+        local enemies = CountNearbyEnemies(hero, 450)
+        if enemies <= 0 or GetHeroesCount() == 1 then
+            ability:ApplyDataDrivenModifier(hero, hero, "modifier_lonedruid", {Duration = 60})
+            if isUpdateTickEvery5secs then
+                local myevent = {caster = hero, target = hero, attributefactor = 50 * level, heal = 0, ability = ability}
+                Timers:CreateTimer(0.25, function()
+                    HealUnit(myevent)
+                    AddAttackSpeed(hero, 250, 5)
+                end)
             end
-        end]]
+        else
+            hero:RemoveModifierByName("modifier_lonedruid")
+        end
+    end
 
-        --new aa ability % system
-        --must remove aa crits here to ensure clean green aa dmg
-    --local hero_aa_dmg = hero:GetAverageTrueAttackDamage(hero) --hero:GetAttackDamage() --hero:GetAverageTrueAttackDamage(hero) --bugs because of crits adding green damage, then getting bonuses for that green dmg too
-    --local from_abi = GetAbilityDamageModifierMultiplicative({caster = hero}, hero, hero, nil, ability, false, false, false, false, false, false, false, false)
-    --local from ele = GetElementalDamageModifierAdditive({caster = hero}, hero, hero, nil, ability, false, false, 1)
-    --local aa_from_abi = hero_aa_dmg * from_abi * ele - hero_aa_dmg
-    --if aa_from_abi and aa_from_abi >= 1 then
-    --    ability:ApplyDataDrivenModifier(hero, hero, "modifier_aa_from_abi", {Duration = dur})
-    --    hero:SetModifierStackCount("modifier_aa_from_abi", ability, aa_from_abi)
-    --end
     if hero.temple_class then
         ability:ApplyDataDrivenModifier(hero, hero, "modifier_aa_temple_penalty", {Duration = dur})
     end
@@ -21848,6 +21726,10 @@ function PassiveStatCalculation(event)
     end
     --hp fix to keep current hp % the same, even if max hp changes
     hero:SetHealth(hero:GetMaxHealth() * hpPercent)
+    hero:SetBaseHealthRegen(GetHealthRegeneration(hero, realBaseStats[STR]))
+    --mana regen
+    SetManaRegeneration(hero, GetManaRegenerationPerSec(hero))
+    SetDamageBlock(hero)
     ProcsEverySecond(hero)
     if isUpdateTickEvery5secs then
         ProcsEvery5Seconds(hero)
@@ -21903,7 +21785,7 @@ function ProcsEverySecond(hero)
         if hero:GetHealth() / hero:GetMaxHealth() < 0.5 then
             hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "modifier_bloodmoonCD", {Duration = (360 - 60 * hero.talents[153]) * GetInnerCooldownFactor(hero)})
             ResetAllCooldowns(hero)
-            ApplyBuff({caster = hero, target = hero, ability = hero.combat_system_ability, buff = "modifier_bloodmoon", dur = hero.talents[153]})
+            ApplyBuff({caster = hero, target = hero, ability = hero.combat_system_ability, buff = "modifier_bloodmoon", dur = 1 + hero.talents[153]})
         end
     end
 end
@@ -21986,6 +21868,10 @@ function GetAgilityCustom( hero )
     return hero:GetModifierStackCount("modifier_agi_custom", nil)
 end
 
+function GetAllStatsCustom( hero )
+    return GetStrengthCustom(hero) + GetAgilityCustom(hero) + GetIntellectCustom(hero)
+end
+
 function GetPrimaryStatValueCustom( hero )
     if hero:GetPrimaryAttribute() == 2 then
         return GetIntellectCustom( hero )
@@ -21996,8 +21882,8 @@ function GetPrimaryStatValueCustom( hero )
     end
 end
 
-function GetAllStats(hero)
-    local value = 0
+function GetAllStatsBonus(hero)
+    local value = GetGlobalAllStatsAura()
     if GetLevelOfAbility(hero, "special_bonus_unique_nether_wizard_2") >= 1 then
         value = value + 15
     end
@@ -22101,11 +21987,15 @@ function BlizzardTalent( caster, target, ignoreInnerCD )
     if caster:HasModifier("modifier_pathbuff_104") then
         damage = damage * 2
     end
-    event = {caster = caster, target = target, ability = caster.combat_system_ability, targetpos = 1, damage = 0, attributefactor = damage * caster.talents[30], aoe = aoe, targeteffect = "blood", isaoe = 1, delay = delay, dontbreakcc = 1, frostdmg = 1 }
+    local dmgInstances = 1
+    if caster:HasModifier("modifier_divine_frost") then
+        dmgInstances = 3
+    end
+    event = {caster = caster, target = target, ability = caster.combat_system_ability, targetpos = 1, damage = 0, attributefactor = damage * caster.talents[30], aoe = aoe, targeteffect = "blood", isaoe = 1, delay = delay, times = dmgInstances, delayPerRound = 0.3, dontbreakcc = 1, frostdmg = 1 }
     DamageAOEDelayed( event )
     Timers:CreateTimer(delay, function()
         EmitSoundOn("hero_Crystal.freezingField.explosion", caster)
-        local buffevent = { caster = caster, target = target, ability = caster.combat_system_ability, aoe = aoe, targetpos = 1, buff = "modifier_slowtalent", dur = 5}
+        local buffevent = { caster = caster, target = target, ability = caster.combat_system_ability, aoe = aoe, targetpos = 1, buff = "modifier_slowtalent", dur = 7}
         ApplyBuffAOE(buffevent)
     end)
     if not ignoreInnerCD then
@@ -22604,7 +22494,7 @@ function TalentOnAttack( event )
                 caster.markedForDeath = caster.markedForDeath + 1
                 if caster.markedForDeath >= 25 then
                     caster.markedForDeath = 0
-                    ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = caster.talents[149], buff = "modifier_mfd"})
+                    ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = 1 + caster.talents[149], buff = "modifier_mfd"})
                 end
             else
                 caster.markedForDeath = 0
@@ -24414,6 +24304,16 @@ function OnKillEffects(hero, killedUnit)
     end
 end
 
+function OnHeroKilledUnit(killer, killedUnit)
+    local all = HeroList:GetAllHeroes()
+    for i=1, #all do
+        local hero = all[i]
+        if hero.talents and hero.talents[173] > 0 and (killedUnit:GetAbsOrigin() - hero:GetAbsOrigin()):Length() <= 2500 then
+            ApplyBuffStack({caster = hero, target = hero, ability = hero.combat_system_ability, dur = 10, max = 5, buff = "modifier_talent_thirst"})
+        end
+    end
+end
+
 function GlobalOnDealShadowDamage( caster, target )
     if GetLevelOfAbility(caster, "unholy_6") >= 3 then
         RestoreResource({caster = caster, amount = 5})
@@ -24527,6 +24427,9 @@ function GlobalOnDealDamage( event )
     local caster = event.caster
     local target = event.unit
     caster.creepertarget = target
+    if event.ability then
+        caster.lastAbilityCausingDamage = event.ability
+    end
     if GetLevelOfAbility(caster, "glacier_crack_spell") >= 2 then
         RestoreResource({caster = caster, amount = 5, cap = 10})
     end
@@ -24607,7 +24510,7 @@ function SwipeOfUrsaTalent(caster, original_ability)
     ParticleManager:ReleaseParticleIndex(particle)
     Timers:CreateTimer(1.25,function()
         local aoe = 300
-        local event = {caster = caster, ability = caster.combat_system_ability, changedmgtypetophys = 1, damage_factor_single_target = 2, damage = 0, attributefactor = 200*caster.talents[50], attributechangestr = 1, aoe = aoe, max_targets = 5, targeteffect = "arcanablood", isaoe = 1, delay = delay, dontbreakcc = 1 }
+        local event = {caster = caster, ability = caster.combat_system_ability, changedmgtypetophys = 1, damage_factor_single_target = 2, damage = 0, attributefactor = 250*caster.talents[50], attributechangestr = 1, aoe = aoe, max_targets = 5, targeteffect = "arcanablood", isaoe = 1, delay = delay, dontbreakcc = 1 }
         if caster:HasModifier("modifier_pathbuff_066") and caster:GetAbilityByIndex(1) == original_ability then
             event.shadowdmg = 1
             event.attributechangestr = nil
@@ -24616,7 +24519,7 @@ function SwipeOfUrsaTalent(caster, original_ability)
         EmitSoundOn("DOTA_Item.Necronomicon.Activate", caster)
         local particle = ParticleManager:CreateParticle("particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf", PATTACH_POINT_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(particle)
-        local buffevent = { caster = caster, target = caster, ability = caster.combat_system_ability, aoe = aoe, targetpos = 1, buff = "modifier_sou_minus", dur = caster.talents[50], maxAOEBuffTargets = 5}
+        local buffevent = { caster = caster, target = caster, ability = caster.combat_system_ability, aoe = aoe, targetpos = 1, buff = "modifier_sou_minus", dur = 1 + caster.talents[50], maxAOEBuffTargets = 5}
         ApplyBuffAOE(buffevent)
         DamageAOE(event)
         if caster:HasModifier("modifier_pathbuff_042") and caster.combat_system_ability then
@@ -25161,6 +25064,13 @@ function AutoAttackCriticalStrike( event )
     local buff = "system_aacrit"
     local ability = event.ability
     --bonuses
+    local almighty = GetAlmightyStat(caster)
+    if almighty > 0 then
+        crit_factor_bonus = crit_factor_bonus + GetAllStatsCustom(caster) * almighty / 10000
+    end
+    if caster.talents and caster.talents[162] > 0 then
+        crit_factor_bonus = crit_factor_bonus + GetCriticalStrikeDamageBonusFromAgi(caster, GetAgilityCustom(caster)) * caster.talents[162] * 0.3333
+    end
     if caster:HasModifier("modifier_item_item_set_t4_aad_4") then
         crit_factor_bonus = crit_factor_bonus + 0.25
     end
@@ -25227,7 +25137,7 @@ function AutoAttackCriticalStrike( event )
         crit_factor_bonus = crit_factor_bonus + 0.25 * caster.talents[73]
     end
     if caster.talents and caster.talents[158] then
-        crit_factor_bonus = crit_factor_bonus + 0.1 * caster.talents[158]
+        crit_factor_bonus = crit_factor_bonus + 0.25 * caster.talents[158]
     end
     if caster:HasModifier("modifier_berserker") then
         crit_factor_bonus = crit_factor_bonus + 0.01 * GetBerserkerStat(caster)
@@ -25273,7 +25183,7 @@ function AutoAttackCriticalStrike( event )
         --on crit procs
         if caster and caster.talents then
             if caster.talents[123] and caster.talents[123] > 0 then
-                ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, addstacks = caster.talents[123], max = 100 * caster.talents[123], buff = "modifier_growingpainsdd"})
+                ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 5, addstacks = caster.talents[123], max = 100 * caster.talents[123], buff = "modifier_growingpainsdd"})
             end
             GlobalOnDamagingCritLanded(caster, target)
             if caster.talents[78] and caster.talents[78] > 0 then
@@ -25929,7 +25839,6 @@ function HealProcs(caster, target, ability, healingAmount, isdot)
 end
 
 function OnSummonedUnit( summon, hero )
-    print("summon")
     if hero.talents then
         if hero.talents[69] and hero.talents[69] > 0 and ((not hero.talent69_buffs) or (hero.talent69_buffs and hero.talent69_buffs < 5)) then
             local duration = 10
@@ -26038,6 +25947,13 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_class_demo") then
         factor = 1 - 0.1 * GetDemonCount(caster)
     end
+    local sacredProtection = GetSacredProtectionStat(caster)
+    if sacredProtection > 0 and caster:GetHealth() / caster:GetMaxHealth() >= 0.99 then
+        if sacredProtection > 50 then
+            sacredProtection = 50
+        end
+        factor = 1 - sacredProtection / 100
+    end
     if caster:HasModifier("modifier_talent_genesis") and caster.talents and caster.talents[135] > 0 then
         factor = factor * 0.7
     end
@@ -26054,9 +25970,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
         factor = factor * 0.01
     end
     if caster:HasModifier("modifier_class_mars2") and caster:GetName() == "npc_dota_hero_mars" then
-        local reduc = 0.0005 * GetAgilityCustom(caster)
-        if reduc > 0.5 then
-            reduc = 0.5
+        local reduc = 0.0003 * GetAgilityCustom(caster)
+        if reduc > 0.35 then
+            reduc = 0.35
         end
         factor = factor * (1 - reduc)
     end
@@ -26091,14 +26007,23 @@ function GetTotalDamageTakenFactor(caster, attacker)
         factor = factor * 0.25
     end
     if caster.talents then
-        if attacker and caster and caster.talents and caster.talents[106] and caster.talents[106] > 0 and caster:HasModifier("modifier_guardianshield") then
-            local distance = (caster:GetAbsOrigin() - attacker:GetAbsOrigin()):Length()
-            if distance <= 450 then
-                factor = factor * (1 - 0.03 * caster.talents[106])
+        if attacker then
+            if caster.talents[106] and caster.talents[106] > 0 and caster:HasModifier("modifier_guardianshield") then
+                local distance = (caster:GetAbsOrigin() - attacker:GetAbsOrigin()):Length()
+                if distance <= 450 then
+                    factor = factor * (1 - 0.03 * caster.talents[106])
+                end
+            end
+            if caster:HasModifier("modifier_npc_dota_hero_windrunner") and (attacker:HasModifier("modifier_surv_aapoison") or attacker:HasModifier("modifier_surv_wyvern")) then
+                factor = factor * 0.75
             end
         end
-        if caster.talents[143] > 0 and GiantsOnCooldown(caster) then
-            factor = factor * (1 - 0.1 * caster.talents[143])
+        
+        if caster.talents[143] > 0 then
+            factor = factor * (1 - 0.05 * caster.talents[143])
+            if GiantsOnCooldown(caster) then
+                factor = factor * (1 - 0.2 * caster.talents[143])
+            end
         end
     end
     if caster:HasModifier("modifier_chaosshield2") then
@@ -26264,6 +26189,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if (caster:HasModifier("modifier_eyebeam") or caster:HasModifier("modifier_eyebeam_res")) and caster:FindAbilityByName("dh4") and caster:FindAbilityByName("dh4"):GetLevel() >= 4 then
         factor = factor * 0.1
     end
+    if caster:HasModifier("modifier_frost_ray_res") or caster:HasModifier("modifier_frostray") then
+        factor = factor * 0.25
+    end
     if caster:HasModifier("modifier_tranq") and caster:FindAbilityByName("moon5") and caster:FindAbilityByName("moon5"):GetLevel() >= 3 then
         factor = factor * 0.1
     end
@@ -26364,8 +26292,8 @@ function GetTotalDamageTakenFactor(caster, attacker)
       local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
       bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
       local wolf_dmg_factor = (1 - bonusfromms)
-      if wolf_dmg_factor < 0.5 then
-        wolf_dmg_factor = 0.5
+      if wolf_dmg_factor < 0.55 then
+        wolf_dmg_factor = 0.55
       end
       factor = factor * wolf_dmg_factor
     end
@@ -26521,64 +26449,76 @@ function FireAOEFXByTheme( caster, pos, aoe, theme )
         local particle = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_hellfireblast_explosion.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 3, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "fire2" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_crimson_missile_explosion.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "shadow" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 3, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "shadow2" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "chaos" then
         local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_explosion.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 3, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end 
-    if theme == "poison" then
+    if theme == "poison" or theme == "poison2" then
         local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/blink_dagger_ti8_start_lvl2.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "blood" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:SetParticleControl(particle, 2, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "earth" then
         local particle = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/cyclone_fm06_rock_a.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "holy" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_ti_5_gold.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "frost" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:SetParticleControl(particle, 1, Vector(aoe,1,aoe))
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "ice" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_chain_frost_explode.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:SetParticleControl(particle, 3, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
     if theme == "physical" then
         local particle = ParticleManager:CreateParticle("particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownmarker_steam.vpcf", PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(particle, 0, pos)
         ParticleManager:ReleaseParticleIndex(particle)
+        return
     end
 end
 
@@ -26634,6 +26574,10 @@ function ShowDamageFXByTheme( target, theme )
 end
 
 function ShootLinearProjectile(caster, ability, origin, targetPos, speed, duration, theme, distance)
+    if not caster or caster:IsNull() then
+        return
+    end
+
     local direction = (targetPos - origin):Normalized()
     local info = 
     {
@@ -26930,12 +26874,12 @@ function CastGeneratedSpell( event )
                                 FireBuffFX(caster, targets[k])
                             end
                             if event.reflectbuffdur then
-                                PurgeUnit({target = targets[k], nopenalty = 1})
+                                PurgeUnit({caster = caster, target = targets[k], nopenalty = 1})
                                 ability:ApplyDataDrivenModifier(caster, targets[k], "modifier_shieldreflect", {Duration = event.reflectbuffdur})
                                 FireBuffFX(caster, targets[k])
                             end
                             if event.purge then
-                                PurgeUnit({target = targets[k], nopenalty = 1})
+                                PurgeUnit({caster = caster, target = targets[k], nopenalty = 1})
                             end
                         end
                     end
@@ -27564,9 +27508,9 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     
     if caster.channel_item_bonus then
         if caster:HasModifier("modifier_item_channel_2") then
-            healing_bonus = healing_bonus + 0.75
+            healing_bonus = healing_bonus + 0.5
         else
-            healing_bonus = healing_bonus + 0.4
+            healing_bonus = healing_bonus + 0.3
         end
     end
     if caster.ability_combo_6_bonus then
@@ -28078,6 +28022,7 @@ function GetManaRegenerationPerSec( hero )
     if hero.talents and hero.talents[75] > 0 then
         regen = regen + hero.talents[75]
     end
+    local maxMana = hero:GetMaxMana()
     if not hero.resourcesystem then
         regenFactor = GetManaRegenerationFactor(hero)
         regen = regen + 1
@@ -28102,9 +28047,6 @@ function GetManaRegenerationPerSec( hero )
         if hero:HasModifier("modifier_item_standard_aura") then
             regen = regen + 2
         end
-        if hero:HasModifier("modifier_item_standard_aura_3") then
-            regen = regen + 2
-        end
         if hero:HasModifier("modifier_aura1") then
             regen = regen + 1
         end
@@ -28120,25 +28062,13 @@ function GetManaRegenerationPerSec( hero )
         if hero:HasModifier("modifier_item_bootsmana") then
             regen = regen + 1
         end
-        if hero:HasModifier("modifier_item_bootsmana2") then
-            regen = regen + 1
-        end
         if hero:HasModifier("modifier_item_bootsmana_2_libram") then
-            regen = regen + 1
-        end
-        if hero:HasModifier("modifier_item_endgame13") then
             regen = regen + 1
         end
         if hero:HasModifier("modifier_item_bootsmana_2_libram_2") then
             regen = regen + 2
         end
-        if hero:HasModifier("modifier_item_bootsmana3") then
-            regen = regen + 1
-        end
         if hero:HasModifier("modifier_item_cooldown") then
-            regen = regen + 1
-        end
-        if hero:HasModifier("modifier_item_reg1") then
             regen = regen + 1
         end
         if hero:HasModifier("modifier_item_reg2") then
@@ -28152,6 +28082,9 @@ function GetManaRegenerationPerSec( hero )
         end
         if hero:HasModifier("modifier_arcane_armor_mage") then
             regen = regen + 3
+        end
+        if hero.talents and hero.talents[56] > 0 then
+            regen = regen + 2 * hero.talents[56]
         end
     else
         regenFactor = GetEnergyRegenerationFactor(hero)
@@ -28168,6 +28101,29 @@ function GetManaRegenerationPerSec( hero )
             regen = regen + 10
         end
     end
+
+    if hero:HasModifier("modifier_item_reg1") then
+        regen = regen + 1
+    end
+    if hero:HasModifier("modifier_item_bootsmana3") then
+        regen = regen + 1
+    end
+    if hero:HasModifier("modifier_item_bootsmana2") then
+        regen = regen + 1
+    end
+    if hero:HasModifier("modifier_item_endgame13") then
+        regen = regen + 1
+    end
+    if hero:HasModifier("modifier_item_mana2") then
+        regen = regen + 3
+    end
+    if hero:HasModifier("modifier_item_standard_aura_3") then
+        regen = regen + 2
+    end
+    if hero.talents[169] > 0 then
+        regen = regen + maxMana * (0.0025 + 0.0025 * hero.talents[169])
+    end
+
     return regen * regenFactor - GetNegativeManaRegenerationPerSec(hero)
 end
 
@@ -28498,6 +28454,17 @@ function GetGlobalIntellectAuraStat()
     return stat
 end
 
+function GetGlobalAllStatsAura()
+    local stat = 0
+    local all = HeroList:GetAllHeroes()
+    for i=1, #all do
+        if all[i].talents then
+            stat = stat + all[i].talents[175] * 10
+        end
+    end
+    return stat
+end
+
 function GetGlobalHPAuraStat() --percentage
     local stat = GetGlobalTreeOfLifeBonus() * 0.05
     local all = HeroList:GetAllHeroes()
@@ -28549,6 +28516,94 @@ function GetShapeshifterStat( hero )
     local stat = 0
     if hero.shs then
         stat = hero.shs
+    end
+    return stat
+end
+
+function GetLionKingStat( hero )
+    local stat = 0
+    if hero.lio then
+        stat = hero.lio
+    end
+    return stat
+end
+
+function GetColdChainStat( hero )
+    local stat = 0
+    if hero.coc then
+        stat = hero.coc
+    end
+    return stat
+end
+
+function GetOverheatStat( hero )
+    local stat = 0
+    if hero.ovh then
+        stat = hero.ovh
+    end
+    return stat
+end
+
+function GetMountainKingStat( hero )
+    local stat = 0
+    if hero.mtk then
+        stat = hero.mtk
+    end
+    return stat
+end
+
+function GetOverpowerStat( hero )
+    local stat = 0
+    if hero.ovp then
+        stat = hero.ovp
+    end
+    return stat
+end
+
+function GetSacredProtectionStat( hero )
+    local stat = 0
+    if hero.sac then
+        stat = hero.sac
+    end
+    return stat
+end
+
+function GetAlmightyStat( hero )
+    local stat = 0
+    if hero.alm then
+        stat = hero.alm
+    end
+    return stat
+end
+
+function GetBalanceOfPowerStat( hero )
+    local stat = 0
+    if hero.bop then
+        stat = hero.bop
+    end
+    return stat
+end
+
+function GetConjurerStat( hero )
+    local stat = 0
+    if hero.con then
+        stat = hero.con
+    end
+    return stat
+end
+
+function GetHunterStat( hero )
+    local stat = 0
+    if hero.hun then
+        stat = hero.hun
+    end
+    return stat
+end
+
+function GetSuperchargeStat( hero )
+    local stat = 0
+    if hero.sup then
+        stat = hero.sup
     end
     return stat
 end
@@ -29064,7 +29119,7 @@ function TyphoonProc( caster, target, alwaysProc )
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
         DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 250 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
-        RestoreResource({caster = caster, amount = 3 * caster.talents[136]})
+        RestoreResource({caster = caster, amount = 5 * caster.talents[136]})
         EmitSoundOn("Ability.GushCast", target)
         OnNaturalDisasterProcced( caster, target, 7 )
     end
@@ -29091,6 +29146,10 @@ function GetAbilityChargesBonus( hero )
     if hero.talents then
         value = value + hero.talents[137]
     end
+    if hero:HasModifier("modifier_class_sven2") then
+        value = value + 2
+    end
+    value = value + GetSuperchargeStat( hero )
     return value
 end
 
@@ -29175,6 +29234,9 @@ function IceStormProc( caster, ignoreInnerCD )
         end
         local target = FindClosestEnemy({caster = caster, radius = 750})
         if target then
+            if caster:HasModifier("modifier_divine_frost") then
+                BlizzardTalent( caster, target, true )
+            end
             OnNaturalDisasterProcced( caster, target, 3 )
         end
     end
@@ -29269,7 +29331,7 @@ function GetFlatCritChance(caster)
     end
     if caster.talents then
         if caster.talents[152] > 0 then
-            critchance = critchance + caster.talents[152]
+            critchance = critchance + 2 * caster.talents[152]
         end
     end
     return critchance
@@ -29317,9 +29379,9 @@ function OnBossKilled()
     for i=1, #all do
         hero = all[i]
         if hero.talents and hero.talents[161] > 0 then
-            ApplyBuff({caster = hero, target = hero, dur = 20 * hero.talents[161], buff = "modifier_killingSpree", ability = hero.combat_system_ability})
+            ApplyBuff({caster = hero, target = hero, dur = 60 * hero.talents[161], buff = "modifier_killingSpree", ability = hero.combat_system_ability})
             if hero:HasModifier("modifier_killer") then
-                ApplyBuff({caster = hero, target = hero, dur = 20 * hero.talents[161], buff = "modifier_killingSpree2", ability = hero.combat_system_ability})
+                ApplyBuff({caster = hero, target = hero, dur = 60 * hero.talents[161], buff = "modifier_killingSpree2", ability = hero.combat_system_ability})
             end
         end
     end
@@ -29833,7 +29895,7 @@ function WarriorBerserkerRage(event)
     end
 end
 
-function AbilityAutoCast(event)
+function AbilityAutoCastOld(event)
     local caster = event.caster
     local target = event.target
     local ability = caster:GetAbilityByIndex(0)
@@ -29918,4 +29980,510 @@ end
 
 function GetShadowClericShadowSpheres(caster)
     return caster:GetModifierStackCount("modifier_shadow_cleric_shadow_orbs", nil)
+end
+
+function GetHealingMalus()
+    if COverthrowGameMode.jungledifficulty >= 1000 then
+        return 0.5
+    end
+    if COverthrowGameMode.jungledifficulty >= 500 then
+        return 0.25
+    end
+
+    return 0
+end
+
+function CheckForFlurryProc(event)
+    local caster = event.caster
+    if caster.talents[164] <= 0 then
+        return
+    end
+    local target = event.target
+    local ability = caster:GetAbilityByIndex(caster.flurryAbility)
+    local mana = caster:GetMana()
+    local manacost = ability:GetManaCost(ability:GetLevel() - 1)
+
+    if mana < manacost * 2 or ability:GetLevel() <= 0 then
+        return
+    end
+
+    -- dmg proc
+    if not caster.flurryDmg then
+        caster.flurryDmg = 0
+    end
+    caster.flurryDmg = caster.flurryDmg + 1
+    Timers:CreateTimer(2, function()
+        caster.flurryDmg = caster.flurryDmg - 1
+    end)
+
+    local castCount = 2
+
+    for i=1, castCount do
+        Timers:CreateTimer(0.12 * i, function()
+            if target and not target:IsNull() and caster:GetMana() >= manacost and ability:GetCooldownTimeRemaining() <= 0 then
+                local order = 
+                {
+                    UnitIndex = caster:entindex(),
+                    OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                    AbilityIndex = ability:GetEntityIndex(), 
+                    Queue = false,
+                    TargetIndex = target:entindex()
+                }
+
+                ExecuteOrderFromTable(order)
+
+                --if i == 2 then
+                --    Timers:CreateTimer(0.03, function()
+                --        RestoreResource({caster = caster, amount = manacost * 0.15 * caster.talents[164], flat = true})
+                --    end)
+                --end
+            end
+        end)
+    end
+end
+
+function AbilityAutoCastCheck(event)
+    local caster = event.caster
+    if caster.talents[165] <= 0 then
+        return
+    end
+
+    local target = event.target
+    local ability = caster:GetAbilityByIndex(0)
+
+    local abilityToCast = ability
+
+    Timers:CreateTimer(0.1, function()
+        local order = 
+        {
+            UnitIndex = caster:entindex(),
+            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+            AbilityIndex = abilityToCast:GetEntityIndex(), 
+            Queue = false,
+            TargetIndex = target:entindex()
+        }
+
+        ExecuteOrderFromTable(order)
+
+        ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, buff = "modifier_talent_tunnel"})
+    end)
+end
+
+function StampedeBonusDamageProc(event)
+    local caster = event.caster
+
+    if not caster.stampedeBonus then
+        caster.stampedeBonus = 0
+    end
+
+    caster.stampedeBonus = caster.stampedeBonus + 3
+
+    Timers:CreateTimer(10, function()
+        caster.stampedeBonus = caster.stampedeBonus - 3
+    end)
+end
+
+function GetPathBonuses(hero, isUpdateTickEvery5secs)
+    local requiresUpdateEverySec = hero:HasModifier("modifier_class_fury") or hero:HasModifier("modifier_npc_dota_hero_riki") or hero:HasModifier("modifier_shieldbash")
+
+    if hero.bonuses and (not isUpdateTickEvery5secs) and not requiresUpdateEverySec then
+        return hero.bonuses
+    end
+
+    local bonuses = {}
+    for i=1, COverthrowGameMode.maxtalents do
+        bonuses[i] = 0
+    end
+
+    if hero:HasModifier("modifier_item_ancient_wolf") then
+        bonuses[2] = 2
+    end
+    if hero:HasModifier("modifier_ancient_allstats") and hero.talents_clicked and hero.talents_clicked[5] and hero.talents_clicked[5] > 0 then
+        bonuses[5] = 2
+    end
+    bonuses[6] = hero.runeword[24]
+    bonuses[8] = hero.runeword[26]
+    if hero:HasModifier("modifier_item_set_agi_dmg_full_tiger") then
+        bonuses[13] = 3
+    end
+    if hero:HasModifier("modifier_item_set_agi_dmg_full_t1_2") then
+        bonuses[13] = bonuses[13] + 3
+    end
+    if hero:HasModifier("modifier_pathbuff_098") then
+        bonuses[15] = 1
+    end
+    if hero:HasModifier("modifier_npc_dota_hero_dragon_knight") and hero:HasModifier("modifier_shieldbash") then
+        bonuses[15] = bonuses[15] + 2
+    end
+    bonuses[17] = hero.runeword[12]
+    if hero:HasModifier("modifier_item_dmg5") and hero.talents_clicked and hero.talents_clicked[18] and hero.talents_clicked[18] > 0 then
+        bonuses[18] = 3
+    end
+    if hero:HasModifier("modifier_item_ancient_elune") and hero.talents_clicked and hero.talents_clicked[20] and hero.talents_clicked[20] > 0 then
+        bonuses[20] = 3
+    end
+    bonuses[22] = hero.runeword[33]
+    bonuses[23] = hero.runeword[9]
+    if hero:HasModifier("modifier_moonlighttiger") then
+        bonuses[22] = bonuses[22] + 1
+    end
+    bonuses[29] = hero.runeword[21]
+    bonuses[32] = hero.runeword[17]
+    if hero:HasModifier("modifier_item_ancient_dragon") and hero.talents_clicked and hero.talents_clicked[33] and hero.talents_clicked[33] > 0 then
+        bonuses[33] = 2
+    end
+    if hero:HasModifier("modifier_item_winterbreeze4") then
+        bonuses[34] = 2
+    end
+    bonuses[36] = hero.runeword[30]
+    if hero:HasModifier("modifier_item_wolf_sword") then
+        bonuses[41] = 1
+    end
+    if hero:HasModifier("modifier_item_wolf_sword_2") then
+        bonuses[41] = bonuses[41] + 3
+    end
+    if hero:HasModifier("modifier_item_crit_pure_immortal_2") then
+        bonuses[46] = 2
+    end
+    bonuses[46] = bonuses[46] + hero.runeword[11]
+    if hero:HasModifier("modifier_item_ancient_wolf") then
+        bonuses[47] = 2
+    end
+    bonuses[47] = bonuses[47] + hero.runeword[14]
+    bonuses[49] = hero.runeword[15]
+    if hero:HasModifier("modifier_item_ancient_grizzly") and hero.talents_clicked and hero.talents_clicked[49] and hero.talents_clicked[49] > 0 then
+        bonuses[49] = bonuses[49] + 1
+    end
+    if hero:HasModifier("modifier_item_set_str_tank_full_t1_dream") then
+        bonuses[50] = 2
+    end
+    bonuses[51] = hero.runeword[36]
+    if hero:HasModifier("modifier_item_set_str_t3_2_full_dream") then
+        bonuses[51] = bonuses[51] + 2
+    end
+    bonuses[53] = hero.runeword[20]
+    if hero:HasModifier("modifier_item_dmg5") and hero.talents_clicked and hero.talents_clicked[53] and hero.talents_clicked[53] > 0 then
+        bonuses[53] = bonuses[53] + 1
+    end
+    if hero:HasModifier("modifier_class_fury") and hero:HasModifier("modifier_furycharge") then
+        bonuses[53] = bonuses[53] + 2
+    end
+    bonuses[55] = hero.runeword[10]
+    bonuses[57] = hero.runeword[34]
+    if hero:HasModifier("modifier_npc_dota_hero_pugna") then
+        bonuses[57] = bonuses[57] + 1
+    end
+    if hero:HasModifier("modifier_item_ancient_dmg") then
+        bonuses[59] = 2
+    end
+    if hero:HasModifier("modifier_item_item_set_t4_agi_4") then
+        bonuses[63] = 1
+    end
+    if hero:HasModifier("modifier_pathbuff_105") then
+        bonuses[63] = bonuses[63] + 1
+    end
+    if hero:HasModifier("modifier_pathbuff_096") then
+        bonuses[67] = 1
+    end
+    bonuses[69] = hero.runeword[8]
+    if hero:HasModifier("modifier_item_aura_ancient") then
+        bonuses[69] = bonuses[69] + 2
+    end
+    if hero:HasModifier("modifier_item_night_shoulders") then
+        bonuses[70] = 2
+    end
+    if hero:HasModifier("modifier_item_dragonshield") then
+        bonuses[71] = 2
+    end
+    if hero:HasModifier("modifier_npc_dota_hero_riki") and hero:HasModifier("modifier_shadowstep1") then
+        bonuses[73] = 2
+    end
+    if hero:HasModifier("modifier_item_set_agi_t3_2_shad_ref") then
+        bonuses[75] = 1
+    end
+    if hero:HasModifier("modifier_item_intmana") then
+        bonuses[76] = 1
+    end
+    bonuses[78] = hero.runeword[29]
+    if hero:HasModifier("modifier_item_channel") then
+        bonuses[79] = 1
+    end
+    if hero:HasModifier("modifier_item_channel_2") then
+        bonuses[79] = bonuses[79] + 2
+    end
+    if hero:HasModifier("modifier_item_set_agi_skyfall") then
+        bonuses[81] = 2
+    end
+    if hero:HasModifier("modifier_pathbuff_057") then
+        bonuses[84] = 1
+    end
+    if hero:HasModifier("modifier_new3") then
+        bonuses[86] = 1
+    end
+    if hero:HasModifier("modifier_new32") then
+        bonuses[86] = bonuses[86] + 1
+    end
+    bonuses[87] = hero.runeword[13]
+    bonuses[89] = hero.runeword[32]
+    bonuses[92] = hero.runeword[23]
+    bonuses[96] = hero.runeword[31]
+    bonuses[101] = hero.runeword[28]
+    bonuses[104] = hero.runeword[23]
+    if hero:HasModifier("modifier_item_frostmourne") then
+        bonuses[104] = bonuses[104] + 1
+    end
+    bonuses[117] = hero.runeword[35]
+    if HeroHasNeutralItem(hero, "item_neutral_10") then
+        bonuses[125] = 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_23") then
+        bonuses[127] = 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_8") then
+        bonuses[128] = 2
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_8") then
+        bonuses[128] = bonuses[128] + 2
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_13") then
+        bonuses[131] = 1
+    end
+    bonuses[135] = hero.runeword[22]
+    if HeroHasNeutralItem(hero, "item_neutral_1") then
+        bonuses[135] = bonuses[135] + 1
+    end
+    if hero:HasModifier("modifier_thunderclub") then
+        bonuses[136] = 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_27") then
+        bonuses[138] = 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_12") then
+        bonuses[141] = 2
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_11") then
+        bonuses[142] = 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_18") then
+        bonuses[143] = 1
+    end
+    bonuses[145] = hero.runeword[41]
+    bonuses[146] = hero.runeword[46]
+    bonuses[147] = hero.runeword[37]
+    bonuses[148] = hero.runeword[47]
+    bonuses[152] = hero.runeword[42]
+    bonuses[154] = hero.runeword[48]
+    bonuses[155] = hero.runeword[44]
+    bonuses[156] = hero.runeword[45]
+    bonuses[158] = hero.runeword[38]
+    bonuses[159] = hero.runeword[39]
+    bonuses[161] = hero.runeword[43]
+    bonuses[162] = hero.runeword[40]
+
+    -- multi bonuses
+    if hero:HasModifier("modifier_dragonmind") then
+        bonuses[25] = bonuses[25] + 1
+        bonuses[26] = bonuses[26] + 1
+        bonuses[32] = bonuses[32] + 1
+    end
+    if hero:HasModifier("modifier_dragonmind2") then
+        bonuses[4] = bonuses[4] + 1
+        bonuses[10] = bonuses[10] + 1
+        bonuses[12] = bonuses[12] + 1
+    end
+    if hero:HasModifier("modifier_item_ancient_primary_heal") then
+        bonuses[11] = bonuses[11] + 1
+        bonuses[50] = bonuses[50] + 1
+    end
+    if hero:HasModifier("modifier_pathbuff_060") then
+        bonuses[37] = bonuses[37] + 1
+        bonuses[38] = bonuses[38] + 1
+    end
+    if hero:HasModifier("modifier_item_ancient_primary") then
+        bonuses[36] = bonuses[36] + 1
+        bonuses[56] = bonuses[56] + 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_24") then
+        bonuses[13] = bonuses[13] + 1
+        bonuses[14] = bonuses[14] + 1
+        bonuses[15] = bonuses[15] + 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_20") then
+        bonuses[35] = bonuses[35] + 2
+        bonuses[86] = bonuses[86] + 2
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_21") then
+        bonuses[23] = bonuses[23] + 1
+        bonuses[126] = bonuses[126] + 1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_4") then
+        bonuses[31] = bonuses[31] + 2
+        bonuses[34] = bonuses[34] + 2
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_17") then
+        bonuses[121] = bonuses[121] + 1
+        bonuses[123] = bonuses[123] + 1
+    end
+    if hero:HasModifier("modifier_rider_boots") then
+        bonuses[60] = bonuses[60] + 2
+        bonuses[139] = bonuses[139] + 2
+    end
+    if hero:HasModifier("modifier_ancient_def_wolf") then
+        bonuses[39] = bonuses[39] + 2
+        bonuses[40] = bonuses[40] + 2
+        bonuses[42] = bonuses[42] + 2
+    end
+    if hero:HasModifier("modifier_nameless") then
+        bonuses[145] = bonuses[145] + 2
+        bonuses[147] = bonuses[147] + 2
+        bonuses[159] = bonuses[159] + 2
+        bonuses[162] = bonuses[162] + 2
+    end
+    if hero:HasModifier("modifier_item_rogueblades2") and hero:GetUnitName() == "npc_dota_hero_riki" then
+        bonuses[73] = bonuses[73] + 1
+    end
+
+    hero.bonuses = bonuses
+    return bonuses
+end
+
+function GetHeroesCount()
+    return #HeroList:GetAllHeroes()
+end
+
+-- passive block effects
+function GetDamageBlock(hero)
+    local str = GetStrengthCustom(hero)
+    local agi = GetAgilityCustom(hero)
+    local int = GetIntellectCustom(hero)
+    local block = 0
+
+    -- all hero block
+    if not hero.talents then
+        return block
+    end
+
+    block = block + GetDamageBlockFromStrength(str)
+    --block terror
+    local terror_block = hero:FindAbilityByName("terror6")
+    if terror_block and terror_block:GetLevel() >= 4 then
+        block = block + 0.2 * (agi + str)
+    end
+    local mars2 = hero:FindAbilityByName("mars2")
+    if mars2 and mars2:GetLevel() >= 4 then
+        block = block + hero:GetPhysicalArmorValue(false) + str * 0.1
+    end
+    if HeroHasNeutralItem(hero, "item_neutral_18") then
+        block = block + 250
+    end
+    if GetLevelOfAbility(hero, "Ghost6") >= 3 then
+        block = block + str * 0.5
+    end
+    if hero.talents and hero.talents[40] and hero.talents[40] > 0 then
+        block = block + hero:GetMaxHealth() * hero.talents[40] * 0.001
+    end
+    local blockartifact = hero:GetModifierStackCount("modifier_mythic_block", nil)
+    block = block + blockartifact
+    --shadow runes
+    if hero.talents[95] > 0 then
+        local baseStats = str + agi + int
+        if hero:HasModifier("modifier_pathbuff_095") then
+            baseStats = baseStats + str
+        end
+        block = block + baseStats * 0.05 * hero.talents[95]
+    end
+
+    --items
+    if hero:HasModifier("modifier_item_shield21") then
+        block = block + 3
+    end
+    if hero:HasModifier("modifier_item_shield10") then
+        block = block + 5
+    end
+    if hero:HasModifier("modifier_item_shieldluna") then
+        block = block + 12
+    end
+    if hero:HasModifier("modifier_item_shield_aggro") then
+        block = block + 15
+    end
+    if hero:HasModifier("modifier_item_standard_aura_3") then
+        block = block + 25
+    end
+    if hero:HasModifier("modifier_item_dragonshield") then
+        block = block + 50
+    end
+    if hero:HasModifier("modifier_item_titanarmor_2") then
+        block = block + 75
+    end
+    if hero:HasModifier("modifier_divinedef") then
+        block = block + 150
+    end
+    if hero:HasModifier("modifier_crowndefender2") then
+        block = block + 250
+    end
+    
+    return block * GetDamageBlockFactor(hero)
+end
+
+function GetDamageBlockFactor(hero)
+    local blockFactor = 1
+    if hero.swordSwipeLevel and hero.swordSwipeLevel >= 4 then
+        blockFactor = blockFactor + 0.03 * CountBuffs(hero, "modifier_prot_str_bonus")
+    end
+    if hero:HasModifier("modifier_ursa_prot") then
+        blockFactor = blockFactor + 0.5
+    end
+    local stoneSkin = hero:GetModifierStackCount("modifier_stoneskin", nil)
+    if stoneSkin >= 1 and hero:HasModifier("modifier_pathbuff_109") then
+        blockFactor = blockFactor + 0.01 * stoneSkin
+    end
+    local mars2 = hero:FindAbilityByName("mars2")
+    if mars2 and mars2:GetLevel() >= 2 then
+        blockFactor = blockFactor + 0.25
+    end
+    if GetLevelOfAbility(hero, "mars4") >= 3 then
+        blockFactor = blockFactor + 0.01 * hero:GetPhysicalArmorValue(false)
+    end
+
+    return blockFactor
+end
+
+function GetDamageBlockFromStrength(strength)
+    return strength * 0.1
+end
+
+function GetHealthRegenFromStrength(strength)
+    return strength * 0.05
+end
+
+function SetDamageBlock(hero)
+    local block = GetDamageBlock(hero)
+    hero.combat_system_ability:ApplyDataDrivenModifier(hero, hero, "modifier_block_all", {Duration = -1})
+    hero:SetModifierStackCount("modifier_block_all", hero.combat_system_ability, block)
+end
+
+-- damage escalation can be increased from anywhere and increases damage dealt multiplicatively, but needs to be reset at certain moments
+function ResetDamageEscalation(event)
+    local caster = event.caster
+    caster.damageEscalation = 1
+end
+
+function IncreaseDamageEscalationEvent(event)
+    IncreaseDamageEscalation(event.caster, event)
+end
+
+function IncreaseDamageEscalation(caster, event)
+    if event.escalationBuffCondition and not caster:HasModifier(event.escalationBuffCondition) then
+        return
+    end
+    if caster.damageEscalation and event.damageEscalation then
+        caster.damageEscalation = caster.damageEscalation * event.damageEscalation
+    end
+end
+
+function GetDamageEscalation(caster)
+    if caster.damageEscalation then
+        return caster.damageEscalation
+    end
+    return 1
 end

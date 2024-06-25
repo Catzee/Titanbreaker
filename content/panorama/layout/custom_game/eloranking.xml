@@ -1115,7 +1115,7 @@
 					<Label class="WeaponStats" text="They exist in Epic, Legendary, Immortal, [Ancient] Immortal, Divine and Mythical Item quality." style="font-size: 16px; color:white; height: 40px;" />
 					<Label class="WeaponHeaderWhite" text="Special Artifact Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Label class="WeaponStats" text="Special Artifact Traits, Path Bonuses and Rune Words can roll on Artifacts of Immortal or better quality." style="font-size: 16px; color:white; height: 40px;" />
-					<Label class="WeaponHeaderWhite" text="Unique Glove Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
+					<Label class="WeaponHeaderWhite" text="Glove Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/fire6.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
@@ -1211,7 +1211,7 @@
 					
 
 
-					<Label class="WeaponHeaderWhite" text="Unique Leg Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
+					<Label class="WeaponHeaderWhite" text="Leg Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/lone_druid_spirit_bear.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
@@ -1285,7 +1285,7 @@
 					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/118a.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
-							<Label class="WeaponStats" text="Mountain Giant" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Boulder Giant" style="font-size: 18px; color:gold; horizontal-align: left;" />
 							<Label class="WeaponStats" text="Bonuses that increase your max Health by a percentage will now also affect your Attack Damage by a portion of that percentage." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
@@ -1320,7 +1320,7 @@
 					
 
 
-					<Label class="WeaponHeaderWhite" text="Unique Cape Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
+					<Label class="WeaponHeaderWhite" text="Cape Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/keeper_of_the_light_spirit_form.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
@@ -1430,7 +1430,7 @@
 
 
 
-					<Label class="WeaponHeaderWhite" text="Unique Offhand Traits" style="font-size: 18px; color:orange; margin-bottom:10px;" />
+					<Label class="WeaponHeaderWhite" text="Unique Offhand Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
 					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/ember_spirit_sleight_of_fist.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
@@ -1460,10 +1460,24 @@
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/sacred_protection.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Sacred Protection" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Damage Reduction while at full Health. Capped at 50% reduction." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
 						<Image class="RunewordImage" src="file://{images}/spellicons/dark_seer_wall_of_replica.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Shadow Warrior" style="font-size: 18px; color:gold; horizontal-align: left;" />
 							<Label class="WeaponStats" text="Gain % Shadow and % Physical Damage equal to a percentage of your Spell Resistance." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/puck_illusory_orb_merry.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Supercharge" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Abilities with charges gain more max charges." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
@@ -1480,6 +1494,108 @@
 							<Label class="WeaponStats" text="Gain % Nature Damage equal to a percentage of your Attack Speed." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
+
+
+					<Label class="WeaponHeaderWhite" text="Mainhand Traits" style="font-size: 22px; color:orange; margin-bottom:10px;" />
+					<!--Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/adapt.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Adaptivity" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain a Bonus depending on your role:\nTank: % Damage. Healer: % Damage Reduction. Damage Dealer: % Max Health." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel-->
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/almighty.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Almighty" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Auto Attack Critical Strike Damage equal to a percentage of your Strength, Agility and Intellect." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/balanceofpower.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Balance of Power" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Ability Damage equal to a percentage of your lowest Attribute." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/conjurer.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Conjurer" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Summon Damage equal to a percentage of current Mana." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/godofthehunt.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Hunter" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain Agility equal to a percentage of Movement Speed above 250." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/cooldown3.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Cold Chain" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Whenever you cast an Ability with a base cooldown of 15 secs or higher, increase your % Frost Damage for 7 secs, stacking 25 times." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<!--Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/lich_king2.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Lich King" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain a percentage of your Strength plus Agility as Spellpower." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel-->
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/pet2.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Lion King" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Abilities that scale purely from Agility will now also scale from Strength, equal to a percentage of the original Agility scaling." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/mountain_king.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Mountain King" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Ability Critical Strike Damage for every 100 Strength. Twice as effective against stunned enemies." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<!--Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/necro.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Necromancer" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Whenever you cast an Ability with a base cooldown of 30 secs or higher, summon a Zombie for 10 secs, dealing a percentage of Attack Damage and Spellpower as Shadow Damage." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel-->
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/overheat2.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Overheat" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Fire Damage equal to a percentage of your Attack Speed when Critical Striking." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/overpower.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Overpower" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Abilities gain % Bonus Damage equal to a percentage of their cost when they Critical Strike." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel>
+					<!--Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/sandking_sand_storm.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Sand King" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Nature Damage for every 1000 Max Health." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel-->
+					<!--Panel  class="TableRow">
+						<Image class="RunewordImage" src="file://{images}/spellicons/skeleton_king2.png"  style="border-radius: 20px;"/>
+						<Panel  class="TableCol" >
+							<Label class="WeaponStats" text="Skeleton King" style="font-size: 18px; color:gold; horizontal-align: left;" />
+							<Label class="WeaponStats" text="Gain % Shadow and Chaos Damage for every 10 Armor." style="font-size: 16px; color:white; height: 40px;" />
+						</Panel>
+					</Panel-->
+
 
 				</Panel>
 			</Panel>
@@ -3286,6 +3402,130 @@
 							<Button class="TalentButton" onactivate="TalentPressed(162)">
 								<Image class="TalentImage" src="file://{images}/spellicons/162.png"  />
 								<Label class="ButtTextBig" id="talent162" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+
+				<Panel  class="SingleTalentTree10" >
+					<Label class="TextTalentHead" text=" Jungle Troll " style="font-size: 28px;horizontal-align: center;"/>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(163)" onmouseout="TalentUnhovered(163)">
+							<Button class="TalentButton" onactivate="TalentPressed(163)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/163.png"  />
+								<Label class="ButtTextBig" id="talent163" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(164)" onmouseout="TalentUnhovered(164)">
+							<Button class="TalentButton" onactivate="TalentPressed(164)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/164.png"  />
+								<Label class="ButtTextBig" id="talent164" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(165)" onmouseout="TalentUnhovered(165)">
+							<Button class="TalentButton" onactivate="TalentPressed(165)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/165.png"  />
+								<Label class="ButtTextBig" id="talent165" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(166)" onmouseout="TalentUnhovered(166)">
+							<Button class="TalentButton" onactivate="TalentPressed(166)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/166.png"  />
+								<Label class="ButtTextBig" id="talent166" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(167)" onmouseout="TalentUnhovered(167)">
+							<Button class="TalentButton" onactivate="TalentPressed(167)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/167.png"  />
+								<Label class="ButtTextBig" id="talent167" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(168)" onmouseout="TalentUnhovered(168)">
+							<Button class="TalentButton" onactivate="TalentPressed(168)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/168.png"  />
+								<Label class="ButtTextBig" id="talent168" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(169)" onmouseout="TalentUnhovered(169)">
+							<Button class="TalentButton" onactivate="TalentPressed(169)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/169.png"  />
+								<Label class="ButtTextBig" id="talent169" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(170)" onmouseout="TalentUnhovered(170)">
+							<Button class="TalentButton" onactivate="TalentPressed(170)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/170.png"  />
+								<Label class="ButtTextBig" id="talent170" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(171)" onmouseout="TalentUnhovered(171)">
+							<Button class="TalentButton" onactivate="TalentPressed(171)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/171.png"  />
+								<Label class="ButtTextBig" id="talent171" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(172)" onmouseout="TalentUnhovered(172)">
+							<Button class="TalentButton" onactivate="TalentPressed(172)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/172.png"  />
+								<Label class="ButtTextBig" id="talent172" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(173)" onmouseout="TalentUnhovered(173)">
+							<Button class="TalentButton" onactivate="TalentPressed(173)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/173.png"  />
+								<Label class="ButtTextBig" id="talent173" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(174)" onmouseout="TalentUnhovered(174)">
+							<Button class="TalentButton" onactivate="TalentPressed(174)">	
+								<Image class="TalentImage" src="file://{images}/spellicons/174.png"  />
+								<Label class="ButtTextBig" id="talent174" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(175)" onmouseout="TalentUnhovered(175)">
+							<Button class="TalentButton" onactivate="TalentPressed(175)">
+								<Image class="TalentImage" src="file://{images}/spellicons/175.png"  />
+								<Label class="ButtTextBig" id="talent175" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(176)" onmouseout="TalentUnhovered(176)">
+							<Button class="TalentButton" onactivate="TalentPressed(176)">
+								<Image class="TalentImage" src="file://{images}/spellicons/176.png"  />
+								<Label class="ButtTextBig" id="talent176" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(177)" onmouseout="TalentUnhovered(177)">
+							<Button class="TalentButton" onactivate="TalentPressed(177)">
+								<Image class="TalentImage" src="file://{images}/spellicons/177.png"  />
+								<Label class="ButtTextBig" id="talent177" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel  class="TalentRow" >
+						<Panel class="Talent" onmouseover="TalentHovered(178)" onmouseout="TalentUnhovered(178)">
+							<Button class="TalentButton" onactivate="TalentPressed(178)">
+								<Image class="TalentImage" src="file://{images}/spellicons/178.png"  />
+								<Label class="ButtTextBig" id="talent178" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(179)" onmouseout="TalentUnhovered(179)">
+							<Button class="TalentButton" onactivate="TalentPressed(179)">
+								<Image class="TalentImage" src="file://{images}/spellicons/179.png"  />
+								<Label class="ButtTextBig" id="talent179" text="0 / 3" style="font-size: 18px;"/>
+							</Button>
+						</Panel>
+						<Panel class="Talent" onmouseover="TalentHovered(180)" onmouseout="TalentUnhovered(180)">
+							<Button class="TalentButton" onactivate="TalentPressed(180)">
+								<Image class="TalentImage" src="file://{images}/spellicons/180.png"  />
+								<Label class="ButtTextBig" id="talent180" text="0 / 3" style="font-size: 18px;"/>
 							</Button>
 						</Panel>
 					</Panel>

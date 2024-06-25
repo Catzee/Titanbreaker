@@ -264,10 +264,6 @@ function Precache( context )
   PrecacheResource( "particle", "particles/items_fx/black_king_bar_avatar.vpcf", context )
   PrecacheResource( "particle", "particles/treasure_courier_death.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_rings_inner.vpcf", context )
-  PrecacheResource( "particle", "particles/castbar.vpcf", context )
-  PrecacheResource( "particle", "particles/castbar3.vpcf", context )
-  PrecacheResource( "particle", "particles/castbar25.vpcf", context )
-  PrecacheResource( "particle", "particles/castbardynamic.vpcf", context )
   PrecacheResource( "particle", "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_arcana.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf", context )
   PrecacheResource( "particle", "particles/healingdigit1.vpcf", context )
@@ -390,6 +386,7 @@ function Precache( context )
     PrecacheResource( "particle", "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_castfx_ground2.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_beastmaster/beastmaster_wildaxes_hit.vpcf", context )
 
     PrecacheResource( "particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context )
 
@@ -439,8 +436,6 @@ function Precache( context )
     PrecacheResource( "particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_axe/axe_beserkers_call_owner_b.vpcf", context )
-    PrecacheResource( "particle", "particles/castbar02.vpcf", context )
-    PrecacheResource( "particle", "particles/castbar1.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_viper/viper_poison_attack_explosion.vpcf", context )
     PrecacheResource( "particle", "particles/silenceimunity.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf", context )
@@ -458,13 +453,29 @@ function Precache( context )
     PrecacheResource( "particle", "particles/econ/items/abaddon/abaddon_alliance/abaddon_death_coil_explosion_alliance_e.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf", context )
+    PrecacheResource( "particle", "particles/necronomicon_archer_manaburn_green.vpcf", context )
     
     
     
+    PrecacheResource( "particle", "particles/castbar.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar3.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar25.vpcf", context )
+    PrecacheResource( "particle", "particles/castbardynamic.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar02.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar1.vpcf", context )
     PrecacheResource( "particle", "particles/castbar16.vpcf", context )
     PrecacheResource( "particle", "particles/castbar160.vpcf", context )
     PrecacheResource( "particle", "particles/castbar21.vpcf", context )
     PrecacheResource( "particle", "particles/castbar14.vpcf", context )
+    --
+    PrecacheResource( "particle", "particles/castbar04.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar06.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar08.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar1.92.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar10.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar12.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar18.vpcf", context )
+    PrecacheResource( "particle", "particles/castbar2.4.vpcf", context )
 
     --pve bosses
     PrecacheUnitByNameAsync( "mogushan_first_boss", function(unit) end )
@@ -891,8 +902,12 @@ function Precache( context )
      PrecacheResource( "particle", "particles/units/heroes/hero_antimage/antimage_spellshield_sphere.vpcf", context )
      PrecacheResource( "particle", "particles/units/heroes/hero_lina/lina_base_attack.vpcf", context )
      PrecacheResource( "particle", "particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_sparrowhawk.vpcf", context )
+     PrecacheResource( "particle", "particles/econ/events/ti8/blink_dagger_ti8_start_lvl2.vpcf", context )
+
 
      PrecacheUnitByNameAsync( "irongrizzly", function(unit) end )
+     PrecacheUnitByNameAsync( "ironeagle", function(unit) end )
+     PrecacheUnitByNameAsync( "ironsnake", function(unit) end )
      
      for i=1,10 do
       PrecacheUnitByNameAsync( "act13_"..i, function(unit) end )
@@ -1238,6 +1253,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_water_boss_4", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_7", function(unit) end )
+            PrecacheUnitByNameAsync( "temple_water_boss_8", function(unit) end )
             --a2
             PrecacheUnitByNameAsync( "temple_sand_boss_1", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_boss_2", function(unit) end )
@@ -1246,6 +1262,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_sand_boss_4", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_boss_7", function(unit) end )
+            PrecacheUnitByNameAsync( "temple_sand_boss_8", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_dustlord", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_dustgolem", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_stonegolem", function(unit) end )
@@ -1724,8 +1741,13 @@ self.boss_spells[2] = {
   "pve_temple_trample",
   "pve_temple_aggro_cycling",
   "pve_temple_hoofquake",
-  "pve_temple_highest_aggro_summon"
-  --"medusa_stone_gaze"
+  "pve_temple_highest_aggro_summon",
+  "pve_desert_sand",
+  "pve_hardened_skin",
+  "pve_generated_spell_targeted_split_arrow_nature",
+  "pve_generated_spell_curve_claws",
+  "pve_generated_spell_poison_bolt_healdebuff",
+  "pve_generated_spell_poison_pools"
   --"pve_temple_stompingcharge"
 }
 self.boss_spells[3] = {
@@ -1751,7 +1773,11 @@ self.boss_spells[3] = {
   "pve_wave_caller_10",
   "pve_generated_spell_wateraoefollowing",
   "pve_affix_fanatic_rage2",
-  "pve_temple_random_aggro_summon"
+  "pve_temple_random_aggro_summon",
+  "pve_crocodile_skin",
+  "pve_dive_and_strike",
+  "pve_generated_spell_curve_targeted_zigzag_water",
+  "pve_temple_dot_closest"
 }
 self.boss_spells[4] = {
   "pve_summonmoving_shadow_linear",
@@ -2218,7 +2244,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
   --self.current_stash_id = 1
 
   --talents, path
-  self.maxtalents = 162 --144 --120
+  self.maxtalents = 180 --162 --144 --120
 
   self.TEAM_KILLS_TO_WIN = 7
   self.CLOSE_TO_VICTORY_THRESHOLD = 2
@@ -7592,7 +7618,7 @@ function COverthrowGameMode:SaveCharSendToServer(data, hero, steamid)
   --print(" try send")
   if IsServer() then
     --print(" try send 2")
-    local request = CreateHTTPRequestScriptVM( "POST", "http://catze.eu/savechar_v21_season_10.php" )
+    local request = CreateHTTPRequestScriptVM( "POST", "http://catze.eu/savechar_v21_season_11.php" ) -- just change the save file name here for a new season. internally the same db will be reused every time
     for k,v in pairs(data) do
       request:SetHTTPRequestGetOrPostParameter(k, tostring(v))
     end
@@ -8484,7 +8510,7 @@ function PVEItemDrop(event)
 			else
 				COverthrowGameMode.sandevent = 1
 			end
-			if COverthrowGameMode.sandevent == 6 then
+			if COverthrowGameMode.sandevent == 7 then
 				local b4 = Entities:FindByName( nil, "camp7" ):GetAbsOrigin()+Vector(250,-2200,-128)
         --lama
         local unit = CreateUnitByName("act_2_lama", b4+Vector(0,-225,0), true, nil, nil, DOTA_TEAM_GOODGUYS )
@@ -8553,6 +8579,30 @@ function PVEItemDrop(event)
     end
     if COverthrowGameMode.sandevent and COverthrowGameMode.sandevent >= 4 and COverthrowGameMode.waterevent and COverthrowGameMode.waterevent >= 4 then
       --nothing
+    end
+
+    if event.caster.waterevent2 then
+      Timers:CreateTimer(15, function()
+        Notifications:BottomToAll({text="Something is moving in the river... what could it be?", duration=7, style={color="orange"}})
+        local spawnPoint = Entities:FindByName( nil, "boss9" ):GetAbsOrigin() + Vector(100, 0, 0)
+        local movePoint = Entities:FindByName( nil, "boss8" ):GetAbsOrigin()
+        local unit = CreateUnitByName("temple_water_boss_8", spawnPoint, true, nil, nil, DOTA_TEAM_BADGUYS )
+        unit.act = 3
+        unit.act_specific_loot_factor = 3
+        unit.canleavespawnpos = true
+        COverthrowGameMode:SetTempleStats(unit,COverthrowGameMode.jungledifficulty*1.2,200,25000,100, 0)
+        unit.templeboss_wetlands = 1
+        Timers:CreateTimer(2, function()
+          local order = 
+          {
+           UnitIndex = unit:entindex(),
+           OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+           Position = movePoint, 
+           Queue = false
+          }
+          ExecuteOrderFromTable(order)
+        end)
+      end)
     end
   end
 
@@ -8786,14 +8836,14 @@ end
 if unit.templeboss_sandviper then
  local i = 2
  COverthrowGameMode.boss_kills_per_act[i] = COverthrowGameMode.boss_kills_per_act[i] + 1
- if COverthrowGameMode.boss_kills_per_act[i] == 7 then
+ if COverthrowGameMode.boss_kills_per_act[i] == 8 then
   COverthrowGameMode:CreateActBoss(11,i)
 end
 end
 if unit.templeboss_wetlands then
  local i = 3
  COverthrowGameMode.boss_kills_per_act[i] = COverthrowGameMode.boss_kills_per_act[i] + 1
- if COverthrowGameMode.boss_kills_per_act[i] == 10 then
+ if COverthrowGameMode.boss_kills_per_act[i] == 11 then
   COverthrowGameMode:CreateActBoss(11,i)
 end
 end
@@ -8906,7 +8956,7 @@ end
     --if event and event.caster and event.caster.rewardchance and event.caster.rewardchance >= 100 then --spawn chests after boss kill
       --    COverthrowGameMode:SpawnTreasureChests()
       --end
-      COverthrowGameMode:SpawnStormCrowPatrols()
+      -- COverthrowGameMode:SpawnStormCrowPatrols() too random and annoying?
       COverthrowGameMode:DropTempleItem(event.caster, event.caster.rewardchance, 1, 0, false)
       local wasBossKill = event.caster.rewardchance >= 100 and not event.caster.nobosskill
       if wasBossKill then
@@ -9716,6 +9766,26 @@ function PVEFurthestTarget(event)
  return target
 end
 
+function PVEClosestTarget(event)
+  local caster = event.caster
+
+  local all = HeroList:GetAllHeroes()
+  local target
+  local distance = 10000000
+  local max_distance = 2500
+  if event.max_distance then
+    max_distance = event.max_distance
+  end
+  for i=1, #all do
+    local d = (all[i]:GetAbsOrigin()-caster:GetAbsOrigin()):Length()
+    if d < distance and d <= max_distance and all[i]:IsAlive() then
+     distance = d
+     target = all[i]
+   end
+ end
+ return target
+end
+
 function PVEAggroReset(event)
 	local source = event.unit
 	local caster = event.caster
@@ -10425,6 +10495,8 @@ function COverthrowGameMode:OnHeroInGame(hero)
       Notifications:Bottom(hero:GetPlayerID(), {text="You can find a Titanbreaker guide in the panel on the left, if you want to learn more about the game!", duration=12, style={color="violet"}})
     end
   end)
+
+  SetupFlurryAbility(hero, heroName)
 
   --jungle mode
   if self.junglemode then
@@ -11198,6 +11270,7 @@ function COverthrowGameMode:OnEntityKilled( event )
 	local heroTeam = hero:GetTeam()
   if hero and hero:IsHero() then
     OnKillEffects(hero, killedUnit)
+    OnHeroKilledUnit(hero, killedUnit)
         --[[local deathXP = killedUnit:GetDeathXP()
 	    if deathXP > 0 then
 	    	local allhero = HeroList:GetAllHeroes()
@@ -11303,8 +11376,8 @@ if self.junglemode then
   if killedUnit.talents and killedUnit.talents[123] and killedUnit.talents[123] > 0 then
     Timers:CreateTimer(5, function()
       local stacks = killedUnit:GetModifierStackCount("modifier_growingpains", nil) + 1 + 2 * killedUnit.talents[123]
-      if stacks > 50 then
-        stacks = 50
+      if stacks > 60 then
+        stacks = 60
       end
       killedUnit.combat_system_ability:ApplyDataDrivenModifier(killedUnit, killedUnit, "modifier_growingpains", {Duration = -1})
       killedUnit:SetModifierStackCount("modifier_growingpains", killedUnit.combat_system_ability, stacks)
@@ -11929,7 +12002,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victim = EntIndexToHScript( victim_index )
   local attacker = EntIndexToHScript( attacker_index )
   local victimMaxHealth = victim:GetMaxHealth()
-  local blockFactor = 1
+  
   --stop pet aa dmg
   if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") 
     or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep")
@@ -11951,23 +12024,8 @@ function COverthrowGameMode:FilterDamage( filterTable )
     --filterTable["damage"] = 0
     return true
   end
-  if victim.swordSwipeLevel and victim.swordSwipeLevel >= 4 then
-    blockFactor = blockFactor + 0.03 * CountBuffs( victim, "modifier_prot_str_bonus" )
-  end
-  if victim:HasModifier("modifier_ursa_prot") then
-    blockFactor = blockFactor + 0.5
-  end
-  local stoneSkin = victim:GetModifierStackCount("modifier_stoneskin", nil)
-  if stoneSkin >= 1 and victim:HasModifier("modifier_pathbuff_109") then
-    blockFactor = blockFactor + 0.01 * stoneSkin
-  end
-  local mars2 = victim:FindAbilityByName("mars2")
-  if mars2 and mars2:GetLevel() >= 2 then
-    blockFactor = blockFactor + 0.25
-  end
-  if GetLevelOfAbility(victim, "mars4") >= 3 then
-    blockFactor = blockFactor + 0.01 * victim:GetPhysicalArmorValue(false)
-  end
+
+  local blockFactor = GetDamageBlockFactor(victim)
   
   if victim.blindfold_lickwounds_heal_counter and victim.blindfold_lickwounds_heal_counter >= 5 then
     victim.blindfold_lickwounds_heal_counter = 0
@@ -12182,16 +12240,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
         end
       end]]
 
-      --block terror
-      local terror_block = victim:FindAbilityByName("terror6")
-      if terror_block and terror_block:GetLevel() >= 4 then
-        local block_amount = 0.2 * (GetAgilityCustom(victim) + GetStrengthCustom(victim)) * blockFactor
-        if newdamage <= block_amount then
-          newdamage = 0
-        else
-          newdamage = newdamage - block_amount
-        end
-      end
+      
 
       --block agi moonglaive shield 45%
       local glaive_shield = victim:GetModifierStackCount("modifier_talent_moonglaive_shield", nil)
@@ -12247,25 +12296,11 @@ function COverthrowGameMode:FilterDamage( filterTable )
 	  
       --block
       local block = 0
-      if mars2 and mars2:GetLevel() >= 4 then
-        block = block + victim:GetPhysicalArmorValue(false) + GetStrengthCustom(victim) * 0.1
-      end
-      if HeroHasNeutralItem(victim, "item_neutral_18") then
-        block = block + 250
-      end
       if victim.mars2reduction and victim.mars2reduction > 0 then
         block = block + original_damage * victim.mars2reduction
         victim.mars2reduction = 0
       end
-      if GetLevelOfAbility(victim, "Ghost6") >= 3 then
-        block = block + GetStrengthCustom(victim) * 0.5
-      end
-      if victim.talents and victim.talents[40] and victim.talents[40] > 0 then
-        block = block + victim:GetMaxHealth() * victim.talents[40] * 0.001
-      end
-      local blockartifact = victim:GetModifierStackCount("modifier_mythic_block", nil)
-      block = block + blockartifact
-      block = block * blockFactor
+
       if victim.talents and victim.talents[11] and victim.talents[11] > 0 then
         local BoW = 0.03 * victim.talents[11] * blockFactor
         if BoW > 0.6 then
@@ -12285,24 +12320,13 @@ function COverthrowGameMode:FilterDamage( filterTable )
           --        newdamage = 0
           --    end
           --end
-          --shadow runes
-          if victim.talents and victim.talents[95] and victim.talents[95] > 0 then
-            local baseStats = GetStrengthCustom(victim) + GetAgilityCustom(victim) + GetIntellectCustom(victim)
-            if victim:HasModifier("modifier_pathbuff_095") then
-              baseStats = baseStats + GetStrengthCustom(victim)
-            end
-            block = baseStats * 0.05 * victim.talents[95]
-            newdamage = newdamage - block
-            if newdamage < 0 then
-              newdamage = 0
-            end
-          end
+          
 
           --ML 500 max hit block
           if (COverthrowGameMode.jungledifficulty >= 500 and victim:HasModifier("pve_boss_extra_resistances")) or victim:HasModifier("modifier_pve_act_affix_giant") then
-            local factor = 0.2 --0.18
+            local factor = 0.25 --0.18
             if victim:HasModifier("modifier_pve_act_affix_giant") then
-              factor = 0.15 --0.1
+              factor = 0.2 --0.1
             end
             if attacker:HasModifier("modifier_giant") and math.random(1,100) <= 50 then
               factor = factor * 1.5
@@ -13612,7 +13636,7 @@ local aggro_amount = GetDedicatedServerKeyV2("GetAggroKeyVTWO") --GetDedicatedSe
           tree = 1 + math.floor((talent - 121) / 3)
         end
         if talent >= 145 then
-          tree = 9
+          tree = math.floor((talent - 1) / 18) + 1
         end
         return tree
       end
@@ -13636,7 +13660,8 @@ local aggro_amount = GetDedicatedServerKeyV2("GetAggroKeyVTWO") --GetDedicatedSe
         end
         if talent >= 145 then
           tree = GetTalentTreeByTalentPoint(talent)
-          row = math.floor(1 + (talent - 145) / 3)
+          local firstPointInTree = (tree - 1) * 18 + 1
+          row = math.floor(1 + (talent - firstPointInTree) / 3)
         end
         --print("point allowed check, tree " .. tree .. " row " .. row)
         if TalentPointsSpentInTree(hero, tree) >= (row-1)*3 then
@@ -14224,7 +14249,7 @@ for i=1, #all do
           
           local goldindex = j+75
           local bankindex = j+74
-          print("bank " .. bankindex)
+          --print("bank " .. bankindex)
           local temple_abil_index = j + 87
           --this is the hero we loaded data for
           hero.auto_loaded = true
@@ -14707,9 +14732,9 @@ end
   end
 
   function GetBossVariation()
-    if COverthrowGameMode.jungledifficulty == 1 or COverthrowGameMode.jungledifficulty == 2 or COverthrowGameMode.jungledifficulty == 10 or COverthrowGameMode.jungledifficulty == 2 or COverthrowGameMode.jungledifficulty == 50
+    if COverthrowGameMode.jungledifficulty == 2 or COverthrowGameMode.jungledifficulty == 10 or COverthrowGameMode.jungledifficulty == 50
      or COverthrowGameMode.jungledifficulty == 200 or COverthrowGameMode.jungledifficulty == 1000 then
-      --return 2
+      return 2
     end
     return 1
   end
@@ -14833,7 +14858,7 @@ end
       if COverthrowGameMode.jungledifficulty > 1 then --no hard scenario on ML 1
         SetSwarmOnDeath(unit, 3, 3, Vector(1000,750,0), zone, "temple_wolf_rage", nil, true)
       end
-      unit:AddAbility(randomActAbilities[math.random(1, #randomActAbilities)]):SetLevel(1) --pve_affix_shadow_claw
+      --unit:AddAbility(randomActAbilities[math.random(1, #randomActAbilities)]):SetLevel(1) --pve_affix_shadow_claw
       unit:SetRenderColor(255, 255, 255)
       self:SetTempleStats(unit,scale,50*act_1_dmg_factor,750,20,2*affixinact1)
       unit:SetForwardVector(Vector(0,1,0))
@@ -14841,7 +14866,7 @@ end
       --unit:AddAbility("pve_act_affix_lastwill"):SetLevel(1)
       unit.chance_for_champion = 10
       --SetSwarmOnDeath(unit, 4, 5, Vector(2250,-500,0), zone, nil, nil, true)
-      unit:AddAbility(randomActAbilities[math.random(1, #randomActAbilities)]):SetLevel(1)
+      --unit:AddAbility(randomActAbilities[math.random(1, #randomActAbilities)]):SetLevel(1)
       unit:SetRenderColor(255, 255, 255)
       self:SetTempleStats(unit,scale,50*act_1_dmg_factor,750,20,2*affixinact1)
       unit:SetForwardVector(Vector(0,1,0))
@@ -14921,7 +14946,7 @@ end
     end
 
     --traps
-    if scale > 1 then
+    if scale > 1 and SpawnActTraps() then
       unit = CreateUnitByName("temple_spike_trap", c5+Vector(-500,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
       unit.exp_factor = 5
       self:SetTempleStats(unit,scale,750,100,0,0)
@@ -15095,18 +15120,18 @@ end
           unit:SetModelScale(0.85)
 
           --traps
-          unit = CreateUnitByName("temple_spike_trap", c1+Vector(1250+200,1400,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-          unit.exp_factor = 5
-          self:SetTempleStats(unit,scale,750,100,0,0)
-
-          --traps
-          unit = CreateUnitByName("temple_missile_trap", c2+Vector(1200,750,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-          unit.exp_factor = 5
-          --unit.chance_for_champion = 10
-          self:SetTempleStats(unit,scale,750,100,0,0)
-          unit:SetForwardVector(Vector(0,-1,0))
-          unit.trap_element = "5darts"
-          unit.random_new_direction = true
+          if SpawnActTraps() then
+            unit = CreateUnitByName("temple_spike_trap", c1+Vector(1250+200,1400,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+            unit.exp_factor = 5
+            self:SetTempleStats(unit,scale,750,100,0,0)
+            unit = CreateUnitByName("temple_missile_trap", c2+Vector(1200,750,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+            unit.exp_factor = 5
+            --unit.chance_for_champion = 10
+            self:SetTempleStats(unit,scale,750,100,0,0)
+            unit:SetForwardVector(Vector(0,-1,0))
+            unit.trap_element = "5darts"
+            unit.random_new_direction = true
+          end
 
           --camp 2
           unit = CreateUnitByName("temple_sand_dustboar", c2+Vector(75,75,0), true, nil, nil, DOTA_TEAM_BADGUYS )
@@ -15216,45 +15241,47 @@ end
         unit:SetModelScale(0.85)
 
         --traps
-        unit = CreateUnitByName("temple_missile_trap", c6+Vector(1500,1200,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        --unit.chance_for_champion = 10
-        self:SetTempleStats(unit,scale,750,100,0,0)
-        unit:SetForwardVector(Vector(-1,-1,0))
-        unit.trap_element = "poison"
-        unit = CreateUnitByName("temple_missile_trap", c6+Vector(1500,-1200,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        --unit.chance_for_champion = 10
-        self:SetTempleStats(unit,scale,750,100,0,0)
-        unit:SetForwardVector(Vector(-1,1,0))
-        unit.trap_element = "poison"
-        unit.trap_timer = 4
-        unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,250,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        --unit.chance_for_champion = 10
-        self:SetTempleStats(unit,scale,750,100,0,0)
-        unit:SetForwardVector(Vector(-1,-1,0))
-        unit.trap_element = "poison"
-        unit.trap_timer = 2
-        unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        --unit.chance_for_champion = 10
-        self:SetTempleStats(unit,scale,750,100,20,0)
-        unit:SetForwardVector(Vector(-1,0,0))
-        unit.trap_element = "poison"
-        unit.trap_timer = 6
-        unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,-250,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        --unit.chance_for_champion = 10
-        self:SetTempleStats(unit,scale,750,100,0,0)
-        unit:SetForwardVector(Vector(-1,1,0))
-        unit.trap_element = "poison"
-        unit.trap_timer = 8
+        if SpawnActTraps() then
+          unit = CreateUnitByName("temple_missile_trap", c6+Vector(1500,1200,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          --unit.chance_for_champion = 10
+          self:SetTempleStats(unit,scale,750,100,0,0)
+          unit:SetForwardVector(Vector(-1,-1,0))
+          unit.trap_element = "poison"
+          unit = CreateUnitByName("temple_missile_trap", c6+Vector(1500,-1200,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          --unit.chance_for_champion = 10
+          self:SetTempleStats(unit,scale,750,100,0,0)
+          unit:SetForwardVector(Vector(-1,1,0))
+          unit.trap_element = "poison"
+          unit.trap_timer = 4
+          unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,250,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          --unit.chance_for_champion = 10
+          self:SetTempleStats(unit,scale,750,100,0,0)
+          unit:SetForwardVector(Vector(-1,-1,0))
+          unit.trap_element = "poison"
+          unit.trap_timer = 2
+          unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          --unit.chance_for_champion = 10
+          self:SetTempleStats(unit,scale,750,100,20,0)
+          unit:SetForwardVector(Vector(-1,0,0))
+          unit.trap_element = "poison"
+          unit.trap_timer = 6
+          unit = CreateUnitByName("temple_missile_trap", c6+Vector(2900,-250,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          --unit.chance_for_champion = 10
+          self:SetTempleStats(unit,scale,750,100,0,0)
+          unit:SetForwardVector(Vector(-1,1,0))
+          unit.trap_element = "poison"
+          unit.trap_timer = 8
 
-        --traps
-        unit = CreateUnitByName("temple_spike_trap", b1+Vector(0,-1500,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-        unit.exp_factor = 5
-        self:SetTempleStats(unit,scale,750,100,0,0)
+          --traps
+          unit = CreateUnitByName("temple_spike_trap", b1+Vector(0,-1500,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+          unit.exp_factor = 5
+          self:SetTempleStats(unit,scale,750,100,0,0)
+        end
 
         --boss 1
         unit = CreateUnitByName("temple_sand_boss_3", b1, true, nil, nil, DOTA_TEAM_BADGUYS )
@@ -15312,6 +15339,16 @@ end
         unit.templeboss_sandviper = 1
         unit.sandevent = 1
         unit.loot_hoarder_on_death_chance = 25
+
+        --boss 6 rusty
+        unit = CreateUnitByName("temple_sand_boss_8", b3+Vector(200,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+        unit:SetModelScale(1.3)
+        unit.act = zone
+        unit.patrolling = -22
+        unit.canleavespawnpos = true
+        self:SetTempleStats(unit,scale,600,20000,100,0)
+        unit.templeboss_sandviper = 1
+        unit.sandevent = 1
       end
 
       if zone == 3 then
@@ -15458,7 +15495,8 @@ end
         --boss 2
         unit = CreateUnitByName("temple_water_boss_2", b2, true, nil, nil, DOTA_TEAM_BADGUYS )
         unit.act = zone
-        SetSwarmOnDeath(unit, 20, 30, nil, zone, nil, nil, false,{Entities:FindByName( nil, "boss9" ):GetAbsOrigin(),Entities:FindByName( nil, "boss7" ):GetAbsOrigin(),Entities:FindByName( nil, "camp12" ):GetAbsOrigin()})
+        unit.waterevent2 = true
+        --SetSwarmOnDeath(unit, 20, 30, nil, zone, nil, nil, false,{Entities:FindByName( nil, "boss9" ):GetAbsOrigin(),Entities:FindByName( nil, "boss7" ):GetAbsOrigin(),Entities:FindByName( nil, "camp12" ):GetAbsOrigin()})
         self:SetTempleStats(unit,scale,200,20000,100,0)
         unit.templeboss_wetlands = 1
         unit.waterevent = 1
@@ -15796,19 +15834,21 @@ end
             self:SetTempleStats(unit,scale,35,200,5,0)
 
             --traps
-            unit = CreateUnitByName("temple_missile_trap", c1+Vector(-125,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "shadow"
-            unit = CreateUnitByName("temple_missile_trap", c1+Vector(125,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "shadow"
-            unit.trap_timer = 3
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_missile_trap", c1+Vector(-125,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "shadow"
+              unit = CreateUnitByName("temple_missile_trap", c1+Vector(125,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "shadow"
+              unit.trap_timer = 3
+            end
 
             --camp 2
             for i=1, horde_factor do
@@ -15846,9 +15886,11 @@ end
               unit:SetModelScale(0.95)
             end
             --traps
-            unit = CreateUnitByName("temple_spike_trap", c4+Vector(950,1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            self:SetTempleStats(unit,scale,750,100,0,0)
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_spike_trap", c4+Vector(950,1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              self:SetTempleStats(unit,scale,750,100,0,0)
+            end
 
             for i=1, horde_factor do
               --camp 5
@@ -15912,30 +15954,32 @@ end
             end
 
             --traps
-            unit = CreateUnitByName("temple_missile_trap", b2+Vector(-500,2300,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            unit.loot_hoarder_on_death_chance = 10
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "shadowshort"
-            unit.random_new_direction = true
-            unit = CreateUnitByName("temple_missile_trap", b2+Vector(-1000,2300,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            unit.loot_hoarder_on_death_chance = 10
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "shadowshort"
-            unit.random_new_direction = true
-            unit = CreateUnitByName("temple_missile_trap", b2+Vector(-750,1800,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            unit.loot_hoarder_on_death_chance = 10
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "shadowshort"
-            unit.random_new_direction = true
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_missile_trap", b2+Vector(-500,2300,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              unit.loot_hoarder_on_death_chance = 10
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "shadowshort"
+              unit.random_new_direction = true
+              unit = CreateUnitByName("temple_missile_trap", b2+Vector(-1000,2300,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              unit.loot_hoarder_on_death_chance = 10
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "shadowshort"
+              unit.random_new_direction = true
+              unit = CreateUnitByName("temple_missile_trap", b2+Vector(-750,1800,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              unit.loot_hoarder_on_death_chance = 10
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "shadowshort"
+              unit.random_new_direction = true
+            end
 
             --scale = 3.0
             --boss 1
@@ -16162,17 +16206,19 @@ end
             end)
 
             --traps
-            unit = CreateUnitByName("temple_spike_trap", c3+Vector(-650,350,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            self:SetTempleStats(unit,scale,750,100,0,0)
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_spike_trap", c3+Vector(-650,350,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              self:SetTempleStats(unit,scale,750,100,0,0)
 
-            --traps
-            unit = CreateUnitByName("temple_missile_trap", c4+Vector(675,700,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(-1,-1,0))
-            unit.trap_element = "5darts_shadow"
+              --traps
+              unit = CreateUnitByName("temple_missile_trap", c4+Vector(675,700,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(-1,-1,0))
+              unit.trap_element = "5darts_shadow"
+            end
 
             --bosses
             unit = CreateUnitByName("temple_tomb_boss_1", c2, true, nil, nil, DOTA_TEAM_BADGUYS )
@@ -16292,25 +16338,27 @@ end
               unit:AddAbility("pve_aa_root"):SetLevel(1)
             end
             --traps
-            unit = CreateUnitByName("temple_missile_trap", c3+Vector(150,1500,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,-1,0))
-            unit.trap_element = "ice"
-            unit = CreateUnitByName("temple_missile_trap", c3+Vector(-50,1225,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(-1,0,0))
-            unit.trap_element = "ice"
-            unit = CreateUnitByName("temple_missile_trap", c10+Vector(2800,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "ice"
-            unit.trap_timer_set = 1.5
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_missile_trap", c3+Vector(150,1500,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,-1,0))
+              unit.trap_element = "ice"
+              unit = CreateUnitByName("temple_missile_trap", c3+Vector(-50,1225,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(-1,0,0))
+              unit.trap_element = "ice"
+              unit = CreateUnitByName("temple_missile_trap", c10+Vector(2800,-1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "ice"
+              unit.trap_timer_set = 1.5
+            end
             
             for i=1, horde_factor do
               --camp 4
@@ -16532,13 +16580,15 @@ end
             self:SetTempleStats(unit,scale,90,750,5,1)
 
             --traps
-            unit = CreateUnitByName("temple_missile_trap", c3+Vector(-300,600,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-            unit.exp_factor = 5
-            --unit.chance_for_champion = 10
-            self:SetTempleStats(unit,scale,750,100,0,0)
-            unit:SetForwardVector(Vector(0,1,0))
-            unit.trap_element = "fire"
-            unit.random_new_direction = true
+            if SpawnActTraps() then
+              unit = CreateUnitByName("temple_missile_trap", c3+Vector(-300,600,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+              unit.exp_factor = 5
+              --unit.chance_for_champion = 10
+              self:SetTempleStats(unit,scale,750,100,0,0)
+              unit:SetForwardVector(Vector(0,1,0))
+              unit.trap_element = "fire"
+              unit.random_new_direction = true
+            end
 
             --patrol
             unit = CreateUnitByName("temple_mount_archer", b1+Vector(100,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
@@ -16752,7 +16802,20 @@ end
           local myevent = {}
           myevent.amount = 25
           myevent.target = unit
-          PVEAggroAddRandomHero(event)
+          --PVEAggroAddRandomHero(event)
+          local orderTarget = PVEClosestTarget({caster = unit})
+          if orderTarget then
+            Timers:CreateTimer(0.25,function() 
+              local order = 
+              {
+                UnitIndex = unit:entindex(),
+                OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+                TargetIndex = orderTarget:entindex(),
+                Queue = false
+              }
+             ExecuteOrderFromTable(order)
+           end)
+          end
         end)
        end
      end
@@ -17457,6 +17520,15 @@ function TempleFurthestBuff(event)
 	end
 end
 
+function TempleClosestBuff(event)
+  local caster = event.caster
+  local buff = event.buff
+  local target = PVEClosestTarget(event)
+  if target then
+    event.ability:ApplyDataDrivenModifier(caster, target, buff, nil)
+  end
+end
+
 function TempleFurthestBuffStack(event)
 	local caster = event.caster
 	local buff = event.buff
@@ -18083,6 +18155,12 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
      target.patrolling_path[2] = Entities:FindByName( nil, "camp11" ):GetAbsOrigin()+Vector(1100,0,0)
      target.patrolling_path[3] = Entities:FindByName( nil, "boss4" ):GetAbsOrigin()
    end
+   if target.patrolling == -22 then
+     target.patrolling = 1
+     target.patrolling_path[1] = Entities:FindByName( nil, "camp7" ):GetAbsOrigin()
+     target.patrolling_path[3] = Entities:FindByName( nil, "camp11" ):GetAbsOrigin()+Vector(1100,0,0)
+     target.patrolling_path[2] = Entities:FindByName( nil, "boss4" ):GetAbsOrigin()
+   end
    if target.patrolling == 3 then
      target.patrolling = 1
      target.patrolling_path[1] = Entities:FindByName( nil, "boss7" ):GetAbsOrigin()
@@ -18338,12 +18416,14 @@ function COverthrowGameMode:CreateActBoss(act, boss_unlock)
      unit.unlock_improved_tp_act_11 = true
    end
    --traps
-   local unit = CreateUnitByName("temple_spike_trap", creep1+Vector(150,1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-   unit.exp_factor = 5
-   self:SetTempleStats(unit,scale,750,100,0,0)
-   unit = CreateUnitByName("temple_spike_trap", creep3+Vector(-950,-115,0), true, nil, nil, DOTA_TEAM_BADGUYS )
-   unit.exp_factor = 5
-   self:SetTempleStats(unit,scale,750,100,0,0)
+   if SpawnActTraps() then
+     local unit = CreateUnitByName("temple_spike_trap", creep1+Vector(150,1000,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+     unit.exp_factor = 5
+     self:SetTempleStats(unit,scale,750,100,0,0)
+     unit = CreateUnitByName("temple_spike_trap", creep3+Vector(-950,-115,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+     unit.exp_factor = 5
+     self:SetTempleStats(unit,scale,750,100,0,0)
+    end
 
 
    --bosses
@@ -19109,7 +19189,7 @@ function EventRequestDropTable(event, args)
       end
 
       if initial_monster_formation == 1 then
-        --1 boss + 1 affix      -- 2 champ
+        --1 boss
         local boss = COverthrowGameMode.bosses[act][math.random(1,#COverthrowGameMode.bosses[act])]
         local override_act = 1
         local bossnumber = COverthrowGameMode.mogushan_round - 24
@@ -19221,7 +19301,7 @@ function EventRequestDropTable(event, args)
           end]]
         end
         if initial_monster_formation == 3 then
-          --1 mega champ        -- 2 events
+          --1 boss 4 adds
           local boss = COverthrowGameMode.bosses[act][math.random(1,#COverthrowGameMode.bosses[act])]
           local override_act = 1
           local titan_father_affixes = 0
@@ -19268,7 +19348,7 @@ function EventRequestDropTable(event, args)
           unit:AddAbility(aggroAbility):SetLevel(1)
         end
         if initial_monster_formation == 2 then
-          --1 boss  horde     --3 champs
+          --1 champ
           local actAffixes = 2
           local chance_for_champion = 100
           local champ = GetRandomMonsterNameByAct(act)
@@ -19295,7 +19375,7 @@ function EventRequestDropTable(event, args)
         unit:SetForwardVector(Vector(0,-1,0))
       end
       if initial_monster_formation == 4 then
-        --1 champ 2 bouncers     --3 champs
+        -- 3 champs
         local champ = GetRandomMonsterNameByAct(act)
         local unit = CreateUnitByName(champ, c1, true, nil, nil, DOTA_TEAM_BADGUYS )
         local boss_pointer = unit
@@ -20492,4 +20572,17 @@ function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)
       end
     end
   end
+end
+
+function SetupFlurryAbility(hero, heroName)
+  if heroName == "npc_dota_hero_drow_ranger" or heroName == "npc_dota_hero_windrunner" or heroName == "npc_dota_hero_sniper" or heroName == "npc_dota_hero_axe" then
+    hero.flurryAbility = 0
+  end
+  if heroName == "npc_dota_hero_beastmaster" then
+    hero.flurryAbility = 3
+  end
+end
+
+function SpawnActTraps()
+  return COverthrowGameMode.jungledifficulty == 2
 end

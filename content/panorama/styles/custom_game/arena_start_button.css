@@ -1311,6 +1311,19 @@
     box-shadow: inset black 2px 2px 2px 2px;
 }
 
+.SingleTalentTree10
+{
+    height: 100%;
+    background-image: url("file://{images}/bloodwolf.png");
+    //background-position: 50% 0%;
+    background-size: 550px 1200px;
+	flow-children: down;
+	border-style: solid;
+    border-width: 10px;
+    border-color: black;
+    box-shadow: inset black 2px 2px 2px 2px;
+}
+
 .SingleTalentTree3
 {
     height: 100%;

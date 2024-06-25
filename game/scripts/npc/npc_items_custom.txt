@@ -4468,6 +4468,90 @@
 }
 }
 
+"item_divine_phys"
+{
+"ID"           "4447"
+"BaseClass"    "item_datadriven"
+"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+"AbilityTextureName" "item_devastator"
+"Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+"Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+"ItemQuality"  "artifact"
+"ItemCost"     "50000"
+"ItemKillable" "0"
+"ItemSellable" "1"
+"ItemPurchasable" "0"
+"ItemDroppable" "1"
+"ItemShareability" "ITEM_NOT_SHAREABLE"
+"SideShop"     "0"
+"SecretShop"   "1"
+"ItemStackable" "0"
+"ItemPermanent" "1"
+"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+"AbilitySpecial"
+{
+	"01"{
+		"var_type"      "FIELD_INTEGER"
+		"stat1"    "75"
+	}
+	"01"{
+		"var_type"      "FIELD_INTEGER"
+		"stat2"    "75"
+	}
+}
+"Modifiers"
+{
+	"modifier_divine_phys"
+	{
+		"Passive"  "1"
+  		"IsHidden"  "1"
+  		"Properties"{
+
+		}
+	}
+}
+}
+
+"item_divine_frost"
+{
+"ID"           "4448"
+"BaseClass"    "item_datadriven"
+"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+"AbilityTextureName" "item_aghanims_shard"
+"Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+"Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+"ItemQuality"  "artifact"
+"ItemCost"     "50000"
+"ItemKillable" "0"
+"ItemSellable" "1"
+"ItemPurchasable" "0"
+"ItemDroppable" "1"
+"ItemShareability" "ITEM_NOT_SHAREABLE"
+"SideShop"     "0"
+"SecretShop"   "1"
+"ItemStackable" "0"
+"ItemPermanent" "1"
+"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+"AbilitySpecial"
+{
+	"01"{
+		"var_type"      "FIELD_INTEGER"
+		"stat1"    "75"
+	}
+}
+"Modifiers"
+{
+	"modifier_divine_frost"
+	{
+		"Passive"  "1"
+  		"IsHidden"  "1"
+  		"Properties"{
+
+		}
+	}
+}
+}
+
 "item_killer"
 {
 "ID"           "4013"
@@ -4788,6 +4872,10 @@
 	"01"{
 		"var_type"      "FIELD_INTEGER"
 		"stat2"    "15"
+	}
+	"01"{
+		"var_type"      "FIELD_INTEGER"
+		"stat3"    "150"
 	}
 }
 "OnSpellStart"
@@ -7263,6 +7351,16 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "7500"
 	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "100"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "250"
+	        }
 	    }
 
 	    "OnSpellStart"
@@ -8571,7 +8669,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
+	                 //"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
 	            }
 	        } 
@@ -14755,6 +14853,11 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat3"    "1000"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "75"
 	        }
 	    }
 
@@ -22183,6 +22286,11 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat2"    "25"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "25"
 	        }
 	    }
 
@@ -31699,6 +31807,11 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "60"
 	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "60"
+	        }
 	    }
 
 	    "Modifiers"
@@ -36516,6 +36629,118 @@
 	    	}
 	    }
 	}
+	"item_purgeblade3" 
+	{
+	    "ID"           "4444"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	    "AbilityTextureName" "item_safety_bubble"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+	    "ItemQuality"  "secret_shop"
+
+	    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+
+	    "AbilityDamage"           "0"
+	    "AbilityManaCost"         "0"
+	    "AbilityCooldown"         "75"
+
+	    "AbilityCastRange"        "600"
+	    "AbilityCastRangeBuffer"  "250"
+
+	    "ItemCost"     "50000"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "1"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat4"    "1000"
+	        }
+	    }
+
+	    "OnSpellStart"
+	    {
+	    	"FireSound"
+			{
+				"EffectName"	"DOTA_Item.DiffusalBlade.Activate"
+				"Target" 		"CASTER"
+			}
+        	"ApplyModifier"
+        	{
+        		"ModifierName"	"modifier_talisman2"
+        		"Target" 		"CASTER"
+        		"Duration"		"1"
+        	}
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_purgeblade2"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1"
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat4"
+	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_stat3"
+	            }
+	        }
+	        "modifier_talisman2"
+	    	{
+			    "Passive"          "0"    
+
+			    "IsBuff"			"1"
+			    "IsDebuff"         "0"
+			    "IsHidden"         "1"
+			    "IsPurgable"       "0"
+
+			    "EffectName"       "particles/items_fx/black_king_bar_avatar.vpcf"
+			    "EffectAttachType"  "follow_origin"
+
+			    "OnDestroy"
+			    {
+			    	"RunScript"
+		        	{
+		        		"ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PurgeUnit"
+					    "trinket"			"1"
+		        	}
+			    }
+	    	}
+	    }
+	}
 	"item_recipe_purgeblade" 
 	{
 	    "ID" "2166"
@@ -36962,8 +37187,16 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
+	            	//"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
 	            }
+	        }
+	        "modifier_item_druid_glove_regen"
+	        {
+	            "Passive"  "1"
+	            "IsBuff"	"1"
+	            "IsHidden" "1" 
+	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+
 	        }
 	        "modifier_item_chaos_dh"
 	        {
@@ -37092,7 +37325,7 @@
 
 	    "Modifiers"
 	    {
-	    	"modifier_item_activeshaman"
+	    	"modifier_item_activedh"
 	        {
 	            "Passive"  "1"
 	            "IsBuff"	"1"
@@ -37100,7 +37333,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
+	            	//"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
 	            }
 	        }
 	    	"modifier_dh_prison"
@@ -37378,7 +37611,7 @@
 	            {	
 	            	"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
 	            	"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_stat2"
-	            	"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_stat3"
+	            	//"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_stat3"
 	            }
 	        }
 	        "modifier_last_stand"
@@ -37617,6 +37850,11 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "50"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "25"
 	        }
 	    }
 
@@ -38342,6 +38580,11 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "40"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "10"
 	        }
 	    }
 
@@ -41362,6 +41605,11 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat4"    "5"
 	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat5"    "25"
+	        }
 	    }
 
 	    "Modifiers"
@@ -41943,6 +42191,11 @@
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "bonus_stat3"    "2"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "bonus_stat5"    "15"
 	        }
 	    }
 
@@ -49737,7 +49990,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "15"	// block amount
+	            "bonus_stat2"    "12"	// block amount
 	        }
 	        "02"
 	        {
@@ -49778,7 +50031,7 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
-	                 "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
+	                 //"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
 	            }
 	        }
 	    	"modifier_active2"
@@ -53901,12 +54154,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat4"    "5"
+	            "bonus_stat4"    "10"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "1"
+	            "bonus_stat3"    "3"
 	        }
 	    }
 
@@ -54478,7 +54731,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "20"
+	            "bonus_stat2"    "10"
 	        }
 	    }
 
@@ -54492,7 +54745,7 @@
 	            "Properties"
 	            {
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 			    {
@@ -54597,7 +54850,7 @@
 	            "Properties"
 	            {
 	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	                "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat2"
 	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_stat3"
 	            }
 	            "OnAttackLanded"
@@ -56751,7 +57004,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
+	                 //"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
 	            }
 	        } 
@@ -56826,7 +57079,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
+	                 //"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%bonus_stat2"
 	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
 	            }
 	        } 
@@ -60084,6 +60337,11 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "25"
 	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "10"
+	        }
 	    }
 
 	    "Modifiers"
@@ -62629,7 +62887,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "150"
+	            "bonus_stat1"    "50"
 	        }
 	    }
 
@@ -62647,7 +62905,49 @@
 	        } 
 	    }
 	}
+	"item_hpregen1" 
+	{
+	    "ID"           "4445"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_seeds_of_serenity"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "component"
 
+	    "ItemCost"     "1"
+	    "ItemKillable" "0"
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "1"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "0"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "3"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_hpreg1"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            //"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+	        } 
+	    }
+	}
 	"item_mana1" 
 	{
 	    "ID"           "1245"
@@ -62727,11 +63027,16 @@
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat1"    "50"
 	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "3"
+	        }
 	    }
 
 	    "Modifiers"
 	    {
-	        "modifier_item_dmg1"
+	        "modifier_item_mana2"
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1" 
@@ -62869,7 +63174,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "350"
+	            "bonus_stat1"    "250"
 	        }
 	    }
 
@@ -62883,6 +63188,48 @@
 	            {
 	                "MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_stat1"
 	            }
+	        } 
+	    }
+	}
+	"item_hpregen2" 
+	{
+	    "ID"           "4446"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_doubloon"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "common"
+
+	    "ItemCost"     "3"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "1"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "0"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "15"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_hpregen2"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
 	        } 
 	    }
 	}
@@ -66231,6 +66578,11 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat2"    "50"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "2"
 	        }
 	    }
 
