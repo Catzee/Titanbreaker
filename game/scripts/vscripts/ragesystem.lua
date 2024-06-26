@@ -86,7 +86,7 @@ function GetEnergyBonusFactor( event )
     energygain = energygain + 0.25
   end
   if hero:HasModifier("modifier_item_weapon7up5") then
-    energygain = energygain + 0.5
+    energygain = energygain + 0.3
   end
   if hero:HasModifier("modifier_eneriki") then
     energygain = energygain + 0.5

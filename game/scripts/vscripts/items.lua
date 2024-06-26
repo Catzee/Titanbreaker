@@ -6109,7 +6109,8 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		"item_chainlightning",
 		"item_active9up",
 		"item_activemage",
-		"item_wolf_belt"
+		"item_wolf_belt",
+		"item_aa_mana1"
 	}
 	items[4] = --epic <font color=\"#ff69b4\">
 	{
@@ -6211,7 +6212,8 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		"item_demonglaive",
 		"item_allstats5",
 		"item_bootsblood2",
-		"item_needleaa"
+		"item_needleaa",
+		"item_aa_mana3"
 	}
 	items[6] = 
 	{
@@ -6652,6 +6654,7 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		if (unit and unit.act and unit.act == 3) or always_show_boss_specific_drops then
 			table.insert(items[5], "item_endgame13")
 			table.insert(items[5], "item_silvermoon")
+			table.insert(items[7], "item_aa_mana4")
 			table.insert(items[7], "item_cd_43")
 			table.insert(items[12], "item_cd_43_2")
 			table.insert(items[10], "item_attackpoint2")
@@ -6701,6 +6704,7 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 		end
 		if (unit and unit.act and unit.act == 6) or always_show_boss_specific_drops then --mountain
 			table.insert(items[5], "item_endgame7")
+			table.insert(items[4], "item_aa_mana2")
 			table.insert(items[7], "item_cd_54")
 			table.insert(items[12], "item_cd_54_2")
 			table.insert(items[10], "item_longbow2")
@@ -6773,6 +6777,7 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 			
 		end
 		if (unit and unit.act and unit.act == 10) or always_show_boss_specific_drops then --invoker
+			table.insert(items[5], "item_aa_mana3")
 			table.insert(items[5], "item_hasteproc")
 			table.insert(items[5], "item_arcaneblaster")
 			table.insert(items[7], "item_cd_65")

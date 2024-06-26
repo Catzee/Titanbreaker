@@ -7899,7 +7899,7 @@
 
 	    "Modifiers"
 	    {
-	        "modifier_item_weapon7up6"
+	        "modifier_item_weapon7up3"
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1" 
@@ -7915,9 +7915,9 @@
 		            {
 		                "ScriptFile"    "game_mechanics.lua"
 		                "Function"  "AddHeroResource"
-		                "energy"	"10"
+		                "energy"	"6"
 		                "classfactor"	"1"
-		                "amount"		"12"
+		                "amount"		"6"
 		            }
 	            }
 	        } 
@@ -34155,6 +34155,282 @@
 	        } 
 	    }
 	}
+	"item_aa_mana1" 
+	{
+	    "ID"           "4449"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_ogre_seal_totem"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "rare"
+
+	    "ItemCost"     "4500"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "1"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "1"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "1"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "5"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_weapon7up3"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
+	            }
+	            "OnAttackLanded"
+	            {
+	            	"RunScript"
+		            {
+		                "ScriptFile"    "game_mechanics.lua"
+		                "Function"  "AddHeroResource"
+		                "energy"	"1"
+		                "classfactor"	"1"
+		                "amount"		"1"
+		            }
+	            }
+	        } 
+	    }
+	}
+	"item_aa_mana2" 
+	{
+	    "ID"           "4450"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_rod_of_atos"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "epic"
+
+	    "ItemCost"     "4000"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "1"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "3"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "3"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "10"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_weapon7up3"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
+	            }
+	            "OnAttackLanded"
+	            {
+	            	"RunScript"
+		            {
+		                "ScriptFile"    "game_mechanics.lua"
+		                "Function"  "AddHeroResource"
+		                "energy"	"2"
+		                "classfactor"	"1"
+		                "amount"		"2"
+		            }
+	            }
+	        } 
+	    }
+	}
+	"item_aa_mana3" 
+	{
+	    "ID"           "4451"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_angels_demise"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "artifact"
+
+	    "ItemCost"     "10500"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "1"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "5"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "5"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "15"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_weapon7up3"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
+	            }
+	            "OnAttackLanded"
+	            {
+	            	"RunScript"
+		            {
+		                "ScriptFile"    "game_mechanics.lua"
+		                "Function"  "AddHeroResource"
+		                "energy"	"3"
+		                "classfactor"	"1"
+		                "amount"		"3"
+		            }
+	            }
+	        } 
+	    }
+	}
+	"item_aa_mana4" 
+	{
+	    "ID"           "4452"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName" "item_kaya_and_sange"
+	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "artifact"
+
+	    "ItemCost"     "2000"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_NOT_SHAREABLE"
+
+	    "SideShop"     "0" 
+	    "SecretShop"   "1"
+
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat1"    "10"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "10"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "20"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	        "modifier_item_weapon7up3"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            "Properties"
+	            {
+	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
+	            }
+	            "OnAttackLanded"
+	            {
+	            	"RunScript"
+		            {
+		                "ScriptFile"    "game_mechanics.lua"
+		                "Function"  "AddHeroResource"
+		                "energy"	"4"
+		                "classfactor"	"1"
+		                "amount"		"4"
+		            }
+	            }
+	        } 
+	    }
+	}
 	"item_stormrider" 
 	{
 	    "ID"           "2190"
@@ -41690,7 +41966,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "1"
+	            "bonus_stat2"    "10"
 	        }
 	    }
 
@@ -45393,7 +45669,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "20"	//spelldamage
+	            "bonus_stat3"    "50"
 	        }
 	    }
 
@@ -45770,7 +46046,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "50"
 	        }
 	        "01"
 	        {
@@ -45821,7 +46097,7 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat1"
+	                 "MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat0"
 	            }
 	        }
@@ -52348,15 +52624,10 @@
 
 	    "AbilitySpecial"
 	    {
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "5"
-	        }
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "50"
+	            "bonus_stat2"    "75"
 	        }
 
 	    }
@@ -52369,7 +52640,6 @@
 	            "IsHidden" "1" 
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	        } 
@@ -53197,12 +53467,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "15"
-	        }
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "20"
+	            "bonus_stat3"    "50"
 	        }
 	    }
 
@@ -53217,7 +53482,6 @@
 	            {
 	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"   "%bonus_stat3"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"   "%bonus_stat2"
 	            }
 	            "OnAttackStart"
 			    {
@@ -53399,7 +53663,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "5"
+	            "bonus_stat2"    "10"
 	        }
 	        "01"
 	        {
@@ -53418,7 +53682,7 @@
 	            "Properties"
 	            {
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
-	            	"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	            	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 			    {
@@ -54480,7 +54744,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "25"
 	        }
 	        "01"
 	        {
@@ -54510,7 +54774,7 @@
 	            {
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
 	            	"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	            	"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	            	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 			    {
@@ -54622,7 +54886,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "5"
+	            "bonus_stat2"    "10"
 	        }
 	        "01"
 	        {
@@ -54646,7 +54910,7 @@
 	            "Properties"
 	            {
 	            	"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	            	"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	            	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	            "OnAttackLanded"
 			    {
@@ -56265,12 +56529,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
+	            "bonus_stat1"    "15"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "25"
 	        }
 	    }
 
@@ -56296,7 +56560,6 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat1"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_stat2"
 	            }
 	            "OnDealDamage"
 	            {
@@ -58838,12 +59101,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "3"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "4"
+	            "bonus_stat1"    "7"
 	        }
 	        "02"
 	        {
@@ -58862,7 +59120,6 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
 	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_stat3"
 	            }
 	        } 
@@ -59513,7 +59770,7 @@
 
 	    "Modifiers"
 	    {
-	        "modifier_item_bootsmana"
+	        "modifier_item_w7"
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1" 
@@ -59725,12 +59982,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "5"
+	            "bonus_stat1"    "3"
 	        }
-	        "02"
+	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "5"
+	            "bonus_stat2"    "25"
 	        }
 	    }
 
@@ -59744,7 +60001,7 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	        } 
 	    }
@@ -59801,15 +60058,10 @@
 
 	    "AbilitySpecial"
 	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "10"
-	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "30"
 	        }
 	        "02"
 	        {
@@ -59838,7 +60090,7 @@
 			    "Function"      "DamageUnit"
 			    "damage"			"0.0"
 			    "spelldamagefactor"	"0.0"
-			    "attributefactor"	"500"
+			    "includeauto"	"500"
 			}
 	    }
 
@@ -59851,7 +60103,6 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
 	            }
 	        } 
@@ -59921,7 +60172,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "15"
+	            "bonus_stat2"    "25"
 	        }
 	        "03"
 	        {
@@ -59958,7 +60209,7 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_stat3"
 	            }
 	        }
@@ -60033,7 +60284,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "35"
 	        }
 	    }
 
@@ -60047,7 +60298,7 @@
 	            "Properties"
 	            {
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat1"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
+	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat2"
 	            }
 	        } 
 	    }
@@ -60404,12 +60655,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "25"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "5"
+	            "bonus_stat1"    "50"
 	        }
 	    }
 
@@ -60423,7 +60669,6 @@
 	            "Properties"
 	            {
 	            	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat1"
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat2"
 	            }
 	        } 
 	    }
@@ -60640,12 +60885,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "35"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "5"
+	            "bonus_stat3"    "50"
 	        }
 	        "02"
 	        {
@@ -60688,7 +60928,6 @@
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
 	            	"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
 	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat4"
 	            }
 
 	            
@@ -60822,12 +61061,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "40"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "20"
+	            "bonus_stat3"    "75"
 	        }
 	        "02"
 	        {
@@ -60870,7 +61104,6 @@
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_stat1"
 	            	"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_stat2"
 	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_stat3"
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_stat4"
 	            }
 	        } 
 	        "modifier_item_lightbringer_proc"
@@ -63735,12 +63968,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
-	        }
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "50"
+	            "bonus_stat2"    "100"
 	        }
 	    }
 	    "Modifiers"
@@ -63752,7 +63980,6 @@
 	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 	            "Properties"
 	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_stat1"
 	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat2"
 	            }
 	        } 
@@ -64123,7 +64350,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "2"
+	            "bonus_stat1"    "1"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "25"
 	        }
 	    }
 
@@ -64137,6 +64369,7 @@
 	            "Properties"
 	            {
 	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat1"
+	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat2"
 	            }
 	        } 
 	    }
@@ -64267,7 +64500,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "2"
+	            "bonus_stat1"    "3"
 	        }
 	    }
 
@@ -64315,13 +64548,18 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "3"
+	            "bonus_stat1"    "1"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "25"
 	        }
 	    }
 
 	    "Modifiers"
 	    {
-	        "modifier_item_str1"
+	        "modifier_item_int3"
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1" 
@@ -64411,7 +64649,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "2"
+	            "bonus_stat1"    "3"
 	        }
 	    }
 
@@ -64459,7 +64697,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "3"
+	            "bonus_stat1"    "2"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat2"    "15"
 	        }
 	    }
 
@@ -64473,6 +64716,7 @@
 	            "Properties"
 	            {
 	                "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat1"
+	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat2"
 	            }
 	        } 
 	    }

@@ -16246,7 +16246,7 @@ end
             unit:SetForwardVector(Vector(1,0,0))
           end
 
-          if zone == 5 then
+          if zone == 5 then --dragons
             --                                                                   AVERAGE GOOD STATS ARE 200 dmg and 2000 life
             --scale = 6.0
             --scale = scale * (1 + 0.1 * (zone-1))
@@ -16508,7 +16508,7 @@ end
         end
 
 
-        if zone == 6 then
+        if zone == 6 then --mountain
           --                                                                   AVERAGE GOOD STATS ARE 200 dmg and 2000 life
           --scale = 12.5
           --scale = scale * (1 + 0.1 * (zone-1))

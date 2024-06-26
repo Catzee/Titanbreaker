@@ -691,12 +691,14 @@
 
 		"DOTA_Tooltip_Ability_item_str3"  "<font color=\"#32cd32\">Cleaver of Strength"  
 		"DOTA_Tooltip_Ability_item_str3_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_str3_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_agi1"  "Slippers of Agility"  
 		"DOTA_Tooltip_Ability_item_agi1_bonus_stat1"	"Agility: +"
 
 		"DOTA_Tooltip_Ability_item_agi2"  "<font color=\"#32cd32\">Band of Elvenskin"  
 		"DOTA_Tooltip_Ability_item_agi2_bonus_stat1"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_agi2_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_agi3"  "<font color=\"#32cd32\">Blade of Alacrity"  
 		"DOTA_Tooltip_Ability_item_agi3_bonus_stat1"	"Agility: +"
@@ -709,6 +711,7 @@
 
 		"DOTA_Tooltip_Ability_item_int3"  "<font color=\"#32cd32\">Staff of Wizardry"  
 		"DOTA_Tooltip_Ability_item_int3_bonus_stat1"	"Intellect: +"
+		"DOTA_Tooltip_Ability_item_int3_bonus_stat2"	"%Spellhaste: +"
 
 		"DOTA_Tooltip_Ability_item_all1"  "Circlet of Nobility"  
 		"DOTA_Tooltip_Ability_item_all1_bonus_stat1"	"All Attributes: +"
@@ -772,7 +775,6 @@
 
 		"DOTA_Tooltip_Ability_item_needle"  "<font color=\"#ff8c00\">Needle of the Night" 
 		//"DOTA_Tooltip_Ability_item_needle_Description"  "All threat generated is decreased by 30%%." 
-		"DOTA_Tooltip_Ability_item_needle_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_needle_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_needle2"  "<font color=\"#66ffff\">Needle of Blood" 
@@ -835,25 +837,23 @@
 
 		"DOTA_Tooltip_Ability_item_weapon1"  "<font color=\"#4D6BFF\">Sword of Vigor"  
 		"DOTA_Tooltip_Ability_item_weapon1_bonus_stat1"	"Strength: +"
-		"DOTA_Tooltip_Ability_item_weapon1_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weapon1_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7"  "<font color=\"#4D6BFF\">Mighty Reaver"  
 		"DOTA_Tooltip_Ability_item_weapon7_bonus_stat1"	"Strength: +"
 
 		"DOTA_Tooltip_Ability_item_weapon8"  "<font color=\"#4D6BFF\">Bow of the Eagle"  
 		"DOTA_Tooltip_Ability_item_weapon8_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_weapon8_bonus_stat2"	"Attack Damage: +"
 
 		"DOTA_Tooltip_Ability_item_weapon2"  "<font color=\"#4D6BFF\">Sword of Swiftness"  
 		"DOTA_Tooltip_Ability_item_weapon2_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_weapon2_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weapon2_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon3"  "<font color=\"#32cd32\">Notched Blade"  
 		"DOTA_Tooltip_Ability_item_weapon3_bonus_stat1"	"Attack Damage: +"
 
 		"DOTA_Tooltip_Ability_item_weapon4"  "<font color=\"#4D6BFF\">Quickstriking Dagger"  
 		"DOTA_Tooltip_Ability_item_weapon4_bonus_stat1"	"Attack Speed: +"
-		"DOTA_Tooltip_Ability_item_weapon4_bonus_stat2"	"Attack Damage: +"
 
 		
 
@@ -997,7 +997,6 @@
 		"DOTA_Tooltip_Ability_item_bootsblood2_Description"  "Auto Attacks have a 20%% chance to Critical Strike for 150%%."
 		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat1"	"Movement Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat3"	"Attack Speed: +"
-		"DOTA_Tooltip_Ability_item_bootsblood2_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_bootsblood2_Lore" "There will be more blood."
 		"DOTA_Tooltip_Ability_item_bootsblood3"  "<font color=\"#66ffff\">Reins of the Bloodsteed"  
 		"DOTA_Tooltip_Ability_item_bootsblood3_Description"  "Auto Attacks have a 15%% chance to Critical Strike for 300%%.\n<font color=\"#00ff00\">Mount: Gain 15%% increased Movement Speed while out of combat."
@@ -1030,7 +1029,6 @@
 
 		"DOTA_Tooltip_Ability_item_endgame6"  "<font color=\"#ff69b4\">Machete"  
 		//"DOTA_Tooltip_Ability_item_endgame6_Description"  "Passive: Successful Auto Attacks burn 8 of the target's Mana, dealing Shadow Damage equal to the amount of Mana burned.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
-		"DOTA_Tooltip_Ability_item_endgame6_bonus_stat1"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_endgame6_bonus_stat2"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_purgeblade"  "<font color=\"#ff8c00\">Catharsis"  
@@ -1069,7 +1067,7 @@
 		"DOTA_Tooltip_Ability_item_active5_Lore" "Once crafted by Zeus himself."
 
 		"DOTA_Tooltip_Ability_item_active5up"  "<font color=\"#ff69b4\">Fist of Thunder"  
-		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 25%% Spellhaste for 15 secs."
+		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 50%% Spellhaste for 15 secs."
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat2"	"Spellpower: +"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat3"	"%Spellhaste: "
@@ -1706,7 +1704,7 @@
 		
 		"DOTA_Tooltip_Ability_item_weapon40"  "<font color=\"#ff69b4\">Dashing Scimitar"
 		"DOTA_Tooltip_Ability_item_weapon40_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_weapon40_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weapon40_bonus_stat2"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_weapon40_bonus_stat3"	"%Movement Speed Bonus: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7up"  "<font color=\"#ff69b4\">Ragebite"  
@@ -1752,9 +1750,8 @@
 
 		"DOTA_Tooltip_Ability_item_nightblade"  "<font color=\"#4D6BFF\">Nightblade"  
 		"DOTA_Tooltip_Ability_item_nightblade_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_nightblade_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_nightblade_bonus_stat3"	"%Movement Speed: -"
-		//"DOTA_Tooltip_Ability_item_nightblade_lore"	"We must embrace pain and burn it as fuel for our journey."
+		"DOTA_Tooltip_Ability_item_nightblade_lore"	"In the dark... we hit hard."
 
 		"DOTA_Tooltip_modifier_active99"	"Taskmaster's Presence"
 		"DOTA_Tooltip_modifier_active99_Description"	"Summon Damage increased."
@@ -2287,23 +2284,23 @@
 		"DOTA_Tooltip_modifier_activewarrior_Description"	"Strength and Movement Speed increased."
 
 		"DOTA_Tooltip_Ability_item_weapon20"  "<font color=\"#4D6BFF\">Stormborn"  
-		"DOTA_Tooltip_Ability_item_weapon20_Description"  "+ 30%% Spellhaste"
+		"DOTA_Tooltip_Ability_item_weapon20_Description"  "+ 50%% Spellhaste"
 		"DOTA_Tooltip_Ability_item_weapon20_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_1"  "<font color=\"#ff8c00\">Cyclone's End"  
-		"DOTA_Tooltip_Ability_item_spellhaste_1_Description"  "+ 25%% Spellhaste\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
+		"DOTA_Tooltip_Ability_item_spellhaste_1_Description"  "+ 50%% Spellhaste\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
 		"DOTA_Tooltip_Ability_item_spellhaste_1_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_2"  "<font color=\"#ff8c00\">Tempest's End"  
-		"DOTA_Tooltip_Ability_item_spellhaste_2_Description"  "+ 50%% Spellhaste\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
+		"DOTA_Tooltip_Ability_item_spellhaste_2_Description"  "+ 100%% Spellhaste\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
 		"DOTA_Tooltip_Ability_item_spellhaste_2_bonus_stat1"	"Spellpower: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_3"  "<font color=\"#ff8c00\">Hurricane's End"  
-		"DOTA_Tooltip_Ability_item_spellhaste_3_Description"  "+ 75%% Spellhaste"
+		"DOTA_Tooltip_Ability_item_spellhaste_3_Description"  "+ 150%% Spellhaste"
 		"DOTA_Tooltip_Ability_item_spellhaste_3_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_spellhaste_3_bonus_stat2"	"Spellpower: +"
 		"DOTA_Tooltip_Ability_item_spellhaste_4"  "<font color=\"#66ffff\">Invocation, Bender of Time"  
-		"DOTA_Tooltip_Ability_item_spellhaste_4_Description"  "+ 75%% Spellhaste"
+		"DOTA_Tooltip_Ability_item_spellhaste_4_Description"  "+ 225%% Spellhaste"
 		"DOTA_Tooltip_Ability_item_spellhaste_4_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_shadowflame"  "<font color=\"#66ffff\">Shadowflame Fairy"  
 		"DOTA_Tooltip_Ability_item_shadowflame_Description"  "Increases all Shadow and Fire Damage by 25%%."
@@ -2338,12 +2335,11 @@
 		"DOTA_Tooltip_Ability_item_flamefury"  "<font color=\"#ff69b4\">Flamefury"  
 		"DOTA_Tooltip_Ability_item_flamefury_Description"  "Dealing damage with an ability will apply 1 stack of the Flamefury Buff, increasing Agility by 1. You can gather up to 10 stacks."  
 		"DOTA_Tooltip_Ability_item_flamefury_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_flamefury_bonus_stat2"	"Attack Damage: +"
 
 		"DOTA_Tooltip_Ability_item_arcaneblaster"  "<font color=\"#ff8c00\">Arcane Blaster"  
 		"DOTA_Tooltip_Ability_item_arcaneblaster_Description"  "Dealing damage has a 5%% chance to launch Arcane Arrows at all targets in a 250 area around the target, dealing 100%% of your Primary Attribute as Arcane Damage. 2.5 secs inner cooldown. \n\nDealing damage with an ability will apply 1 stack of the Flamefury Buff, increasing Agility by 1. You can gather up to 10 stacks."  
 		"DOTA_Tooltip_Ability_item_arcaneblaster_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_arcaneblaster_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_arcaneblaster_bonus_stat2"	"%Arcane Damage: +"
 
 		"DOTA_Tooltip_Ability_item_flyingdagger"  "<font color=\"#66ffff\">Flying Daggers"  
 		"DOTA_Tooltip_Ability_item_flyingdagger_Description"  "Dealing damage has a 5%% chance to throw Flying Daggers at all targets in a 250 area around the target, dealing Physical Damage. 0.1 secs inner cooldown."  
@@ -2380,8 +2376,7 @@
 
 
 		"DOTA_Tooltip_Ability_item_halberd"  "<font color=\"#ff69b4\">Halberd of Valor"
-		"DOTA_Tooltip_Ability_item_halberd_Description"	"Riposte: Strike the target, dealing 500%% of your primary Attribute as Physical Damage and disarming the target."  
-		"DOTA_Tooltip_Ability_item_halberd_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_halberd_Description"	"Riposte: Strike the target, dealing 500%% of your Attack Damage as Physical Damage and disarming the target."  
 		"DOTA_Tooltip_Ability_item_halberd_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_halberd_duration"	"Disarm Duration: "
 
@@ -2448,13 +2443,13 @@
 		"DOTA_Tooltip_Ability_item_weaponpoison"  "<font color=\"#32cd32\">Vipersting"
 		"DOTA_Tooltip_Ability_item_weaponpoison_Description"	"Successful Auto Attacks apply a crippling Viper Poison to the target, slowing their movement speed for 6 secs."  
 		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat1"	"Strength: +"
-		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat2"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison_bonus_stat3"	"%Slow: "
 
 		"DOTA_Tooltip_Ability_item_weaponpoison2"  "<font color=\"#32cd32\">Bloodpython"
 		"DOTA_Tooltip_Ability_item_weaponpoison2_Description"	"Successful Auto Attacks apply a crippling Python Poison to the target, reducing their Health Regeneration and reducing all Healing received for 6 secs."  
 		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat1"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat2"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat3"	"%Healing: "
 		"DOTA_Tooltip_Ability_item_weaponpoison2_bonus_stat4"	"Health Regeneration: "
 		"DOTA_Tooltip_Ability_item_weaponpoison2_lore"	"Red next to Yellow, kills a fellow."
@@ -2463,7 +2458,7 @@
 		"DOTA_Tooltip_Ability_item_weaponpoison3_Description"	"Successful Auto Attacks apply a crippling Cobra Poison to the target, slowing their movement and attack speed, reducing their Health Regeneration and reducing all Healing received for 6 secs."  
 		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat6"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat2"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat2"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat3"	"%Slow: "
 		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat4"	"%Healing: "
 		"DOTA_Tooltip_Ability_item_weaponpoison3_bonus_stat5"	"Health Regeneration: "
@@ -2884,7 +2879,7 @@
 		"DOTA_Tooltip_Ability_item_irontalon2"  "<font color=\"#ff69b4\">Bloodfang"  
 		"DOTA_Tooltip_Ability_item_irontalon2_Description"  "Iron Strike (750 range): Crush the target's Armor, lowering it by 3.\n\nPassively increase the Damage of your Ambush, Killing Dance, Dire Cut and Wild Fury by 15%%.\n" 
 		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat0"	"Agility: +"
-		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat1"	"Attack Damage: +"
+		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat1"	"Health: +"
 		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat2"	"Iron Strike Duration: "
 
 		"QuestTip"    "Press the info button on the left for game rules."
@@ -3035,7 +3030,7 @@
 		"DOTA_Tooltip_Ability_item_curseblade_bonus_stat3"	"Spellpower: +"
 
 		"DOTA_Tooltip_Ability_item_hasteproc"  "<font color=\"#ff8c00\">Arcane Stormfury"  
-		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "+ 25%% Spellhaste\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
+		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "+ 75%% Spellhaste\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat2"	"%Proc Spell Haste: "
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat3"	"%Proc Chance: "
@@ -3351,7 +3346,6 @@
 		"DOTA_Tooltip_Ability_item_lightbringer_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_lightbringer_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_lightbringer_bonus_stat3"	"Attack Speed: +"
-		"DOTA_Tooltip_Ability_item_lightbringer_bonus_stat4"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_lightbringer_bonus_stat5"	"Path of Light Duration: "
 		"DOTA_Tooltip_modifier_item_lightbringer_proc"	"Path of Light"
 		"DOTA_Tooltip_modifier_item_lightbringer_proc_Description"	"Removing Debuffs periodically."
@@ -3361,7 +3355,6 @@
 		"DOTA_Tooltip_Ability_item_holypike_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_holypike_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_holypike_bonus_stat3"	"Attack Speed: +"
-		"DOTA_Tooltip_Ability_item_holypike_bonus_stat4"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_holypike_bonus_stat5"	"Path of Light Duration: "
 
 		
@@ -5571,7 +5564,7 @@
 		"DOTA_Tooltip_modifier_immolation_dh"                                             "Fel Flames"
 
 		"DOTA_Tooltip_Ability_item_demonglaive"  "<font color=\"#ff8c00\">Demonglaive"  
-		"DOTA_Tooltip_Ability_item_demonglaive_Description"	"<h1>Rush of Blood</h1>Instantly restore 60 non-Mana Resource.\n\nWhile in Demon Form, generate 75 Felpower and 5%% of max health every 3 secs."
+		"DOTA_Tooltip_Ability_item_demonglaive_Description"	"<h1>Rush of Blood</h1>Instantly restore 60 non-Mana Resource.\n\nWhile in Demon Form, generate 75 Felpower and heal 5%% of max health every 3 secs."
 		"DOTA_Tooltip_Ability_item_demonglaive_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_demonglaive_bonus_stat5"	"%Chaos Damage: +"
 		"DOTA_Tooltip_Ability_item_demonglaive_bonus_stat3"	"Maximum Resource Bonus: +"
@@ -5746,8 +5739,32 @@
 		"DOTA_Tooltip_modifier_emperor_aura"                                               "United Empire"
 		"DOTA_Tooltip_modifier_emperor_aura_Description"                                   "Increasing nearby non-Hero Damage."
 
+		"DOTA_Tooltip_Ability_item_aa_mana1"  "<font color=\"#4D6BFF\">Assault Blade"  
+		"DOTA_Tooltip_Ability_item_aa_mana1_Description"  "Auto Attacks generate 1 Mana, 1 non-Mana Resource or 0.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat2"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat3"	"Attack Speed: +"
+
+		"DOTA_Tooltip_Ability_item_aa_mana2"  "<font color=\"#ff69b4\">Roaring Rod"  
+		"DOTA_Tooltip_Ability_item_aa_mana2_Description"  "Auto Attacks generate 2 Mana, 2 non-Mana Resource or 1 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat2"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat3"	"Attack Speed: +"
+
+		"DOTA_Tooltip_Ability_item_aa_mana3"  "<font color=\"#ff8c00\">Violet Blade"
+		"DOTA_Tooltip_Ability_item_aa_mana3_Description"  "Auto Attacks generate 3 Mana, 3 non-Mana Resource or 1.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat2"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat3"	"Attack Speed: +"
+
+		"DOTA_Tooltip_Ability_item_aa_mana4"  "<font color=\"#ff8c00\">[Ancient] Rainstorm"  
+		"DOTA_Tooltip_Ability_item_aa_mana4_Description"  "Auto Attacks generate 4 Mana, 4 non-Mana Resource or 2 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat1"	"Strength: +"
+		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat2"	"Agility: +"
+		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat3"	"Attack Speed: +"
+
 		"DOTA_Tooltip_Ability_item_weapon7up3"  "<font color=\"#66ffff\">Monsoon"  
-		"DOTA_Tooltip_Ability_item_weapon7up3_Description"  "Auto Attacks generate 6 Mana, 6 non-Mana Resource or 3 Rage for Brawlers.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_weapon7up3_Description"  "Auto Attacks generate 5 Mana, 5 non-Mana Resource or 2.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat3"	"Attack Speed: +"
@@ -6772,7 +6789,7 @@
 		"DOTA_Tooltip_ability_item_sandstorm2_bonus_stat3"                                 "%Fire Damage:"
 		"DOTA_Tooltip_ability_item_sandstorm2_dodge"                                       "%Dodge Aura:"
 		"DOTA_Tooltip_Ability_item_spellhaste_5"  "<font color=\"#00ffff\">[Ancient] Wizardstorm Helmet"  
-		"DOTA_Tooltip_Ability_item_spellhaste_5_Description"  "+ 100%% Spellhaste\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nSpells with cast time have 0.25 secs reduced base cast time."
+		"DOTA_Tooltip_Ability_item_spellhaste_5_Description"  "+ 300%% Spellhaste\n<font color=\"#FF6600\">Uniquely Equipped.</font>\nSpells with cast time have 0.25 secs reduced base cast time."
 		"DOTA_Tooltip_Ability_item_spellhaste_5_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_spellhaste_5_bonus_stat2"	"Armor: +"
 		"DOTA_Tooltip_ability_item_ancient_agi"                                           "<font color=\"#00ffff\">[Ancient] Runic Shoulders"
@@ -9675,13 +9692,13 @@
 		"DOTA_Tooltip_modifier_bat_1_wildg_Description"                                    ""
 		
 		"DOTA_Tooltip_Ability_item_weapon7up6"  "<font color=\"#7733ff\">[Mythical] Crystal Flow"  
-		"DOTA_Tooltip_Ability_item_weapon7up6_Description"  "Auto Attacks generate 12 Mana, 12 non-Mana Resource or 6 Rage for Brawlers.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_weapon7up6_Description"  "Auto Attacks generate 12 Mana, 12 non-Mana Resource or 6 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>"
 		"DOTA_Tooltip_Ability_item_weapon7up6_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_weapon7up6_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_weapon7up6_bonus_stat3"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7up5"  "<font color=\"#7733ff\">[Mythical] Rune Hammer"  
-		"DOTA_Tooltip_Ability_item_weapon7up5_Description"  "All non-Mana Resource generation is increased by 50%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_weapon7up5_Description"  "All non-Mana Resource generation is increased by 30%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_weapon7up5_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_weapon7up5_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_weapon7up5_bonus_stat3"	"Attack Damage: +"

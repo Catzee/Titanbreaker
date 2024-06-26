@@ -3470,9 +3470,18 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.chaosdmg and caster:HasModifier("modifier_item_ancient_dot") then
         value = value + 0.25
     end
-    if event.arcanedmg and caster:HasModifier("modifier_pathbuff_033") then
-        value = value + 0.25
+    if event.arcanedmg then
+        if caster:HasModifier("modifier_item_flamefury2") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_pathbuff_033") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_moonfall_aura") then
+            value = value + 0.5
+        end
     end
+    
     if event.shadowdmg and caster:HasModifier("modifier_item_ancient_dot") then
         value = value + 0.25
     end
@@ -3522,9 +3531,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         if caster:HasModifier("modifier_npc_dota_hero_windrunner2") and caster:HasModifier("modifier_fire_shots_jungle") then
             value = value + 0.002 * GetAgilityCustom(caster)
         end
-    end
-    if event.arcanedmg and caster:HasModifier("modifier_moonfall_aura") then
-        value = value + 0.5
     end
     if event.firedmg and (event.isaoe or event.isdot) and caster:HasModifier("modifier_firebow") then
         value = value + caster:GetPhysicalArmorValue(false) * 0.02
@@ -7919,22 +7925,19 @@ end
 function GetSpellhaste( caster, event )
     local speedbonus = 0
     local mods = caster:GetModifierCount()-1
-    for i=0, mods do
+    for i=0, mods do -- check here if the buff is not unique, for example like multiple items in inventory
         local name = caster:GetModifierNameByIndex(i)
-        if name == "modifier_itemhaste20" then
-            speedbonus = speedbonus + 0.3
-        end
-        if name == "modifier_item_active5up" then
-            speedbonus = speedbonus + 0.2
-        end
-        if name == "modifier_item_hasteproc" then
+        if name == "modifier_item_int3" then
             speedbonus = speedbonus + 0.25
         end
-        if name == "modifier_bloodlust_ele" then
-            speedbonus = speedbonus + 1
-        end
-        if name == "modifier_bloodlust_ele_monster" then
+        if name == "modifier_itemhaste20" then
             speedbonus = speedbonus + 0.5
+        end
+        if name == "modifier_item_active5up" then
+            speedbonus = speedbonus + 0.5
+        end
+        if name == "modifier_item_hasteproc" then
+            speedbonus = speedbonus + 0.75
         end
         if name == "modifier_activemage" then
             speedbonus = speedbonus + 0.25
@@ -7948,20 +7951,11 @@ function GetSpellhaste( caster, event )
         if name == "modifier_item_hunterbow2" then
             speedbonus = speedbonus + 0.5
         end
-        if name == "modifier_hasteproc25" then
-            speedbonus = speedbonus + 0.75
-        end
-        if name == "modifier_active5up_haste" then
-            speedbonus = speedbonus + 0.25
-        end
         if name == "modifier_item_spellhaste_2" then
-            speedbonus = speedbonus + 0.5
-        end
-        if name == "modifier_druid_ms" then
-            speedbonus = speedbonus + 0.25
+            speedbonus = speedbonus + 1
         end
         if name == "modifier_itemhaste50" then
-            speedbonus = speedbonus + 0.75
+            speedbonus = speedbonus + 1.5
         end
         if name == "modifier_spellhaste_50" then
             speedbonus = speedbonus + 1
@@ -7970,10 +7964,10 @@ function GetSpellhaste( caster, event )
             speedbonus = speedbonus + 1
         end
         if name == "modifier_itemhaste100" then
-            speedbonus = speedbonus + 0.75
+            speedbonus = speedbonus + 2.25
         end
         if name == "modifier_itemhaste100_2" then
-            speedbonus = speedbonus + 1
+            speedbonus = speedbonus + 3
         end
         if name == "modifier_as_aura_dragon" then
             speedbonus = speedbonus + 0.5
@@ -7981,23 +7975,8 @@ function GetSpellhaste( caster, event )
         if name == "modifier_item_bloodlust" then
             speedbonus = speedbonus + 0.75
         end
-        if name == "modifier_item_bloodlust_proc" then
-            speedbonus = speedbonus + 1
-        end
-        if name == "modifier_full_moon" then
-            speedbonus = speedbonus + 1
-        end
         if name == "modifier_item_bloodlust_2" then
             speedbonus = speedbonus + 1.5
-        end
-        if name == "modifier_item_bloodlust_proc_2" then
-            speedbonus = speedbonus + 2
-        end
-        if name == "modifier_element_fire" then
-            speedbonus = speedbonus + 0.5
-        end
-        if name == "modifier_divine_haste" then
-            speedbonus = speedbonus + 2
         end
         if name == "modifier_item_agihaste_2" or name == "modifier_item_agihaste" then
             speedbonus = speedbonus + 0.0075 * GetAgilityCustom(caster)
@@ -8008,11 +7987,9 @@ function GetSpellhaste( caster, event )
         if name == "modifier_whiterobe" then
             speedbonus = speedbonus + GetStrengthCustom(caster) / 200
         end
-        local keeper1_stacks = caster:GetModifierStackCount("modifier_keeper_spellhaste", nil)
-        if keeper1_stacks > 0 and name == "modifier_keeper_spellhaste" then
-            speedbonus = speedbonus + 0.15 * keeper1_stacks
-        end
     end
+
+    -- check here if buff is unique and can only be active once (checking here is more performant)
     local warlock_haste_talent = caster:FindAbilityByName("Fear_Warlock")
     if warlock_haste_talent and warlock_haste_talent:GetLevel() >= 3 then
         speedbonus = speedbonus + 0.25
@@ -8020,8 +7997,38 @@ function GetSpellhaste( caster, event )
     if (heroName == "npc_dota_hero_furion" and caster:GetAbilityByIndex(5):GetLevel() >= 4) then
         speedbonus = speedbonus + 1
     end
+    if caster:HasModifier("modifier_hasteproc25") then
+        speedbonus = speedbonus + 0.75
+    end
+    if caster:HasModifier("modifier_active5up_haste") then
+        speedbonus = speedbonus + 0.5
+    end
+    if caster:HasModifier("modifier_druid_ms") then
+        speedbonus = speedbonus + 0.25
+    end
+    if caster:HasModifier("modifier_full_moon") then
+        speedbonus = speedbonus + 1
+    end
+    if caster:HasModifier("modifier_divine_haste") then
+        speedbonus = speedbonus + 2
+    end
+    if caster:HasModifier("modifier_element_fire") then
+        speedbonus = speedbonus + 0.5
+    end
+    if caster:HasModifier("modifier_item_bloodlust_proc") then
+        speedbonus = speedbonus + 1
+    end
+    if caster:HasModifier("modifier_item_bloodlust_proc_2") then
+        speedbonus = speedbonus + 2
+    end
     if caster:HasModifier("modifier_bloodflow") then
         speedbonus = speedbonus + 2.5
+    end
+    if caster:HasModifier("modifier_bloodlust_ele") then
+        speedbonus = speedbonus + 1
+    end
+    if caster:HasModifier("modifier_bloodlust_ele_monster") then
+        speedbonus = speedbonus + 0.5
     end
     if caster:HasModifier("modifier_soulcoil_haste") then
         speedbonus = speedbonus + 0.75
