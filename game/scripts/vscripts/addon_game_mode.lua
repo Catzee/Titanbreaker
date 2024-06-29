@@ -2725,7 +2725,9 @@ function COverthrowGameMode:OnPlayerConnected(params)
     COverthrowGameMode:SendStashInfo(player, playerId)
     -- Update hero stats window values to match actual ones
     COverthrowGameMode:SendHeroStatsInfo(player, playerId)
-    
+    -- Restore auto sell stash
+    COverthrowGameMode:SendAutoSoldStashItems(player, playerId)
+
     -- Allows next reconnect requests spam
     COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
   end)

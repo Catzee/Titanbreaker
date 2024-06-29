@@ -7754,6 +7754,23 @@ function COverthrowGameMode:AddAutoSoldItemToStash(hero, lootQuality, spawnedIte
 	end
 end
 
+function COverthrowGameMode:SendAutoSoldStashItems(player, playerId)
+	if(COverthrowGameMode._autoSellStash == nil) then
+		return
+	end
+
+	if(COverthrowGameMode._autoSellStash[playerId] == nil) then
+		return
+	end
+
+	for key, itemData in pairs(COverthrowGameMode._autoSellStash[playerId]) do
+		CustomGameEventManager:Send_ServerToPlayer(player, "auto_sell_stash_item", {
+			key = key,
+			item = itemData
+		})
+	end
+end
+
 function COverthrowGameMode:BuyItemFromAutoSellStash(params)
 	local playerId = params["player_id"]
 	local player = PlayerResource:GetPlayer(playerId)
