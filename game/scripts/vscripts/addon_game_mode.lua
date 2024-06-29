@@ -2592,6 +2592,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
       CustomGameEventManager:RegisterListener( "pickupallitems", Dynamic_Wrap( COverthrowGameMode, 'TryPickupAllItems' ) )
       CustomGameEventManager:RegisterListener( "pingherolevel", Dynamic_Wrap( COverthrowGameMode, 'PingHeroLevel' ) )
+      CustomGameEventManager:RegisterListener( "buyautosellstashitem", Dynamic_Wrap( COverthrowGameMode, 'BuyItemFromAutoSellStash' ) )
 
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )

@@ -1785,9 +1785,16 @@
 					<Label text="Item name" style="vertical-align: center; color: white; font-size: 20px; margin-right: 10px;"/>
 					<TextEntry id="BlacksmithSearchBar"/>
 				</Panel>
-				<Panel class="" id="blacksmithItemsList"/>
+				<Panel id="blacksmithItemsList"/>
 			</Panel>
 		</Panel>	
+
+		<Panel class="Shop" hittest="false" id="autoSellStash" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
+			<Label class="ButtTextBigGold" text="Autosell items" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
+			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
+				<Panel id="autoSellItemsList"/>
+			</Panel>
+		</Panel>
 
 		<Panel class="Crafting" hittest="false" id="gambling" style="horizontal-align: left; height:100%; margin-top: 50px;">
 			<Panel  class="WeaponInventoryDisplay" >
@@ -3818,8 +3825,8 @@
 
 		</Panel>
 		<Panel class="WeaponList" hittest="false" id="WeaponListStart" style="z-index: -9000;">
-			<Panel class="AutoSellFiltersButton">
-				<Button id="LeaderboardButton123" class="Butt" onactivate="ToggleAutoSellFiltersVisibility()" onmouseover="DOTAShowTextTooltip('Lets you define auto sell for items that you don\'t need anymore. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()">	
+			<Panel class="AutoSellFiltersButtonsContainer">
+				<Button class="Butt" onactivate="ToggleAutoSellFiltersVisibility()" onmouseover="DOTAShowTextTooltip('Lets you define auto sell for items that you don\'t need anymore. Use left mouse button to move forward and right mouse button to move backward')" onmouseout="DOTAHideTextTooltip()">	
 					<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Show Auto Sell Filters"/>			
 				</Button>
 			</Panel>
@@ -3833,6 +3840,11 @@
 				<Button id="QuestlogButton5" class="Butt" onactivate="SetAutoSellSpecial(true)" oncontextmenu="SetAutoSellSpecial(false)">	
 					<Label class="ButtText AutoSellFilterLabel" id="autoselltext3" text="Don't Auto Sell Souls and Temple Shard" />			
 				</Button>
+				<Panel class="AutoSellFiltersButtonsContainer">
+					<Button class="Butt" onactivate="ToggleAutoSellStash()" onmouseover="DOTAShowTextTooltip('Here you can buy back auto sold items if you wish')" onmouseout="DOTAHideTextTooltip()">	
+						<Label id="ShowAutoSellFiltersButtonLabel" class="ButtText" text="Restore Auto Sell Items"/>			
+					</Button>
+				</Panel>
 			</Panel>
 		</Panel>
 		<Panel class="MonsterSpellcastList" hittest="false" id="monsterspells">

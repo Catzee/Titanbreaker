@@ -1563,7 +1563,8 @@
 	max-width: 1350px;
 	max-height: 700px;
 }
-.AutoSellFiltersButton
+
+.AutoSellFiltersButtonsContainer
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
 	box-shadow: inset white 1px 1px 1px 1px;
@@ -1571,19 +1572,17 @@
 	horizontal-align: right;
 }
 
-.AutoSellFiltersButton:hover
+#autoSellItemsList
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
-}
-
-.AutoSellFiltersButton:hover
-{
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
-}
-
-.AutoSellFiltersButton:hover
-{
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #009900 ), to( #003300 ) );
+	flow-children: right-wrap;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-top: 20px;
+	margin-right: 4px;
+	overflow: scroll;
+	width: 1350px;
+	height: 700px;
+	horizontal-align: center;
 }
 
 #AutoSellFiltersContainer
