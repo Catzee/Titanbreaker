@@ -173,6 +173,7 @@ function shadow5:OnProjectileHit(target, location)
         caster = self:GetCaster(),
         target = target,
         damage = 0,
+        ability = self,
         spelldamagefactor = self:GetSpecialValueFor("spelldmg"),
         attributefactor = self:GetSpecialValueFor("dmgfromstat"),
         shadowdmg = 1,
