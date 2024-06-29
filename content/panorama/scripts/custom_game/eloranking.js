@@ -2055,6 +2055,7 @@ function OnAutoSellStashItemBought(args)
 {
     if(autoSellItemsPanels[args.key] != undefined) {
         autoSellItemsPanels[args.key].DeleteAsync(0);
+        autoSellItemsPanels[args.key] = undefined;
     }
 }
 

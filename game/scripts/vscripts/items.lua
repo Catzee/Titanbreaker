@@ -7801,7 +7801,7 @@ function COverthrowGameMode:BuyItemFromAutoSellStash(params)
 	  return
 	end
 
-    if hero:IsHero() and hero:IsAlive() then
+    if hero:IsHero() then
         local cost = COverthrowGameMode._autoSellStash[playerId][key].gold
         if TryPayGold(hero, cost) then
 			local itemname = COverthrowGameMode._autoSellStash[playerId][key].itemName
