@@ -10778,6 +10778,8 @@
 		"DOTA_Tooltip_modifier_savagery_Description"                              " "
 		"DOTA_Tooltip_modifier_typhoon"                              	  		  "Typhoon Thunder"
 		"DOTA_Tooltip_modifier_typhoon_Description"                               " "
+		"DOTA_Tooltip_modifier_darts"                              	  		      "Poison Darts"
+		"DOTA_Tooltip_modifier_darts_Description"                                 " "
 
 		"temple_wolf_bat"                                                             "Bloodwolf Bat"
 		"temple_shadow_hound"                                                             "Hell Hound"
