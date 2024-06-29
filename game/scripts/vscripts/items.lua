@@ -7370,8 +7370,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						end
 						
 						--autosell feature
-						local isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)
-						if hero and isAutoSell then
+						if hero and COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem) then
 							itemdrop = false
 							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, spawnedItem, false)
 						end
@@ -7537,9 +7536,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									end
 
 									-- Auto sell dropped and rerolled artifacts if required
-									isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)
-									if(drop_type == 1) then
-										if(isAutoSell and normal_drop) then
+									if(normal_drop and not item) then
+										if(COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)) then
 											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, spawnedItem, true)
 										else
 											self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
