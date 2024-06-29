@@ -2022,7 +2022,7 @@ function BuyNormalItem(item, rarity){
 let autoSellItemsContainer = $("#autoSellItemsList");
 let autoSellItemsPanels = {};
 
-// Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
+// Fix for tools mode (removes auto sell stash items on every panorama reload to prevent out of memory)
 if(Game.IsInToolsMode())
 {
     autoSellItemsContainer.RemoveAndDeleteChildren();
