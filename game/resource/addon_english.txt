@@ -10780,6 +10780,8 @@
 		"DOTA_Tooltip_modifier_typhoon_Description"                               " "
 		"DOTA_Tooltip_modifier_darts"                              	  		      "Poison Darts"
 		"DOTA_Tooltip_modifier_darts_Description"                                 " "
+		"DOTA_Tooltip_modifier_talent_flurry"                              	  	  "Flurry"
+		"DOTA_Tooltip_modifier_talent_flurry_Description"                         " "
 
 		"temple_wolf_bat"                                                             "Bloodwolf Bat"
 		"temple_shadow_hound"                                                             "Hell Hound"

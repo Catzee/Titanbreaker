@@ -71789,6 +71789,15 @@
 					}
         		}
         	}
+        	"modifier_talent_flurry"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsBuff"			"1"
+        		"IsDebuff"			"0"
+        		"IsPurgable"		"0"
+        		"TextureName"		"fix/164"
+        	}
         	"modifier_talent_tunnel"
         	{
         		"Passive"			"0"
