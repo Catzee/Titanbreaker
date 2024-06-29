@@ -1790,7 +1790,7 @@
 		</Panel>	
 
 		<Panel class="Shop" hittest="false" id="autoSellStash" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
-			<Label class="ButtTextBigGold" text="Autosell items" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
+			<Label class="ButtTextBigGold" text="Autosell Items" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
 				<Panel id="autoSellItemsList"/>
 			</Panel>
