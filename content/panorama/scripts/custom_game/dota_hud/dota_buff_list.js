@@ -13,47 +13,54 @@ function GetLocalPlayerSelectedUnit() {
 
 function UpdateBuffs(panel, isBuffs)
 {
-    let selectedUnit = GetLocalPlayerSelectedUnit();
-    let buffSerialsToUse = [];
-
-    for(let i = 0; i <= Entities.GetNumBuffs(selectedUnit); i++)
+    // No idea why it may rarely fail and throw exception (hopefully its one time bug and try catch will fix that)
+    try
     {
-        let buffSerial = Entities.GetBuff(selectedUnit, i);
-
-        if(buffSerial < 0) {
-            break;
-        }
-
-        let isSkip = Buffs.IsDebuff(selectedUnit, buffSerial) == isBuffs;
-
-        if(isSkip) {
-            continue;
-        }
-
-        let isHidden = Buffs.IsHidden(selectedUnit, buffSerial);
-
-        if(isHidden) {
-            continue;
-        }
-
-        let modifierName = Buffs.GetName(selectedUnit, buffSerial);
-        let isBrokenModifier = modifierName == undefined || modifierName.length < 1;
-
-        if(isBrokenModifier) {
-            continue;
-        }
-
-        buffSerialsToUse.push(buffSerial);
-    }
+        let selectedUnit = GetLocalPlayerSelectedUnit();
+        let buffSerialsToUse = [];
     
-    for(let i = 0; i < BUFF_LIST_INITIAL_CHILDRENS; i++) {
-        if(buffSerialsToUse[i] != undefined) {
-            panel._childrens[i].SetHasClass("Hidden", false);
-            UpdateBuffPanel(panel._childrens[i], selectedUnit, buffSerialsToUse[i]);
-        } else
+        for(let i = 0; i <= Entities.GetNumBuffs(selectedUnit); i++)
         {
-            panel._childrens[i].SetHasClass("Hidden", true);
+            let buffSerial = Entities.GetBuff(selectedUnit, i);
+    
+            if(buffSerial < 0) {
+                break;
+            }
+    
+            let isSkip = Buffs.IsDebuff(selectedUnit, buffSerial) == isBuffs;
+    
+            if(isSkip) {
+                continue;
+            }
+    
+            let isHidden = Buffs.IsHidden(selectedUnit, buffSerial);
+    
+            if(isHidden) {
+                continue;
+            }
+    
+            let modifierName = Buffs.GetName(selectedUnit, buffSerial);
+            let isBrokenModifier = modifierName == undefined || modifierName.length < 1;
+    
+            if(isBrokenModifier) {
+                continue;
+            }
+    
+            buffSerialsToUse.push(buffSerial);
         }
+        
+        for(let i = 0; i < BUFF_LIST_INITIAL_CHILDRENS; i++) {
+            if(buffSerialsToUse[i] != undefined) {
+                panel._childrens[i].SetHasClass("Hidden", false);
+                UpdateBuffPanel(panel._childrens[i], selectedUnit, buffSerialsToUse[i]);
+            } else
+            {
+                panel._childrens[i].SetHasClass("Hidden", true);
+            }
+        }
+    } catch (e)
+    {
+        $.Msg(e);
     }
 
     $.Schedule(BUFF_LIST_TICKRATE, function() {
