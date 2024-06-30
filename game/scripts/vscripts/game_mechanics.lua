@@ -5156,7 +5156,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
         end
-        if caster.flurryDmg and caster.flurryDmg > 0 then
+        if caster:HasModifier("modifier_talent_flurry") then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[164])
         end
         if caster.spearspeed then
@@ -30025,13 +30025,7 @@ function CheckForFlurryProc(event)
     end
 
     -- dmg proc
-    if not caster.flurryDmg then
-        caster.flurryDmg = 0
-    end
-    caster.flurryDmg = caster.flurryDmg + 1
-    Timers:CreateTimer(2, function()
-        caster.flurryDmg = caster.flurryDmg - 1
-    end)
+    ApplyBuff({ caster = caster, target = caster, dur = 2, buff = "modifier_talent_flurry", ability = caster.combat_system_ability})
 
     local castCount = 2
 

@@ -7375,10 +7375,9 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						end
 						
 						--autosell feature
-						local isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
-						if hero and isAutoSell then
+						if hero and COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem) then
 							itemdrop = false
-							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, artifact)
+							COverthrowGameMode:AutoSellTempleItem(hero, lootquality, spawnedItem, false)
 						end
 
 						--boss kill, update kill stats, update quests,  heal and screen sparks
@@ -7542,10 +7541,9 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									end
 
 									-- Auto sell dropped and rerolled artifacts if required
-									isAutoSell = COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, true, false)
-									if(drop_type == 1) then
-										if(isAutoSell) then
-											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, true)
+									if(normal_drop and not item) then
+										if(COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)) then
+											COverthrowGameMode:AutoSellTempleItem(hero, lootquality, spawnedItem, true)
 										else
 											self:CreateMythicWeapon(hero, spawnedItem, false, 0, 0 ,0, normal_drop)
 										end
@@ -7607,36 +7605,57 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 	end
 end
 
-function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem, artifact, itemdrop)
+function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)
+	local itemdrop = string.sub(spawnedItem, 1, string.len("item_")) == "item_"
+	local artifact = true
+
+	if(itemdrop == true) then
+		artifact = false
+	end
+
+	local autoSellItems = hero.autosell
+	if(autoSellItems == nil) then
+		autoSellItems = 0
+	end
+
+	local autoSellArti = hero.autosellArti
+	if(autoSellArti == nil) then
+		autoSellArti = 0
+	end
+
+	local autoSellSpecial = hero.autosellSpecial
+	if(autoSellSpecial == nil) then
+		autoSellSpecial = 0
+	end
+
 	if(artifact) then
 		-- Auto Sell: Epic Artifacts and below
-		if(hero.autosellArti == 2) then
+		if(autoSellArti == 2) then
 			isAutoSell = lootquality <= 4
 		end
 		-- Auto Sell: Legendary Artifacts and below
-		if(hero.autosellArti == 4) then
+		if(autoSellArti == 4) then
 			isAutoSell = lootquality <= 5
 		end
 		-- Auto Sell: Immortal Artifacts and below
-		if(hero.autosellArti == 6) then
+		if(autoSellArti == 6) then
 			isAutoSell = lootquality <= 6
 		end
 		-- Auto Sell: Divine Artifacts and below
-		if(hero.autosellArti == 8) then
+		if(autoSellArti == 8) then
 			isAutoSell = lootquality <= 7
 		end
 		-- Auto Sell: Mythical Artifacts and below
-		if(hero.autosellArti == 10) then
+		if(autoSellArti == 10) then
 			isAutoSell = lootquality <= 8
 		end
 	else
 		if(itemdrop) then
-			local specialItemsFilter = hero.autosellSpecial and hero.autosellSpecial or 0
 			local isSoulDrop = string.sub(spawnedItem, 1, string.len("item_mastery_")) == "item_mastery_"
 
 			-- Don't Auto Sell Souls and Temple Shard
 			local isSoulProtected = true
-			if(isSoulDrop and (specialItemsFilter == 0 or specialItemsFilter == 2)) then
+			if(isSoulDrop and (autoSellSpecial == 0 or autoSellSpecial == 2)) then
 				isSoulProtected = false
 			end
 
@@ -7651,35 +7670,35 @@ function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedIt
 			local isSpecialItemProtected = isSoulProtected and isTempleShardProtected
 
 			-- Auto Sell: Common Items and below
-			if(hero.autosell == 2) then
+			if(autoSellItems == 2) then
 				isAutoSell = lootquality <= 1 and isSpecialItemProtected
 			end
 			-- Auto Sell: Uncommon Items and below
-			if(hero.autosell == 4) then
+			if(autoSellItems == 4) then
 				isAutoSell = lootquality <= 2 and isSpecialItemProtected
 			end
 			-- Auto Sell: Rare Items and below
-			if(hero.autosell == 6) then
+			if(autoSellItems == 6) then
 				isAutoSell = lootquality <= 3 and isSpecialItemProtected
 			end
 			-- Auto Sell: Epic Items and below
-			if(hero.autosell == 8) then
+			if(autoSellItems == 8) then
 				isAutoSell = lootquality <= 4 and isSpecialItemProtected
 			end
 			-- Auto Sell: Legendary Items and below
-			if(hero.autosell == 10) then
+			if(autoSellItems == 10) then
 				isAutoSell = lootquality <= 5 and isSpecialItemProtected
 			end
 			-- Auto Sell: Immortal Items and below
-			if(hero.autosell == 12) then
+			if(autoSellItems == 12) then
 				isAutoSell = lootquality <= 6 and isSpecialItemProtected
 			end
 			-- Auto Sell: Divine Items and below
-			if(hero.autosell == 14) then
+			if(autoSellItems == 14) then
 				isAutoSell = lootquality <= 7 and isSpecialItemProtected
 			end
 			-- Auto Sell: Mythical Items and below
-			if(hero.autosell == 16) then
+			if(autoSellItems == 16) then
 				isAutoSell = lootquality <= 8 and isSpecialItemProtected
 			end
 		end
@@ -7688,7 +7707,7 @@ function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedIt
 	return isAutoSell
 end
 
-function COverthrowGameMode:AutoSellTempleItem(hero, lootQuality, isArtifact)
+function COverthrowGameMode:AutoSellTempleItem(hero, lootQuality, spawnedItem, isArtifact)
 	local gold = GetSellValueByItemLevel(lootQuality)
 
 	if(isArtifact) then
@@ -7702,6 +7721,112 @@ function COverthrowGameMode:AutoSellTempleItem(hero, lootQuality, isArtifact)
 	--hero:SetGold(hero:GetGold()+gold, true)
 	--hero:SetGold(0, false)
 	AddGold(hero, gold)
+
+	-- Artifacts not supported for now
+	if(isArtifact == false) then
+		COverthrowGameMode:AddAutoSoldItemToStash(hero, lootQuality, spawnedItem, gold)
+	end
+end
+
+function COverthrowGameMode:AddAutoSoldItemToStash(hero, lootQuality, spawnedItem, gold)
+	local playerId = hero:GetPlayerID()
+
+	if(COverthrowGameMode._autoSellStash == nil) then
+		COverthrowGameMode._autoSellStash = {}
+	end
+
+	if(COverthrowGameMode._autoSellStash[playerId] == nil) then
+		COverthrowGameMode._autoSellStash[playerId] = {}
+	end
+
+	-- I hope that "Generate a string guaranteed to be unique across the life of the script VM" will be really unique
+	local key = DoUniqueString(tostring(playerId).."_autoSellStash")
+	COverthrowGameMode._autoSellStash[playerId][key] = {
+		itemName = spawnedItem,
+		gold = gold
+	}
+
+	-- Check for disconnected guys
+	local player = PlayerResource:GetPlayer(playerId)
+
+	if(player ~= nil) then
+		CustomGameEventManager:Send_ServerToPlayer(player, "auto_sell_stash_item", {
+			key = key,
+			item = COverthrowGameMode._autoSellStash[playerId][key]
+		})
+	end
+end
+
+function COverthrowGameMode:SendAutoSoldStashItems(player, playerId)
+	if(COverthrowGameMode._autoSellStash == nil) then
+		return
+	end
+
+	if(COverthrowGameMode._autoSellStash[playerId] == nil) then
+		return
+	end
+
+	for key, itemData in pairs(COverthrowGameMode._autoSellStash[playerId]) do
+		CustomGameEventManager:Send_ServerToPlayer(player, "auto_sell_stash_item", {
+			key = key,
+			item = itemData
+		})
+	end
+end
+
+function COverthrowGameMode:BuyItemFromAutoSellStash(params)
+	local playerId = params["player_id"]
+	local player = PlayerResource:GetPlayer(playerId)
+  
+	-- Disconnected player or broken request
+	if(player == nil) then
+	  return
+	end
+  
+	local key = params["key"]
+
+	if(COverthrowGameMode._autoSellStash == nil) then
+		Notifications:Bottom(playerId, {text="Can't find auto sell stash. Report this please.", duration=5, style={color="red"}})
+		return
+	end
+
+	if(COverthrowGameMode._autoSellStash[playerId] == nil) then
+		Notifications:Bottom(playerId, {text="Can't find auto sell stash for this player. Report this please.", duration=5, style={color="red"}})
+		return
+	end
+
+	if(COverthrowGameMode._autoSellStash[playerId][key] == nil) then
+		Notifications:Bottom(playerId, {text="Can't find item in auto sell stash. Report this please.", duration=5, style={color="red"}})
+		return
+	end
+
+	local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+  
+	if(hero == nil) then
+	  return
+	end
+
+    if hero:IsHero() then
+        local cost = COverthrowGameMode._autoSellStash[playerId][key].gold
+        if TryPayGold(hero, cost) then
+			local itemname = COverthrowGameMode._autoSellStash[playerId][key].itemName
+            local spot = hero:GetAbsOrigin() + Vector(0,-65,0)
+            local item = CreateItem(itemname, hero, hero)
+			item.isItemDroppedThisSession = true
+            local item2 = CreateItemOnPositionSync(spot, item)
+            local particle3 = ParticleManager:CreateParticle( "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_CUSTOMORIGIN, hero)
+            ParticleManager:SetParticleControl(particle3, 1, spot)
+            ParticleManager:ReleaseParticleIndex(particle3)
+            EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
+            Notifications:Bottom(playerId, {text="Item Purchased!", duration=5, style={color="yellow"}})
+
+			CustomGameEventManager:Send_ServerToPlayer(player, "buyautosellstashitemresponse", {
+				key = key
+			})
+        else
+            Notifications:Bottom(playerId, {text="Not enough Gold!", duration=5, style={color="red"}})
+        end
+    end
 end
 
 function COverthrowGameMode:ThunderEffectAndSound(hero)

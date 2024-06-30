@@ -159,6 +159,10 @@ function ToggleBlacksmith() {
     $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
 }
 
+function ToggleAutoSellStash() {
+    $.FindChildInContext("#autoSellStash").visible = !$.FindChildInContext("#autoSellStash").visible;
+}
+
 function ToggleRewards() {
     if (!rewardsvisible){
         rewardsvisible = true;
@@ -1934,7 +1938,7 @@ var blacksmithFilterStarted = false;
 // Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
 if(Game.IsInToolsMode())
 {
-    blacksmithItemsContainer.RemoveAndDeleteChildren()
+    blacksmithItemsContainer.RemoveAndDeleteChildren();
 }
 
 function AddItemsToShop(args){
@@ -2013,6 +2017,46 @@ function AddItemToShop(args){
 
 function BuyNormalItem(item, rarity){
     GameEvents.SendCustomGameEventToServer( "buynormalitem", { "player_id": Players.GetLocalPlayer(), "item": item, "rarity": rarity } );
+}
+
+let autoSellItemsContainer = $("#autoSellItemsList");
+let autoSellItemsPanels = {};
+
+// Fix for tools mode (removes auto sell stash items on every panorama reload to prevent out of memory)
+if(Game.IsInToolsMode())
+{
+    autoSellItemsContainer.RemoveAndDeleteChildren();
+}
+
+function OnAutoSellStashItem(args)
+{
+    var itemPanel = $.CreatePanel('Panel', autoSellItemsContainer, '');
+    itemPanel.BLoadLayoutSnippet("BlacksmithItem");
+
+    let itemIcon = itemPanel.FindChildTraverse("itemIcon");
+    itemIcon.itemname = args.item.itemName;
+
+    let itemPrice = itemPanel.FindChildTraverse("itemPriceLabel");
+    itemPrice.text = args.item.gold;
+
+    let itemButton = itemPanel.FindChildTraverse("buyButton");
+    itemButton.SetPanelEvent(
+        "onmouseactivate", 
+        function()
+        {
+            GameEvents.SendCustomGameEventToServer("buyautosellstashitem", { "player_id": Players.GetLocalPlayer(), "key": args.key } );
+        }
+    )
+
+    autoSellItemsPanels[args.key] = itemPanel;
+}
+
+function OnAutoSellStashItemBought(args)
+{
+    if(autoSellItemsPanels[args.key] != undefined) {
+        autoSellItemsPanels[args.key].DeleteAsync(0);
+        autoSellItemsPanels[args.key] = undefined;
+    }
 }
 
 function AdditemToActEnterMsg(args){
@@ -4776,6 +4820,8 @@ function OnHeroStatsValuesResponse(args)
     GameEvents.Subscribe("getautosellresponse", OnAutoSellFiltersResponse);
     GameEvents.Subscribe("getleaderboardresponse", OnLeaderboardResponseFromServer);
     GameEvents.Subscribe("getherostatsvaluesresponse", OnHeroStatsValuesResponse);
+    GameEvents.Subscribe("auto_sell_stash_item", OnAutoSellStashItem);
+    GameEvents.Subscribe("buyautosellstashitemresponse", OnAutoSellStashItemBought);
 
     //Game.AddCommand( "+UPressed", ToggleInventory, "", 0 );
     //Game.AddCommand( "+OPressed", ToggleTalentTree, "", 0 );
@@ -4895,6 +4941,7 @@ function OnHeroStatsValuesResponse(args)
     $.FindChildInContext("#rewards").visible = false;
     $.FindChildInContext("#loottable").visible = false;
     $.FindChildInContext("#selectdiffipanel").visible = false;
+    $.FindChildInContext("#autoSellStash").visible = false;
     //$.FindChildInContext("#StatBranchBG").visible = false;
     //$("#StatBranch").visible = false;
         

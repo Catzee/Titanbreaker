@@ -3,7 +3,7 @@ modifier_shadow_cleric_shadow_prayer_pain_debuff = class({
         return false 
     end,
 	IsPurgable = function() 
-        return false 
+        return true 
     end,
     IsDebuff = function()
 		return true
