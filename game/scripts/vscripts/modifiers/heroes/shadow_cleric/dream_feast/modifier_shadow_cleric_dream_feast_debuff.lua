@@ -3,7 +3,7 @@ modifier_shadow_cleric_dream_feast_debuff = class({
         return false 
     end,
 	IsPurgable = function() 
-        return false 
+        return true 
     end,
     IsDebuff = function()
 		return true
