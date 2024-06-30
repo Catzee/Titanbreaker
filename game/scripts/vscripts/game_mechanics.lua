@@ -2967,7 +2967,17 @@ function DamageUnit( event )
         if math.random(1,100) <= spellCleaveChance then
             SpellCleaveProc(damage_table)
         else
-            ApplyDamage(damage_table)
+            -- stagger?
+            if HasStaggerEffect(target) then
+                Timers:CreateTimer(3,function()
+                    if target and not target:IsNull() and target:IsAlive() then
+                        damage_table.damage = damage_table.damage * GetStaggerDamageFactor(target)
+                        ApplyDamage(damage_table)
+                    end
+                end)
+            else
+                ApplyDamage(damage_table)
+            end
         end
 
         --extra hit procs
@@ -6370,7 +6380,7 @@ function ApplyBuffAOE( event )
 	if event.friend then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-
+    print("asdff")
 	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 
 	if #enemies > 0 then
@@ -21454,7 +21464,7 @@ function PassiveStatCalculation(event)
     local buff = "modifier_spellres"
     hero:RemoveModifierByName(buff)
     local value1 = 0
-    if hero.talents[23] >= 1 then
+    if hero.talents[27] >= 1 then
         value1 = 5 + hero.talents[23] * 5
     end
     if value1 > 75 then
@@ -30493,4 +30503,132 @@ function GetDamageEscalation(caster)
         return caster.damageEscalation
     end
     return 1
+end
+
+function CastBrew4(event)
+    local caster = event.caster
+    caster:SetModelScale(0.001)
+
+    
+    --event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_pangolier_gyroshell", {Duration = event.duration})
+    --event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_pangolier_gyroshell_ricochet", {Duration = event.duration})
+    
+
+    local duration = event.duration
+    local tickPerSec = 30
+    local totalTicks = duration * tickPerSec
+    local durationPerTick = duration / totalTicks
+    local force = event.force * 2 / tickPerSec
+    local startForward = caster:GetForwardVector()
+    local forceEvent = {caster = caster, fixedforce = 300, charge = 1, notarget = 100, friction = 0}
+    for i=1, totalTicks do
+        Timers:CreateTimer(durationPerTick * i, function()
+            --local forward = caster:GetForwardVector()
+            --local newForward = (lastForward + forward) / 2
+            --caster:SetForwardVector(lastForward)
+            --lastForward = newForward
+            --caster:SetAbsOrigin(caster:GetAbsOrigin() + newForward * force)
+
+
+            --KnockBack(forceEvent)
+
+            local order = 
+            {
+                UnitIndex = caster:entindex(),
+                OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+                Position = caster:GetAbsOrigin() + startForward * 200,
+                Queue = false
+            }
+            ExecuteOrderFromTable(order)
+        end)
+    end
+end
+
+function Brew4FireTick(event)
+    local caster = event.caster
+    local ability = event.ability
+    if ability:GetLevel() >= 3 then
+        local pos = caster:GetAbsOrigin()
+        local forward = caster:GetForwardVector()
+        local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}}
+        CastBrew1(bofEvent)
+    end
+end
+
+function EndBrew4(event)
+    local caster = event.caster
+    caster:SetModelScale(1)
+end
+
+function CastBrew1(event)
+    local caster = event.caster
+    local ability = event.ability
+    local spawnPoint = caster:GetAbsOrigin()
+    if event.spawnPoint then
+        spawnPoint = event.spawnPoint
+    end
+    local direction = (event.target_points[1] - caster:GetAbsOrigin()):Normalized()
+
+    local info = 
+    {
+        Ability = ability,
+        EffectName = "particles/lina_spell_dragon_slave_brew.vpcf",
+        vSpawnOrigin = caster:GetAbsOrigin()+Vector(0,0,75),
+        fDistance = 350,
+        fStartRadius = 100,
+        fEndRadius = 200,
+        Source = caster,
+        bHasFrontalCone = true,
+        bReplaceExisting = false,
+        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+        iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+        iUnitTargetType = DOTA_UNIT_TARGET_BASIC,
+        fExpireTime = GameRules:GetGameTime() + 3,
+        bDeleteOnHit = false,
+        vVelocity = 650 * direction,
+        bProvidesVision = true,
+        iVisionRadius = 300,
+        iVisionTeamNumber = caster:GetTeamNumber()
+    }
+    local projectile = ProjectileManager:CreateLinearProjectile(info)
+end
+
+function CastBrew2(event)
+    local caster = event.caster
+    local ability = event.ability
+    local dur = event.duration
+    local delay = 0.5
+    local spawnPoint = caster:GetAbsOrigin() + Vector(0,0,75)
+    local targetPoint = event.target_points[1]
+    if event.spawnPoint then
+        spawnPoint = event.spawnPoint
+    end
+    --local direction = (event.target_points[1] - caster:GetAbsOrigin()):Normalized()
+
+    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_projectile.vpcf", PATTACH_WORLDORIGIN, caster)
+    ParticleManager:SetParticleControl(particle, 0, spawnPoint)
+    ParticleManager:SetParticleControl(particle, 1, targetPoint + Vector(0,0,15))
+
+    Timers:CreateTimer(delay, function()
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+        particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_aoe.vpcf", PATTACH_WORLDORIGIN, caster)
+        ParticleManager:SetParticleControl(particle, 0, targetPoint)
+        ParticleManager:SetParticleControl(particle, 1, Vector(300,0,0))
+        ParticleManager:ReleaseParticleIndex(particle)
+        local buffevent = { caster = caster, target = caster, target_points = {targetPoint}, ability = ability, aoe = 300, buff = "modifier_haze", dur = dur}
+        ApplyBuffAOE(buffevent)
+    end) 
+end
+
+function HasStaggerEffect(hero)
+    if hero.canHaveStagger and GetLevelOfAbility(hero, "brew2") >= 4 then
+        return true
+    end
+
+    return false
+end
+
+function GetStaggerDamageFactor(hero)
+    return 0.75
 end

@@ -10723,7 +10723,10 @@ end)
  end
 end)
 end
-if heroName == "npc_dota_hero_juggernaut" or heroName == "npc_dota_hero_mars" then
+if heroName == "npc_dota_hero_juggernaut" or heroName == "npc_dota_hero_mars" or heroName == "npc_dota_hero_brewmaster" then
+    if heroName == "npc_dota_hero_brewmaster" then
+        hero.canHaveStagger = true
+    end
   -- Add the spell
   hero:AddAbility("energy_system"):SetLevel(1)
   hero.resourcesystem = 2
@@ -12100,6 +12103,9 @@ function COverthrowGameMode:FilterDamage( filterTable )
   end
   if attacker:HasModifier("modifier_cspear") then
     newdamage = newdamage * 0.95
+  end
+  if attacker:HasModifier("modifier_haze") then
+    newdamage = newdamage * 0.8
   end
   if attacker:HasModifier("modifier_sou_minus") then
     newdamage = newdamage * 0.8
@@ -20118,6 +20124,18 @@ function CheckForClassQuestRewards(questname)
           max_count = 3,
           start_count = 1,
           replenish_time = 1.5
+        }
+        )
+      end
+      abilityName = "brew4"
+      ability = hero:FindAbilityByName(abilityName)
+      if ability and not hero[abilityName .."_is_init"] then
+        hero[abilityName.."_is_init"] = true
+        hero:AddNewModifier(hero, ability, "modifier_charges",
+        {
+          max_count = 3,
+          start_count = 3,
+          replenish_time = 7
         }
         )
       end

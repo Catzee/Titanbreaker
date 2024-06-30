@@ -1979,6 +1979,86 @@
 		"DisableResistance"            "0"
 
 		"Team"          "GOOD"
+	}
+	"npc_dota_hero_brewmaster_titanbreaker"
+	{
+		"DisableWearables"		"0"
+		"override_hero"				"npc_dota_hero_brewmaster"
+		"AbilityLayout"     "6"
+		"Ability1"					"brew1"
+		"Ability2"					"brew2"
+		"Ability3"					"brew3" 
+		"Ability4"					"brew4" 
+		"Ability5"					"brew5"
+		"Ability6"					"brew6"
+		"Ability7"		"generic_hidden"
+		"Ability8"		"generic_hidden"
+		"Ability9"		"generic_hidden"
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_strength_20"
+		"Ability12"		"special_bonus_hp_700"
+		"Ability13"		"special_bonus_evasion_10"
+		"Ability14"		"special_bonus_magic_resistance_15"
+		"Ability15"		"special_bonus_mp_regen_2"
+		"Ability16"		"special_bonus_armor_15"
+		"Ability17"		"special_bonus_strength_25"
+		
+		"Facets"
+		{
+		}
+
+		"BaseAttackSpeed"		"100"
+		
+		
+		"UnitLabel"         "hero"
+
+		//"AttackRate"				"1000"
+		//"AttackAnimationPoint"		"1000"
+
+		"MovementSpeed"               "275"       // Speed
+		"MovementTurnRate"            "0.5"       // Turning rate.
+
+		"StatusHealth"                "100"       // Base health.
+		"StatusHealthRegen"           "1"         // Health regeneration rate.
+
+
+		"AttackDamageMin"            "0"       // Damage range min.
+		"AttackDamageMax"            "0"       // Damage range max.
+		"AttackRate"                 "3.0"     // Speed of attack.
+
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		"AttributePrimary"             "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"        "30"            // Base strength
+		"AttributeStrengthGain"        "2"            // Strength bonus per level.
+		"AttributeBaseAgility"         "15"            // Base agility
+		"AttributeAgilityGain"         "0.5"            // Agility bonus per level.
+		"AttributeBaseIntelligence"    "0"            // Base intelligence
+		"AttributeIntelligenceGain"    "0"            // Intelligence bonus per level.
+		"AttackRange"				"100"
+
+		"StatusMana"    "99"    // Initial Max Mana
+		"StatsManaRegen"    "0" // Base Mana Regen (KV doesn't like negative numbers here) 
+
+		"ArmorPhysical"                "2"
+		"MagicalResistance"            "30"
+
+		"BountyXP" "0"
+		"BountyGoldMin" "0" 
+		"BountyGoldMax" "0"
+
+		"HPGain"                    "0"
+		"DamageGain"                "0"
+		"ArmorGain"                 "0"
+		"ManaGain"                  "0"
+		"MagicResistGain"           "0"
+		"MoveSpeedGain"             "0"
+		"BountyGain"                "0"
+		"XPGain"                    "0"
+		"DisableResistance"            "0"
+
+		"Team"          "GOOD"
 	}	
 	"npc_dota_hero_mars_titanbreaker"
 	{

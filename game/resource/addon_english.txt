@@ -11112,5 +11112,21 @@
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat3"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat4"	"Health: +"
+
+		"npc_dota_hero_brewmaster"                                                          "[Tank Dps] Battle Shaolin"
+
+		"DOTA_Tooltip_ability_brew1"                                                        "Breath of Fire"
+		"DOTA_Tooltip_ability_brew1_Description"                                            "Deal Fire Damage and melt the target's defenses, reducing Armor and Spell Resistance, stacking up to 25 times.\n<font color=\"#FFBB00\">\nRank 2: Dealing Fire Damage has a 10%% chance to stun for 2 secs. \nRank 3: You take 15%% reduced from enemies per fire debuff on them. Fire debuffs are Breath of Fire and Burning Haze. \nRank 4: Gain +100%% Fire Damage.\n\n</font>"
+		"DOTA_Tooltip_ability_brew1_dmgfromstat"                                            "%Primary Attribute to Damage:"
+
+		"DOTA_Tooltip_ability_brew2"                                                        "Drunken Brew"
+		"DOTA_Tooltip_ability_brew2_Description"                                            "Drenches enemies in the area in alcohol, slowing their movement and reducing all Damage they deal by 20%%.\nEnemies hit by Breath of Fire will ignite, taking Fire Damage every sec for 10 secs.\n<font color=\"#FFBB00\">\nRank 2: Also affect yourself, gaining Health Regeneration equal to 2%% of max Health and gaining 5 Energy Regeneration. \nRank 3: Passively gain the Primal Tank buff, increasing all Aggro caused by 5%% per Armor, by 10%% per Spell Resistance and by 100%% per 5000 Health, with all 3 sources stacking multiplicatively. \nRank 4: When you take Damage from an Ability, there is a 50%% chance to stagger the Damage, delaying it by 3 secs and reducing it by 25%%.\n\n</font>"
+		"DOTA_Tooltip_ability_brew2_duration"                                            	"Duration:"
+
+		"DOTA_Tooltip_ability_brew4"                                                        "Rolling Barrel"
+		"DOTA_Tooltip_ability_brew4_Description"                                            "Enter a rolling barrel and move forwards with increased speed, losing all control. Gain 75%% Damage Reduction and Damage nearby enemies for Physical Damage 4 times per sec. \n<font color=\"#FFBB00\">\nRank 2: Passively gain 15%% increased Movement Speed and Evasion. \nRank 3: Periodically trigger a Breath of Fire behind you. \nRank 4: Taunt nearby enemies while active.\n\n</font>"
+		"DOTA_Tooltip_ability_brew4_dmg"                                            "%Primary Attribute to Damage:"
+		"DOTA_Tooltip_ability_brew4_duration"                                            "Duration:"
+		"DOTA_Tooltip_ability_brew4_lore"                                            "Aka Wallgrinder."
 	}
 }
