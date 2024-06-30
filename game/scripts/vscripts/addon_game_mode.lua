@@ -2592,6 +2592,7 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
       CustomGameEventManager:RegisterListener( "getleaderboard", Dynamic_Wrap(COverthrowGameMode, 'SendLeaderboard'))
       CustomGameEventManager:RegisterListener( "pickupallitems", Dynamic_Wrap( COverthrowGameMode, 'TryPickupAllItems' ) )
       CustomGameEventManager:RegisterListener( "pingherolevel", Dynamic_Wrap( COverthrowGameMode, 'PingHeroLevel' ) )
+      CustomGameEventManager:RegisterListener( "buyautosellstashitem", Dynamic_Wrap( COverthrowGameMode, 'BuyItemFromAutoSellStash' ) )
 
       --weapon choice
       CustomGameEventManager:RegisterListener( "weaponchoice", WeaponChoice )
@@ -2724,7 +2725,9 @@ function COverthrowGameMode:OnPlayerConnected(params)
     COverthrowGameMode:SendStashInfo(player, playerId)
     -- Update hero stats window values to match actual ones
     COverthrowGameMode:SendHeroStatsInfo(player, playerId)
-    
+    -- Restore auto sell stash
+    COverthrowGameMode:SendAutoSoldStashItems(player, playerId)
+
     -- Allows next reconnect requests spam
     COverthrowGameMode._ignoreReconnectRequestsFromPlayer[playerId] = nil
   end)
