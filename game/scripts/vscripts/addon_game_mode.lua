@@ -9500,6 +9500,10 @@ function PVEAggroAdd(event)
         tank_ability = source:FindAbilityByName("terror1")
         levelThreshold = 2
       end
+      if source.super_aggro_tank_monk then
+        tank_ability = source:FindAbilityByName("brew2")
+        levelThreshold = 3
+      end
       
       --print(source.super_aggro_tank_monk)
       if tank_ability then
@@ -10729,6 +10733,8 @@ end
 if heroName == "npc_dota_hero_juggernaut" or heroName == "npc_dota_hero_mars" or heroName == "npc_dota_hero_brewmaster" then
     if heroName == "npc_dota_hero_brewmaster" then
         hero.canHaveStagger = true
+        hero.bof = hero:FindAbilityByName("brew1")
+        hero.super_aggro_tank_monk = 1
     end
   -- Add the spell
   hero:AddAbility("energy_system"):SetLevel(1)
@@ -12108,7 +12114,10 @@ function COverthrowGameMode:FilterDamage( filterTable )
     newdamage = newdamage * 0.95
   end
   if attacker:HasModifier("modifier_haze") then
-    newdamage = newdamage * 0.8
+    newdamage = newdamage * 0.85
+  end
+  if attacker:HasModifier("modifier_haze_fire") then
+    newdamage = newdamage * 0.9
   end
   if attacker:HasModifier("modifier_sou_minus") then
     newdamage = newdamage * 0.8

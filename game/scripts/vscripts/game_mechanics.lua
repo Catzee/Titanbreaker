@@ -481,8 +481,14 @@ function DamageUnit( event )
             EmitSoundOn("Hero_Invoker.ChaosMeteor.Impact", target)
         end
     end
-    if event.firedmg and ability and caster and GetLevelOfAbility(caster, "Molten_Lava") >= 3 then
-        event.holydmg = 1
+    if event.firedmg and caster then
+        if ability and GetLevelOfAbility(caster, "Molten_Lava") >= 3 then
+            event.holydmg = 1
+        end
+        if IsShadowPan(caster) then
+            event.shadowdmg = 1
+            ProcShadowPan(caster)
+        end
     end
     if caster:HasModifier("modifier_fusion") then
         --color wheel: red(fire) yellow(holy) lightgreen(chaos) darkgreen(nature) blue(frost) pink(arcane) purple(shadow)
@@ -5153,6 +5159,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         --end
         local buffstacks = caster:GetModifierStackCount("modifier_talent_thirst", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks * caster.talents[173])
+        buffstacks = caster:GetModifierStackCount("modifier_bof_stack", nil)
+        if buffstacks > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * buffstacks)
+        end
         if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
         end
@@ -19689,6 +19699,9 @@ function GetStrengthPercentageBonus( hero, primary_stats_percent_bonus )
     if hero:HasModifier("modifier_brute_force") then
         percent_bonus = percent_bonus + 0.5
     end
+    if hero:HasModifier("modifier_mor") then
+        percent_bonus = percent_bonus + 0.25
+    end
     local froststr = hero:GetModifierStackCount("modifier_froststr", nil)
     if froststr > 0 then
         percent_bonus = percent_bonus + 0.05 * froststr
@@ -20114,6 +20127,9 @@ function GetHealthRegeneration(hero, strength)
     end
     if hero.talents[169] and hero.talents[169] > 0 then
         value = value + maxHealth * (0.005 + 0.005 * hero.talents[169])
+    end
+    if hero:HasModifier("modifier_haze_self") then
+        value = value + maxHealth * 0.02
     end
     if hero:HasModifier("modifier_defstance") and hero:FindAbilityByName("fury6") then
         value = value + maxHealth * 0.01
@@ -22647,6 +22663,12 @@ function OnStunEnemy(event)
         local myevent = { caster = caster, target = target, dur = 5, buff = "modifier_warrior3dot", ability = caster:FindAbilityByName("warrior_3"), settickrate = 1}
         ApplyBuff(myevent)
     end
+    if GetLevelOfAbility(caster, "brew5") >= 2 then
+        Timers:CreateTimer(0.25, function()
+            local myevent = { caster = caster, target = target, dmgfromstat = 500, ability = caster:FindAbilityByName("brew5")}
+            DamageUnit(myevent)
+        end)
+    end
 end
 
 function GetSoulItemTalent(hero)
@@ -24354,6 +24376,14 @@ function GlobalOnDealFireDamage( caster, target )
                 ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, dur = dur * cdFactor * GetInnerCooldownFactor(caster), buff = "modifier_moltengiant_cd"})
             end
         end
+        if caster.bof then
+            if caster.bof:GetLevel() >= 2 and math.random(1,100) <= 15 then
+                ApplyBuff({caster = caster, target = target, ability = caster.bof, dur = 1, buff = "modifier_stunned"})
+            end
+            if caster.bof:GetLevel() >= 4 then
+                ApplyBuffStack({caster = caster, target = caster, ability = caster.bof, dur = 10, buff = "modifier_bof_stack", max = 50})
+            end
+        end
     end
     if HeroHasNeutralItem(caster, "item_neutral_2") and math.random(1,100) <= 10 then
         ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = 3, buff = "modifier_moltenarmor"})
@@ -26033,6 +26063,14 @@ function GetTotalDamageTakenFactor(caster, attacker)
             end
             if caster:HasModifier("modifier_npc_dota_hero_windrunner") and (attacker:HasModifier("modifier_surv_aapoison") or attacker:HasModifier("modifier_surv_wyvern")) then
                 factor = factor * 0.75
+            end
+            if caster.bof and caster.bof:GetLevel() >= 3 then
+                if attacker:HasModifier("modifier_bof") then
+                    factor = factor * 0.85
+                end
+                if attacker:HasModifier("modifier_haze_fire") then
+                    factor = factor * 0.85
+                end
             end
         end
         
@@ -28107,6 +28145,9 @@ function GetManaRegenerationPerSec( hero )
         regenFactor = GetEnergyRegenerationFactor(hero)
         if hero.resourcesystem == 1 then --warrior
             regen = regen - 0.3
+        end
+        if hero:HasModifier("modifier_haze_self") then
+            regen = regen + 5
         end
         if hero.resourcesystem == 2 or hero.resourcesystem == 4 then --rogue dazzle
             regen = regen + 15
@@ -30563,10 +30604,16 @@ function CastBrew1(event)
     end
     local direction = (event.target_points[1] - caster:GetAbsOrigin()):Normalized()
 
+    local effectName = "particles/lina_spell_dragon_slave_brew.vpcf"
+    local isShadowPan = IsShadowPan(caster)
+    if isShadowPan then 
+        effectName = "particles/lina_spell_dragon_slave_brew_shadow.vpcf"
+    end
+
     local info = 
     {
         Ability = ability,
-        EffectName = "particles/lina_spell_dragon_slave_brew.vpcf",
+        EffectName = effectName,
         vSpawnOrigin = caster:GetAbsOrigin()+Vector(0,0,75),
         fDistance = 350,
         fStartRadius = 100,
@@ -30587,6 +30634,16 @@ function CastBrew1(event)
     local projectile = ProjectileManager:CreateLinearProjectile(info)
 end
 
+function Brew2Ignite(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = caster:GetAbilityByIndex(1)
+    if target:HasModifier("modifier_haze") then
+        local buffevent = { caster = caster, target = target, ability = ability, buff = "modifier_haze_fire", dur = 10}
+        ApplyBuff(buffevent)
+    end
+end
+
 function CastBrew2(event)
     local caster = event.caster
     local ability = event.ability
@@ -30597,7 +30654,6 @@ function CastBrew2(event)
     if event.spawnPoint then
         spawnPoint = event.spawnPoint
     end
-    --local direction = (event.target_points[1] - caster:GetAbsOrigin()):Normalized()
 
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_projectile.vpcf", PATTACH_WORLDORIGIN, caster)
     ParticleManager:SetParticleControl(particle, 0, spawnPoint)
@@ -30625,4 +30681,48 @@ end
 
 function GetStaggerDamageFactor(hero)
     return 0.75
+end
+
+function IsShadowPan(hero)
+    local ab = hero:FindAbilityByName("brew6")
+    if ab and ab:GetLevel() >= 4 then
+        return true
+    end
+
+    return false
+end
+
+function ProcShadowPan(hero)
+    if not hero.shadowPan then
+        hero.shadowPan = 0
+    end
+
+    hero.shadowPan = hero.shadowPan + 1
+    Timers:CreateTimer(2, function()
+        hero.shadowPan = hero.shadowPan - 1
+    end)
+end
+
+function PullTargetIn(event)
+    local caster = event.caster
+    local target = event.target
+
+    if target.isboss then
+        return
+    end
+    local ability = event.ability
+    ApplyBuff({caster = caster, target = target, ability = ability, buff = "modifier_phased", dur = 0.05})
+    local direction = (target:GetAbsOrigin() - caster:GetAbsOrigin())
+    local dst = direction:Length()
+    local minDst = 150
+    if dst < minDst then
+        return
+    end
+
+    local position = caster:GetAbsOrigin() + direction:Normalized() * minDst
+    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_WORLDORIGIN, target)
+    ParticleManager:SetParticleControl(particle, 0, position)
+    ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
+    ParticleManager:ReleaseParticleIndex(particle)
+    target:SetAbsOrigin(position)
 end
