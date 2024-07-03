@@ -33601,12 +33601,12 @@
 		    "15"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot" "0 50 50 50"
+		        "passive_bonus_critical_dmg_dot" "0 25 25 25"
 		    }
 		    "16"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "passive_bonus_critical_dmg_dot_tooltip" "50"
+		        "passive_bonus_critical_dmg_dot_tooltip" "25"
 		    }
 		    "17"
 		    { 
@@ -34589,12 +34589,12 @@
 		    "13"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_shadow_dmg_pct" "0 0 0 25"
+		        "mindbender_shadow_dmg_pct" "0 0 0 10"
 		    }
 		    "14"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "mindbender_shadow_dmg_pct_tooltip" "25"
+		        "mindbender_shadow_dmg_pct_tooltip" "10"
 		    }
 		    "15"
 		    { 
