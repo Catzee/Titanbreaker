@@ -20147,7 +20147,7 @@ function CheckForClassQuestRewards(questname)
         {
           max_count = 3,
           start_count = 3,
-          replenish_time = 7
+          replenish_time = 10
         }
         )
       end

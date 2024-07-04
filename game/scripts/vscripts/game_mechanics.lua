@@ -3507,12 +3507,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             value = value + GetColdChainStat(caster) * coldChainStacks / 100
         end 
     end
-    if event.firedmg then
-        local overheat = GetOverheatStat(caster)
-        if wascrit and overheat > 0 then
-            value = value + overheat * 0.01 * caster:GetIncreasedAttackSpeed(false)
-        end 
-    end
     local shadowClericMindbenderModifier = caster:FindModifierByName("modifier_shadow_cleric_mindstorm_mindbender")
     if event.shadowdmg and shadowClericMindbenderModifier then
         local shadowClericMindbenderModifierAbility = shadowClericMindbenderModifier:GetAbility()
@@ -3539,6 +3533,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             value = value + 0.2 * GetDemonCount(caster)
         end
     end
+    
     if event.firedmg then
         local demo3 = caster:FindAbilityByName("demo3")
         if demo3 and demo3:GetLevel() >= 3 then
@@ -3547,13 +3542,57 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         if caster:HasModifier("modifier_npc_dota_hero_windrunner2") and caster:HasModifier("modifier_fire_shots_jungle") then
             value = value + 0.002 * GetAgilityCustom(caster)
         end
+        if (event.isaoe or event.isdot) and caster:HasModifier("modifier_firebow") then
+            value = value + caster:GetPhysicalArmorValue(false) * 0.02
+        end
+        if (event.isaoe or event.isdot) and caster:HasModifier("modifier_firebow2") then
+            value = value + caster:GetPhysicalArmorValue(false) * 0.03
+        end
+        if caster.fof and caster.fof > 0 then
+            value = value + 0.0001 * GetStrengthCustom(caster) * caster.fof
+        end
+        local overheat = GetOverheatStat(caster)
+        if wascrit and overheat > 0 then
+            value = value + overheat * 0.01 * caster:GetIncreasedAttackSpeed(false)
+        end
+        if caster:HasModifier("modifier_pathbuff_057") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_pathbuff_118") then
+            value = value + 0.2
+        end
+        if caster:HasModifier("modifier_talent57cd") and caster:HasModifier("modifier_pathbuff_071") and caster:HasModifier("modifier_path_overwhelm") then
+            value = value + 2
+        end
+        if target and target:HasModifier("modifier_bear_slow_pve") then
+            value = value + 0.3
+        end
+        if caster:HasModifier("modifier_astral_ele_bonus") then
+            value = value + 1
+        end
+        if caster:HasModifier("modifier_thorns_buff") then
+            value = value + 0.25
+        end
+        if event.isdot and caster:HasModifier("modifier_item_elements") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("firedmgaura") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_item_fireball4") then
+            value = value + 0.5
+        end
+        if caster:HasModifier("modifier_item_sandstorm2") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_firedmg_50") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_brew_fire") then
+            value = value + 1
+        end
     end
-    if event.firedmg and (event.isaoe or event.isdot) and caster:HasModifier("modifier_firebow") then
-        value = value + caster:GetPhysicalArmorValue(false) * 0.02
-    end
-    if event.firedmg and (event.isaoe or event.isdot) and caster:HasModifier("modifier_firebow2") then
-        value = value + caster:GetPhysicalArmorValue(false) * 0.03
-    end
+    
     if event.naturedmg and caster:HasModifier("modifier_moonfall_aura") then
         value = value + 0.5
     end
@@ -3561,9 +3600,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.0001 * GetStrengthCustom(caster) * GetForceOfNatureStat(caster)
     end
 
-    if event.firedmg and caster.fof and caster.fof > 0 then
-        value = value + 0.0001 * GetStrengthCustom(caster) * caster.fof
-    end
     if event.frostdmg and caster.ffe and caster.ffe > 0 then
         value = value + 0.0001 * GetAgilityCustom(caster) * caster.ffe
     end
@@ -3586,12 +3622,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.chaosdmg and caster:HasModifier("modifier_dh_soulpact_chaos") then
         value = value + 0.25
     end
-    if event.firedmg and caster:HasModifier("modifier_pathbuff_057") then
-        value = value + 0.25
-    end
-    if event.firedmg and caster:HasModifier("modifier_pathbuff_118") then
-        value = value + 0.2
-    end
+    
     if event.naturedmg and caster:HasModifier("modifier_pathbuff_119") then
         value = value + 0.25
     end
@@ -3607,18 +3638,13 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.naturedmg and caster:HasModifier("modifier_pathbuff_089") and caster:HasModifier("modifier_crowfall") and caster:HasModifier("modifier_talent_enrage") then
         value = value + 0.5
     end
-    if event.firedmg and caster:HasModifier("modifier_talent57cd") and caster:HasModifier("modifier_pathbuff_071") and caster:HasModifier("modifier_path_overwhelm") then
-        value = value + 2
-    end
+    
     if event.shadowdmg and caster.ds_shadow_bonus_50 and caster.ds_shadow_bonus_50 > 0 then
         value = value + 0.5
     end
     if caster:HasModifier("modifier_item_myth_agi") then
         value = value + 0.25
     end
-    --if event.firedmg and caster:HasModifier("modifier_burning_nether") then
-    --    value = value + 0.25
-    --end
     if event.chaosdmg then
         local dh_agi_talent = caster:FindAbilityByName("terror3")
         if dh_agi_talent and dh_agi_talent:GetLevel() >= 4 then
@@ -3662,9 +3688,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.naturedmg and target and target:HasModifier("modifier_bear_slow_pve") then
         value = value + 0.3
     end
-    if event.firedmg and target and target:HasModifier("modifier_bear_slow_pve") then
-        value = value + 0.3
-    end
+    
     if event.arcanedmg and caster:HasModifier("modifier_class_invoker") then
         value = value + 0.25
     end
@@ -3680,12 +3704,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.naturedmg and caster:HasModifier("modifier_astral_ele_bonus") then
         value = value + 1
     end
-    if event.firedmg and caster:HasModifier("modifier_astral_ele_bonus") then
-        value = value + 1
-    end
-    if event.firedmg and caster:HasModifier("modifier_thorns_buff") then
-        value = value + 0.25
-    end
+    
     if event.naturedmg and caster:HasModifier("modifier_thorns_buff") then
         value = value + 0.25
     end
@@ -3812,12 +3831,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.shadowdmg and caster:HasModifier("modifier_str_unholy") then
         value = value + 0.75
     end
-    if event.firedmg and event.isdot and caster:HasModifier("modifier_item_elements") then
-        value = value + 0.25
-    end
-    if event.firedmg and caster:HasModifier("firedmgaura") then
-        value = value + 0.25
-    end
+    
     local arcane_resi_dmg = caster:FindAbilityByName("Arcane6")
     if event.firedmg and arcane_resi_dmg and arcane_resi_dmg:GetLevel() >= 4 then
         value = value + caster:Script_GetMagicalArmorValue(false, nil)
@@ -3840,21 +3854,14 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if target and target:HasModifier("modifier_frostfire_slow") and event.frostdmg and mage1_abil and mage1_abil:GetLevel() >= 4 then
         value = value + 0.5
     end
-    if event.firedmg and caster:HasModifier("modifier_firedmg_50") then
-        value = value + 0.25
-    end
+    
     if event.holydmg and caster:HasModifier("modifier_item_bootshp3") then
         value = value + 0.1
     end
     if event.shadowdmg and caster:HasModifier("modifier_item_bootshp4") then
         value = value + 0.1
     end
-    if event.firedmg and caster:HasModifier("modifier_item_fireball4") then
-        value = value + 0.5
-    end
-    if event.firedmg and caster:HasModifier("modifier_item_sandstorm2") then
-        value = value + 0.25
-    end
+    
     arcane_resi_dmg = caster:FindAbilityByName("Numbing_Cut")
     if arcane_resi_dmg and arcane_resi_dmg:GetLevel() >= 4 and event.cruelabils and target and target:HasModifier("modifier_stunned") then
         value = value + 1
@@ -6390,7 +6397,6 @@ function ApplyBuffAOE( event )
 	if event.friend then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-    print("asdff")
 	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 
 	if #enemies > 0 then
@@ -14941,6 +14947,13 @@ function GlobalOnAbilityExecuted( event )
         if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "stampede_summon_proc", nil)
         end
+
+        Timers:CreateTimer(0.03, function()
+            caster.last_cast_ability = ability
+            if ability:GetCooldown(ability:GetLevel()-1) > 0.25 then
+                caster.last_cast_ability_with_cd = ability
+            end
+        end)
     end
 end
 
@@ -15981,11 +15994,6 @@ function ApplyBuff(event)
             duration = duration * 0.5
         elseif target.isboss then
             duration = 0.05 --duration * 0.3 --0.5
-            --bosses
-            --if not isBuff then
-            --    OnApplyDebuff(event)
-            --end
-            --return
     	end
     end
 
@@ -16027,7 +16035,7 @@ function ApplyBuff(event)
         end]]
     end
     if not isBuff then
-        OnApplyDebuff(event)
+        OnApplyDebuff(caster, target, ability, event.buff)
     end
 end
 
@@ -19700,7 +19708,7 @@ function GetStrengthPercentageBonus( hero, primary_stats_percent_bonus )
         percent_bonus = percent_bonus + 0.5
     end
     if hero:HasModifier("modifier_mor") then
-        percent_bonus = percent_bonus + 0.25
+        percent_bonus = percent_bonus + 0.5
     end
     local froststr = hero:GetModifierStackCount("modifier_froststr", nil)
     if froststr > 0 then
@@ -22624,9 +22632,7 @@ function DH2( event )
     end
 end
 
-function OnApplyDebuff(event)
-    local caster = event.caster
-    local target = event.target
+function OnApplyDebuff(caster, target, ability, buff)
     if caster.talents then
         if caster.talents[111] and caster.talents[111] > 0 then
             local buff = "modifier_overgrowth"
@@ -22634,38 +22640,23 @@ function OnApplyDebuff(event)
             local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = caster.combat_system_ability, addstacks = 1, max = caster.talents[111] * 10}
             ApplyBuffStack(myevent)
         end
-        if GetLevelOfAbility(caster, "terror1") >= 4 and event.buff and event.buff == "modifier_stunned" then
-            HealUnit({caster = caster, target = caster, ability = event.ability, heal = caster:GetMaxHealth()*0.05})
+        if GetLevelOfAbility(caster, "terror1") >= 4 and buff and buff == "modifier_stunned" then
+            HealUnit({caster = caster, target = caster, ability = ability, heal = caster:GetMaxHealth()*0.05})
         end
     end
-    --[[
-    if false and caster.talents and caster.talents[49] and caster.talents[49] > 0 then
-        local myevent = {}
-        myevent.caster = caster
-        myevent.target = target
-        myevent.ability = event.ability
-        myevent.damage = 0.0
-        myevent.spelldamagefactor = 0.0
-        myevent.attributefactor = 20 * caster.talents[49]
-        Timers:CreateTimer(0.01*math.random(25,75), function()
-            DamageUnit(myevent)
-        end)
-    end]]
-    if event.buff == "modifier_stunned" then
-        OnStunEnemy(event)
+    if buff == "modifier_stunned" then
+        OnStunEnemy(caster, target, ability)
     end
 end
 
-function OnStunEnemy(event)
-    local caster = event.caster
-    local target = event.target
+function OnStunEnemy(caster, target, ability)
     if caster:HasModifier("modifier_warrior_3") then
         local myevent = { caster = caster, target = target, dur = 5, buff = "modifier_warrior3dot", ability = caster:FindAbilityByName("warrior_3"), settickrate = 1}
         ApplyBuff(myevent)
     end
     if GetLevelOfAbility(caster, "brew5") >= 2 then
         Timers:CreateTimer(0.25, function()
-            local myevent = { caster = caster, target = target, dmgfromstat = 500, ability = caster:FindAbilityByName("brew5")}
+            local myevent = { caster = caster, target = target, damage = 0, attributefactor = 500, ability = caster:FindAbilityByName("brew5"), ignore_when_target_has_reflect = 1}
             DamageUnit(myevent)
         end)
     end
@@ -26010,6 +26001,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_symbiosos_fur") then
         factor = factor * 0.75
     end
+    if caster:HasModifier("modifier_barrelroll") then
+        factor = factor * 0.4
+    end
     if caster:HasModifier("modifier_divinedef") then
         factor = factor * 0.85
     end
@@ -27836,14 +27830,17 @@ function FrostFireChains( event )
             target[3] = target1
         end
         for i=1, ticks do
-            local damageMult = i
+            local damageMult = i - 9
             Timers:CreateTimer(0.05 + i * tickDelay, function()
                 if fireChainActive and TargetIsAliveAndExists(target[1]) and TargetIsAliveAndExists(target[2]) and TargetIsAliveAndExists(caster) and (target[1]:GetAbsOrigin() - target[2]:GetAbsOrigin()):Length() < fireBreakDistance then
                     
-                    DamageUnit({caster = caster, target = target[1], ability = ability, damage = 0, difficultyscale = damageMult * 10})
-                    DamageUnit({caster = caster, target = target[2], ability = ability, damage = 0, difficultyscale = damageMult * 10})
-                    EmitSoundOn("Hero_Lina.Attack", target[1])
-                    EmitSoundOn("Hero_Lina.Attack", target[2])
+                    if damageMult > 0 then
+                        DamageUnit({caster = caster, target = target[1], ability = ability, damage = 0, difficultyscale = damageMult * 10})
+                        DamageUnit({caster = caster, target = target[2], ability = ability, damage = 0, difficultyscale = damageMult * 10})
+                        EmitSoundOn("Hero_Lina.Attack", target[1])
+                        EmitSoundOn("Hero_Lina.Attack", target[2])
+                    end
+                    
                     local particle = ParticleManager:CreateParticle("particles/items_fx/dagon.vpcf", PATTACH_WORLDORIGIN, target[1])
                     ParticleManager:SetParticleControl(particle, 0, target[1]:GetAbsOrigin()+Vector(0,0,80))
                     ParticleManager:SetParticleControl(particle, 1, target[2]:GetAbsOrigin()+Vector(0,0,80))
@@ -27853,10 +27850,14 @@ function FrostFireChains( event )
                     fireChainActive = false
                 end
                 if #target >= 3 and frostChainActive and TargetIsAliveAndExists(target[2]) and TargetIsAliveAndExists(target[3]) and TargetIsAliveAndExists(caster) and (target[2]:GetAbsOrigin() - target[3]:GetAbsOrigin()):Length() > frostBreakDistance then
-                    DamageUnit({caster = caster, target = target[2], ability = ability, damage = 0, difficultyscale = damageMult * 10})
-                    DamageUnit({caster = caster, target = target[3], ability = ability, damage = 0, difficultyscale = damageMult * 10})
-                    EmitSoundOn("Hero_Lina.Attack", target[2])
-                    EmitSoundOn("Hero_Lina.Attack", target[3])
+                    
+                    if damageMult > 0 then
+                        DamageUnit({caster = caster, target = target[2], ability = ability, damage = 0, difficultyscale = damageMult * 10})
+                        DamageUnit({caster = caster, target = target[3], ability = ability, damage = 0, difficultyscale = damageMult * 10})
+                        EmitSoundOn("Hero_Lina.Attack", target[2])
+                        EmitSoundOn("Hero_Lina.Attack", target[3])
+                    end
+                    
                     local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/dagon_ti7.vpcf", PATTACH_WORLDORIGIN, target[2])
                     ParticleManager:SetParticleControl(particle, 0, target[2]:GetAbsOrigin()+Vector(0,0,80))
                     ParticleManager:SetParticleControl(particle, 1, target[3]:GetAbsOrigin()+Vector(0,0,80))
@@ -30540,15 +30541,41 @@ function GetDamageEscalation(caster)
     return 1
 end
 
+function Brew3(event)
+    local caster = event.caster
+    local ability = event.ability
+    local lastAbility = caster.last_cast_ability
+
+    if not lastAbility then
+        return
+    end
+
+    local abilityName = lastAbility:GetName()
+    if abilityName == "brew1" then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_fire", {Duration = 30})
+    end
+    if abilityName == "brew2" then
+        ReduceCooldown({caster = caster, chooseability = 1, amount = 5, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 2, amount = 5, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 4, amount = 5, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 5, amount = 5, ability = nil})
+    end
+    if abilityName == "brew4" then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_move", {Duration = 30})
+    end
+    if abilityName == "brew5" then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_taunt123", {Duration = 4})
+    end
+    if abilityName == "brew6" then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 5})
+    end
+end
+
 function CastBrew4(event)
     local caster = event.caster
     caster:SetModelScale(0.001)
 
-    
-    --event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_pangolier_gyroshell", {Duration = event.duration})
-    --event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_pangolier_gyroshell_ricochet", {Duration = event.duration})
-    
-
+    local directionChange = event.direction
     local duration = event.duration
     local tickPerSec = 30
     local totalTicks = duration * tickPerSec
@@ -30575,6 +30602,17 @@ function CastBrew4(event)
                 Queue = false
             }
             ExecuteOrderFromTable(order)
+        end)
+    end
+
+    if directionChange == 1 then
+        Timers:CreateTimer(duration / 3, function()
+            startForward = startForward * -1
+            caster:SetForwardVector(startForward)
+        end)
+        Timers:CreateTimer(duration * 2 / 3, function()
+            startForward = startForward * -1
+            caster:SetForwardVector(startForward)
         end)
     end
 end
@@ -30615,7 +30653,7 @@ function CastBrew1(event)
         Ability = ability,
         EffectName = effectName,
         vSpawnOrigin = caster:GetAbsOrigin()+Vector(0,0,75),
-        fDistance = 350,
+        fDistance = 400,
         fStartRadius = 100,
         fEndRadius = 200,
         Source = caster,
@@ -30632,6 +30670,12 @@ function CastBrew1(event)
         iVisionTeamNumber = caster:GetTeamNumber()
     }
     local projectile = ProjectileManager:CreateLinearProjectile(info)
+
+    if caster:HasModifier("modifier_mor") and GetLevelOfAbility(caster, "brew5") >= 3 then
+        Timers:CreateTimer(1, function()
+            ProjectileManager:CreateLinearProjectile(info)
+        end)
+    end
 end
 
 function Brew2Ignite(event)
