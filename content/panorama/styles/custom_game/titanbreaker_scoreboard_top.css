@@ -119,8 +119,10 @@
     font-size: 14px;
     font-weight: bold;
     text-shadow: 4px 4px 4px black;
-    text-overflow: clip;
+    text-overflow: shrink;
     padding-top: 6px;
+    height: 20px;
+    padding-right: 2px;
 }
 
 #TeamStatus {
