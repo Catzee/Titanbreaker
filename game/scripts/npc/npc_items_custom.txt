@@ -34147,9 +34147,9 @@
 		            {
 		                "ScriptFile"    "game_mechanics.lua"
 		                "Function"  "AddHeroResource"
-		                "energy"	"6"
+		                "energy"	"5"
 		                "classfactor"	"1"
-		                "amount"		"6"
+		                "amount"		"5"
 		            }
 	            }
 	        } 

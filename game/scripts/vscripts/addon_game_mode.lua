@@ -356,6 +356,7 @@ function Precache( context )
     PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts", context)
     PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context)
     PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context)
+    PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts", context)
     PrecacheResource( "soundfile",  "soundevents/voscripts/game_sounds_vo_beastmaster.vsndevts", context)
     PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts", context)
     
@@ -8022,7 +8023,7 @@ if not boss.affixes_discovered and IsHeroNear( boss, 1300 ) and not boss:HasModi
 end
 
 --dont break channels
-if boss:HasModifier("modifier_tranq") then -- or (boss:HasModifier("modifier_shieldreflect") and not boss:HasModifier("modifier_phased")) then
+if boss:HasModifier("modifier_tranq") or boss:HasModifier("modifier_flee") then -- or (boss:HasModifier("modifier_shieldreflect") and not boss:HasModifier("modifier_phased")) then
   return
 end
 
@@ -12034,6 +12035,13 @@ function COverthrowGameMode:FilterDamage( filterTable )
   end
   if victim:HasModifier("modifier_shieldreflect") then
     --filterTable["damage"] = 0
+    return true
+  end
+  if GetLevelOfAbility(victim, "brew6") >= 4 and math.random(1,100) <= 15 then
+    filterTable["damage"] = 0
+    local particle = ParticleManager:CreateParticle("particles/items_fx/necronomicon_spawn_dust.vpcf", PATTACH_POINT_FOLLOW, victim )
+    ParticleManager:SetParticleControl(particle, 0, victim:GetAbsOrigin())
+    ParticleManager:ReleaseParticleIndex(particle)
     return true
   end
 

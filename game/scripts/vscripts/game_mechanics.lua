@@ -487,7 +487,7 @@ function DamageUnit( event )
         end
         if IsShadowPan(caster) then
             event.shadowdmg = 1
-            ProcShadowPan(caster)
+            --ProcShadowPan(caster)
         end
     end
     if caster:HasModifier("modifier_fusion") then
@@ -3498,8 +3498,13 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         end
     end
     
-    if event.shadowdmg and caster:HasModifier("modifier_item_ancient_dot") then
-        value = value + 0.25
+    if event.shadowdmg then
+        if caster:HasModifier("modifier_item_ancient_dot") then
+            value = value + 0.25
+        end
+        if caster:HasModifier("modifier_brew_shadow") then
+            value = value + 1
+        end
     end
     if event.frostdmg then
         local coldChainStacks = caster:GetModifierStackCount("modifier_coc", nil)
@@ -3743,8 +3748,11 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             if caster:HasModifier("modifier_item_stunitem2") then
                 value = value + 0.1
             end
-            if dmgtype == 1 and caster:GetPrimaryAttribute() == 0 and caster.talents[148] > 0 then
+            if caster:GetPrimaryAttribute() == 0 and caster.talents[148] > 0 then
                 value = value + caster.talents[148] * GetPhysicalDamageBonusFromStr(caster, GetStrengthCustom(caster))
+            end
+            if GetLevelOfAbility(caster, "brew5") >= 4 then
+                value = value + 0.5
             end
             value = value + 0.2 * caster.talents[100] + 0.15 * caster.talents[50]
         end
@@ -4525,6 +4533,11 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * (1 + caster:GetHealthRegen() * 0.0003 * caster.talents[172])
     end
     if process_procs and caster.talents and ability then
+        if event.bloodwolf then
+            if event.dmgFromChannelTickRate then
+                multiplicative_bonus = multiplicative_bonus * (1 + GetChannelSpellhaste(caster, event))
+            end
+        end
         if event.useDamageEscalation then
             multiplicative_bonus = multiplicative_bonus * GetDamageEscalation(caster)
         end
@@ -7956,9 +7969,6 @@ function GetSpellhaste( caster, event )
         if name == "modifier_item_int3" then
             speedbonus = speedbonus + 0.25
         end
-        if name == "modifier_itemhaste20" then
-            speedbonus = speedbonus + 0.5
-        end
         if name == "modifier_item_active5up" then
             speedbonus = speedbonus + 0.5
         end
@@ -7977,24 +7987,12 @@ function GetSpellhaste( caster, event )
         if name == "modifier_item_hunterbow2" then
             speedbonus = speedbonus + 0.5
         end
-        if name == "modifier_item_spellhaste_2" then
-            speedbonus = speedbonus + 1
-        end
-        if name == "modifier_itemhaste50" then
-            speedbonus = speedbonus + 1.5
-        end
         if name == "modifier_spellhaste_50" then
             speedbonus = speedbonus + 1
         end
         if name == "modifier_stormcrow" then
             speedbonus = speedbonus + 1
-        end
-        if name == "modifier_itemhaste100" then
-            speedbonus = speedbonus + 2.25
-        end
-        if name == "modifier_itemhaste100_2" then
-            speedbonus = speedbonus + 3
-        end
+        end  
         if name == "modifier_as_aura_dragon" then
             speedbonus = speedbonus + 0.5
         end
@@ -8023,6 +8021,20 @@ function GetSpellhaste( caster, event )
     if (heroName == "npc_dota_hero_furion" and caster:GetAbilityByIndex(5):GetLevel() >= 4) then
         speedbonus = speedbonus + 1
     end
+
+    -- unique haste items
+    if caster:HasModifier("modifier_itemhaste100_2") then
+        speedbonus = speedbonus + 3
+    elseif caster:HasModifier("modifier_itemhaste100") then
+        speedbonus = speedbonus + 2.25
+    elseif caster:HasModifier("modifier_itemhaste50") then
+        speedbonus = speedbonus + 1.5
+    elseif caster:HasModifier("modifier_item_spellhaste_2") then
+        speedbonus = speedbonus + 1
+    elseif caster:HasModifier("modifier_itemhaste20") then
+        speedbonus = speedbonus + 0.5
+    end
+
     if caster:HasModifier("modifier_hasteproc25") then
         speedbonus = speedbonus + 0.75
     end
@@ -11752,9 +11764,6 @@ function ItemProc(event)
 		particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact_c.vpcf", PATTACH_POINT_FOLLOW, target)
 		ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
-		
-		
-		
 
 		EmitSoundOn( "DOTA_Item.DiffusalBlade.Kill", target)
 	end
@@ -14502,8 +14511,12 @@ function GlobalOnTakeDamage(event)
 end
 
 function OnSummonDamage(caster, target, ability)
-    if GetBeastWithinStat(caster) > 0 then
+    if GetBeastWithinStat(caster) > 0 and not caster.bwicd then
         RestoreResource({caster = caster, amount = GetBeastWithinStat(caster)})
+        caster.bwicd = true
+        Timers:CreateTimer(0.1, function()
+            caster.bwicd = false
+        end)
     end
 end
 
@@ -15794,6 +15807,10 @@ function ApplyBuff(event)
 	else --debuff
 		isBuff = false
 	end
+
+    if buff == "modifier_flee" and not CanApplyFleeEffect(target) then
+        return
+    end
 
     if not isBuff and not event.is_already_aoe_buff and (buff == "modifier_cyclone_self" or buff == "modifer_peaceful_guardian_cyclone_debuff" or buff == "modifier_rootsdruid") and caster:HasModifier("modifier_npc_dota_hero_furion") then
         event.dur = event.dur * 1.1
@@ -18951,6 +18968,12 @@ function SetUnitColor(event)
     target:SetRenderColor(event.r, event.g, event.b)
 end
 
+function SetUnitDirection(event)
+    local caster = event.caster
+    local target = event.target
+    target:SetForwardVector(target:GetAbsOrigin() - caster:GetAbsOrigin())
+end
+
 function DeathEggPosition(event)
     local caster = event.caster
     local target = event.unit
@@ -19704,6 +19727,9 @@ function GetStrengthPercentageBonus( hero, primary_stats_percent_bonus )
     if hero:HasModifier("modifier_wild_swipe") then
         percent_bonus = percent_bonus + 0.25
     end
+    if GetLevelOfAbility(hero, "brew6") >= 2 then
+        percent_bonus = percent_bonus + 0.1
+    end
     if hero:HasModifier("modifier_brute_force") then
         percent_bonus = percent_bonus + 0.5
     end
@@ -20081,6 +20107,9 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     if hero:HasModifier("modifier_item_btshp2") then
         percent_bonus = percent_bonus + 0.1
     end
+    if GetLevelOfAbility(hero, "brew6") >= 2 then
+        percent_bonus = percent_bonus + 0.1
+    end
     if hero:HasModifier("modifier_divinedef") then
         percent_bonus = percent_bonus + 0.15
     end
@@ -20142,6 +20171,9 @@ function GetHealthRegeneration(hero, strength)
     if hero:HasModifier("modifier_defstance") and hero:FindAbilityByName("fury6") then
         value = value + maxHealth * 0.01
     end
+    if hero:HasModifier("modifier_ox_aura_hp") and hero:FindAbilityByName("brew6") then
+        value = value + maxHealth * 0.1
+    end
     if hero:HasModifier("modifier_item_hpreg1") then
         value = value + 3
     end
@@ -20177,6 +20209,9 @@ function GetHealthRegenerationFactor(hero)
     local value = 1
     local buffstacks = hero:GetModifierStackCount("modifier_talent_thirst", nil)
     value = value + 0.05 * buffstacks * hero.talents[173]
+    if GetLevelOfAbility(hero, "brew6") >= 2 then
+        value = value + 0.1
+    end
     return value
 end
 
@@ -30553,12 +30588,14 @@ function Brew3(event)
     local abilityName = lastAbility:GetName()
     if abilityName == "brew1" then
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_fire", {Duration = 30})
+        Brew3Fire(caster)
     end
     if abilityName == "brew2" then
-        ReduceCooldown({caster = caster, chooseability = 1, amount = 5, ability = nil})
-        ReduceCooldown({caster = caster, chooseability = 2, amount = 5, ability = nil})
-        ReduceCooldown({caster = caster, chooseability = 4, amount = 5, ability = nil})
-        ReduceCooldown({caster = caster, chooseability = 5, amount = 5, ability = nil})
+        local red = 3
+        ReduceCooldown({caster = caster, chooseability = 1, amount = red, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 2, amount = red, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 4, amount = red, ability = nil})
+        ReduceCooldown({caster = caster, chooseability = 5, amount = red, ability = nil})
     end
     if abilityName == "brew4" then
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_move", {Duration = 30})
@@ -30567,7 +30604,10 @@ function Brew3(event)
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_taunt123", {Duration = 4})
     end
     if abilityName == "brew6" then
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 5})
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 10})
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_shadow", {Duration = 30})
+        local particle = ParticleManager:CreateParticle("particles/items_fx/phylactery_target_shadow.vpcf", PATTACH_POINT_FOLLOW, caster)
+        ParticleManager:ReleaseParticleIndex(particle)
     end
 end
 
@@ -30626,6 +30666,23 @@ function Brew4FireTick(event)
         local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}}
         CastBrew1(bofEvent)
     end
+end
+
+function Brew3Fire(caster)
+    local pos = caster:GetAbsOrigin()
+    local forward = caster:GetForwardVector()
+    local forward2 = RotateVectorAroundAngle(forward, 30)
+    local forward3 = RotateVectorAroundAngle(forward, -30)
+    local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward * 100}}
+    CastBrew1(bofEvent)
+    --Timers:CreateTimer(0.2, function()
+        local bofEvent2 = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward2 * 100}}
+        CastBrew1(bofEvent2)
+    --end)
+    --Timers:CreateTimer(0.4, function()
+        local bofEvent3 = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward3 * 100}}
+        CastBrew1(bofEvent3)
+    --end)
 end
 
 function EndBrew4(event)
@@ -30699,9 +30756,13 @@ function CastBrew2(event)
         spawnPoint = event.spawnPoint
     end
 
+    local buffevent = { caster = caster, target = caster, target_points = {targetPoint}, ability = ability, aoe = 300, buff = "modifier_haze", dur = dur}
+    ApplyBuffAOE(buffevent)
+
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_projectile.vpcf", PATTACH_WORLDORIGIN, caster)
     ParticleManager:SetParticleControl(particle, 0, spawnPoint)
     ParticleManager:SetParticleControl(particle, 1, targetPoint + Vector(0,0,15))
+    EmitSoundOn("DOTA_Item.Butterfly", caster)
 
     Timers:CreateTimer(delay, function()
         ParticleManager:DestroyParticle(particle, false)
@@ -30710,9 +30771,16 @@ function CastBrew2(event)
         ParticleManager:SetParticleControl(particle, 0, targetPoint)
         ParticleManager:SetParticleControl(particle, 1, Vector(300,0,0))
         ParticleManager:ReleaseParticleIndex(particle)
-        local buffevent = { caster = caster, target = caster, target_points = {targetPoint}, ability = ability, aoe = 300, buff = "modifier_haze", dur = dur}
-        ApplyBuffAOE(buffevent)
     end) 
+end
+
+function Brew5Taunt(event)
+    local caster = event.caster
+    local ability = event.ability
+
+    if ability:GetLevel() >= 2 and GetLevelOfAbility(caster, "brew2") >= 3 then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_taunt123", {Duration = event.duration})
+    end
 end
 
 function HasStaggerEffect(hero)
@@ -30769,4 +30837,50 @@ function PullTargetIn(event)
     ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(particle)
     target:SetAbsOrigin(position)
+end
+
+function Brew6(event)
+    local caster = event.caster
+    local ability = event.ability
+end
+
+function Brew6Summon(event)
+    local caster = event.caster
+    local summon = event.target
+    local ability = event.ability
+    caster.shadowOx = summon
+end
+
+function ShadowOxFlee(event)
+    local caster = event.caster
+    local target = event.target
+
+    if not caster.shadowOx or caster.shadowOx:IsNull() then
+        return
+    end
+
+    local position = caster.shadowOx:GetAbsOrigin()
+    FleeEffect(target, position)
+end
+
+-- makes a target flee away from a position
+function FleeEffect(target, fleeFromPosition)
+    local position = target:GetAbsOrigin()
+    local direction = RotateVectorAroundAngle((position - fleeFromPosition):Normalized(), math.random(-45, 45))
+    local order = 
+    {
+        UnitIndex = target:entindex(),
+        OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+        Position = target:GetAbsOrigin() + direction * 200,
+        Queue = false
+    }
+    ExecuteOrderFromTable(order)
+end
+
+function CanApplyFleeEffect(target)
+    if target:HasModifier("modifier_flee_cd") then
+        return false
+    end
+
+    return true
 end

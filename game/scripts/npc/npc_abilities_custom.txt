@@ -10677,7 +10677,7 @@
 	    // Stats
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
-	    "AbilityManaCost"         "45 35 35 35"
+	    "AbilityManaCost"         "45"
 	    "AbilityCooldown"         "0"
 	    "AbilityCastRange"        "300"
 	    "AbilityCastRangeBuffer"  "250"
@@ -10689,7 +10689,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmg" "200"
+		        "dmg" "200 250 250 250"
 		    }
 		}
 
@@ -10700,6 +10700,11 @@
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "CastBrew1"
 			    "Target"	"POINT"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Lina.PreAttack"
+				"Target"			"CASTER"
 			}
         }
 
@@ -10797,7 +10802,7 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmg" "50"
+		        "dmg" "100"
 		    }
 		    "01"
 		    { 
@@ -10820,28 +10825,6 @@
 				"ModifierName"	"modifier_haze_self"
 				"Target" 		"CASTER"
 				"Duration"		"%self"
-			}
-        }
-
-        "OnProjectileHitUnit"
-        {
-        	"DeleteOnHit"	"0"
-        	"RunScript"
-	    	{
-	    		"ScriptFile"	"game_mechanics.lua"
-	    		"Function"		"ApplyBuffStack"
-	    		"max"			"25"
-	    		"dur"			"10"
-	    		"buff"			"modifier_bof"
-	    	}
-        	"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "DamageUnit"
-			    "damage"		"0"
-			    "attributefactor"	"%dmg"
-			    "firedmg"	"1"
-			    "isaoe"		"1"
 			}
         }
 
@@ -10919,7 +10902,7 @@
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "25"
-	    "AbilityCooldown"         "10 7.5 7.5 7.5"
+	    "AbilityCooldown"         "10 8 8 8"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    //"radius"               "250"
 	    "AoERadius"	"250"
@@ -10934,12 +10917,7 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "duration" "2"
-		    }
-		    "03"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "cdreduce" "0 0 0 5"
+		        "duration" "1"
 		    }
 		    "03"
 		    { 
@@ -10967,6 +10945,8 @@
 	    {
 	    	"particle"  "particles/units/heroes/hero_axe/axe_counterhelix_ad.vpcf"
 	    	"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_stance_fire_ground_ring.vpcf"
+	    	"particle"  "particles/revenant_brooch_ring_glow_brew.vpcf"
+	    	"particle"  "particles/revenant_brooch_ring_glow_brew2.vpcf"
 	    }
 
         "OnSpellStart"
@@ -11079,6 +11059,15 @@
         		"IsDebuff"			"0"
         		"TextureName"		"brew1"
         		"EffectName"		"particles/revenant_brooch_ring_glow_brew.vpcf"
+        		"EffectAttachType"	"follow_origin"
+        	}
+        	"modifier_brew_shadow"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"TextureName"		"brew62"
+        		"EffectName"		"particles/revenant_brooch_ring_glow_brew2.vpcf"
         		"EffectAttachType"	"follow_origin"
         	}
         	"modifier_brew_move"
@@ -11207,7 +11196,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Juggernaut.HealingWard.Cast"
+				"EffectName"	"DOTA_Item.Buckler.Activate"
 				"Target" 		"CASTER"
 			}
         }
@@ -11354,39 +11343,32 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "stunchance" "0 100 100 100"
 		    }
-		    "01"
-		    { 
-		        "var_type"  "FIELD_FLOAT"
-		        "taunt" "0 0 0 100"
-		    }
 		}
 
         "OnSpellStart"
         {
+        	"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "Brew5Taunt"
+			    "duration"	"%duration"
+			}
         	"ApplyModifier"
         	{
         		"ModifierName"	"modifier_mor"
         		"Target" 		"CASTER"
         		"Duration"		"%duration"
         	}
-        	"Random"
-        	{
-        		"Chance"			"%taunt"
-        		"OnSuccess"
-        		{
-        			"ApplyModifier"
-		        	{
-		        		"ModifierName"	"modifier_taunt123"
-		        		"Target" 		"CASTER"
-		        		"Duration"		"%duration"
-		        	}
-        		}
-        	}
         	"FireEffect"
         	{
         		"EffectName"        "particles/items3_fx/blink_overwhelming_end_vacuum.vpcf"
         		"EffectAttachType"  "follow_origin"
         		"Target"            "CASTER"
+        	}
+        	"FireSound"
+        	{
+        		"EffectName"	"DOTA_Item.MedallionOfCourage.Activate"
+        		"Target" 		"CASTER"
         	}
         }
 
@@ -11450,11 +11432,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"brew6"
+		"AbilityTextureName"			"brew63"
 
 		"MaxLevel"               "4"
 	    "RequiredLevel"          "0"
@@ -11465,10 +11447,11 @@
 		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AoERadius"               "600"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"60"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -11486,83 +11469,43 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
+				"duration"				"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"0"
+				"radius"				"600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spellaura"				"0 1500 1500 1500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"				"0 0 0 100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fireele"				"0 0 1 1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aoedef"				"0 100 100 100"
+				"aura"				"0 0 100 100"
 			}
 		}
 	
 		"precache"
 		{
-			"particle"  "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
-			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
-			"model"		"models/heroes/shadowshaman/shadowshaman_totem.vmdl"
-			"model"		"models/items/shadowshaman/serpent_ward/tangki_serpent_ward/tangki_serpent_ward.vmdl"
-			"particle"  "particles/units/heroes/hero_meepo/meepo_poof_start_timing.vpcf"
-			"particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_wings_ground_add.vpcf"
-			"particle"  "particles/units/heroes/hero_batrider/batrider_firefly_startflash.vpcf"
+			"particle"  "particles/units/heroes/hero_void_spirit/planeshift/void_spirit_planeshift_active_debuff.vpcf"
+			"model"		"models/courier/juggernaut_dog/juggernaut_dog.vmdl"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_stance_void_ground_ring.vpcf"
 		}
 	
 		"OnSpellStart"
 		{
+			"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "Brew6"
+			}
 			"FireSound"
 			{
 				"EffectName"		"Hero_ShadowShaman.SerpentWard"
 				"Target"			"CASTER"
 			}
-			"Random"
-			{
-				"Chance"			"%aoedef"
-				"OnSuccess"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"600"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO"
-						}
-					
-						"Action"    
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_shamandef"
-								"Target" 		"TARGET"
-								"Duration"		"3"
-							}
-						}
-					}
-				}
-			}
+			
 			"SpawnUnit"
 			{
-				"UnitName"			"npc_dota_creature_serpent_twins"
+				"UnitName"			"npc_dota_creature_shadow_ox"
 				"Target"			"POINT"
 				"UnitCount"			"%ward_count"
 				"Duration"			"%duration"
@@ -11572,287 +11515,189 @@
 	
 				"OnSpawn"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_phased"
-						"Target"		"TARGET"
-						"Duration"		"0.10"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_shaman_as_ele"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_aoeslowaura"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_pet_system"
-						"Target" 		"TARGET"
-						"Duration"		"-1"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_shaman_sp_aura"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
-				}
-			}
-			"SpawnUnit"
-			{
-				"UnitName"			"npc_dota_creature_shaman_fireele"
-				"Target"			"POINT"
-				"UnitCount"			"%fireele"
-				"Duration"			"%duration"
-				"SpawnRadius"		"?10 100"
-				"GrantsGold"		"0"
-				"GrantsXP"			"0"
-	
-				"OnSpawn"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_phased"
-						"Target"		"TARGET"
-						"Duration"		"0.10"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_shaman_as_ele"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_aa_cd_reduce"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_pet_system"
-						"Target" 		"TARGET"
-						"Duration"		"-1"
-					}
 					"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "SetFireElementalReference"
+					    "Function"      "Brew6Summon"
+					}
+					"RunScript"
+			    	{
+			    		"ScriptFile"	"game_mechanics.lua"
+			    		"Function"		"SetUnitColor"
+			    		"r"			"0"
+			    		"g"			"0"
+			    		"b"		"0"
+			    	}
+			    	"RunScript"
+			    	{
+			    		"ScriptFile"	"game_mechanics.lua"
+			    		"Function"		"SetUnitDirection"
+			    	}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_phased"
+						"Target"		"TARGET"
+						"Duration"		"0.1"
+					}
+					"Random"
+					{
+						"Chance"			"%aura"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_ox_aura"
+								"Target"		"TARGET"
+								"Duration"		"%duration"
+							}
+						}
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_ox"
+						"Target"		"TARGET"
+						"Duration"		"%duration"
+					}
+					"FireEffect"
+					{
+						"EffectName"        "particles/items_fx/phylactery_target_shadow.vpcf"
+						"EffectAttachType"  "follow_hitloc"
+						"Target"            "TARGET"
 					}
 				}
 			}
-			"RunScript"
+
+			"ActOnTargets"
 			{
-			    "ScriptFile"    "ragesystem.lua"
-			    "Function"      "ReduceStealthCooldown"
-			    "percent"		"0.80"
-			}	
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			
+				"Action"    
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "ApplyBuff"
+					    "buff"			"modifier_flee"
+					    "dur"	"%duration"
+					}
+				}
+			}
 		}
 	
 		"Modifiers"
 		{
-			"modifier_shamandef"
+			"modifier_flee"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
-				"IsDebuff"			"0"
-				
-				"EffectName"       "particles/items3_fx/lotus_orb_rings.vpcf"
-			    "EffectAttachType"  "attach_hitloc"
-			}
-			"modifier_pet_system"
-			{
-				"Duration"	"-1"
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"0"
-				"IsPurgable"		"0"
-				"Properties"
+				"IsDebuff"			"1"
+
+				"OnCreated"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
-				}
-				"States"
-	        	{
-	              	"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-	        	}
-	        	"OnCreated"
-	        	{
-	        		"RunScript"
+					"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "PetSystem"
-					    "intsp"			"%damage"
-					    "setpetowner"	"1"
+					    "Function"      "ShadowOxFlee"
 					}
-	        	}
-				"ThinkInterval"  "1.25"
+					"FireEffect"
+					{
+						"EffectName"        "particles/items_fx/necronomicon_spawn.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_void_spirit/planeshift/void_spirit_planeshift_active_debuff.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_flee_cd"
+						"Target" 		"TARGET"
+						"Duration"		"45"
+					}
+				}
+			
+				"ThinkInterval"  "0.5"
 				"OnIntervalThink"
 				{
 					"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "PetSystem"
-					    "intsp"			"%damage"
+					    "Function"      "ShadowOxFlee"
 					}
-					
 				}
-				"OnAttackLanded"
-			    {
-	        		"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "DamageUnit"
-					    "damage"			"%attack_damage"
-					    "spelldamagefactor"	"0.0"
-					    "attributefactor"	"0.0"
-					    "fromsummon"	"1"
-					}
-			    }
-			    "OnAbilityExecuted"
-			    {
-			    	"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"		"CooldownReductionPet"
-					}
-			    }
+
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
 			}
-			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
-			"modifier_shaman_sp_aura"
-	        {
-	            "Passive"    "0"
-	            "IsBuff"     "1"
-	            "IsPurgable" "0"
-	            "IsHidden"   "1"
-
-	            "Aura" "modifier_shaman_sp_buff"
-	            "Aura_Radius" "%spellaura"
-	            "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	            "Aura_Types" "DOTA_UNIT_TARGET_HERO"
-	        }
-	        "modifier_shaman_as_ele"
-	        {
-	            "Passive"    "0"
-	            "IsBuff"     "1"
-	            "IsPurgable" "0"
-	            "IsHidden"   "1"
-
-	            "Properties"
-	            {
-	            	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as"
-	            }
-	        }
-	        "modifier_shaman_sp_buff"
+			"modifier_flee_cd"
 			{
 				"Passive"			"0"
-				"IsBuff"			"1"
-				"IsHidden"			"1"
+				"IsHidden"			"0"
 				"IsDebuff"			"0"
-				"IsPurgable"       "0"		
+				"IsPurgable"		"0"
 			}
-			"modifier_aoeslowaura"
-	        {
-	            "Passive"    "0"
-	            "IsBuff"     "1"
-	            "IsPurgable" "0"
-	            "IsHidden"   "0"
-
-	            "Aura" "aoeslow50"
-	            "Aura_Radius" "600"
-	            "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	            "Aura_Types" "DOTA_UNIT_TARGET_ALL"
-
-	            "States"
-	            {
-	            	"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
-	            }
-
-	            "OnCreated"
-	            {
-	            	"FireEffect"
-	            	{
-	            		"EffectName"        "particles/units/heroes/hero_batrider/batrider_firefly_startflash.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "TARGET"
-	            	}
-	            }
-
-	            "ThinkInterval"  "1.0"
-	            "OnIntervalThink"
-	            {
-	            	"FireEffect"
-	            	{
-	            		"EffectName"        "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_wings_ground_add.vpcf"
-	            		"EffectAttachType"  "attach_hitloc"
-	            		"Target"            "TARGET"
-	            	}
-	            }
-	        }
-	        "aoeslow50"
-	        { 
-	        	"IsBuff"	"0"
-	            "IsDebuff" "1"
-	            "IsHidden" "0"
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%slow"
-	            }
-	            "EffectName"       "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
-			    "EffectAttachType"  "attach_hitloc"
-			    "OnCreated"
-			    {
-			    	"RunScript"
-					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ApplyBuff"
-					    "buff"			"modifier_rooted_self"
-					    "dur"	"%root"
-					}
-			    	"FireEffect"
-			    	{
-			    		"EffectName"        "particles/units/heroes/hero_meepo/meepo_poof_start_timing.vpcf"
-			    		"EffectAttachType"  "attach_hitloc"
-			    		"Target"            "TARGET"
-			    	}
-			    }
-	        }
-	        "modifier_aa_cd_reduce"
+			"modifier_ox"
 			{
 				"Passive"			"0"
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
-				"IsPurgable"       "0"
+				"IsPurgable"		"0"
 
-   				"OnAttackLanded"
-   				{
-   					"RunScript"
+				"OnCreated"
+				{
+					"AttachEffect"
 					{
-					    "ScriptFile"    "game_mechanics.lua"
-					    "Function"      "ReduceAbilityCooldown"
-					    "index"			"3"
-					    "amount"	"1"
+						"EffectName"        "particles/items4_fx/nullifier_mute_debuff.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
 					}
-   				}
-   				
+				}
+			
+				"States"
+	          	{
+	              "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+	            }
 			}
-	        "modifier_rooted_self"
+			"modifier_ox_aura"
 			{
 				"Passive"			"0"
 				"IsHidden"			"1"
-				"IsDebuff"			"1"
-				"IsPurgable"       "1"
+				"IsDebuff"			"0"
+			
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_brewmaster/brewmaster_drunken_stance_void_ground_ring.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+				}
 
-   				"States"
-   				{
-   					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
-   				}
-   				
+				"Aura"          	"modifier_ox_aura_hp"
+				"Aura_Radius"   	"300"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+			}
+			"modifier_ox_aura_hp"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
 			}
 		}
 	}
@@ -16358,6 +16203,7 @@
 			    "spelldamagefactor"	"%dmgfromstat"
 			    "frostdmg"	"1"
 			    "bloodwolf"	"1"
+			    "dmgFromChannelTickRate"	"1"
 			    "isaoe"	"1"
 			    "useDamageEscalation"	"1"
 			}
