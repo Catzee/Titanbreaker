@@ -21524,7 +21524,7 @@ function PassiveStatCalculation(event)
     hero:RemoveModifierByName(buff)
     local value1 = 0
     if hero.talents[27] >= 1 then
-        value1 = 5 + hero.talents[23] * 5
+        value1 = 5 + hero.talents[27] * 5
     end
     if value1 > 75 then
         value1 = 75
