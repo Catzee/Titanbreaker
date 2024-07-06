@@ -7608,7 +7608,8 @@ end
 function COverthrowGameMode:IsAutoSellForTempleItem(hero, lootquality, spawnedItem)
 	local itemdrop = string.sub(spawnedItem, 1, string.len("item_")) == "item_"
 	local artifact = true
-
+	local isAutoSell = false
+	
 	if(itemdrop == true) then
 		artifact = false
 	end
