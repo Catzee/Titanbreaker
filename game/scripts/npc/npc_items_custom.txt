@@ -7952,7 +7952,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat1"    "1.75"
+	            "bonus_stat1"    "2"
 	        }
 	        "01"
 	        {
@@ -13078,7 +13078,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat1"    "2.0"
+	            "bonus_stat1"    "2.25"
 	        }
 	        "01"
 	        {
@@ -15198,11 +15198,6 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "100"
-	        }
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat2"    "50"
 	        }
 	    }
@@ -15215,7 +15210,6 @@
 	            "IsHidden" "1" 
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_stat1"
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat2"
 	            }
 	            "OnAttackLanded"
@@ -15249,7 +15243,7 @@
 	        }
 	        "modifier_cdbasher"
 	        {
-	         	"Duration"			"25"
+	         	"Duration"			"15"
 
 	         	"Passive"			"0"
 	         	"IsHidden"			"0"
@@ -15287,11 +15281,6 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "500"
-	        }
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
 	            "bonus_stat2"    "150"
 	        }
 	    }
@@ -15304,7 +15293,6 @@
 	            "IsHidden" "1" 
 	            "Properties"
 	            {
-	            	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_stat1"
 	            	"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat2"
 	            }
 	            "OnAttackLanded"
@@ -15338,7 +15326,7 @@
 	        }
 	        "modifier_cdbasher"
 	        {
-	         	"Duration"			"25"
+	         	"Duration"			"15"
 
 	         	"Passive"			"0"
 	         	"IsHidden"			"0"
@@ -26020,7 +26008,7 @@
 			{
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "NinjaSetBuff"
-			    "buff"			"modifier_crit_dmg_t3_2"
+			    "buff"			"modifier_crit_dmg_t3_3"
 			    "dur"	"10"
 			}
 			"FireEffect"
@@ -26075,7 +26063,7 @@
 	            	"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_stat4"
 	            }
 	        }
-	    	"modifier_crit_dmg_t3_2"
+	    	"modifier_crit_dmg_t3_3"
 	    	{
 			    "Passive"          "0"
 			    "IsBuff"			"1"
@@ -26151,7 +26139,7 @@
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "NinjaSetBuff"
 			    "buff"			"modifier_crit_dmg_t3"
-			    "dur"	"10"
+			    "dur"	"8"
 			}
 			"FireEffect"
 			{
@@ -28012,12 +28000,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "aura"    "8"
+	            "aura"    "-5"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "crit"    "5"
+	            "crit"    "15"
 	        }
 	        "01"
 	        {
@@ -28193,7 +28181,7 @@
 	        	}
 	        	"Aura"          	"modifier_agi_aura_set_t2"
 	            "Aura_Radius"   	"1500"
-	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	            "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	            "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
 	            "Aura_ApplyToCaster" "1"
@@ -28277,12 +28265,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "aura"    "10"
+	            "aura"    "-7"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "crit"    "5"
+	            "crit"    "15"
 	        }
 	        "01"
 	        {
@@ -28458,7 +28446,7 @@
 	        	}
 	        	"Aura"          	"modifier_agi_aura_set_t2"
 	            "Aura_Radius"   	"1500"
-	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	            "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	            "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
 	            "Aura_ApplyToCaster" "1"
@@ -28472,7 +28460,7 @@
 	        	"Properties"
 	        	{
 	        		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%aura"
-	        		"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "50"
+	        		"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%aura"
 	        	}
 	        }
 	    }
@@ -29023,7 +29011,7 @@
 	    "SideShop"     "0" 
 	    "SecretShop"   "1"
 
-	    "AbilityCooldown"				"45"
+	    "AbilityCooldown"				"30"
 	    "AbilityManaCost"				"0"
 	    "AbilityCastRange"					"600"
 
@@ -29143,7 +29131,7 @@
 	    "SideShop"     "0" 
 	    "SecretShop"   "1"
 
-	    "AbilityCooldown"				"45"
+	    "AbilityCooldown"				"30"
 	    "AbilityManaCost"				"0"
 	    "AbilityCastRange"					"600"
 
@@ -29664,6 +29652,11 @@
 							    "buff"			"modifier_agi_set_armor_debuff"
 							    "dur"	"10"
 							}
+							"ApplyModifier"
+	            			{
+	            				"ModifierName"	"modifier_agi_set_agi"
+	            				"Target" 		"CASTER"
+	            			}
 	            		}
 	            	}
 	            }
@@ -29687,6 +29680,27 @@
 	        	"Properties"
 	        	{
 	        		"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+	        	}
+	        }
+	        "modifier_agi_set_agi"
+	        {
+	        	"Duration"			"10"
+	        	"Passive"			"0"
+	        	"IsHidden"			"0"
+	        	"IsDebuff"			"0"
+	        	"IsBuff"			"1"
+	        	"OnCreated"
+	        	{
+	        		"AttachEffect"
+	        		{
+	        			"EffectName"        "particles/items_fx/glyph_creeps_base.vpcf"
+	        			"EffectAttachType"  "follow_origin"
+	        			"Target"            "TARGET"
+	        		}
+	        	}
+	        	"Properties"
+	        	{
+	        		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"50"
 	        	}
 	        }
 	        "modifier_agi_set_armor_debuff"
@@ -29827,6 +29841,11 @@
 							    "buff"			"modifier_agi_set_armor_debuff"
 							    "dur"	"10"
 							}
+							"ApplyModifier"
+	            			{
+	            				"ModifierName"	"modifier_agi_set_agi"
+	            				"Target" 		"CASTER"
+	            			}
 	            		}
 	            	}
 	            }
@@ -29850,6 +29869,27 @@
 	        	"Properties"
 	        	{
 	        		"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+	        	}
+	        }
+	        "modifier_agi_set_agi"
+	        {
+	        	"Duration"			"10"
+	        	"Passive"			"0"
+	        	"IsHidden"			"0"
+	        	"IsDebuff"			"0"
+	        	"IsBuff"			"1"
+	        	"OnCreated"
+	        	{
+	        		"AttachEffect"
+	        		{
+	        			"EffectName"        "particles/items_fx/glyph_creeps_base.vpcf"
+	        			"EffectAttachType"  "follow_origin"
+	        			"Target"            "TARGET"
+	        		}
+	        	}
+	        	"Properties"
+	        	{
+	        		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"75"
 	        	}
 	        }
 	        "modifier_agi_set_armor_debuff"
@@ -30066,6 +30106,19 @@
 						"aacrit_chance"	"%chance"
 					}
 			    }
+			    "OnAttackLanded"
+			    // "%attack_damage" is set to the damage value before mitigation
+			    {
+			    	"RunScript"
+					{
+						"ScriptFile"	"game_mechanics.lua"
+						"Function"		"AttackSpeedProc"
+						"speed"	"150"
+						"duration"	"10"
+						"innercd"	"30"
+						"innercdname"	"crusadercd"
+					}
+			    }
 	        } 
 	        "system_aacrit"
 			{	
@@ -30190,6 +30243,19 @@
 						"Function"		"AutoAttackCriticalStrike"
 						"aacrit_factor"	"450"
 						"aacrit_chance"	"%chance"
+					}
+			    }
+			    "OnAttackLanded"
+			    // "%attack_damage" is set to the damage value before mitigation
+			    {
+			    	"RunScript"
+					{
+						"ScriptFile"	"game_mechanics.lua"
+						"Function"		"AttackSpeedProc"
+						"speed"	"200"
+						"duration"	"10"
+						"innercd"	"30"
+						"innercdname"	"crusadercd"
 					}
 			    }
 	        } 
@@ -33237,12 +33303,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "200"
+	            "bonus_stat1"    "150"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "-100"
+	            "bonus_stat2"    "20"
 	        }
 	    }
 	    "Modifiers"
@@ -33254,7 +33320,7 @@
 	            "Properties"
 	            {
 	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_stat1"
-	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat2"
+	                //"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat2"
 	                //"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_stat3"
 	            }
 	        } 
@@ -33955,7 +34021,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "1500"
+	            "bonus_stat2"    "2000"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "5"
 	        }
 	    }
 
@@ -34007,7 +34078,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "1500"
+	            "bonus_stat2"    "2000"
+	        }
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "bonus_stat3"    "20"
 	        }
 	    }
 
@@ -34691,12 +34767,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "20"
+	            "bonus_stat1"    "35"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "250"
+	            "bonus_stat2"    "350"
 	        }
 	    }
 
@@ -35079,7 +35155,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "5"
+	            "bonus_stat3"    "15"
 	        }
 	    }
 
@@ -35091,8 +35167,8 @@
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "DamageUnit"
 			    "damage"			"%bonus_stat2"
-			    "spelldamagefactor"	"0.0"
-			    "attributefactor"	"0.0"
+			    "spelldamagefactor"	"200"
+			    "attributefactor"	"200"
 			    "firedmg"	"1"
 			}
 			"FireEffect"
@@ -35126,7 +35202,7 @@
 	            			{
 	            				"ScriptFile"	"game_mechanics.lua"
 	            				"Function"		"AshbringerProc"
-	            				"innerCooldown"	"0.1"
+	            				"innerCooldown"	"1"
 	            			}
 	            		}
 	            	}
@@ -35522,12 +35598,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "75"
+	            "bonus_stat1"    "100"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "25"
+	            "bonus_stat2"    "100"
 	        }
 	    }
 
@@ -35615,6 +35691,18 @@
 
 	    "OnSpellStart"
 	    {	
+	    	"ApplyModifier"
+	    	{
+	    		"ModifierName"	"modifier_bootheal_def"
+	    		"Target" 		"CASTER"
+	    		"Duration"		"1"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"ModifierName"	"modifier_bootheal_def"
+	    		"Target" 		"TARGET"
+	    		"Duration"		"1"
+	    	}
 			"RunScript"
 			{
 			    "ScriptFile"    "game_mechanics.lua"
@@ -35655,6 +35743,12 @@
 	                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_stat1"
 	                 "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_stat2"
 	            }
+	        }
+	        "modifier_bootheal_def"
+	        {
+	        	"Passive"			"0"
+	        	"IsHidden"			"0"
+	        	"IsDebuff"			"0"
 	        }
 	        "modifier_shieldreflect"
 			{
@@ -35734,7 +35828,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "50"
+	            "bonus_stat3"    "250"
 	        }
 	        "01"
 	        {
@@ -35763,7 +35857,7 @@
 					}
 	            	"Random"
 	            	{
-	            		"Chance"			"5.0"
+	            		"Chance"			"7"
 	            		"OnSuccess"
 	            		{
 	            			"RunScript"
@@ -36581,22 +36675,17 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "15"
+	            "bonus_stat1"    "20"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "15"
+	            "bonus_stat2"    "20"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat3"    "15"
-	        }
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat4"    "15"
+	            "bonus_stat3"    "20"
 	        }
 	        "01"
 	        {
@@ -36617,8 +36706,8 @@
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "DamageUnit"
 			    "damage"			"%dmg"
-			    "spelldamagefactor"	"0.0"
-			    "attributefactor"	"0"
+			    "spelldamagefactor"	"100"
+			    "includeauto"	"100"
 			}
 		}
 
@@ -36634,13 +36723,12 @@
 	                 "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat1"
 	                 "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat2"
 	                 "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_stat3"
-	                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_stat4"
 	            }
 	            "OnDealDamage"
 	            {
 	            	"Random"
 	            	{
-	            		"Chance"			"5"
+	            		"Chance"			"10"
 	            		"OnSuccess"
 	            		{
 	            			"RunScript"
@@ -37073,7 +37161,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "10.0"
+	            "bonus_stat3"    "15"
 	        }
 	    }
 
@@ -37085,8 +37173,8 @@
 			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "DamageUnit"
 			    "damage"			"%bonus_stat2"
-			    "spelldamagefactor"	"0"
-			    "attributefactor"	"0"
+			    "spelldamagefactor"	"100"
+			    "includeauto"	"100"
 			    "firedmg"	"1"
 			}
 			"FireEffect"
@@ -37124,7 +37212,7 @@
 	            			{
 	            				"ScriptFile"	"game_mechanics.lua"
 	            				"Function"		"AshbringerProc"
-	            				"innerCooldown"	"0.1"
+	            				"innerCooldown"	"1"
 	            			}
 	            		}
 	            	}
@@ -37975,7 +38063,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "125"
+	            "bonus_stat1"    "250"
 	        }
 	    }
 	    "Modifiers"
@@ -38657,7 +38745,7 @@
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "buffduration"    "6"
+	            "buffduration"    "10"
 	        }
 	    }
 
@@ -38991,14 +39079,14 @@
 		"AbilityCastPoint"				"0.2"
 		"AoERadius"               	"300"
 		"AbilityCastAnimation"   "ACT_DOTA_ATTACK"
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"15"
 
 	    "AbilitySpecial"
 	    {
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat1"    "450"
+	            "bonus_stat1"    "750"
 	        }
 	        "01"
 	        {
@@ -39898,7 +39986,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "50"
+	            "bonus_stat2"    "250"
 	        }
 	        "01"
 	        {
@@ -39913,12 +40001,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "aura"    "5"
+	            "aura"    "-5"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "crit"    "5"
+	            "crit"    "15"
 	        }
 	        "01"
 	        {
@@ -40089,7 +40177,7 @@
 	        	}
 	        	"Aura"          	"modifier_agi_aura_set_t2"
 	            "Aura_Radius"   	"1500"
-	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	            "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	            "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
 	            "Aura_ApplyToCaster" "1"
@@ -40340,7 +40428,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "100"
+	            "bonus_stat2"    "250"
 	        }
 	        "01"
 	        {
@@ -40360,7 +40448,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "aura2"    "150"
+	            "aura2"    "500"
 	        }
 	        "01"
 	        {
@@ -40857,7 +40945,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "chance"    "4"
+	            "chance"    "10"
 	        }
 	        "01"
 	        {
@@ -40918,7 +41006,7 @@
 					    "damage"			"0.0"
 					    "spelldamagefactor"	"0.0"
 					    "attributefactor"	"0.0"
-					    "includeauto"	"20"
+					    "includeauto"	"200"
 					    "poisondmg"	"1"
 					}
 	         	}
@@ -40952,7 +41040,7 @@
 
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "60"
+	    "AbilityCooldown"         "30"
 
 	    "AbilityCastPoint"       "0.3"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
@@ -41032,7 +41120,7 @@
 	         	"EffectName"		"particles/items2_fx/orb_of_venom.vpcf"
 	         	"EffectAttachType"	"follow_origin"
 	         
-	         	"ThinkInterval"  "1.0"
+	         	"ThinkInterval"  "0.5"
 	         	"OnIntervalThink"
 	         	{
 	         		"RunScript"
@@ -41043,6 +41131,7 @@
 					    "spelldamagefactor"	"0.0"
 					    "attributefactor"	"%dmg"
 					    "naturedmg"	"1"
+					    "isaoe"	"1"
 					}
 	         	}
 	         } 
@@ -41143,7 +41232,7 @@
 					    "Function"      "DamageUnit"
 					    "damage"			"0.0"
 					    "spelldamagefactor"	"0.0"
-					    "attributefactor"	"100"
+					    "attributefactor"	"200"
 					    "naturedmg"		"1"
 					    "dragondmg"	"1"
 					    "dontbreakcc"	"1"
@@ -41192,7 +41281,7 @@
 
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "60"
+	    "AbilityCooldown"         "30"
 
 	    "AbilityCastPoint"       "0.3"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
@@ -41275,7 +41364,7 @@
 	         	"EffectName"		"particles/items2_fx/orb_of_venom.vpcf"
 	         	"EffectAttachType"	"follow_origin"
 	         
-	         	"ThinkInterval"  "1.0"
+	         	"ThinkInterval"  "0.5"
 	         	"OnIntervalThink"
 	         	{
 	         		"RunScript"
@@ -41318,7 +41407,7 @@
 
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "60"
+	    "AbilityCooldown"         "15"
 
 	    "AbilityCastPoint"       "0.3"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
@@ -41343,12 +41432,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "dmg"    "300"
+	            "dmg"    "100"
 	        }
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "spell"    "300"
+	            "spell"    "100"
 	        }
 	    }
 
@@ -41378,7 +41467,7 @@
 	        	"IsPurgable"		"0"
 	        	"IsBuff"			"1"
 	        
-	        	"ThinkInterval"  "1.0"
+	        	"ThinkInterval"  "0.5"
 	        	"OnIntervalThink"
 	        	{
 	        		"FireEffect"
@@ -41966,7 +42055,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "bonus_stat2"    "10"
+	            "bonus_stat2"    "40"
 	        }
 	    }
 
@@ -42698,7 +42787,7 @@
 	    "SideShop"     "0" 
 	    "SecretShop"   "1"
 
-	    "AbilityCooldown"				"60"
+	    "AbilityCooldown"				"30"
 	    "AbilityManaCost"				"0"
 	    "AbilityCastRange"					"600"
 
@@ -42855,7 +42944,7 @@
 	    "SideShop"     "0" 
 	    "SecretShop"   "1"
 
-	    "AbilityCooldown"				"45"
+	    "AbilityCooldown"				"30"
 	    "AbilityManaCost"				"0"
 	    "AbilityCastRange"					"600"
 
@@ -43275,6 +43364,11 @@
 							    "buff"			"modifier_agi_set_armor_debuff"
 							    "dur"	"10"
 							}
+							"ApplyModifier"
+	            			{
+	            				"ModifierName"	"modifier_agi_set_agi"
+	            				"Target" 		"CASTER"
+	            			}
 	            		}
 	            	}
 	            }
@@ -43298,6 +43392,27 @@
 	        	"Properties"
 	        	{
 	        		"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+	        	}
+	        }
+	        "modifier_agi_set_agi"
+	        {
+	        	"Duration"			"10"
+	        	"Passive"			"0"
+	        	"IsHidden"			"0"
+	        	"IsDebuff"			"0"
+	        	"IsBuff"			"1"
+	        	"OnCreated"
+	        	{
+	        		"AttachEffect"
+	        		{
+	        			"EffectName"        "particles/items_fx/glyph_creeps_base.vpcf"
+	        			"EffectAttachType"  "follow_origin"
+	        			"Target"            "TARGET"
+	        		}
+	        	}
+	        	"Properties"
+	        	{
+	        		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"25"
 	        	}
 	        }
 	        "modifier_agi_set_armor_debuff"
@@ -43684,7 +43799,7 @@
 				"Duration"	"10"
 				"Properties"
 				{
-				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "8"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15"
 				}
 			}
 	        "modifier_agi_set_magic_debuff"
@@ -43980,6 +44095,19 @@
 						"Function"		"AutoAttackCriticalStrike"
 						"aacrit_factor"	"350"
 						"aacrit_chance"	"%chance"
+					}
+			    }
+			    "OnAttackLanded"
+			    // "%attack_damage" is set to the damage value before mitigation
+			    {
+			    	"RunScript"
+					{
+						"ScriptFile"	"game_mechanics.lua"
+						"Function"		"AttackSpeedProc"
+						"speed"	"100"
+						"duration"	"10"
+						"innercd"	"30"
+						"innercdname"	"crusadercd"
 					}
 			    }
 	        } 
@@ -45277,12 +45405,12 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat2"    "60"
+	            "bonus_stat2"    "100"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "bonus_stat3"    "11"
+	            "bonus_stat3"    "20"
 	        }
 	        "02"
 	        {
@@ -45451,7 +45579,7 @@
 			    "IsPurgable"       "1"
 			    "Properties"
 			    {
-			    	"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"-5.0"
+			    	"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"-5"
 			    }
 	    	}
 	    	"modifier_active6_2"
@@ -45473,7 +45601,7 @@
 			    }
 			    "Properties"
 			    {
-			    	"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"-15.0"
+			    	"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"-10"
 			    }
 	    	}
 	    }
@@ -58169,6 +58297,7 @@
 	    			{
 	    				"ScriptFile"	"game_mechanics.lua"
 	    				"Function"		"Bookoflight"
+	    				"mana"			"2"
 	    			}
 		        }
 	        } 
@@ -58441,7 +58570,7 @@
 
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "75"
+	    "AbilityCooldown"         "45"
 
 	    "AbilitySpecial"
 	    {
@@ -58505,6 +58634,7 @@
 	    			{
 	    				"ScriptFile"	"game_mechanics.lua"
 	    				"Function"		"Bookoflight"
+	    				"mana"			"5"
 	    			}
 		        }
 	        }
@@ -61382,7 +61512,7 @@
 	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_ALWAYS"
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "300"
+	    "AbilityCooldown"         "75"
 
 	    "AbilitySpecial"
 	    {
@@ -61394,12 +61524,12 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "dmg"    "200"
+	            "dmg"    "250"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "msdur"    "25"
+	            "msdur"    "8"
 	        }
 	    }
 
@@ -61415,7 +61545,7 @@
 				    "Teams"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 
 				    //AbilityUnitTargetTypes
-				    "Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				    "Types"  "DOTA_UNIT_TARGET_HERO"
 				}
 	            "ModifierName" "modifier_zeus_cloud"
 	            "Duration"         "%msdur"
@@ -62366,7 +62496,7 @@
 
 	    "Modifiers"
 	    {
-	        "modifier_item_cooldown"
+	        "modifier_item_cooldown2"
 	        {
 	            "Passive"  "1"
 	            "IsHidden" "1" 

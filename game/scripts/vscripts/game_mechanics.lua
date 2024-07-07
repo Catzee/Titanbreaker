@@ -115,9 +115,6 @@ function GetSpellpower(event)
         if name == "modifier_item_winterbreeze3" then
             spelldamagefromitem = spelldamagefromitem + 0.03 * caster:GetMana()
         end
-	    if name == "modifier_item_endgame4" then
-	    	spelldamagefromitem = spelldamagefromitem + 50
-	    end
 	    if name == "modifier_item_nova_blade_shadow" then
 	    	spelldamagefromitem = spelldamagefromitem + 40
 	    end
@@ -286,6 +283,9 @@ function GetSpellpower(event)
         if(dsClassItem2ModifierAbility) then
             spelldamagefromitem = spelldamagefromitem + dsClassItem2ModifierAbility:GetSpecialValueFor("bonus_spellpower")
         end
+    end
+    if caster:HasModifier("modifier_item_endgame4") then
+        spelldamagefromitem = spelldamagefromitem + 50
     end
     if caster:HasModifier("modifier_rune") then
         spelldamagefromitem = spelldamagefromitem + 75 + 10 * caster:GetModifierStackCount("modifier_rune_sp", nil)
@@ -892,6 +892,10 @@ function DamageUnit( event )
         damage = event.difficultyscalelinear * pvescale
         damage = damage * COverthrowGameMode.player_count_scale * weaken * GetDifficultyModeDamageFactor()
     end
+    -- boss ramp up effect for being better able to react
+    if caster:HasModifier("modifier_low_dmg90") then
+        damage = damage * 0.1
+    end
 
     local finaldamage = damage
 
@@ -1411,7 +1415,7 @@ function DamageUnit( event )
     --spellcrits ALL
     local critchance = 0
     local critchancefactor = 1.0
-    local critdmgbonusfactor = 1.0
+    local critdmgbonusfactor = 1
     local critpossible = true
     if event.cannotcrit then
         critpossible = false
@@ -1427,6 +1431,7 @@ function DamageUnit( event )
     if event.critdmgbonusfactor ~= nil then
         critdmgbonusfactor = event.critdmgbonusfactor
     end
+    critdmgbonusfactor = critdmgbonusfactor + GetCriticalStrikeDamageBonus(caster, dmgtype, event, false)
     local rangercritdmg = caster:FindAbilityByName("glacier_crack_spell")
     if rangercritdmg and rangercritdmg:GetLevel() >= 3 then
         critdmgbonusfactor = critdmgbonusfactor + 0.15
@@ -1530,10 +1535,10 @@ function DamageUnit( event )
         critdmgbonusfactor = critdmgbonusfactor + 0.25
     end
     if caster:HasModifier("modifier_crit_aura_dragon") then
-        critdmgbonusfactor = critdmgbonusfactor + 0.2
+        critdmgbonusfactor = critdmgbonusfactor + 0.1
     end
     if caster:HasModifier("modifier_crit_aura_dragon_2") then
-        critdmgbonusfactor = critdmgbonusfactor + 0.3
+        critdmgbonusfactor = critdmgbonusfactor + 0.2
     end
     if caster:HasModifier("modifier_item_windforce2") then
         critdmgbonusfactor = critdmgbonusfactor + 0.25
@@ -1565,9 +1570,15 @@ function DamageUnit( event )
     end
     if caster:HasModifier("modifier_crit_dmg_t3") then
         critdmgbonusfactor = critdmgbonusfactor + 0.15
+        critchancefactor = critchancefactor + 0.15
     end
     if caster:HasModifier("modifier_crit_dmg_t3_2") then
+        critdmgbonusfactor = critdmgbonusfactor + 0.2
+        critchancefactor = critchancefactor + 0.2
+    end
+    if caster:HasModifier("modifier_crit_dmg_t3_3") then
         critdmgbonusfactor = critdmgbonusfactor + 0.25
+        critchancefactor = critchancefactor + 0.25
     end
     if caster:HasModifier("modifier_crit_dmg_riki_50") then
         critdmgbonusfactor = critdmgbonusfactor + 0.25
@@ -1683,9 +1694,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster:HasModifier("modifier_item_set_agi_set_crit_t1_2") then
-        critchance = 5*critchancefactor + flatCritChance
+        critchance = 15*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*3*critdmgbonusfactor
+            finaldamage = finaldamage*2*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -1952,9 +1963,9 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster:HasModifier("modifier_item_set_agi_set_crit_t1") then
-        critchance = 5*critchancefactor + flatCritChance
+        critchance = 15*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
+            finaldamage = finaldamage*1.75*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -2226,7 +2237,7 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster:HasModifier("modifier_crit_aura_dragon_2") then
-        critchance = 3*critchancefactor + flatCritChance
+        critchance = 10*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
             finaldamage = finaldamage*2*critdmgbonusfactor
             critpossible = false
@@ -2244,7 +2255,11 @@ function DamageUnit( event )
         if math.random(1,100) <= critchance then
             local dist = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length()
             if dist > 300.0 then
-                finaldamage = finaldamage*2*critdmgbonusfactor
+                local bowDmgFactor = 2
+                if caster.bowcritcounter >= 20 then
+                    bowDmgFactor = 2.5
+                end
+                finaldamage = finaldamage*bowDmgFactor*critdmgbonusfactor
                 critpossible = false
             end
         end
@@ -2291,9 +2306,9 @@ function DamageUnit( event )
         finaldamage = finaldamage*1.25
     end
     if critpossible == true and caster:HasModifier("modifier_crit_aura_dragon") then
-        critchance = 3*critchancefactor + flatCritChance
+        critchance = 10*critchancefactor + flatCritChance
         if math.random(1,100) <= critchance then
-            finaldamage = finaldamage*1.5*critdmgbonusfactor
+            finaldamage = finaldamage*1.75*critdmgbonusfactor
             critpossible = false
         end
     end
@@ -3368,7 +3383,7 @@ function GetSummonBonusDamage( event, caster, empower_stacks )
     end
     local unholy_3 = caster:FindAbilityByName("unholy_3")
     if unholy_3 and unholy_3:GetLevel() >= 3 then
-        value = value * (1 + 0.005 * GetAgilityCustom(caster))
+        value = value * (1 + 0.0025 * GetIntellectCustom(caster))
     end
     local necroMark = caster:GetModifierStackCount("modifier_necrotic_mark", nil)
     if necroMark > 0 then
@@ -3875,10 +3890,18 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 1
     end
     if event.shadowdmg and caster:HasModifier("modifier_shadowflame") then
-        value = value + 0.25
+        if event.isdot then
+            value = value + 0.25
+        else
+            value = value + 0.5
+        end
     end
     if event.firedmg and caster:HasModifier("modifier_shadowflame") then
-        value = value + 0.25
+        if event.isdot then
+            value = value + 0.25
+        else
+            value = value + 0.5
+        end
     end
     local maskOfHorrorModifier = caster:FindModifierByName("modifier_ancient_def")
     if(maskOfHorrorModifier) then
@@ -3916,7 +3939,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.5
     end
     if event.firedmg and caster:HasModifier("modifier_stormrider2") then
-        value = value + 0.5
+        value = value + 1
     end
     if event.shadowdmg and caster:HasModifier("modifier_warlockrage") then
         value = value + 1
@@ -7112,7 +7135,7 @@ function HealUnit( event )
         critdmgbonusfactor = critdmgbonusfactor + 0.01 * artifact_crit_dmg
     end
     if caster:HasModifier("modifier_crit_aura_dragon") then
-        critdmgbonusfactor = critdmgbonusfactor + 0.2
+        critdmgbonusfactor = critdmgbonusfactor + 0.1
     end
     if caster:HasModifier("modifier_element_chaos") then
         critdmgbonusfactor = critdmgbonusfactor + 0.3
@@ -7207,9 +7230,9 @@ function HealUnit( event )
         end
     end
     if critpossible == true and event.caster:HasModifier("modifier_crit_aura_dragon_2") then
-        critchance = 3*critchancefactor
+        critchance = 10*critchancefactor
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*5.0*critdmgbonusfactor
+            event.heal = event.heal*2*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -7399,9 +7422,9 @@ function HealUnit( event )
         end
     end
     if critpossible == true and event.caster:HasModifier("modifier_crit_aura_dragon") then
-        critchance = 3*critchancefactor
+        critchance = 10*critchancefactor
         if math.random(1,100) <= critchance then
-            event.heal = event.heal*2.0*critdmgbonusfactor
+            event.heal = event.heal*1.75*critdmgbonusfactor
             displaynumber = 1
             critpossible = false
         end
@@ -7563,10 +7586,16 @@ function HealUnit( event )
 	    	critpossible = false
     	end
     end
-    if critpossible == true and event.caster:HasModifier("modifier_item_caster7") and target:GetHealth()/target:GetMaxHealth() < 0.3 then
-	    event.heal = event.heal*1.25*critdmgbonusfactor
-    	displaynumber = 1
-	    critpossible = false
+
+    if critpossible == true and event.caster:HasModifier("modifier_item_caster7") then
+        local hpPercent = target:GetHealth()/target:GetMaxHealth()
+        local patronChance = (1 - hpPercent) * 100
+        critchance = patronChance * critchancefactor
+        if math.random(1,100) <= critchance then
+	       event.heal = event.heal*1.25*critdmgbonusfactor
+    	   displaynumber = 1
+	       critpossible = false
+        end
     end
     local holy_priest_crit = caster:FindAbilityByName("holy_priest_crit")
     if critpossible == true and holy_priest_crit and holy_priest_crit:GetLevel() >= 3 then
@@ -7892,10 +7921,11 @@ end
 function Bookoflight(event)
 	local caster = event.caster
 	local a = event.event_ability
-	if a then
+    local mana = event.mana
+	if a and not caster.resourcesystem then
 		if a:GetManaCost(a:GetLevel()) > 0.0 then
 			Timers:CreateTimer(0.05,function() 
-	        	caster:SetMana(caster:GetMana()+2)
+	        	caster:SetMana(caster:GetMana()+mana)
 	    	end)
 		end
 	end
@@ -11733,19 +11763,13 @@ function ItemProc(event)
 	-- Basher
 	if proctype == "stun" and not (caster:HasModifier("modifier_cdbasher")) then
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_cdbasher", nil)
-		local table = {}
-		table.Duration = 3.5
-		if caster:IsRangedAttacker() then
-			table.Duration = 2.5
-		end
-		--event.ability:ApplyDataDrivenModifier(caster, target, "modifier_stunned", table)
 
 		local myevent = {}
 		myevent.caster = caster
 		myevent.target = target
 		myevent.buff = "modifier_stunned"
 		myevent.ability = event.ability
-		myevent.dur = table.Duration
+		myevent.dur = 2.5
 		ApplyBuff(myevent)
 		--fx
 		--local particle = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_arcana.vpcf", PATTACH_POINT_FOLLOW, target)
@@ -14997,9 +15021,11 @@ end
 
 function GetCooldownReductionFactor( caster, ability )
     local factor = 1
-    local hoodoftime = caster:HasModifier("modifier_item_cooldown")
-    if hoodoftime then
-        factor = 0.85
+    if caster:HasModifier("modifier_item_cooldown") then
+        factor = 0.95
+    end
+    if caster:HasModifier("modifier_item_cooldown2") then
+        factor = 0.925
     end
     if caster:HasModifier("modifier_item_allstats2up") then
         factor = factor * 0.9
@@ -19871,6 +19897,9 @@ function GetAttackDamagePercentageBonus( hero, healthPercentFactor )
     if hero:HasModifier("modifier_temple_furystance") then
         percent_bonus = percent_bonus + 0.25
     end
+    if hero:HasModifier("modifier_item_dmgminusas") then
+        percent_bonus = percent_bonus + 0.2
+    end
     local fury5 = hero:FindAbilityByName("fury5")
     if fury5 and fury5:GetLevel() >= 4 then
         percent_bonus = percent_bonus + 0.5
@@ -19997,6 +20026,15 @@ function GetManaPercentageBonus( hero )
     local percent_bonus = hero.talents[34] * 0.1
     if hero:HasModifier("modifier_nether_explosion_buff") then
         percent_bonus = percent_bonus + 0.5
+    end
+    if hero:HasModifier("modifier_item_set_int_dmg_full_2") then
+        percent_bonus = percent_bonus + 0.1
+    end
+    if hero:HasModifier("modifier_item_set_int_dmg_full_2_dream") then
+        percent_bonus = percent_bonus + 0.15
+    end
+    if hero:HasModifier("modifier_item_set_int_dmg_full_2_dream_2") then
+        percent_bonus = percent_bonus + 0.15
     end
     local holy6 = hero:FindAbilityByName("holy6")
     if holy6 and holy6:GetLevel() >= 3 then
@@ -20176,6 +20214,9 @@ function GetHealthRegeneration(hero, strength)
     end
     if hero:HasModifier("modifier_item_hpreg1") then
         value = value + 3
+    end
+    if hero:HasModifier("modifier_item_agihp") then
+        value = value + 20
     end
     if hero:HasModifier("modifier_hpregen2") then
         value = value + 15
@@ -21654,7 +21695,7 @@ function PassiveStatCalculation(event)
                 myevent.buff = "modifier_talent_moonglaive_shield"
                 myevent.ability = ability
                 myevent.addstacks = 1
-                local max_stack = 4
+                local max_stack = 5
                 myevent.max = max_stack
                 ApplyBuffStack(myevent)
             end
@@ -24167,11 +24208,13 @@ function TakeHealthPercentage( event )
     if event.DKselfheal and ability and ability:GetLevel() >= 4 then
         HealUnit({caster = caster, target = caster, heal = hp_before - finalHP, spelldamagefactor = 0, attributefactor = 0})
     end
-    local myevent = {}
-    myevent.unit = target
-    myevent.attacker = caster
-    myevent.damagetaken = damage_equivalent
-    COverthrowGameMode:PVEAggroAdd(myevent)
+
+    -- aggro was op
+    --local myevent = {}
+    --myevent.unit = target
+    --myevent.attacker = caster
+    --myevent.damagetaken = damage_equivalent
+    --COverthrowGameMode:PVEAggroAdd(myevent)
 end
 
 function StarsAlignFX(target)
@@ -25065,10 +25108,10 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
         end
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1") then
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 275, aacrit_chance = 5})
+        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 175, aacrit_chance = 15})
     end
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1_2") then
-        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 1000, aacrit_chance = 5})
+        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 200, aacrit_chance = 15})
     end
     if caster:HasModifier("modifier_item_set_str_dmg_full_t1") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 750, aacrit_chance = 15})
@@ -25122,7 +25165,7 @@ function AutoAttackCriticalStrike( event )
     local caster = event.attacker
     local target = event.target
     local crit_factor = event.aacrit_factor
-    local crit_factor_bonus = 1
+    local crit_factor_bonus = 1 + GetCriticalStrikeDamageBonus(caster, 1, event, true)
     local crit_chance = event.aacrit_chance
     if event.buffcondition then
         if not caster:HasModifier(event.buffcondition) then
@@ -26054,6 +26097,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
     end
     if caster:HasModifier("modifier_equilibrium") then
         factor = factor * 0.55
+    end
+    if caster:HasModifier("modifier_bootheal_def") then
+        factor = factor * 0.1
     end
     if caster:HasModifier("modifier_killdance_imunity") then
         factor = factor * 0.1
@@ -27459,6 +27505,9 @@ end
 function GetHealingMultiplier(event, caster, ability, target, process_procs, isaoe, wascrit)
     local healing_bonus = 1
     if caster.talents then
+        if caster:HasModifier("modifier_t1_armor") then
+            healing_bonus = healing_bonus + 0.25
+        end
         if caster:HasModifier("modifier_taunt123") and GetLevelOfAbility(caster, "mars6") >= 4 then
             healing_bonus = healing_bonus + 1
         end
@@ -28049,6 +28098,7 @@ function GetChannelSpellhaste( caster, event )
     if haste <= 0.5 then
         haste = 0.5
     end
+    print(haste)
     return haste
 end
 
@@ -28159,7 +28209,7 @@ function GetManaRegenerationPerSec( hero )
         if hero:HasModifier("modifier_item_bootsmana_2_libram_2") then
             regen = regen + 2
         end
-        if hero:HasModifier("modifier_item_cooldown") then
+        if hero:HasModifier("modifier_item_cooldown2") then
             regen = regen + 1
         end
         if hero:HasModifier("modifier_item_reg2") then
@@ -28236,6 +28286,9 @@ function GetManaRegenerationFactor(hero)
     end
     if hero:HasModifier("modifier_windbreaker") then
         factor = factor + 0.1 * hero.talents[83]
+    end
+    if hero:HasModifier("modifier_item_inthp") then
+        factor = factor + 0.05
     end
     return factor
 end
@@ -30883,4 +30936,31 @@ function CanApplyFleeEffect(target)
     end
 
     return true
+end
+
+function AttackSpeedProc(event)
+    local caster = event.caster
+
+    if event.innercd then
+        if caster[event.innercdname] then
+            return
+        end
+        caster[event.innercdname] = true
+        Timers:CreateTimer(event.innercd * GetInnerCooldownFactor(caster), function()
+            caster[event.innercdname] = false
+        end)
+    end
+
+    AddAttackSpeed(caster, event.speed, event.duration)
+end
+
+-- there are also other sources, this is just some part of it
+-- ability and aa
+function GetCriticalStrikeDamageBonus(caster, dmgType, event, isAutoAttack)
+    local value = 0
+    if caster:HasModifier("modifier_divine_phys") and (dmgType == 1 or dmgType == 2) and (isAutoAttack or CountElementalDamageTypes(event) == 0) then
+        value = value + 0.75
+    end
+
+    return value
 end

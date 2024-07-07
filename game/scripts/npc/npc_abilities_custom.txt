@@ -25373,7 +25373,7 @@
         	
         		"Properties"
         		{
-        			"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "1"
+        			"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "1.5"
         		}
         	}
         	"modifier_ranger_def"
@@ -47176,7 +47176,7 @@
 			
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "1.5"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "1.75"
 				}
 			}
 			"modifier_catform_off"
@@ -54788,7 +54788,7 @@
 				{
 				    "ScriptFile"    "addon_game_mode.lua"
 				    "Function"      "AggroOnEnemy"
-				    "health"		"10"
+				    "health"		"100"
 				}
 		        "RunScript"
 				{
@@ -66354,7 +66354,7 @@
 	        	}
 	        	"Properties"
 	        	{
-	        		"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.25"
+	        		"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.5"
 	        	}
 	        	"ThinkInterval"  "0.5"
 	        	"OnIntervalThink"
@@ -83452,6 +83452,12 @@
 
 	    "OnSpellStart"
 	    {
+	    	"ApplyModifier"
+	        {
+	            "ModifierName" "modifier_low_dmg90"
+	            "Target" "CASTER"
+	            "Duration"		"3.25"
+	        }
 	        "ApplyModifier"
 	        {
 	            "ModifierName" "modifier_tranq"
@@ -83508,6 +83514,13 @@
 
 	    "Modifiers"
 	    {
+	    	"modifier_low_dmg90"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    		"IsPurgable"		"0"
+	    	}
 	        "modifier_tranq"
 	        {
 	        	"IsPurgable"		"0"

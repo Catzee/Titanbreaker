@@ -4769,7 +4769,7 @@ function OnHeroStatsValuesResponse(args)
 {
     let hpPerLevel = args["bonusMaxHpPerLvl"].toFixed();
     let channelSpellhasteCap = ((args["channelSpellhasteCap"]-1)*100).toFixed();
-    $("#ChannelSpellHasteLabel").text = "Spellhaste increases the tick rate of Channeled Abilities\nbut only up to " + channelSpellhasteCap + "%.";
+    $("#ChannelSpellHasteLabel").text = "Half of Spellhaste increases the tick rate of Channeled Abilities\nbut only up to " + channelSpellhasteCap + "%.";
     $("#MaxHealthPerLvlLabel").text = "+" + hpPerLevel + " Max Health per Hero Level";
 }
 
