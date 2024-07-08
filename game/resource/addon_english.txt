@@ -4457,6 +4457,8 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat6"                             "Health:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat7"                             "Movement Speed:"
 
+		"DOTA_Tooltip_modifier_agi_set_agi"                             					"Swiftbite Set"
+		"DOTA_Tooltip_modifier_agi_set_agi_Description"                             		"Agility increased."
 		"DOTA_Tooltip_ability_item_set_int_dmg_1"                                         "<font color=\"#ff8c00\">Doom of the Necropolis Hood"
 		"DOTA_Tooltip_ability_item_set_int_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Spellpower and max Mana increased by 10%%."
 		"DOTA_Tooltip_ability_item_set_int_dmg_1_bonus_stat1"                             "Intellect:"
