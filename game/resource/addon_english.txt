@@ -5081,9 +5081,8 @@
 		//"DOTA_Tooltip_wolf_summon_proc_Description"                                       " "
 
 		"DOTA_Tooltip_ability_item_mother_of_dragons"                                     "<font color=\"#ff8c00\">Talisman of the Mother Of Dragons"
-		"DOTA_Tooltip_ability_item_mother_of_dragons_Description"                         "Increases the damage of your Companion by 100%%. \n\n<h1>Breath of Fire</h1>Deal 750%% of your primary Attribute as Fire Damage damage in the targeted area and incapacitate all enemies for 4 secs."
+		"DOTA_Tooltip_ability_item_mother_of_dragons_Description"                         "<h1>Breath of Fire</h1>Deal 750%% of your primary Attribute as Fire Damage damage in the targeted area and incapacitate all enemies for 4 secs.\nIncreases the Damage of your Companion by 100%%, Healing caused by %totalbonus%%% and Damage by %totalbonus%%%."
 		"DOTA_Tooltip_ability_item_mother_of_dragons_bonus_stat1"                         "Health: +"
-		"DOTA_Tooltip_ability_item_mother_of_dragons_totalbonus"                         "%Healing and Damage: +"
 		"DOTA_Tooltip_ability_item_mother_of_dragons_as"                                  "Attack Speed Aura:"
 		"DOTA_Tooltip_ability_item_mother_of_dragons_lore"                           		"The Unburnt, Breaker of Chains, Mother of Dragons..."
 		"DOTA_Tooltip_modifier_aura_dragon_mother_as"                                     "Mother of Dragons"
