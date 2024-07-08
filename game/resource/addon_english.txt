@@ -4448,7 +4448,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat3"                             "Attack Damage:"
 		
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full"                                         "<font color=\"#ff8c00\">Swiftbite Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\n<font color=\"#00EE00\">When you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat3"                             "Attack Damage:"
@@ -6314,7 +6314,7 @@
 		"DOTA_Tooltip_ability_pve_temple_stompingcharge_circle_buffduration"            "DURATION:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_chance"                                  "%Chance on deal Damage to gain 100 Attack Speed for 6 secs:"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_chance"                                  "%Chance on deal Damage to gain 100 Attack Speed for 6 secs:"
+
 		
 		//2.6
 		"DOTA_Tooltip_Ability_Shapeshift_Description"  "Passively grant nearby allies within 900 yards 5%% increased Movement Speed, 25 Attack Speed and 25%% Spellhaste and when cast, grant them a 4 stacks of Swift Evasion that blocks the next Damage Instance each for 3 secs.<font color=\"#FFBB00\">\n\nRank 2: Movement Speed Bonus duration increased to 4 secs, Swift Evasion stacks increased to 5 and when cast, Heal nearby allies affected by Flourish for 25%% of their max Health. \nRank 3: You passively take 35%% reduced Damage from all sources. \nRank 4: Passively gain 100%% Spellhaste and cause Cooldown Reduction effects to be 50%% more effective.\n\n</font>"
@@ -6924,7 +6924,7 @@
 		"DOTA_Tooltip_ability_item_set_str_tank_full_dream_2_chance"                                 "%Chance on deal damage to strike again for full amount:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream"                                         "<font color=\"#00ffff\">[Ancient] Swiftstrike Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n+3 Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "<h1><font color=\"#00EE00\">Swiftstrike Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\n<font color=\"#00EE00\">When you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n<font color=\"#00EE00\">+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat3"                             "Attack Damage:"
@@ -6934,7 +6934,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat7"                             "Movement Speed:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2"                                         "<font color=\"#7733ff\">Royal Murderer Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\nAuto Attack Critical Strike Damage is increased by 25%%.\n+3 Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "<h1><font color=\"#00EE00\">Royal Murderer Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\n<font color=\"#00EE00\">When you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n<font color=\"#00EE00\">Auto Attack Critical Strike Damage is increased by 25%%.\n<font color=\"#00EE00\">+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat3"                             "Attack Damage:"
