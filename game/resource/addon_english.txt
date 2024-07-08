@@ -3441,6 +3441,9 @@
 		"DOTA_Tooltip_Ability_item_bootsheal_bonus_stat1"	"Movement Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsheal_bonus_stat2"	"Intellect: +"
 
+		"DOTA_Tooltip_modifier_bootheal_def"	"Spiritbond Walkers"
+		"DOTA_Tooltip_modifier_bootheal_def_Description"	""
+
 		"DOTA_Tooltip_Ability_Bear_Trap_Spell_Description"  "Place a Bear Trap on the ground, trapping the first target to approach. The target will be slowed by 25%%, have 6 less Armor and every 0.5 secs, if the target moved, it will take damage.<font color=\"#FFBB00\">\n\nRank 2: Increased damage, duration and doubled cast range. \nRank 3: Your companion's abilities will be guaranteed critical strikes for 250%% on targets affected by Bear Trap. \nRank 4: When Bear Trap ends and the target is moving at that moment, its duration is refreshed to 1 sec. Can happen multiple times until the target stops moving. \n\n</font>"
 
 		
