@@ -16472,7 +16472,7 @@ function ItemBuffApply(event)
         if caster:HasModifier("modifier_dagger_cd") or caster:HasModifier("modifier_invisible") then
             return
         else
-            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_dagger_cd", {Duration = 0.1 * GetInnerCooldownFactor(caster)})
+            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_dagger_cd", {Duration = 1 * GetInnerCooldownFactor(caster)})
         end
     end
     ability:ApplyDataDrivenModifier(caster, target, event.buff, nil)
