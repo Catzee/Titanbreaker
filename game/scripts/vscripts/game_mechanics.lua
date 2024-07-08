@@ -16438,16 +16438,18 @@ function AshbringerProc(event)
             ability:ApplyDataDrivenModifier(caster, target, "modifier_item_fireball_proc", nil)
         end)
     end
-	Timers:CreateTimer(0.05, function()
-	    ability:ApplyDataDrivenModifier(caster, caster, buff, nil)
-	end)
     local innerCDFactor = 1
     if event.innerCooldown then
         innerCDFactor = event.innerCooldown
     end
-    Timers:CreateTimer(innerCDFactor * GetInnerCooldownFactor(caster), function()
+    local finalInnerCd = innerCDFactor * GetInnerCooldownFactor(caster)
+    Timers:CreateTimer(finalInnerCd, function()
         caster.ashbringerCD = false
     end)
+
+    Timers:CreateTimer(0.05, function()
+	    ability:ApplyDataDrivenModifier(caster, caster, buff, { duration = finalInnerCd })
+	end)
 end
 
 function ItemBuffApply(event)
