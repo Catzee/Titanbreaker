@@ -4448,7 +4448,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat3"                             "Attack Damage:"
 		
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full"                                         "<font color=\"#ff8c00\">Swiftbite Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\n<font color=\"#00EE00\">When you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\nWhen you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat3"                             "Attack Damage:"
@@ -6924,7 +6924,7 @@
 		"DOTA_Tooltip_ability_item_set_str_tank_full_dream_2_chance"                                 "%Chance on deal damage to strike again for full amount:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream"                                         "<font color=\"#00ffff\">[Ancient] Swiftstrike Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "<h1><font color=\"#00EE00\">Swiftstrike Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\n<font color=\"#00EE00\">When you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n<font color=\"#00EE00\">+3 for Path Talent Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "<h1><font color=\"#00EE00\">Swiftstrike Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat3"                             "Attack Damage:"
@@ -6934,7 +6934,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat7"                             "Movement Speed:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2"                                         "<font color=\"#7733ff\">Royal Murderer Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "<h1><font color=\"#00EE00\">Royal Murderer Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\n<font color=\"#00EE00\">When you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n<font color=\"#00EE00\">Auto Attack Critical Strike Damage is increased by 25%%.\n<font color=\"#00EE00\">+3 for Path Talent Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "<h1><font color=\"#00EE00\">Royal Murderer Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\nAuto Attack Critical Strike Damage is increased by 25%%.\n+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat3"                             "Attack Damage:"
@@ -7050,7 +7050,7 @@
 		"DOTA_Tooltip_Ability_item_set_int_t3_2_full_dream_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream"  "<font color=\"#00ffff\">[Ancient] Immortal Cyclops Set"
-		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 200 and reduce all Damage taken by 25%% for 10 secs.\n+2 Steel Mammoth"
+		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 200 and reduce all Damage taken by 25%% for 10 secs.\n+2 for Path Talent Steel Mammoth"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat3"	"Health: +"
@@ -7058,7 +7058,7 @@
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream"  "<font color=\"#00ffff\">[Ancient] Immortal Templar Set"
-		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 20%% increased Damage and have their chances increased by 20%% for 8 secs.\n+1 Three Face God"
+		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 20%% increased Damage and have their chances increased by 20%% for 8 secs.\n+1 for Path Talent Three Face God"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat3"	"Health: +"
