@@ -16298,11 +16298,6 @@
 					"EffectName"	"DOTA_Item.RodOfAtos.Activate"
 					"Target" 		"CASTER"
 				}
-				"ApplyModifier"
-				{
-					"ModifierName"	"modifier_innercd_ashbringer5"
-					"Target" 		"CASTER"
-				}
             }
         } 
         "modifier_innercd_ashbringer5"
@@ -23056,11 +23051,6 @@
 							"CASTER"	"attach_origin"
 							"CASTER"	"attach_origin"
 						}
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_innercd_ashbringer4"
-						"Target" 		"CASTER"
 					}
 	            }
 	        } 
@@ -35244,11 +35234,6 @@
 							"CASTER"	"attach_origin"
 						}
 					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_innercd_ashbringer"
-						"Target" 		"CASTER"
-					}
 	            }
 	        } 
 	        "modifier_innercd_ashbringer"
@@ -37253,11 +37238,6 @@
 							"CASTER"	"attach_origin"
 							"CASTER"	"attach_origin"
 						}
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_innercd_ashbringer"
-						"Target" 		"CASTER"
 					}
 	            }
 	        } 
@@ -61755,11 +61735,6 @@
 							"CASTER"	"attach_origin"
 							"CASTER"	"attach_origin"
 						}
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_innercd_ashbringer"
-						"Target" 		"CASTER"
 					}
 	            }
 	        } 

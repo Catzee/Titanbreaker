@@ -3441,6 +3441,9 @@
 		"DOTA_Tooltip_Ability_item_bootsheal_bonus_stat1"	"Movement Speed: +"
 		"DOTA_Tooltip_Ability_item_bootsheal_bonus_stat2"	"Intellect: +"
 
+		"DOTA_Tooltip_modifier_bootheal_def"	"Spiritbond Walkers"
+		"DOTA_Tooltip_modifier_bootheal_def_Description"	""
+
 		"DOTA_Tooltip_Ability_Bear_Trap_Spell_Description"  "Place a Bear Trap on the ground, trapping the first target to approach. The target will be slowed by 25%%, have 6 less Armor and every 0.5 secs, if the target moved, it will take damage.<font color=\"#FFBB00\">\n\nRank 2: Increased damage, duration and doubled cast range. \nRank 3: Your companion's abilities will be guaranteed critical strikes for 250%% on targets affected by Bear Trap. \nRank 4: When Bear Trap ends and the target is moving at that moment, its duration is refreshed to 1 sec. Can happen multiple times until the target stops moving. \n\n</font>"
 
 		
@@ -4445,7 +4448,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat3"                             "Attack Damage:"
 		
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full"                                         "<font color=\"#ff8c00\">Swiftbite Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\nWhen you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat3"                             "Attack Damage:"
@@ -4454,6 +4457,8 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat6"                             "Health:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat7"                             "Movement Speed:"
 
+		"DOTA_Tooltip_modifier_agi_set_agi"                             					"Swiftbite Set"
+		"DOTA_Tooltip_modifier_agi_set_agi_Description"                             		"Agility increased."
 		"DOTA_Tooltip_ability_item_set_int_dmg_1"                                         "<font color=\"#ff8c00\">Doom of the Necropolis Hood"
 		"DOTA_Tooltip_ability_item_set_int_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Spellpower and max Mana increased by 10%%."
 		"DOTA_Tooltip_ability_item_set_int_dmg_1_bonus_stat1"                             "Intellect:"
@@ -5076,9 +5081,8 @@
 		//"DOTA_Tooltip_wolf_summon_proc_Description"                                       " "
 
 		"DOTA_Tooltip_ability_item_mother_of_dragons"                                     "<font color=\"#ff8c00\">Talisman of the Mother Of Dragons"
-		"DOTA_Tooltip_ability_item_mother_of_dragons_Description"                         "Increases the damage of your Companion by 100%%. \n\n<h1>Breath of Fire</h1>Deal 750%% of your primary Attribute as Fire Damage damage in the targeted area and incapacitate all enemies for 4 secs."
+		"DOTA_Tooltip_ability_item_mother_of_dragons_Description"                         "<h1>Breath of Fire</h1>Deal 750%% of your primary Attribute as Fire Damage damage in the targeted area and incapacitate all enemies for 4 secs.\nIncreases the Damage of your Companion by 100%%, Healing caused by %totalbonus%%% and Damage by %totalbonus%%%."
 		"DOTA_Tooltip_ability_item_mother_of_dragons_bonus_stat1"                         "Health: +"
-		"DOTA_Tooltip_ability_item_mother_of_dragons_totalbonus"                         "%Healing and Damage: +"
 		"DOTA_Tooltip_ability_item_mother_of_dragons_as"                                  "Attack Speed Aura:"
 		"DOTA_Tooltip_ability_item_mother_of_dragons_lore"                           		"The Unburnt, Breaker of Chains, Mother of Dragons..."
 		"DOTA_Tooltip_modifier_aura_dragon_mother_as"                                     "Mother of Dragons"
@@ -6310,7 +6314,7 @@
 		"DOTA_Tooltip_ability_pve_temple_stompingcharge_circle_buffduration"            "DURATION:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_chance"                                  "%Chance on deal Damage to gain 100 Attack Speed for 6 secs:"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_chance"                                  "%Chance on deal Damage to gain 100 Attack Speed for 6 secs:"
+
 		
 		//2.6
 		"DOTA_Tooltip_Ability_Shapeshift_Description"  "Passively grant nearby allies within 900 yards 5%% increased Movement Speed, 25 Attack Speed and 25%% Spellhaste and when cast, grant them a 4 stacks of Swift Evasion that blocks the next Damage Instance each for 3 secs.<font color=\"#FFBB00\">\n\nRank 2: Movement Speed Bonus duration increased to 4 secs, Swift Evasion stacks increased to 5 and when cast, Heal nearby allies affected by Flourish for 25%% of their max Health. \nRank 3: You passively take 35%% reduced Damage from all sources. \nRank 4: Passively gain 100%% Spellhaste and cause Cooldown Reduction effects to be 50%% more effective.\n\n</font>"
@@ -6539,7 +6543,7 @@
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_3_bonus_stat2"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full"  "<font color=\"#66ffff\">Immortal Ninja Set"
-		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_Description"  "<font color=\"#00EE00\">Set Bonus: Your Ability Critical Strikes deal 15%% increased Damage and have their chances increased by 15%% for 6 secs."
+		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_Description"  "<h1><font color=\"#00EE00\">Immortal Ninja Set</font></h1><font color=\"#00EE00\">Your Ability Critical Strikes deal 15%% increased Damage and have their chances increased by 15%% for 6 secs."
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat3"	"Health: +"
@@ -6920,7 +6924,7 @@
 		"DOTA_Tooltip_ability_item_set_str_tank_full_dream_2_chance"                                 "%Chance on deal damage to strike again for full amount:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream"                                         "<font color=\"#00ffff\">[Ancient] Swiftstrike Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n+3 Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_Description"                             "<h1><font color=\"#00EE00\">Swiftstrike Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant 50 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\n+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat3"                             "Attack Damage:"
@@ -6930,7 +6934,7 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_bonus_stat7"                             "Movement Speed:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2"                                         "<font color=\"#7733ff\">Royal Murderer Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\nAuto Attack Critical Strike Damage is increased by 25%%.\n+3 Tiger's Swiftness"
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_Description"                             "<h1><font color=\"#00EE00\">Royal Murderer Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 7%% chance to lower the target's Armor by 2 and grant 75 Agility for 10 secs.\nWhen you deal Damage you have a 6% chance to increase your Attack Speed by 100.\nAuto Attack Critical Strike Damage is increased by 25%%.\n+3 for Path Talent Tiger's Swiftness"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_dream_2_bonus_stat3"                             "Attack Damage:"
@@ -7046,7 +7050,7 @@
 		"DOTA_Tooltip_Ability_item_set_int_t3_2_full_dream_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream"  "<font color=\"#00ffff\">[Ancient] Immortal Cyclops Set"
-		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 200 and reduce all Damage taken by 25%% for 10 secs.\n+2 Steel Mammoth"
+		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 200 and reduce all Damage taken by 25%% for 10 secs.\n+2 for Path Talent Steel Mammoth"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat3"	"Health: +"
@@ -7054,7 +7058,7 @@
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream"  "<font color=\"#00ffff\">[Ancient] Immortal Templar Set"
-		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 20%% increased Damage and have their chances increased by 20%% for 8 secs.\n+1 Three Face God"
+		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 20%% increased Damage and have their chances increased by 20%% for 8 secs.\n+1 for Path Talent Three Face God"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_bonus_stat3"	"Health: +"
@@ -7101,7 +7105,7 @@
 		"DOTA_Tooltip_Ability_item_set_int_t3_2_full_dream_2_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2"  "<font color=\"#7733ff\">[Mythical] Iron Warden Set"
-		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 300 and reduce all Damage taken by 25%% for 10 secs.\n+2 Steel Mammoth"
+		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_Description"  "<h1>Immortal Colossus</h1>Increase the target's Strength by 300 and reduce all Damage taken by 25%% for 10 secs.\n+2 for Path Talent Steel Mammoth"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_bonus_stat3"	"Health: +"
@@ -7109,7 +7113,7 @@
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_full_dream_2_bonus_stat5"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2"  "<font color=\"#7733ff\">[Mythical] Dark Templar Set"
-		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 25%% increased Damage and have their chances increased by 25%% for 10 secs.\n+1 Three Face God"
+		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2_Description"  "<h1>Dark Crusade</h1>Your Ability Critical Strikes deal 25%% increased Damage and have their chances increased by 25%% for 10 secs.\n+1 for Path Talent Three Face God"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_dream_2_bonus_stat3"	"Health: +"
@@ -7477,7 +7481,7 @@
 		"DOTA_Tooltip_Ability_item_fireball4_bonus_stat4"	"%Fire Damage: +"
 
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2"                                             "<font color=\"#00ffff\">[Ancient] Ballista of Execution"
-		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_Description"                                 "Increases the level of Blood Wolf by 2.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_Description"                                 "Increases the level of of Path Talent Blood Wolf by 2.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat0"                                 "Attack Speed: "
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat1"                                 "%Ability and Auto Attack Critical Strike Chance: "
 		"DOTA_Tooltip_ability_item_crit_pure_immortal_2_bonus_stat2"                                 "%Ability and Auto Attack Critical Strike Factor: "
