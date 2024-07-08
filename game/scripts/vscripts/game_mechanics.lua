@@ -846,7 +846,7 @@ function DamageUnit( event )
 
     -- add auto attack damage?
 	if damage_scaling > 0 then
-    	damage = caster:GetAttackDamage() * damage_scaling / 100
+    	damage = damage + (caster:GetAttackDamage() * damage_scaling / 100)
     end
     --include green aa damage
     if auto_attack_damage_scaling > 0 then
