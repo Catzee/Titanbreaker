@@ -6543,7 +6543,7 @@
 		"DOTA_Tooltip_Ability_item_set_str_t3_2_3_bonus_stat2"	"Armor: +"
 
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full"  "<font color=\"#66ffff\">Immortal Ninja Set"
-		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_Description"  "<font color=\"#00EE00\">Set Bonus: Your Ability Critical Strikes deal 15%% increased Damage and have their chances increased by 15%% for 6 secs."
+		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_Description"  "<h1><font color=\"#00EE00\">Immortal Ninja Set</font></h1><font color=\"#00EE00\">Your Ability Critical Strikes deal 15%% increased Damage and have their chances increased by 15%% for 6 secs."
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat1"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_set_agi_t3_2_full_bonus_stat3"	"Health: +"
