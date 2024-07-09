@@ -21394,7 +21394,7 @@ function PassiveStatCalculation(event)
             resourceType = hero.resourcesystem,
             spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
             damageReduction = GetTotalDamageTakenFactor(hero, nil),
-            attackSpeed = realBaseStats[AS] + baseAttackSpeed
+            attackSpeed = realBaseStats[AS]
         })
     end
 
