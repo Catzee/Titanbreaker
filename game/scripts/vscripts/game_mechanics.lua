@@ -30966,3 +30966,11 @@ function GetCriticalStrikeDamageBonus(caster, dmgType, event, isAutoAttack)
 
     return value
 end
+
+function KeepCloseSinglePlayerFriendly(event)
+    local caster = event.target
+    local heroes = HeroList:GetAllHeroes()
+    if(#heroes == 1) then
+        event.ability:ApplyDataDrivenModifier(event.target, event.target, "modifier_slow_keep_close_solo", nil)
+    end
+end

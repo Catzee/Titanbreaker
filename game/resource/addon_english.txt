@@ -8839,7 +8839,7 @@
 		"DOTA_Tooltip_ability_pve_wave_caller_2_Description"                              "Summon seismic shocks, moving from one side to the other and back, dealing high Arcane Damage."
 
 		"DOTA_Tooltip_ability_pve_temple_add_keep_close"                                  "Shadow Fiend"
-		"DOTA_Tooltip_ability_pve_temple_add_keep_close_Description"                      "Summon an unkillable Shadow Fiend, haunting the target with the lowest Aggro, dealing high Damage. When the Shadow Fiend is pulled further than 600 yards away from its Master, the Master enrages and gains bonus Attack Speed."
+		"DOTA_Tooltip_ability_pve_temple_add_keep_close_Description"                      "Summon an unkillable Shadow Fiend, haunting the target with the lowest Aggro, dealing high Damage. When the Shadow Fiend is pulled further than 600 yards away from its Master, the Master enrages and gains bonus Attack Speed.\nWhen you are the only Hero in the game, the Shadow Fiend is greatly slowed."
 		"DOTA_Tooltip_ability_pve_temple_add_keep_close_duration"                         "DURATION:"
 		"npc_dota_creature_shadow_creeper_pve"	"Shadow Fiend"
 

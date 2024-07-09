@@ -89351,6 +89351,11 @@
 						"Target" 		"TARGET"
 						"Duration"		"2"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"game_mechanics.lua"
+						"Function"		"KeepCloseSinglePlayerFriendly"
+					}
 				}
 			}
 			"FireSound"
@@ -89371,6 +89376,16 @@
         		"Properties"
         		{
         			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "300"
+        		}
+        	}
+        	"modifier_slow_keep_close_solo"
+        	{
+        		"IsHidden"			"1"
+        		"IsDebuff"			"1"
+        	
+        		"Properties"
+        		{
+        			"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "-550"
         		}
         	}
         }
