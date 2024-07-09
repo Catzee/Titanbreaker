@@ -22059,6 +22059,12 @@ function AddAbilityToUnit(event)
     end
 end
 
+function AddAbilityToUnitDelayed(event)
+    Timers:CreateTimer(event.delay, function()
+        AddAbilityToUnit(event)
+    end)
+end
+
 function SetModelForModel(event)
     local caster = event.target
     caster:SetModel(event.model)
