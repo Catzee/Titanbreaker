@@ -70,11 +70,15 @@ function GetEnergyBonusFactor( event )
   local hero = event.caster
   local energygain = 1
   local rogue_abil = hero:GetAbilityByIndex(5)
-  if hero:HasModifier("modifier_ranger_regen_bonus") then
-    energygain = energygain + 1
-  end
-  if hero:HasModifier("modifier_ranger_regen_bonus2") then
-    energygain = energygain + 2
+  if GetLevelOfAbility(hero, "Inspiring_Shot") >= 5 then
+    energygain = energygain - 0.9
+  else
+    if hero:HasModifier("modifier_ranger_regen_bonus") then
+      energygain = energygain + 1
+    end
+    if hero:HasModifier("modifier_ranger_regen_bonus2") then
+      energygain = energygain + 2
+    end
   end
   if hero:HasModifier("modifier_heartbreaker") then
     energygain = energygain + 0.5

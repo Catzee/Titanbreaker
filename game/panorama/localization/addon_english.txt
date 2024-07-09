@@ -255,7 +255,7 @@
 		"talent141"								"Infestor: Stack based Debuffs gain + 1 / 2 / 3 max stacks and all debuffs last 0.5 / 1 / 1.5 secs longer."
 
 		"talent142"								"Tree of Life: Gain a Health Aura, increasing the max Health of all Heroes by 5% / 10% / 15%. Once per game, when the first Hero goes down to only 1 Life, replenish 1 / 2 / 3 Lifes. Both Effects stack with other Players. Capped at level 3."
-		"talent143"								"Mountain Giant: + 5% / 10% / 15% Damage Reduction.\nWhile Molten Giant, Storm Giant and Arcane Giant are on cooldown, gain 20% / 40% / 60% Damage and Damage Reduction. Capped at level 3."
+		"talent143"								"Mountain Giant: + 5% / 10% / 15% Damage Reduction.\nWhile Molten Giant, Storm Giant and Arcane Giant are on cooldown, gain 25% / 50% / 75% Damage and 10% / 20% / 30% Damage Reduction. Capped at level 3."
 		"talent144"								"Mark of Nature: Stack based Buffs gain + 1 / 2 / 3 max stacks and whenever you Dispel an ally, heal you and the target for 15% / 30% / 45% of max Health. Capped at level 3."
 
 

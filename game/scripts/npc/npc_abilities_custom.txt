@@ -57235,11 +57235,11 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
-	    "AbilityCastPoint"       "2.0"
+	    "AbilityCastPoint"       "2 2 2 2 3"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
 	    "AnimationPlaybackRate"  "0.41"
 	    "AnimationIgnoresModelScale" "1"
@@ -57248,7 +57248,7 @@
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "7.5"
+	    "AbilityCooldown"         "7.5 7.5 7.5 7.5 0"
 	    "AbilityCastRange"        "600 600 750 750"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0 0.0 0.0 0.0"
@@ -57295,6 +57295,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "10"
+		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "autocast" "0 0 0 0 1"
 		    }
 		}
 
@@ -57371,6 +57376,14 @@
 					"Target" 		"CASTER"
 					"Duration"		"%bonusdur2"
 				}
+				"RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "AbilityAutoCastV2"
+				    "autocast"			"%autocast"
+				    "abilityIndex"		"2"
+				}
+				
         }
         "OnAbilityPhaseInterrupted"
         {
@@ -57435,7 +57448,6 @@
 			    {
 			        "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonusagi"
 			        "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonusagi"
-			        "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonusagi"
 			    }
 			}
 			"modifier_ranger_regen_bonus"
@@ -84865,6 +84877,12 @@
 	        {
 	        	"EffectName"        "particles/units/heroes/hero_lycan/lycan_loadout.vpcf"
 	        	"EffectAttachType"  "attach_hitloc"
+	        	"Target"            "CASTER"
+	        }
+	        "FireEffect"
+	        {
+	        	"EffectName"        "particles/items3_fx/black_powder_bag_rings.vpcf"
+	        	"EffectAttachType"  "follow_origin"
 	        	"Target"            "CASTER"
 	        }
         }

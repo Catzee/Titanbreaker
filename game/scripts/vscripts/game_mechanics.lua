@@ -5257,7 +5257,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[46])
         end
         if caster.talents[143] > 0 and GiantsOnCooldown(caster) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[143])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[143])
         end
         if process_procs and caster.talents[125] > 0 then
             multiplicative_bonus = multiplicative_bonus * GetButterflyDamageFactor(caster, ability)
@@ -26154,7 +26154,7 @@ function GetTotalDamageTakenFactor(caster, attacker)
         if caster.talents[143] > 0 then
             factor = factor * (1 - 0.05 * caster.talents[143])
             if GiantsOnCooldown(caster) then
-                factor = factor * (1 - 0.2 * caster.talents[143])
+                factor = factor * (1 - 0.1 * caster.talents[143])
             end
         end
     end
@@ -30061,6 +30061,33 @@ function AbilityAutoCastOld(event)
             UnitIndex = caster:entindex(),
             OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
             AbilityIndex = abilityToCast:GetEntityIndex(), 
+            Queue = false,
+            TargetIndex = target:entindex()
+        }
+
+        ExecuteOrderFromTable(order)
+    end)
+end
+
+function AbilityAutoCastV2(event)
+    if not event.autocast then
+        return
+    end
+
+    local caster = event.caster
+    local target = event.target
+    local ability = caster:GetAbilityByIndex(event.abilityIndex)
+
+    if ability:GetCooldownTimeRemaining() > 0 or ability:GetLevel() <= 0 then
+        return
+    end
+
+    Timers:CreateTimer(0.05, function()
+        local order = 
+        {
+            UnitIndex = caster:entindex(),
+            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+            AbilityIndex = ability:GetEntityIndex(), 
             Queue = false,
             TargetIndex = target:entindex()
         }
