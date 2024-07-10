@@ -22060,6 +22060,12 @@ function AddAbilityToUnit(event)
     end
 end
 
+function AddAbilityToUnitDelayed(event)
+    Timers:CreateTimer(event.delay, function()
+        AddAbilityToUnit(event)
+    end)
+end
+
 function SetModelForModel(event)
     local caster = event.target
     caster:SetModel(event.model)
@@ -30985,7 +30991,7 @@ function AttackSpeedProc(event)
 end
 
 -- there are also other sources, this is just some part of it
--- ability and aa
+-- ability and auto attack, not healing
 function GetCriticalStrikeDamageBonus(caster, dmgType, event, isAutoAttack)
     local value = 0
     if caster:HasModifier("modifier_divine_phys") and (dmgType == 1 or dmgType == 2) and (isAutoAttack or CountElementalDamageTypes(event) == 0) then
@@ -31009,5 +31015,13 @@ function PullAllTargetsIn(event)
                 end
             end
         end
+    end
+end
+
+function KeepCloseSinglePlayerFriendly(event)
+    local caster = event.target
+    local heroes = HeroList:GetAllHeroes()
+    if(#heroes == 1) then
+        event.ability:ApplyDataDrivenModifier(event.target, event.target, "modifier_slow_keep_close_solo", nil)
     end
 end

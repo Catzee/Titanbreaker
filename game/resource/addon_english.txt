@@ -8839,7 +8839,7 @@
 		"DOTA_Tooltip_ability_pve_wave_caller_2_Description"                              "Summon seismic shocks, moving from one side to the other and back, dealing high Arcane Damage."
 
 		"DOTA_Tooltip_ability_pve_temple_add_keep_close"                                  "Shadow Fiend"
-		"DOTA_Tooltip_ability_pve_temple_add_keep_close_Description"                      "Summon an unkillable Shadow Fiend, haunting the target with the lowest Aggro, dealing high Damage. When the Shadow Fiend is pulled further than 600 yards away from its Master, the Master enrages and gains bonus Attack Speed."
+		"DOTA_Tooltip_ability_pve_temple_add_keep_close_Description"                      "Summon an unkillable Shadow Fiend, haunting the target with the lowest Aggro, dealing high Damage. When the Shadow Fiend is pulled further than 600 yards away from its Master, the Master enrages and gains bonus Attack Speed.\nWhen you are the only Hero in the game, the Shadow Fiend is greatly slowed."
 		"DOTA_Tooltip_ability_pve_temple_add_keep_close_duration"                         "DURATION:"
 		"npc_dota_creature_shadow_creeper_pve"	"Shadow Fiend"
 
@@ -10461,7 +10461,7 @@
 		"DOTA_Tooltip_ability_pve_frostfire_chains_Description"                    "Chain up to 3 Heroes together, dealing Damage over time.\nThe Fire Chain extinguishes when both affected Heroes are farther than 2000 yards away from each other.\nThe Frost Chain breaks when the both affected Heroes are closer than 200 yards to each other."
 		
 		"DOTA_Tooltip_ability_pve_trap_hydra_2"                                             "Spitting Splitting Worm"
-		"DOTA_Tooltip_ability_pve_trap_hydra_2_Description"                                 "Summon a Worm lasting 15 secs, spitting dodgeable Poison Balls towards random Heroes, dealing high Nature Damage.\nWhen killed, the Worm splits into 2 Worms."
+		"DOTA_Tooltip_ability_pve_trap_hydra_2_Description"                                 "Summon a Worm lasting %duration% secs, spitting dodgeable Poison Ball towards random Hero, dealing high Nature Damage.\nWhen killed, the Worm splits into 2 Worms."
 
 		"DOTA_Tooltip_ability_pve_hellgate"                                             "Hellgate"
 		"DOTA_Tooltip_ability_pve_hellgate_Description"                                 "Open a Hellgate for 20 secs, launching Corrupted Coils at its Master, Healing allies and Damaging enemies in its path.\nWhen the Hellgate gets destroyed, 5 dangerous Infernals will spawn."
