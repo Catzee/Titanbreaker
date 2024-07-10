@@ -8177,6 +8177,24 @@ function GetSpellhaste( caster, event )
     return speedbonus
 end
 
+function GetSpecialAbilityCastPoint(ability)
+    local abilityName = ability:GetName()
+    if abilityName == "Inspiring_Shot" then
+        local level = ability:GetLevel()
+        if level >= 5 then
+            return 3
+        end
+    end
+    if abilityName == "Magma_Bolt" then
+        local level = ability:GetLevel()
+        if level >= 5 then
+            return 5
+        end
+    end
+
+    return -1
+end
+
 function ChannelManaFixStart( event )
     local caster = event.caster
     local target = event.target
@@ -8199,9 +8217,14 @@ function ChannelManaFixStart( event )
     ability.is_casttime_ability = true
 
     --first reset if it has ever been changed
+    local specialCastPoint = GetSpecialAbilityCastPoint(ability)
+    if specialCastPoint >= 0 then
+        ability.originalcastpoint = specialCastPoint
+    end
     if ability.originalcastpoint ~= nil then
     	ability:SetOverrideCastPoint(ability.originalcastpoint)
     end
+
     --invis fix patrol and ambush
     if caster:HasModifier("modifier_invisible") then
         caster:RemoveModifierByName("modifier_invisible")
@@ -8474,15 +8497,6 @@ function ChannelInterrupt( event )
     	ParticleManager:DestroyParticle(caster.Castbar,true)
         ParticleManager:ReleaseParticleIndex(caster.Castbar)
     end
-
-    --[[if ability.originalcastpoint ~= nil then
-	    if ability:GetCastPoint() ~= ability.originalcastpoint then
-	    	ability:SetOverrideCastPoint(ability.originalcastpoint)
-	    	print("resetting castpoint")
-	    end
-	end]]
-    
-
 end
 
 function StopAllChannels( caster )
@@ -8509,15 +8523,6 @@ function ChannelManaFixEnd( event )
     		caster:RemoveModifierByName("modifier_activewarlock")
     	end
     end
-
-    --event.is_end_of_channel = true
-
-    --[[if ability.originalcastpoint ~= nil then
-	    if ability:GetCastPoint() ~= ability.originalcastpoint then
-	    	ability:SetOverrideCastPoint(ability.originalcastpoint)
-	    	print("resetting castpoint")
-	    end
-	end]]
 end
 
 function round(num)
@@ -14981,8 +14986,15 @@ function GlobalOnAbilityExecuted( event )
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_phantomShadeCD", {Duration = 30 * GetInnerCooldownFactor(caster)})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 2 * caster.talents[162]})
         end
-        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 then
+        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 and caster.stampedeCount < 3 then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "stampede_summon_proc", nil)
+            if not caster.stampedeCount then
+                caster.stampedeCount = 0
+            end
+            caster.stampedeCount = caster.stampedeCount + 1
+            Timers:CreateTimer(10, function()
+                caster.stampedeCount = caster.stampedeCount - 1
+            end)
         end
 
         Timers:CreateTimer(0.03, function()
@@ -16970,24 +16982,13 @@ function WarlockGloves( event )
 	local heroName = caster:GetUnitName()
 
 	if heroName == "npc_dota_hero_warlock" or COverthrowGameMode.junglemode then
-		--caster.originalcastpoint = 2.0
-		--caster.originalcastpointabil = 4
-		--caster:GetAbilityByIndex(4):SetOverrideCastPoint(0.2)
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_activewarlock", nil)
 	end
 
 	if heroName == "npc_dota_hero_pugna" then
-		--caster.originalcastpoint = 2.0
-		--caster.originalcastpointabil = 0
-		--caster:GetAbilityByIndex(0):SetOverrideCastPoint(0.2)
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_activewarlock", nil)
 	end
 end
-
---[[function ResetCastpoint( event )
-	local caster = event.caster
-	caster:GetAbilityByIndex(caster.originalcastpointabil):SetOverrideCastPoint(caster.originalcastpoint)
-end]]
 
 function DemonWall( event )
 	local target = event.caster
@@ -21474,8 +21475,8 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 30 then
-            --new_talent_value = 3
+        --if i == 177 then
+        --    new_talent_value = 3
         --end
         
         --new divine doubling soul items
@@ -30901,7 +30902,7 @@ function PullTargetIn(event)
     local caster = event.caster
     local target = event.target
 
-    if target.isboss then
+    if not event.allowBoss and target.isboss then
         return
     end
     local ability = event.ability
@@ -30992,4 +30993,21 @@ function GetCriticalStrikeDamageBonus(caster, dmgType, event, isAutoAttack)
     end
 
     return value
+end
+
+function PullAllTargetsIn(event)
+    local caster = event.caster
+    local range = event.range
+    local pos = caster:GetAbsOrigin()
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+
+    if #enemies > 0 then
+        for _,enemy in pairs(enemies) do
+            if enemy and not enemy:IsNull() and (enemy:GetUnitLabel() == "hero" or enemy:GetUnitLabel() == "tower" ) then
+                if not (event.excludeAbilityTarget and enemy == event.target) then
+                    PullTargetIn(event)
+                end
+            end
+        end
+    end
 end

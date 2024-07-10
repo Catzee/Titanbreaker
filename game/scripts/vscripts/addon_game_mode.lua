@@ -468,7 +468,7 @@ function Precache( context )
     PrecacheResource( "particle", "particles/castbar160.vpcf", context )
     PrecacheResource( "particle", "particles/castbar21.vpcf", context )
     PrecacheResource( "particle", "particles/castbar14.vpcf", context )
-    --
+    PrecacheResource( "particle", "particles/castbar5.vpcf", context )
     PrecacheResource( "particle", "particles/castbar04.vpcf", context )
     PrecacheResource( "particle", "particles/castbar06.vpcf", context )
     PrecacheResource( "particle", "particles/castbar08.vpcf", context )

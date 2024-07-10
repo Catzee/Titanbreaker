@@ -54952,7 +54952,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -55012,6 +55012,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "taunt" "0 0 0 5"
+		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "pull" "0 0 0 0 100"
 		    }
 		}
 
@@ -55074,6 +55079,54 @@
 		    		"ModifierName"	"modifier_taunt123"
 		    		"Target" 		"CASTER"
 		    		"Duration"		"%taunt"
+		    	}
+		    	"Random"
+		    	{
+		    		"Chance"			"%pull"
+		    		"OnSuccess"
+		    		{
+		    			"FireEffect"
+		    			{
+		    				"EffectName"        "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_push_volume.vpcf"
+		    				"EffectAttachType"  "follow_origin"
+		    				"Target"            "CASTER"
+		    			}
+		    			"FireEffect"
+		    			{
+		    				"EffectName"        "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_push_burst.vpcf"
+		    				"EffectAttachType"  "follow_origin"
+		    				"Target"            "CASTER"
+		    			}
+		    			"ActOnTargets"
+		    			{
+		    				"Target"
+		    				{
+		    					"Center"  	"CASTER"
+		    					"Radius" 	"900"
+		    					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		    					"Types" 	"DOTA_UNIT_TARGET_BASIC"
+		    				}
+		    			
+		    				"Action"    
+		    				{
+		    					"RunScript"
+								{
+								    "ScriptFile"    "game_mechanics.lua"
+								    "Function"      "ApplyBuff"
+								    "buff"			"modifier_stunned"
+								    "dur"	"2"
+								}
+		    				}
+		    			}
+		    			"RunScript"
+						{
+						    "ScriptFile"    "game_mechanics.lua"
+						    "Function"      "PullAllTargetsIn"
+						    "range"			"900"
+						    "excludeAbilityTarget"	"1"
+						    "allowBoss"		"1"
+						}
+		    		}
 		    	}
         }
 
@@ -55265,11 +55318,10 @@
 
         "precache"
 		{
-		    //"particle"  "particles/status_fx/status_effect_fiendsgrip.vpcf"
 		    "particle"  "particles/units/heroes/hero_necrolyte/necrolyte_scythe_e.vpcf"
-		    //"particle"  "particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_d.vpcf"
-		    //"particle"  "particles/grip.vpcf"
+		    "particle"  "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_push_burst.vpcf"
 		    "particle"  "particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+		    "particle"  "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_push_volume.vpcf"
 		}
 	}
 
@@ -57900,7 +57952,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -57914,7 +57966,7 @@
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "50 50 40 40"
 	    "AbilityCooldown"         "0.1"
-	    "AbilityCastRange"        "600"
+	    "AbilityCastRange"        "600 600 600 600 300"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    "AbilityChannelTime"      "0.0"
@@ -57925,7 +57977,7 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "200 250 250 250"
+		        "dmgfromstat" "200 250 250 250 500"
 		    }
 		    "03"
 		    { 
@@ -60840,11 +60892,11 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
-	    "AbilityCastPoint"       "2.0"
+	    "AbilityCastPoint"       "2 2 2 2 5"
 	    "AbilityCastAnimation"   "ACT_DOTA_CAST_ABILITY_4"
 	    "AnimationPlaybackRate"  "0.3"
 	    "AnimationIgnoresModelScale" "1"
@@ -60852,7 +60904,7 @@
 	    // Stats
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
-	    "AbilityManaCost"         "15"
+	    "AbilityManaCost"         "15 15 15 15 45"
 	    "AbilityCooldown"         "0.0"
 	    "AbilityCastRange"        "600"
 	    "AbilityCastRangeBuffer"  "250"
@@ -60869,22 +60921,22 @@
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstat" "150 175 175 175"
+		        "dmgfromstat" "150 175 175 175 600"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmg" "150 175 175 175"
+		        "spelldmg" "150 175 175 175 600"
 		    }
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmgfromstatdot" "25"
+		        "dmgfromstatdot" "25 25 25 25 75"
 		    }
 		    "04"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "spelldmgdot" "25"
+		        "spelldmgdot" "25 25 25 25 75"
 		    }
 		    "04"
 		    { 
@@ -60896,40 +60948,99 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "intervall" "2 2 1.5 1.5"
 		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "aoe" "0 0 0 0 100"
+		    }
 		}
         "OnProjectileHitUnit"
 		{	
-			"FireEffect"
+			
+			"Random"
 			{
-				"EffectName"        "particles/units/heroes/hero_lina/lina_base_attack_explosion.vpcf"
-				"EffectAttachType"  "follow_hitloc"
-				"Target"            "TARGET"
+				"Chance"			"%aoe"
+				"OnSuccess"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion_flash_c.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Radius" 	"100"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "DamageUnit"
+							    "damage"			"%AbilityDamage"
+							    "spelldamagefactor"	"%spelldmg"
+							    "attributefactor"	"%dmgfromstat"
+							    "moltenlavabonus"	"1"
+							    "firedmg"	"1"
+							    "fireconsecbonus"	"%fireconsecbonus"
+							    "isfireball"		"1"
+							    "isaoe"				"1"
+							}
+							"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "ApplyBuff"
+							    "buff"			"modifier_magmaburn"
+							    "dur"	"%buffduration"
+							    "settickrate"	"%intervall"
+							}
+						}
+					}
+				}
+				"OnFailure"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_lina/lina_base_attack_explosion.vpcf"
+						"EffectAttachType"  "follow_hitloc"
+						"Target"            "TARGET"
+					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "damage"			"%AbilityDamage"
+					    "spelldamagefactor"	"%spelldmg"
+					    "attributefactor"	"%dmgfromstat"
+					    "moltenlavabonus"	"1"
+					    "firedmg"	"1"
+					    "fireconsecbonus"	"%fireconsecbonus"
+					    "isfireball"		"1"
+					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "ApplyBuff"
+					    "buff"			"modifier_magmaburn"
+					    "dur"	"%buffduration"
+					    "settickrate"	"%intervall"
+					}
+				}
 			}
-	        "RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "DamageUnit"
-			    "damage"			"%AbilityDamage"
-			    "spelldamagefactor"	"%spelldmg"
-			    "attributefactor"	"%dmgfromstat"
-			    "moltenlavabonus"	"1"
-			    "firedmg"	"1"
-			    "fireconsecbonus"	"%fireconsecbonus"
-			    "isfireball"		"1"
-			}
+	        
 			"FireSound"
 			{
 				"EffectName"		"Hero_Lina.attack"
 				"Target"			"CASTER"
 			}
-			"RunScript"
-			{
-			    "ScriptFile"    "game_mechanics.lua"
-			    "Function"      "ApplyBuff"
-			    "buff"			"modifier_magmaburn"
-			    "dur"	"%buffduration"
-			    "settickrate"	"%intervall"
-			}
+			
 		}
 		
 		"OnSpellStart"
@@ -61016,6 +61127,7 @@
 		    "particle"  "particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient.vpcf"
 		    "particle"  "particles/fireball_4.vpcf"
 		    "particle"  "particles/units/heroes/hero_techies/techies_remote_mine_detonate_embers.vpcf"
+		    "particle"  "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion_flash_c.vpcf"
 		}
 		"Modifiers"
 		{
@@ -61043,6 +61155,7 @@
 					    "firedmg"	"1"
 					    "burndot"	"1"
 					    "isdot"	"1"
+					    "isaoe"	"%isaoe"
 					}
 				}
 			}
