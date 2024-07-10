@@ -2792,12 +2792,13 @@
 						"Function"		"TempleRandomBuff"
 						"buff"		"modifier_shoot_missile_random"
 					}
-					"RunScript"
-					{
-						"ScriptFile"	"addon_game_mode.lua"
-						"Function"		"TempleRandomBuff"
-						"buff"		"modifier_shoot_missile_random"
-					}
+					// One missle per splitting worm attack for now
+					//"RunScript"
+					//{
+					//	"ScriptFile"	"addon_game_mode.lua"
+					//	"Function"		"TempleRandomBuff"
+					//	"buff"		"modifier_shoot_missile_random"
+					//}
         		}
 	        }
 	        "modifier_shoot_missile_random"
@@ -2871,7 +2872,7 @@
 	    	"01"
 	    	{
 	    		"var_type"			"FIELD_INTEGER"
-	    		"duration"			"14.75"
+	    		"duration"			"17"
 	    	}
 	    	"01"
 	    	{
@@ -2907,7 +2908,7 @@
 						"UnitName"			"temple_missile_trap_hydra_2"
 						"Target"			"CASTER"
 						"UnitCount"			"1"
-						"Duration"			"15"
+						"Duration"			"%duration"
 						"SpawnRadius"		"?400 400"
 						"GrantsGold"		"0"
 						"GrantsXP"			"0"
@@ -2917,8 +2918,9 @@
 							"RunScript"
 				        	{
 				        		"ScriptFile"	"game_mechanics.lua"
-				        		"Function"		"AddAbilityToUnit"
+				        		"Function"		"AddAbilityToUnitDelayed"
 				        		"abil"	"pve_passive_random_missiles"
+								"delay"	"2" // delay attacks to give ppl time to react
 				        	}
 							"RunScript"
 							{
@@ -89370,6 +89372,11 @@
 						"Target" 		"TARGET"
 						"Duration"		"2"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"game_mechanics.lua"
+						"Function"		"KeepCloseSinglePlayerFriendly"
+					}
 				}
 			}
 			"FireSound"
@@ -89390,6 +89397,16 @@
         		"Properties"
         		{
         			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "300"
+        		}
+        	}
+        	"modifier_slow_keep_close_solo"
+        	{
+        		"IsHidden"			"1"
+        		"IsDebuff"			"1"
+        	
+        		"Properties"
+        		{
+        			"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "-550"
         		}
         	}
         }
