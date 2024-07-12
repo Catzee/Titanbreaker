@@ -1522,7 +1522,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/conjurer.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Conjurer" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Gain % Summon Damage equal to a percentage of current Mana." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Gain % Summon Damage equal to a percentage of current Mana (does not work for Energy based Heroes)." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
