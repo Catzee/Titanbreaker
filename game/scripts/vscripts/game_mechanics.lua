@@ -12846,7 +12846,7 @@ function WFTotem(event)
 		if abil then
 			if event.ability:GetLevel() >= 4 then
 				--aoe talent
-				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
+				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 				if #enemies > 0 then
 					for _,enemy in pairs(enemies) do
 						if enemy ~= nil then
@@ -15559,7 +15559,7 @@ function PetEnrageItem (event)
 		ParticleManager:SetParticleControl(particle, 2, Vector(1,0,0))
 	end]]--
     local heal = 0
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy:GetPlayerOwnerID() == caster:GetPlayerOwnerID()  then
