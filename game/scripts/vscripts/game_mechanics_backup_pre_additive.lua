@@ -3608,7 +3608,7 @@ function Bookoflight(event)
 	local caster = event.caster
 	local a = event.event_ability
 	if a then
-		if a:GetManaCost(a:GetLevel()) > 0.0 then
+		if a:GetManaCost(-1) > 0.0 then
 			Timers:CreateTimer(0.05,function() 
 	        	caster:SetMana(caster:GetMana()+4)
 	    	end)
