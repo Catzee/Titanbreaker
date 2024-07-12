@@ -3356,10 +3356,15 @@ function GetDragonBonusDamage( event, caster )
 end
 
 function GetSummonBonusDamage( event, caster, empower_stacks )
-    local value = 1 + caster:GetMana() * GetConjurerStat(caster) / 10000
+    local value = 1
     if not event.fromsummon and not event.ComesFromPet then
         return value
     end
+
+    if(caster.resourcesystem == nil or caster.resourcesystem == 0) then
+        value = value + caster:GetMana() * GetConjurerStat(caster) / 10000
+    end
+    
     local demonbolt = caster:FindAbilityByName("demo2")
     if demonbolt and demonbolt:GetLevel() >= 4 then
         value = value * (1 + 0.2 * GetDemonCount(caster))
