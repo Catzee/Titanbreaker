@@ -14323,7 +14323,7 @@ for i=1, #all do
       xp = 2150000000
     end
     hero.dont_add_temple_class_ability = true
-    xp = COverthrowGameMode.levelTable[100] --test xp
+    --xp = COverthrowGameMode.levelTable[100] --test xp
     hero:AddExperience(xp,false, true)
     AddHeroExperience(hero, xp)
     hero.dont_add_temple_class_ability = nil
