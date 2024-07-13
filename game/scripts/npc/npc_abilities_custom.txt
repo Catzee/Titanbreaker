@@ -75262,9 +75262,9 @@
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PetSystem"
-					    "primary"			"15"
-					    "aa"			"15"
-					    "sp"			"15"
+					    "primary"			"25"
+					    "aa"			"25"
+					    "sp"			"25"
 					    "talentscale"	"79"
 					    "companionbehavior"	"1"
 					}
