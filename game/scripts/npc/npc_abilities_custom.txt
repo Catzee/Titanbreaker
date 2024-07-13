@@ -75307,8 +75307,8 @@
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PetSystem"
-					    "aa"			"150"
-					    "sp"			"150"
+					    "aa"			"100"
+					    "sp"			"100"
 					    "talentscale"	"177"
 					    "companionbehavior"	"1"
 					}
@@ -75320,8 +75320,8 @@
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PetSystem"
-					    "aa"			"150"
-					    "sp"			"150"
+					    "aa"			"100"
+					    "sp"			"100"
 					    "talentscale"	"177"
 					    "companionbehavior"	"1"
 					}
