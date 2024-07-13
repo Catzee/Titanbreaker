@@ -14986,7 +14986,7 @@ function GlobalOnAbilityExecuted( event )
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_phantomShadeCD", {Duration = 30 * GetInnerCooldownFactor(caster)})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 2 * caster.talents[162]})
         end
-        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 and caster.stampedeCount < 3 then
+        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 and (caster.stampedeCount == nil or caster.stampedeCount < 3) then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "stampede_summon_proc", nil)
             if not caster.stampedeCount then
                 caster.stampedeCount = 0
