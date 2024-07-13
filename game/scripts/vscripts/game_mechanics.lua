@@ -24596,9 +24596,6 @@ function GlobalOnDealDamage( event )
             if caster:HasModifier("modifier_pathbuff_068") then
                 chance = chance + 3
             end
-            if HeroHasNeutralItem(caster, "item_neutral_26") then
-                chance = chance * 2
-            end
             if math.random(1,100) <= chance then
                 SummonBoneWarrior(caster, target)
             end
