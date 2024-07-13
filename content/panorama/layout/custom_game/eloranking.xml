@@ -1399,7 +1399,7 @@
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow" >
-						<Image class="RunewordImage" src="file://{images}/spellicons/180.png"  style="border-radius: 20px;"/>
+						<Image class="RunewordImage" src="file://{images}/spellicons/sonic_wall_trait.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Sonic Wall" style="font-size: 18px; color:gold; horizontal-align: left;" />
 							<Label class="WeaponStats" text="Improves the cap at which Spellhaste affects the tick rate of Channeled Abilities by a percentage." style="font-size: 16px; color:white; height: 40px;" />
