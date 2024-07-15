@@ -6242,8 +6242,8 @@
 		"DOTA_Tooltip_ability_item_lifesteal2_bonus_stat1"                                 "Health: +"
 		"DOTA_Tooltip_ability_item_lifesteal2_bonus_stat2"                                 "%Healing received: +"
 		
-		"DOTA_Tooltip_ability_item_set_str_tank_1_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): 10%% increased Healing received."
-		"DOTA_Tooltip_ability_item_set_str_tank_2_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): 10%% increased Healing received."
+		"DOTA_Tooltip_ability_item_set_str_tank_1_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): Increases the target Armor by 10 and Healing received 25%% for 15 secs. Passievly increases Healing received by 10%%.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
+		"DOTA_Tooltip_ability_item_set_str_tank_2_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): Increases the target Armor by 10 and Healing received 25%% for 15 secs. Passievly increases Healing received by 10%%.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_pve_temple_reflect_Description"                             "After a short delay, free yourself from all debuffs and gain a shield, reflecting all Damage and debuffs back at their source. Reflected Damage can not exceed 25% of reflecting unit's and 150%% of the victim's max health.\nAlso passively increases Armor by 8."
 		"DOTA_Tooltip_ability_pve_temple_reflect_duration"                             "Duration: "
 		"DOTA_Tooltip_ability_pve_temple_reflect_delay"                             "Delay: "
@@ -7149,7 +7149,7 @@
 		"DOTA_Tooltip_modifier_t1_armor"                                                  "Iron Will"
 		
 		"DOTA_Tooltip_ability_item_set_str_tank_full_Description"                            "<h1>Iron Will</h1>Increase the target's Armor by 10 and Healing received by 25%% for 15 secs.\nPassive: 10%% increased Healing received."
-		"DOTA_Tooltip_ability_item_set_str_tank_3_Description"                            "<h1>Iron Will</h1>Increase the target's Armor by 10 and Healing received by 25%% for 15 secs.\n<font color=\"#00EE00\">Set Bonus (3/3): 10%% increased Healing received."
+		"DOTA_Tooltip_ability_item_set_str_tank_3_Description"                            "<h1>Iron Will</h1>Increase the target's Armor by 10 and Healing received by 25%% for 15 secs.\n<font color=\"#00EE00\">Set Bonus (3/3): Increases the target Armor by 10 and Healing received 25%% for 15 secs. Passievly increases Healing received by 10%%.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_modifier_talent_enrage_2"                                           "Bloodhowl"
 		"DOTA_Tooltip_modifier_talent_enrage_2_Description"                               "Damage increased."
 
