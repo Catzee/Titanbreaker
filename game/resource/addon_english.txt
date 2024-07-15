@@ -4966,14 +4966,14 @@
 		"DOTA_Tooltip_ability_item_warglaive_full_companion"                              "%Primary Attribute to Companion Damage:"
 
 		"DOTA_Tooltip_ability_item_warglaive_2"                                           "<font color=\"#ff8c00\">Azuresky Warglaive"
-		"DOTA_Tooltip_ability_item_warglaive_2_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Combine into 1 Item, and an Azuresky Dragon will accompany you, attacking your targets for Shadow Damage and granting a 3%% Ability Critical Strike aura for 200%% Damage as well as 10%% increased Damage when landing an Ability Critical Strike."
+		"DOTA_Tooltip_ability_item_warglaive_2_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Combine into 1 Item, and an Azuresky Dragon will accompany you, attacking your targets for Shadow Damage and granting a 10%% Ability Critical Strike aura for 175%% Damage as well as 10%% increased Damage when landing an Ability Critical Strike.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_warglaive_2_bonus_stat1"                            "Agility: +"
 		"DOTA_Tooltip_ability_item_warglaive_2_bonus_stat2"                            "Strength: +"
 		"DOTA_Tooltip_ability_item_warglaive_2_bonus_stat3"                            "Attack Damage:"
 		"DOTA_Tooltip_ability_item_warglaive_2_bonus_stat4"                            "Attack Speed:"
 
 		"DOTA_Tooltip_ability_item_warglaive_1"                                           "<font color=\"#ff8c00\">Azuresky Warglaive"
-		"DOTA_Tooltip_ability_item_warglaive_1_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Combine into 1 Item, and an Azuresky Dragon will accompany you, attacking your targets for Shadow Damage and granting a 3%% Ability Critical Strike aura for 200%% Damage as well as 10%% increased Damage when landing an Ability Critical Strike."
+		"DOTA_Tooltip_ability_item_warglaive_1_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Combine into 1 Item, and an Azuresky Dragon will accompany you, attacking your targets for Shadow Damage and granting a 10%% Ability Critical Strike aura for 175%% Damage as well as 10%% increased Damage when landing an Ability Critical Strike.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_warglaive_1_bonus_stat1"                            "Agility: +"
 		"DOTA_Tooltip_ability_item_warglaive_1_bonus_stat2"                            "Strength: +"
 		"DOTA_Tooltip_ability_item_warglaive_1_bonus_stat3"                            "Attack Damage:"
