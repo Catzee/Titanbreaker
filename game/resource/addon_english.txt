@@ -5044,19 +5044,19 @@
 		"DOTA_Tooltip_ability_item_set_str_t2_full_companion"                             "%Primary Attribute to Companion Damage:"
 
 		"DOTA_Tooltip_ability_item_set_str_t2_1"                                          "<font color=\"#ff8c00\">Stoneskin Dragon Helmet"
-		"DOTA_Tooltip_ability_item_set_str_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_str_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently that attacking your targets for Physical Damage and granting a 500 Health Aura.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_t2_1_bonus_stat1"                              "Strength: +"
 		"DOTA_Tooltip_ability_item_set_str_t2_1_bonus_stat2"                              "Health: +"
 
 		"DOTA_Tooltip_ability_item_set_str_t2_2"                                          "<font color=\"#ff8c00\">Stoneskin Dragon Chestguard"
-		"DOTA_Tooltip_ability_item_set_str_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_str_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently that attacking your targets for Physical Damage and granting a 500 Health Aura.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_t2_2_bonus_stat1"                              "Strength: +"
 		"DOTA_Tooltip_ability_item_set_str_t2_2_bonus_stat2"                              "Health: +"
 		"DOTA_Tooltip_ability_item_set_str_t2_2_bonus_stat3"                              "Armor: +"
 		"DOTA_Tooltip_ability_item_set_str_t2_2_bonus_stat4"                              "Spell Resistance: +"
 
 		"DOTA_Tooltip_ability_item_set_str_t2_3"                                          "<font color=\"#ff8c00\">Stoneskin Dragon Bracers"
-		"DOTA_Tooltip_ability_item_set_str_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_str_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Stoneskin Dragon permanently that attacking your targets for Physical Damage and granting a 500 Health Aura.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_t2_3_bonus_stat1"                              "Strength: +"
 		"DOTA_Tooltip_ability_item_set_str_t2_3_aura"                                     "Strength Aura: +"
 
