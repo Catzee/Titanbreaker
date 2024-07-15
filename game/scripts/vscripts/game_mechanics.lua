@@ -21440,7 +21440,7 @@ function PassiveStatCalculation(event)
         local path_word_bonus = 0
         for k=1, 3 do
             if i == soul[k][1] then
-                soul_item_bonus = soul[k][2]
+                soul_item_bonus = soul_item_bonus + soul[k][2]
             end
         end
         local path_bonus_from_ring_given = 0
