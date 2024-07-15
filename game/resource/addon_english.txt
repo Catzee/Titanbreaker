@@ -710,8 +710,8 @@
 		"DOTA_Tooltip_Ability_item_int2_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_int3"  "<font color=\"#32cd32\">Staff of Wizardry"  
+		"DOTA_Tooltip_Ability_item_int3_Description"  "Spellstorm: + %bonus_stat2%%% Spellhaste (Unique Effect)" 
 		"DOTA_Tooltip_Ability_item_int3_bonus_stat1"	"Intellect: +"
-		"DOTA_Tooltip_Ability_item_int3_bonus_stat2"	"%Spellhaste: +"
 
 		"DOTA_Tooltip_Ability_item_all1"  "Circlet of Nobility"  
 		"DOTA_Tooltip_Ability_item_all1_bonus_stat1"	"All Attributes: +"
