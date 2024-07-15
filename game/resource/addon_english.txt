@@ -4992,19 +4992,19 @@
 		"DOTA_Tooltip_ability_item_set_int_t2_full_companion"                             "%Primary Attribute to Companion Damage:"
 
 		"DOTA_Tooltip_ability_item_set_int_t2_1"                                          "<font color=\"#ff8c00\">Runeforged Dragon Mask"
-		"DOTA_Tooltip_ability_item_set_int_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_int_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently that attacking your targets for Arcane Damage, granting a 5 Spell Resistance Aura and healing the most injured nearby ally every 12 secs. Passeivly provides 5%% Cooldown Reduction.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_int_t2_1_bonus_stat1"                              "Intellect: +"
 		"DOTA_Tooltip_ability_item_set_int_t2_1_bonus_stat2"                              "Mana: +"
 
 		"DOTA_Tooltip_ability_item_set_int_t2_2"                                          "<font color=\"#ff8c00\">Runeforged Dragon Shoulders"
-		"DOTA_Tooltip_ability_item_set_int_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_int_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently that attacking your targets for Arcane Damage, granting a 5 Spell Resistance Aura and healing the most injured nearby ally every 12 secs. Passeivly provides 5%% Cooldown Reduction.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_int_t2_2_bonus_stat1"                           	"Intellect: +"
 		"DOTA_Tooltip_ability_item_set_int_t2_2_bonus_stat2"                           	"Health: +"
 		"DOTA_Tooltip_ability_item_set_int_t2_2_bonus_stat3"                           	"Armor: +"
 		"DOTA_Tooltip_ability_item_set_int_t2_2_bonus_stat4"                           "Spell Resistance: +"
 
 		"DOTA_Tooltip_ability_item_set_int_t2_3"                                          "<font color=\"#ff8c00\">Runeforged Dragon Gloves"
-		"DOTA_Tooltip_ability_item_set_int_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_int_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Runeforged Dragon permanently that attacking your targets for Arcane Damage, granting a 5 Spell Resistance Aura and healing the most injured nearby ally every 12 secs. Passeivly provides 5%% Cooldown Reduction.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_int_t2_3_bonus_stat1"                              "Intellect: +"
 		"DOTA_Tooltip_ability_item_set_int_t2_3_cdreduce"                                 "%Cooldown Reduction:"
 
@@ -5018,19 +5018,19 @@
 		"DOTA_Tooltip_ability_item_set_agi_t2_full_companion"                             "%Primary Attribute to Companion Damage:"
 
 		"DOTA_Tooltip_ability_item_set_agi_t2_1"                                          "<font color=\"#ff8c00\">Skyborn Dragon Mask"
-		"DOTA_Tooltip_ability_item_set_agi_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_agi_t2_1_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently that attacking your targets for Frost Damage and granting a 5%% Movement Speed reduction Aura for enemies.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_t2_1_bonus_stat1"                              "Agility: +"
 		"DOTA_Tooltip_ability_item_set_agi_t2_1_bonus_stat2"                              "Health: +"
 
 		"DOTA_Tooltip_ability_item_set_agi_t2_2"                                          "<font color=\"#ff8c00\">Skyborn Dragon Chestguard"
-		"DOTA_Tooltip_ability_item_set_agi_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_agi_t2_2_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently that attacking your targets for Frost Damage and granting a 5%% Movement Speed reduction Aura for enemies.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_t2_2_bonus_stat1"                              "Agility: +"
 		"DOTA_Tooltip_ability_item_set_agi_t2_2_bonus_stat2"                              "Health: +"
 		"DOTA_Tooltip_ability_item_set_agi_t2_2_bonus_stat3"                              "Armor: +"
 		"DOTA_Tooltip_ability_item_set_agi_t2_2_bonus_stat4"                              "Spell Resistance: +"
 
 		"DOTA_Tooltip_ability_item_set_agi_t2_3"                                          "<font color=\"#ff8c00\">Skyborn Dragon Treads"
-		"DOTA_Tooltip_ability_item_set_agi_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently."
+		"DOTA_Tooltip_ability_item_set_agi_t2_3_Description"                              "<font color=\"#00EE00\">Set Bonus (3/3): Combine into 1 Item and become accompanied by a Skyborn Dragon permanently that attacking your targets for Frost Damage and granting a 5%% Movement Speed reduction Aura for enemies.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_t2_3_bonus_stat1"                              "Agility: +"
 		"DOTA_Tooltip_ability_item_set_agi_t2_3_crit"                                     "%Damaging Ability and Auto Attack Critical Strike Chance (150%):"
 
