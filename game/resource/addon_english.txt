@@ -4398,20 +4398,20 @@
 		"DOTA_Tooltip_ability_item_set_str_tank_full_bonus_stat4"                            "Spell Resistance:"
 
 		"DOTA_Tooltip_ability_item_set_str_dmg_1"                                         "<font color=\"#ff8c00\">Crusader's Vengeance Helmet"
-		"DOTA_Tooltip_ability_item_set_str_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs."
+		"DOTA_Tooltip_ability_item_set_str_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_dmg_1_bonus_stat1"                             "Strength:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_1_bonus_stat2"                             "Attack Damage:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_1_bonus_stat3"                             "Health:"
 
 		"DOTA_Tooltip_ability_item_set_str_dmg_2"                                         "<font color=\"#ff8c00\">Crusader's Vengeance Chest"
-		"DOTA_Tooltip_ability_item_set_str_dmg_2_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs."
+		"DOTA_Tooltip_ability_item_set_str_dmg_2_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_dmg_2_bonus_stat1"                             "Attack Damage:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_2_bonus_stat2"                            "Armor:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_2_bonus_stat4"                            "Spell Resistance:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_2_bonus_stat3"                            "Health:"
 
 		"DOTA_Tooltip_ability_item_set_str_dmg_3"                                         "<font color=\"#ff8c00\">Crusader's Vengeance Gloves"
-		"DOTA_Tooltip_ability_item_set_str_dmg_3_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs."
+		"DOTA_Tooltip_ability_item_set_str_dmg_3_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): 50 Attack Speed. When you Auto Attack an enemy, gain 100 Attack Speed for 10 secs, with an inner cooldown of 30 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_str_dmg_3_bonus_stat1"                             "Strength:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_3_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_str_dmg_3_bonus_stat3"                             "Attack Damage:"
