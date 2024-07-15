@@ -8494,17 +8494,17 @@
 		"DOTA_Tooltip_ability_item_cain_set_lore"                                  			"A personal gift from Cain himself for a grand achievement. 2 daughters, 2 lives."
 
 		"DOTA_Tooltip_ability_item_cain_divine"                                           "<font color=\"#ffd700\">[Divine] Cain's Family Bible"
-		"DOTA_Tooltip_ability_item_cain_divine_Description"                               "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life."
+		"DOTA_Tooltip_ability_item_cain_divine_Description"                               "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life that grants the target 1 additional life, can be used twice per game.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_cain_divine_bonus_stat1"                               "Primary Attribute: +"
 		"DOTA_Tooltip_ability_item_cain_divine_lore"                                  			"A personal gift from Cain himself for a grand achievement."
 
 		"DOTA_Tooltip_ability_item_cain_immo"                                             "<font color=\"#66ffff\">Cain's Family Treads"
-		"DOTA_Tooltip_ability_item_cain_immo_Description"                                 "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life."
+		"DOTA_Tooltip_ability_item_cain_immo_Description"                                 "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life that grants the target 1 additional life, can be used twice per game.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_cain_immo_bonus_stat1"                                 "Primary Attribute: +"
 		"DOTA_Tooltip_ability_item_cain_immo_lore"                                  			"A personal gift from Cain himself for a grand achievement."
 
 		"DOTA_Tooltip_ability_item_cain_legendary"                                        "<font color=\"#ff8c00\">Cain's Family Amulet"
-		"DOTA_Tooltip_ability_item_cain_legendary_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life."
+		"DOTA_Tooltip_ability_item_cain_legendary_Description"                            "<font color=\"#00EE00\">Set Bonus (3/3): Combine into one Item and gain Gift of Life that grants the target 1 additional life, can be used twice per game.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_cain_legendary_bonus_stat1"                            "Primary Attribute: +"
 		"DOTA_Tooltip_ability_item_cain_legendary_lore"                                  			"A personal gift from Cain himself for a grand achievement."
 
