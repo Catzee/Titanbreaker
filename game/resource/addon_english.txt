@@ -4427,13 +4427,13 @@
 		"DOTA_Tooltip_ability_item_set_str_dmg_full_chance"                                  "%Auto Attack Chance to crit for 350%:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_1"                                         "<font color=\"#ff8c00\">Swiftbite Mask"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_1_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs. When you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100 for 6 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_1_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_1_bonus_stat2"                             "Attack Damage:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_1_bonus_stat3"                             "Health:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_2"                                         "<font color=\"#ff8c00\">Swiftbite Treads"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_2_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_2_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs. When you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100 for 6 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_2_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_2_bonus_stat2"                             "Armor:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_2_bonus_stat4"                             "Spell Resistance:"
@@ -4441,13 +4441,13 @@
 		"DOTA_Tooltip_ability_item_set_agi_dmg_2_bonus_stat5"                             "Movement Speed:"
 
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3"                                         "<font color=\"#ff8c00\">Swiftbite Gloves"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_3_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_3_Description"                             "<font color=\"#00EE00\">Set Bonus (3/3): Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs. When you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100 for 6 secs.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_3_bonus_stat3"                             "Attack Damage:"
 		
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full"                                         "<font color=\"#ff8c00\">Swiftbite Set"
-		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\nWhen you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100."
+		"DOTA_Tooltip_ability_item_set_agi_dmg_full_Description"                             "<h1><font color=\"#00EE00\">Swiftbite Set</font></h1><font color=\"#00EE00\">Auto Attacks have a 6%% chance to lower the target's Armor by 2 and grant you 25 Agility for 10 secs.</font>\nWhen you deal Damage you have a %chance%%% chance to increase your Attack Speed by 100 for 6 secs."
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat1"                             "Agility:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat2"                             "Attack Speed:"
 		"DOTA_Tooltip_ability_item_set_agi_dmg_full_bonus_stat3"                             "Attack Damage:"
