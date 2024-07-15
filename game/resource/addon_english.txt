@@ -4594,11 +4594,11 @@
 		"DOTA_Tooltip_modifier_item_wolf_health_aura_Description"                         "Health increased."
 
 		"DOTA_Tooltip_ability_item_ring_arcane"                                           "<font color=\"#ff8c00\">Soulbrother Ring of Tears"
-		"DOTA_Tooltip_ability_item_ring_arcane_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Unite both Soulbrother Rings into 1 Item and restore 10%% of max health or mana every 10 secs (whichever is lower on a percentage basis) and gain Spellpower equal to 1%% of your current Health plus Mana."
+		"DOTA_Tooltip_ability_item_ring_arcane_Description"                               "<font color=\"#00EE00\">Set Bonus (2/2): Unite both Soulbrother Rings into 1 Item and restore 10%% of max health or mana every 10 secs (whichever is lower on a percentage basis) and gain Spellpower equal to 1%% of your current Health plus Mana.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_ring_arcane_bonus_stat1"                               "Mana: +"
 
 		"DOTA_Tooltip_ability_item_ring_arcane_2"                                         "<font color=\"#ff8c00\">Soulbrother Ring of Blood"
-		"DOTA_Tooltip_ability_item_ring_arcane_2_Description"                             "<font color=\"#00EE00\">Set Bonus (2/2): Unite both Soulbrother Rings into 1 Item and restore 10%% of max health or mana every 10 secs (whichever is lower on a percentage basis) and gain Spellpower equal to 1%% of your current Health plus Mana."
+		"DOTA_Tooltip_ability_item_ring_arcane_2_Description"                             "<font color=\"#00EE00\">Set Bonus (2/2): Unite both Soulbrother Rings into 1 Item and restore 10%% of max health or mana every 10 secs (whichever is lower on a percentage basis) and gain Spellpower equal to 1%% of your current Health plus Mana.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_ability_item_ring_arcane_2_bonus_stat1"                             "Health: +"
 
 		"DOTA_Tooltip_ability_item_ring_arcane_full"                                      "<font color=\"#ff8c00\">Soulbrother Rings of Union"
