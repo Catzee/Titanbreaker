@@ -8002,9 +8002,6 @@ function GetSpellhaste( caster, event )
         if name == "modifier_item_active5up" then
             speedbonus = speedbonus + 0.5
         end
-        if name == "modifier_item_hasteproc" then
-            speedbonus = speedbonus + 0.75
-        end
         if name == "modifier_activemage" then
             speedbonus = speedbonus + 0.25
         end
@@ -8061,6 +8058,8 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + 1.5
     elseif caster:HasModifier("modifier_item_spellhaste_2") then
         speedbonus = speedbonus + 1
+    elseif caster:HasModifier("modifier_item_hasteproc") then
+        speedbonus = speedbonus + 0.75
     elseif caster:HasModifier("modifier_itemhaste20") then
         speedbonus = speedbonus + 0.5
     end

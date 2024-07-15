@@ -3029,7 +3029,7 @@
 		"DOTA_Tooltip_Ability_item_curseblade_bonus_stat3"	"Spellpower: +"
 
 		"DOTA_Tooltip_Ability_item_hasteproc"  "<font color=\"#ff8c00\">Arcane Stormfury"  
-		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "Cast Storm: + 75%% Spellhaste (Unique Effect)\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
+		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "Spellstorm: + 75%% Spellhaste (Unique Effect)\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat2"	"%Proc Spell Haste: "
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat3"	"%Proc Chance: "
