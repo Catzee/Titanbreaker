@@ -1067,10 +1067,9 @@
 		"DOTA_Tooltip_Ability_item_active5_Lore" "Once crafted by Zeus himself."
 
 		"DOTA_Tooltip_Ability_item_active5up"  "<font color=\"#ff69b4\">Fist of Thunder"  
-		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 50%% Spellhaste for 15 secs."
+		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 50%% Spellhaste for 15 secs.\nSpellstorm: + %bonus_stat3%%% Spellhaste (Unique Effect)"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat2"	"Spellpower: +"
-		"DOTA_Tooltip_Ability_item_active5up_bonus_stat3"	"%Spellhaste: "
 		"DOTA_Tooltip_modifier_active5up_haste"                                           "Fist of Thunder"
 		"DOTA_Tooltip_modifier_active5up_haste_Description"                               " "
 
