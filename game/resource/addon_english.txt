@@ -2288,11 +2288,11 @@
 		"DOTA_Tooltip_Ability_item_weapon20_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_1"  "<font color=\"#ff8c00\">Cyclone's End"  
-		"DOTA_Tooltip_Ability_item_spellhaste_1_Description"  "+ 50%% Spellhaste\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
+		"DOTA_Tooltip_Ability_item_spellhaste_1_Description"  "Spellstorm: + 50%% Spellhaste (Unique Effect)\n\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_Ability_item_spellhaste_1_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_2"  "<font color=\"#ff8c00\">Tempest's End"  
-		"DOTA_Tooltip_Ability_item_spellhaste_2_Description"  "Spellstorm: + 100%% Spellhaste (Unique Effect)\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon."
+		"DOTA_Tooltip_Ability_item_spellhaste_2_Description"  "Spellstorm: + 100%% Spellhaste (Unique Effect)\n<font color=\"#00EE00\">Set Bonus (2/2): Unite Cyclone's End and Tempest's End to combine them into a single weapon.<br><br>Collect all parts and combine them into single item using blacksmith for set bonus."
 		"DOTA_Tooltip_Ability_item_spellhaste_2_bonus_stat1"	"Spellpower: +"
 
 		"DOTA_Tooltip_Ability_item_spellhaste_3"  "<font color=\"#ff8c00\">Hurricane's End"  
