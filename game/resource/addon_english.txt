@@ -1082,7 +1082,7 @@
 		"DOTA_Tooltip_Ability_item_active6_Lore" "To hell with you."
 
 		"DOTA_Tooltip_Ability_item_hellbringer"  "<font color=\"#ff8c00\">Wildfire Insanity"  
-		"DOTA_Tooltip_Ability_item_hellbringer_Description"  "Whenever you deal Damage, you lower the target's Spell Resistance by 5 for 5 secs and you have a chance to launch a Fireball dealing Fire Damage (inner cooldown of 1 sec.).\n\n<h1>Hellfire</h1>Your targets will be afflicted by an additional debuff, reducing their Spell Resistance by another 10 and each Fireball proc has a 20%% chance to launch 2 Fireballs instead.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_hellbringer_Description"  "<h1>Hellfire</h1>Your targets will be afflicted by an additional debuff, reducing their Spell Resistance by another 10 and each Fireball proc has a 20%% chance to launch 2 Fireballs instead.\nWhenever you deal Damage, you lower the target's Spell Resistance by 5 for 5 secs and you have a chance to launch a Fireball dealing Fire Damage (inner cooldown of 1 sec.).\n.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_hellbringer_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_hellbringer_bonus_stat4"	"Spellpower: +"
 		"DOTA_Tooltip_Ability_item_hellbringer_bonus_stat2"	"Fireball Damage: "
@@ -2352,7 +2352,7 @@
 		"DOTA_Tooltip_modifier_item_flamefury_buff_Description"	"Agility increased."
 
 		"DOTA_Tooltip_Ability_item_valyrian"  "<font color=\"#ff69b4\">Pride of Valyria"  
-		"DOTA_Tooltip_Ability_item_valyrian_Description"  "Valyrian Steel: All Ability Damage has a 10%% chance to pierce through the target's defenses, ignoring Armor and Spell Resistances."  
+		"DOTA_Tooltip_Ability_item_valyrian_Description"  "<h1>Valyrian Steel</h1>All Ability Damage has a 10%% chance to pierce through the target's defenses, ignoring Armor and Spell Resistances."  
 		"DOTA_Tooltip_Ability_item_valyrian_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_valyrian_bonus_stat2"	"Valyrian Sharpening Duration: "
 
@@ -2375,7 +2375,7 @@
 
 
 		"DOTA_Tooltip_Ability_item_halberd"  "<font color=\"#ff69b4\">Halberd of Valor"
-		"DOTA_Tooltip_Ability_item_halberd_Description"	"Riposte: Strike the target, dealing 500%% of your Attack Damage as Physical Damage and disarming the target."  
+		"DOTA_Tooltip_Ability_item_halberd_Description"	"<h1>Riposte</h1>Strike the target, dealing 500%% of your Attack Damage as Physical Damage and disarming the target."  
 		"DOTA_Tooltip_Ability_item_halberd_bonus_stat2"	"Attack Damage: +"
 		"DOTA_Tooltip_Ability_item_halberd_duration"	"Disarm Duration: "
 
@@ -2668,7 +2668,6 @@
 
 		// new heal trinket
 		"DOTA_Tooltip_Ability_item_devilsoul"  "<font color=\"#4D6BFF\">Satan's Offering"
-		"DOTA_Tooltip_Ability_item_devilsoul_Description"	"<h1>Satan's Offering</h1>Greatly heal yourself.\n<font color=\"#FF6600\">Uniquely Equipped."  
 		"DOTA_Tooltip_Ability_item_devilsoul_bonus_stat3"	"Health: +"
 		//"DOTA_Tooltip_Ability_item_devilsoul_bonus_stat5"	"Healing Penalty Duration: "
 		"DOTA_Tooltip_Ability_item_devilsoul_lore"	"Is it worth selling your soul?"
@@ -2876,7 +2875,7 @@
 		"DOTA_Tooltip_modifier_stunnedshackle"	"Holy Shackles"
 
 		"DOTA_Tooltip_Ability_item_irontalon2"  "<font color=\"#ff69b4\">Bloodfang"  
-		"DOTA_Tooltip_Ability_item_irontalon2_Description"  "Iron Strike (750 range): Crush the target's Armor, lowering it by 3.\n\nPassively increase the Damage of your Ambush, Killing Dance, Dire Cut and Wild Fury by 15%%.\n" 
+		"DOTA_Tooltip_Ability_item_irontalon2_Description"  "<h1>Iron Strike</h1>Crush the target's Armor, lowering it by 3.\n\nPassively increase the Damage of your Ambush, Killing Dance, Dire Cut and Wild Fury by 15%%.\n" 
 		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat0"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat1"	"Health: +"
 		"DOTA_Tooltip_Ability_item_irontalon2_bonus_stat2"	"Iron Strike Duration: "
@@ -3049,14 +3048,14 @@
 		
 
 		"DOTA_Tooltip_Ability_item_endgame12"  "<font color=\"#ff8c00\">Shining Harmony" 
-		"DOTA_Tooltip_Ability_item_endgame12_Description"  "Blessing of the Moon: Restore Health and Mana every second." 
+		"DOTA_Tooltip_Ability_item_endgame12_Description"  "<h1>Blessing of the Moon</h1>Restore Health and Mana every second." 
 		"DOTA_Tooltip_Ability_item_endgame12_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_endgame12_bonus_stat2"	"Mana: +"
 		"DOTA_Tooltip_Ability_item_endgame12_bonus_stat3"	"%Blessing Health and Mana per sec: "
 		"DOTA_Tooltip_Ability_item_endgame12_bonus_stat4"	"Blessing Duration: "
 
 		"DOTA_Tooltip_Ability_item_angel"  "<font color=\"#ff8c00\">Shrine of Angels" 
-		"DOTA_Tooltip_Ability_item_angel_Description"  "Blessing of Angels: Restore Health and Mana every second.\n\nWhen you cast an ability that costs mana, refund 5 mana." 
+		"DOTA_Tooltip_Ability_item_angel_Description"  "<h1>Blessing of Angels</h1>Restore Health and Mana every second.\n\nWhen you cast an ability that costs mana, refund 5 mana." 
 		"DOTA_Tooltip_Ability_item_angel_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_angel_bonus_stat2"	"Mana: +"
 		"DOTA_Tooltip_Ability_item_angel_bonus_stat5"	"Mana Regeneration: +"
@@ -3078,7 +3077,7 @@
 		"DOTA_Tooltip_Ability_fury5_crit"  "%Auto Attack Bonus Damage: "
 		"DOTA_Tooltip_Ability_fury5_buffduration"  "Buff Duration: "
 
-		"DOTA_Tooltip_Ability_item_weapon40_Description"  "On activation, dash towards the target and slow it by 50%% for 2 secs."
+		"DOTA_Tooltip_Ability_item_weapon40_Description"  "<h1>Dash</h1>Dash towards the target and slow it by 50%% for 2 secs."
 
 		"DOTA_Tooltip_Ability_item_endgame1_bonus_stat1"	"Attack Speed: +"
 		"DOTA_Tooltip_Ability_item_endgame1_bonus_stat2"	"Attack Damage: +"
@@ -3258,7 +3257,7 @@
 		"DOTA_Tooltip_modifier_icy_veins"	"Marksman Aura"
 		"DOTA_Tooltip_modifier_icy_veins_Description"	"Auto Attack Damage increased."
 
-		"DOTA_Tooltip_Ability_item_irontalon_Description"  "Iron Strike (750 range): Crush the target's Armor, lowering it by 3." 
+		"DOTA_Tooltip_Ability_item_irontalon_Description"  "<h1>Iron Strike</h1>Crush the target's Armor, lowering it by 3." 
 
 		
 
@@ -5743,31 +5742,31 @@
 		"DOTA_Tooltip_modifier_emperor_aura_Description"                                   "Increasing nearby non-Hero Damage."
 
 		"DOTA_Tooltip_Ability_item_aa_mana1"  "<font color=\"#4D6BFF\">Assault Blade"  
-		"DOTA_Tooltip_Ability_item_aa_mana1_Description"  "Invigorate: Auto Attacks generate 1 Mana, 1 non-Mana Resource or 0.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana1_Description"  "<h1>Invigorate</h1>Auto Attacks generate 1 Mana, 1 non-Mana Resource or 0.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
 		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_aa_mana1_bonus_stat3"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_aa_mana2"  "<font color=\"#ff69b4\">Roaring Rod"  
-		"DOTA_Tooltip_Ability_item_aa_mana2_Description"  "Invigorate: Auto Attacks generate 2 Mana, 2 non-Mana Resource or 1 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana2_Description"  "<h1>Invigorate</h1>Auto Attacks generate 2 Mana, 2 non-Mana Resource or 1 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
 		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_aa_mana2_bonus_stat3"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_aa_mana3"  "<font color=\"#ff8c00\">Violet Blade"
-		"DOTA_Tooltip_Ability_item_aa_mana3_Description"  "Invigorate: Auto Attacks generate 3 Mana, 3 non-Mana Resource or 1.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana3_Description"  "<h1>Invigorate</h1>Auto Attacks generate 3 Mana, 3 non-Mana Resource or 1.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
 		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_aa_mana3_bonus_stat3"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_aa_mana4"  "<font color=\"#ff8c00\">[Ancient] Rainstorm"  
-		"DOTA_Tooltip_Ability_item_aa_mana4_Description"  "Invigorate: Auto Attacks generate 4 Mana, 4 non-Mana Resource or 2 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
+		"DOTA_Tooltip_Ability_item_aa_mana4_Description"  "<h1>Invigorate</h1>Auto Attacks generate 4 Mana, 4 non-Mana Resource or 2 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>\n"
 		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_aa_mana4_bonus_stat3"	"Attack Speed: +"
 
 		"DOTA_Tooltip_Ability_item_weapon7up3"  "<font color=\"#66ffff\">Monsoon"  
-		"DOTA_Tooltip_Ability_item_weapon7up3_Description"  "Invigorate: Auto Attacks generate 5 Mana, 5 non-Mana Resource or 2.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>"
+		"DOTA_Tooltip_Ability_item_weapon7up3_Description"  "<h1>Invigorate</h1>Auto Attacks generate 5 Mana, 5 non-Mana Resource or 2.5 Rage for Brawlers.\n<font color=\"#FF6600\">Unique Effect.</font>"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_weapon7up3_bonus_stat3"	"Attack Speed: +"
@@ -6250,7 +6249,7 @@
 		"DOTA_Tooltip_ability_pve_temple_reflect_delay"                             "Delay: "
 
 		//2.1.5, buff helm courage, buff ornament
-		"DOTA_Tooltip_Ability_item_devilsoul_Description"	"Satan's Offering: Greatly heal yourself.\nUniquely equipped."
+		"DOTA_Tooltip_Ability_item_devilsoul_Description"	"<h1>Satan's Offering</h1>Greatly heal yourself.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_holyhammer2_Description"  "<h1>Sanctification</h1>Increase your Intellect by 10 and Strength by 5 for 10 secs.\nPassive: Whenever you cast a spell, there is a 5%% chance to heal yourself for 500."
 		"DOTA_Tooltip_Ability_item_bootshp2_Description"  "All negative debuffs (stuns, silence, slows, dots etc) last 25%% shorter on you.\n+ 10%% max Health\nUniquely equipped"
 
