@@ -1265,7 +1265,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/centaur_return.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Fortress of Destruction" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Effects that reduce your total Damage taken by a percentage, now grant a portion of that as % Damage Bonus. Armor and Spell Resistance do not count as total Damage reduction effects." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Effects that reduce your total Damage taken by a percentage, now grant a portion of that as % Damage Bonus. Only Damage Reduction effects counts (Armor, Spell Resistance, Mana Shield, etc do not count)." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
