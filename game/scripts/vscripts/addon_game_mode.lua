@@ -10411,7 +10411,7 @@ function COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
     hero:GetTeamNumber(), 
     hero:GetAbsOrigin(), 
     nil,
-    2500, 
+    2500, -- probably should introduce constant somewhere for this value...
     DOTA_UNIT_TARGET_TEAM_ENEMY, 
     DOTA_UNIT_TARGET_ALL, 
     -- target all special guys too (bkb effect, INVULNERABLE, out of world)
