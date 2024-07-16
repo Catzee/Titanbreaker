@@ -7858,6 +7858,7 @@ end
 
 
 function COverthrowGameMode:UnitAI(event)
+  -- Tick frequence now not exactly every 1s due to COverthrowGameMode:ForceRecalcAggroForTaunt(hero), but probably nothing will go wrong (famous last words)
 	local tickFrequency = 1
 	local boss = event.caster
 	if boss then
@@ -10395,7 +10396,38 @@ function COverthrowGameMode:FilterModifiers(filterTable)
   if (filterTable.name_const == "modifier_fountain_invulnerability") then
     return false
   end
+  -- Hopefully this will solve taunt issues
+  if(filterTable.name_const == "modifier_taunt123") then
+    local hero = EntIndexToHScript(filterTable.entindex_parent_const)
+    if(hero ~= nil) then
+      COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
+    end
+  end
   return true
+end
+
+function COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
+  local enemies = FindUnitsInRadius(
+    hero:GetTeamNumber(), 
+    hero:GetAbsOrigin(), 
+    nil,
+    2500, 
+    DOTA_UNIT_TARGET_TEAM_ENEMY, 
+    DOTA_UNIT_TARGET_ALL, 
+    -- target all special guys too (bkb effect, INVULNERABLE, out of world)
+    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+    FIND_ANY_ORDER,
+    false)
+  
+  for _, enemy in pairs(enemies) do
+    -- Target only guys who care about aggro
+    if(enemy:HasModifier("modifier_pvebosssystem")) then
+      print("Force tick for ", enemy:GetUnitName())
+      COverthrowGameMode:UnitAI({
+        caster = enemy
+      })
+    end
+  end
 end
 
 function COverthrowGameMode:OnNPCSpawned( keys )
