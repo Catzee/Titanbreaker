@@ -10422,7 +10422,6 @@ function COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
   for _, enemy in pairs(enemies) do
     -- Target only guys who care about aggro
     if(enemy:HasModifier("modifier_pvebosssystem")) then
-      print("Force tick for ", enemy:GetUnitName())
       COverthrowGameMode:UnitAI({
         caster = enemy
       })
