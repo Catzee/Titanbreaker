@@ -2304,7 +2304,9 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
   GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(COverthrowGameMode, "FilterDamage"), self)			--SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "OrderFilter"), self)
   GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(COverthrowGameMode, "FilterExperience"), self)
 
-
+  -- disable innate melee block added in some dota patch
+  GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)
+  
   --new pre game stuff
   GameRules:SetShowcaseTime( 0.0 )
   GameRules:SetStrategyTime( 0.5 )
