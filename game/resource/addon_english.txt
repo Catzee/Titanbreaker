@@ -11131,7 +11131,7 @@
 		"DOTA_Tooltip_ability_pve_crocodile_skin_Description"                                "Its thick skin reduces the chance to get Critically Hit by Abilities."
 
 		"DOTA_Tooltip_Ability_item_purgeblade3"  "<font color=\"#7733ff\">[Mythical] Decontamination"  
-		"DOTA_Tooltip_Ability_item_purgeblade3_Description"  "<h1>Liberation</h1>Free yourself from all negative debuffs after a 1 sec delay.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
+		"DOTA_Tooltip_Ability_item_purgeblade3_Description"  "<h1>Liberation</h1>Free yourself from all negative debuffs after a 1 sec delay. Can be used while stunned, disabled or silenced.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat1"	"Strength: +"
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat2"	"Agility: +"
 		"DOTA_Tooltip_Ability_item_purgeblade3_bonus_stat3"	"Intellect: +"
