@@ -76247,8 +76247,8 @@
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PetSystem"
-					    "str"			"50"
-					    "agi"			"50"
+					    "str"			"100"
+					    "agi"			"100"
 					    "talentscale"	"46"
 						"runewordscale"	"11"
 						"companionbehavior"	"1"
