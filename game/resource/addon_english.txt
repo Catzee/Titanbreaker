@@ -11118,6 +11118,8 @@
 		"DOTA_Tooltip_modifier_talent_thirst"                                              "Bloodthirst"
 		"DOTA_Tooltip_modifier_talent_duelist"                                              "Duelist"
 
+		"DOTA_Tooltip_modifier_coc"                                              			"Cold Chain"
+		
 		"temple_water_boss_8"	"Rivermaw"
 		"DOTA_Tooltip_ability_pve_generated_spell_curve_targeted_zigzag_water"                                "Wild Splashes"
 		"DOTA_Tooltip_ability_pve_generated_spell_curve_targeted_zigzag_water_Description"                                "Wild Splashes on the water cause dangerous erratic waves, dealing Damage and reducing Spell Resistance on impact."
