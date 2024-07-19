@@ -4607,7 +4607,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         local overpower = GetOverpowerStat(caster)
         if overpower > 0 and wascrit then
-            multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(ability:GetLevel()) * overpower / 10000)
+            multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(-1) * overpower / 10000)
         end
         if caster.songIceFire1Cast and caster.talents and caster:GetAbilityByIndex(1) == ability and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
@@ -4708,7 +4708,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if GetCrusaderStat(caster) >= 1 then
         multiplicative_bonus = multiplicative_bonus * (1 + (GetHealingMultiplier(event, caster, ability, target, false, false, false) - 1) * 0.01 * GetCrusaderStat(caster))
     end
-    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 30 then
+    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(-1) >= 30 then
         multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * GetNetherfusionStat(caster))
     end
     if pure_dmg and wascrit and event.arcanedmg and GetStarCollapseStat(caster) >= 1 then
@@ -4777,10 +4777,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
     if ability and caster:HasModifier("modifier_new8") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * ability:GetManaCost(ability:GetLevel()))
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * ability:GetManaCost(-1))
     end
     if ability and caster:HasModifier("modifier_new82") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * ability:GetManaCost(ability:GetLevel()))
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * ability:GetManaCost(-1))
     end
     if caster:HasModifier("modifier_windfury_path") then
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * caster.talents[53])
@@ -7964,7 +7964,7 @@ function Bookoflight(event)
 	local a = event.event_ability
     local mana = event.mana
 	if a and not caster.resourcesystem then
-		if a:GetManaCost(a:GetLevel()) > 0.0 then
+		if a:GetManaCost(-1) > 0.0 then
 			Timers:CreateTimer(0.05,function() 
 	        	caster:SetMana(caster:GetMana()+mana)
 	    	end)
@@ -14769,7 +14769,7 @@ function GlobalOnAbilityExecuted( event )
             end
         end
     end
-    if GetManaRefundAmount(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 1 then
+    if GetManaRefundAmount(caster) >= 1 and ability and ability:GetManaCost(-1) >= 1 then
         Timers:CreateTimer(0.05, function()
             RestoreResource({caster = caster, amount = GetManaRefundAmount(caster), flat = true})
         end)
@@ -27762,7 +27762,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     if GetNaturesHarmonyStat(caster) >= 1 and not wascrit then
         healing_bonus = healing_bonus + 0.01 * GetNaturesHarmonyStat(caster)
     end
-    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 30 then
+    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(-1) >= 30 then
         healing_bonus = healing_bonus + 0.01 * GetNetherfusionStat(caster)
     end
     if GetSwiftMendingStat(caster) >= 1 then
@@ -27953,10 +27953,10 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     end
     
     if ability and caster:HasModifier("modifier_new8") then
-        healing_bonus = healing_bonus + 0.005 * ability:GetManaCost(ability:GetLevel())
+        healing_bonus = healing_bonus + 0.005 * ability:GetManaCost(-1)
     end
     if ability and caster:HasModifier("modifier_new82") then
-        healing_bonus = healing_bonus + 0.01 * ability:GetManaCost(ability:GetLevel())
+        healing_bonus = healing_bonus + 0.01 * ability:GetManaCost(-1)
     end
     
     if event.alwaysself ~= nil then
@@ -30323,7 +30323,7 @@ function CheckForFlurryProc(event)
     local target = event.target
     local ability = caster:GetAbilityByIndex(caster.flurryAbility)
     local mana = caster:GetMana()
-    local manacost = ability:GetManaCost(ability:GetLevel() - 1)
+    local manacost = ability:GetManaCost(-1)
 
     if mana < manacost * 2 or ability:GetLevel() <= 0 then
         return
