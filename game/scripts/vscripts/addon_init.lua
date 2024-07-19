@@ -68,3 +68,8 @@ LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system
 LinkLuaModifier("modifier_frostwyrm_fury_buff", "modifiers/path_talents/modifier_frostwyrm_fury_buff", LUA_MODIFIER_MOTION_NONE)
 -- swipe of ursa proc duration fix (divine item)
 LinkLuaModifier("modifier_swipe_of_ursa_proc", "modifiers/path_talents/modifier_swipe_of_ursa_proc", LUA_MODIFIER_MOTION_NONE)
+
+-- animation.lua modifiers
+LinkLuaModifier( "modifier_animation", "libraries/modifiers/modifier_animation.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_animation_translate", "libraries/modifiers/modifier_animation_translate.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_animation_translate_permanent", "libraries/modifiers/modifier_animation_translate_permanent.lua", LUA_MODIFIER_MOTION_NONE )
