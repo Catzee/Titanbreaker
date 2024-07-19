@@ -1367,7 +1367,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/98f.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Metamorphosis" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="While you have taken on a different Form, gain a % Elemental Damage Bonus for all Elements, including Physical. This includes Shadow Form, Aspect of the Crow, Storm Crow, Feralform, Demon Crash, Shape of Terror and Doomonology." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="While you have taken on a different Form, gain a % Elemental Damage Bonus for all Elements, including Physical. This includes Shadow Form, Aspect of the Crow, Storm Crow, Feralform, Demon Crash, Shape of Terror, Shape of Vengeance and Doomonology." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">

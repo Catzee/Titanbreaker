@@ -302,7 +302,7 @@
 
 		"talent163"								"Vitality: Gain 5 / 10 / 15 Health per Level."
 		"talent164"								"Flurry: Auto Attacks automatically cast 2 Spender Abilities, when you have the required resources for it. When this procs, gain 15% / 30% / 45% increased Damage for 2 secs.\nSpender Abilities are Wounding Strike, Slaughter, Power Shot, Cobra Shot and Frostshatter Arrow."
-		"talent165"								"Tunnel Vision: Casting certain Abilities automatically continues casting them. Each continuous cast increases Spellhaste by 3 / 6 / 9 for 3 secs, stacking.\nAffected Abilities are Fireball, Ice Bolt, Wrath of Nature, Starbeam, Lightning Bolt, Divine Light, Holy Light, Healing Wave and Light of Heaven."
+		"talent165"								"Tunnel Vision: Casting certain Abilities automatically continues casting them. Each continuous cast increases Spellhaste by 3 / 6 / 9 for 3 secs, stacking.\nAffected Abilities are Fireball, Ice Bolt, Wrath of Nature, Starbeam, Lightning Bolt, Divine Light, Holy Light, Healing Wave, Light of Heaven and Crippling Spear."
 		"talent166"								"Witch Doctor: Gain 1 / 2 / 3 Health Regeneration per Level and when you take Damage and drop below 50% of max Health, dispel yourself, with an inner cooldown of 60 / 45 / 30 secs."
 		"talent167"								"Jungle Roamer: Increase all Damage against non-Bosses by 10% / 20% / 30%."
 		"talent168"								"Unpredictable: Ability Damage is increased by 15% / 30% / 45% when your previous Ability Damage was caused by a different Ability."

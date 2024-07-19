@@ -9474,6 +9474,11 @@ function PVEAggroAdd(event)
    local bonus_aggro = 1
    local aggro_reduce = 0
    local setHeroStatsAggroPercent = not event.ignore_super_aggro_tank
+
+    if GetLevelOfAbility(source, "pala6") >= 5 then
+        bonus_aggro = bonus_aggro * (1 + 0.0025 * GetStrengthCustom(source))
+    end
+
    if source:IsHero() then
     if source.super_aggro_tank and not event.ignore_super_aggro_tank then
       local levelThreshold = 2
@@ -9525,6 +9530,7 @@ function PVEAggroAdd(event)
         if source.super_aggro_tank_monk and level_tank_ability >= 4 then
          bonus_aggro = bonus_aggro * (1 + 0.01 * GetStrengthCustom(source))
        end
+
        --print("aggro factors")
        --print(aggro_bonus_armor)
        --print(aggro_bonus_resist)
@@ -12018,9 +12024,10 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victimMaxHealth = victim:GetMaxHealth()
   
   --stop pet aa dmg
-  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") 
+  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_stampede") or attacker:HasModifier("modifier_pet_system_earth") or attacker:HasModifier("modifier_pet_system_fire")
+    or attacker:HasModifier("modifier_pet_system_shadow") or attacker:HasModifier("modifier_pet_system_lua") 
     or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep")
-    or attacker:HasModifier("modifier_blood_worm") then
+    or attacker:HasModifier("modifier_blood_worm") or attacker:HasModifier("modifier_pet_system_bonewarrior") or attacker:HasModifier("modifier_pet_system_crow") then
     filterTable["damage"] = 0
     return true
   end
@@ -12029,7 +12036,11 @@ function COverthrowGameMode:FilterDamage( filterTable )
     filterTable["damage"] = 0
     return true
   end
-
+  
+  if attacker:HasModifier("modifier_mol_peace") or victim:HasModifier("modifier_mol_peace") then
+    filterTable["damage"] = 0
+    return true
+  end
   if attacker:HasModifier("modifier_omni_allow_heal") then
     filterTable["damage"] = 0
     return true

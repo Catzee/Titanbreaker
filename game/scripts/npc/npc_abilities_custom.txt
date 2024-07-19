@@ -381,7 +381,11 @@
 				"EffectName"		"Hero_Lina.PreAttack"
 				"Target"			"CASTER"
 			}
-
+			"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "AbilityAutoCastCheck"
+			}
         }
         "OnAbilityPhaseInterrupted"
         {
@@ -811,7 +815,7 @@
         "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -838,6 +842,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "spelldmg" "50"
+		    }
+		    "03"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "peace" "0 0 0 0 2"
 		    }
 		}
 	    "AbilityManaCost"         "25"
@@ -870,7 +879,12 @@
 					"EffectName"		"Hero_Invoker.Invoke"
 					"Target"			"TARGET"
 				}
-				
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_mol_peace"
+					"Target" 		"TARGET"
+					"Duration"		"%peace"
+				}
 
         }
         "OnAbilityPhaseInterrupted"
@@ -904,6 +918,15 @@
 		}
 		"Modifiers"
 		{
+			"modifier_mol_peace"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"TextureName"		"enchantress_untouchable"
+				"EffectName"		"particles/items4_fx/spirit_vessel_heal.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
 			"modifier_mol"
 			{
 				"Passive"			"0"
@@ -1399,7 +1422,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -9602,6 +9625,7 @@
         		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
         		"EffectName"       "particles/orb_rotating_fire.vpcf"
 			    "EffectAttachType"  "attach_hitloc"
+			    "TextureName"		"phoenix_supernova"
         	}
         	"modifier_yang"
         	{
@@ -9613,6 +9637,7 @@
         		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
         		"EffectName"       "particles/orb_rotating_frost.vpcf"
 			    "EffectAttachType"  "attach_hitloc"
+			    "TextureName"		"puck_illusory_orb"
         	}
 		}
 	}
@@ -9740,6 +9765,7 @@
         		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
         		"EffectName"       "particles/orb_rotating_fire.vpcf"
 			    "EffectAttachType"  "attach_hitloc"
+			    "TextureName"		"phoenix_supernova"
         	}
         	"modifier_yang"
         	{
@@ -9751,6 +9777,7 @@
         		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
         		"EffectName"       "particles/orb_rotating_frost.vpcf"
 			    "EffectAttachType"  "attach_hitloc"
+			    "TextureName"		"puck_illusory_orb"
         	}
 		}
 	}
@@ -9765,7 +9792,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -9827,6 +9854,7 @@
 				    "resolve"		"1"
 				    "resolvechancetriple"	"%chancetriple"
 				    "includeauto"		"%dmgfromstat"
+				    "resolute"		"1"
 				}
 			    "RunScript"
 				{
@@ -11440,7 +11468,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"brew63"
 
-		"MaxLevel"               "4"
+		"MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 	
@@ -11483,6 +11511,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"aura"				"0 0 100 100"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"split"				"0 0 0 0 100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"splitduration"				"15"
+			}
 		}
 	
 		"precache"
@@ -11490,6 +11528,8 @@
 			"particle"  "particles/units/heroes/hero_void_spirit/planeshift/void_spirit_planeshift_active_debuff.vpcf"
 			"model"		"models/courier/juggernaut_dog/juggernaut_dog.vmdl"
 			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_stance_void_ground_ring.vpcf"
+			"particle"  "particles/units/heroes/hero_bane/bane_projectile.vpcf"
+			"particle"  "particles/units/heroes/hero_ursa/ursa_earthshock_rocks.vpcf"
 		}
 	
 		"OnSpellStart"
@@ -11670,6 +11710,152 @@
 	          	{
 	              "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
 	            }
+	            "OnDestroy"
+	            {
+	            	"Random"
+	            	{
+	            		"Chance"			"%split"
+	            		"OnSuccess"
+	            		{
+	            			"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "Brew6Split"
+							    "splitduration"	"%splitduration"
+							}
+	            		}
+	            	}
+	            }
+			}
+			"modifier_prim_split"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"States"
+				{
+					//"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "Brew6SplitEnd"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/items_fx/disperser_buff.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+					"AttachEffect"
+					{
+						"EffectName"        "particles/items5_fx/fallen_sky_fire.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"primalshadow"
+						"Target"			"CASTER"
+						"UnitCount"			"1"
+						"Duration"			"%splitduration"
+						"SpawnRadius"		"?50 100"
+						"GrantsGold"		"0"
+						"GrantsXP"			"0"
+			
+						"OnSpawn"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_phased"
+								"Target"		"TARGET"
+								"Duration"		"0.1"
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_pet_system_shadow"
+								"Target"		"TARGET"
+							}
+							"FireEffect"
+							{
+								"EffectName"        "particles/items_fx/phylactery_target_shadow.vpcf"
+								"EffectAttachType"  "follow_hitloc"
+								"Target"            "TARGET"
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"primalfire"
+						"Target"			"CASTER"
+						"UnitCount"			"1"
+						"Duration"			"%splitduration"
+						"SpawnRadius"		"?50 100"
+						"GrantsGold"		"0"
+						"GrantsXP"			"0"
+			
+						"OnSpawn"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_phased"
+								"Target"		"TARGET"
+								"Duration"		"0.1"
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_pet_system_fire"
+								"Target"		"TARGET"
+							}
+							"FireEffect"
+							{
+								"EffectName"        "particles/items_fx/phylactery_target_shadow.vpcf"
+								"EffectAttachType"  "follow_hitloc"
+								"Target"            "TARGET"
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"primalearth"
+						"Target"			"CASTER"
+						"UnitCount"			"1"
+						"Duration"			"%splitduration"
+						"SpawnRadius"		"?50 100"
+						"GrantsGold"		"0"
+						"GrantsXP"			"0"
+			
+						"OnSpawn"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_phased"
+								"Target"		"TARGET"
+								"Duration"		"0.1"
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_pet_system_earth"
+								"Target"		"TARGET"
+							}
+							"FireEffect"
+							{
+								"EffectName"        "particles/items_fx/phylactery_target_shadow.vpcf"
+								"EffectAttachType"  "follow_hitloc"
+								"Target"            "TARGET"
+							}
+						}
+					}
+				}
 			}
 			"modifier_ox_aura"
 			{
@@ -11700,6 +11886,247 @@
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
+			}
+			"modifier_pet_system_shadow"
+			{
+				"Duration"	"-1"
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+				}
+				"States"
+	        	{
+	              	"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+	        	}
+	        	"OnCreated"
+	        	{
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+	        	}
+				"ThinkInterval"  "2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+					
+				}
+				"OnAttackLanded"
+			    {
+			    	"Random"
+			    	{
+			    		"Chance"			"50"
+			    		"OnSuccess"
+			    		{
+			    			"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "ApplyBuff"
+							    "buff"			"modifier_stunned"
+							    "dur"	"2"
+							}
+			    		}
+			    	}
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "damage"			"%attack_damage"
+					    "spelldamagefactor"	"0.0"
+					    "attributefactor"	"0.0"
+					    "fromsummon"	"1"
+					    "shadowdmg"		"1"
+					}
+			    }
+			}
+			"modifier_pet_system_fire"
+			{
+				"Duration"	"-1"
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+				}
+				"States"
+	        	{
+	              	"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+	        	}
+	        	"OnCreated"
+	        	{
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+	        	}
+				"ThinkInterval"  "2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+					
+				}
+				"OnAttackLanded"
+			    {
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "damage"			"%attack_damage"
+					    "spelldamagefactor"	"0.0"
+					    "attributefactor"	"0.0"
+					    "fromsummon"	"1"
+					    "firedmg"		"1"
+					}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "ApplyBuff"
+					    "buff"			"modifier_primal_fire"
+					    "dur"	"60"
+					}
+			    }
+			}
+			"modifier_primal_fire"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"TextureName"		"phoenix_sun_ray"
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "spelldamagefactor"	"0.0"
+					    "attributefactor"	"250"
+					    "fromsummon"	"1"
+					    "firedmg"		"1"
+					    "isdot"			"1"
+					}
+				}
+			}
+			"modifier_pet_system_earth"
+			{
+				"Duration"	"-1"
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+				}
+				"States"
+	        	{
+	              	"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+	        	}
+	        	"OnCreated"
+	        	{
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+	        	}
+				"ThinkInterval"  "2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "PetSystem"
+					    "primary"			"250"
+					}
+					
+				}
+				"OnAttackLanded"
+			    {
+	        		"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "damage"			"%attack_damage"
+					    "spelldamagefactor"	"0.0"
+					    "attributefactor"	"0.0"
+					    "fromsummon"	"1"
+					    "naturedmg"		"1"
+					}
+					"Random"
+					{
+						"Chance"			"50"
+						"OnSuccess"
+						{
+							"ActOnTargets"
+							{
+								"Target"
+								{
+									"Center"  	"TARGET"
+									"Radius" 	"300"
+									"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+								}
+							
+								"Action"    
+								{
+									"RunScript"
+									{
+									    "ScriptFile"    "game_mechanics.lua"
+									    "Function"      "ApplyBuff"
+									    "buff"			"modifier_slow50"
+									    "dur"	"5"
+									}
+								}
+							}
+							"FireEffect"
+							{
+								"EffectName"        "particles/units/heroes/hero_ursa/ursa_earthshock_rocks.vpcf"
+								"EffectAttachType"  "follow_origin"
+								"Target"            "TARGET"
+							}
+						}
+					}
+			    }
+			}
+			"modifier_slow50"
+			{
+			    "Passive"          "0"    
+			    "TextureName"      "earthshaker_fissure"
+
+			    "IsBuff"			"0"
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "1"
+
+			    "EffectName"       "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+			    "EffectAttachType"  "attach_hitloc"
+
+			     "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%slow"
+			    }
 			}
 		}
 	}
@@ -13370,7 +13797,7 @@
 		"AbilityTextureName"			"fix/flashheal"
 
 		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -13406,6 +13833,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"reduce"				"-60"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"taunt"				"0 0 0 0 3"
 			}
 		}
 
@@ -13446,6 +13878,14 @@
 			"RunScript"
 			{
 			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "ApplyBuffConditional"
+			    "buff"			"modifier_taunt123"
+			    "onlyself"		"1"
+			    "dur"	"%taunt"
+			}
+			"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
 			    "Function"      "HealUnit"
 			    "heal"			"0.0"
 			    "spelldamagefactor"	"%dmgfromstat"
@@ -13456,6 +13896,15 @@
 
 		"Modifiers"
 		{
+			"modifier_taunt123"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"TextureName"		"queenofpain_scream_of_pain"
+        		"EffectName"		"particles/items2_fx/urn_of_shadows_damage.vpcf"
+        		"EffectAttachType"	"attach_hitloc"
+        	}
 			"modifier_divinebl"
 			{
 				"Passive"			"0"
@@ -15046,7 +15495,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -15135,6 +15584,7 @@
         "precache"
 		{
 			"model"			"models/items/terrorblade/knight_of_foulfell_demon/knight_of_foulfell_demon.vmdl"
+			"model"			"models/items/terrorblade/tb_samurai_samurai_demon/tb_samurai_samurai_demon.vmdl"
 			"particle"  "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
 		}
 		"Modifiers"
@@ -15194,6 +15644,39 @@
 	            "Aura_Radius" "900"
 	            "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	            "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+			}
+			"modifier_metamorph_terror2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "ShapeshiftTerror"
+					    "shape"			"2"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "ShapeshiftTerrorEnd"
+					    "shape"			"2"
+					}
+				}
+
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
 			}
 			"modifier_terroraura"
 			{
@@ -15417,7 +15900,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -16829,7 +17312,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -18009,7 +18492,7 @@
 	    "AnimationPlaybackRate"  "1.8"
 
 	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -18056,6 +18539,11 @@
 		    { 
 		        "var_type"  "FIELD_INTEGER"
 		        "shielddur" "0 0 75 75"
+		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_INTEGER"
+		        "invis" "0 0 0 0 5"
 		    }
 	    }
 
@@ -18221,6 +18709,15 @@
 	                }
 	                
 	            }
+	            "OnDestroy"
+	            {
+	            	"ApplyModifier"
+	            	{
+	            		"ModifierName"	"modifier_invisible"
+	            		"Target" 		"CASTER"
+	            		"Duration"		"%invis"
+	            	}
+	            }
 	        }
 	        "modifier_channel_proc"
 	        {
@@ -18300,7 +18797,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -18315,8 +18812,8 @@
 	    // Stats
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
-	    "AbilityManaCost"         "75"
-	    "AbilityCooldown"         "90 90 75 75"
+	    "AbilityManaCost"         "75 75 75 75 500"
+	    "AbilityCooldown"         "90 90 75 75 15"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    "AbilitySpecial"
 		{
@@ -21106,7 +21603,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -21120,7 +21617,7 @@
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "5"
 	    "AbilityCooldown"         "75 75 60 60"
-	    "AbilityCastRange"        "600"
+	    "AbilityCastRange"        "600 600 600 600 1200"
 	    "AbilityCastRangeBuffer"  "250"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    //"AoERadius"               "250"
@@ -22228,7 +22725,7 @@
         "SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -24060,7 +24557,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"asdf21"
 
-		"MaxLevel"               "4"
+		"MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 	
@@ -24130,7 +24627,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "radius" "300"
 		    }
-		    
+		    "02"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "ballista" "0 0 0 0 100"
+		    }
 		}
 
 		"precache"
@@ -24155,6 +24656,19 @@
 				"ModifierName"	"modifier_stealthdef"
 				"Target" 		"CASTER"
 				"Duration"		"5"
+			}
+			"Random"
+			{
+				"Chance"			"%ballista"
+				"OnSuccess"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_ballista"
+						"Target" 		"CASTER"
+						"Duration"		"6"
+					}
+				}
 			}
 				"RunScript"
 				{
@@ -24445,6 +24959,19 @@
 	
 		"Modifiers"
 		{
+			"modifier_ballista"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"TextureName"      "clinkz_burning_barrage"
+				"EffectName"		"particles/items4_fx/ascetic_cap_ground_swirl.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 			"modifier_stealthdef"
 			{
 				"Passive"			"0"
@@ -28105,6 +28632,11 @@
 	    	"RunScript"
 	    	{
 	    		"ScriptFile"	"game_mechanics.lua"
+	    		"Function"		"PestCheck"
+	    	}
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"game_mechanics.lua"
 	    		"Function"		"GhoulTransform"
 	    		"transform"		"%transform"
 	    	}
@@ -28249,7 +28781,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -28375,7 +28907,7 @@
 						    		"buff"			"modifier_shadowdot_dk"
 						    		"dur"	"5"
 						    		"notself"	"1"
-						    		"settickrate"	"1"
+						    		"settickrate"	"0.5"
 						    	}
 							}
 						}
@@ -28395,6 +28927,14 @@
 
         "Modifiers"
         {	
+        	"modifier_pest"
+			{
+			    "Passive"          "0"    
+			    "TextureName"		"pudge_rot"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "1"
+			    "IsDebuff"			"1"
+			}
         	"modifier_necrotic_mark"
         	{
         		"TextureName"		"abaddon_borrowed_time"
@@ -28424,14 +28964,14 @@
 			    		}
 			    	}
 			    }
-			    "ThinkInterval"  "1.0"
+			    "ThinkInterval"  "0.5"
 			    "OnIntervalThink"
 			    {
 			    	"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "ReduceCooldown"
-					    "amount"			"0.3"
+					    "amount"			"0.25"
 					    "chooseabilityname"	"unholy_4"
 					}
 			    	"RunScript"
@@ -29636,7 +30176,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -29650,10 +30190,10 @@
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
 	    "AbilityCooldown"         "12"
-	    "AbilityCastRange"        "350"
+	    "AbilityCastRange"        "350 350 350 350 900"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0 0.0 0.0 0.0"
-	    "AbilityCastPoint"		"0.4"
+	    "AbilityCastPoint"		"0.2"
 	    //"AoERadius"               "250"
 
 	    //"AbilitySharedCooldown" "dk1"
@@ -29694,6 +30234,21 @@
 		    }
 		}
 
+		"OnProjectileHitUnit"
+		{
+			
+	        "RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "FrostHookHit"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Lich.FrostArmorDamage"
+				"Target"			"TARGET"
+			}
+		}
+
         "OnSpellStart"
         {
 			    "RunScript"
@@ -29701,6 +30256,11 @@
 				    "ScriptFile"    "game_mechanics.lua"
 				    "Function"      "ChainsIce"
 				    "dur"			"%buffduration"
+				}
+				"RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "FrostHook"
 				}
 				"FireSound"
 				{
@@ -29737,10 +30297,32 @@
 		    "particle"  "particles/units/heroes/hero_invoker/invoker_ice_wall_debuff.vpcf"
 		    "particle"  "particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_i_cowlofice.vpcf"
 		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		    "particle"  "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
 		}
 
         "Modifiers"
         {	
+        	"modifier_self_pause"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"1"
+        		"IsDebuff"			"0"
+        	
+        		"IsPurgable"		"0"
+        		
+        		"States"
+        		{
+        			"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+        		}
+        	}
+        	"modifier_hook_crit"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"EffectName"        "particles/items_fx/revenant_brooch.vpcf"
+			    "EffectAttachType"  "attach_hitloc"
+        	}
         	"modifier_frost_bonus_arctic"
 			{
 			    "Passive"          "0"    
@@ -31248,6 +31830,34 @@
 					    "dmg"		"%attack_damage"
 					}
 			    }
+			    "OnDestroy"
+			    {
+			    	"FireEffect"
+					{
+						"EffectName"        "particles/items_fx/dagon.vpcf"
+						"EffectAttachType"  "follow_hitloc"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+					"FireSound"
+					{
+						"EffectName"	"DOTA_Item.Dagon.Activate"
+						"Target" 		"TARGET"
+					}
+	   				"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageUnit"
+					    "damage"			"0"
+					    "spelldamagefactor"	"%dmg"
+					    "attributefactor"	"%dmg"
+					    "firedmg"	"1"
+					}
+			    }
 			}
 			"modifier_follow_order"
 			{
@@ -32000,7 +32610,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -32061,6 +32671,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "souls" "0 100 100 100"
+		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "eternal" "0 0 0 0 40"
 		    }
 	    }
 
@@ -32143,7 +32758,7 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
 				"IsPurgable"		"1"
-
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)"
 
 				"EffectName"		"particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient.vpcf"
@@ -32163,6 +32778,38 @@
 					    "firedmg"	"1"
 					    "burndot"	"1"
 					    "isdot"	"1"
+					}
+				}
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"Chance"			"%eternal"
+						"OnSuccess"
+						{
+							"TrackingProjectile"
+							{
+								"Target"           "TARGET"
+							    "EffectName"       "particles/hw_fx/hw_rosh_fireball.vpcf"
+							    "Dodgeable"        "1"
+							    "ProvidesVision"   "1"
+							    "VisionRadius"     "300"
+							    "MoveSpeed"        "600"
+							    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+							}
+							"FireSound"
+							{
+								"EffectName"		"Hero_Pugna.PreAttack"
+								"Target"			"CASTER"
+							}
+							"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "ImpFireballProc"
+							    "buff"			"modifier_lavalance_proc"
+							    "spellid"		"1"
+							}
+						}
 					}
 				}
 			}
@@ -32553,7 +33200,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -32589,6 +33236,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "casttime" "2.5"
 		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "gloom" "0 0 0 0 100"
+		    }
 		}
 
         "OnProjectileHitUnit"
@@ -32614,6 +33266,20 @@
 					"EffectName"		"Hero_Pugna.NetherWard.Attack.Wight"
 					"Target"			"TARGET"
 				}
+				"Random"
+				{
+					"Chance"			"%gloom"
+					"OnSuccess"
+					{
+						"RunScript"
+				    	{
+				    		"ScriptFile"	"game_mechanics.lua"
+				    		"Function"		"ApplyBuffStack"
+				    		"buff"			"modifier_gloom"
+				    		"dur"			"10"
+				    	}
+					}
+				}
 			}
 		
 		"OnSpellStart"
@@ -32638,9 +33304,7 @@
 				    "ScriptFile"    "game_mechanics.lua"
 				    "Function"      "ChannelManaFixEnd"
 				    "mana"			"%AbilityManaCost"
-
 				}
-
         }
         "OnAbilityPhaseInterrupted"
         {
@@ -32676,7 +33340,12 @@
 
 		"Modifiers"
 		{
-			
+			"modifier_gloom"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			}
 		}
 
 	}
@@ -32849,7 +33518,6 @@
 	        	"IsHidden"		"1"
 	        	"Duration"		"%duration"
 	        	//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
-	            "IsDebuff" "1"
 	            "OnCreated"
 	            {
 	            	"RunScript"
@@ -34024,7 +34692,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -34072,6 +34740,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "agi" "0 0 0 25"
+		    }
+		    "04"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "fear_dmg" "0 0 100 100"
 		    }
 		}
 
@@ -34203,6 +34876,20 @@
 			    		"EffectAttachType"  "follow_hitloc"
 			    		"Target"            "TARGET"
 			    	}
+			    	"Random"
+			    	{
+			    		"Chance"			"%fear_dmg"
+			    		"OnSuccess"
+			    		{
+			    			"RunScript"
+							{
+							    "ScriptFile"    "game_mechanics.lua"
+							    "Function"      "ApplyBuff"
+							    "buff"			"modifier_fear_dmg"
+							    "dur"	"%fearduration"
+							}
+			    		}
+			    	}
 			    }
 
 			     "States"
@@ -34234,6 +34921,17 @@
 					}
 			    }
 
+			}
+			"modifier_fear_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "25"
+				}
 			}
 			"fear_animation"
 	        {
@@ -35730,7 +36428,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -35775,6 +36473,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "7 7 7 8"
+		    }
+		    "17"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "vision" "0 0 0 0 600"
 		    }
 		}
 
@@ -35821,6 +36524,18 @@
 
         "Modifiers"
         {
+        	"modifier_resto4"
+        	{
+        		"Passive"			"1"
+        		"IsHidden"			"1"
+        		"IsDebuff"			"0"
+        	
+        		"Properties"
+        		{
+        			"MODIFIER_PROPERTY_BONUS_DAY_VISION" "%vision"
+        			"MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "%vision"
+        		}
+        	}
 	        "modifier_resto"
 			{
 			    "Passive"          "0"    
@@ -36326,6 +37041,7 @@
 		    "soundfile" "soundevents/voscripts/game_sounds_vo_axe.vsndevts"
 		    "particle"  "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
 		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+		    "particle"  "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
 		}
 
 		"Modifiers"
@@ -36520,6 +37236,7 @@
 						    "attributefactor"	"0.0"
 						    "includeauto"	"%dmg"
 						    "isaoe"			"1"
+						    "outrage"	"1"
 						}
 		    		}
 		    	}
@@ -36788,6 +37505,7 @@
 				    "attributefactor"	"%dmgfromstat"
 				    "attributefactormax"	"%dmgfromstatmax"
 				    "t3bonus"	"1"
+				    "outrage"	"1"
 				}
 				"FireSound"
 				{
@@ -36945,6 +37663,7 @@
 							    "isaoe"		"1"
 							    "t3bonus"	"1"
 							    "untamed"	"2"
+							    "outrage"	"1"
 							}
 			    		}
 			    	}
@@ -37269,7 +37988,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -37348,6 +38067,7 @@
 				    "spelldamagefactor"	"0.0"
 				    "attributefactor"	"0.0"
 				    "includeauto"	"%dmgfromstat"
+				    "outrage"	"1"
 				}
 				"RunScript"
 				{
@@ -37430,6 +38150,7 @@
 					    "spelldamagefactor"	"0.0"
 					    "attributefactor"	"0.0"
 					    "includeauto"	"%dmgfromstat"
+					    "outrage"	"1"
 					}
         		}
         	}
@@ -38563,6 +39284,7 @@
 		{
 			"particle"  "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
 			"particle"  "particles/econ/items/keeper_of_the_light/kotl_weapon_arcane_staff/keeper_base_attack_arcane_staff_explosion_b.vpcf"
+			"particle"  "particles/dazzle_holy_wave_b.vpcf"
 		}
 	}
 
@@ -39414,7 +40136,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -39428,7 +40150,7 @@
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "30 20 20 20"
 	    "AbilityCooldown"         "0.1"
-	    "AbilityCastRange"        "100"
+	    "AbilityCastRange"        "100 100 100 100 600"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0 0.0 0.0 0.0"
 	    //"AoERadius"               "250"
@@ -39464,6 +40186,11 @@
 		            "Target"       "CASTER"
 		            "ModifierName" "modifier_combopoint"
 		        }
+		        "RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "SinisterStrike"
+				}
                 "RunScript"
 				{
 				    "ScriptFile"    "game_mechanics.lua"
@@ -39476,11 +40203,6 @@
 				    "rikicrit"			"1"
 				    "dire1"				"1"
 				    "shadowchance"		"hawk6"
-				}
-		        "RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "SinisterStrike"
 				}
 			    "RunScript"
 				{
@@ -39519,6 +40241,7 @@
         "precache"
 		{
 			"particle"  "particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_blinkstrike_r_stab.vpcf"
+			"particle"  "particles/units/heroes/hero_antimage/antimage_blink_end_b.vpcf"
 		}
 
 		"Modifiers"
@@ -39542,6 +40265,12 @@
 					    "Function"      "RemoveCPEffect"
 					}
 			    }
+			}
+			"modifier_blink_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
 			}
 		}
 		
@@ -40451,7 +41180,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -40516,7 +41245,7 @@
 		    "04"
 		    { 
 		        "var_type"  "FIELD_INTEGER"
-		        "dmgchange" "0 0 0 1"
+		        "dmgchange" "0 0 0 1 2"
 		    }
 	    }
 
@@ -40687,6 +41416,53 @@
 			    	}
 	            }
 	        }
+	        "modifier_meteor_proc_frost"
+	        {	
+	        	"Duration"	"0.3"
+	            "Passive"  "0"
+	            "IsHidden" "1" 
+	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+	            "OnCreated"
+	            {
+	            	"TrackingProjectile"
+					{
+						"Target"           "TARGET"
+					    "EffectName"       "particles/units/heroes/hero_jakiro/jakiro_liquid_ice_projectile_attack.vpcf"
+					    "Dodgeable"        "1"
+					    "ProvidesVision"   "1"
+					    "VisionRadius"     "300"
+					    "MoveSpeed"        "750"
+					    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					}
+
+					"FireSound"
+			    	{
+			    		"EffectName"	"DOTA_Item.Butterfly"
+			    		"Target" 		"CASTER"
+			    	}
+	            }
+	            "ThinkInterval"  "0.25"
+	            "OnIntervalThink"
+	            {
+	            	"TrackingProjectile"
+					{
+						"Target"           "TARGET"
+					    "EffectName"       "particles/units/heroes/hero_jakiro/jakiro_liquid_ice_projectile_attack.vpcf"
+					    "Dodgeable"        "1"
+					    "ProvidesVision"   "1"
+					    "VisionRadius"     "300"
+					    "MoveSpeed"        "750"
+					    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					}
+
+					"FireSound"
+			    	{
+			    		"EffectName"	"DOTA_Item.Butterfly"
+			    		"Target" 		"CASTER"
+			    	}
+	            }
+	        }
 	        "modifier_arcanepower"
 			{
 			    "Duration"         "-1"
@@ -40705,7 +41481,7 @@
 			"particle"  "particles/hw_fx/hw_rosh_fireball.vpcf"
 			"particle"  "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
 			"particle"  "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
-			//"particle"  "particles/fireball_3.vpcf"
+			"particle"  "particles/units/heroes/hero_jakiro/jakiro_liquid_ice_projectile_attack.vpcf"
 			"particle"  "particles/fireball_13_big.vpcf"
 			"particle"  "particles/fireball_13_bigger.vpcf"
 			"particle"  "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"
@@ -42849,7 +43625,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -43235,7 +44011,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -43293,6 +44069,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "reduce" "-45 -45 -90 -90"
+		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "rollingThunder" "0 0 0 0 100"
 		    }
 		}
 
@@ -43353,6 +44134,11 @@
 				    "Function"      "WFTotem"
 				    "charges"		"1"
 				}
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_cotb"
+					"Target" 		"CASTER"
+				}
         }
         
     	"precache"
@@ -43369,7 +44155,7 @@
 		{
 			"modifier_launch_holybolt"
 			{
-			    "Duration"         "0.4"
+			    "Duration"         "0.1"
 			    "Passive"          "0"    
 			    "IsPurgable"		"0"
 			    "IsBuff"			"1"
@@ -43395,6 +44181,22 @@
 			                "TARGET" "attach_hitloc"
 			            }
 				    }
+				    "Random"
+				    {
+				    	"Chance"			"%rollingThunder"
+				    	"OnSuccess"
+				    	{
+				    		"RunScript"
+					    	{
+					    		"ScriptFile"	"game_mechanics.lua"
+					    		"Function"		"ApplyBuffStack"
+					    		"buff"			"modifier_cotb"
+					    		"self"			"1"
+					    		"max"			"100"
+					    		"dur"			"5"
+					    	}
+				    	}
+				    }
 			    	"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
@@ -43407,7 +44209,12 @@
 					    "ComesFromPet"		"1"
 					}
 			    }
-			    
+			}
+			"modifier_cotb"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
 			}
 			"modifier_stormaura1"
 			{
@@ -44709,7 +45516,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -44803,10 +45610,38 @@
 		    "particle"  "particles/units/heroes/hero_legion_commander/legion_commander_duel_body.vpcf"
 		    "particle"  "particles/econ/events/newbloom_2015/nian_aegis_aura.vpcf"
 		    "particle"  "particles/units/heroes/hero_warlock/warlock_shadow_word_buff_core.vpcf"
+		    "particle"  "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
 		}
 
 		"Modifiers"
 		{
+			"modifier_holdtheground"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"TextureName"		"mars_gods_rebuke"
+				"EffectName"		"particles/items2_fx/vindicators_axe_armor.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-75" 
+				}
+			}
+			"modifier_rootedfx"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"EffectName"		"particles/items4_fx/spirit_vessel_damage_ring_detail.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 			"modifier_defstance"
 			{
 				"Duration"	"-1"
@@ -46661,7 +47496,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -46931,7 +47766,7 @@
 		    		"buff"			"modifier_bleedslow"
 		    		"dur"			"%buffduration"
 		    		"notself"		"1"
-		    		"settickrate"	"1"
+		    		"settickrate"	"0.5"
 		    	}
         }
 
@@ -46961,7 +47796,7 @@
 			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%slow"
 			        "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "-0.5"
 			    }
-			    "ThinkInterval"  "1.0"
+			    "ThinkInterval"  "0.5"
 			    "OnIntervalThink"
 			    {
 			    	"RunScript"
@@ -50253,7 +51088,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -50315,6 +51150,11 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "blocks_amount" "4 5 5 5"
 		    }
+		    "08"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "monsoon" "0 0 0 0 5"
+		    }
 	    }
 
 	    "OnSpellStart"
@@ -50324,6 +51164,18 @@
 	        {
 	            "EffectName" "DOTA_Item.Cyclone.Activate"
 	            "Target"     "CASTER"
+	        }
+	        "ApplyModifier"
+	        {
+	        	"ModifierName"	"modifier_monsoon"
+	        	"Target" 		"CASTER"
+	        	"Duration"		"%monsoon"
+	        }
+	        "ApplyModifier"
+	        {
+	        	"ModifierName"	"modifier_monsoon2"
+	        	"Target" 		"CASTER"
+	        	"Duration"		"%monsoon"
 	        }
 	        "ActOnTargets"
 	        {
@@ -50415,6 +51267,84 @@
 
         "Modifiers"
 		{
+			"modifier_monsoon"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"TextureName"		"chen_divine_favor"
+				"EffectName"		"particles/econ/items/razor/razor_arcana/razor_arcana_eye_of_the_storm_rain.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnDestroy"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Radius" 	"900"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+					    	{
+					    		"ScriptFile"	"game_mechanics.lua"
+					    		"Function"		"PurgeUnit"
+					    		"purgefx"	"particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf"
+					    	}
+						}
+					}
+				}
+
+				"Aura"          	"modifier_slow50"
+				"Aura_Radius"   	"900"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_monsoon2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"Aura"          	"modifier_monsoon_heal"
+				"Aura_Radius"   	"900"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+			}
+			"modifier_monsoon_heal"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"TextureName"		"chen_divine_favor"
+			}
+			"modifier_slow50"
+			{
+			    "Passive"          "0"    
+
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "1"
+
+			    "EffectName"       "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+			    "EffectAttachType"  "attach_hitloc"
+
+
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-50"
+			        "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-25"
+			    }
+			}
 			"modifier_druid_evasion_h"
 			{
 				"Passive"			"0"
@@ -50529,6 +51459,8 @@
 		    "model"		"models/heroes/treant_protector/hands.vmdl"
 		    "particle"  "particles/units/heroes/hero_treant/treant_foot_step.vpcf"
 		    "particle"  "particles/units/heroes/hero_treant/treant_foot_step_leaves.vpcf"
+		    "particle"  "particles/econ/items/razor/razor_arcana/razor_arcana_eye_of_the_storm_rain.vpcf"
+		    "particle"  "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf"
 		}
 
     }
@@ -53990,7 +54922,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -54029,12 +54961,17 @@
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffduration" "20"
+		        "buffduration" "20 20 20 20 10"
 		    }
 		    "01"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "critdmg" "1 1 1 1.5"
+		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "creep" "0 0 0 0 100"
 		    }
 		}
 
@@ -54071,6 +55008,13 @@
 
         "Modifiers"
         {
+        	"modifier_creeping_death"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"1"
+        		"TextureName"		"axe_battle_hunger"
+        	}
 	        "modifier_dot1"
 			{
 			    //"Duration"         "5"
@@ -54117,6 +55061,25 @@
 			    "EffectName"       "particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
 			    "EffectAttachType"  "follow_overhead"
 
+			    "OnDestroy"
+			    {
+			    	"Random"
+			    	{
+			    		"Chance"			"%creep"
+			    		"OnSuccess"
+			    		{
+			    			"RunScript"
+					    	{
+					    		"ScriptFile"	"game_mechanics.lua"
+					    		"Function"		"ApplyBuffStack"
+					    		//"max"			"10"
+					    		"addstacks"		"1"
+					    		"buff"			"modifier_creeping_death"
+					    		"dur"	"60"
+					    	}
+			    		}
+			    	}
+			    }
 
 			    //"StatusEffectName"     "particles/status_fx/status_effect_rupture.vpcf"
     			//"StatusEffectPriority" "20"
@@ -61514,6 +62477,11 @@
 				    "firedmg"	"1"
 				    "targeteffect"	"fire"
 				}
+				"RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "LavaBurstCast"
+				}
         		"FireEffect"
 				{
 					"EffectName"        "particles/items_fx/dagon.vpcf"
@@ -61863,7 +62831,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -61928,6 +62896,11 @@
 				    "Function"      "LightningStorm"
 				    "manapercent"	"%mana"
 				    "stun"			"%stun"
+				}
+				"RunScript"
+				{
+				    "ScriptFile"    "game_mechanics.lua"
+				    "Function"      "LightningStormCast"
 				}
 				"ActOnTargets"
 				{
@@ -62052,9 +63025,29 @@
         	"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_castfx_ground2.vpcf"
         	"particle"  "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf"
         	"particle"  "particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf"
+        	"particle"  "particles/units/heroes/hero_ursa/ursa_earthshock_rocks.vpcf"
+        	"particle"  "particles/units/heroes/hero_ursa/ursa_earthshock_dust_center.vpcf"
         }
         "Modifiers"
         {
+        	"modifier_slow50"
+			{
+			    "Passive"          "0"    
+			    "TextureName"      "leshrac_split_earth"
+
+			    "IsDebuff"         "1"
+			    "IsHidden"         "0"
+			    "IsPurgable"       "1"
+
+			    "EffectName"       "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+			    "EffectAttachType"  "attach_hitloc"
+
+
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-50"
+			    }
+			}
         	"modifier_elemental_resist"
         	{
         		"Passive"			"1"
@@ -63041,7 +64034,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -63054,7 +64047,7 @@
 	    //----------------------------------------------------------------------------------------
 	    //"AbilityDamage"           "11 13 15 17"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "120.0"
+	    "AbilityCooldown"         "120 120 120 120 15"
 	    //"AbilityDuration"         "0.0 0.0 0.0 0.0"
 
 	    "AbilitySpecial"
@@ -63062,7 +64055,7 @@
 		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmg" "200 250 250 250"
+		        "dmg" "200 250 250 250 0"
 		    }
 		    "02"
 		    { 
@@ -63084,28 +64077,47 @@
 		        "var_type"  "FIELD_FLOAT"
 		        "deep" "3 3 3 6"
 		    }
+		    "02"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "hailstorm" "0 0 0 0 100"
+		    }
 		}
 
         "OnSpellStart"
         {
-				"RunScript"
-				{
-				    "ScriptFile"    "game_mechanics.lua"
-				    "Function"      "Waterelemental"
-				    "ringoffrost"	"%ring"
-				}
-		        "FireEffect"
-			    {
-			        "EffectName" "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
-			        "EffectAttachType" "attach_hitloc"
-			        "Target" "CASTER"
-			    }
-				"FireSound"
-				{
-					"EffectName"		"crystalmaiden_cm_lasthit_01"
-					"Target"			"CASTER"
-				}
-
+        	"Random"
+        	{
+        		"Chance"			"%hailstorm"
+        		"OnSuccess"
+        		{
+        			"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "HailStorm"
+					}
+        		}
+        		"OnFailure"
+        		{
+        			"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "Waterelemental"
+					    "ringoffrost"	"%ring"
+					}
+			        "FireEffect"
+				    {
+				        "EffectName" "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+				        "EffectAttachType" "attach_hitloc"
+				        "Target" "CASTER"
+				    }
+					"FireSound"
+					{
+						"EffectName"		"crystalmaiden_cm_lasthit_01"
+						"Target"			"CASTER"
+					}
+        		}
+        	}
         }
         
     	"precache"
@@ -63167,6 +64179,7 @@
 					    "ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PetSystem"
 					    "intsp"			"%dmg"
+					    "checkWaterEle"	"1"
 					}
 				}
 				"OnAttackLanded"
@@ -66056,7 +67069,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -66152,6 +67165,7 @@
 			    "t3bonus"	"1"
 			    "cruelabils"	"1"
 			    "pure_damage_chance"	"%pure"
+			    "fatalThrow"	"1"
 			}
 			"FireSound"
 			{
@@ -67630,7 +68644,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -67655,6 +68669,11 @@
 		    { 
 		        "var_type"  "FIELD_FLOAT"
 		        "buffduration" "8 8 8 10"
+		    }
+		    "01"
+		    { 
+		        "var_type"  "FIELD_FLOAT"
+		        "taunt" "0 0 0 0 5"
 		    }
 		    "01"
 		    { 
@@ -67781,12 +68800,26 @@
 		            "ModifierName" "modifier_invul"
 		            "Duration"         "%buffduration"
 		        }
-		        
+		        "ApplyModifier"
+		        {
+		            "Target"       "CASTER"
+		            "ModifierName" "modifier_taunt123"
+		            "Duration"         "%taunt"
+		        }
         }
 
 
         "Modifiers"
         {
+        	"modifier_taunt123"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"TextureName"		"queenofpain_scream_of_pain"
+        		"EffectName"		"particles/items2_fx/urn_of_shadows_damage.vpcf"
+        		"EffectAttachType"	"attach_hitloc"
+        	}
         	"modifier_invul_ally"
 			{
 			    //"Duration"         "5"
@@ -68068,6 +69101,11 @@
 			    		"Function"		"CosmeticEffectsFromItems"
 			    		"arms5"			"1"
 			    	}
+			    	"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "CheckForDoubleSwingProc"
+					}
         		}
         	}
         	"axe_animation"
@@ -68527,7 +69565,7 @@
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 
         "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
@@ -68625,10 +69663,76 @@
 			    "Function"      "EnergyCost"
 			    "cost"		"%AbilityManaCost"
 			}
-				
+			"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "CheckForDoubleSwingProc"
+			}
+			
         }
         "Modifiers"
         {
+        	"modifier_proc_swing"
+        	{
+        		"Duration"			"0.17"
+        		"Passive"			"0"
+        		"IsHidden"			"1"
+        		"IsDebuff"			"0"
+        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+        	
+        		"ThinkInterval"  "0.15"
+        		"OnIntervalThink"
+        		{
+        			"FireSound"
+					{
+						"EffectName"		"Hero_Axe.CounterHelix"
+						"Target"			"CASTER"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"300"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+					    	{
+					    		"ScriptFile"	"game_mechanics.lua"
+					    		"Function"		"ApplyBuffStack"
+					    		"max"			"10"
+					    		"addstacks"		"1"
+					    		"buff"			"modifier_asbonus"
+					    		"self"	"1"
+					    		"dur"	"%asdur"
+					    	}
+						}
+					}
+		    		"FireEffect"
+		            {
+		            	"EffectName"        "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"
+		            	"EffectAttachType"  "attach_hitloc"
+		            	"Target"            "CASTER"
+		            }
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "DamageAOE"
+					    "damage"		"%AbilityDamage"
+					    "attributefactor"	"%dmgfromstat"
+					    "aoe"			"250"
+					    "targeteffect"	"blood"
+					    //"includeauto"	"%dmgfromstat"
+					    "oncritcdreduce3rd"	"%cd"
+					    "oncritcdreduce4th"	"%cd"
+					    "isaoe"			"1"
+					}
+        		}
+        	}
         	"modifier_asbonus"
 			{
 			    "Passive"          "0"    
@@ -70053,6 +71157,11 @@
     			}
     			"OnAttackLanded"
     			{
+    				"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "HoldTheGround"
+					}
     				"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"
