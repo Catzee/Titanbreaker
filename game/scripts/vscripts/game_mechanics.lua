@@ -15123,7 +15123,7 @@ function GetCooldownReductionFactor( caster, ability )
         factor = 0.925
     end
     if caster:HasModifier("modifier_item_allstats2up") then
-        factor = factor * 0.9
+        factor = factor * 0.935
     end
     if HeroHasNeutralItem(caster, "item_neutral_38") then
         factor = factor * 0.9
