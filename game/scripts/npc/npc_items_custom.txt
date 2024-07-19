@@ -21924,6 +21924,9 @@
 	    "AbilityCooldown"				"60"
 	    "AbilityManaCost"				"0"
 	    "AbilityDamage"					"0"
+		
+	    "AbilityCastRange"        "900"
+	    "AbilityCastRangeBuffer"  "250"
 
 	    "SideShop"     "0"
 	    "SecretShop"   "1"
