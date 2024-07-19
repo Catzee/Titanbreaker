@@ -6080,7 +6080,7 @@ function DamageAOESplitHero( event )
         --print("zeus target detected")
     end
 
-    local enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     
     local targets = 0
     local guy
@@ -6110,7 +6110,7 @@ end
 function PathFeastForCrowsAOE( caster )
 	Timers:CreateTimer(0.5,function()
 		EmitSoundOn("DOTA_Item.Mjollnir.Activate", caster)
-	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	    if #enemies > 0 then
 	        for _,enemy in pairs(enemies) do
 	            if enemy and not enemy:IsNull() and (enemy:GetUnitLabel() == "hero" or enemy:GetUnitLabel() == "tower" ) and math.random(1,100) <= 50 then
@@ -6143,7 +6143,7 @@ end
 function AstralShock( caster )
 	Timers:CreateTimer(0.25,function()
 		EmitSoundOn("DOTA_Item.Mjollnir.Activate", caster)
-	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	    if #enemies > 0 then
 	        for _,enemy in pairs(enemies) do
 	            if enemy and not enemy:IsNull() and (enemy:GetUnitLabel() == "hero" or enemy:GetUnitLabel() == "tower" ) then
@@ -6175,7 +6175,7 @@ function AstralShockProc( caster, target )
 end
 
 function CountNearbyEnemies(caster, range)
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local targets_hit = 0
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -6188,7 +6188,7 @@ function CountNearbyEnemies(caster, range)
 end
 
 function CountNearbyMonsters(monster, range)
-    local enemies = FindUnitsInRadius( monster:GetTeamNumber(), monster:GetAbsOrigin(), monster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( monster:GetTeamNumber(), monster:GetAbsOrigin(), monster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local monsters = 0
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -6328,10 +6328,10 @@ function DamageAOE( event )
 	local enemies
 	local pet = "pet"
 	if event.onlyhero then
-		--enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+		--enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 		pet = "hero"
 	end
-	enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	local crusaderheal = 0
     --count targets
@@ -6474,7 +6474,7 @@ function ApplyBuffAOE( event )
 	if event.friend then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -6526,7 +6526,7 @@ function ApplyBuffAOERandom( event )
         excludetarget = target
     end
 
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local result = {}
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -9499,7 +9499,7 @@ function ListContainsString( list, text )
 end
 
 function ChainProjectile( caster, target, ability, count, projectile_fx, targets_hit, sound, delay, jumprange )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local enemies_valid = {}
     if count < 1 then
         return
@@ -9718,7 +9718,7 @@ function ElementalConversion (event)
 	local ability = event.ability
 	local range = event.radius
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9732,7 +9732,7 @@ function ElementalConversion (event)
 		end
 	end
 
-	enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9760,7 +9760,7 @@ function LightningStorm (event)
 	tab.Duration = event.stun
 
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9820,7 +9820,7 @@ function Holybolt(event)
 	tab.Duration = event.dur
 
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		
@@ -12018,7 +12018,7 @@ function ChainLightningOld(event)
 		event.spelldamagefactor = event.spelldamagefactor*event.reduction/100
 	end
 	
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local damagedone = 0
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -12429,7 +12429,7 @@ function SwordSwipe(event)
 
 	local targetamount = 0
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -12471,7 +12471,7 @@ function Crush(event)
 	local pos = event.target_points[1]
 	local range = 250
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -12532,7 +12532,7 @@ function Crush(event)
         end
         for k=1,procs do
             Timers:CreateTimer(0.05+(0.5*(k-1)), function()
-        		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         		if #enemies > 0 then
         			for _,enemy in pairs(enemies) do
         				if enemy ~= nil then
@@ -12581,7 +12581,7 @@ function CloakOfConceal(event)
 		local pos = event.target_points[1]
 		local range = 450
 
-		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 		local tab = {}
 		tab.Duration = 12
@@ -12896,7 +12896,7 @@ function WFTotem(event)
 		if abil then
 			if event.ability:GetLevel() >= 4 then
 				--aoe talent
-				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 				if #enemies > 0 then
 					for _,enemy in pairs(enemies) do
 						if enemy ~= nil then
@@ -13268,7 +13268,7 @@ function Rot(event)
 	local pos = event.target_points[1]
 	local range = 300
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local table = {}
 	table.Duration = event.dur
 
@@ -14074,7 +14074,7 @@ function resto3(event)
 		caster.meditation = 1.0
 	end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -14107,7 +14107,7 @@ function Massdispel(event)
 	local range = 300
 	local targetpos = event.target_points[1]
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -14121,7 +14121,7 @@ function Massdispel(event)
 			end
 		end
 	end
-	enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false )
+	enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			--print(enemy:GetName())
@@ -14159,7 +14159,7 @@ function MostWoundedTarget (event)
         pets = "hero"
     end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local hp = 1.2
 	local friend = nil
 	if #enemies > 0 then
@@ -14199,7 +14199,7 @@ function HealingWaveJump(event, target, from_target, target_list)
     ParticleManager:ReleaseParticleIndex(particle)
     table.insert(target_list, target)
     --find next target
-    local friends = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local friends = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local hp = 1.2
     local friend = nil
     if #friends > 0 then
@@ -14700,7 +14700,7 @@ end
 
 function MultistrikeProc(caster, originalTarget)
     local aoe = 250
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         EmitSoundOn("DOTA_Item.Butterfly", originalTarget)
         for _,enemy in pairs(enemies) do
@@ -15637,7 +15637,7 @@ function PetEnrageItem (event)
 		ParticleManager:SetParticleControl(particle, 2, Vector(1,0,0))
 	end]]--
     local heal = 0
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy:GetPlayerOwnerID() == caster:GetPlayerOwnerID()  then
@@ -15789,7 +15789,7 @@ function FatalPoisonSpread(event)
 
     local highestStack = 0
     local highestStackEnemy = nil
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
             if enemy then
@@ -16890,7 +16890,7 @@ function WarriorGloves( event )
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_activewarriorrage", nil)
 		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_beserkers_call_owner_b.vpcf", PATTACH_POINT_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(particle)
-		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 		if #enemies > 0 then
 			for _,enemy in pairs(enemies) do
 				if enemy ~= nil and (enemy:GetUnitLabel()=="hero") then
@@ -17476,7 +17476,7 @@ function KnockbackAOE(event)
 		return
 	end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -18020,11 +18020,11 @@ function KillDanceProc (event, caster, target, distance, hits, speedFactor)
     end
 	local range = distance
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		--print
 	else
-		enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	end
 	if #enemies > 0 then
 		local unit = enemies[math.random(1,#enemies)]
@@ -18143,7 +18143,7 @@ function VampiricEmbrace(event)
 	local ability = event.ability
 	local range = 900
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -18340,7 +18340,7 @@ end
 function IsEnemyInRangeWithAggro( unit, distance )
     local playerid = unit:GetPlayerOwnerID()
     if unit and not unit:IsNull() then
-        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
                 if enemy.aggrolist and enemy.aggrolist[playerid] and enemy.aggrolist[playerid] > 0 then
@@ -18720,7 +18720,7 @@ function ChainLightningProc(event)
     if event.total_targets >= 1 then
         local valid_targets = {}
         local index = 1
-        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, event.jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, event.jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         for _,enemy in pairs(enemies) do
             if enemy ~= nil and (not enemy:IsNull()) and enemy:IsAlive() and ((enemy:GetUnitLabel()=="hero") or (enemy:GetUnitLabel()=="pet") or (enemy:GetUnitLabel()=="tower")) and not CheckForBreakableCC(target) and ((not event.chainlight_only_hero) or (event.chainlight_only_hero and enemy:IsRealHero())) then 
                 local valid = true
@@ -23158,7 +23158,7 @@ end
 
 function IsEnemyInRange( unit, distance )
     if unit and not unit:IsNull() then
-        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
                 --print((unit:GetAbsOrigin()-enemy:GetAbsOrigin()):Length())
@@ -27062,7 +27062,7 @@ function CastGeneratedSpell( event )
                     --find targets
                     local targets = {}
                     if event.allenemies or event.allenemiesclose or event.allenemiesfar then
-                        targets = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 2500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+                        targets = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 2500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
                         if event.allenemiesclose then
                             local newTargets = {}
                             for j=1, #targets do
@@ -27102,7 +27102,7 @@ function CastGeneratedSpell( event )
                         table.insert(targets, caster)
                     end
                     if event.allallies then
-                        local allies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+                        local allies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
                         if #allies > 0 then
                             for _,ally in pairs(allies) do
                                 if ally ~= nil then
@@ -28487,7 +28487,7 @@ function SpellCleaveProc( damageTable )
     local caster = damageTable.attacker
     local originalTarget = damageTable.victim
     local aoe = 250
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         EmitSoundOn("Hero_LegionCommander.Overwhelming.Hero", originalTarget)
         for _,enemy in pairs(enemies) do
@@ -29971,7 +29971,7 @@ function CorruptedCoilProc(event)
     local ability = event.ability
     if caster:HasModifier("modifier_class_skele2") then
         ApplyBuff({caster = caster, target = target, ability = ability, dur = 0.1, max = 20, buff = "modifier_proc_coil"})
-        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         local count = 0
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
@@ -31160,7 +31160,7 @@ function PullAllTargetsIn(event)
     local caster = event.caster
     local range = event.range
     local pos = caster:GetAbsOrigin()
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do

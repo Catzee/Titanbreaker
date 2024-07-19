@@ -5503,7 +5503,7 @@ function WaterfallImpact(pos)
 	local particle = ParticleManager:CreateParticle("particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf", PATTACH_POINT_FOLLOW, caster)
 	local ability = caster:GetAbilityByIndex(0)
 	EmitSoundOn("DOTA_Item.ForceStaff.Activate", caster)
-	local enemies = FindUnitsInRadius( 1, pos, caster, 325, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( 1, pos, caster, 325, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -7528,7 +7528,7 @@ end
 end
 
 function COverthrowGameMode:RemovePetsAfterBattle(caster)
-  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   if #enemies > 0 then
     for _,enemy in pairs(enemies) do
       if enemy ~= nil and (enemy:GetPlayerOwnerID() == caster:GetPlayerOwnerID() or enemy == caster.Pet or enemy == caster.Pet1 or enemy == caster.Pet2) and (enemy:GetUnitLabel() == "pet" or enemy:GetUnitLabel() == "ward") and not enemy:IsNull() then
@@ -8277,7 +8277,7 @@ end
 
 function COverthrowGameMode:PVEClearMobs()
 	local all = HeroList:GetAllHeroes()
-	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector(0,0,0), all[1], 500000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector(0,0,0), all[1], FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9355,7 +9355,7 @@ end
 function FindLinkedAggro(event)
 	--print("find linked call")
 	local caster = event.caster
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -9375,7 +9375,7 @@ end
 
 function IsHeroNear( caster, range )
   local near = false
-  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   if #enemies > 0 then
     for _,enemy in pairs(enemies) do
       if enemy ~= nil then
@@ -9427,7 +9427,7 @@ function COverthrowGameMode:PVEAggroAddAOE(source, target, aggro, area)
     return
   end
   local pos = target:GetAbsOrigin()
-  local enemies = FindUnitsInRadius( source:GetTeamNumber(), pos, source, area, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+  local enemies = FindUnitsInRadius( source:GetTeamNumber(), pos, source, area, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   for _,enemy in pairs(enemies) do
     local event = {attacker = source, unit = enemy, damagetaken = aggro}
     PVEAggroAdd(event)
