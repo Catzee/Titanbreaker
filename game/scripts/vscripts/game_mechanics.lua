@@ -27779,7 +27779,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         healing_bonus = healing_bonus + 0.01 * GetNetherfusionStat(caster)
     end
     if GetSwiftMendingStat(caster) >= 1 then
-        local bonusAS = caster:GetIncreasedAttackSpeed(false) - 1
+        local bonusAS = GetAttackSpeedCustom(caster)
         if bonusAS > 0 then
             healing_bonus = healing_bonus + 0.01 * GetSwiftMendingStat(caster) * bonusAS
         end
