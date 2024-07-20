@@ -8194,7 +8194,7 @@ function GetSpellhaste( caster, event )
                 factor = factor * 2
             end
 
-            local bonus = GetAttackSpeedCustom(caster) * factor
+            local bonus = math.max(0, GetAttackSpeedCustom(caster)) * factor
             if bonus > 0 then
                 speedbonus = speedbonus + bonus
             end
@@ -20179,7 +20179,7 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
         static_bonus = static_bonus + hero:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil)
     end
 
-    if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance then
+    if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance and hero.magicalResistance > 0 then
         local factor = 100
         if hero:HasModifier("modifier_stormgiant") then
             factor = factor * 2
