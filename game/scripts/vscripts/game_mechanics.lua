@@ -4763,7 +4763,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[122])
     end
     if caster:HasModifier("modifier_savagery") then
-        local bonus = 0.3 * caster.talents[131]
+        local bonus = 0.05 + (caster.talents[131] * 0.15)
         if is_pet_dmg then
             bonus = bonus * 2
         end
