@@ -5823,7 +5823,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 1.5 * caster:Script_GetMagicalArmorValue(false, nil))
+        multiplicative_bonus = multiplicative_bonus * (1 + caster:Script_GetMagicalArmorValue(false, nil))
     end
     if caster:HasModifier("item_mother_of_dragons") then
         multiplicative_bonus = multiplicative_bonus * 1.15
@@ -26067,7 +26067,7 @@ function HealProcs(caster, target, ability, healingAmount, isdot)
         AddEnergy(myevent)
     end
     if caster == target and GetLevelOfAbility(caster, "Infested_Wound") >= 4 then
-        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 3})
+        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2})
     end
     if (not isdot) and target and target.talents then
         if target:HasModifier("modifier_rotting") then
