@@ -3598,7 +3598,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         end
         local overheat = GetOverheatStat(caster)
         if wascrit and overheat > 0 then
-            value = value + overheat * 0.01 * GetAttackSpeedCustom(caster)
+            value = value + overheat * 0.01 * math.max(0, GetAttackSpeedCustom(caster))
         end
         if caster:HasModifier("modifier_pathbuff_057") then
             value = value + 0.25
