@@ -4577,7 +4577,11 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         hp_percent = target:GetHealth() / target:GetMaxHealth()
     end
     if caster.talents and caster.talents[172] > 0 then
-        multiplicative_bonus = multiplicative_bonus * (1 + caster:GetHealthRegen() * 0.0003 * caster.talents[172])
+        local bonus = caster:GetHealthRegen() * 0.0003 * caster.talents[172]
+        if bonus > 1.5 then
+            bonus = 1.5
+        end
+        multiplicative_bonus = multiplicative_bonus * (1 + bonus)
     end
     if process_procs and caster.talents and ability then
         if event.bloodwolf then
@@ -20316,7 +20320,7 @@ function GetHealthRegeneration(hero, strength, agility)
         value = value + maxHealth * 0.01
     end
     if hero:HasModifier("modifier_ox_aura_hp") and hero:FindAbilityByName("brew6") then
-        value = value + maxHealth * 0.05
+        value = value + maxHealth * 0.1
     end
     if hero:HasModifier("modifier_item_hpreg1") then
         value = value + 3

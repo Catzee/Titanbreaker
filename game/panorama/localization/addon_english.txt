@@ -309,7 +309,7 @@
 		"talent169"								"Troll Regeneration: Gain Health Regeneration equal to 1% / 1.5% / 2% of max Health and Mana Regeneration equal to 0.5% / 0.75% / 1% of max Resource."
 		"talent170"								"Poison Darts: When you target an enemy with an Ability, gain a 5% / 10% / 15% chance to apply a DoT for 5 secs, dealing 100% / 200% / 300% of Attack Damage and Spellpower as Nature Damage. Multiple instances of this debuff can be active."
 		"talent171"								"Voodoo Magic: Gain Spellpower equal to 10% / 20% / 30% of missing Mana."
-		"talent172"								"Fresh Blood: Gain % Damage equal to 3% / 6% / 9% of your Health Regeneration."
+		"talent172"								"Fresh Blood: Gain % Damage equal to 3% / 6% / 9% of your Health Regeneration. Capped at 150% Bonus Damage."
 		"talent173"								"Bloodthirst: Enemies dying nearby grant 5% / 10% / 15% increased Damage and Health Regeneration for 10 secs, stacking 5 times."
 		"talent174"								"Gargantuan: Increase the Damage of your 5th and 6th Ability by 30% / 60% / 90%."
 		"talent175"								"Tribal Power: Gain an Aura increasing all Attributes by 10 / 20 / 30. Stacks with other Heroes."
