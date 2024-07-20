@@ -21653,7 +21653,7 @@ function PassiveStatCalculation(event)
             end
         end
 
-        if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147) then
+        if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147 or i == 163 or i == 164 or i == 165) then
             new_talent_value = new_talent_value + hero.talents[132]
             primalPowerBonusCount = primalPowerBonusCount + 1
         end
