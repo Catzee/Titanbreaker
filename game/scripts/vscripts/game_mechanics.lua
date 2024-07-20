@@ -31371,3 +31371,18 @@ function PestCheck(event)
         end
     end
 end
+
+function InfestedWoundDamageReduction(event)
+    if(event.caster:HasModifier("modifier_infested_wound_reduction_inner_cd")) then
+        return
+    end
+
+    if(event.ability:IsAltCasted() == false) then
+        return
+    end
+
+    local innerCd = GetInnerCooldownFactor(event.caster) * event.innercd
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_infested_wound_reduction_inner_cd", { duration = innerCd })
+
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_dk_tank_def", { duration = event.buffduration })
+end

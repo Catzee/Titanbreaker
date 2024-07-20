@@ -56295,7 +56295,7 @@
         "BaseClass"             "ability_datadriven"
         "AbilityTextureName"    "fix/blood_crit"
 
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
         "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
@@ -56372,12 +56372,13 @@
 
         "OnSpellStart"
         {	
-        	"ApplyModifier"
-        	{
-        		"ModifierName"	"modifier_dk_tank_def"
-        		"Target" 		"CASTER"
-        		"Duration"		"%buffduration"
-        	}
+        	"RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "InfestedWoundDamageReduction"
+				"buffduration"	"%buffduration"
+				"innercd"		"9"
+			}
         	"RunScript"
 			{
 			    "ScriptFile"    "game_mechanics.lua"
@@ -56648,6 +56649,13 @@
 					}
 				}
 			}
+        	"modifier_infested_wound_reduction_inner_cd"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+			    "IsPurgable"       "0"
+			    "IsDebuff"			"1"
+        	}
 		}
 	}
 
