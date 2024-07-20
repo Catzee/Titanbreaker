@@ -7625,7 +7625,7 @@ function COverthrowGameMode:SaveCharSendToServer(data, hero, steamid)
   --print(" try send")
   if IsServer() then
     --print(" try send 2")
-    local request = CreateHTTPRequestScriptVM( "POST", "http://catze.eu/savechar_v21_season_11.php" ) -- just change the save file name here for a new season. internally the same db will be reused every time
+    local request = CreateHTTPRequestScriptVM( "POST", "http://catze.eu/savechar_v22_season_11.php" ) -- just change the save file name here for a new season. internally the same db will be reused every time
     for k,v in pairs(data) do
       request:SetHTTPRequestGetOrPostParameter(k, tostring(v))
     end
