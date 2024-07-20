@@ -3376,7 +3376,7 @@ function GetSummonBonusDamage( event, caster, empower_stacks )
         return value
     end
 
-    if(caster.resourcesystem == nil or caster.resourcesystem == 0) then
+    if(caster.resourcesystem == nil or caster.resourcesystem == 0) and math.random(1,100) <= 25 then
         value = value + caster:GetMana() * GetConjurerStat(caster) / 10000
     end
     

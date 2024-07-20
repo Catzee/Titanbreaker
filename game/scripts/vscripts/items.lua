@@ -708,7 +708,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 0.2
 	end
 	if attribute == " % Conjurer" then
-		return 0.02
+		return 0.1
 	end
 	if attribute == " % Hunter" then
 		return 1
