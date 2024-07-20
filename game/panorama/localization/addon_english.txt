@@ -316,7 +316,7 @@
 		"talent176"								"Slash and Burn: When you deal Physical Ability Damage with no other Elemental Type involved, there is a 33% / 66% / 100% chance for the Damage being increased by 25% and being also of type Fire.\nThis applies before other Elemental Damage altering effects."
 		"talent177"								"Stampede: Summon 3 Jungle Beasts for 10 secs when casting an Ability with a base cooldown of 20 secs or higher, dealing 100% / 200% / 300% of Attack Damage and Spellpower as Nature Damage.\nFor every Jungle Beast active, gain 5% / 10% / 15% increased Summon Damage. Max 9 Jungle Beasts."
 		"talent178"								"Aspect of the Jungle: + 50 / 100 / 150 Agility, + 50 / 100 / 150 Attack Speed and + 5% / 10% / 15% Movement Speed."
-		"talent179"								"Duelist: Dealing Damage to a Boss increases your Damage by 1% / 1.5% / 2% for 10 secs, stacking."
+		"talent179"								"Duelist: Dealing Damage to a Boss increases your Damage by 1% / 1.5% / 2% for 10 secs, stacking up to 25% / 50% / 75%."
 		"talent180"								"Aspect of the Snake: + 50 / 100 / 150 Intellect, + 50 / 100 / 150 Mana and + 5% / 10% / 15% Spell Resistance."
 		//"talent180"								"!Lord of Snakes: Applying a debuff has a 5% chance to summon a Jungle Snake, dealing Nature Damage equal to 100% / 200% / 300% of your Attack Damage and Spellpower for 10 secs (max 10 Snakes)."
 

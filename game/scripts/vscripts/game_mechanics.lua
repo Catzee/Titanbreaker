@@ -2993,7 +2993,7 @@ function DamageUnit( event )
             if target and target.isboss and caster.talents[179] and caster.talents[179] > 0 then
                 local buff = "modifier_talent_duelist"
                 local dot_dur = 10
-                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1}
+                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1, max = caster.talents[179] * 25}
                 ApplyBuffStack(myevent)
             end
         end
