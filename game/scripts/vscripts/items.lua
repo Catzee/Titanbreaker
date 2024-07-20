@@ -735,7 +735,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 0.15
 	end
 	if attribute == " % Beast Within" then
-		return 0.5
+		return 0.1
 	end
 	if attribute == " % Shivering Cold" then
 		return 0.5
