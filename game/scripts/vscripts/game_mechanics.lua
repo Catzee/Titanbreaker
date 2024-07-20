@@ -22137,6 +22137,10 @@ function GetAbsorbtionFactor( hero )
     return factor
 end
 
+function GetAttackSpeedCustom(hero)
+    return hero:GetIncreasedAttackSpeed(false)
+end
+
 function BloodwolfBuff(event)
     --local caster = event.caster
     --local ability = event.ability
