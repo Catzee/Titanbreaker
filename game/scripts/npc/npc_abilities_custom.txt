@@ -35422,7 +35422,7 @@
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "tentacle_intsp" "200"
+		        "tentacle_intsp" "100"
 		    }
 		    "19"
 		    { 
