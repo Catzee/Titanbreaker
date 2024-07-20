@@ -21392,7 +21392,7 @@ function PassiveStatCalculation(event)
     end
     --agi
     local agiStat = hero:GetAgility()
-    if agiStat < 1 then
+    if agiStat < 1 and realBaseStats[AGI] < 1 then
         agiStat = 0
         hero:RemoveModifierByName("modifier_agi_custom")
         hero:RemoveModifierByName("modifier_agi_custom_penalty")
@@ -21406,7 +21406,7 @@ function PassiveStatCalculation(event)
     end
     --int
     local intStat = hero:GetIntellect(false)
-    if intStat < 1 then
+    if intStat < 1 and realBaseStats[INT] < 1 then
         intStat = 0
         hero:RemoveModifierByName("modifier_int_custom")
         hero:RemoveModifierByName("modifier_int_custom_penalty")

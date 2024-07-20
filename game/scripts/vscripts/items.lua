@@ -5921,6 +5921,9 @@ function UnitDropsSoul( unit, soul )
 		if act == 4 and soul >= 61 and soul <= 69 then -- demon tier 1
 			return true
 		end
+		if act == 4 and soul >= 145 and soul <= 156 then -- sinister assasin tier 1
+			return true
+		end
 		if act == 5 and soul >= 25 and soul <= 33 then --dragon tier 1
 			return true
 		end
@@ -5943,6 +5946,9 @@ function UnitDropsSoul( unit, soul )
 			return true
 		end
 		if (act == 13) and (soul >= 85 and soul <= 90) then -- crow tier 2
+			return true
+		end
+		if (act == 12) and (soul >= 163 and soul <= 174) then -- troll t1
 			return true
 		end
 		if (act == 7) and (soul >= 91 and soul <= 99) then -- dk tier 1
@@ -6625,6 +6631,43 @@ function GetAllItems(unit, always_show_boss_specific_drops, return_drop_quantity
 			table.insert(items[11], item_name)
 		end
 	end
+	for j=145, 156 do
+		-- sinister assassin t1
+		if j == 148 or j == 152 or j == 156 then
+			local item_name = "item_mastery_"..tostring(j).."_002"
+			if UnitDropsSoul(unit, j) or always_show_boss_specific_drops then
+				table.insert(items[10], item_name)
+			end
+		end
+	end
+	for j=157, 162 do
+		-- sinister assassin t2
+		if j == 161 or j == 162 then
+			local item_name = "item_mastery_"..tostring(j).."_002"
+			if UnitDropsSoul(unit, j) or always_show_boss_specific_drops then
+				table.insert(items[10], item_name)
+			end
+		end
+	end
+	for j=163, 174 do
+		-- jungle troll t1
+		if j ~= 166 and j ~= 172 then
+			local item_name = "item_mastery_"..tostring(j).."_002"
+			if UnitDropsSoul(unit, j) or always_show_boss_specific_drops then
+				table.insert(items[10], item_name)
+			end
+		end
+	end
+	for j=175, 180 do
+		-- jungle troll t2
+		if j ~= 176 and j ~= 179 then
+			local item_name = "item_mastery_"..tostring(j).."_002"
+			if UnitDropsSoul(unit, j) or always_show_boss_specific_drops then
+				table.insert(items[11], item_name)
+			end
+		end
+	end
+
 	items[12] = COverthrowGameMode:GetAllDivineItems()
 	--act and boss specific drops
 	for k=1, act_11_drop_factor do
