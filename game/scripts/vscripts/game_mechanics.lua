@@ -19968,7 +19968,7 @@ function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHea
         static_bonus = static_bonus + unholyFrenzy * 5 * hero.talents[98]
     end
     if hero.talents[80] and hero.talents[80] > 0 then
-        local bonusfromas = math.max(0, GetAttackSpeedCustom(hero) - 5) * hero.talents[80] --50 * (hero:GetIncreasedAttackSpeed() - 5) * hero.talents[80]
+        local bonusfromas = math.max(0, (GetAttackSpeedCustom(hero) - 5) * 100) * hero.talents[80] --50 * (hero:GetIncreasedAttackSpeed() - 5) * hero.talents[80]
         --print(realAttackSpeed)
         --print(bonusfromas)
         if bonusfromas > 0 then
