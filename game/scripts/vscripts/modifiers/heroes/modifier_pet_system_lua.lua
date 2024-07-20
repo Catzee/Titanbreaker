@@ -77,7 +77,8 @@ function modifier_pet_system_lua:OnAttackLanded(kv)
         damage = self.parent:GetAttackDamage(),
         spelldamagefactor = 0.0,
         attributefactor = 0.0,
-        fromsummon = 1
+        fromsummon = 1,
+        shadowdmg = self.kv.shadowdmg
     })
 end
 

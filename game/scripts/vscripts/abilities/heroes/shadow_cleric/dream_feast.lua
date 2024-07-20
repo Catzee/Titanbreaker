@@ -66,7 +66,7 @@ function shadow3:OnProjectileHit(target, location)
         tentacle:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
         tentacle:AddNewModifier(caster, self, "modifier_phased", {duration = tentacleDuration})
         tentacle:AddNewModifier(caster, self, "modifier_shadow_cleric_dream_feast_tentacle", {duration = tentacleDuration})
-        tentacle:AddNewModifier(caster, self, "modifier_pet_system_lua", {duration = tentacleDuration, intsp = self:GetSpecialValueFor("tentacle_intsp")})
+        tentacle:AddNewModifier(caster, self, "modifier_pet_system_lua", {duration = tentacleDuration, intsp = self:GetSpecialValueFor("tentacle_intsp"), shadowdmg = 1})
     end
     return true
 end

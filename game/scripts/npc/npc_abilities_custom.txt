@@ -35367,12 +35367,12 @@
 		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max" "2"
+		        "frenzy_max" "1"
 		    }
 		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max_tooltip" "200"
+		        "frenzy_max_tooltip" "100"
 		    }
 		    "09"
 		    { 
@@ -35422,7 +35422,7 @@
 		    "18"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "tentacle_intsp" "200"
+		        "tentacle_intsp" "100"
 		    }
 		    "19"
 		    { 
