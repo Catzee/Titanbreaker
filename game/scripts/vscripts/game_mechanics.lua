@@ -3655,7 +3655,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
     end
     if event.naturedmg and caster.woz and caster.woz > 0 then
-        value = value + 0.01 * caster:GetIncreasedAttackSpeed(false) * caster.woz
+        value = value + 0.01 * GetAttackSpeedCustom(caster) * caster.woz
     end
     if event.chaosdmg and caster.und and caster.und > 0 then
         value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
