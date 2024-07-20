@@ -227,7 +227,7 @@
 
 
 		"talent121"								"Giant Growth: Whenever a Boss is killed, your Primary Attribute is increased by 0.5% / 0.75% / 1% for the rest of the game, stacking multiple times."
-		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 50% / 100% / 150% for 5 secs. Can not proc while active."
+		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 25% / 50% / 75% for 5 secs. Can not proc while active."
 		"talent123"								"Growing Pains: Whenever you land an Auto Attack Critical Strike, gain 50 / 100 / 150 Auto Attack Damage for 5 secs, stacking 100 times and whenever you die, gain 3% / 5% / 7% Spell Resistance and 3% / 5% / 7% max Health, capped at 60%."
 
 		"talent124"								"Lunar Eclipse: Gain 3 Lunar Eclipse stacks every 5 secs that get consumed when dealing Damage / Healing with an Ability, stacking up to 15 times. While you have Lunar Eclipse stacks, Ability Critical Strike Damage and Critical Healing is increased by 35% / 70% / 105%."

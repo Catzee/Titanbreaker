@@ -4760,7 +4760,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_critmass") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.5 * caster.talents[122])
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[122])
     end
     if caster:HasModifier("modifier_savagery") then
         local bonus = 0.3 * caster.talents[131]
