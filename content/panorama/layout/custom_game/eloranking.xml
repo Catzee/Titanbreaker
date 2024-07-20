@@ -1265,7 +1265,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/centaur_return.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Fortress of Destruction" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Effects that reduce your total Damage taken by a percentage, now grant a portion of that as % Damage Bonus. Armor and Spell Resistance do not count as total Damage reduction effects." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Effects that reduce your total Damage taken by a percentage, now grant a portion of that as % Damage Bonus. Only Damage Reduction effects counts (Armor, Spell Resistance, Mana Shield, etc do not count)." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
@@ -1367,7 +1367,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/98f.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Metamorphosis" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="While you have taken on a different Form, gain a % Elemental Damage Bonus for all Elements, including Physical. This includes Shadow Form, Aspect of the Crow, Storm Crow, Feralform, Demon Crash, Shape of Terror and Doomonology." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="While you have taken on a different Form, gain a % Elemental Damage Bonus for all Elements, including Physical. This includes Shadow Form, Aspect of the Crow, Storm Crow, Feralform, Demon Crash, Shape of Terror, Shape of Vengeance and Doomonology." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
@@ -1399,7 +1399,7 @@
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow" >
-						<Image class="RunewordImage" src="file://{images}/spellicons/180.png"  style="border-radius: 20px;"/>
+						<Image class="RunewordImage" src="file://{images}/spellicons/sonic_wall_trait.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Sonic Wall" style="font-size: 18px; color:gold; horizontal-align: left;" />
 							<Label class="WeaponStats" text="Improves the cap at which Spellhaste affects the tick rate of Channeled Abilities by a percentage." style="font-size: 16px; color:white; height: 40px;" />
@@ -1467,7 +1467,7 @@
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
-						<Image class="RunewordImage" src="file://{images}/spellicons/dark_seer_wall_of_replica.png"  style="border-radius: 20px;"/>
+						<Image class="RunewordImage" src="file://{images}/spellicons/shadow_warrior_trait.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Shadow Warrior" style="font-size: 18px; color:gold; horizontal-align: left;" />
 							<Label class="WeaponStats" text="Gain % Shadow and % Physical Damage equal to a percentage of your Spell Resistance." style="font-size: 16px; color:white; height: 40px;" />
@@ -1522,7 +1522,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/conjurer.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Conjurer" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Gain % Summon Damage equal to a percentage of current Mana." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Gain % Summon Damage equal to a percentage of current Mana (does not work for Energy based Heroes)." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">

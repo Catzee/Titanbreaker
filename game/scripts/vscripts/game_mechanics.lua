@@ -477,6 +477,10 @@ function DamageUnit( event )
             event.firedmg = nil
             event.arcanedmg = 1
             EmitSoundOn("Hero_Invoker.EMP.Cast", target)
+        elseif event.changefiredmgtoarcane == 2 then
+            event.firedmg = nil
+            event.frostdmg = 1
+            EmitSoundOn("hero_Crystal.projectileImpact", target)
         else
             EmitSoundOn("Hero_Invoker.ChaosMeteor.Impact", target)
         end
@@ -1156,6 +1160,9 @@ function DamageUnit( event )
         if caster.talents[128] > 0 and event.isaoe then
             finaldamage = finaldamage + (GetAllStatsCustom(caster) + GetSpellpower(event)) * caster.talents[128]
         end
+        if event.isdot and GetLevelOfAbility(caster, "Feral3") >= 5 then
+            finaldamage = finaldamage + 2.5 * GetStrengthCustom(caster)
+        end
         --if caster.talents[148] > 0 then
         --    finaldamage = finaldamage + (GetStrengthCustom(caster) + GetAgilityCustom(caster)) * 0.25 * caster.talents[148]
         --end
@@ -1648,6 +1655,14 @@ function DamageUnit( event )
             critpossible = false
         end
     end
+    if critpossible and caster:HasModifier("modifier_hook_crit") then
+        critchance = 25 * critchancefactor + flatCritChance
+        if math.random(1,100) <= critchance then
+            finaldamage = finaldamage*5*critdmgbonusfactor
+            critpossible = false
+        end
+    end
+    
     if critpossible == true and is_very_big_hit and caster.talents and caster.talents[22] and caster.talents[22] > 0 and caster.moonlightcrits and caster.moonlightcrits > 0 and not event.dragondmg then
         finaldamage = finaldamage * critdmgbonusfactor * (1.5 + 0.5 * caster.talents[22])
         critpossible = false
@@ -3356,10 +3371,15 @@ function GetDragonBonusDamage( event, caster )
 end
 
 function GetSummonBonusDamage( event, caster, empower_stacks )
-    local value = 1 + caster:GetMana() * GetConjurerStat(caster) / 10000
+    local value = 1
     if not event.fromsummon and not event.ComesFromPet then
         return value
     end
+
+    if(caster.resourcesystem == nil or caster.resourcesystem == 0) then
+        value = value + caster:GetMana() * GetConjurerStat(caster) / 10000
+    end
+    
     local demonbolt = caster:FindAbilityByName("demo2")
     if demonbolt and demonbolt:GetLevel() >= 4 then
         value = value * (1 + 0.2 * GetDemonCount(caster))
@@ -3460,7 +3480,7 @@ function GetLowestMainAttribute( hero )
 end
 
 function HasMutationEffect(caster)
-    return caster.inMonkeyKingForm or caster:HasModifier("modifier_shadow_form_ds") or caster:HasModifier("modifier_demon_form") or caster:HasModifier("modifier_path_shadowform") or caster:HasModifier("modifier_crowfall") or caster:HasModifier("modifier_catform") or caster:HasModifier("modifier_metamorph_terror") or caster:HasModifier("modifier_metamorph_dh") or caster:HasModifier("modifier_stormcrow") or caster:HasModifier("modifier_plague_form") or (caster:HasModifier("modifier_bear_roar_armor") and caster:HasModifier("modifier_class_ursa2"))
+    return caster.inMonkeyKingForm or caster:HasModifier("modifier_shadow_form_ds") or caster:HasModifier("modifier_demon_form") or caster:HasModifier("modifier_path_shadowform") or caster:HasModifier("modifier_crowfall") or caster:HasModifier("modifier_catform") or caster:HasModifier("modifier_metamorph_terror") or caster:HasModifier("modifier_metamorph_dh") or caster:HasModifier("modifier_stormcrow") or caster:HasModifier("modifier_plague_form") or caster:HasModifier("modifier_metamorph_terror2") or (caster:HasModifier("modifier_bear_roar_armor") and caster:HasModifier("modifier_class_ursa2"))
 end
 
 function GetElementalDamageModifierAdditive( event, caster, real_caster, target, ability, behindtarget, process_procs, dmgtype, wascrit )
@@ -3519,6 +3539,10 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         end
         if caster:HasModifier("modifier_brew_shadow") then
             value = value + 1
+        end
+        local gloom = target:GetModifierStackCount("modifier_gloom", nil)
+        if gloom > 0 and GetLevelOfAbility(caster, "demo2") >= 5 then
+            value = value + 0.1 * gloom
         end
     end
     if event.frostdmg then
@@ -4574,6 +4598,12 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.endBossUsed and not endBossItem then
             multiplicative_bonus = multiplicative_bonus * 0.25
         end
+        if event.fatalThrow and GetLevelOfAbility(caster, "Fatal_Throw") >= 5 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.001 * GetAgilityCustom(caster))
+        end
+        if event.resolute and GetLevelOfAbility(caster, "deadly3") >= 5 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.0015 * GetStrengthCustom(caster))
+        end
         if target and not target.real_boss and caster.talents[167] then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[167])
         end
@@ -4582,7 +4612,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         local overpower = GetOverpowerStat(caster)
         if overpower > 0 and wascrit then
-            multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(ability:GetLevel()) * overpower / 10000)
+            multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(-1) * overpower / 10000)
         end
         if caster.songIceFire1Cast and caster.talents and caster:GetAbilityByIndex(1) == ability and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
@@ -4610,6 +4640,19 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
 
         if isaoe and caster:HasModifier("modifier_blizzard2") and GetLevelOfAbility(caster, "frostdk5") >= 3 then
             multiplicative_bonus = multiplicative_bonus * 2
+        end
+
+        if event.isdot then
+            local creepingDeath = target:GetModifierStackCount("modifier_creeping_death", nil)
+            if creepingDeath > 0 then
+                if GetLevelOfAbility(caster, "Agony") >= 5 then
+                    multiplicative_bonus = multiplicative_bonus * math.pow(2, creepingDeath)
+                end
+            end
+            local pest = target:GetModifierStackCount("modifier_pest", nil)
+            if pest > 0 and GetLevelOfAbility(caster, "unholy_1") >= 5 then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * pest)
+            end
         end
 
         if event.frostdmg then
@@ -4670,7 +4713,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if GetCrusaderStat(caster) >= 1 then
         multiplicative_bonus = multiplicative_bonus * (1 + (GetHealingMultiplier(event, caster, ability, target, false, false, false) - 1) * 0.01 * GetCrusaderStat(caster))
     end
-    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 30 then
+    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(-1) >= 30 then
         multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * GetNetherfusionStat(caster))
     end
     if pure_dmg and wascrit and event.arcanedmg and GetStarCollapseStat(caster) >= 1 then
@@ -4729,6 +4772,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_3") >= 1 then
         multiplicative_bonus = multiplicative_bonus * 1.05
     end
+    if event.outrage and GetLevelOfAbility(caster, "fury1") >= 5 then
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * caster:GetMana())
+    end
     if caster:HasModifier("modifier_mop2") then
         multiplicative_bonus = multiplicative_bonus * 1.05
     end
@@ -4736,10 +4782,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
     if ability and caster:HasModifier("modifier_new8") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * ability:GetManaCost(ability:GetLevel()))
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * ability:GetManaCost(-1))
     end
     if ability and caster:HasModifier("modifier_new82") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * ability:GetManaCost(ability:GetLevel()))
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * ability:GetManaCost(-1))
     end
     if caster:HasModifier("modifier_windfury_path") then
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * caster.talents[53])
@@ -5035,28 +5081,12 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.temple_class then
             multiplicative_bonus = multiplicative_bonus * 0.5
         end
-        --if not caster.temple_class then
-        --    multiplicative_bonus = multiplicative_bonus * (1 + 0.006 * caster:GetLevel())
-        --else
-        --    multiplicative_bonus = multiplicative_bonus * (1 + 0.005 * caster:GetLevel())
-        --end
     end
     if (event.netherchaos or event.netherchaos_low) and caster:HasModifier("modifier_item_netherchaos") then
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if is_very_big_hit and (caster:HasModifier("modifier_item_bighit") or caster:HasModifier("modifier_item_bighit_2")) then
         multiplicative_bonus = multiplicative_bonus * 1.5
-        --[[if process_procs then
-            if not caster.very_big_hit_cd then
-                local particle = ParticleManager:CreateParticle("particles/necro_ti7_immortal_scythe_start_only_ghost.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-                ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
-                ParticleManager:ReleaseParticleIndex(particle)
-                caster.very_big_hit_cd = true
-                Timers:CreateTimer(2.0, function()
-                    caster.very_big_hit_cd = nil
-                end)
-            end
-        end]]
     end
     if caster:HasModifier("modifier_pathbuff_032") and ability == caster:GetAbilityByIndex(0) then
         multiplicative_bonus = multiplicative_bonus * 1.15
@@ -5206,11 +5236,25 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if buffstacks > 0 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * buffstacks)
         end
+        buffstacks = caster:GetModifierStackCount("modifier_cotb", nil)
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks)
         if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
         end
+        if caster:HasModifier("modifier_invisible") and GetLevelOfAbility(caster, "combat6") >= 5 then
+            multiplicative_bonus = multiplicative_bonus * 2
+        end
+        if caster:HasModifier("modifier_metamorph_terror2") then
+            multiplicative_bonus = multiplicative_bonus * 1.25
+        end
         if caster:HasModifier("modifier_talent_flurry") then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[164])
+        end
+        if caster:HasModifier("modifier_ballista") then
+            multiplicative_bonus = multiplicative_bonus * 1.5
+        end
+        if caster:HasModifier("modifier_blink_dmg") then
+            multiplicative_bonus = multiplicative_bonus * 1.25
         end
         if caster.spearspeed then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.03 * math.min(75, caster.spearspeed))
@@ -6041,7 +6085,7 @@ function DamageAOESplitHero( event )
         --print("zeus target detected")
     end
 
-    local enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     
     local targets = 0
     local guy
@@ -6071,7 +6115,7 @@ end
 function PathFeastForCrowsAOE( caster )
 	Timers:CreateTimer(0.5,function()
 		EmitSoundOn("DOTA_Item.Mjollnir.Activate", caster)
-	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	    if #enemies > 0 then
 	        for _,enemy in pairs(enemies) do
 	            if enemy and not enemy:IsNull() and (enemy:GetUnitLabel() == "hero" or enemy:GetUnitLabel() == "tower" ) and math.random(1,100) <= 50 then
@@ -6104,7 +6148,7 @@ end
 function AstralShock( caster )
 	Timers:CreateTimer(0.25,function()
 		EmitSoundOn("DOTA_Item.Mjollnir.Activate", caster)
-	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	    if #enemies > 0 then
 	        for _,enemy in pairs(enemies) do
 	            if enemy and not enemy:IsNull() and (enemy:GetUnitLabel() == "hero" or enemy:GetUnitLabel() == "tower" ) then
@@ -6136,7 +6180,7 @@ function AstralShockProc( caster, target )
 end
 
 function CountNearbyEnemies(caster, range)
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local targets_hit = 0
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -6149,7 +6193,7 @@ function CountNearbyEnemies(caster, range)
 end
 
 function CountNearbyMonsters(monster, range)
-    local enemies = FindUnitsInRadius( monster:GetTeamNumber(), monster:GetAbsOrigin(), monster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( monster:GetTeamNumber(), monster:GetAbsOrigin(), monster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local monsters = 0
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -6228,7 +6272,10 @@ function DamageAOE( event )
         classitemdmgfactor = event.classitemdmgfactor,
         classitemdmgfactorbuff = event.classitemdmgfactorbuff,
         swordstorm = event.swordstorm,
-        useDamageEscalation = useDamageEscalation
+        useDamageEscalation = useDamageEscalation,
+        fromsummon = event.fromsummon,
+        fromcompanion = event.fromcompanion,
+        ComesFromPet = event.ComesFromPet
 	}
     if event.rainofarrows then
         event2.rainofarrows = 1
@@ -6286,10 +6333,10 @@ function DamageAOE( event )
 	local enemies
 	local pet = "pet"
 	if event.onlyhero then
-		--enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+		--enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 		pet = "hero"
 	end
-	enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	enemies = FindUnitsInRadius( caster2:GetTeamNumber(), pos, caster2, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	local crusaderheal = 0
     --count targets
@@ -6320,33 +6367,32 @@ function DamageAOE( event )
     					if event.targeteffect == "blood" then
     						local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_beastmaster/beastmaster_wildaxes_hit.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
                             ParticleManager:ReleaseParticleIndex(particle)
-    					end
-                        if event.targeteffect == "arcanablood" then
+    					elseif event.targeteffect == "arcanablood" then
                             local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_beastmaster/beastmaster_wildaxes_hit.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
                             ParticleManager:ReleaseParticleIndex(particle)
                             local particle = ParticleManager:CreateParticle("particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf", PATTACH_POINT_FOLLOW, enemy)
                             ParticleManager:SetParticleControl(particle, 3, caster2:GetAbsOrigin())
                             ParticleManager:ReleaseParticleIndex(particle)
                             BloodArcana({caster = caster2, target = enemy, ignore_crit_effect_cooldown = true })
-                        end
-    					if event.targeteffect == "thunder" then
+                        elseif event.targeteffect == "thunder" then
     						local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_thunder_strike_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
                             ParticleManager:ReleaseParticleIndex(particle)
-    					end
-    					if event.targeteffect == "fire" then
+    					elseif event.targeteffect == "fire" then
     						local particle = ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze_lava.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
     						ParticleManager:SetParticleControl(particle, 0, enemy:GetAbsOrigin()+Vector(0,0,15))
                             ParticleManager:ReleaseParticleIndex(particle)
-    					end
-    					if event.targeteffect == "water" then
+    					elseif event.targeteffect == "water" then
     						local particle = ParticleManager:CreateParticle("particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_x_spot_return_fxset.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
                             ParticleManager:ReleaseParticleIndex(particle)
-    					end
-    					if event.targeteffect == "holy" then
+    					elseif event.targeteffect == "holy" then
     						local particle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_weapon_voth_domosh/legion_commander_duel_dmg_flare.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
-    						ParticleManager:SetParticleControl(particle, 3, enemy:GetAbsOrigin()+Vector(0,0,0))
+    						ParticleManager:SetParticleControl(particle, 3, enemy:GetAbsOrigin())
                             ParticleManager:ReleaseParticleIndex(particle)
-    					end
+    					elseif event.targeteffect == "frost" then
+                            local particle = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+                            ParticleManager:SetParticleControl(particle, 0, enemy:GetAbsOrigin())
+                            ParticleManager:ReleaseParticleIndex(particle)
+                        end
                     end
 					if event.healpertarget ~= nil then
 						crusaderheal = crusaderheal + event.healpertarget
@@ -6403,7 +6449,7 @@ function DamageAOE( event )
 end
 
 function ApplyBuffAOE( event )
-	if event.caster == nil or event.target == nil then
+	if event.caster == nil then
 		return
 	end
     local targetsHit = 0
@@ -6419,7 +6465,7 @@ function ApplyBuffAOE( event )
 	local ability = event.ability
 	local range = event.aoe
 	local pos = caster:GetOrigin()
-	if event.targetpos then
+	if event.targetpos and target then
 		pos = target:GetOrigin()
 	end
 	if event.target_points ~= nil then
@@ -6433,7 +6479,7 @@ function ApplyBuffAOE( event )
 	if event.friend then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -6485,7 +6531,7 @@ function ApplyBuffAOERandom( event )
         excludetarget = target
     end
 
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local result = {}
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -6870,7 +6916,7 @@ function PurgeUnit(event)
 
 
 	target:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions)
-
+    print("Purge " .. target:GetName())
 	-- do the silence
 	if silencepenalty == true then
 		--local damage_table = {}
@@ -7923,7 +7969,7 @@ function Bookoflight(event)
 	local a = event.event_ability
     local mana = event.mana
 	if a and not caster.resourcesystem then
-		if a:GetManaCost(a:GetLevel()) > 0.0 then
+		if a:GetManaCost(-1) > 0.0 then
 			Timers:CreateTimer(0.05,function() 
 	        	caster:SetMana(caster:GetMana()+mana)
 	    	end)
@@ -9013,6 +9059,9 @@ function ApplyBuffConditional(event)
     if caster:GetTeamNumber() ~= target:GetTeamNumber() and event.onlyenemy then
         ApplyBuff(event)
     end
+    if caster == target and event.onlyself then
+        ApplyBuff(event)
+    end
 end
 
 function NinjaSetBuff(event)
@@ -9455,7 +9504,7 @@ function ListContainsString( list, text )
 end
 
 function ChainProjectile( caster, target, ability, count, projectile_fx, targets_hit, sound, delay, jumprange )
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local enemies_valid = {}
     if count < 1 then
         return
@@ -9674,7 +9723,7 @@ function ElementalConversion (event)
 	local ability = event.ability
 	local range = event.radius
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9688,7 +9737,7 @@ function ElementalConversion (event)
 		end
 	end
 
-	enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9716,7 +9765,7 @@ function LightningStorm (event)
 	tab.Duration = event.stun
 
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9776,7 +9825,7 @@ function Holybolt(event)
 	tab.Duration = event.dur
 
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		
@@ -10693,6 +10742,12 @@ function PetSystem( event )
                 }
                 ExecuteOrderFromTable(order)
             end
+        end
+    end
+
+    if event.checkWaterEle then
+        if event.ability:GetLevel() >= 5 and target and not target:IsNull() and target:IsAlive() then
+            caster:ForceKill(false)
         end
     end
 end
@@ -11968,7 +12023,7 @@ function ChainLightningOld(event)
 		event.spelldamagefactor = event.spelldamagefactor*event.reduction/100
 	end
 	
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local damagedone = 0
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -12379,7 +12434,7 @@ function SwordSwipe(event)
 
 	local targetamount = 0
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), event.target_points[1], caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -12421,7 +12476,7 @@ function Crush(event)
 	local pos = event.target_points[1]
 	local range = 250
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -12482,7 +12537,7 @@ function Crush(event)
         end
         for k=1,procs do
             Timers:CreateTimer(0.05+(0.5*(k-1)), function()
-        		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         		if #enemies > 0 then
         			for _,enemy in pairs(enemies) do
         				if enemy ~= nil then
@@ -12531,7 +12586,7 @@ function CloakOfConceal(event)
 		local pos = event.target_points[1]
 		local range = 450
 
-		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
 		local tab = {}
 		tab.Duration = 12
@@ -12846,7 +12901,7 @@ function WFTotem(event)
 		if abil then
 			if event.ability:GetLevel() >= 4 then
 				--aoe talent
-				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+				local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 				if #enemies > 0 then
 					for _,enemy in pairs(enemies) do
 						if enemy ~= nil then
@@ -13218,7 +13273,7 @@ function Rot(event)
 	local pos = event.target_points[1]
 	local range = 300
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local table = {}
 	table.Duration = event.dur
 
@@ -13322,10 +13377,10 @@ end
 function Meteor(event)
     local caster = event.caster
     local target = event.target
+
     --get arcane power stacks
     local stackcount = caster:GetModifierStackCount("modifier_arcanepower", caster)
     if stackcount >= 10 and not caster:HasModifier("modifier_burning_nether") then
-        --caster:RemoveModifierByName("modifier_arcanepower")
         caster:SetModifierStackCount("modifier_arcanepower", event.ability, stackcount - 10)
         event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_burning_nether", {Duration = 20})
         caster:SetModifierStackCount("modifier_burning_nether", event.ability, 5)
@@ -13342,6 +13397,8 @@ function Meteor(event)
         end
         if event.arcane and event.arcane == 1 then
             event.ability:ApplyDataDrivenModifier(caster, target, "modifier_meteor_proc_arcane", nil)
+        elseif event.arcane and event.arcane == 2 then
+            event.ability:ApplyDataDrivenModifier(caster, target, "modifier_meteor_proc_frost", nil)
         else
             event.ability:ApplyDataDrivenModifier(caster, target, "modifier_meteor_proc", nil)
         end
@@ -13511,6 +13568,32 @@ function SinisterStrike(event)
     local particle = ParticleManager:CreateParticle(buff, PATTACH_POINT_FOLLOW, target)
     ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(particle)
+
+    -- blink
+    if event.ability:GetLevel() >= 5 and (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length() > 300 then
+        particle = ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_POINT_FOLLOW, caster)
+        ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+        ParticleManager:ReleaseParticleIndex(particle)
+        particle = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_blink_end_b.vpcf", PATTACH_POINT_FOLLOW, target)
+        ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
+        ParticleManager:ReleaseParticleIndex(particle)
+        
+        BlinkToTarget(caster, target, event.ability)
+        event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_blink_dmg", {Duration = 10})
+    end
+end
+
+function BlinkToTarget(caster, target, ability)
+    Timers:CreateTimer(0.05, function()
+        local directionToTarget = target:GetAbsOrigin() - caster:GetAbsOrigin()
+        local offset = directionToTarget:Normalized() * 150
+        offset = Vector(offset[1], offset[2],0)
+        caster:SetAbsOrigin(target:GetAbsOrigin() - offset)
+        caster:SetForwardVector(directionToTarget)
+    end)
+    local tab = {}
+    tab.Duration = 0.2
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_phased", tab)
 end
 
 function Shadowstep(event)
@@ -13996,7 +14079,7 @@ function resto3(event)
 		caster.meditation = 1.0
 	end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -14029,7 +14112,7 @@ function Massdispel(event)
 	local range = 300
 	local targetpos = event.target_points[1]
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -14043,7 +14126,7 @@ function Massdispel(event)
 			end
 		end
 	end
-	enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false )
+	enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			--print(enemy:GetName())
@@ -14081,7 +14164,7 @@ function MostWoundedTarget (event)
         pets = "hero"
     end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	local hp = 1.2
 	local friend = nil
 	if #enemies > 0 then
@@ -14121,7 +14204,7 @@ function HealingWaveJump(event, target, from_target, target_list)
     ParticleManager:ReleaseParticleIndex(particle)
     table.insert(target_list, target)
     --find next target
-    local friends = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local friends = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     local hp = 1.2
     local friend = nil
     if #friends > 0 then
@@ -14622,7 +14705,7 @@ end
 
 function MultistrikeProc(caster, originalTarget)
     local aoe = 250
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         EmitSoundOn("DOTA_Item.Butterfly", originalTarget)
         for _,enemy in pairs(enemies) do
@@ -14691,7 +14774,7 @@ function GlobalOnAbilityExecuted( event )
             end
         end
     end
-    if GetManaRefundAmount(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 1 then
+    if GetManaRefundAmount(caster) >= 1 and ability and ability:GetManaCost(-1) >= 1 then
         Timers:CreateTimer(0.05, function()
             RestoreResource({caster = caster, amount = GetManaRefundAmount(caster), flat = true})
         end)
@@ -14986,7 +15069,7 @@ function GlobalOnAbilityExecuted( event )
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_phantomShadeCD", {Duration = 30 * GetInnerCooldownFactor(caster)})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 2 * caster.talents[162]})
         end
-        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 and caster.stampedeCount < 3 then
+        if caster.talents[177] > 0 and ability:GetCooldown(ability:GetLevel()-1) >= 20 and (caster.stampedeCount == nil or caster.stampedeCount < 3) then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "stampede_summon_proc", nil)
             if not caster.stampedeCount then
                 caster.stampedeCount = 0
@@ -15040,7 +15123,7 @@ function GetCooldownReductionFactor( caster, ability )
         factor = 0.925
     end
     if caster:HasModifier("modifier_item_allstats2up") then
-        factor = factor * 0.9
+        factor = factor * 0.935
     end
     if HeroHasNeutralItem(caster, "item_neutral_38") then
         factor = factor * 0.9
@@ -15559,7 +15642,7 @@ function PetEnrageItem (event)
 		ParticleManager:SetParticleControl(particle, 2, Vector(1,0,0))
 	end]]--
     local heal = 0
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy:GetPlayerOwnerID() == caster:GetPlayerOwnerID()  then
@@ -15711,7 +15794,7 @@ function FatalPoisonSpread(event)
 
     local highestStack = 0
     local highestStackEnemy = nil
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
             if enemy then
@@ -16230,8 +16313,6 @@ function MythicMinusSpellres(event)
     myevent.dur = 8
     ApplyBuff(myevent)
     target:SetModifierStackCount(myevent.buff, ability, armor)
-    print("deal damage")
-    print(target)
 end
 
 function ArmyDeadTarget(event)
@@ -16814,7 +16895,7 @@ function WarriorGloves( event )
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_activewarriorrage", nil)
 		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_beserkers_call_owner_b.vpcf", PATTACH_POINT_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(particle)
-		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 		if #enemies > 0 then
 			for _,enemy in pairs(enemies) do
 				if enemy ~= nil and (enemy:GetUnitLabel()=="hero") then
@@ -17400,7 +17481,7 @@ function KnockbackAOE(event)
 		return
 	end
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -17944,11 +18025,11 @@ function KillDanceProc (event, caster, target, distance, hits, speedFactor)
     end
 	local range = distance
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		--print
 	else
-		enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	end
 	if #enemies > 0 then
 		local unit = enemies[math.random(1,#enemies)]
@@ -18067,7 +18148,7 @@ function VampiricEmbrace(event)
 	local ability = event.ability
 	local range = 900
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -18264,7 +18345,7 @@ end
 function IsEnemyInRangeWithAggro( unit, distance )
     local playerid = unit:GetPlayerOwnerID()
     if unit and not unit:IsNull() then
-        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
                 if enemy.aggrolist and enemy.aggrolist[playerid] and enemy.aggrolist[playerid] > 0 then
@@ -18644,7 +18725,7 @@ function ChainLightningProc(event)
     if event.total_targets >= 1 then
         local valid_targets = {}
         local index = 1
-        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, event.jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, event.jumprange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         for _,enemy in pairs(enemies) do
             if enemy ~= nil and (not enemy:IsNull()) and enemy:IsAlive() and ((enemy:GetUnitLabel()=="hero") or (enemy:GetUnitLabel()=="pet") or (enemy:GetUnitLabel()=="tower")) and not CheckForBreakableCC(target) and ((not event.chainlight_only_hero) or (event.chainlight_only_hero and enemy:IsRealHero())) then 
                 local valid = true
@@ -18925,7 +19006,7 @@ function ShowDamageTaken(event)
         event.attacker:RemoveModifierByName("modifier_invulnerable")
         event.ability:ApplyDataDrivenModifier(event.attacker, event.attacker, "modifier_disarmed", {Duration = -1})
     end
-    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_lua") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
+    if event.attacker:HasModifier("modifier_pet_system") or event.attacker:HasModifier("modifier_pet_system_earth") or event.attacker:HasModifier("modifier_pet_system_fire") or event.attacker:HasModifier("modifier_pet_system_shadow") or event.attacker:HasModifier("modifier_pet_system_lua") or event.attacker:HasModifier("modifier_pet_system_grizzly") or event.attacker:HasModifier("modifier_companion_behavior") then
         return
     end
     local damage = event.dmg
@@ -19661,6 +19742,9 @@ function ShapeshiftTerror(event)
     if COverthrowGameMode.EnableShapeshift == 1 and not caster.has_shapeshift_effect then
         COverthrowGameMode:RemoveAllCosmeticsGlobal(caster)
         local model = "models/items/terrorblade/knight_of_foulfell_demon/knight_of_foulfell_demon.vmdl"
+        if event.shape then
+            model = "models/items/terrorblade/tb_samurai_samurai_demon/tb_samurai_samurai_demon.vmdl"
+        end
         local scale = 1
         caster.old_model = caster:GetModelName()
         caster:SetOriginalModel(model)
@@ -19668,11 +19752,16 @@ function ShapeshiftTerror(event)
         HideWearables(event)
         StartAnimation(caster, {activity=ACT_DOTA_RUN, duration=0.1, rate=1.0})
         caster.has_shapeshift_effect = true
+        
+        local particle = ParticleManager:CreateParticle("particles/items2_fx/paintball_detonation.vpcf", PATTACH_WORLDORIGIN, caster)
+        ParticleManager:SetParticleControl(particle, 3, caster:GetAbsOrigin())
+        ParticleManager:ReleaseParticleIndex(particle)
     end
 end
 
 function ShapeshiftTerrorEnd(event)
     local caster = event.caster
+    local ability = event.ability
     -- to human
     --model change
     if COverthrowGameMode.EnableShapeshift == 1 then
@@ -19685,6 +19774,11 @@ function ShapeshiftTerrorEnd(event)
         ParticleManager:ReleaseParticleIndex(particle)
         COverthrowGameMode:EquipArtifactCosmeticRewardsGlobal(caster)
         caster.has_shapeshift_effect = nil
+
+        -- 2nd form?
+        if not event.shape and ability:GetLevel() >= 5 then
+            ability:ApplyDataDrivenModifier(caster, caster, "modifier_metamorph_terror2", {Duration = 15})
+        end
     end
 end
 
@@ -19800,6 +19894,9 @@ function GetAgilityPercentageBonus( hero, primary_stats_percent_bonus )
     if hawk5 and hawk5:GetLevel() >= 4 then
         percent_bonus = percent_bonus + 0.25
     end
+    if GetLevelOfAbility(hero, "dh1") >= 5 then
+        percent_bonus = percent_bonus + hero:GetEvasion()
+    end
     if hero:HasModifier("modifier_wild_swipe") then
         percent_bonus = percent_bonus + 0.25
     end
@@ -19858,9 +19955,9 @@ function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHea
         end
         static_bonus = static_bonus + factor * maxHealth
     end
-    --if hero.talents[7] and hero.talents[7] > 0 then
-    --    static_bonus = static_bonus + (hero.talents[7] * 0.05 + 0.05) * realStrength
-    --end
+    if GetLevelOfAbility(hero, "retri1") >= 5 then
+        static_bonus = static_bonus + realStrength
+    end
     local unholyFrenzy = hero:GetModifierStackCount("modifier_unholyfrenzy", nil)
     if unholyFrenzy >= 1 then
         static_bonus = static_bonus + unholyFrenzy * 5 * hero.talents[98]
@@ -20145,6 +20242,9 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     if hero:HasModifier("modifier_item_item_set_t4_str_4") then
         percent_bonus = percent_bonus + 0.15
     end
+    if hero:HasModifier("modifier_metamorph_terror2") then
+        percent_bonus = percent_bonus + 0.25
+    end
     if hero:HasModifier("modifier_item_btshp2") then
         percent_bonus = percent_bonus + 0.1
     end
@@ -20197,7 +20297,7 @@ function GetHealthPercentageBonus( hero, armor, magicres )
     return percent_bonus
 end
 
-function GetHealthRegeneration(hero, strength)
+function GetHealthRegeneration(hero, strength, agility)
     local value = GetHealthRegenFromStrength(strength)
     local maxHealth = hero:GetMaxHealth()
     if hero.talents[166] and hero.talents[166] > 0 then
@@ -20209,11 +20309,14 @@ function GetHealthRegeneration(hero, strength)
     if hero:HasModifier("modifier_haze_self") then
         value = value + maxHealth * 0.02
     end
+    if hero:HasModifier("modifier_monsoon_heal") then
+        value = value + maxHealth * 0.03
+    end
     if hero:HasModifier("modifier_defstance") and hero:FindAbilityByName("fury6") then
         value = value + maxHealth * 0.01
     end
     if hero:HasModifier("modifier_ox_aura_hp") and hero:FindAbilityByName("brew6") then
-        value = value + maxHealth * 0.1
+        value = value + maxHealth * 0.05
     end
     if hero:HasModifier("modifier_item_hpreg1") then
         value = value + 3
@@ -20244,6 +20347,9 @@ function GetHealthRegeneration(hero, strength)
     end
     if hero:HasModifier("modifier_crowndefender2") then
         value = value + 100
+    end
+    if GetLevelOfAbility(hero, "bear6") >= 5 then
+        value = value + agility * 0.25
     end
     
     return value * GetHealthRegenerationFactor(hero)
@@ -20515,6 +20621,9 @@ function GetCastRangeBonus(hero)
     if hero:HasModifier("modifier_pathbuff_052") then
         bonus = bonus + 100
     end
+    if GetLevelOfAbility(hero, "resto3") >= 5 then
+        bonus = bonus + 150
+    end
     if hero:HasModifier("modifier_new3") then
         bonus = bonus + 200
     end
@@ -20618,6 +20727,7 @@ function PassiveStatCalculation(event)
     --if hero:GetHealth() <= 0 then
     --    hero:SetHealth(1) --might work
     --end
+    --print(hero:GetCurrentVisionRange())
 
     local updateEveryXSecs = 1
     local ability = event.ability
@@ -21440,7 +21550,7 @@ function PassiveStatCalculation(event)
         local path_word_bonus = 0
         for k=1, 3 do
             if i == soul[k][1] then
-                soul_item_bonus = soul[k][2]
+                soul_item_bonus = soul_item_bonus + soul[k][2]
             end
         end
         local path_bonus_from_ring_given = 0
@@ -21475,8 +21585,8 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 177 then
-        --    new_talent_value = 3
+        --if i == 144 then
+            --new_talent_value = 3
         --end
         
         --new divine doubling soul items
@@ -21846,7 +21956,7 @@ function PassiveStatCalculation(event)
     end
     --hp fix to keep current hp % the same, even if max hp changes
     hero:SetHealth(hero:GetMaxHealth() * hpPercent)
-    hero:SetBaseHealthRegen(GetHealthRegeneration(hero, realBaseStats[STR]))
+    hero:SetBaseHealthRegen(GetHealthRegeneration(hero, realBaseStats[STR], realBaseStats[AGI]))
     --mana regen
     SetManaRegeneration(hero, GetManaRegenerationPerSec(hero))
     SetDamageBlock(hero)
@@ -22075,6 +22185,9 @@ end
 function BlizzardEffect(event)
     local caster = event.target
     local pos = caster:GetAbsOrigin()
+    if event.pos then
+        pos = event.pos
+    end
     local distance = event.aoe / 2
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", PATTACH_WORLDORIGIN, caster)
     ParticleManager:SetParticleControl(particle, 0, pos)
@@ -22117,7 +22230,7 @@ function BlizzardTalent( caster, target, ignoreInnerCD )
     if caster:HasModifier("modifier_divine_frost") then
         dmgInstances = 3
     end
-    event = {caster = caster, target = target, ability = caster.combat_system_ability, targetpos = 1, damage = 0, attributefactor = damage * caster.talents[30], aoe = aoe, targeteffect = "blood", isaoe = 1, delay = delay, times = dmgInstances, delayPerRound = 0.3, dontbreakcc = 1, frostdmg = 1 }
+    event = {caster = caster, target = target, ability = caster.combat_system_ability, targetpos = 1, damage = 0, attributefactor = damage * caster.talents[30], aoe = aoe, targeteffect = "frost", isaoe = 1, delay = delay, times = dmgInstances, delayPerRound = 0.3, dontbreakcc = 1, frostdmg = 1 }
     DamageAOEDelayed( event )
     Timers:CreateTimer(delay, function()
         EmitSoundOn("hero_Crystal.freezingField.explosion", caster)
@@ -23050,7 +23163,7 @@ end
 
 function IsEnemyInRange( unit, distance )
     if unit and not unit:IsNull() then
-        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+        local enemies = FindUnitsInRadius( unit:GetTeamNumber(), unit:GetAbsOrigin(), unit, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
                 --print((unit:GetAbsOrigin()-enemy:GetAbsOrigin()):Length())
@@ -24455,8 +24568,12 @@ function GlobalOnDealFireDamage( caster, target )
             end
         end
         if caster.bof then
-            if caster.bof:GetLevel() >= 2 and math.random(1,100) <= 15 then
+            if caster.bof:GetLevel() >= 2 and math.random(1,100) <= 15 and not caster.bofcd then
                 ApplyBuff({caster = caster, target = target, ability = caster.bof, dur = 1, buff = "modifier_stunned"})
+                caster.bofcd = true
+                Timers:CreateTimer(5 * GetInnerCooldownFactor(caster),function()
+                    caster.bofcd = false
+                end)
             end
             if caster.bof:GetLevel() >= 4 then
                 ApplyBuffStack({caster = caster, target = caster, ability = caster.bof, dur = 10, buff = "modifier_bof_stack", max = 50})
@@ -24595,9 +24712,6 @@ function GlobalOnDealDamage( event )
             local chance = 7
             if caster:HasModifier("modifier_pathbuff_068") then
                 chance = chance + 3
-            end
-            if HeroHasNeutralItem(caster, "item_neutral_26") then
-                chance = chance * 2
             end
             if math.random(1,100) <= chance then
                 SummonBoneWarrior(caster, target)
@@ -25119,6 +25233,9 @@ function CheckForAutoAttackCriticalStrikeProcs(caster, target)
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 175, aacrit_chance = 15})
     end
+    if caster:HasModifier("modifier_hook_crit") then
+        AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 500, aacrit_chance = 25})
+    end
     if caster:HasModifier("modifier_item_set_agi_set_crit_t1_2") then
         AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 200, aacrit_chance = 15})
     end
@@ -25575,6 +25692,10 @@ function WingedGrave( event )
 	local ability = event.ability
 
     ApplyBuff(event)
+
+    if ability:GetLevel() >= 5 then
+        PullTargetIn({caster = caster, target = target, ability = ability, minDistance = 600})
+    end
 end
 
 function CainSetGiveLife( event )
@@ -26091,6 +26212,12 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_barrelroll") then
         factor = factor * 0.4
     end
+    if caster:HasModifier("modifier_prim_split") then
+        factor = factor * 0.1
+    end
+    if caster:HasModifier("modifier_holdtheground") then
+        factor = factor * 0.25
+    end
     if caster:HasModifier("modifier_divinedef") then
         factor = factor * 0.85
     end
@@ -26166,6 +26293,21 @@ function GetTotalDamageTakenFactor(caster, attacker)
             if GiantsOnCooldown(caster) then
                 factor = factor * (1 - 0.1 * caster.talents[143])
             end
+        end
+
+        if GetLevelOfAbility(caster, "mars1") >= 5 then
+            local red = 0.333 * caster:GetEvasion()
+            factor = factor * (1 - red)
+        end
+        if GetLevelOfAbility(caster, "pala6") >= 5 then
+            local red = 0.005 * GetStrengthCustom(caster) / 100
+            if red > 0.3 then
+                red = 0.3
+            end
+            factor = factor * (1 - red)
+        end
+        if caster:HasModifier("modifier_dh_soulpact_chaos") then
+            factor = factor * 0.9
         end
     end
     if caster:HasModifier("modifier_chaosshield2") then
@@ -26925,7 +27067,7 @@ function CastGeneratedSpell( event )
                     --find targets
                     local targets = {}
                     if event.allenemies or event.allenemiesclose or event.allenemiesfar then
-                        targets = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 2500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+                        targets = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 2500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
                         if event.allenemiesclose then
                             local newTargets = {}
                             for j=1, #targets do
@@ -26965,7 +27107,7 @@ function CastGeneratedSpell( event )
                         table.insert(targets, caster)
                     end
                     if event.allallies then
-                        local allies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+                        local allies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
                         if #allies > 0 then
                             for _,ally in pairs(allies) do
                                 if ally ~= nil then
@@ -27625,7 +27767,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     if GetNaturesHarmonyStat(caster) >= 1 and not wascrit then
         healing_bonus = healing_bonus + 0.01 * GetNaturesHarmonyStat(caster)
     end
-    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(ability:GetLevel()) >= 30 then
+    if GetNetherfusionStat(caster) >= 1 and ability and ability:GetManaCost(-1) >= 30 then
         healing_bonus = healing_bonus + 0.01 * GetNetherfusionStat(caster)
     end
     if GetSwiftMendingStat(caster) >= 1 then
@@ -27816,10 +27958,10 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     end
     
     if ability and caster:HasModifier("modifier_new8") then
-        healing_bonus = healing_bonus + 0.005 * ability:GetManaCost(ability:GetLevel())
+        healing_bonus = healing_bonus + 0.005 * ability:GetManaCost(-1)
     end
     if ability and caster:HasModifier("modifier_new82") then
-        healing_bonus = healing_bonus + 0.01 * ability:GetManaCost(ability:GetLevel())
+        healing_bonus = healing_bonus + 0.01 * ability:GetManaCost(-1)
     end
     
     if event.alwaysself ~= nil then
@@ -28110,7 +28252,7 @@ function GetChannelSpellhaste( caster, event )
     if haste <= 0.5 then
         haste = 0.5
     end
-    print(haste)
+
     return haste
 end
 
@@ -28350,7 +28492,7 @@ function SpellCleaveProc( damageTable )
     local caster = damageTable.attacker
     local originalTarget = damageTable.victim
     local aoe = 250
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
     if #enemies > 0 then
         EmitSoundOn("Hero_LegionCommander.Overwhelming.Hero", originalTarget)
         for _,enemy in pairs(enemies) do
@@ -29644,7 +29786,6 @@ function AddSwordStormCrit(caster)
     if caster.swordStormCrits > 25 then
         caster.swordStormCrits = 25
     end
-    print(caster.swordStormCrits)
 end
 
 function SniperAAProcs(event)
@@ -29835,7 +29976,7 @@ function CorruptedCoilProc(event)
     local ability = event.ability
     if caster:HasModifier("modifier_class_skele2") then
         ApplyBuff({caster = caster, target = target, ability = ability, dur = 0.1, max = 20, buff = "modifier_proc_coil"})
-        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetOrigin(), caster, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
         local count = 0
         if #enemies > 0 then
             for _,enemy in pairs(enemies) do
@@ -30187,7 +30328,7 @@ function CheckForFlurryProc(event)
     local target = event.target
     local ability = caster:GetAbilityByIndex(caster.flurryAbility)
     local mana = caster:GetMana()
-    local manacost = ability:GetManaCost(ability:GetLevel() - 1)
+    local manacost = ability:GetManaCost(-1)
 
     if mana < manacost * 2 or ability:GetLevel() <= 0 then
         return
@@ -30918,12 +31059,15 @@ function PullTargetIn(event)
     ApplyBuff({caster = caster, target = target, ability = ability, buff = "modifier_phased", dur = 0.05})
     local direction = (target:GetAbsOrigin() - caster:GetAbsOrigin())
     local dst = direction:Length()
-    local minDst = 150
-    if dst < minDst then
+    local distanceFromCaster = 150
+    if dst < distanceFromCaster then
+        return
+    end
+    if event.minDistance and dst < event.minDistance then
         return
     end
 
-    local position = caster:GetAbsOrigin() + direction:Normalized() * minDst
+    local position = caster:GetAbsOrigin() + direction:Normalized() * distanceFromCaster
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_WORLDORIGIN, target)
     ParticleManager:SetParticleControl(particle, 0, position)
     ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
@@ -30941,6 +31085,19 @@ function Brew6Summon(event)
     local summon = event.target
     local ability = event.ability
     caster.shadowOx = summon
+end
+
+function Brew6Split(event)
+    local caster = event.caster
+    local ability = event.ability
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_prim_split", {Duration = event.splitduration})
+    --caster:SetModelScale(0.001)
+end
+
+function Brew6SplitEnd(event)
+    local caster = event.caster
+    local ability = event.ability
+    --caster:SetModelScale(1)
 end
 
 function ShadowOxFlee(event)
@@ -31008,7 +31165,7 @@ function PullAllTargetsIn(event)
     local caster = event.caster
     local range = event.range
     local pos = caster:GetAbsOrigin()
-    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 
     if #enemies > 0 then
         for _,enemy in pairs(enemies) do
@@ -31026,5 +31183,189 @@ function KeepCloseSinglePlayerFriendly(event)
     local heroes = HeroList:GetAllHeroes()
     if(#heroes == 1) then
         event.ability:ApplyDataDrivenModifier(event.target, event.target, "modifier_slow_keep_close_solo", nil)
+    end
+end
+
+function LightningStormCast(event)
+    local caster = event.caster
+    caster.lightningStorm = true
+    CheckForEarthquakeProc(caster, nil)
+end
+
+function LavaBurstCast(event)
+    local caster = event.caster
+    local target = event.target
+    event.caster.lavaBurst = true
+    CheckForEarthquakeProc(caster, target)
+end
+
+function CheckForEarthquakeProc(caster, target)
+    if caster.lavaBurst and caster.lightningStorm then
+        caster.lavaBurst = false
+        caster.lightningStorm = false
+        ProcEarthQuake(caster, target)
+    end
+end
+
+function ProcEarthQuake(caster, target)
+    local ability = caster:GetAbilityByIndex(5)
+    if ability:GetLevel() < 5 then
+        return
+    end
+
+    local pos = caster:GetAbsOrigin()
+    if target then
+        pos = target:GetAbsOrigin()
+    end
+
+    local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_ursa/ursa_earthshock_dust_center.vpcf", PATTACH_WORLDORIGIN, caster)
+    ParticleManager:SetParticleControl(particle2, 0, pos)
+    ParticleManager:ReleaseParticleIndex(particle2)
+
+    local duration = 6
+    local tickrate = 0.75
+    local ticks = duration / tickrate
+
+    for i=1, ticks do
+        Timers:CreateTimer(tickrate * i, function()
+            local buffevent = { caster = caster, target_points = {pos}, ability = ability, aoe = 300, buff = "modifier_slow50", dur = 2}
+            ApplyBuffAOE(buffevent)
+            local event = {caster = caster, target = nil, ability = ability, target_points = {pos}, damage = 0, attributefactor = 500, spelldamagefactor = 500, aoe = 300, naturedmg = 1, isdot = 1 }
+            DamageAOE(event)
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ursa/ursa_earthshock_rocks.vpcf", PATTACH_WORLDORIGIN, caster)
+            ParticleManager:SetParticleControl(particle, 0, pos)
+            ParticleManager:ReleaseParticleIndex(particle)
+        end)
+    end
+end
+
+function HoldTheGround(event)
+    local caster = event.caster
+    local ability = caster:FindAbilityByName("Switch_Battle_Stance_Prot")
+    if not (ability and ability:GetLevel() >= 5) then
+        return
+    end
+
+    local target = event.target
+    local buffevent = { caster = caster, target_points = {target:GetAbsOrigin()}, ability = ability, aoe = 300, buff = "modifier_rootedfx", dur = 2.5}
+    ApplyBuffAOE(buffevent)
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_holdtheground", {Duration = 2.5})
+end
+
+function CheckForDoubleSwingProc(event)
+    local caster = event.caster
+    if math.random(1,100) <= GetDoubleSwingChance(caster) then
+        ProcDoubleSwing(caster)
+    end
+end
+
+function ProcDoubleSwing(caster)
+    local ability = caster:FindAbilityByName("Mortal_Swing")
+
+    if not ability or ability:GetLevel() < 5 then
+        return
+    end
+
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_proc_swing", nil)
+end
+
+function GetDoubleSwingChance(caster)
+    return 0.04 * GetAgilityCustom(caster)
+end
+
+function HailStorm(event)
+    local caster = event.caster
+    local ability = event.ability
+    local pos = caster:GetAbsOrigin() + caster:GetForwardVector() * 600
+
+    local duration = 8
+    local tickrate = 0.333
+    local ticks = duration / tickrate
+    local damageDelay = 0.25
+    local aoe = 300
+    local damage = 250
+    local eventFx = {target = caster, aoe = 300, pos = pos}
+    for i=1, ticks do
+        Timers:CreateTimer(tickrate * i, function()
+            BlizzardEffect(eventFx)
+            local eventDmg = {caster = caster, ability = ability, target_points = {pos}, damage = 0, attributefactor = damage, spelldamagefactor = damage, aoe = aoe, isaoe = 1, ComesFromPet = 1, delay = damageDelay, dontbreakcc = 1, frostdmg = 1 }
+            DamageAOEDelayed( eventDmg )
+        end)
+    end
+end
+
+function FrostHook(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = event.ability
+    local pause = 0.5
+
+    -- blink
+    if ability:GetLevel() >= 5 and (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length() > 300 then
+        ability:ApplyDataDrivenModifier(caster, caster, "modifier_self_pause", {Duration = 5})
+        local info = {
+            Target = target,
+            Source = caster,
+            Ability = ability,
+            EffectName = "particles/items_fx/harpoon_projectile.vpcf",
+            bDodgeable = false,
+            bProvidesVision = true,
+            iMoveSpeed = 2200,
+            iVisionRadius = 300,
+            iVisionTeamNumber = caster:GetTeamNumber(),
+            iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION
+        }
+        ProjectileManager:CreateTrackingProjectile( info )
+    end
+end
+
+function FrostHookHit(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = event.ability
+    local pos = target:GetAbsOrigin()
+    local posFrom = caster:GetAbsOrigin()
+    caster:RemoveModifierByName("modifier_self_pause")
+    BlinkToTarget(caster, target, ability)
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_hook_crit", {Duration = 8})
+    
+    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_WORLDORIGIN, caster)
+    ParticleManager:SetParticleControl(particle, 0, pos + Vector(0,0,50))
+    ParticleManager:SetParticleControl(particle, 1, posFrom + Vector(0,0,50))
+    ParticleManager:ReleaseParticleIndex(particle)
+
+    local order = 
+    {
+        UnitIndex = caster:entindex(),
+        OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+        TargetIndex = target:entindex(),
+        Queue = false
+    }
+    ExecuteOrderFromTable(order)
+end
+
+function PestCheck(event)
+    local caster = event.caster
+    local target = event.target
+    local ability = caster:GetAbilityByIndex(0)
+
+    if ability:GetLevel() >= 5 then
+        local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+        local pests = 0
+        if #enemies > 0 then
+            for _,enemy in pairs(enemies) do
+                if enemy ~= nil and ((enemy:GetUnitLabel()=="hero") or (enemy:GetUnitLabel()==pet) or (enemy:GetUnitLabel()=="tower")) and enemy:HasModifier("modifier_shadowdot_dk") then
+                    ApplyBuffStack({caster = caster, target = enemy, ability = ability, dur = 7, buff = "modifier_pest", addstacks = 1})
+                    pests = pests + 1
+                end
+            end
+        end
+
+        if pests > 0 then
+            local particle = ParticleManager:CreateParticle("particles/items_fx/etherial_copycat_trail.vpcf", PATTACH_WORLDORIGIN, target)
+            ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin() + Vector(0,0,50))
+            ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin() + Vector(0,0,50))
+            ParticleManager:ReleaseParticleIndex(particle)
+        end
     end
 end

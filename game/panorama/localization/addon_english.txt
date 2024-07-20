@@ -176,7 +176,7 @@
 		"talent76"								"Crow Feathers: + 3% / 6% / 9% Strength, Agility and Intellect."
 		"talent77"								"Raven Onslaught: + 15% / 30% / 45% Ability Damage when not landing a Critical Strike. Affects Damage from Summons and Channeled Abilities 50% more."
 		"talent78"								"Storm Claws: + 3% / 6% / 9% Attack Damage and after landing 5 Auto Attacks your next Ability Damage instance deals 15% / 30% / 45% increased Damage, and when landing an Auto Attack Critical Strike, lower the target's Armor by 2 / 3 / 4 for 3 secs (not stacking)."
-		"talent79"								"Murder of Crows: Critical Strikes from Summons and Companions deal 25% / 50% / 75% increased Damage and after your Summons and Companions have caused 25 Damage instances, summon a swarm of 5 Crows for 15 secs, attacking for 25% / 50% / 75% of your Primary Attribute, Attack Damage and Spellpower as Physical Shadow Damage."
+		"talent79"								"Murder of Crows: Critical Strikes from Summons and Companions deal 25% / 50% / 75% increased Damage and after your Summons and Companions have caused 25 Damage instances, summon a swarm of 5 Crows for 15 secs, attacking for 15% / 30% / 45% of your Primary Attribute, Attack Damage and Spellpower as Physical Shadow Damage."
 		"talent80"								"Wings of Liberty: + 15 / 30 / 45 Attack Speed and + 3% / 6% / 9% Movement Speed. For every Point of Attack Speed beyond 500, gain 1 / 2 / 3 Attack Damage and for every Point of Movement Speed beyond 300 gain 1 / 2 / 3 Spellpower."
 		"talent81"								"Skyfall: After casting an Ability with a cooldown of 20 secs or higher, increase all Damage by 10% / 20% / 30% and gain additional 50 / 100 / 150 Auto Attack Damage for 7 secs."
 		"talent82"								"Pure Pecking: All Ability Damage has a 10% / 20% / 30% chance to deal Pure Damage instead, ignoring Armor and Spell Resistances. Whenever you land a Critical Strike with an Auto Attack there is a 25% chance to increase its Damage by 33% / 66% / 100%." //there is a 10% chance to lower the target's Armor by 4 / 8 / 12 for 4 secs (not stacking)."
@@ -302,7 +302,7 @@
 
 		"talent163"								"Vitality: Gain 5 / 10 / 15 Health per Level."
 		"talent164"								"Flurry: Auto Attacks automatically cast 2 Spender Abilities, when you have the required resources for it. When this procs, gain 15% / 30% / 45% increased Damage for 2 secs.\nSpender Abilities are Wounding Strike, Slaughter, Power Shot, Cobra Shot and Frostshatter Arrow."
-		"talent165"								"Tunnel Vision: Casting certain Abilities automatically continues casting them. Each continuous cast increases Spellhaste by 3 / 6 / 9 for 3 secs, stacking.\nAffected Abilities are Fireball, Ice Bolt, Wrath of Nature, Starbeam, Lightning Bolt, Divine Light, Holy Light, Healing Wave and Light of Heaven."
+		"talent165"								"Tunnel Vision: Casting certain Abilities automatically continues casting them. Each continuous cast increases Spellhaste by 3 / 6 / 9 for 3 secs, stacking.\nAffected Abilities are Fireball, Ice Bolt, Wrath of Nature, Starbeam, Lightning Bolt, Divine Light, Holy Light, Healing Wave, Light of Heaven and Crippling Spear."
 		"talent166"								"Witch Doctor: Gain 1 / 2 / 3 Health Regeneration per Level and when you take Damage and drop below 50% of max Health, dispel yourself, with an inner cooldown of 60 / 45 / 30 secs."
 		"talent167"								"Jungle Roamer: Increase all Damage against non-Bosses by 10% / 20% / 30%."
 		"talent168"								"Unpredictable: Ability Damage is increased by 15% / 30% / 45% when your previous Ability Damage was caused by a different Ability."

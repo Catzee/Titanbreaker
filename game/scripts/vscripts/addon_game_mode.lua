@@ -2304,7 +2304,9 @@ self.home_base_position = Entities:FindByName( nil, "team_base_1" ):GetAbsOrigin
   GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(COverthrowGameMode, "FilterDamage"), self)			--SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "OrderFilter"), self)
   GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(COverthrowGameMode, "FilterExperience"), self)
 
-
+  -- disable innate melee block added in some dota patch
+  GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)
+  
   --new pre game stuff
   GameRules:SetShowcaseTime( 0.0 )
   GameRules:SetStrategyTime( 0.5 )
@@ -5501,7 +5503,7 @@ function WaterfallImpact(pos)
 	local particle = ParticleManager:CreateParticle("particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf", PATTACH_POINT_FOLLOW, caster)
 	local ability = caster:GetAbilityByIndex(0)
 	EmitSoundOn("DOTA_Item.ForceStaff.Activate", caster)
-	local enemies = FindUnitsInRadius( 1, pos, caster, 325, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( 1, pos, caster, 325, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -7526,7 +7528,7 @@ end
 end
 
 function COverthrowGameMode:RemovePetsAfterBattle(caster)
-  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   if #enemies > 0 then
     for _,enemy in pairs(enemies) do
       if enemy ~= nil and (enemy:GetPlayerOwnerID() == caster:GetPlayerOwnerID() or enemy == caster.Pet or enemy == caster.Pet1 or enemy == caster.Pet2) and (enemy:GetUnitLabel() == "pet" or enemy:GetUnitLabel() == "ward") and not enemy:IsNull() then
@@ -7858,6 +7860,7 @@ end
 
 
 function COverthrowGameMode:UnitAI(event)
+  -- Tick frequence now not exactly every 1s due to COverthrowGameMode:ForceRecalcAggroForTaunt(hero), but probably nothing will go wrong (famous last words)
 	local tickFrequency = 1
 	local boss = event.caster
 	if boss then
@@ -8274,7 +8277,7 @@ end
 
 function COverthrowGameMode:PVEClearMobs()
 	local all = HeroList:GetAllHeroes()
-	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector(0,0,0), all[1], 500000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector(0,0,0), all[1], FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	--print(#enemies)
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
@@ -9352,7 +9355,7 @@ end
 function FindLinkedAggro(event)
 	--print("find linked call")
 	local caster = event.caster
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -9372,7 +9375,7 @@ end
 
 function IsHeroNear( caster, range )
   local near = false
-  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+  local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   if #enemies > 0 then
     for _,enemy in pairs(enemies) do
       if enemy ~= nil then
@@ -9424,7 +9427,7 @@ function COverthrowGameMode:PVEAggroAddAOE(source, target, aggro, area)
     return
   end
   local pos = target:GetAbsOrigin()
-  local enemies = FindUnitsInRadius( source:GetTeamNumber(), pos, source, area, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+  local enemies = FindUnitsInRadius( source:GetTeamNumber(), pos, source, area, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
   for _,enemy in pairs(enemies) do
     local event = {attacker = source, unit = enemy, damagetaken = aggro}
     PVEAggroAdd(event)
@@ -9474,6 +9477,11 @@ function PVEAggroAdd(event)
    local bonus_aggro = 1
    local aggro_reduce = 0
    local setHeroStatsAggroPercent = not event.ignore_super_aggro_tank
+
+    if GetLevelOfAbility(source, "pala6") >= 5 then
+        bonus_aggro = bonus_aggro * (1 + 0.0025 * GetStrengthCustom(source))
+    end
+
    if source:IsHero() then
     if source.super_aggro_tank and not event.ignore_super_aggro_tank then
       local levelThreshold = 2
@@ -9525,6 +9533,7 @@ function PVEAggroAdd(event)
         if source.super_aggro_tank_monk and level_tank_ability >= 4 then
          bonus_aggro = bonus_aggro * (1 + 0.01 * GetStrengthCustom(source))
        end
+
        --print("aggro factors")
        --print(aggro_bonus_armor)
        --print(aggro_bonus_resist)
@@ -10395,7 +10404,37 @@ function COverthrowGameMode:FilterModifiers(filterTable)
   if (filterTable.name_const == "modifier_fountain_invulnerability") then
     return false
   end
+  -- Hopefully this will solve taunt issues
+  if(filterTable.name_const == "modifier_taunt123") then
+    local hero = EntIndexToHScript(filterTable.entindex_parent_const)
+    if(hero ~= nil) then
+      COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
+    end
+  end
   return true
+end
+
+function COverthrowGameMode:ForceRecalcAggroForTaunt(hero)
+  local enemies = FindUnitsInRadius(
+    hero:GetTeamNumber(), 
+    hero:GetAbsOrigin(), 
+    nil,
+    2500, -- probably should introduce constant somewhere for this value...
+    DOTA_UNIT_TARGET_TEAM_ENEMY, 
+    DOTA_UNIT_TARGET_ALL, 
+    -- target all special guys too (bkb effect, INVULNERABLE, out of world)
+    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+    FIND_ANY_ORDER,
+    false)
+  
+  for _, enemy in pairs(enemies) do
+    -- Target only guys who care about aggro
+    if(enemy:HasModifier("modifier_pvebosssystem")) then
+      COverthrowGameMode:UnitAI({
+        caster = enemy
+      })
+    end
+  end
 end
 
 function COverthrowGameMode:OnNPCSpawned( keys )
@@ -12018,9 +12057,10 @@ function COverthrowGameMode:FilterDamage( filterTable )
   local victimMaxHealth = victim:GetMaxHealth()
   
   --stop pet aa dmg
-  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_lua") 
+  if attacker:HasModifier("modifier_pet_system") or attacker:HasModifier("modifier_pet_system_stampede") or attacker:HasModifier("modifier_pet_system_earth") or attacker:HasModifier("modifier_pet_system_fire")
+    or attacker:HasModifier("modifier_pet_system_shadow") or attacker:HasModifier("modifier_pet_system_lua") 
     or attacker:HasModifier("modifier_pet_system_grizzly") or attacker:HasModifier("modifier_uri_sleep")
-    or attacker:HasModifier("modifier_blood_worm") then
+    or attacker:HasModifier("modifier_blood_worm") or attacker:HasModifier("modifier_pet_system_bonewarrior") or attacker:HasModifier("modifier_pet_system_crow") then
     filterTable["damage"] = 0
     return true
   end
@@ -12029,7 +12069,11 @@ function COverthrowGameMode:FilterDamage( filterTable )
     filterTable["damage"] = 0
     return true
   end
-
+  
+  if attacker:HasModifier("modifier_mol_peace") or victim:HasModifier("modifier_mol_peace") then
+    filterTable["damage"] = 0
+    return true
+  end
   if attacker:HasModifier("modifier_omni_allow_heal") then
     filterTable["damage"] = 0
     return true
