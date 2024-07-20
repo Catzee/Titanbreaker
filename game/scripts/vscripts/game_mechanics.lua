@@ -1033,7 +1033,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = event.shadoworb + 1
+        local bonusfactor = (event.shadoworb * 0.5) + 1
         finaldamage = finaldamage*bonusfactor
     end
 
