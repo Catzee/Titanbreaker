@@ -10670,7 +10670,7 @@ function PetSystem( event )
 
         --as system
         if event.astransfer then
-            local stackcount = target:GetIncreasedAttackSpeed(false) * event.astransfer
+            local stackcount = GetAttackSpeedCustom(target) * event.astransfer
             if stackcount > 250 then
                 stackcount = 250
             end
