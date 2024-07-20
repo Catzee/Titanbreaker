@@ -35566,11 +35566,11 @@
 	    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
 	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
-	    "AbilityCastRange" "600"
+	    "AbilityCastRange" "600 600 750 750"
 	    "AbilityCastRangeBuffer"  "400"
 	    "AbilityCastPoint" "0.01"
 	    "AbilityCooldown" "1.0"

@@ -19928,6 +19928,10 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
         intPerLevel = 0.075
     end
     local percent_bonus = intPerLevel * hero.talents[25] + 0.03 * hero.talents[76]
+    local mindFeeder = hero:GetModifierStackCount("modifier_shadow_cleric_mindstorm_mindbender", nil)
+    if mindFeeder > 0 and GetLevelOfAbility(hero, "shadow1") >= 5 then
+        percent_bonus = percent_bonus + 0.05 * mindFeeder
+    end
     if hero:GetPrimaryAttribute() == 2 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus
     end
