@@ -4891,8 +4891,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     if event.isdot then
         local brawler3 = caster:FindAbilityByName("Concussive_Blow")
-        if brawler3 and brawler3:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster:GetIncreasedAttackSpeed(false))
+        local attackSpeedForBrawler3 = GetAttackSpeedCustom(caster)
+        if brawler3 and brawler3:GetLevel() >= 4 and attackSpeedForBrawler3 > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * attackSpeedForBrawler3)
         end
     end
     if caster.consecutive_crits and caster.consecutive_crits >= 2 then --we had 2 previous crits, this is the 3rd crit
