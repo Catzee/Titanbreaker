@@ -56499,11 +56499,12 @@
         	"modifier_str_dk"
         	{
         		"Passive"			"0"
-        		"IsHidden"			"1"
+        		"IsHidden"			"0"
         		"IsDebuff"			"0"
         		"IsPurgable"		"1"
         		"IsBuff"			"1"
-        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+        		"TextureName"		"weaver_the_swarm"
+				
         		"Properties"
 			    {
 			        "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%str" 
@@ -56630,12 +56631,13 @@
 			
 				"OnAttackLanded"
 				{	
-					"ApplyModifier"
-		   			{
-		   				"ModifierName"	"modifier_str_dk"
-		   				"Target" 		"CASTER"
-		   				"Duration"		"%strdur"
-		   			}
+					"RunScript"
+					{
+					    "ScriptFile"    "game_mechanics.lua"
+					    "Function"      "InfestedWoundWormAttackBuff"
+						"duration"		"%strdur"
+						"maxstacks"			"35"
+					}
 					"RunScript"
 					{
 					    "ScriptFile"    "game_mechanics.lua"

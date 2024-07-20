@@ -31386,3 +31386,12 @@ function InfestedWoundDamageReduction(event)
 
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_dk_tank_def", { duration = event.buffduration })
 end
+
+function InfestedWoundWormAttackBuff(event)
+    local hero = event.attacker:GetOwnerEntity()
+    local modifier = event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_str_dk", { duration = event.duration })
+
+    if(modifier and modifier:GetStackCount() < event.maxstacks) then
+        modifier:IncrementStackCount()
+    end
+end
