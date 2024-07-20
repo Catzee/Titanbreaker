@@ -31385,14 +31385,24 @@ function InfestedWoundDamageReduction(event)
     local innerCd = GetInnerCooldownFactor(event.caster) * event.innercd
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_infested_wound_reduction_inner_cd", { duration = innerCd })
 
-    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_dk_tank_def", { duration = event.buffduration })
+    ApplyBuff({
+        caster = event.caster,
+        target = event.caster,
+        buff = "modifier_dk_tank_def",
+        ability = event.ability,
+        dur = event.buffduration
+    })
 end
 
 function InfestedWoundWormAttackBuff(event)
     local hero = event.attacker:GetOwnerEntity()
-    local modifier = event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_str_dk", { duration = event.duration })
 
-    if(modifier and modifier:GetStackCount() < event.maxstacks) then
-        modifier:IncrementStackCount()
-    end
+    ApplyBuffStack({
+        caster = hero,
+        target = hero,
+        dur = event.duration,
+        buff = "modifier_str_dk",
+        ability = event.ability,
+        max = event.maxstacks
+    })
 end
