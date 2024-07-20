@@ -26264,6 +26264,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_phantomShade") then
         factor = factor * 0.25
     end
+    if caster:HasModifier("modifier_soulwarden_shield") then
+        factor = factor * 0.25
+    end
     if caster.talents then
         if attacker then
             if caster.talents[106] and caster.talents[106] > 0 and caster:HasModifier("modifier_guardianshield") then
@@ -30255,7 +30258,7 @@ function SoulwardenTotemShield(event)
     local pos = event.ability:GetCursorPosition()
     local range = event.ability:GetSpecialValueFor("damage_reduction_range")
     local allies = FindNearbyAllies(caster, pos, range)
-    --print(#allies, pos, range)
+
     for _, ally in pairs(allies) do
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
     end
