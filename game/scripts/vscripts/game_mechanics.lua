@@ -5294,7 +5294,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_dfe", ability = caster.combat_system_ability})
             end
             if caster:HasModifier("modifier_dfe") then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[127])
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[127])
             end
         end
         if caster.talents[46] and caster.talents[46] > 0 and caster:HasModifier("modifier_bloodwolf_buff") then
