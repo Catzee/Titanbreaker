@@ -1216,7 +1216,7 @@
 						<Image class="RunewordImage" src="file://{images}/spellicons/lone_druid_spirit_bear.png"  style="border-radius: 20px;"/>
 						<Panel  class="TableCol" >
 							<Label class="WeaponStats" text="Beast Within" style="font-size: 18px; color:gold; horizontal-align: left;" />
-							<Label class="WeaponStats" text="Whenever you deal Damage with a Summon or Companion, restore a percentage of max Resource. Inner cooldown 0.1 secs." style="font-size: 16px; color:white; height: 40px;" />
+							<Label class="WeaponStats" text="Whenever you deal Damage with a Summon or Companion, restore a percentage of max Resource. Inner cooldown 0.25 secs." style="font-size: 16px; color:white; height: 40px;" />
 						</Panel>
 					</Panel>
 					<Panel  class="TableRow">
