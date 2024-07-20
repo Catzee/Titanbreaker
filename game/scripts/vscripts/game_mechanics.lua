@@ -21483,34 +21483,6 @@ function PassiveStatCalculation(event)
     --    hero:SetModifierStackCount(buff, ability, realBaseStats[ARM] - armorCap)
     --end
 
-    --update new UI
-    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    if isUpdateTickEvery5secs then
-        CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
-            id = hero:GetPlayerID(), 
-            str = math.floor(realBaseStats[STR]), 
-            agi = math.floor(realBaseStats[AGI]), 
-            int = math.floor(realBaseStats[INT]), 
-            level = hero.level, 
-            levelPercentage = hero.levelPercentage,
-            maxHpFromStr = maxHpBonusFromStr,
-            --physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
-            blockFromStr = GetDamageBlockFromStrength(realBaseStats[STR]),
-            block = GetDamageBlock(hero),
-            regenFromStr = GetHealthRegenFromStrength(realBaseStats[STR]),
-            attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
-            armorFromAgi = armorFromAgi,
-            criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
-            manaFromInt = manaFromInt,
-            abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
-            spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
-            resourceType = hero.resourcesystem,
-            spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
-            damageReduction = GetTotalDamageTakenFactor(hero, nil),
-            attackSpeed = realBaseStats[AS]
-        })
-    end
-
     --now we have calculated all basic stats, lets apply them!
     for i = 4, totalAttributes do --str int agi already applied
         local buff = GetStatBuffByAttribute(i)
@@ -21968,6 +21940,33 @@ function PassiveStatCalculation(event)
     end
     if isUpdateTickEvery10secs then
         ProcsEvery10Seconds(hero)
+    end
+
+    --update new UI (calculate it after all things done)
+    if isUpdateTickEvery5secs then
+        CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
+            id = hero:GetPlayerID(), 
+            str = math.floor(realBaseStats[STR]), 
+            agi = math.floor(realBaseStats[AGI]), 
+            int = math.floor(realBaseStats[INT]), 
+            level = hero.level, 
+            levelPercentage = hero.levelPercentage,
+            maxHpFromStr = maxHpBonusFromStr,
+            --physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
+            blockFromStr = GetDamageBlockFromStrength(realBaseStats[STR]),
+            block = GetDamageBlock(hero),
+            regenFromStr = GetHealthRegenFromStrength(realBaseStats[STR]),
+            attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
+            armorFromAgi = armorFromAgi,
+            criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
+            manaFromInt = manaFromInt,
+            abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
+            spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
+            resourceType = hero.resourcesystem,
+            spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
+            damageReduction = GetTotalDamageTakenFactor(hero, nil),
+            attackSpeed = GetAttackSpeedCustom(hero) * 100
+        })
     end
 end
 
