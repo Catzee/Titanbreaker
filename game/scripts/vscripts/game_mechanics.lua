@@ -8186,12 +8186,12 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + 0.03 * caster:GetModifierStackCount("modifier_talent_tunnel", nil) * caster.talents[165]
 
         if caster.talents[119] and caster.talents[119] > 0 then
-            local factor = 0.005
+            local factor = 0.5
             if caster:HasModifier("modifier_stormgiant") then
                 factor = factor * 2
             end
-            local passiveASBonus = caster:GetAttackSpeed(true) * 100 - 100
-            local bonus = passiveASBonus * factor
+
+            local bonus = GetAttackSpeedCustom(caster) * factor
             if bonus > 0 then
                 speedbonus = speedbonus + bonus
             end
