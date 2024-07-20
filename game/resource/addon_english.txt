@@ -711,8 +711,8 @@
 		"DOTA_Tooltip_Ability_item_int2_bonus_stat1"	"Intellect: +"
 
 		"DOTA_Tooltip_Ability_item_int3"  "<font color=\"#32cd32\">Staff of Wizardry"  
+		"DOTA_Tooltip_Ability_item_int3_Description"  "Spellstorm: + %bonus_stat2%%% Spellhaste (Unique Effect)" 
 		"DOTA_Tooltip_Ability_item_int3_bonus_stat1"	"Intellect: +"
-		"DOTA_Tooltip_Ability_item_int3_bonus_stat2"	"%Spellhaste: +"
 
 		"DOTA_Tooltip_Ability_item_all1"  "Circlet of Nobility"  
 		"DOTA_Tooltip_Ability_item_all1_bonus_stat1"	"All Attributes: +"
@@ -1068,10 +1068,9 @@
 		"DOTA_Tooltip_Ability_item_active5_Lore" "Once crafted by Zeus himself."
 
 		"DOTA_Tooltip_Ability_item_active5up"  "<font color=\"#ff69b4\">Fist of Thunder"  
-		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 50%% Spellhaste for 15 secs."
+		"DOTA_Tooltip_Ability_item_active5up_Description"  "<h1>Call of Thunder</h1>Double the Spellpower from this item and gain additional 50%% Spellhaste for 15 secs.\nSpellstorm: + %bonus_stat3%%% Spellhaste (Unique Effect)"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_active5up_bonus_stat2"	"Spellpower: +"
-		"DOTA_Tooltip_Ability_item_active5up_bonus_stat3"	"%Spellhaste: "
 		"DOTA_Tooltip_modifier_active5up_haste"                                           "Fist of Thunder"
 		"DOTA_Tooltip_modifier_active5up_haste_Description"                               " "
 
@@ -3029,7 +3028,7 @@
 		"DOTA_Tooltip_Ability_item_curseblade_bonus_stat3"	"Spellpower: +"
 
 		"DOTA_Tooltip_Ability_item_hasteproc"  "<font color=\"#ff8c00\">Arcane Stormfury"  
-		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "Cast Storm: + 75%% Spellhaste (Unique Effect)\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
+		"DOTA_Tooltip_Ability_item_hasteproc_Description"  "Spellstorm: + 75%% Spellhaste (Unique Effect)\nWhenever you cast a spell, you have a chance to gain additional Spell Haste and Bonus Intellect."
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat1"	"Intellect: +"
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat2"	"%Proc Spell Haste: "
 		"DOTA_Tooltip_Ability_item_hasteproc_bonus_stat3"	"%Proc Chance: "

@@ -8046,26 +8046,8 @@ function GetSpellhaste( caster, event )
     local mods = caster:GetModifierCount()-1
     for i=0, mods do -- check here if the buff is not unique, for example like multiple items in inventory
         local name = caster:GetModifierNameByIndex(i)
-        if name == "modifier_item_int3" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_active5up" then
-            speedbonus = speedbonus + 0.5
-        end
-        if name == "modifier_item_hasteproc" then
-            speedbonus = speedbonus + 0.75
-        end
         if name == "modifier_activemage" then
             speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_itemhastebow" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_hunterbow" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_hunterbow2" then
-            speedbonus = speedbonus + 0.5
         end
         if name == "modifier_spellhaste_50" then
             speedbonus = speedbonus + 1
@@ -8076,19 +8058,19 @@ function GetSpellhaste( caster, event )
         if name == "modifier_as_aura_dragon" then
             speedbonus = speedbonus + 0.5
         end
-        if name == "modifier_item_bloodlust" then
+        if name == "modifier_item_bloodlust" then -- modifier not stacking with itself
             speedbonus = speedbonus + 0.75
         end
-        if name == "modifier_item_bloodlust_2" then
+        if name == "modifier_item_bloodlust_2" then -- modifier not stacking with itself
             speedbonus = speedbonus + 1.5
         end
-        if name == "modifier_item_agihaste_2" or name == "modifier_item_agihaste" then
+        if name == "modifier_item_agihaste_2" or name == "modifier_item_agihaste" then -- modifier not stacking with itself
             speedbonus = speedbonus + 0.0075 * GetAgilityCustom(caster)
         end
-        if name == "modifier_whiterobe2" then
+        if name == "modifier_whiterobe2" then -- modifier not stacking with itself
             speedbonus = speedbonus + GetStrengthCustom(caster) / 100
         end
-        if name == "modifier_whiterobe" then
+        if name == "modifier_whiterobe" then -- modifier not stacking with itself
             speedbonus = speedbonus + GetStrengthCustom(caster) / 200
         end
     end
@@ -8111,8 +8093,20 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + 1.5
     elseif caster:HasModifier("modifier_item_spellhaste_2") then
         speedbonus = speedbonus + 1
+    elseif caster:HasModifier("modifier_item_hasteproc") then
+        speedbonus = speedbonus + 0.75
     elseif caster:HasModifier("modifier_itemhaste20") then
         speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_item_hunterbow2") then
+        speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_item_active5up") then
+        speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_itemhastebow") then
+        speedbonus = speedbonus + 0.25
+    elseif caster:HasModifier("modifier_item_int3") then
+        speedbonus = speedbonus + 0.25
+    elseif caster:HasModifier("modifier_item_hunterbow") then
+        speedbonus = speedbonus + 0.25
     end
 
     if caster:HasModifier("modifier_hasteproc25") then
