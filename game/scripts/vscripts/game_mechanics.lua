@@ -5824,8 +5824,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
     local fury_as_abil = caster:FindAbilityByName("fury2")
-    if fury_as_abil and fury_as_abil:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetIncreasedAttackSpeed(false))
+    local attackSpeedForFury2 = GetAttackSpeedCustom(caster)
+    if fury_as_abil and fury_as_abil:GetLevel() >= 4 and attackSpeedForFury2 > 0 then
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * attackSpeedForFury2)
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
