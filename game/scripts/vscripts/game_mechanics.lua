@@ -1240,8 +1240,9 @@ function DamageUnit( event )
 	    	eledmg_bonus = eledmg_bonus + 150
 	    end
         local wind5 = caster:FindAbilityByName("wind5")
-        if wind5 and wind5:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
-            eledmg_bonus = eledmg_bonus + 100 * caster:GetIncreasedAttackSpeed(false)
+        local attackSpeedForWind5 = GetAttackSpeedCustom(caster)
+        if wind5 and wind5:GetLevel() >= 4 and attackSpeedForWind5 > 0 then
+            eledmg_bonus = eledmg_bonus + 100 * attackSpeedForWind5
         end
         if caster:HasModifier("modifier_pathbuff_062") then
             eledmg_bonus = eledmg_bonus + 400
@@ -21942,7 +21943,7 @@ function PassiveStatCalculation(event)
         ProcsEvery10Seconds(hero)
     end
 
-    --update new UI (calculate it after all things done)
+    --update new UI (send it after all things done)
     if isUpdateTickEvery5secs then
         CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
             id = hero:GetPlayerID(), 
