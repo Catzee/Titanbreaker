@@ -5827,7 +5827,8 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + caster:Script_GetMagicalArmorValue(false, nil))
+        local spellResToDmg = math.min(0.25, caster:Script_GetMagicalArmorValue(false, nil))
+        multiplicative_bonus = multiplicative_bonus * (1 + spellResToDmg)
     end
     if caster:HasModifier("item_mother_of_dragons") then
         multiplicative_bonus = multiplicative_bonus * 1.15
