@@ -716,7 +716,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 	if attribute == " % Balance of Power" then
 		return 0.04
 	end
-	if attribute == " % Supercharge" then
+	if attribute == " Supercharge" then
 		return 0.03
 	end
 	if attribute == " % Berserker" then
