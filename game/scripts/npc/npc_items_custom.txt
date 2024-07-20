@@ -36985,7 +36985,7 @@
 	{
 	    "ID"           "4444"
 	    "BaseClass"    "item_datadriven"
-	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 	    "AbilityTextureName" "item_safety_bubble"
 	    "Model" 		"models/props_gameplay/treasure_chest001.vmdl"
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
@@ -36997,9 +36997,9 @@
 
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "75"
+	    "AbilityCooldown"         "20"
 
-	    "AbilityCastRange"        "600"
+	    "AbilityCastRange"        "900"
 	    "AbilityCastRangeBuffer"  "250"
 
 	    "ItemCost"     "50000"
@@ -37047,11 +37047,22 @@
 				"EffectName"	"DOTA_Item.DiffusalBlade.Activate"
 				"Target" 		"CASTER"
 			}
+	    	"FireSound"
+			{
+				"EffectName"	"DOTA_Item.DiffusalBlade.Activate"
+				"Target" 		"TARGET"
+			}
         	"ApplyModifier"
         	{
         		"ModifierName"	"modifier_talisman2"
         		"Target" 		"CASTER"
-        		"Duration"		"1"
+        		"Duration"		"0.5"
+        	}
+        	"ApplyModifier"
+        	{
+        		"ModifierName"	"modifier_talisman2"
+        		"Target" 		"TARGET"
+        		"Duration"		"0.5"
         	}
 	    }
 
@@ -37077,17 +37088,18 @@
 			    "IsDebuff"         "0"
 			    "IsHidden"         "1"
 			    "IsPurgable"       "0"
+	            "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 
 			    "EffectName"       "particles/items_fx/black_king_bar_avatar.vpcf"
 			    "EffectAttachType"  "follow_origin"
 
-			    "OnDestroy"
+			    "OnCreated"
 			    {
 			    	"RunScript"
 		        	{
 		        		"ScriptFile"    "game_mechanics.lua"
 					    "Function"      "PurgeUnit"
-					    "trinket"			"1"
+					    "trinket"		"1"
 		        	}
 			    }
 	    	}
