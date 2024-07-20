@@ -2993,7 +2993,7 @@ function DamageUnit( event )
             if target and target.isboss and caster.talents[179] and caster.talents[179] > 0 then
                 local buff = "modifier_talent_duelist"
                 local dot_dur = 10
-                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1}
+                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1, max = caster.talents[179] * 25}
                 ApplyBuffStack(myevent)
             end
         end
@@ -4760,10 +4760,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_critmass") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.5 * caster.talents[122])
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[122])
     end
     if caster:HasModifier("modifier_savagery") then
-        local bonus = 0.3 * caster.talents[131]
+        local bonus = 0.05 + (caster.talents[131] * 0.15)
         if is_pet_dmg then
             bonus = bonus * 2
         end
@@ -5294,7 +5294,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_dfe", ability = caster.combat_system_ability})
             end
             if caster:HasModifier("modifier_dfe") then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[127])
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[127])
             end
         end
         if caster.talents[46] and caster.talents[46] > 0 and caster:HasModifier("modifier_bloodwolf_buff") then

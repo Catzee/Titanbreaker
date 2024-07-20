@@ -227,19 +227,19 @@
 
 
 		"talent121"								"Giant Growth: Whenever a Boss is killed, your Primary Attribute is increased by 0.5% / 0.75% / 1% for the rest of the game, stacking multiple times."
-		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 50% / 100% / 150% for 5 secs. Can not proc while active."
+		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 25% / 50% / 75% for 5 secs. Can not proc while active."
 		"talent123"								"Growing Pains: Whenever you land an Auto Attack Critical Strike, gain 50 / 100 / 150 Auto Attack Damage for 5 secs, stacking 100 times and whenever you die, gain 3% / 5% / 7% Spell Resistance and 3% / 5% / 7% max Health, capped at 60%."
 
 		"talent124"								"Lunar Eclipse: Gain 3 Lunar Eclipse stacks every 5 secs that get consumed when dealing Damage / Healing with an Ability, stacking up to 15 times. While you have Lunar Eclipse stacks, Ability Critical Strike Damage and Critical Healing is increased by 35% / 70% / 105%."
 		"talent125"								"Butterfly Effect: When you deal Damage with your first Ability, your next Damage instance with your second Ability deals Bonus Damage. When this Bonus Damage occurs, your next Damage instance with your third Ability deals Bonus Damage. This repeats until you reach your 6th Ability. Whenever you deal Damage with your first Ability, everything is reset. The initial Damage Bonus is 10% / 20% / 30% and it doubles on each jump. Capped at level 3."
 		"talent126"								"Starfire: All Ability Damage is increased by 5% / 10% / 15% per Elemental Damage type in the Damage instance. This Damage Bonus doubles on Critical Strikes, Pure Damage and AOE Damage instances, stacking multiplicatively."
 
-		"talent127"								"Dragonfury: Increases the effectiveness of all Elemental Damage Bonuses by 33% / 66% / 100%. Whenever you cause 2 or more Elemental Damage Types in the same Damage instance (excluding Physical), increase all Ability Damage by 25% / 50% / 75% for 5 secs."
+		"talent127"								"Dragonfury: Increases the effectiveness of all Elemental Damage Bonuses by 33% / 66% / 100%. Whenever you cause 2 or more Elemental Damage Types in the same Damage instance (excluding Physical), increase all Ability Damage by 15% / 30% / 45% for 5 secs."
 		"talent128"								"Cataclysm: Gain 1 / 1.5 / 2 Health per Intellect and whenever you deal AOE Damage, add 100% / 200% / 300% of your Strength, Agility, Intellect and Spellpower to its base Damage."
 		"talent129"								"Song of Ice and Fire: After casting your first Ability, your next Ability Damage instance with your second Ability has a 33% / 66% / 100% chance to also be of type Fire and to deal 100% increased Damage and restore 2 / 4 / 6 Mana. After casting your second Ability, your next Ability Damage instance with your first Ability has a 33% / 66% / 100% chance to also be of type Frost and to deal 100% increased Damage and restore 2 / 4 / 6 Mana. Capped at level 3." //"Scales of the Chimera: After casting an Ability with cast time, increase all Damage by 5% / 7.5% / 10% and Spell Resistance by 5 / 7.5 / 10 for 5 secs, stacking 3 times."
 
 		"talent130"								"Savagery: Increase all Ability Damage by 20% / 40% / 60%, but pay 1% of max Health per Damage instance. Only affects Abilities with a base cooldown of 5 secs or less. You can not die from this."
-		"talent131"								"Lycanthrope: After having caused a Healing, Ability, and Auto Attack Critical Strike, increase all Damage by 30% / 60% / 90% for 10 secs. Twice as effective for Summons and Companions. Can not proc while active." // "Leader of the Pact: Whenever you deal Single Target Damage with an Ability, add 50% / 100% / 150% of your Strength plus Agility to its base Damage. Twice as effective for Damage caused by Summons and Companions."
+		"talent131"								"Lycanthrope: After having caused a Healing, Ability, and Auto Attack Critical Strike, increase all Damage by 20% / 35% / 50% for 10 secs. Twice as effective for Summons and Companions. Can not proc while active." // "Leader of the Pact: Whenever you deal Single Target Damage with an Ability, add 50% / 100% / 150% of your Strength plus Agility to its base Damage. Twice as effective for Damage caused by Summons and Companions."
 		"talent132"								"Primal Power: Each first row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels. Can affect at most 3 Paths. Capped at level 3."//All Abilities that are max Level have their Damage and Healing increased by 15% / 30% / 45%."
 
 		"talent133"								"Mimesis: Whenever you silence an enemy, strike them for 500% / 1000% / 1500% of your Attack Damage plus Spellpower as Shadow Chaos Damage, stun them for 1 / 2 / 3 secs and Heal yourself for 5% / 10% / 15% of max Health, with an inner cooldown of 5 secs."
@@ -316,7 +316,7 @@
 		"talent176"								"Slash and Burn: When you deal Physical Ability Damage with no other Elemental Type involved, there is a 33% / 66% / 100% chance for the Damage being increased by 25% and being also of type Fire.\nThis applies before other Elemental Damage altering effects."
 		"talent177"								"Stampede: Summon 3 Jungle Beasts for 10 secs when casting an Ability with a base cooldown of 20 secs or higher, dealing 100% / 200% / 300% of Attack Damage and Spellpower as Nature Damage.\nFor every Jungle Beast active, gain 5% / 10% / 15% increased Summon Damage. Max 9 Jungle Beasts."
 		"talent178"								"Aspect of the Jungle: + 50 / 100 / 150 Agility, + 50 / 100 / 150 Attack Speed and + 5% / 10% / 15% Movement Speed."
-		"talent179"								"Duelist: Dealing Damage to a Boss increases your Damage by 1% / 1.5% / 2% for 10 secs, stacking."
+		"talent179"								"Duelist: Dealing Damage to a Boss increases your Damage by 1% / 1.5% / 2% for 10 secs, stacking up to 25% / 50% / 75%."
 		"talent180"								"Aspect of the Snake: + 50 / 100 / 150 Intellect, + 50 / 100 / 150 Mana and + 5% / 10% / 15% Spell Resistance."
 		//"talent180"								"!Lord of Snakes: Applying a debuff has a 5% chance to summon a Jungle Snake, dealing Nature Damage equal to 100% / 200% / 300% of your Attack Damage and Spellpower for 10 secs (max 10 Snakes)."
 

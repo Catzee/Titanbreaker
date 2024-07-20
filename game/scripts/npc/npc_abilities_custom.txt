@@ -74731,7 +74731,7 @@
 	            "IsBuff"			"1"
 	            "IsDebuff"			"0"
 	            "IsStunDebuff"		"0"
-	            "TextureName"	"troll_warlord_rampage"
+	            "TextureName"	"fix/179"
 	        }
 	        "modifier_agility_multi"
 	        {
