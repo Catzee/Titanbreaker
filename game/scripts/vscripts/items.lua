@@ -708,7 +708,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 0.2
 	end
 	if attribute == " % Conjurer" then
-		return 0.02
+		return 0.1
 	end
 	if attribute == " % Hunter" then
 		return 1
@@ -716,7 +716,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 	if attribute == " % Balance of Power" then
 		return 0.04
 	end
-	if attribute == " % Supercharge" then
+	if attribute == " Supercharge" then
 		return 0.03
 	end
 	if attribute == " % Berserker" then
@@ -735,7 +735,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 0.15
 	end
 	if attribute == " % Beast Within" then
-		return 0.5
+		return 0.1
 	end
 	if attribute == " % Shivering Cold" then
 		return 0.5

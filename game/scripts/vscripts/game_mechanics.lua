@@ -2993,7 +2993,7 @@ function DamageUnit( event )
             if target and target.isboss and caster.talents[179] and caster.talents[179] > 0 then
                 local buff = "modifier_talent_duelist"
                 local dot_dur = 10
-                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1}
+                local myevent = { caster = caster, target = caster, dur = dot_dur, buff = buff, ability = passive_ability, addstacks = 1, max = caster.talents[179] * 25}
                 ApplyBuffStack(myevent)
             end
         end
@@ -3376,7 +3376,7 @@ function GetSummonBonusDamage( event, caster, empower_stacks )
         return value
     end
 
-    if(caster.resourcesystem == nil or caster.resourcesystem == 0) then
+    if(caster.resourcesystem == nil or caster.resourcesystem == 0) and math.random(1,100) <= 25 then
         value = value + caster:GetMana() * GetConjurerStat(caster) / 10000
     end
     
@@ -4577,7 +4577,11 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         hp_percent = target:GetHealth() / target:GetMaxHealth()
     end
     if caster.talents and caster.talents[172] > 0 then
-        multiplicative_bonus = multiplicative_bonus * (1 + caster:GetHealthRegen() * 0.0003 * caster.talents[172])
+        local bonus = caster:GetHealthRegen() * 0.0003 * caster.talents[172]
+        if bonus > 1.5 then
+            bonus = 1.5
+        end
+        multiplicative_bonus = multiplicative_bonus * (1 + bonus)
     end
     if process_procs and caster.talents and ability then
         if event.bloodwolf then
@@ -4760,10 +4764,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_critmass") then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.5 * caster.talents[122])
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[122])
     end
     if caster:HasModifier("modifier_savagery") then
-        local bonus = 0.3 * caster.talents[131]
+        local bonus = 0.05 + (caster.talents[131] * 0.15)
         if is_pet_dmg then
             bonus = bonus * 2
         end
@@ -5294,7 +5298,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_dfe", ability = caster.combat_system_ability})
             end
             if caster:HasModifier("modifier_dfe") then
-                multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[127])
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[127])
             end
         end
         if caster.talents[46] and caster.talents[46] > 0 and caster:HasModifier("modifier_bloodwolf_buff") then
@@ -5823,7 +5827,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 1.5 * caster:Script_GetMagicalArmorValue(false, nil))
+        multiplicative_bonus = multiplicative_bonus * (1 + caster:Script_GetMagicalArmorValue(false, nil))
     end
     if caster:HasModifier("item_mother_of_dragons") then
         multiplicative_bonus = multiplicative_bonus * 1.15
@@ -8042,26 +8046,8 @@ function GetSpellhaste( caster, event )
     local mods = caster:GetModifierCount()-1
     for i=0, mods do -- check here if the buff is not unique, for example like multiple items in inventory
         local name = caster:GetModifierNameByIndex(i)
-        if name == "modifier_item_int3" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_active5up" then
-            speedbonus = speedbonus + 0.5
-        end
-        if name == "modifier_item_hasteproc" then
-            speedbonus = speedbonus + 0.75
-        end
         if name == "modifier_activemage" then
             speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_itemhastebow" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_hunterbow" then
-            speedbonus = speedbonus + 0.25
-        end
-        if name == "modifier_item_hunterbow2" then
-            speedbonus = speedbonus + 0.5
         end
         if name == "modifier_spellhaste_50" then
             speedbonus = speedbonus + 1
@@ -8072,19 +8058,19 @@ function GetSpellhaste( caster, event )
         if name == "modifier_as_aura_dragon" then
             speedbonus = speedbonus + 0.5
         end
-        if name == "modifier_item_bloodlust" then
+        if name == "modifier_item_bloodlust" then -- modifier not stacking with itself
             speedbonus = speedbonus + 0.75
         end
-        if name == "modifier_item_bloodlust_2" then
+        if name == "modifier_item_bloodlust_2" then -- modifier not stacking with itself
             speedbonus = speedbonus + 1.5
         end
-        if name == "modifier_item_agihaste_2" or name == "modifier_item_agihaste" then
+        if name == "modifier_item_agihaste_2" or name == "modifier_item_agihaste" then -- modifier not stacking with itself
             speedbonus = speedbonus + 0.0075 * GetAgilityCustom(caster)
         end
-        if name == "modifier_whiterobe2" then
+        if name == "modifier_whiterobe2" then -- modifier not stacking with itself
             speedbonus = speedbonus + GetStrengthCustom(caster) / 100
         end
-        if name == "modifier_whiterobe" then
+        if name == "modifier_whiterobe" then -- modifier not stacking with itself
             speedbonus = speedbonus + GetStrengthCustom(caster) / 200
         end
     end
@@ -8107,8 +8093,20 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + 1.5
     elseif caster:HasModifier("modifier_item_spellhaste_2") then
         speedbonus = speedbonus + 1
+    elseif caster:HasModifier("modifier_item_hasteproc") then
+        speedbonus = speedbonus + 0.75
     elseif caster:HasModifier("modifier_itemhaste20") then
         speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_item_hunterbow2") then
+        speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_item_active5up") then
+        speedbonus = speedbonus + 0.5
+    elseif caster:HasModifier("modifier_itemhastebow") then
+        speedbonus = speedbonus + 0.25
+    elseif caster:HasModifier("modifier_item_int3") then
+        speedbonus = speedbonus + 0.25
+    elseif caster:HasModifier("modifier_item_hunterbow") then
+        speedbonus = speedbonus + 0.25
     end
 
     if caster:HasModifier("modifier_hasteproc25") then
@@ -14626,7 +14624,7 @@ function OnSummonDamage(caster, target, ability)
     if GetBeastWithinStat(caster) > 0 and not caster.bwicd then
         RestoreResource({caster = caster, amount = GetBeastWithinStat(caster)})
         caster.bwicd = true
-        Timers:CreateTimer(0.1, function()
+        Timers:CreateTimer(0.25, function()
             caster.bwicd = false
         end)
     end
@@ -19930,6 +19928,10 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
         intPerLevel = 0.075
     end
     local percent_bonus = intPerLevel * hero.talents[25] + 0.03 * hero.talents[76]
+    local mindFeeder = hero:GetModifierStackCount("modifier_shadow_cleric_mindstorm_mindbender", nil)
+    if mindFeeder > 0 and GetLevelOfAbility(hero, "shadow1") >= 5 then
+        percent_bonus = percent_bonus + 0.05 * mindFeeder
+    end
     if hero:GetPrimaryAttribute() == 2 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus
     end
@@ -20316,7 +20318,7 @@ function GetHealthRegeneration(hero, strength, agility)
         value = value + maxHealth * 0.01
     end
     if hero:HasModifier("modifier_ox_aura_hp") and hero:FindAbilityByName("brew6") then
-        value = value + maxHealth * 0.05
+        value = value + maxHealth * 0.1
     end
     if hero:HasModifier("modifier_item_hpreg1") then
         value = value + 3
@@ -21651,7 +21653,7 @@ function PassiveStatCalculation(event)
             end
         end
 
-        if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147) then
+        if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147 or i == 163 or i == 164 or i == 165) then
             new_talent_value = new_talent_value + hero.talents[132]
             primalPowerBonusCount = primalPowerBonusCount + 1
         end
@@ -26067,7 +26069,7 @@ function HealProcs(caster, target, ability, healingAmount, isdot)
         AddEnergy(myevent)
     end
     if caster == target and GetLevelOfAbility(caster, "Infested_Wound") >= 4 then
-        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 3})
+        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2})
     end
     if (not isdot) and target and target.talents then
         if target:HasModifier("modifier_rotting") then
@@ -26262,6 +26264,9 @@ function GetTotalDamageTakenFactor(caster, attacker)
         factor = factor * 0.5
     end
     if caster:HasModifier("modifier_phantomShade") then
+        factor = factor * 0.25
+    end
+    if caster:HasModifier("modifier_soulwarden_shield") then
         factor = factor * 0.25
     end
     if caster.talents then
@@ -30255,7 +30260,7 @@ function SoulwardenTotemShield(event)
     local pos = event.ability:GetCursorPosition()
     local range = event.ability:GetSpecialValueFor("damage_reduction_range")
     local allies = FindNearbyAllies(caster, pos, range)
-    --print(#allies, pos, range)
+
     for _, ally in pairs(allies) do
         ApplyBuff({caster = caster, target = ally, dur = event.duration, buff = "modifier_soulwarden_shield", ability = event.ability})
     end

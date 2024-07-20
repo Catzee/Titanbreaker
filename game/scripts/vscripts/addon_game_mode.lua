@@ -12188,9 +12188,6 @@ function COverthrowGameMode:FilterDamage( filterTable )
     if victim:HasModifier("modifier_rotdk") then
       newdamage = newdamage * 0.95
     end
-    if victim:HasModifier("modifier_soulwarden_shield") then
-      newdamage = newdamage * 0.25
-    end
     if victim:HasModifier("modifier_prayer_shield") then
       newdamage = newdamage * 0.5
     end

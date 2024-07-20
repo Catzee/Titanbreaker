@@ -35566,11 +35566,11 @@
 	    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 
 	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "4"
+	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
 	    "LevelsBetweenUpgrades"  "0"
 
-	    "AbilityCastRange" "600"
+	    "AbilityCastRange" "600 600 750 750"
 	    "AbilityCastRangeBuffer"  "400"
 	    "AbilityCastPoint" "0.01"
 	    "AbilityCooldown" "1.0"
@@ -56331,7 +56331,7 @@
 		    "02"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "str" "0 0 5 5"
+		        "str" "0 0 3 3"
 		    }
 		    "03"
 		    { 
@@ -56351,7 +56351,7 @@
 		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "buffduration" "4"
+		        "buffduration" "3"
 		    }
 		    "07"
 		    { 
@@ -56475,7 +56475,7 @@
         	
         		"Properties"
         		{
-        		    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "60" 
+        		    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50" 
         		}
         	}
         	"modifier_dk_tank_def"
@@ -56506,7 +56506,7 @@
         		"Properties"
 			    {
 			        "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%str" 
-			        "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "2" 
+			        "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "1" 
 			    }
         	}
 	        "modifier_infested"
@@ -56675,7 +56675,7 @@
 	    //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "0"
-	    "AbilityCooldown"         "10.0"
+	    "AbilityCooldown"         "12 10 10 10"
 	    "AbilityCastRange"        "300"
 	    "AbilityCastRangeBuffer"  "250"
 	    "AbilityDuration"         "0.0"
@@ -74731,7 +74731,7 @@
 	            "IsBuff"			"1"
 	            "IsDebuff"			"0"
 	            "IsStunDebuff"		"0"
-	            "TextureName"	"troll_warlord_rampage"
+	            "TextureName"	"fix/179"
 	        }
 	        "modifier_agility_multi"
 	        {
