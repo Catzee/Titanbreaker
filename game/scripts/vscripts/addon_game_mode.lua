@@ -9512,12 +9512,11 @@ function PVEAggroAdd(event)
         tank_ability = source:FindAbilityByName("terror1")
         levelThreshold = 2
       end
-      if source.super_aggro_tank_monk then
+      if source.super_aggro_tank_monk2 then
         tank_ability = source:FindAbilityByName("brew2")
         levelThreshold = 3
       end
       
-      --print(source.super_aggro_tank_monk)
       if tank_ability then
         level_tank_ability = tank_ability:GetLevel()
       end
@@ -9531,7 +9530,7 @@ function PVEAggroAdd(event)
           aggro_bonus_resist = 1
         end
         local aggro_bonus_hp = 1 + source:GetMaxHealth() / 5000
-        bonus_aggro = aggro_bonus_armor * aggro_bonus_resist * aggro_bonus_hp
+        bonus_aggro = bonus_aggro * aggro_bonus_armor * aggro_bonus_resist * aggro_bonus_hp
         if source.super_aggro_tank_monk and level_tank_ability >= 4 then
          bonus_aggro = bonus_aggro * (1 + 0.01 * GetStrengthCustom(source))
        end
@@ -10777,7 +10776,8 @@ if heroName == "npc_dota_hero_juggernaut" or heroName == "npc_dota_hero_mars" or
     if heroName == "npc_dota_hero_brewmaster" then
         hero.canHaveStagger = true
         hero.bof = hero:FindAbilityByName("brew1")
-        hero.super_aggro_tank_monk = 1
+        hero.super_aggro_tank = 1
+        hero.super_aggro_tank_monk2 = 1
     end
   -- Add the spell
   hero:AddAbility("energy_system"):SetLevel(1)
