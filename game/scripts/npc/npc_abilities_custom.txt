@@ -76620,6 +76620,19 @@
         			}
         		}
 	        }
+	        "modifier_wings_of_liberty"
+	        {
+	            "Passive"			"0"
+	            "IsHidden"			"0"
+	            "IsDebuff"			"0"
+	            "IsStunDebuff"		"0"
+	            "IsPurgable"		"0"
+	            "IsBuff"			"1"
+	            "Properties"
+	            {
+	            	"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "1" 
+	            }
+	        }
 	        "modifier_stoneskin"
 	        {
 	        	"TextureName"	"tiny_craggy_exterior"

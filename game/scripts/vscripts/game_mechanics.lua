@@ -19948,7 +19948,7 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
     return percent_bonus 
 end
 
-function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHealth )
+function GetAttackDamageStaticBonus( hero, realStrength, maxHealth )
     local static_bonus = hero.runeword[6]
     if hero.talents[2] and hero.talents[2] > 0 then
         static_bonus = static_bonus + hero.talents[2] * 25
@@ -19966,14 +19966,6 @@ function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHea
     local unholyFrenzy = hero:GetModifierStackCount("modifier_unholyfrenzy", nil)
     if unholyFrenzy >= 1 then
         static_bonus = static_bonus + unholyFrenzy * 5 * hero.talents[98]
-    end
-    if hero.talents[80] and hero.talents[80] > 0 then
-        local bonusfromas = math.max(0, (GetAttackSpeedCustom(hero) - 5) * 100) * hero.talents[80] --50 * (hero:GetIncreasedAttackSpeed() - 5) * hero.talents[80]
-        --print(realAttackSpeed)
-        --print(bonusfromas)
-        if bonusfromas > 0 then
-            static_bonus = static_bonus + bonusfromas
-        end
     end
     --if hero:HasModifier("modifier_companion") and hero:HasModifier("modifier_item_hunterbow2") then
     --    static_bonus = static_bonus + 150
@@ -21421,7 +21413,7 @@ function PassiveStatCalculation(event)
         ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
         hero:SetModifierStackCount(buff, ability, intStat)
     end
-
+    -- IMPORTANT: Do not calculate here any stats that based on api for dota attributes (for example attack speed)
     --now we can calc real AA and AS and mana and HP, (primary attribute must give aa dmg): order is important! important: need to substract what we already have at the end
     --Mana
     local manaFromInt = GetMaxManaBonusFromInt(hero, realBaseStats[INT])
@@ -21470,7 +21462,7 @@ function PassiveStatCalculation(event)
     realBaseStats[HP] = baseStats[HP] * baseStatsPercentFactor[HP]
     realBaseStatsToApply[HP] = realBaseStats[HP] - hero:GetMaxHealth()
     --AA
-    baseStats[AA] = hero:GetAttackDamage() + realBaseStats[hero:GetPrimaryAttribute()+1] + GetAttackDamageStaticBonus(hero, realBaseStats[AS], realBaseStats[STR], realBaseStats[HP]) --aa dmg needs real AS and str values
+    baseStats[AA] = hero:GetAttackDamage() + realBaseStats[hero:GetPrimaryAttribute()+1] + GetAttackDamageStaticBonus(hero, realBaseStats[STR], realBaseStats[HP]) --aa dmg needs real AS and str values
     baseStatsPercentFactor[AA] = (1 + GetAttackDamagePercentageBonus(hero, baseStatsPercentFactor[HP]))
     realBaseStats[AA] = baseStats[AA] * baseStatsPercentFactor[AA]
     realBaseStatsToApply[AA] = realBaseStats[AA] - hero:GetAttackDamage()
@@ -21918,6 +21910,17 @@ function PassiveStatCalculation(event)
             end
         else
             hero:RemoveModifierByName("modifier_lonedruid")
+        end
+    end
+    -- wings of liberty that requires final attack speed value
+    level = hero.talents[80]
+    if level > 0 then
+        local buff = "modifier_wings_of_liberty"
+        hero:RemoveModifierByName(buff)
+        local value = level * math.max(0, (GetAttackSpeedCustom(hero) * 100) - 500)
+        if value >= 1 then
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
+            hero:SetModifierStackCount(buff, ability, value)
         end
     end
 
