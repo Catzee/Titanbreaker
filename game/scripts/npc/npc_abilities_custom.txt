@@ -97158,6 +97158,12 @@
         				"EffectAttachType"  "attach_hitloc"
         				"Target"            "TARGET"
         			}
+        			"AttachEffect"
+        			{
+        				"EffectName"        "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker.vpcf"
+        				"EffectAttachType"  "follow_origin"
+        				"Target"            "TARGET"
+        			}
         		}
         	
         		"ThinkInterval"  "0.5"
@@ -97170,7 +97176,7 @@
 					    "damage"			"0.0"
 					    "spelldamagefactor"	"0.0"
 					    "attributefactor"	"0.0"
-					    "includeauto"	"110"
+					    "difficultyscale"		"75"
 					    "aoe"	"%radiusaoe"
 					    "targeteffect"	"blood"
 					    "targetpos"	"1"
@@ -119955,12 +119961,12 @@
 	    	"03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "dmg" "500 750 1000"
+		        "dmg" "125 500 1000"
 		    }
 		    "03"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "stun" "2 4 6"
+		        "stun" "0.25 5 7"
 		    }
 		    "03"
 		    { 
@@ -119987,14 +119993,14 @@
         "OnProjectileHitUnit"
         {
         	"DeleteOnHit"	"0"
-        	//"RunScript"
-	    	//{
-	    	//	"ScriptFile"	"game_mechanics.lua"
-	    	//	"Function"		"ApplyBuff"
-	    	//	"dur"			"%stun"
-	    	//	"buff"			"modifier_stunned"
-	    	//	"notself"		"1"
-	    	//}
+        	"RunScript"
+	    	{
+	    		"ScriptFile"	"game_mechanics.lua"
+	    		"Function"		"ApplyBuff"
+	    		"dur"			"%stun"
+	    		"buff"			"modifier_stunned"
+	    		"notself"		"1"
+	    	}
         	"RunScript"
 			{
 			    "ScriptFile"    "game_mechanics.lua"
@@ -120002,7 +120008,7 @@
 			    "damage"			"0.0"
 			    "spelldamagefactor"	"0.0"
 			    "attributefactor"	"0.0"
-			    "includeauto"		"%dmg"
+			    "difficultyscale"		"%dmg"
 			}
 			"FireSound"
 			{

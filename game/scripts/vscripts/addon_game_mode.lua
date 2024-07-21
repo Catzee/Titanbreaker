@@ -1061,6 +1061,8 @@ function Precache( context )
     PrecacheResource( "particle", "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_light_ti_5.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_rot_gold.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_sigil_sun.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker.vpcf", context )
+    
 
             --[[ fxprecatch fxxxx
             PrecacheResource( "particle", "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_sigil_sun.vpcf", context )
@@ -15042,39 +15044,48 @@ end
     COverthrowGameMode.first_boss = unit
     --unit:SetRenderColor(25, 25, 25)
     unit.act = zone
-    local bossHpFactor = 1
+    local boss1HpFactor = 0.75
     if self.jungledifficulty > 1.0 then
-     unit:AddAbility("pve_temple_wolf_armor_strikes")
-     bossHpFactor = 2
-   end
+        unit:AddAbility("pve_wolf_rage")
+        unit:AddAbility("pve_temple_wolf_armor_strikes")
+        boss1HpFactor = 2
+    end
    
-   self:SetTempleStats(unit,scale,200*act_1_dmg_factor,10000 * bossHpFactor,100,0)
+   self:SetTempleStats(unit,scale,200*act_1_dmg_factor,10000 * boss1HpFactor,100,0)
    unit:SetForwardVector(Vector(1,-1,0))
    unit.templeboss_wolf = 1
    unit.unlocktpact1 = true
-   --unit:AddAbility("burningtreeevent"):SetLevel(1)
+   
+    local otherBossHpFactor = 0.65
+    if self.jungledifficulty > 1.0 then
+        otherBossHpFactor = 1
+    end
+
    --boss 2
    unit = CreateUnitByName("temple_wolf_boss_2", b2, true, nil, nil, DOTA_TEAM_BADGUYS )
    unit.act = zone
    if self.jungledifficulty > 1.0 then
      unit:AddAbility("pve_temple_wolf_armor_strikes")
    end
-   self:SetTempleStats(unit,scale,200*act_1_dmg_factor,20000,100,0)
+   self:SetTempleStats(unit,scale,200*act_1_dmg_factor,20000 * otherBossHpFactor,100,0)
    unit.templeboss_wolf = 1
    --boss 3
    unit = CreateUnitByName("temple_wolf_boss_3", b3+Vector(0,100,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+   if self.jungledifficulty > 1 then
+       unit:AddAbility("pve_aoesilence")
+    end
    --unit:AddAbility("pve_temple_spottheweak")
    unit.act = zone
    unit.cannotleavespawnpos = true
    unit.bosslikescaling = true
    unit.isboss = true
-   self:SetTempleStats(unit,scale,30*act_1_dmg_factor,10000,0,0)
+   self:SetTempleStats(unit,scale,30*act_1_dmg_factor,10000 * otherBossHpFactor,0,0)
    --unit:AddAbility("pve_temple_bloodpool"):SetLevel(1)
    --unit:AddAbility("pve_wolf_armor_synergy_1"):SetLevel(1)
    local wolfboss1 = unit
    unit = CreateUnitByName("temple_wolf_boss_3_2", b3+Vector(0,-250,0), true, nil, nil, DOTA_TEAM_BADGUYS )
    unit:AddAbility("pve_affix_shadow_claw"):SetLevel(1)
-   self:SetTempleStats(unit,scale,100*act_1_dmg_factor,10000,100,0)
+   self:SetTempleStats(unit,scale,100*act_1_dmg_factor,10000 * otherBossHpFactor,100,0)
    unit.sharedhealth = wolfboss1
    unit.act_specific_loot_factor = 3
 
@@ -15097,8 +15108,11 @@ end
       bossName = "temple_wolf_boss_4_2"
     end
     unit = CreateUnitByName(bossName, c3+Vector(1600,-1200,0), true, nil, nil, DOTA_TEAM_BADGUYS )
+    if self.jungledifficulty > 1 and GetBossVariation() ~= 2 then
+        unit:AddAbility("pve_generated_spell_wolfclawpurehp")
+    end
     unit.act = zone
-    self:SetTempleStats(unit,scale,220*act_1_dmg_factor,20000,100,0)
+    self:SetTempleStats(unit,scale,220*act_1_dmg_factor,20000 * otherBossHpFactor,100,0)
     unit.templeboss_wolf = 1
     
 

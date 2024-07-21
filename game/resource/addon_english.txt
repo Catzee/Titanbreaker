@@ -4653,7 +4653,7 @@
 		"DOTA_Tooltip_modifier_wolf_rage_Description"                                     "Attack Speed increased but movement lowered."
 
 		"DOTA_Tooltip_ability_pve_temple_bloodpool"                                          "Blood Pools"
-		"DOTA_Tooltip_ability_pve_temple_bloodpool_Description"                              "Summon Blood Pools below each nearby hero, dealing damage periodically after a short delay."
+		"DOTA_Tooltip_ability_pve_temple_bloodpool_Description"                              "Summon Blood Pools below each nearby hero, dealing high Damage periodically after a short delay."
 
 		"DOTA_Tooltip_ability_pve_wolf_armor_synergy_1"                                   "Piercing Strikes"
 		"DOTA_Tooltip_ability_pve_wolf_armor_synergy_1_Description"                       "Lower the target's Armor. Stacks with Piercing Claws."

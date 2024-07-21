@@ -22307,7 +22307,7 @@
 		"AbilityLayout"		"5"
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"pve_wolf_rage"			// Ability 1.
+		//"Ability1"					"pve_wolf_rage"			// Ability 1.
 		"Ability2"					"pve_affix_jumpstomp"			// Ability 2.
 		"Ability3"					"pve_temple_bolt_aoe_claw"			// Ability 3.
 		"Ability4"					"pve_stunaoe_high_cd"			// Ability 4.
@@ -24943,7 +24943,7 @@
 				
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"pve_generated_spell_wolfclawpurehp"			// Ability 1.
+		//"Ability1"					"pve_generated_spell_wolfclawpurehp"			// Ability 1.
 		"Ability2"					"pve_temple_stompingcharge_notrandom"			// Ability 2.
 		"Ability3"					"pve_lowest_aggro_hunt"			// Ability 3.
 		"Ability4"					"pve_aoe_spell_1"			// Ability 4.
@@ -26548,7 +26548,7 @@
 				
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"pve_aoesilence"			// Ability 1.
+		//"Ability1"					"pve_aoesilence"			// Ability 1.
 		"Ability2"					"pve_temple_bloodpool"			// Ability 2.
 		"Ability3"					"pve_wolf_shared_life"			// Ability 3.
 		"Ability4"					"pve_affix_pure_dot" //"pve_crit_high"			// Ability 4.

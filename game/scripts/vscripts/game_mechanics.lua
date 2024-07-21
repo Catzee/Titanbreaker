@@ -6924,7 +6924,6 @@ function PurgeUnit(event)
 
 
 	target:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions)
-    print("Purge " .. target:GetName())
 	-- do the silence
 	if silencepenalty == true then
 		--local damage_table = {}
