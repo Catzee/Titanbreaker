@@ -1240,8 +1240,9 @@ function DamageUnit( event )
 	    	eledmg_bonus = eledmg_bonus + 150
 	    end
         local wind5 = caster:FindAbilityByName("wind5")
-        if wind5 and wind5:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
-            eledmg_bonus = eledmg_bonus + 100 * caster:GetIncreasedAttackSpeed(false)
+        local attackSpeedForWind5 = GetAttackSpeedCustom(caster)
+        if wind5 and wind5:GetLevel() >= 4 and attackSpeedForWind5 > 0 then
+            eledmg_bonus = eledmg_bonus + 100 * attackSpeedForWind5
         end
         if caster:HasModifier("modifier_pathbuff_062") then
             eledmg_bonus = eledmg_bonus + 400
@@ -3597,7 +3598,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         end
         local overheat = GetOverheatStat(caster)
         if wascrit and overheat > 0 then
-            value = value + overheat * 0.01 * caster:GetIncreasedAttackSpeed(false)
+            value = value + overheat * 0.01 * math.max(0, GetAttackSpeedCustom(caster))
         end
         if caster:HasModifier("modifier_pathbuff_057") then
             value = value + 0.25
@@ -3654,7 +3655,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         value = value + 0.01 * caster:Script_GetMagicalArmorValue(false, nil) * caster.shw
     end
     if event.naturedmg and caster.woz and caster.woz > 0 then
-        value = value + 0.01 * caster:GetIncreasedAttackSpeed(false) * caster.woz
+        value = value + 0.01 * math.max(0, GetAttackSpeedCustom(caster)) * caster.woz
     end
     if event.chaosdmg and caster.und and caster.und > 0 then
         value = value + 0.0001 * caster:GetPhysicalArmorValue(false) * caster.und
@@ -4890,8 +4891,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     if event.isdot then
         local brawler3 = caster:FindAbilityByName("Concussive_Blow")
-        if brawler3 and brawler3:GetLevel() >= 4 and caster:GetIncreasedAttackSpeed(false) > 0 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster:GetIncreasedAttackSpeed(false))
+        local attackSpeedForBrawler3 = GetAttackSpeedCustom(caster)
+        if brawler3 and brawler3:GetLevel() >= 4 and attackSpeedForBrawler3 > 0 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * attackSpeedForBrawler3)
         end
     end
     if caster.consecutive_crits and caster.consecutive_crits >= 2 then --we had 2 previous crits, this is the 3rd crit
@@ -5822,8 +5824,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
     local fury_as_abil = caster:FindAbilityByName("fury2")
-    if fury_as_abil and fury_as_abil:GetLevel() >= 4 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetIncreasedAttackSpeed(false))
+    local attackSpeedForFury2 = GetAttackSpeedCustom(caster)
+    if fury_as_abil and fury_as_abil:GetLevel() >= 4 and attackSpeedForFury2 > 0 then
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * attackSpeedForFury2)
     end
     local dk_resi_dmg = caster:FindAbilityByName("Rot")
     if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
@@ -8187,12 +8190,12 @@ function GetSpellhaste( caster, event )
         speedbonus = speedbonus + 0.03 * caster:GetModifierStackCount("modifier_talent_tunnel", nil) * caster.talents[165]
 
         if caster.talents[119] and caster.talents[119] > 0 then
-            local factor = 0.005
+            local factor = 0.5
             if caster:HasModifier("modifier_stormgiant") then
                 factor = factor * 2
             end
-            local passiveASBonus = caster:GetAttackSpeed(true) * 100 - 100
-            local bonus = passiveASBonus * factor
+
+            local bonus = math.max(0, GetAttackSpeedCustom(caster)) * factor
             if bonus > 0 then
                 speedbonus = speedbonus + bonus
             end
@@ -10668,7 +10671,7 @@ function PetSystem( event )
 
         --as system
         if event.astransfer then
-            local stackcount = target:GetIncreasedAttackSpeed(false) * event.astransfer
+            local stackcount = GetAttackSpeedCustom(target) * event.astransfer
             if stackcount > 250 then
                 stackcount = 250
             end
@@ -19946,7 +19949,7 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
     return percent_bonus 
 end
 
-function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHealth )
+function GetAttackDamageStaticBonus( hero, realStrength, maxHealth )
     local static_bonus = hero.runeword[6]
     if hero.talents[2] and hero.talents[2] > 0 then
         static_bonus = static_bonus + hero.talents[2] * 25
@@ -19964,14 +19967,6 @@ function GetAttackDamageStaticBonus( hero, realAttackSpeed, realStrength, maxHea
     local unholyFrenzy = hero:GetModifierStackCount("modifier_unholyfrenzy", nil)
     if unholyFrenzy >= 1 then
         static_bonus = static_bonus + unholyFrenzy * 5 * hero.talents[98]
-    end
-    if hero.talents[80] and hero.talents[80] > 0 then
-        local bonusfromas = (realAttackSpeed - 500) * hero.talents[80] --50 * (hero:GetIncreasedAttackSpeed() - 5) * hero.talents[80]
-        --print(realAttackSpeed)
-        --print(bonusfromas)
-        if bonusfromas > 0 then
-            static_bonus = static_bonus + bonusfromas
-        end
     end
     --if hero:HasModifier("modifier_companion") and hero:HasModifier("modifier_item_hunterbow2") then
     --    static_bonus = static_bonus + 150
@@ -20177,7 +20172,7 @@ function GetAttackSpeedBonus( hero, armor, strength, agility )
         static_bonus = static_bonus + hero:GetModifierStackCount("modifier_frostwyrm_fury_buff", nil)
     end
 
-    if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance then
+    if hero.talents[119] and hero.talents[119] > 0 and hero.magicalResistance and hero.magicalResistance > 0 then
         local factor = 100
         if hero:HasModifier("modifier_stormgiant") then
             factor = factor * 2
@@ -21419,7 +21414,7 @@ function PassiveStatCalculation(event)
         ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
         hero:SetModifierStackCount(buff, ability, intStat)
     end
-
+    -- IMPORTANT: Do not calculate here any stats that based on api for dota attributes (for example attack speed)
     --now we can calc real AA and AS and mana and HP, (primary attribute must give aa dmg): order is important! important: need to substract what we already have at the end
     --Mana
     local manaFromInt = GetMaxManaBonusFromInt(hero, realBaseStats[INT])
@@ -21468,7 +21463,7 @@ function PassiveStatCalculation(event)
     realBaseStats[HP] = baseStats[HP] * baseStatsPercentFactor[HP]
     realBaseStatsToApply[HP] = realBaseStats[HP] - hero:GetMaxHealth()
     --AA
-    baseStats[AA] = hero:GetAttackDamage() + realBaseStats[hero:GetPrimaryAttribute()+1] + GetAttackDamageStaticBonus(hero, realBaseStats[AS], realBaseStats[STR], realBaseStats[HP]) --aa dmg needs real AS and str values
+    baseStats[AA] = hero:GetAttackDamage() + realBaseStats[hero:GetPrimaryAttribute()+1] + GetAttackDamageStaticBonus(hero, realBaseStats[STR], realBaseStats[HP]) --aa dmg needs real AS and str values
     baseStatsPercentFactor[AA] = (1 + GetAttackDamagePercentageBonus(hero, baseStatsPercentFactor[HP]))
     realBaseStats[AA] = baseStats[AA] * baseStatsPercentFactor[AA]
     realBaseStatsToApply[AA] = realBaseStats[AA] - hero:GetAttackDamage()
@@ -21483,34 +21478,6 @@ function PassiveStatCalculation(event)
     --    ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = dur})
     --    hero:SetModifierStackCount(buff, ability, realBaseStats[ARM] - armorCap)
     --end
-
-    --update new UI
-    local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    if isUpdateTickEvery5secs then
-        CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
-            id = hero:GetPlayerID(), 
-            str = math.floor(realBaseStats[STR]), 
-            agi = math.floor(realBaseStats[AGI]), 
-            int = math.floor(realBaseStats[INT]), 
-            level = hero.level, 
-            levelPercentage = hero.levelPercentage,
-            maxHpFromStr = maxHpBonusFromStr,
-            --physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
-            blockFromStr = GetDamageBlockFromStrength(realBaseStats[STR]),
-            block = GetDamageBlock(hero),
-            regenFromStr = GetHealthRegenFromStrength(realBaseStats[STR]),
-            attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
-            armorFromAgi = armorFromAgi,
-            criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
-            manaFromInt = manaFromInt,
-            abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
-            spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
-            resourceType = hero.resourcesystem,
-            spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
-            damageReduction = GetTotalDamageTakenFactor(hero, nil),
-            attackSpeed = realBaseStats[AS]
-        })
-    end
 
     --now we have calculated all basic stats, lets apply them!
     for i = 4, totalAttributes do --str int agi already applied
@@ -21946,6 +21913,17 @@ function PassiveStatCalculation(event)
             hero:RemoveModifierByName("modifier_lonedruid")
         end
     end
+    -- wings of liberty that requires final attack speed value
+    level = hero.talents[80]
+    if level > 0 then
+        local buff = "modifier_wings_of_liberty"
+        hero:RemoveModifierByName(buff)
+        local value = level * math.max(0, (GetAttackSpeedCustom(hero) * 100) - 500)
+        if value >= 1 then
+            ability:ApplyDataDrivenModifier(hero, hero, buff, {Duration = -1})
+            hero:SetModifierStackCount(buff, ability, value)
+        end
+    end
 
     if hero.temple_class then
         ability:ApplyDataDrivenModifier(hero, hero, "modifier_aa_temple_penalty", {Duration = dur})
@@ -21969,6 +21947,33 @@ function PassiveStatCalculation(event)
     end
     if isUpdateTickEvery10secs then
         ProcsEvery10Seconds(hero)
+    end
+
+    --update new UI (send it after all things done)
+    if isUpdateTickEvery5secs then
+        CustomGameEventManager:Send_ServerToAllClients("set_main_stats", {
+            id = hero:GetPlayerID(), 
+            str = math.floor(realBaseStats[STR]), 
+            agi = math.floor(realBaseStats[AGI]), 
+            int = math.floor(realBaseStats[INT]), 
+            level = hero.level, 
+            levelPercentage = hero.levelPercentage,
+            maxHpFromStr = maxHpBonusFromStr,
+            --physDmgFromStr = GetPhysicalDamageBonusFromStr(hero, realBaseStats[STR]),
+            blockFromStr = GetDamageBlockFromStrength(realBaseStats[STR]),
+            block = GetDamageBlock(hero),
+            regenFromStr = GetHealthRegenFromStrength(realBaseStats[STR]),
+            attackSpeedFromAgi = GetAttackSpeedBonusFromAgi(hero, realBaseStats[AGI]),
+            armorFromAgi = armorFromAgi,
+            criticalStrikeDamageFromAgi = GetCriticalStrikeDamageBonusFromAgi(hero, realBaseStats[AGI]),
+            manaFromInt = manaFromInt,
+            abilityDamageFromInt = GetAbilityDamageBonusFromInt(hero, realBaseStats[INT]),
+            spellResistanceFromInt = GetSpellResistanceBonusFromInt(hero, realBaseStats[INT]),
+            resourceType = hero.resourcesystem,
+            spellHaste = GetSpellhaste(hero, { caster = hero, target = hero, ability = nil }),
+            damageReduction = GetTotalDamageTakenFactor(hero, nil),
+            attackSpeed = GetAttackSpeedCustom(hero) * 100
+        })
     end
 end
 
@@ -22136,6 +22141,10 @@ function GetAbsorbtionFactor( hero )
         factor = factor + 0.1 * hero.talents[93]
     end
     return factor
+end
+
+function GetAttackSpeedCustom(hero)
+    return hero:GetIncreasedAttackSpeed(false)
 end
 
 function BloodwolfBuff(event)
@@ -27774,7 +27783,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         healing_bonus = healing_bonus + 0.01 * GetNetherfusionStat(caster)
     end
     if GetSwiftMendingStat(caster) >= 1 then
-        local bonusAS = caster:GetIncreasedAttackSpeed(false) - 1
+        local bonusAS = GetAttackSpeedCustom(caster)
         if bonusAS > 0 then
             healing_bonus = healing_bonus + 0.01 * GetSwiftMendingStat(caster) * bonusAS
         end
