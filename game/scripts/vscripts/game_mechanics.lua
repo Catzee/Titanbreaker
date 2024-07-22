@@ -12081,10 +12081,111 @@ function ChainLightningOld(event)
 	]]
 end
 
+function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
+    local human1 = nil
+    local human2 = nil
+    local human3 = nil
+    local human4 = nil
+    local human5 = nil
+
+    if(shapeshiftInit) then
+        human1 = caster:AddAbility("RegrowthFeral")
+        human2 = caster:AddAbility("RootsDruidFeral")
+        human3 = caster:AddAbility("CycloneDruidFeral")
+        human4 = caster:AddAbility("empty_spell1")
+        human5 = caster:AddAbility("empty_spell2")
+    else
+        human1 = caster:FindAbilityByName("RegrowthFeral")
+        human2 = caster:FindAbilityByName("RootsDruidFeral")
+        human3 = caster:FindAbilityByName("CycloneDruidFeral")
+        human4 = caster:FindAbilityByName("empty_spell1")
+        human5 = caster:FindAbilityByName("empty_spell2")
+    end
+
+    local feral1 = caster:FindAbilityByName("Feral2")
+    local feral2 = caster:FindAbilityByName("Feral3")
+    local feral3 = caster:FindAbilityByName("Feral4")
+    local feral4 = caster:FindAbilityByName("Feral1")
+    local feral5 = caster:FindAbilityByName("Feral5")
+
+    human1:SetLevel(level)
+    human2:SetLevel(level)
+    human3:SetLevel(level)
+    human4:SetLevel(1)
+    human5:SetLevel(1)
+
+    if(human) then
+        caster:SwapAbilities("Feral2", "RegrowthFeral", true, true)
+        caster:SwapAbilities("Feral3", "RootsDruidFeral", true, true)
+        caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, true)
+        caster:SwapAbilities("Feral1", "empty_spell1", true, true)
+        caster:SwapAbilities("Feral5", "empty_spell2", true, true)
+        
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        feral1:SetActivated(false)
+        feral2:SetActivated(false)
+        feral3:SetActivated(false)
+        feral4:SetActivated(false)
+        feral5:SetActivated(false)
+        
+        human1:SetActivated(true)
+        human2:SetActivated(true)
+        human3:SetActivated(true)
+        human4:SetActivated(true)
+        human5:SetActivated(true)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        human1:MarkAbilityButtonDirty()
+        human2:MarkAbilityButtonDirty()
+        human3:MarkAbilityButtonDirty()
+        human4:MarkAbilityButtonDirty()
+        human5:MarkAbilityButtonDirty()
+    else
+        if(shapeshiftInit == nil) then
+            caster:SwapAbilities("Feral2", "RegrowthFeral", true, true)
+            caster:SwapAbilities("Feral3", "RootsDruidFeral", true, true)
+            caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, true)
+            caster:SwapAbilities("Feral1", "empty_spell1", true, true)
+            caster:SwapAbilities("Feral5", "empty_spell2", true, true)
+        end
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        feral1:SetActivated(true)
+        feral2:SetActivated(true)
+        feral3:SetActivated(true)
+        feral4:SetActivated(true)
+        feral5:SetActivated(true)
+
+        human1:SetActivated(false)
+        human2:SetActivated(false)
+        human3:SetActivated(false)
+        human4:SetActivated(false)
+        human5:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        feral1:MarkAbilityButtonDirty()
+        feral2:MarkAbilityButtonDirty()
+        feral3:MarkAbilityButtonDirty()
+        feral4:MarkAbilityButtonDirty()
+        feral5:MarkAbilityButtonDirty()
+    end
+--[[
+    SetIsAbilityHiddenByShapeshift(feral1, human)
+    SetIsAbilityHiddenByShapeshift(feral2, human)
+    SetIsAbilityHiddenByShapeshift(feral3, human)
+    SetIsAbilityHiddenByShapeshift(feral4, human)
+    SetIsAbilityHiddenByShapeshift(feral5, human)
+    SetIsAbilityHiddenByShapeshift(human1, not human)
+    SetIsAbilityHiddenByShapeshift(human2, not human)
+    SetIsAbilityHiddenByShapeshift(human3, not human)
+    SetIsAbilityHiddenByShapeshift(human4, not human)
+    SetIsAbilityHiddenByShapeshift(human5, not human)
+    --]]
+end
 
 function ShapeshiftFeral(event)
 	local caster = event.caster
-	local level = caster:GetAbilityByIndex(5):GetLevel()
+	local level = caster:FindAbilityByName("ShapeshiftFeral"):GetLevel()
 	if caster:HasModifier("modifier_catform") then
         -- to human form
         if not caster:HasModifier("modifier_feralcd") then
@@ -12101,30 +12202,7 @@ function ShapeshiftFeral(event)
 		caster:RemoveModifierByName("modifier_catform")
         event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_catform_off", nil)
 		
-		caster.spell1 = caster:GetAbilityByIndex(0):GetLevel()
-		caster.spell2 = caster:GetAbilityByIndex(1):GetLevel()
-		caster.spell3 = caster:GetAbilityByIndex(2):GetLevel()
-		caster.spell4 = caster:GetAbilityByIndex(3):GetLevel()
-		caster.spell5 = caster:GetAbilityByIndex(4):GetLevel()
-		caster:RemoveAbility("Feral2")
-		caster:RemoveAbility("Feral3")
-		caster:RemoveAbility("Feral4")
-		caster:RemoveAbility("Feral1")
-		caster:RemoveAbility("Feral5")
-		caster:AddAbility("RegrowthFeral")
-		caster:GetAbilityByIndex(0):SetLevel(level)
-		caster:AddAbility("RootsDruidFeral")
-		caster:GetAbilityByIndex(1):SetLevel(level)
-		--if caster:HasModifier("modifier_feralpowercast") then
- 		--	caster:AddAbility("CycloneDruidFeralInstant")
-		--else
-			caster:AddAbility("CycloneDruidFeral")
-		--end
-		caster:GetAbilityByIndex(2):SetLevel(level)
-		caster:AddAbility("empty_spell1")
-		caster:GetAbilityByIndex(3):SetLevel(1)
-		caster:AddAbility("empty_spell2")
-		caster:GetAbilityByIndex(4):SetLevel(1)
+        ShapeshiftFeralAbilitiesSwap(caster, true, level, event.shapeshiftInit)
         CheckForMaxManaCap(caster)
         caster:SetMana(caster:GetMaxMana()) --(caster.OldMana)
 		--model change
@@ -12143,26 +12221,8 @@ function ShapeshiftFeral(event)
 		caster.OldMana = caster:GetMana()
         caster:RemoveModifierByName("modifier_catform_off")
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_catform", nil)
-        if caster.feralfirstshift then
-    		caster:RemoveAbility("RegrowthFeral")
-    		caster:RemoveAbility("RootsDruidFeral")
-    		caster:RemoveAbility("CycloneDruidFeral")
-    		caster:RemoveAbility("CycloneDruidFeralInstant")
-    		caster:RemoveAbility("empty_spell1")
-    		caster:RemoveAbility("empty_spell2")
-    		caster:AddAbility("Feral2")
-    		caster:GetAbilityByIndex(0):SetLevel(caster.spell1)
-    		caster:AddAbility("Feral3")
-    		caster:GetAbilityByIndex(1):SetLevel(caster.spell2)
-    		caster:AddAbility("Feral4")
-    		caster:GetAbilityByIndex(2):SetLevel(caster.spell3)
-    		caster:AddAbility("Feral1")
-    		caster:GetAbilityByIndex(3):SetLevel(caster.spell4)
-    		caster:AddAbility("Feral5")
-    		caster:GetAbilityByIndex(4):SetLevel(caster.spell5)
-        else
-            caster.feralfirstshift = true
-        end
+        
+        ShapeshiftFeralAbilitiesSwap(caster, false, level, event.shapeshiftInit)
         CheckForMaxManaCap(caster)
 		--model change, only when synced
 		if COverthrowGameMode.EnableShapeshift == 1 then

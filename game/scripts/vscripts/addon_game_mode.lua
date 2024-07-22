@@ -10822,11 +10822,12 @@ if heroName == "npc_dota_hero_dazzle" then
    hero.spell4 = 0
    hero.spell5 = 0 
  end
- local ability_shift =  hero:GetAbilityByIndex(5)
+ local ability_shift =  hero:FindAbilityByName("ShapeshiftFeral")
  ability_shift:SetLevel(1)
  local myevent = {}
  myevent.ability = ability_shift
  myevent.caster = hero
+ myevent.shapeshiftInit = true
  ShapeshiftFeral(myevent)
  --ability_shift:ApplyDataDrivenModifier(hero, hero, "modifier_catform", nil)
  if self.FarmMode == 1 or true then
