@@ -12115,11 +12115,11 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
     human5:SetLevel(1)
 
     if(human) then
-        caster:SwapAbilities("Feral2", "RegrowthFeral", true, true)
-        caster:SwapAbilities("Feral3", "RootsDruidFeral", true, true)
-        caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, true)
-        caster:SwapAbilities("Feral1", "empty_spell1", true, true)
-        caster:SwapAbilities("Feral5", "empty_spell2", true, true)
+        caster:SwapAbilities("Feral2", "RegrowthFeral", false, true)
+        caster:SwapAbilities("Feral3", "RootsDruidFeral", false, true)
+        caster:SwapAbilities("Feral4", "CycloneDruidFeral", false, true)
+        caster:SwapAbilities("Feral1", "empty_spell1", false, true)
+        caster:SwapAbilities("Feral5", "empty_spell2", false, true)
         
         -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
         feral1:SetActivated(false)
@@ -12142,11 +12142,11 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
         human5:MarkAbilityButtonDirty()
     else
         if(shapeshiftInit == nil) then
-            caster:SwapAbilities("Feral2", "RegrowthFeral", true, true)
-            caster:SwapAbilities("Feral3", "RootsDruidFeral", true, true)
-            caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, true)
-            caster:SwapAbilities("Feral1", "empty_spell1", true, true)
-            caster:SwapAbilities("Feral5", "empty_spell2", true, true)
+            caster:SwapAbilities("Feral2", "RegrowthFeral", true, false)
+            caster:SwapAbilities("Feral3", "RootsDruidFeral", true, false)
+            caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, false)
+            caster:SwapAbilities("Feral1", "empty_spell1", true, false)
+            caster:SwapAbilities("Feral5", "empty_spell2", true, false)
         end
 
         -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
