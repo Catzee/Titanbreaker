@@ -155,10 +155,6 @@ function ToggleTalentTree() {
     }
 }
 
-function ToggleBlacksmith() {
-    $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
-}
-
 function ToggleAutoSellStash() {
     $.FindChildInContext("#autoSellStash").visible = !$.FindChildInContext("#autoSellStash").visible;
 }
@@ -1934,6 +1930,7 @@ var blacksmithItemsContainer = $("#blacksmithItemsList");
 var previousBlacksmithFilterText = "";
 var blacksmithFilterTickRate = 0.05;
 var blacksmithFilterStarted = false;
+var blacksmithKnownItems = [];
 
 // Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
 if(Game.IsInToolsMode())
@@ -1941,9 +1938,24 @@ if(Game.IsInToolsMode())
     blacksmithItemsContainer.RemoveAndDeleteChildren();
 }
 
+function ToggleBlacksmith() {
+    $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
+
+    // Destroy and recreate all item panels to fix lags for heroes with abilities switch (thanks valve)
+    // I hope it will not destroy potato pc fps
+    if(!$.FindChildInContext("#shopMain").visible) {
+        blacksmithItemsContainer.RemoveAndDeleteChildren();
+        blacksmithItemsContainer.shopItems = [];
+    } else {
+        for (const [_, itemData] of Object.entries(blacksmithKnownItems)) {
+            AddItemToShop(itemData);
+        }
+    }
+}
+
 function AddItemsToShop(args){
     for (const [_, itemData] of Object.entries(args)) {
-        AddItemToShop(itemData);
+        blacksmithKnownItems.push(itemData);
     }
 
     if(!blacksmithFilterStarted)
@@ -1959,7 +1971,7 @@ function TryApplyBlacksmithFilter()
 
     var shopItems = blacksmithItemsContainer.shopItems;
 
-    if(shopItems != undefined)
+    if(shopItems != undefined && shopItems.length > 0)
     {  
         if(currentFilterText != previousBlacksmithFilterText)
         {
