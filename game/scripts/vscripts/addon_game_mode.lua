@@ -1477,6 +1477,8 @@ function COverthrowGameMode:InitGameMode()
  self.countdownEnabled = false
  self.itemSpawnIndex = 1
  self.healersInGame = 0
+ self.bossFightDurationFactor = 2.5
+ self.bossLootFactor = 3
  self.itemSpawnLocation = Entities:FindByName( nil, "greevil" )
  self.act_already_loaded = {}
  self.tier1ItemBucket = {}
@@ -5683,7 +5685,7 @@ end
 ---------------------------------------------------------------------------
 function COverthrowGameMode:OnThink()
   
-
+    --self.jungledifficulty = 2
   --COverthrowGameMode:GenerateCoolItemEffectWithStatTransfer()
   --GameRules:SetGoldPerTick(1000)
   --DeepPrintTable(self.act_kills)
@@ -8958,7 +8960,12 @@ end
       end
     end
     if unit.loot_goblin_gold_drop then
-      AddGoldToAllPlayers(math.random(50,100)*COverthrowGameMode.jungledifficulty)
+        local gold = math.random(50,100)*COverthrowGameMode.jungledifficulty
+
+        --if COverthrowGameMode.jungledifficulty >= 2 then
+        --    gold = gold * COverthrowGameMode.bossLootFactor
+        --end
+        AddGoldToAllPlayers(gold)
     end
     if unit.loot_hoarder_on_death_chance and math.random(1,100) <= unit.loot_hoarder_on_death_chance then
       COverthrowGameMode:SpawnTreasureChest(unit:GetAbsOrigin(), 99)
@@ -18022,6 +18029,11 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
       dmg = dmg * 0.8
     end
 
+    --season 11: longer boss fights
+    if COverthrowGameMode.jungledifficulty >= 2 then
+      hp = hp * COverthrowGameMode.bossFightDurationFactor
+    end
+
     hp = exp_scale(scale, hp, 0.33, 0)  --0.25 before
     
     if not target.isgoblin then
@@ -18083,19 +18095,28 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
       xp_base = 10
     end
     if isboss then
-      xp_base = 200 --125 before
+        xp_base = 200 --125 before
+
+        --season 11: longer boss fights
+        if COverthrowGameMode.jungledifficulty >= 2 then
+            xp_base = xp_base * COverthrowGameMode.bossFightDurationFactor
+        end
     end
     if is_champion then
       xp_base = 400 --375
     end
-    --act11 bonus
+    -- act11 bonus
     if target.act and target.act == 11 then
-      if target.act11_last_boss then
-        xp_base = xp_base * 25
-      else
-        xp_base = xp_base * 10
-      end
+        if target.act11_last_boss then
+            xp_base = xp_base * 25
+        else
+            xp_base = xp_base * 10
+        end
+    elseif target.is_merge_boss then
+        -- merge boss
+        xp_base = xp_base * 15
     end
+
     xp_base = xp_base * playerscale
     if issummon then
       xp_base = 0
@@ -18146,32 +18167,35 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
           abil2:SetLevel(1)
         end
         local abillevel = 1
-        if self.jungledifficulty >= 5 then
+        if self.jungledifficulty >= 2 then
           abillevel = 2
         end
-        if self.jungledifficulty >= 10 then
+        if self.jungledifficulty >= 5 then
           abillevel = 3
         end
-        if self.jungledifficulty >= 20 then
+        if self.jungledifficulty >= 10 then
           abillevel = 4
         end
-        if self.jungledifficulty >= 50 then
+        if self.jungledifficulty >= 20 then
           abillevel = 5
         end
+        if self.jungledifficulty >= 50 then
+          abillevel = 6
+        end
         if self.jungledifficulty >= 100 then
-          abillevel = 6 --4
+          abillevel = 7
         end
         if self.jungledifficulty >= 200 then
-          abillevel = 7 --4
+          abillevel = 8
         end
         if self.jungledifficulty >= 500 then
-          abillevel = 8 --4
+          abillevel = 9
         end
         if self.jungledifficulty >= 1000 then
-          abillevel = 9 --5
+          abillevel = 10
         end
         if target.isgoblin then
-          abillevel = 1 --goblins should not get that increased ms that bosses get
+          abillevel = 2 --goblins should not get that increased ms that bosses get
         end
         for i=0,12 do
           local abil3 = target:GetAbilityByIndex(i)
@@ -20679,4 +20703,12 @@ end
 
 function SpawnActTraps()
   return COverthrowGameMode.jungledifficulty == 2
+end
+
+function GetLootDropChanceIncreasePerQuest()
+    if COverthrowGameMode.jungledifficulty >= 2 then
+        return 25
+    end
+
+    return 15
 end
