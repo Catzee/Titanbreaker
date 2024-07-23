@@ -1941,6 +1941,7 @@ if(Game.IsInToolsMode())
 function ToggleBlacksmith() {
     $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
 
+    // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
     // Destroys and recreate all item panels to fix lags for heroes with abilities switch (thanks valve)
     // I hope it will not destroy potato pc fps
     if(!$.FindChildInContext("#shopMain").visible) {

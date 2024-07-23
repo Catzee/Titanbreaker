@@ -76,8 +76,11 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     let isItem = Abilities.IsItem(buffAbility);
     let isCustomIcon = textureName.indexOf("fix/") !== -1;
     let pathToIcon = "";
-        
+    let itemNameForItemPanel = "";
+
     panel.SetHasClass("is_item", false);
+
+    let itemPanelRequired = false;
 
     if(isCustomIcon) {
         if(isItem) {
@@ -88,9 +91,10 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
         }
     } else {
         if(isItem && textureName.indexOf("item_") !== -1) {
+            itemNameForItemPanel = Abilities.GetAbilityName(buffAbility);
             panel.SetHasClass("is_item", true);
-            panel._itemImagePanel.itemname = Abilities.GetAbilityName(buffAbility);
             //textureName = textureName.replace("item_", "");
+            itemPanelRequired = true;
         }
         pathToIcon = "file://{images}/spellicons/" + textureName + ".png";
     }
@@ -98,6 +102,10 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
     //panel.SetHasClass("is_custom", isCustomIcon);
     //panel.SetHasClass("is_item", isItem);
     //panel.SetHasClass("is_ability", !isItem);
+
+    // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
+    // So we destroy and recreate constantly this item panel for icon...
+    UpdateItemPanelIfRequired(panel._itemImagePanelContainer, itemPanelRequired, itemNameForItemPanel);
 
     panel._queryUnit = selectedUnit;
     panel._buffSerial = buffSerial;
@@ -114,6 +122,23 @@ function UpdateBuffPanel(panel, selectedUnit, buffSerial)
 	panel._durationPanel.style.clip = "radial(50% 50%, 0deg, " + buffDurationDeg + "deg)";
 }
 
+function UpdateItemPanelIfRequired(container, required, itemName)
+{
+    //panel._itemImagePanel.itemname = Abilities.GetAbilityName(buffAbility);
+    if(required) {
+        if(container._childItemPanel == undefined) {
+            let itemImagePanel = $.CreatePanel('DOTAItemImage', container, '');
+            itemImagePanel.SetHasClass("BuffItemImage", true);
+            itemImagePanel.SetScaling("stretch-to-fit-y-preserve-aspect");
+            itemImagePanel.itemname = itemName;
+            container._childItemPanel = itemImagePanel;
+        }
+    } else {
+        container.RemoveAndDeleteChildren();
+        container._childItemPanel = undefined;
+    }
+}
+
 function InitializeChildrens(panel, isBuffs)
 {
     panel.RemoveAndDeleteChildren();
@@ -127,7 +152,7 @@ function InitializeChildrens(panel, isBuffs)
         buffPanel.SetHasClass("is_undispellable", true); // looks better with it and no way to get this at panorama...
         buffPanel.BLoadLayout('file://{resources}/layout/custom_game/dota_hud/dota_buff.xml', false, false);
         buffPanel._imagePanel = buffPanel.FindChildTraverse("BuffImage");
-        buffPanel._itemImagePanel = buffPanel.FindChildTraverse("BuffItemImage");
+        buffPanel._itemImagePanelContainer = buffPanel.FindChildTraverse("BuffItemImageContainer");
         buffPanel._stacksLabel = buffPanel.FindChildTraverse("StackCount");
         buffPanel._durationPanel = buffPanel.FindChildTraverse("CircularDuration");
         buffPanel._queryUnit = -1;
