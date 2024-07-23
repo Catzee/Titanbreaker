@@ -1182,7 +1182,7 @@ function DamageUnit( event )
             finaldamage = finaldamage + caster:GetHealth() * 0.01 * caster.talents[115] * damageBasedOnHPFactor
         end
     end
-    if ability and ability:GetAbilityIndex() == 1 then
+    if ability and GetAbilityIndexCustom(ability) == 1 then
         if caster:HasModifier("modifier_coloss") then
             finaldamage = finaldamage + caster:GetHealth() * 0.03 * damageBasedOnHPFactor
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/blink_dagger_ti8_end_ray.vpcf", PATTACH_POINT_FOLLOW, target)
@@ -1858,7 +1858,7 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[158] > 0 then
-        local abIndex = ability:GetAbilityIndex() + 1
+        local abIndex = GetAbilityIndexCustom(ability) + 1
         if abIndex >= 1 and abIndex <= 6 then
             if not caster.deadlyArsenal then
                 caster.deadlyArsenal = {true, true, true, true, true, true}
@@ -2090,13 +2090,13 @@ function DamageUnit( event )
         end
     end
     local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1 or (alphablood_divine and (event.fromsummon or event.ComesFromPet)) or (ability:GetAbilityIndex() == 2 and caster:HasModifier("modifier_pathbuff_013")))) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((GetAbilityIndexCustom(ability) == 0 or GetAbilityIndexCustom(ability) == 1 or (alphablood_divine and (event.fromsummon or event.ComesFromPet)) or (GetAbilityIndexCustom(ability) == 2 and caster:HasModifier("modifier_pathbuff_013")))) then
         local alphablood_chance = 5
         local crit_dmg_alpha = 4
         if alphablood_divine and (event.fromsummon or event.ComesFromPet) then
             crit_dmg_alpha = 6
         end
-        if ability:GetAbilityIndex() == 1 then
+        if GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2.5
             if alphablood_divine then
                 alphablood_chance = 5
@@ -3236,7 +3236,7 @@ function DamageUnit( event )
         end
         --print(ability)
         if ability and not ability:IsNull() then
-            local index = ability:GetAbilityIndex()
+            local index = GetAbilityIndexCustom(ability)
             if not caster.ability_stats[index] then
                 caster.ability_stats[index] = 0
             end
@@ -4823,13 +4823,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
     end
     if caster:HasModifier("modifier_new7") and ability then
-        local abilityIndex = ability:GetAbilityIndex()
+        local abilityIndex = GetAbilityIndexCustom(ability)
         if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
         end
     end
     if caster:HasModifier("modifier_new72") and ability then
-        local abilityIndex = ability:GetAbilityIndex()
+        local abilityIndex = GetAbilityIndexCustom(ability)
         if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
         end
@@ -5246,7 +5246,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         buffstacks = caster:GetModifierStackCount("modifier_cotb", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks)
-        if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
+        if process_procs and caster.talents[174] > 0 and ability and GetAbilityIndexCustom(ability) == 4 or GetAbilityIndexCustom(ability) == 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
         end
         if caster:HasModifier("modifier_invisible") and GetLevelOfAbility(caster, "combat6") >= 5 then
@@ -5595,7 +5595,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[68])
             end
-            if ability:GetAbilityIndex() == 5 then
+            if GetAbilityIndexCustom(ability) == 5 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[68])
             end
         end
@@ -7443,10 +7443,10 @@ function HealUnit( event )
             end
         end
     end
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (GetAbilityIndexCustom(ability) == 0 or GetAbilityIndexCustom(ability) == 1) then
         local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
         local alphablood_chance = 3
-        if ability:GetAbilityIndex() == 1 then
+        if GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2
             if alphablood_divine then
                 alphablood_chance = 4
@@ -7858,7 +7858,7 @@ function HealUnit( event )
         local index = -1
         -- here and below ability can be null because removed already (dazzle and maybe someone else)
         if event.ability and event.ability:IsNull() == false then
-            index = event.ability:GetAbilityIndex()
+            index = GetAbilityIndexCustom(event.ability)
         end
         if index >= 0 then
             if not caster.ability_stats_heal[index] then
@@ -11722,7 +11722,7 @@ function ShapeshiftOut( event )
     --tree talent
     if ability:GetLevel() >= 4 then
         if event.event_ability then
-            if event.event_ability:GetAbilityIndex() == 0 or event.event_ability:GetAbilityIndex() == 2 or event.event_ability:GetAbilityIndex() == 5 then
+            if GetAbilityIndexCustom(event.event_ability) == 0 or GetAbilityIndexCustom(event.event_ability) == 2 or GetAbilityIndexCustom(event.event_ability) == 5 then
                 --StartAnimation(caster, {activity=ACT_DOTA_ATTACK, duration=0.25, rate=2.5})
             else
                 --StartAnimation(caster, {activity=ACT_DOTA_SPAWN, duration=1.5, rate=0.27})
@@ -15379,7 +15379,7 @@ function CooldownReduction( event ) --also instant ability resets
             end
         end
         --local astral_talent_shock = caster:FindAbilityByName("moon6")
-        --if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 30 and ability:GetAbilityIndex() <= 2 then
+        --if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 30 and GetAbilityIndexCustom(ability) <= 2 then
         --	AstralShock(caster)
         --end
     	--cooldown item
@@ -15529,7 +15529,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_6 then
             caster.ability_combo_6 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = GetAbilityIndexCustom(ability)
         caster.ability_combo_6[index] = true
         if caster.ability_combo_6[1] and caster.ability_combo_6[2] and caster.ability_combo_6[3] and caster.ability_combo_6[4] and caster.ability_combo_6[5] and caster.ability_combo_6[0] then
             for i=0,5 do
@@ -15572,7 +15572,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4 then
             caster.ability_combo_4 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = GetAbilityIndexCustom(ability)
         caster.ability_combo_4[index] = true
         if caster.ability_combo_4[1] and caster.ability_combo_4[2] and caster.ability_combo_4[3] and caster.ability_combo_4[0] then
             for i=0,3 do
@@ -15597,7 +15597,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4_5_6 then
             caster.ability_combo_4_5_6 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = GetAbilityIndexCustom(ability)
         caster.ability_combo_4_5_6[index] = true
         if caster.ability_combo_4_5_6[3] and caster.ability_combo_4_5_6[4] and caster.ability_combo_4_5_6[5] then
             for i=3,5 do
@@ -15646,7 +15646,7 @@ function CooldownProcs( caster, ability, cd )
         ApplyBuffStack({caster = caster, target = caster, buff = "modifier_innerfire", ability = caster.combat_system_ability, dur = 10, addstacks = 1, max = 5})
     end
     Timers:CreateTimer(0.05, function()
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and GetAbilityIndexCustom(ability) == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) and not caster.temple_class then
             local abil_5 = caster:GetAbilityByIndex(4)
             if abil_5 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -15657,7 +15657,7 @@ function CooldownProcs( caster, ability, cd )
                 end
             end
         end
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and GetAbilityIndexCustom(ability) == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) and not caster.temple_class then
             local abil_4 = caster:GetAbilityByIndex(3)
             if abil_4 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -15668,7 +15668,7 @@ function CooldownProcs( caster, ability, cd )
                 end
             end
         end
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and GetAbilityIndexCustom(ability) == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) and not caster.temple_class then
             local abil_3 = caster:GetAbilityByIndex(2)
             if abil_3 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -27784,7 +27784,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         if caster.talents[67] and caster.talents[67] > 0 and isaoe then
             healing_bonus = healing_bonus + 0.07 * caster.talents[67]
         end
-        if caster.talents[39] and caster.talents[39] > 0 and ability and ability:GetAbilityIndex() == 0 then
+        if caster.talents[39] and caster.talents[39] > 0 and ability and GetAbilityIndexCustom(ability) == 0 then
             healing_bonus = healing_bonus + 0.1 * caster.talents[39]
         end
         if caster.talents[99] and caster.talents[99] > 0 and process_procs then
@@ -27828,7 +27828,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 healing_bonus = healing_bonus + 0.05 * caster.talents[68]
             end
-            if ability:GetAbilityIndex() == 5 then
+            if GetAbilityIndexCustom(ability) == 5 then
                 healing_bonus = healing_bonus + 0.1 * caster.talents[68]
             end
         end

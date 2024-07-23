@@ -112,7 +112,7 @@ function shadow33:OnUnitDamaged(event)
 		caster = event.caster,
 		target = event.caster,
 		ability = self,
-        index = self:GetAbilityIndex(),
+        index = GetAbilityIndexCustom(self),
         amount = self:GetSpecialValueFor("cdr_flat_dream_feast")
 	})
 
