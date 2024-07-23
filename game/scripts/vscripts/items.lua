@@ -7207,9 +7207,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 	
 	-- roll for each allied player
 	local all = HeroList:GetAllHeroes()
-	local delay = 1 -- -1    4.8
+	local delayPerDrop = 0.25 --1.25 -- delay per drop (not per round)
+	local delay = 1 -- initial delay
 	if not normal_drop then
-		delay = 3.2
+		delay = 3
 	end
 	local max_boss_kills = 0
 	local best_drop = 0
@@ -7263,9 +7264,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 		end
 	end
 	]]
+	local pauseBetweenItemDropRounds = delayPerDrop + 0.05
 	local i = 1
 	for itemDropCount = 1, maxItemDropCount do
-		Timers:CreateTimer(0.05 + (itemDropCount - 1) * 3.25 * (#all),function()
+		Timers:CreateTimer(0.05 + (itemDropCount - 1) * pauseBetweenItemDropRounds * (#all),function()
 			for i=1, #all do
 				local hero = all[i]
 				--does an item drop?
@@ -7477,7 +7479,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								self:SaveChar(hero)
 								EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
 							end
-							delay = delay + 3
+							delay = delay + delayPerDrop
 							Timers:CreateTimer(delay,function() 
 								if lootquality >= 4 then
 					        		local particle = ParticleManager:CreateParticle("particles/econ/events/ti6/hero_levelup_ti6_flash_hit_magic.vpcf", PATTACH_POINT_FOLLOW, all[i])
