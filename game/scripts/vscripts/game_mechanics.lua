@@ -704,8 +704,10 @@ function DamageUnit( event )
         ParticleManager:ReleaseParticleIndex(particle)
         return
     end
+    -- only dazzle w4 thing now so safe to hardcode dazzle skills here
     if event.dmgonbuffcondition and target then
-        if not caster:HasModifier(event.dmgonbuffcondition) or caster:GetAbilityByIndex(1):GetLevel() < 4 then
+        local dazzleW = caster:FindAbilityByName("Feral3")
+        if not caster:HasModifier(event.dmgonbuffcondition) or dazzleW == nil or dazzleW:GetLevel() < 4 then
             return
         end
     end
