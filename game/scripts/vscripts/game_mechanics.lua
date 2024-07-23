@@ -1033,7 +1033,7 @@ function DamageUnit( event )
     end
 
     if event.shadoworb then
-        local bonusfactor = (event.shadoworb * 0.5) + 1
+        local bonusfactor = (event.shadoworb * 0.25) + 1
         finaldamage = finaldamage*bonusfactor
     end
 
@@ -19933,7 +19933,7 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
     local percent_bonus = intPerLevel * hero.talents[25] + 0.03 * hero.talents[76]
     local mindFeeder = hero:GetModifierStackCount("modifier_shadow_cleric_mindstorm_mindbender", nil)
     if mindFeeder > 0 and GetLevelOfAbility(hero, "shadow1") >= 5 then
-        percent_bonus = percent_bonus + 0.2 * mindFeeder
+        percent_bonus = percent_bonus + 0.1 * mindFeeder
     end
     if hero:GetPrimaryAttribute() == 2 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus

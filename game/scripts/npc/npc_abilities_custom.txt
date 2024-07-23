@@ -35357,22 +35357,22 @@
 		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy" "0 0 0 0.1"
+		        "frenzy" "0 0 0 0.075"
 		    }
 		    "06"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_tooltip" "10"
+		        "frenzy_tooltip" "7.5"
 		    }
 		    "07"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max" "1"
+		        "frenzy_max" "0.75"
 		    }
 		    "08"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "frenzy_max_tooltip" "100"
+		        "frenzy_max_tooltip" "75"
 		    }
 		    "09"
 		    { 
