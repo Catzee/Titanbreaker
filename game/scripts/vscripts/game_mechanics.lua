@@ -2343,6 +2343,7 @@ function DamageUnit( event )
             end
         end
     end
+	-- Should be fine because this unit without stances
     if critpossible == true and event.beartrapcrit and caster.owner and caster.owner:GetAbilityByIndex(2) and caster.owner:GetAbilityByIndex(2):GetLevel() >= 3 and target:HasModifier("modifier_bear_trap") then
         finaldamage = finaldamage*2.5*critdmgbonusfactor
         critpossible = false
@@ -3211,10 +3212,10 @@ function DamageUnit( event )
                 caster.combat_system_ability:ApplyDataDrivenModifier(caster, target, "crow_summon_proc", {Duration = 2})
             end
         end
-        if caster.talents[87] and caster.talents[87] > 0 and (event.bloodwolf or (caster:GetAbilityByIndex(0) == ability and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
+        if caster.talents[87] and caster.talents[87] > 0 and (event.bloodwolf or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
             PathStormStrikeProc( caster, target, false, true, false, false)
         end
-        if caster.talents[23] and caster.talents[23] > 0 and (caster:GetAbilityByIndex(4) == ability or (caster:GetAbilityByIndex(2) == ability and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
+        if caster.talents[23] and caster.talents[23] > 0 and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
             PathRainOfStarsAA({caster = caster, target = target, ability = caster.combat_system_ability})
         end
     end
@@ -4621,7 +4622,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if overpower > 0 and wascrit then
             multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(-1) * overpower / 10000)
         end
-        if caster.songIceFire1Cast and caster.talents and caster:GetAbilityByIndex(1) == ability and caster.talents[129] > 0 then
+        if caster.songIceFire1Cast and caster.talents and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
                 local bonusFactor = 2
                 if caster:HasModifier("modifier_pathbuff_129") then
@@ -4632,7 +4633,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 RestoreResource({caster = caster, amount = 2 * caster.talents[129], flat = true})
             end
             caster.songIceFire1Cast = false
-        elseif caster.songIceFire2Cast and caster.talents and caster:GetAbilityByIndex(0) == ability and caster.talents[129] > 0 then
+        elseif caster.songIceFire2Cast and caster.talents and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
                 local bonusFactor = 2
                 if caster:HasModifier("modifier_pathbuff_129") then
@@ -4748,15 +4749,15 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * fortressOfPain * (1 - GetTotalDamageTakenFactor(caster)))
     end
     --spellcast frenzy
-    if ability == caster:GetAbilityByIndex(2) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_044") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_044") then
         event.spellcastfrenzy = 0.05
         event.spellcastfrenzy_max = 0.5
     end
-    if ability == caster:GetAbilityByIndex(0) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_002") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_002") then
         event.spellcastfrenzy = 0.03
         event.spellcastfrenzy_max = 0.6
     end
-    if ability == caster:GetAbilityByIndex(1) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_100") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_100") then
         event.spellcastfrenzy = 0.01
         event.spellcastfrenzy_max = 0.75
     end

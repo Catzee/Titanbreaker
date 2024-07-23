@@ -9488,8 +9488,9 @@ function PVEAggroAdd(event)
     if source.super_aggro_tank and not event.ignore_super_aggro_tank then
       local levelThreshold = 2
       local level_tank_ability = 0
-      local tank_ability = source:GetAbilityByIndex(0)
-      if tank_ability and tank_ability:GetName() == "bear1" then
+	  --
+      local tank_ability = source:FindAbilityByName("bear1")
+      if tank_ability ~= nil then
         levelThreshold = 4
       end
       if source.super_aggro_tank_temple then
@@ -12487,6 +12488,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
           ParticleManager:SetParticleControl(particle, 1, Vector(900,1,1))
           ParticleManager:ReleaseParticleIndex(particle)
           DamageAOE(dmgevent)
+		  -- TODO: Maybe reduce cd of 6th ability for both stances?
           local myevent = {caster = victim, amount = cdLower, ability = victim:GetAbilityByIndex(5)}
           ReduceCooldown(myevent)
           RestoreMana({caster = victim, percent = 1, amount = 10 * victim.talents[57]})
@@ -17867,6 +17869,7 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
                  end
                end
                
+			   -- Should be fine for heroes with abilities switch
                --standard
                local ability = hero:GetAbilityByIndex(index)
                if ability then
@@ -18801,6 +18804,10 @@ function GetRandomTempleClassAbility( hero, templeclass )
 end
 
 function RemoveRightmostTempleClassAbility( hero )
+  -- unused
+  if(true) then
+	return
+  end
   local templeclass = hero.temple_class
   if templeclass then
     for i=1, 5 do
