@@ -20705,7 +20705,7 @@ function SpawnActTraps()
   return COverthrowGameMode.jungledifficulty == 2
 end
 
-function GetLootDropChanceIncreasePerQuest()
+function COverthrowGameMode:GetLootDropChanceIncreasePerQuest()
     if COverthrowGameMode.jungledifficulty >= 2 then
         return 25
     end

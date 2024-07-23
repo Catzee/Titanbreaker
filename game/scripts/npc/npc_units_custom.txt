@@ -26549,9 +26549,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		//"Ability1"					"pve_aoesilence"			// Ability 1.
-		"Ability2"					"pve_temple_bloodpool"			// Ability 2.
+		"Ability2"					"pve_affix_pure_dot"			// Ability 2.
 		"Ability3"					"pve_wolf_shared_life"			// Ability 3.
-		"Ability4"					"pve_affix_pure_dot" //"pve_crit_high"			// Ability 4.
+		"Ability4"					"pve_temple_bloodpool" //"pve_crit_high"			// Ability 4.
 		"Ability5"					"" //"pve_temple_spottheweak"			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
 		"Ability7"					"pveboss_system"			// Ability 7 - Extra.

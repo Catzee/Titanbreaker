@@ -7043,7 +7043,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			self.main_quests_completed = 0
 		end
 		self.main_quests_completed = self.main_quests_completed + 1
-		drop_chance_factor = drop_chance_factor * GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
+		drop_chance_factor = drop_chance_factor * COverthrowGameMode:GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
 		if unit.main_quest_boss == 1 then
 			Notifications:BottomToAll({text="Quest completed: Retrieving the Essence of the Forest", duration=12, style={color="lightgreen"}})
 		end
@@ -7086,7 +7086,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 		if unit.main_quest_boss == 16 then
 			Notifications:BottomToAll({text="Quest completed: Defending Castle Winterwall", duration=12, style={color="lightgreen"}})
 		end
-		Notifications:BottomToAll({text="Reward: "..(GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
+		Notifications:BottomToAll({text="Reward: "..(COverthrowGameMode:GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
 		EmitGlobalSound("valve_dota_001.stinger.dire_win")
 		--COverthrowGameMode:MainQuestVoice()
 	end
@@ -7096,8 +7096,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			--fix for tests
 			self.main_quests_completed = 1
 		end
-		drop_chance_factor = drop_chance_factor * GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
-		Notifications:BottomToAll({text=""..(GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
+		drop_chance_factor = drop_chance_factor * COverthrowGameMode:GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
+		Notifications:BottomToAll({text=""..(COverthrowGameMode:GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
 		EmitGlobalSound("valve_dota_001.stinger.dire_win")
 	end
 
