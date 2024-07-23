@@ -12177,6 +12177,18 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
         feral4:MarkAbilityButtonDirty()
         feral5:MarkAbilityButtonDirty()
     end
+
+    feral1:SetAbilityIndexCustom(0)
+    feral2:SetAbilityIndexCustom(1)
+    feral3:SetAbilityIndexCustom(2)
+    feral4:SetAbilityIndexCustom(3)
+    feral5:SetAbilityIndexCustom(4)
+
+    human1:SetAbilityIndexCustom(0)
+    human2:SetAbilityIndexCustom(1)
+    human3:SetAbilityIndexCustom(2)
+    human4:SetAbilityIndexCustom(3)
+    human5:SetAbilityIndexCustom(4)
 end
 
 function SetAbilityIndexCustom(ability, index)
