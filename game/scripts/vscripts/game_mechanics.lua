@@ -12177,18 +12177,18 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
         feral4:MarkAbilityButtonDirty()
         feral5:MarkAbilityButtonDirty()
     end
---[[
-    SetIsAbilityHiddenByShapeshift(feral1, human)
-    SetIsAbilityHiddenByShapeshift(feral2, human)
-    SetIsAbilityHiddenByShapeshift(feral3, human)
-    SetIsAbilityHiddenByShapeshift(feral4, human)
-    SetIsAbilityHiddenByShapeshift(feral5, human)
-    SetIsAbilityHiddenByShapeshift(human1, not human)
-    SetIsAbilityHiddenByShapeshift(human2, not human)
-    SetIsAbilityHiddenByShapeshift(human3, not human)
-    SetIsAbilityHiddenByShapeshift(human4, not human)
-    SetIsAbilityHiddenByShapeshift(human5, not human)
-    --]]
+end
+
+function SetAbilityIndexCustom(ability, index)
+    ability._abilityIndexCustom = index
+end
+
+function GetAbilityIndexCustom(ability)
+    if(ability._abilityIndexCustom ~= nil) then
+        return ability._abilityIndexCustom
+    end
+
+    return ability:GetAbilityIndex()
 end
 
 function ShapeshiftFeral(event)
