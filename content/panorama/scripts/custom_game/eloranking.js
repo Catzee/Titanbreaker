@@ -1941,7 +1941,7 @@ if(Game.IsInToolsMode())
 function ToggleBlacksmith() {
     $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
 
-    // Destroy and recreate all item panels to fix lags for heroes with abilities switch (thanks valve)
+    // Destroys and recreate all item panels to fix lags for heroes with abilities switch (thanks valve)
     // I hope it will not destroy potato pc fps
     if(!$.FindChildInContext("#shopMain").visible) {
         blacksmithItemsContainer.RemoveAndDeleteChildren();
