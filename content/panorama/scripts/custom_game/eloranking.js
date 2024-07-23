@@ -155,10 +155,6 @@ function ToggleTalentTree() {
     }
 }
 
-function ToggleAutoSellStash() {
-    $.FindChildInContext("#autoSellStash").visible = !$.FindChildInContext("#autoSellStash").visible;
-}
-
 function ToggleRewards() {
     if (!rewardsvisible){
         rewardsvisible = true;
@@ -1942,7 +1938,7 @@ function ToggleBlacksmith() {
     $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
 
     // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
-    // Destroys and recreate all item panels to fix lags for heroes with abilities switch (thanks valve)
+    // So we forced to destroy and recreate all item panels on tab open/close to fix lags for heroes with abilities switch (thanks valve)
     // I hope it will not destroy potato pc fps
     if(!$.FindChildInContext("#shopMain").visible) {
         blacksmithItemsContainer.RemoveAndDeleteChildren();
@@ -2041,7 +2037,23 @@ if(Game.IsInToolsMode())
     autoSellItemsContainer.RemoveAndDeleteChildren();
 }
 
-function OnAutoSellStashItem(args)
+function ToggleAutoSellStash() {
+    let autoSellStash = $.FindChildInContext("#autoSellStash");
+    autoSellStash.visible = !autoSellStash.visible;
+
+    // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
+    // So we forced to destroy and recreate all item panels on tab open/close to fix lags for heroes with abilities switch (thanks valve)
+    // I hope it will not destroy potato pc fps
+    if(!autoSellStash.visible) {
+        autoSellItemsContainer.RemoveAndDeleteChildren();
+    } else {
+        for (const [_, itemData] of Object.entries(autoSellItemsPanels)) {
+            AddAutoSellItemPanel(itemData);
+        }
+    }
+}
+
+function AddAutoSellItemPanel(args)
 {
     var itemPanel = $.CreatePanel('Panel', autoSellItemsContainer, '');
     itemPanel.BLoadLayoutSnippet("BlacksmithItem");
@@ -2060,8 +2072,11 @@ function OnAutoSellStashItem(args)
             GameEvents.SendCustomGameEventToServer("buyautosellstashitem", { "player_id": Players.GetLocalPlayer(), "key": args.key } );
         }
     )
+}
 
-    autoSellItemsPanels[args.key] = itemPanel;
+function OnAutoSellStashItem(args)
+{
+    autoSellItemsPanels[args.key] = args;
 }
 
 function OnAutoSellStashItemBought(args)
