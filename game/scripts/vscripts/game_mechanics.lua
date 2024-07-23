@@ -12147,6 +12147,12 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
             caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, false)
             caster:SwapAbilities("Feral1", "empty_spell1", true, false)
             caster:SwapAbilities("Feral5", "empty_spell2", true, false)
+        else
+            human1:SetHidden(true)
+            human2:SetHidden(true)
+            human3:SetHidden(true)
+            human4:SetHidden(true)
+            human5:SetHidden(true)
         end
 
         -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
