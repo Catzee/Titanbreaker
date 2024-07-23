@@ -6572,7 +6572,7 @@ function ShapeshiftOut( event )
     --tree talent
     if ability:GetLevel() >= 4 then
         if event.event_ability then
-            if GetAbilityIndexCustom(event.event_ability) == 0 or GetAbilityIndexCustom(event.event_ability) == 2 or GetAbilityIndexCustom(event.event_ability) == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 2 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 5 then
                 --StartAnimation(caster, {activity=ACT_DOTA_ATTACK, duration=0.25, rate=2.5})
             else
                 --StartAnimation(caster, {activity=ACT_DOTA_SPAWN, duration=1.5, rate=0.27})

@@ -112,7 +112,7 @@ function shadow33:OnUnitDamaged(event)
 		caster = event.caster,
 		target = event.caster,
 		ability = self,
-        index = GetAbilityIndexCustom(self),
+        index = COverthrowGameMode:GetAbilityIndexCustom(self),
         amount = self:GetSpecialValueFor("cdr_flat_dream_feast")
 	})
 

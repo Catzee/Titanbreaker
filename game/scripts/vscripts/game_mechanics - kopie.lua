@@ -1334,10 +1334,10 @@ function DamageUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((GetAbilityIndexCustom(ability) == 0 or GetAbilityIndexCustom(ability) == 1) or (GetAbilityIndexCustom(ability) == 2 and caster:HasModifier("modifier_pathbuff_013"))) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(ability) == 1) or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and caster:HasModifier("modifier_pathbuff_013"))) then
         local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
         local alphablood_chance = 3
-        if GetAbilityIndexCustom(ability) == 1 then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2
             if alphablood_divine then
                 alphablood_chance = 4
@@ -2284,7 +2284,7 @@ function DamageUnit( event )
             caster.ability_stats = {}
         end
         if ability then
-            local index = GetAbilityIndexCustom(ability)
+            local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
             if not caster.ability_stats[index] then
                 caster.ability_stats[index] = 0
             end
@@ -3517,7 +3517,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * caster.talents[68])
             end
-            if GetAbilityIndexCustom(ability) == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[68])
             end
         end
@@ -4986,7 +4986,7 @@ function HealUnit( event )
         if caster.talents[67] and caster.talents[67] > 0 and isaoe then
             healing_bonus = healing_bonus + 0.07 * caster.talents[67]
         end
-        if caster.talents[39] and caster.talents[39] > 0 and ability and GetAbilityIndexCustom(ability) == 0 then
+        if caster.talents[39] and caster.talents[39] > 0 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 then
             healing_bonus = healing_bonus + 0.1 * caster.talents[39]
         end
     end
@@ -5171,10 +5171,10 @@ function HealUnit( event )
             critpossible = false
         end
     end
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and (GetAbilityIndexCustom(ability) == 0 or GetAbilityIndexCustom(ability) == 1) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(ability) == 1) then
         local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
         local alphablood_chance = 3
-        if GetAbilityIndexCustom(ability) == 1 then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2
             if alphablood_divine then
                 alphablood_chance = 4
@@ -5356,7 +5356,7 @@ function HealUnit( event )
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 healing_bonus = healing_bonus + 0.05 * caster.talents[68]
             end
-            if GetAbilityIndexCustom(ability) == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
                 healing_bonus = healing_bonus + 0.1 * caster.talents[68]
             end
         end
@@ -5686,7 +5686,7 @@ function HealUnit( event )
         end
         local index = -1
         if event.ability then
-            index = GetAbilityIndexCustom(event.ability)
+            index = COverthrowGameMode:GetAbilityIndexCustom(event.ability)
         end
         if index >= 0 then
             if not caster.ability_stats_heal[index] then
@@ -9256,7 +9256,7 @@ function ShapeshiftOut( event )
     --tree talent
     if ability:GetLevel() >= 4 then
         if event.event_ability then
-            if GetAbilityIndexCustom(event.event_ability) == 0 or GetAbilityIndexCustom(event.event_ability)) == 2 or GetAbilityIndexCustom(event.event_ability) == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability)) == 2 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 5 then
                 --StartAnimation(caster, {activity=ACT_DOTA_ATTACK, duration=0.25, rate=2.5})
             else
                 --StartAnimation(caster, {activity=ACT_DOTA_SPAWN, duration=1.5, rate=0.27})
@@ -12074,7 +12074,7 @@ function CooldownReduction( event ) --also instant ability resets
         end
     end
     local astral_talent_shock = caster:FindAbilityByName("moon6")
-    if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 15 and GetAbilityIndexCustom(ability) <= 2 then
+    if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 15 and COverthrowGameMode:GetAbilityIndexCustom(ability) <= 2 then
     	AstralShock(caster)
     end
 	--cooldown item
@@ -12247,7 +12247,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_6 then
             caster.ability_combo_6 = {}
         end
-        local index = GetAbilityIndexCustom(ability)
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_6[index] = true
         if caster.ability_combo_6[1] and caster.ability_combo_6[2] and caster.ability_combo_6[3] and caster.ability_combo_6[4] and caster.ability_combo_6[5] and caster.ability_combo_6[0] then
             for i=0,5 do
@@ -12285,7 +12285,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4 then
             caster.ability_combo_4 = {}
         end
-        local index = GetAbilityIndexCustom(ability)
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_4[index] = true
         if caster.ability_combo_4[1] and caster.ability_combo_4[2] and caster.ability_combo_4[3] and caster.ability_combo_4[0] then
             for i=0,3 do
@@ -12310,7 +12310,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4_5_6 then
             caster.ability_combo_4_5_6 = {}
         end
-        local index = GetAbilityIndexCustom(ability)
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_4_5_6[index] = true
         if caster.ability_combo_4_5_6[3] and caster.ability_combo_4_5_6[4] and caster.ability_combo_4_5_6[5] then
             for i=3,5 do
@@ -12326,7 +12326,7 @@ function AbilityComboProcs(caster, ability)
 end
 
 function CooldownProcs( caster, ability, cd )
-    if cd and cd >= 20 and ability and GetAbilityIndexCustom(ability) == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) then
+    if cd and cd >= 20 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) then
         local abil_5 = caster:GetAbilityByIndex(4)
         if abil_5 then
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -12334,7 +12334,7 @@ function CooldownProcs( caster, ability, cd )
             abil_5:EndCooldown()
         end
     end
-    if cd and cd >= 20 and ability and GetAbilityIndexCustom(ability) == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) then
+    if cd and cd >= 20 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) then
         local abil_4 = caster:GetAbilityByIndex(3)
         if abil_4 then
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -12342,7 +12342,7 @@ function CooldownProcs( caster, ability, cd )
             abil_4:EndCooldown()
         end
     end
-    if cd and cd >= 20 and ability and GetAbilityIndexCustom(ability) == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) then
+    if cd and cd >= 20 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) then
         local abil_3 = caster:GetAbilityByIndex(2)
         if abil_3 then
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
