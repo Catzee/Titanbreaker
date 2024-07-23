@@ -12178,24 +12178,24 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
         feral5:MarkAbilityButtonDirty()
     end
 
-    feral1:SetAbilityIndexCustom(0)
-    feral2:SetAbilityIndexCustom(1)
-    feral3:SetAbilityIndexCustom(2)
-    feral4:SetAbilityIndexCustom(3)
-    feral5:SetAbilityIndexCustom(4)
+    COverthrowGameMode:SetAbilityIndexCustom(feral1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(feral2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(feral3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(feral4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(feral5, 4)
 
-    human1:SetAbilityIndexCustom(0)
-    human2:SetAbilityIndexCustom(1)
-    human3:SetAbilityIndexCustom(2)
-    human4:SetAbilityIndexCustom(3)
-    human5:SetAbilityIndexCustom(4)
+    COverthrowGameMode:SetAbilityIndexCustom(human1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(human2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(human3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(human4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(human5, 4)
 end
 
-function SetAbilityIndexCustom(ability, index)
+function COverthrowGameMode:SetAbilityIndexCustom(ability, index)
     ability._abilityIndexCustom = index
 end
 
-function GetAbilityIndexCustom(ability)
+function COverthrowGameMode:GetAbilityIndexCustom(ability)
     if(ability._abilityIndexCustom ~= nil) then
         return ability._abilityIndexCustom
     end
