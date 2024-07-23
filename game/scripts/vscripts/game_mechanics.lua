@@ -4825,16 +4825,30 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     end
     if caster:HasModifier("modifier_new7") and ability then
         local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
-        if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
+
+        if abilityIndex >= 1 then
+            local isStanceAbility = COverthrowGameMode:IsStanceAbility(ability)
+            local targetAbility = COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex - 1, isStanceAbility)
+
+            if(targetAbility ~= nil) then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * targetAbility:GetLevel())
+            end
         end
     end
+
     if caster:HasModifier("modifier_new72") and ability then
         local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
-        if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
+
+        if abilityIndex >= 1 then
+            local isStanceAbility = COverthrowGameMode:IsStanceAbility(ability)
+            local targetAbility = COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex - 1, isStanceAbility)
+
+            if(targetAbility ~= nil) then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * targetAbility:GetLevel())
+            end
         end
     end
+
     if event.shadowimp then
         local shadowimps = caster:GetModifierStackCount("modifier_shadow_imp", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * shadowimps)
@@ -12179,20 +12193,39 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
         feral5:MarkAbilityButtonDirty()
     end
 
-    feral1:SetAbilityIndexCustom(0)
-    feral2:SetAbilityIndexCustom(1)
-    feral3:SetAbilityIndexCustom(2)
-    feral4:SetAbilityIndexCustom(3)
-    feral5:SetAbilityIndexCustom(4)
+    -- Sets internal things for anything that rely on ability indexes...
+    COverthrowGameMode:SetAbilityIndexCustom(feral1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(feral2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(feral3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(feral4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(feral5, 4)
 
-    human1:SetAbilityIndexCustom(0)
-    human2:SetAbilityIndexCustom(1)
-    human3:SetAbilityIndexCustom(2)
-    human4:SetAbilityIndexCustom(3)
-    human5:SetAbilityIndexCustom(4)
+    COverthrowGameMode:SetAbilityIndexCustom(human1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(human2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(human3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(human4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(human5, 4)
+
+    COverthrowGameMode:SetIsStanceAbility(human1, true)
+    COverthrowGameMode:SetIsStanceAbility(human2, true)
+    COverthrowGameMode:SetIsStanceAbility(human3, true)
+    COverthrowGameMode:SetIsStanceAbility(human4, true)
+    COverthrowGameMode:SetIsStanceAbility(human5, true)
 end
 
-function SetAbilityIndexCustom(ability, index)
+function COverthrowGameMode:SetIsStanceAbility(ability, state)
+    ability._isStanceAbility = state
+end
+
+function COverthrowGameMode:IsStanceAbility(ability)
+    if(ability._isStanceAbility ~= nil) then
+        return ability._isStanceAbility
+    end
+
+    return false
+end
+
+function COverthrowGameMode:SetAbilityIndexCustom(ability, index)
     ability._abilityIndexCustom = index
 end
 
@@ -12202,6 +12235,22 @@ function COverthrowGameMode:GetAbilityIndexCustom(ability)
     end
 
     return ability:GetAbilityIndex()
+end
+
+function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
+    for i = 0, DOTA_MAX_ABILITIES - 1 do
+        local ability = hero:GetAbilityByIndex(i)
+
+        if(ability == nil) then
+            return nil
+        end
+
+        if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
+            return ability
+        end
+    end
+
+    return nil
 end
 
 function ShapeshiftFeral(event)
