@@ -18123,7 +18123,7 @@ function KillDance (event)
         if caster:GetAbilityByIndex(2):GetLevel() >= 4 then
             myevent.max = 50
         end
-    	myevent.ability = caster:GetAbilityByIndex(2) -- here
+    	myevent.ability = caster:GetAbilityByIndex(2)
     	myevent.dur = 10
     	myevent.notself = 1
     	ApplyBuffStack(myevent)
@@ -24658,7 +24658,7 @@ function GlobalOnAbilityCriticalStrike(caster, target, ability, damageOrHeal, sw
         if GetLevelOfAbility(caster, "Protect2") >= 2 and math.random(1,100) <= 25 then
             caster:GetAbilityByIndex(0):ApplyDataDrivenModifier(caster, caster, "modifier_ironshield", {Duration = 3})
         end
-        if caster.talents[19] and caster.talents[19] > 0 and math.random(1,100) <= 10 * caster.talents[19] and caster:GetAbilityByIndex(2) == ability and not caster:HasModifier("modifier_path19cd") then
+        if caster.talents[19] and caster.talents[19] > 0 and math.random(1,100) <= 10 * caster.talents[19] and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and not caster:HasModifier("modifier_path19cd") then
             Timers:CreateTimer(0.1,function()
                 caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_path19cd", {Duration = 30 * GetInnerCooldownFactor(caster)})
                 local myevent = {caster = caster, amount = 1000, ability = ability }
@@ -24759,7 +24759,7 @@ end
 function GlobalOnDealChaosDamage( caster, target )
     if caster.talents then
         if GetLevelOfAbility(caster, "terror1") >= 4 and math.random(1,100) <= 5 then
-            ApplyBuff({caster = caster, target = target, ability = caster:GetAbilityByIndex(0), dur = 1, buff = "modifier_stunned"})
+            ApplyBuff({caster = caster, target = target, ability = caster:GetAbilityByIndex(0), dur = 1, buff = "modifier_stunned"}) -- should be fine?
             local particle = ParticleManager:CreateParticle("particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_cast_lightray.vpcf", PATTACH_POINT_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
         end
@@ -24812,7 +24812,7 @@ function DivineBlessingProc(caster)
     if GetLevelOfAbility(caster, "disc7") >= 4 and math.random(1,100) <= 5 then
         local target = MostWoundedTarget({range = 1500, caster = caster, target = caster, onlyhero = true})
         if target then
-            caster:GetAbilityByIndex(3):ApplyDataDrivenModifier(caster, target, "modifier_divinebl", {Duration = 3})
+            caster:GetAbilityByIndex(3):ApplyDataDrivenModifier(caster, target, "modifier_divinebl", {Duration = 3}) -- should be fine?
         end
     end
 end
@@ -24902,7 +24902,7 @@ function SwipeOfUrsaTalent(caster, original_ability)
     Timers:CreateTimer(1.25,function()
         local aoe = 300
         local event = {caster = caster, ability = caster.combat_system_ability, changedmgtypetophys = 1, damage_factor_single_target = 2, damage = 0, attributefactor = 250*caster.talents[50], attributechangestr = 1, aoe = aoe, max_targets = 5, targeteffect = "arcanablood", isaoe = 1, delay = delay, dontbreakcc = 1 }
-        if caster:HasModifier("modifier_pathbuff_066") and caster:GetAbilityByIndex(1) == original_ability then
+        if caster:HasModifier("modifier_pathbuff_066") and COverthrowGameMode:GetAbilityIndexCustom(original_ability) == 1 then
             event.shadowdmg = 1
             event.attributechangestr = nil
             event.attributefactor = event.attributefactor * 1.25
@@ -25610,7 +25610,7 @@ function AutoAttackCriticalStrike( event )
             --    caster:RemoveModifierByName("modifier_dfury")
             --end
             --caster.retri_aa_crit_target = target
-            ApplyBuffStack({caster = caster, target = caster, ability = caster:GetAbilityByIndex(5), dur = 8, max = 100, buff = "modifier_dfury"})
+            ApplyBuffStack({caster = caster, target = caster, ability = caster:GetAbilityByIndex(5), dur = 8, max = 100, buff = "modifier_dfury"}) -- should be fine
         end
         Timers:CreateTimer(5, function()
         	caster.aa_crit_counter_last_10_secs = caster.aa_crit_counter_last_10_secs - 1
@@ -25905,7 +25905,7 @@ function GetAbilitiesOnCooldown( caster )
     end
     local count = 0
 
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() > 0.1 then
             count = count + 1
@@ -25919,7 +25919,7 @@ function GetTotalAbilityCooldowns( caster )
         return 0
     end
     local count = 0
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() >= 0.1 then
             count = count + ab:GetCooldownTimeRemaining()
@@ -25934,7 +25934,7 @@ function GetHighestRemainingCooldownAbility( caster )
     end
     local cd = 0
     local ability = nil
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() > cd then
             cd = ab:GetCooldownTimeRemaining()
@@ -25950,7 +25950,7 @@ function GetHighestCooldownAbility( caster )
     end
     local cd = 0
     local ability = nil
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() then
             local baseCD = ab:GetCooldown(ab:GetLevel())
@@ -26219,7 +26219,7 @@ function HealProcs(caster, target, ability, healingAmount, isdot)
         AddEnergy(myevent)
     end
     if caster == target and GetLevelOfAbility(caster, "Infested_Wound") >= 4 then
-        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2})
+        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2}) -- should be fine
     end
     if (not isdot) and target and target.talents then
         if target:HasModifier("modifier_rotting") then
@@ -27879,7 +27879,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
             end
             healing_bonus = healing_bonus + 0.05 * caster.talents[20] * standsstill
         end
-        if caster.talents[66] and caster.talents[66] > 0 and ability == caster:GetAbilityByIndex(1) then
+        if caster.talents[66] and caster.talents[66] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             healing_bonus = healing_bonus + 0.15 * caster.talents[66]
             if math.random(1,100) <= 25 and caster.combat_system_ability and process_procs then
                 AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 300 + 100 * caster.talents[66], aacrit_chance = 100})
@@ -27976,9 +27976,10 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         healing_bonus = healing_bonus + heavencharge
         caster:RemoveModifierByName("modifier_heaven_charge")
     end
-    if caster:HasModifier("modifier_shapeshifttravel") and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
-        healing_bonus = healing_bonus + 0.75
-    end
+	-- unused old np 6th ability
+    --if caster:HasModifier("modifier_shapeshifttravel") and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
+    --    healing_bonus = healing_bonus + 0.75
+    --end
     if caster:HasModifier("modifier_special_bonus_lifesteal") then
         healing_bonus = healing_bonus + 0.1
     end
@@ -28086,7 +28087,9 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     if priest_heal_talent and priest_heal_talent:GetLevel() >= 4 then
         healing_bonus = healing_bonus + GetAgilityCustom(caster) * 0.001
     end
-    if caster:GetName() == "npc_dota_hero_dazzle" and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
+	-- Rank 3: Gain Regenerative Skin, passively increasing your Armor by 7 and Spell Resistance by 15 and all healing caused by you by 25%%
+	priest_heal_talent = caster:FindAbilityByName("ShapeshiftFeral")
+    if caster:GetName() == "npc_dota_hero_dazzle" and priest_heal_talent and priest_heal_talent:GetLevel() >= 3 then
         healing_bonus = healing_bonus + 0.25
     end
     if caster:HasModifier("item_mother_of_dragons") then
@@ -29397,7 +29400,7 @@ function FelBlast( caster, target )
     tab.spelldamagefactor = 0.0
     tab.attributefactor = 250
     tab.attributechangestragi = 250
-    tab.ability = caster:GetAbilityByIndex(2)
+    tab.ability = caster:GetAbilityByIndex(2) -- should be fine
     tab.aoe = range
     --tab.targeteffect = "blood"
     tab.targetpos = 1
@@ -29488,13 +29491,7 @@ function LunarEclipseProc( hero )
 end
 
 function GetButterflyDamageFactor( hero, ability )
-    local abilityIndex = -1
-    for i=0, COverthrowGameMode.heroAbilityCount do
-        if ability == hero:GetAbilityByIndex(i) then
-            abilityIndex = i
-            break
-        end
-    end
+    local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
     local bonus = 0
     if abilityIndex >= 0 then
         if not hero.butterflyExpectedAbility then
@@ -29722,7 +29719,7 @@ end
 
 function CountAbilitiesWithLevel( hero, level )
     local count = 0
-    for i = 0, COverthrowGameMode.heroAbilityCount do
+    for i = 0, COverthrowGameMode.heroAbilityCount do -- should affect stance abilities?
         local ability = hero:GetAbilityByIndex(i)
         if ability and not ability:IsPassive() and ability:GetLevel() == level then
             count = count + 1
@@ -30291,6 +30288,8 @@ function SpellbookLearn(event)
 end
 
 function LearnMasteryAbility(caster, newAbilityName)
+	-- unfinished or unused thing
+	--[[
     --remove previously learned ability
     local masteryAbilityLevel = 1
     if caster.masteryAbility then
@@ -30309,6 +30308,7 @@ function LearnMasteryAbility(caster, newAbilityName)
         local abilityIn7thSlotWasActive = abilityIn7thSlot:IsActivated()
         caster:SwapAbilities(newAbilityName, abilityIn7thSlot:GetName(), true, abilityIn7thSlotWasActive)
     end
+	--]]
 end
 
 function IsAbilityAllowedForHero(hero, abilityName)
@@ -30348,6 +30348,8 @@ function WarriorBerserkerRage(event)
 end
 
 function AbilityAutoCastOld(event)
+	-- unfinished or unused thing
+	--[[
     local caster = event.caster
     local target = event.target
     local ability = caster:GetAbilityByIndex(0)
@@ -30369,7 +30371,7 @@ function AbilityAutoCastOld(event)
         }
 
         ExecuteOrderFromTable(order)
-    end)
+    end) --]]
 end
 
 function AbilityAutoCastV2(event)
@@ -30379,7 +30381,7 @@ function AbilityAutoCastV2(event)
 
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(event.abilityIndex)
+    local ability = caster:GetAbilityByIndex(event.abilityIndex) -- should be fine
 
     if ability:GetCooldownTimeRemaining() > 0 or ability:GetLevel() <= 0 then
         return
@@ -30428,7 +30430,7 @@ function TryAddShadowClericShadowSphere(caster, ability, chance)
             self = 1
         })
         for i=0,DOTA_MAX_ABILITIES-1 do
-            local ability = caster:GetAbilityByIndex(i)
+            local ability = caster:GetAbilityByIndex(i) -- should be fine
 
             if(ability == nil) then
                 break
@@ -30478,7 +30480,7 @@ function CheckForFlurryProc(event)
         return
     end
     local target = event.target
-    local ability = caster:GetAbilityByIndex(caster.flurryAbility)
+    local ability = caster:GetAbilityByIndex(caster.flurryAbility) -- should be fine for now, use COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex, isStanceAbility) for stance abilities support
     local mana = caster:GetMana()
     local manacost = ability:GetManaCost(-1)
 
@@ -31048,7 +31050,7 @@ function Brew4FireTick(event)
     if ability:GetLevel() >= 3 then
         local pos = caster:GetAbsOrigin()
         local forward = caster:GetForwardVector()
-        local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}}
+        local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}} -- should be fine
         CastBrew1(bofEvent)
     end
 end
@@ -31058,7 +31060,7 @@ function Brew3Fire(caster)
     local forward = caster:GetForwardVector()
     local forward2 = RotateVectorAroundAngle(forward, 30)
     local forward3 = RotateVectorAroundAngle(forward, -30)
-    local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward * 100}}
+    local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward * 100}} -- every GetAbilityByIndex here should be fine
     CastBrew1(bofEvent)
     --Timers:CreateTimer(0.2, function()
         local bofEvent2 = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward2 * 100}}
@@ -31123,7 +31125,7 @@ end
 function Brew2Ignite(event)
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(1)
+    local ability = caster:GetAbilityByIndex(1) -- should be fine
     if target:HasModifier("modifier_haze") then
         local buffevent = { caster = caster, target = target, ability = ability, buff = "modifier_haze_fire", dur = 10}
         ApplyBuff(buffevent)
@@ -31360,7 +31362,7 @@ function CheckForEarthquakeProc(caster, target)
 end
 
 function ProcEarthQuake(caster, target)
-    local ability = caster:GetAbilityByIndex(5)
+    local ability = caster:GetAbilityByIndex(5) -- should be fine
     if ability:GetLevel() < 5 then
         return
     end
@@ -31499,7 +31501,7 @@ end
 function PestCheck(event)
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(0)
+    local ability = caster:GetAbilityByIndex(0) -- should be fine
 
     if ability:GetLevel() >= 5 then
         local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
