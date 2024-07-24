@@ -24701,7 +24701,7 @@ function GlobalOnDealAbilityDamage(caster, target, ability)
             ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() + Vector(0,0,75))
             ParticleManager:ReleaseParticleIndex(particle)
             caster.horseHealCd = true
-            Timers:CreateTimer(2.5 * GetInnerCooldownFactor(caster),function()
+            Timers:CreateTimer(1.5 * GetInnerCooldownFactor(caster),function()
                 caster.horseHealCd = false
             end)
         end
