@@ -14567,56 +14567,13 @@ function SunForm(event)
 		hero:RemoveModifierByName("modifier_moonstance")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_sunstance", nil)
 
-        hero:SwapAbilities("moon11", "moon1", true, false)
-        hero:SwapAbilities("moon3", "RootsDruidMoon", true, false)
-        hero:SwapAbilities("moon2", "moon12", true, false)
-        hero:SwapAbilities("moon4", "moon9", true, false)
-        hero:SwapAbilities("moon5", "moon10", true, false)
-  
-  		hero:SetRenderColor(255, 255, 255)
-
-        moon1:SetLevel(sun1:GetLevel())
-        moon2:SetLevel(sun2:GetLevel())
-        moon3:SetLevel(sun3:GetLevel())
-        moon4:SetLevel(sun4:GetLevel())
-        moon5:SetLevel(sun5:GetLevel())
-
-        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
-        moon1:SetActivated(true)
-        moon2:SetActivated(true)
-        moon3:SetActivated(true)
-        moon4:SetActivated(true)
-        moon5:SetActivated(true)
-        
-        sun1:SetActivated(false)
-        sun2:SetActivated(false)
-        sun3:SetActivated(false)
-        sun4:SetActivated(false)
-        sun5:SetActivated(false)
-
-        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
-        moon1:MarkAbilityButtonDirty()
-        moon2:MarkAbilityButtonDirty()
-        moon3:MarkAbilityButtonDirty()
-        moon4:MarkAbilityButtonDirty()
-        moon5:MarkAbilityButtonDirty()
-
-  		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)		
-  	else
-  		--print("to moon")
-  		hero:RemoveModifierByName("modifier_sunstance")
-		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_moonstance", nil)
-
         hero:SwapAbilities("moon11", "moon1", false, true)
         hero:SwapAbilities("moon3", "RootsDruidMoon", false, true)
         hero:SwapAbilities("moon2", "moon12", false, true)
         hero:SwapAbilities("moon4", "moon9", false, true)
         hero:SwapAbilities("moon5", "moon10", false, true)
-  		
-  		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)	
-  		local c = 200
-  		hero:SetRenderColor(c, c, c)
-  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)
+  
+  		hero:SetRenderColor(255, 255, 255)
 
         sun1:SetLevel(moon1:GetLevel())
         sun2:SetLevel(moon2:GetLevel())
@@ -14643,6 +14600,49 @@ function SunForm(event)
         sun3:MarkAbilityButtonDirty()
         sun4:MarkAbilityButtonDirty()
         sun5:MarkAbilityButtonDirty()
+
+  		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)		
+  	else
+  		--print("to moon")
+  		hero:RemoveModifierByName("modifier_sunstance")
+		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_moonstance", nil)
+
+        hero:SwapAbilities("moon11", "moon1", true, false)
+        hero:SwapAbilities("moon3", "RootsDruidMoon", true, false)
+        hero:SwapAbilities("moon2", "moon12", true, false)
+        hero:SwapAbilities("moon4", "moon9", true, false)
+        hero:SwapAbilities("moon5", "moon10", true, false)
+  		
+  		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)	
+  		local c = 200
+  		hero:SetRenderColor(c, c, c)
+  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)
+
+        moon1:SetLevel(sun1:GetLevel())
+        moon2:SetLevel(sun2:GetLevel())
+        moon3:SetLevel(sun3:GetLevel())
+        moon4:SetLevel(sun4:GetLevel())
+        moon5:SetLevel(sun5:GetLevel())
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        moon1:SetActivated(true)
+        moon2:SetActivated(true)
+        moon3:SetActivated(true)
+        moon4:SetActivated(true)
+        moon5:SetActivated(true)
+        
+        sun1:SetActivated(false)
+        sun2:SetActivated(false)
+        sun3:SetActivated(false)
+        sun4:SetActivated(false)
+        sun5:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        moon1:MarkAbilityButtonDirty()
+        moon2:MarkAbilityButtonDirty()
+        moon3:MarkAbilityButtonDirty()
+        moon4:MarkAbilityButtonDirty()
+        moon5:MarkAbilityButtonDirty()
   	end
 
     -- Sets internal things for anything that rely on ability indexes...
