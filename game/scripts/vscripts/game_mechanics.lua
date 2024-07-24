@@ -3017,6 +3017,10 @@ function DamageUnit( event )
             end
         end
 
+        if ability then
+            caster.lastAbilityCausingDamage = ability
+        end
+
         --extra hit procs
         if caster:HasModifier("modifier_rage_proc2") or caster:HasModifier("modifier_rage_proc") then
             local dmgfactorproc = 0.15
@@ -3241,6 +3245,8 @@ function DamageUnit( event )
             caster.ability_stats[index] = caster.ability_stats[index] + damage_table.damage
         end
     end
+
+    GlobalOnDealAbilityDamage(caster, target, ability)
 end
 
 function MultiElementProcs(event, caster, target)
@@ -21554,8 +21560,8 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 144 then
-            --new_talent_value = 3
+        --if i == 139 then
+        --    new_talent_value = 3
         --end
         
         --new divine doubling soul items
@@ -24676,13 +24682,28 @@ function DivineBlessingProc(caster)
     end
 end
 
+function GlobalOnDealAbilityDamage(caster, target, ability)
+    if caster.talents then
+        if caster.talents[139] and caster.talents[139] > 0 and ability:GetLevel() >= 5 and math.random(1,100) <= 25 and not caster.horseHealCd then
+            HealUnit({caster = caster, target = caster, ability = ability, heal = GetPrimaryStatValueCustom(caster) * 0.05 * caster.talents[139]})
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf", PATTACH_POINT_FOLLOW, target)
+            ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:ReleaseParticleIndex(particle)
+            caster.horseHealCd = true
+            Timers:CreateTimer(2.5 * GetInnerCooldownFactor(caster),function()
+                caster.horseHealCd = false
+            end)
+        end
+    end
+end
+
 function GlobalOnDealDamage( event )
     local caster = event.caster
     local target = event.unit
+    local ability = event.ability -- this is not the ability causing the damage. this is the abilitiy whos modifier listens for damage (combat_system)
     caster.creepertarget = target
-    if event.ability then
-        caster.lastAbilityCausingDamage = event.ability
-    end
+    
     if GetLevelOfAbility(caster, "glacier_crack_spell") >= 2 then
         RestoreResource({caster = caster, amount = 5, cap = 10})
     end
@@ -24702,7 +24723,7 @@ function GlobalOnDealDamage( event )
             if stackcount >= threshold then
                 stackcount = 0
                 caster:RemoveModifierByName("modifier_swipe_of_ursa")
-                SwipeOfUrsaTalent(caster, event.ability)
+                SwipeOfUrsaTalent(caster, ability)
             else
                 ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 30, buff = "modifier_swipe_of_ursa"})
             end
@@ -24715,7 +24736,7 @@ function GlobalOnDealDamage( event )
                 --stunextra = 2
             end
             backstabcd = backstabcd * GetInnerCooldownFactor(caster)
-            ApplyBuff({caster = caster, target = target, ability = event.ability, dur = 1 + caster.talents[44] + stunextra, buff = "modifier_stunned"})
+            ApplyBuff({caster = caster, target = target, ability = ability, dur = 1 + caster.talents[44] + stunextra, buff = "modifier_stunned"})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, dur = backstabcd, buff = "modifier_backstab_cd"})
             BloodArcana({caster = caster, target = target, ignore_crit_effect_cooldown = true })
         end

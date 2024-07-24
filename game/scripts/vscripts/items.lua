@@ -1379,7 +1379,7 @@ COverthrowGameMode.PathTalentNames = {
 	"Typhoon Thunder",
 	"Hysteria",
 	"Natural Disaster",
-	"Four Horsemen",
+	"Five Horsemen",
 	"Mutation",
 	"Infestor",
 	"Tree of Life",

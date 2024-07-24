@@ -127,6 +127,8 @@ function Precache( context )
   PrecacheResource( "particle", "particles/venomancer_venomous_gale_viper.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", context )
   PrecacheResource( "particle", "particles/fireball_linear_5.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf", context )
+  
 
   --5.4
   PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context)

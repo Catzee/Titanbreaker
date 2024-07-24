@@ -10218,7 +10218,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_132_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Primal Power\n<font color=\"#FF6600\">Increases Primal Power cap by 2 levels.</font>"
 		"DOTA_Tooltip_ability_item_pathbuff_132_stat1"  "All Stats: + "
 		"DOTA_Tooltip_ability_item_rider_boots"  "<font color=\"#ffd700\">[Divine] Rider's Boots"
-		"DOTA_Tooltip_ability_item_rider_boots_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Four Horsemen\n<font color=\"#FF6600\">+2 for the Path Talent Wolf Rider</font>"
+		"DOTA_Tooltip_ability_item_rider_boots_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Five Horsemen\n<font color=\"#FF6600\">+2 for the Path Talent Wolf Rider</font>"
 		"DOTA_Tooltip_ability_item_rider_boots_stat1"  "Movespeed: + "
 		"DOTA_Tooltip_ability_item_firestone"  "<font color=\"#ffd700\">[Divine] Sacred Firestone"
 		"DOTA_Tooltip_ability_item_firestone_Description"  "<font color=\"#FF6600\">Whenever you deal Holy Damage, it is now of type Fire instead and deals 100% increased Damage.\n<font color=\"#FF6600\">Rain of Arrows fires 5 additional waves.\n<font color=\"#FF6600\">Dragon Claw deals its Damage twice."
