@@ -9476,6 +9476,8 @@ function FatalThrowHit(event)
 		--myevent.ability = event.ability
 		--myevent.dur = caster.FatalThrowCP*event.silence
 		--ApplyBuff(myevent)
+
+        -- This was intentionally made to don't care if spell was interrupted or no
         if(caster:HasModifier("modifier_fatal_throw_inner_cd") == false and event.ability:IsAltCasted()) then
             SpellInterrupt({caster = caster, target = target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
             local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
@@ -9507,6 +9509,7 @@ function FatalThrowHit(event)
 end
 
 function SacredSpearHit(event)
+    -- This was intentionally made to don't care if spell was interrupted or no
     if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
         SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
         local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
@@ -14528,77 +14531,138 @@ function HolyForm(event)
 end
 
 function SunForm(event)
-
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
-	local abil4 = hero:GetAbilityByIndex(3)
-	local abil5 = hero:GetAbilityByIndex(4)
 
-	if abil3:GetAbilityName() == "moon2" then
+    local moon1 = hero:FindAbilityByName("moon11")
+    local moon2 = hero:FindAbilityByName("moon3")
+    local moon3 = hero:FindAbilityByName("moon2")
+    local moon4 = hero:FindAbilityByName("moon4")
+    local moon5 = hero:FindAbilityByName("moon5")
+    local sun1 = 1
+    local sun2 = 1
+    local sun3 = 1
+    local sun4 = 1
+    local sun5 = 1
+
+    if(hero._sunFormInit == nil) then
+        sun1 = hero:AddAbility("moon1")
+        sun2 = hero:AddAbility("RootsDruidMoon")
+        sun3 = hero:AddAbility("moon12")
+        sun4 = hero:AddAbility("moon9")
+        sun5 = hero:AddAbility("moon10")
+
+        hero._sunFormInit = true
+    else
+        sun1 = hero:FindAbilityByName("moon1")
+        sun2 = hero:FindAbilityByName("RootsDruidMoon")
+        sun3 = hero:FindAbilityByName("moon12")
+        sun4 = hero:FindAbilityByName("moon9")
+        sun5 = hero:FindAbilityByName("moon10")
+    end
+
+    local moonStance = hero:GetAbilityByIndex(2):GetAbilityName() == "moon2"
+
+	if moonStance then
 		--print("to holy")
 		hero:RemoveModifierByName("modifier_moonstance")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_sunstance", nil)
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
-		hero.abil4=abil4:GetLevel()
-		hero.abil5=abil5:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:RemoveAbility(abil4:GetAbilityName())
-  		hero:RemoveAbility(abil5:GetAbilityName())
-
-  		hero:AddAbility("moon1")
-  		hero:FindAbilityByName("moon1"):SetLevel(hero.abil1)
-  		hero:AddAbility("RootsDruidMoon")
-  		hero:FindAbilityByName("RootsDruidMoon"):SetLevel(hero.abil2)
-  		hero:AddAbility("moon12")
-  		hero:FindAbilityByName("moon12"):SetLevel(hero.abil3)
-  		hero:AddAbility("moon9")
-  		hero:FindAbilityByName("moon9"):SetLevel(hero.abil4)
-  		hero:AddAbility("moon10")
-  		hero:FindAbilityByName("moon10"):SetLevel(hero.abil5)
+        hero:SwapAbilities("moon11", "moon1", true, false)
+        hero:SwapAbilities("moon3", "RootsDruidMoon", true, false)
+        hero:SwapAbilities("moon2", "moon12", true, false)
+        hero:SwapAbilities("moon4", "moon9", true, false)
+        hero:SwapAbilities("moon5", "moon10", true, false)
+  
   		hero:SetRenderColor(255, 255, 255)
-  		
+
+        moon1:SetLevel(sun1:GetLevel())
+        moon2:SetLevel(sun2:GetLevel())
+        moon3:SetLevel(sun3:GetLevel())
+        moon4:SetLevel(sun4:GetLevel())
+        moon5:SetLevel(sun5:GetLevel())
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        moon1:SetActivated(true)
+        moon2:SetActivated(true)
+        moon3:SetActivated(true)
+        moon4:SetActivated(true)
+        moon5:SetActivated(true)
+        
+        sun1:SetActivated(false)
+        sun2:SetActivated(false)
+        sun3:SetActivated(false)
+        sun4:SetActivated(false)
+        sun5:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        moon1:MarkAbilityButtonDirty()
+        moon2:MarkAbilityButtonDirty()
+        moon3:MarkAbilityButtonDirty()
+        moon4:MarkAbilityButtonDirty()
+        moon5:MarkAbilityButtonDirty()
+
   		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)		
   	else
   		--print("to moon")
   		hero:RemoveModifierByName("modifier_sunstance")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_moonstance", nil)
 
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
-		hero.abil4=abil4:GetLevel()
-		hero.abil5=abil5:GetLevel()
-
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:RemoveAbility(abil4:GetAbilityName())
-  		hero:RemoveAbility(abil5:GetAbilityName())
-
-  		hero:AddAbility("moon11")
-  		hero:FindAbilityByName("moon11"):SetLevel(hero.abil1)
-  		hero:AddAbility("moon3")
-  		hero:FindAbilityByName("moon3"):SetLevel(hero.abil2)
-  		hero:AddAbility("moon2")
-  		hero:FindAbilityByName("moon2"):SetLevel(hero.abil3)
-  		hero:AddAbility("moon4")
-  		hero:FindAbilityByName("moon4"):SetLevel(hero.abil4)
-  		hero:AddAbility("moon5")
-  		hero:FindAbilityByName("moon5"):SetLevel(hero.abil5)
+        hero:SwapAbilities("moon11", "moon1", false, true)
+        hero:SwapAbilities("moon3", "RootsDruidMoon", false, true)
+        hero:SwapAbilities("moon2", "moon12", false, true)
+        hero:SwapAbilities("moon4", "moon9", false, true)
+        hero:SwapAbilities("moon5", "moon10", false, true)
   		
   		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)	
   		local c = 200
   		hero:SetRenderColor(c, c, c)
-  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)		
+  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)
 
+        sun1:SetLevel(moon1:GetLevel())
+        sun2:SetLevel(moon2:GetLevel())
+        sun3:SetLevel(moon3:GetLevel())
+        sun4:SetLevel(moon4:GetLevel())
+        sun5:SetLevel(moon5:GetLevel())
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        moon1:SetActivated(false)
+        moon2:SetActivated(false)
+        moon3:SetActivated(false)
+        moon4:SetActivated(false)
+        moon5:SetActivated(false)
+        
+        sun1:SetActivated(true)
+        sun2:SetActivated(true)
+        sun3:SetActivated(true)
+        sun4:SetActivated(true)
+        sun5:SetActivated(true)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        sun1:MarkAbilityButtonDirty()
+        sun2:MarkAbilityButtonDirty()
+        sun3:MarkAbilityButtonDirty()
+        sun4:MarkAbilityButtonDirty()
+        sun5:MarkAbilityButtonDirty()
   	end
+
+    -- Sets internal things for anything that rely on ability indexes...
+    COverthrowGameMode:SetAbilityIndexCustom(moon1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(moon2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(moon3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(moon4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(moon5, 4)
+
+    COverthrowGameMode:SetAbilityIndexCustom(sun1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(sun2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(sun3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(sun4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(sun5, 4)
+
+    COverthrowGameMode:SetIsStanceAbility(sun1, true)
+    COverthrowGameMode:SetIsStanceAbility(sun2, true)
+    COverthrowGameMode:SetIsStanceAbility(sun3, true)
+    COverthrowGameMode:SetIsStanceAbility(sun4, true)
+    COverthrowGameMode:SetIsStanceAbility(sun5, true)
 end
 
 function holynova(event)
