@@ -11222,5 +11222,7 @@
 		"DOTA_Tooltip_modifier_flee"                                              "Flee"
 		"DOTA_Tooltip_modifier_flee_cd"                                              "Imune to Flee"
 		"DOTA_Tooltip_modifier_ox_aura_hp"                                              "Healing of the Ox"
+
+		"DOTA_Tooltip_modifier_da_dmg"                                              "Deadly Arsenal"
 	}
 }

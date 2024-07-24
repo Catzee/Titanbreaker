@@ -4579,6 +4579,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_mage_1") then
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
+    if caster:HasModifier("modifier_da_dmg") then
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[158])
+    end
     local hp_percent = -1
     if target then
         hp_percent = target:GetHealth() / target:GetMaxHealth()
@@ -4671,6 +4674,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 multiplicative_bonus = multiplicative_bonus * 1.5
             end
         end
+
+        if caster.talents[135] > 0 and ability and ability:GetLevel() == 1 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[135])
+        end
     end
     if process_procs and caster:HasModifier("modifier_summoner") then
         if is_pet_dmg then
@@ -4708,7 +4715,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_talent_genesis") and caster.talents[135] > 0 then
-        multiplicative_bonus = multiplicative_bonus * 1.3
+        multiplicative_bonus = multiplicative_bonus * 1.25
     end
     local ab_on_cooldown = GetAbilitiesOnCooldown(caster)
     if ab_on_cooldown > 0 and caster.talents and caster.talents[41] and caster.talents[41] > 0 then
@@ -20376,7 +20383,7 @@ function GetAutoAttackDamageStaticBonus( hero, str, agi, int )
     return value
 end
 
-function GetAutoAttackDamagePercentBonus( hero )
+function GetAutoAttackDamagePercentBonus(hero)
     local value = (1 + hero.talents[49] * 0.25) * (1 + hero.talents[120] * 0.1)
     if hero:HasModifier("modifier_furycharge") then
         value = value * 2
@@ -20415,6 +20422,9 @@ function GetAutoAttackDamagePercentBonus( hero )
     buffstacks = hero:GetModifierStackCount("modifier_crowfall", nil)
     if buffstacks >= 1 then
         value = value * (1 + 0.02 * buffstacks)
+    end
+    if hero.talents[135] > 0 then
+        value = value * (1 + 0.25 * hero.talents[135])
     end
     return value
 end
@@ -21560,7 +21570,7 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 139 then
+        --if i == 135 then
         --    new_talent_value = 3
         --end
         
@@ -24695,6 +24705,28 @@ function GlobalOnDealAbilityDamage(caster, target, ability)
                 caster.horseHealCd = false
             end)
         end
+
+        if caster.talents[158] and caster.talents[158] > 0 then
+            local abIndex = ability:GetAbilityIndex() + 1
+            if abIndex >= 1 and abIndex <= 6 then
+                if not caster.deadlyArsenalDmg then
+                    caster.deadlyArsenalDmg = {false, false, false, false, false, false}
+                end
+                if not caster.deadlyArsenalDmg[abIndex] then
+                    caster.deadlyArsenalDmg[abIndex] = true
+                    local instances = 0
+                    for i=1, 6 do
+                        if caster.deadlyArsenalDmg[i] then
+                            instances = instances + 1
+                        end
+                    end
+                    if instances >= 4 then
+                        caster.deadlyArsenalDmg = {false, false, false, false, false, false}
+                        caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_da_dmg", {Duration = 10})
+                    end
+                end
+            end
+        end
     end
 end
 
@@ -26233,7 +26265,7 @@ function GetTotalDamageTakenFactor(caster, attacker)
         factor = 1 - sacredProtection / 100
     end
     if caster:HasModifier("modifier_talent_genesis") and caster.talents and caster.talents[135] > 0 then
-        factor = factor * 0.7
+        factor = factor * 0.75
     end
     if caster:HasModifier("modifier_savagery") and HeroHasNeutralItem(caster, "item_neutral_13") then
         factor = factor * 0.75

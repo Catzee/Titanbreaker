@@ -74046,6 +74046,15 @@
         		"IsBuff"			"1"
         		"TextureName"		"bloodseeker_thirst"
         	}
+        	"modifier_da_dmg"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"IsPurgable"		"0"
+        		"IsBuff"			"1"
+        		"TextureName"		"pangolier_swashbuckle"
+        	}
         	"modifier_block_all"
         	{
         		"Passive"			"0"
