@@ -12222,6 +12222,10 @@ function COverthrowGameMode:SetIsStanceAbility(ability, state)
 end
 
 function COverthrowGameMode:IsStanceAbility(ability)
+    if(ability == nil) then
+        return false
+    end
+
     if(ability._isStanceAbility ~= nil) then
         return ability._isStanceAbility
     end
@@ -12234,6 +12238,10 @@ function COverthrowGameMode:SetAbilityIndexCustom(ability, index)
 end
 
 function COverthrowGameMode:GetAbilityIndexCustom(ability)
+    if(ability == nil) then
+        return -1
+    end
+
     if(ability._abilityIndexCustom ~= nil) then
         return ability._abilityIndexCustom
     end
