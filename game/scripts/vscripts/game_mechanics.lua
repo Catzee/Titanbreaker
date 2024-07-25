@@ -18264,15 +18264,16 @@ function KillDance (event)
 	KillDanceFX(event)
 	
     if event.addroguepoison then
+        local bhPoisonAbility = caster:FindAbilityByName("combat2")
     	local myevent = {}
     	myevent.caster = caster
     	myevent.target = target
     	myevent.buff = "modifier_deadlypoison"
     	myevent.max = 25
-        if caster:GetAbilityByIndex(2):GetLevel() >= 4 then
+        if bhPoisonAbility:GetLevel() >= 4 then
             myevent.max = 50
         end
-    	myevent.ability = caster:GetAbilityByIndex(2)
+    	myevent.ability = bhPoisonAbility
     	myevent.dur = 10
     	myevent.notself = 1
     	ApplyBuffStack(myevent)
