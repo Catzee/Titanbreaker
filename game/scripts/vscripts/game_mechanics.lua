@@ -12846,88 +12846,87 @@ end
 function SwitchStancesProt(event)
 
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
+	local abil1 = hero:FindAbilityByName("Protect1")
+	local abil2 = hero:FindAbilityByName("Protect2")
+	local abil3 = hero:FindAbilityByName("Protect3")
+    local def1 = 1
+    local def2 = 1
+    local def3 = 1
+    local level = hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel()
 
-	if abil1:GetAbilityName() == "Protect1" then
+    if(hero._dkInit == nil) then
+        def1 = hero:AddAbility("WarriorCharge")
+        def2 = hero:AddAbility("Shield_Reflect")
+        def3 = hero:AddAbility("Terror_ShoutProt")
+
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(abil3, 2)
+
+        COverthrowGameMode:SetAbilityIndexCustom(def1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(def2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(def3, 2)
+
+        COverthrowGameMode:SetIsStanceAbility(def1, true)
+        COverthrowGameMode:SetIsStanceAbility(def2, true)
+        COverthrowGameMode:SetIsStanceAbility(def3, true)
+
+        hero._dkInit = true
+    else
+        def1 = hero:FindAbilityByName("WarriorCharge")
+        def2 = hero:FindAbilityByName("Shield_Reflect")
+        def3 = hero:FindAbilityByName("Terror_ShoutProt")
+    end
+
+    def1:SetLevel(level)
+    def2:SetLevel(level)
+    def3:SetLevel(level)
+
+	if hero:HasModifier("modifier_offstance") then
 		--print("to defensive")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_defstance", nil)
         hero:RemoveModifierByName("modifier_offstance")
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-
-  		hero:AddAbility("WarriorCharge")
-  		hero:FindAbilityByName("WarriorCharge"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-  		hero:AddAbility("Shield_Reflect")
-  		hero:FindAbilityByName("Shield_Reflect"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-  		hero:AddAbility("Terror_ShoutProt")
-  		hero:FindAbilityByName("Terror_ShoutProt"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-        --fix charges
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
+        hero:SwapAbilities("Protect1", "WarriorCharge", true, false)
+        hero:SwapAbilities("Protect2", "Shield_Reflect", true, false)
+        hero:SwapAbilities("Protect3", "Terror_ShoutProt", true, false)
+    
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(true)
+        abil2:SetActivated(true)
+        abil3:SetActivated(true)
+        def1:SetActivated(false)
+        def2:SetActivated(false)
+        def3:SetActivated(false)
+        
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        abil1:MarkAbilityButtonDirty()
+        abil2:MarkAbilityButtonDirty()
+        abil3:MarkAbilityButtonDirty()
   	else
   		--print("to offensive")
         if event.alwaysdef and event.alwaysdef == 1 then
             event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_offstance", nil)
         end
   		hero:RemoveModifierByName("modifier_defstance")
-  		-- fix crash on switch while charging
-		if hero:HasModifier("modifier_WarriorCharge") then
-	 		Timers:CreateTimer(1.0,function() 
-		        fixChargeStanceSwitchProt(hero)
-		    end)
-		else
-	  		hero:RemoveAbility(abil1:GetAbilityName())
-	  		hero:AddAbility("Protect1")
-	  		hero:FindAbilityByName("Protect1"):SetLevel(hero.abil1)
-		end
 
-
-
-  		
-
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:AddAbility("Protect2")
-  		hero:FindAbilityByName("Protect2"):SetLevel(hero.abil2)
-
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:AddAbility("Protect3")
-  		hero:FindAbilityByName("Protect3"):SetLevel(hero.abil3)
-  		
-        --fix charges
-        local abilityName = "Protect1"
-        local ability = hero:FindAbilityByName(abilityName)
-        if ability then
-            hero[abilityName.."_is_init"] = true
-            hero:AddNewModifier(hero, ability, "modifier_charges",
-                {
-                    max_count = 5,
-                    start_count = 1,
-                    replenish_time = 3
-                }
-            )
-        end
+          hero:SwapAbilities("Protect1", "WarriorCharge", false, true)
+          hero:SwapAbilities("Protect2", "Shield_Reflect", false, true)
+          hero:SwapAbilities("Protect3", "Terror_ShoutProt", false, true)
+      
+          -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+          abil1:SetActivated(false)
+          abil2:SetActivated(false)
+          abil3:SetActivated(false)
+          def1:SetActivated(true)
+          def2:SetActivated(true)
+          def3:SetActivated(true)
+          
+          -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+          def1:MarkAbilityButtonDirty()
+          def2:MarkAbilityButtonDirty()
+          def3:MarkAbilityButtonDirty()
   	end
-end
-
-function fixChargeStanceSwitchProt(hero)
-	if hero:HasModifier("modifier_WarriorCharge") then
- 		Timers:CreateTimer(1.0,function() 
-	        fixChargeStanceSwitchProt(hero)
-	    end)
-	else
-		local abil1 = hero:GetAbilityByIndex(0)
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:AddAbility("Protect1")
-  		hero:FindAbilityByName("Protect1"):SetLevel(hero.abil1)
-	end
 end
 
 function SwitchStancesFury(event)
