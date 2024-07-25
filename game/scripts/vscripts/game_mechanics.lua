@@ -16075,6 +16075,10 @@ function DeadlyPoisonProc(event)
 end
 
 function FatalPoisonSpread(event)
+    -- seems unfinished stuff (anyway not working)
+    if(true) then
+        return
+    end
     local caster = event.caster
     local ability = event.ability
     local point = event.target_points[1]
