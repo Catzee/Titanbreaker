@@ -24806,7 +24806,8 @@ end
 function GlobalOnAbilityCriticalStrike(caster, target, ability, damageOrHeal, swordStorm)
     if caster.talents then
         if GetLevelOfAbility(caster, "Protect2") >= 2 and math.random(1,100) <= 25 then
-            caster:GetAbilityByIndex(0):ApplyDataDrivenModifier(caster, caster, "modifier_ironshield", {Duration = 3})
+            local dkProtect1 = caster:FindAbilityByName("Protect1")
+            dkProtect1:ApplyDataDrivenModifier(caster, caster, "modifier_ironshield", {Duration = 3})
         end
         if caster.talents[19] and caster.talents[19] > 0 and math.random(1,100) <= 10 * caster.talents[19] and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and not caster:HasModifier("modifier_path19cd") then
             Timers:CreateTimer(0.1,function()
@@ -31706,4 +31707,15 @@ function InfestedWoundWormAttackBuff(event)
         ability = event.ability,
         max = event.maxstacks
     })
+end
+
+function CreateEmberFireShieldParticleByModifier(event)
+    local caster = event.caster
+    local modifier = caster:FindModifierByName(event.modifier_name)
+
+    if(modifier ~= nil) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(particle, 1, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+        modifier:AddParticle(particle, false, false, 1, false, false)
+    end
 end

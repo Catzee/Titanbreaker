@@ -25255,17 +25255,12 @@
 			
 				"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_fireshield"
+					}
         		}
 				"Properties"
 				{
@@ -46940,17 +46935,12 @@
         	
         		"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_ironshield"
+					}
         		}
         	}
 			"modifier_shieldbash"
@@ -47963,17 +47953,12 @@
 				"IsDebuff"			"0"
 				"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_feraldef"
+					}
         		}
 			}
 			"modifier_feralcd"
