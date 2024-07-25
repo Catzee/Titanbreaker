@@ -22806,7 +22806,7 @@
 			   }
 			   "FireSound"
 				{
-					"EffectName"		"phantom_assassin_phass_move_07"
+					"EffectName"		"bounty_hunter_bount_ability_windwalk_02"
 					"Target"			"CASTER"
 				}
 				"RunScript"

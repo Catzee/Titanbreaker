@@ -9598,28 +9598,63 @@ function Stealth(event)
 	--print("steaklth test")
 	local hero = event.caster
 	local level = event.ability:GetLevel()
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
+	local abil1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, false)
+	local abil2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, false)
+    local stealth1 = 1
+    local stealth2 = 1
 
-	hero.StealthSpell1=abil1:GetLevel()
-	hero.StealthSpell2=abil2:GetLevel()
+    if(hero._stealthInit == nil) then
+        if hero:GetName() == "npc_dota_hero_bounty_hunter" then
+            stealth1 = hero:AddAbility("combat7")
+        else
+            stealth1 = hero:AddAbility("Narcotic_Strike")
+        end
+        stealth2 = hero:AddAbility("Paralyse")
 
-	hero:RemoveAbility(abil1:GetAbilityName())
-	hero:RemoveAbility(abil2:GetAbilityName())
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
 
-	if hero:GetName() == "npc_dota_hero_bounty_hunter" then
-		hero:AddAbility("combat7")
-		hero:FindAbilityByName("combat7"):SetLevel(level)
-	else
-		hero:AddAbility("Narcotic_Strike")
-		hero:FindAbilityByName("Narcotic_Strike"):SetLevel(level)
-	end
-	hero:AddAbility("Paralyse")
-	hero:FindAbilityByName("Paralyse"):SetLevel(level)
-	hero:FindAbilityByName("Paralyse"):EndCooldown()
+        COverthrowGameMode:SetAbilityIndexCustom(stealth1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(stealth2, 1)
+        COverthrowGameMode:SetIsStanceAbility(stealth1, true)
+        COverthrowGameMode:SetIsStanceAbility(stealth2, true)
+
+        hero._stealthInit = true
+    else
+        if hero:GetName() == "npc_dota_hero_bounty_hunter" then
+            stealth1 = hero:FindAbilityByName("combat7")
+        else
+            stealth1 = hero:FindAbilityByName("Narcotic_Strike")
+        end
+        stealth2 = hero:FindAbilityByName("Paralyse")
+    end
+
     if hero:HasModifier("modifier_npc_dota_hero_pa2") then
         hero.fatalThrowBonus = 3
     end
+
+    if(hero._inStealth) then
+        return
+    end
+
+    hero._inStealth = true
+
+    hero:SwapAbilities(abil1:GetAbilityName(), stealth1:GetAbilityName(), false, true)
+    hero:SwapAbilities(abil2:GetAbilityName(), stealth2:GetAbilityName(), false, true)
+
+    -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+    abil1:SetActivated(false)
+    abil2:SetActivated(false)
+    stealth1:SetActivated(true)
+    stealth2:SetActivated(true)
+
+    stealth1:SetLevel(level)
+    stealth2:SetLevel(level)
+	stealth2:EndCooldown()
+    
+    -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+    stealth1:MarkAbilityButtonDirty()
+    stealth2:MarkAbilityButtonDirty()
 end
 
 function Paralyse(event)
@@ -9665,28 +9700,29 @@ function StealthEnd(event)
 	hero:RemoveModifierByName("modifier_invisible")
 	hero:RemoveModifierByName("modifier_stealthrogue")
 
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
+    if(hero._inStealth == nil) then
+        return
+    end
 
-	hero:RemoveAbility(abil1:GetAbilityName())
-	hero:RemoveAbility(abil2:GetAbilityName())
+    hero._inStealth = nil
 
-	if hero:GetName() == "npc_dota_hero_riki" then
-		hero:AddAbility("hawk1")
-		hero:FindAbilityByName("hawk1"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("hawk2")
-		hero:FindAbilityByName("hawk2"):SetLevel(hero.StealthSpell2)
-	elseif hero:GetName() == "npc_dota_hero_bounty_hunter" then
-		hero:AddAbility("combat1")
-		hero:FindAbilityByName("combat1"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("combat3")
-		hero:FindAbilityByName("combat3"):SetLevel(hero.StealthSpell2)
-	else
-		hero:AddAbility("Dagger_Strike")
-		hero:FindAbilityByName("Dagger_Strike"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("Numbing_Cut")
-		hero:FindAbilityByName("Numbing_Cut"):SetLevel(hero.StealthSpell2)
-	end
+	local stealth1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, true)
+	local stealth2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, true)
+	local abil1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, false)
+	local abil2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, false)
+
+    hero:SwapAbilities(abil1:GetAbilityName(), stealth1:GetAbilityName(), true, false)
+    hero:SwapAbilities(abil2:GetAbilityName(), stealth2:GetAbilityName(), true, false)
+
+    -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+    abil1:SetActivated(true)
+    abil2:SetActivated(true)
+    stealth1:SetActivated(false)
+    stealth2:SetActivated(false)
+    
+    -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+    abil1:MarkAbilityButtonDirty()
+    abil2:MarkAbilityButtonDirty()
 end
 
 
@@ -12252,6 +12288,17 @@ function COverthrowGameMode:GetAbilityIndexCustom(ability)
     return ability:GetAbilityIndex()
 end
 
+function GetAbilityBehaviorSafe(ability)
+    -- No idea if this true or no, but very valve like (this bug happened when valve decide to destroy custom games and destroyed they own event custom game with countless hot fixes this night after that...)
+    -- Valve did add GetBehaviorInt() but that overflows with some behavior flags like DOTA_ABILITY_BEHAVIOR_OVERSHOOT
+    local behavior = ability:GetBehavior()
+    if type(behavior) ~= "number" then
+        behavior = tonumber(tostring(behavior))
+    end
+
+    return behavior
+end
+
 function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
     for i = 0, DOTA_MAX_ABILITIES - 1 do
         local ability = hero:GetAbilityByIndex(i)
@@ -12261,7 +12308,21 @@ function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
         end
 
         if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
-            return ability
+            -- Probably enough to filter out valve weird internal abilities (they all have index = 0...)
+            if(bit.band(GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
+                local abilityName = ability:GetAbilityName()
+                -- Dazzle abilities
+                if(abilityName == "empty_spell1" or abilityName == "empty_spell2") then
+                    return ability
+                end
+
+                -- Shadowstalkers abilities
+                if(abilityName == "combat7" or abilityName == "Narcotic_Strike" or abilityName == "Paralyse") then
+                    return ability
+                end
+            else
+                return ability
+            end
         end
     end
 
