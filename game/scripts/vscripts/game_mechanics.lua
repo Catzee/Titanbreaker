@@ -8888,10 +8888,6 @@ function GameMechanics:DamageTaken(event)
 	--print(event.damage)
 end
 
-SwitchStancesLvl1 = {0,0,0,0,0,0,0,0,0,0}
-SwitchStancesLvl2 = {0,0,0,0,0,0,0,0,0,0}
-SwitchStancesLvl3 = {0,0,0,0,0,0,0,0,0,0}
-
 -- Warrior -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function ShieldReflect(event)
@@ -8941,65 +8937,83 @@ end
 
 function SwitchStances(event)
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
-	local id = hero:GetPlayerOwnerID()+1
+	local abil1 = hero:FindAbilityByName("Wounding_Strike")
+	local abil2 = hero:FindAbilityByName("Mortal_Swing")
+	local abil3 = hero:FindAbilityByName("Concussive_Blow")
+    local def1 = 1
+    local def2 = 1
+    local def3 = 1
+    local level = hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel()
 
-	if abil1:GetAbilityName() == "Wounding_Strike" then
+    if(hero._axeInit == nil) then
+        def1 = hero:AddAbility("WarriorCharge")
+        def2 = hero:AddAbility("Shield_Reflect")
+        def3 = hero:AddAbility("Terror_Shout")
+
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(abil3, 2)
+
+        COverthrowGameMode:SetAbilityIndexCustom(def1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(def2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(def3, 2)
+
+        COverthrowGameMode:SetIsStanceAbility(def1, true)
+        COverthrowGameMode:SetIsStanceAbility(def2, true)
+        COverthrowGameMode:SetIsStanceAbility(def3, true)
+
+        hero._axeInit = true
+    else
+        def1 = hero:FindAbilityByName("WarriorCharge")
+        def2 = hero:FindAbilityByName("Shield_Reflect")
+        def3 = hero:FindAbilityByName("Terror_Shout")
+    end
+
+    def1:SetLevel(level)
+    def2:SetLevel(level)
+    def3:SetLevel(level)
+
+	if hero:HasModifier("modifier_defstance") == false then
 		--print("to defensive")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_defstance", nil)
-		SwitchStancesLvl1[id]=abil1:GetLevel()
-		SwitchStancesLvl2[id]=abil2:GetLevel()
-		SwitchStancesLvl3[id]=abil3:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-
-  		hero:AddAbility("WarriorCharge")
-  		hero:FindAbilityByName("WarriorCharge"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
-  		hero:AddAbility("Shield_Reflect")
-  		hero:FindAbilityByName("Shield_Reflect"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
-  		hero:AddAbility("Terror_Shout")
-  		hero:FindAbilityByName("Terror_Shout"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
+        hero:SwapAbilities("Wounding_Strike", "WarriorCharge", false, true)
+        hero:SwapAbilities("Mortal_Swing", "Shield_Reflect", false, true)
+        hero:SwapAbilities("Concussive_Blow", "Terror_Shout", false, true)
+        
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(false)
+        abil2:SetActivated(false)
+        abil3:SetActivated(false)
+        def1:SetActivated(true)
+        def2:SetActivated(true)
+        def3:SetActivated(true)
+        
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        def1:MarkAbilityButtonDirty()
+        def2:MarkAbilityButtonDirty()
+        def3:MarkAbilityButtonDirty()
   	else
   		--print("to offensive")
   		hero:RemoveModifierByName("modifier_defstance")
-  		-- fix crash on switch while charging
-		if hero:HasModifier("modifier_WarriorCharge") then
-	 		Timers:CreateTimer(1.0,function() 
-		        fixChargeStanceSwitch(hero)
-		    end)
-		else
-	  		hero:RemoveAbility(abil1:GetAbilityName())
-	  		hero:AddAbility("Wounding_Strike")
-	  		hero:FindAbilityByName("Wounding_Strike"):SetLevel(SwitchStancesLvl1[id])
-		end
-
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:AddAbility("Mortal_Swing")
-  		hero:FindAbilityByName("Mortal_Swing"):SetLevel(SwitchStancesLvl2[id])
-
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:AddAbility("Concussive_Blow")
-  		hero:FindAbilityByName("Concussive_Blow"):SetLevel(SwitchStancesLvl3[id])
+        
+  		hero:SwapAbilities("Wounding_Strike", "WarriorCharge", true, false)
+  		hero:SwapAbilities("Mortal_Swing", "Shield_Reflect", true, false)
+  		hero:SwapAbilities("Concussive_Blow", "Terror_Shout", true, false)
   		
+  		-- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+  		abil1:SetActivated(true)
+  		abil2:SetActivated(true)
+  		abil3:SetActivated(true)
+  		def1:SetActivated(false)
+  		def2:SetActivated(false)
+  		def3:SetActivated(false)
+  		
+  		-- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+  		abil1:MarkAbilityButtonDirty()
+  		abil2:MarkAbilityButtonDirty()
+  		abil3:MarkAbilityButtonDirty()
   	end
-end
-
-function fixChargeStanceSwitch(hero)
-	if hero:HasModifier("modifier_WarriorCharge") then
- 		Timers:CreateTimer(1.0,function() 
-	        fixChargeStanceSwitch(hero)
-	    end)
-	else
-		local abil1 = hero:GetAbilityByIndex(0)
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:AddAbility("Wounding_Strike")
-  		local id = hero:GetPlayerOwnerID()+1
-  		hero:FindAbilityByName("Wounding_Strike"):SetLevel(SwitchStancesLvl1[id])
-	end
 end
 
 function SwordStorm(event)
