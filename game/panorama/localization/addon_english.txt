@@ -344,7 +344,35 @@
 		//"talent163"								"Axe Flinger: Melee Hero Ability Range."
 		//"talent163"								"Headhunter: Critical Strike Damage per Agility doubled."
 
+		//royal knight
+		//"talent163"								"Basic Training: Primary Attribute per Level"
+		//"talent163"								"Shield Block: Block per Level and per Strength"
+		//"talent163"								"Chivalry: Get out of combat a few secs faster and gain Bonus Movement Speed while out of combat."
 
+		//"talent163"								"Overthrow: Crit Damage per Strength"
+		//"talent163"								"Robustness: Damage Reduction while stunned"
+		//"talent163"								"Undefeated Knight: While not having died, gain % Damage and Damage Reduction."
+
+		//"talent163"								"King's Blessing: All stats per level"
+		//"talent163"								"Sharpened Blades:  Physical DoT Bonus"
+		//"talent163"								"Heavy Cut: Crit % for non-DoT big hit"
+		
+		//"talent163"								"Melee Combat: Bonus Damage to enemies within 300"
+		//"talent163"								"Protect the King: Ally take Damage and drop below 50%, Damage Reduction buff."
+		//"talent163"								"War Banner: Armor and Damage Aura 2 / 2%"
+		
+		//"talent163"								"Versatility: Melee Bonus Damage when ranged, Ranged Bonus Damage when melee."
+		//"talent163"								"Tactician: After using last 3 Abilities, Damage and Damage Reduction"
+		//"talent163"								"Champion: After killing a Champion, permanently gain 1% increased Damage."
+		
+		//"talent163"								"Long Sword: Cast and Attack Range (for melee?) and AA scalings increased by 10%"
+		//"talent163"								"Last Stand: ?" or  "Second Wind: Each second row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels, choosen from right to left."
+		//"talent163"								"Storm of Swords: Dealing Ability Damage will repeat the previous Damage instance, inner cooldown 2 / 1.5 / 1 sec."
+		//"talent163"								"Blade Tornado / Cleaver: Non targeted abilities deal % Bonus Damage."
+		//"talent163"								"Armored to the Teeth: Armor and Damage %."
+		//"talent163"								"War Shout: % Damage first 15 secs engaging enemy."
+		//"talent163"								"Deep Technique: After having caused direct Damage, Damage over Time and AOE Damage, increase all Damage by %."
+		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."
