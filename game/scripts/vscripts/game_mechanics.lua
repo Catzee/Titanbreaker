@@ -10314,12 +10314,16 @@ function WarlockHauntingTerror (event)
     local ability = event.ability
     if ability:GetLevel() >= 3 then
         ability = caster:GetAbilityByIndex(0)
-        if ability and not HasBuffReflect(caster, target) then
+        if ability and not HasBuffReflect(caster, target) and not target:HasModifier("modifier_dot1") then
             local tickRate = 1
+            local dur = 20
             if ability:GetLevel() <= 1 then
                 tickRate = 2
             end
-            ApplyBuff({caster = caster, target = target, ability = ability, dur = 20, buff = "modifier_dot1", settickrate = tickRate})
+            if ability:GetLevel() >= 5 then
+                dur = 10
+            end
+            ApplyBuff({caster = caster, target = target, ability = ability, dur = dur, buff = "modifier_dot1", settickrate = tickRate})
         end
     end
 end
@@ -21570,7 +21574,7 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 135 then
+        --if i == 70 then
         --    new_talent_value = 3
         --end
         
@@ -21736,7 +21740,7 @@ function PassiveStatCalculation(event)
             RestoreMana(myevent)
         end
     end
-    level = hero.talents[1]
+    level = hero.talents[70]
     if level > 0 then
         if (hero:HasModifier("modifier_invisible") or hero:HasModifier("modifier_oocmana")) and hero.talents[70] > 0 then
             buff = "modifier_path_from_shadows"

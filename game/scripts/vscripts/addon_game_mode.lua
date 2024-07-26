@@ -129,6 +129,15 @@ function Precache( context )
   PrecacheResource( "particle", "particles/fireball_linear_5.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf", context )
   
+  PrecacheResource( "particle", "particles/item_quality_divine.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_epic.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_green.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_immortal.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_immortal_new.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_legendary.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_mythical.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_quest.vpcf", context )
+  PrecacheResource( "particle", "particles/item_quality_rare.vpcf", context )
 
   --5.4
   PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context)
@@ -5725,12 +5734,17 @@ function COverthrowGameMode:OnThink()
         --end
         --test merge boss
     --[[
-    if self.first_boss then
+    if self.first_boss and not self.firstBossGiven9 then
+        self.firstBossGiven9 = true
         self.jungledifficulty = 1000
         self.first_boss.act = math.random(1,13)
+        self.first_boss.drop_chance_factor = 1000
         for i=1,1 do
             COverthrowGameMode:DropTempleItem(self.first_boss, 100, 1, 0, false)
         end
+        Timers:CreateTimer(15,function()
+            self.firstBossGiven9 = false
+        end)
       end]]
     --[[
     if not COverthrowGameMode.test1 then

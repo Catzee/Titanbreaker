@@ -62130,7 +62130,7 @@
 					    "firedmg"	"1"
 					    "burndot"	"1"
 					    "isdot"	"1"
-					    "isaoe"	"%isaoe"
+					    "isaoe"	"%aoe"
 					}
 				}
 			}
@@ -62712,7 +62712,7 @@
 			    }
 			    "FireSound"
 				{
-					"EffectName"		"DOTA_Item.Mjollnir.Activate"
+					"EffectName"		"Item.Maelstrom.Chain_Lightning.Jump"
 					"Target"			"TARGET"
 				}
         		"RunScript"

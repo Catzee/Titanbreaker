@@ -10343,6 +10343,8 @@
 		"DOTA_Tooltip_ability_item_mastery_152_002_Description"  "<font color=\"#FF6600\">Souls increase the Level of a Path Talent, but are unique and must be equipped in your backpack in order to become active.</font>"
 		"DOTA_Tooltip_ability_item_mastery_156_002"  "<font color=\"#00ffff\">[Ancient] Soul - Rogue Resistance [+2]"
 		"DOTA_Tooltip_ability_item_mastery_156_002_Description"  "<font color=\"#FF6600\">Souls increase the Level of a Path Talent, but are unique and must be equipped in your backpack in order to become active.</font>"
+		"DOTA_Tooltip_ability_item_mastery_161_002"  "<font color=\"#00ffff\">[Ancient] Soul - Killing Spree [+2]"
+		"DOTA_Tooltip_ability_item_mastery_161_002_Description"  "<font color=\"#FF6600\">Souls increase the Level of a Path Talent, but are unique and must be equipped in your backpack in order to become active.</font>"
 		"DOTA_Tooltip_ability_item_mastery_163_002"  "<font color=\"#00ffff\">[Ancient] Soul - Vitality [+2]"
 		"DOTA_Tooltip_ability_item_mastery_163_002_Description"  "<font color=\"#FF6600\">Souls increase the Level of a Path Talent, but are unique and must be equipped in your backpack in order to become active.</font>"
 		"DOTA_Tooltip_ability_item_mastery_164_002"  "<font color=\"#00ffff\">[Ancient] Soul - Flurry [+2]"
