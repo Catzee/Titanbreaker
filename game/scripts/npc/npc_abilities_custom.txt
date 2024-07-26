@@ -55072,7 +55072,7 @@
 					    	{
 					    		"ScriptFile"	"game_mechanics.lua"
 					    		"Function"		"ApplyBuffStack"
-					    		//"max"			"10"
+					    		"max"			"2"
 					    		"addstacks"		"1"
 					    		"buff"			"modifier_creeping_death"
 					    		"dur"	"60"
