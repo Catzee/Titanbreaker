@@ -12488,7 +12488,6 @@ function COverthrowGameMode:FilterDamage( filterTable )
           ParticleManager:SetParticleControl(particle, 1, Vector(900,1,1))
           ParticleManager:ReleaseParticleIndex(particle)
           DamageAOE(dmgevent)
-		  -- TODO: Maybe reduce cd of 6th ability for both stances?
           local myevent = {caster = victim, amount = cdLower, ability = victim:GetAbilityByIndex(5)}
           ReduceCooldown(myevent)
           RestoreMana({caster = victim, percent = 1, amount = 10 * victim.talents[57]})
