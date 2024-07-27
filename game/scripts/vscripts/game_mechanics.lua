@@ -31725,6 +31725,7 @@ function CreateEmberFireShieldParticleByModifier(event)
 end
 
 function AstralGuardianMoonburnParticle(event)
+    -- If this will be ever changed also remove precache in addon_game_mode.lua
     local target = event.target
     local targetPosition = target:GetAbsOrigin()
     local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf", PATTACH_ABSORIGIN, target)
@@ -31737,7 +31738,7 @@ function AstralGuardianMoonburnParticle(event)
 end
 
 function AstralGuardianSunburnParticle(event)
-    print("this")
+    -- If this will be ever changed also remove precache in addon_game_mode.lua
     local target = event.target
     local targetPosition = target:GetAbsOrigin()
     local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf", PATTACH_ABSORIGIN, target)
@@ -31747,4 +31748,27 @@ function AstralGuardianSunburnParticle(event)
     ParticleManager:SetParticleControl(particle, 5, targetPosition)
     ParticleManager:DestroyParticle(particle, false)
     ParticleManager:ReleaseParticleIndex(particle)
+end
+
+function AstralGuardianRayOfTheSunParticle(event)
+    local target = event.target
+    local targetPosition = target:GetAbsOrigin()
+
+    if(event.type == 1) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf", PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(particle, 0, targetPosition)
+        ParticleManager:SetParticleControl(particle, 1, targetPosition)
+        ParticleManager:SetParticleControl(particle, 3, targetPosition)
+        ParticleManager:SetParticleControl(particle, 5, targetPosition)
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+    end
+
+    if(event.type == 2) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(particle, 0, targetPosition)
+        --ParticleManager:SetParticleControl(particle, 1, Vector(event.radius, 0, 0))
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+    end
 end

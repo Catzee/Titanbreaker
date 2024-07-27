@@ -1327,8 +1327,12 @@ function Precache( context )
             
             -- Pick up all items particle
             PrecacheResource( "particle", "particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", context )
-            -- venge sun1 particle (not precached for some reasons)
-            PrecacheResource( "particle", "particles/units/heroes/hero_furion/furion_wrath_of_nature_old.vpcf", context )
+            -- venge sun1 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon1", context)
+            -- venge sun3 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon12", context)
+            -- venge sun4 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon9", context)
           end
           
         end

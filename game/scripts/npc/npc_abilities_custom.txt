@@ -19828,6 +19828,7 @@
 		"precache"
 		{
 			"particle"	"particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
+			"particle"	"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
 		}
 	
 		"OnSpellStart"
@@ -19924,27 +19925,19 @@
 
 		        "OnCreated"
 		        {
-		        	"FireEffect"
-		        	{
-		        		"EffectName"        "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
-		        		"EffectAttachType"  "attach_hitloc"
-		        		"Target"            "TARGET"
-		        		"ControlPointEntities"
-		        		{
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        		}
-		        	}
-		        	"FireEffect"
-		        	{
-		        		"EffectName"        "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
-		        		"EffectAttachType"  "attach_hitloc"
-		        		"Target"            "TARGET"
-		        	}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "AstralGuardianRayOfTheSunParticle"
+						"type"			"1"
+					}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "AstralGuardianRayOfTheSunParticle"
+						"type"			"2"
+						"radius"		"%radius"
+					}
 		        	"ActOnTargets"
 		        	{
 		        		"Target"
