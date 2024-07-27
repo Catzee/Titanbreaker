@@ -10221,7 +10221,7 @@
 		"DOTA_Tooltip_ability_item_rider_boots_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Five Horsemen\n<font color=\"#FF6600\">+2 for the Path Talent Wolf Rider</font>"
 		"DOTA_Tooltip_ability_item_rider_boots_stat1"  "Movespeed: + "
 		"DOTA_Tooltip_ability_item_firestone"  "<font color=\"#ffd700\">[Divine] Sacred Firestone"
-		"DOTA_Tooltip_ability_item_firestone_Description"  "<font color=\"#FF6600\">Whenever you deal Holy Damage, it is now of type Fire instead and deals 100% increased Damage.\n<font color=\"#FF6600\">Rain of Arrows fires 5 additional waves.\n<font color=\"#FF6600\">Dragon Claw deals its Damage twice."
+		"DOTA_Tooltip_ability_item_firestone_Description"  "<font color=\"#FF6600\">Whenever you deal Holy Damage, it is now of type Fire instead and deals 100% increased Damage.\n<font color=\"#FF6600\">Rain of Arrows fires 5 additional waves.\n<font color=\"#FF6600\">Firewing deals its Damage twice."
 		"DOTA_Tooltip_ability_item_firestone_stat1"  "Spell Resistance: + "
 		"DOTA_Tooltip_ability_item_thunderclub"  "<font color=\"#ffd700\">[Divine] Hurricane Harpoon"
 		"DOTA_Tooltip_ability_item_thunderclub_Description"  "<font color=\"#FF6600\">+1 for the Path Typhoon Thunder\nWhenever you are being attacked, there is a 50% chance to strike back with a Typhoon Thunder.</font>"
