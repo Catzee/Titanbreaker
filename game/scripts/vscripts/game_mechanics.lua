@@ -31725,7 +31725,6 @@ function CreateEmberFireShieldParticleByModifier(event)
 end
 
 function AstralGuardianMoonburnParticle(event)
-    -- If this will be ever changed also remove precache in addon_game_mode.lua
     local target = event.target
     local targetPosition = target:GetAbsOrigin()
     local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf", PATTACH_ABSORIGIN, target)
@@ -31738,7 +31737,6 @@ function AstralGuardianMoonburnParticle(event)
 end
 
 function AstralGuardianSunburnParticle(event)
-    -- If this will be ever changed also remove precache in addon_game_mode.lua
     local target = event.target
     local targetPosition = target:GetAbsOrigin()
     local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf", PATTACH_ABSORIGIN, target)
