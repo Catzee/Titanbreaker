@@ -143,7 +143,7 @@ function GetItemList(hero)
     for i = 0, 5 do
         item = hero:GetItemInSlot(i)
         if item then
-            itemID = item:GetAbilityIndex()
+            itemID = COverthrowGameMode:GetAbilityIndexCustom(item)
             if itemID then
                 table.insert(itemTable, itemID)
             end

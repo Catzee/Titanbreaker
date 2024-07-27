@@ -5,8 +5,9 @@
 	</styles>
 	<Panel class="DOTABuff" hittest="true" >
 		<Button class="BuffBorder">
-			<DOTAAbilityImage id="BuffImageDefault" abilityname="rubick_empty1" scaling="stretch-to-fit-y-preserve-aspect"/>
-			<DOTAItemImage id="BuffItemImage" scaling="stretch-to-fit-y-preserve-aspect"/>
+			<!-- Default icon for cases when its impossible to determine icon -->
+			<Image src="file://{images}/spellicons/rubick_empty1.png" id="BuffImageDefault" scaling="stretch-to-fit-y-preserve-aspect"/>
+			<Panel id="BuffItemImageContainer"/>
 			<Image id="BuffImage" scaling="stretch-to-fit-y-preserve-aspect"/>
 			<Panel id="CircularDuration" />
 			<Label id="StackCount" text="0" />

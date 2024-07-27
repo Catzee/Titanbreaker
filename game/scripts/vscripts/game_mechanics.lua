@@ -704,8 +704,10 @@ function DamageUnit( event )
         ParticleManager:ReleaseParticleIndex(particle)
         return
     end
+    -- only dazzle w4 thing now so safe to hardcode dazzle skills here
     if event.dmgonbuffcondition and target then
-        if not caster:HasModifier(event.dmgonbuffcondition) or caster:GetAbilityByIndex(1):GetLevel() < 4 then
+        local dazzleW = caster:FindAbilityByName("Feral3")
+        if not caster:HasModifier(event.dmgonbuffcondition) or dazzleW == nil or dazzleW:GetLevel() < 4 then
             return
         end
     end
@@ -1180,7 +1182,7 @@ function DamageUnit( event )
             finaldamage = finaldamage + caster:GetHealth() * 0.01 * caster.talents[115] * damageBasedOnHPFactor
         end
     end
-    if ability and ability:GetAbilityIndex() == 1 then
+    if ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
         if caster:HasModifier("modifier_coloss") then
             finaldamage = finaldamage + caster:GetHealth() * 0.03 * damageBasedOnHPFactor
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/blink_dagger_ti8_end_ray.vpcf", PATTACH_POINT_FOLLOW, target)
@@ -1856,7 +1858,7 @@ function DamageUnit( event )
         end
     end
     if critpossible == true and caster.talents and caster.talents[158] > 0 then
-        local abIndex = ability:GetAbilityIndex() + 1
+        local abIndex = COverthrowGameMode:GetAbilityIndexCustom(ability) + 1
         if abIndex >= 1 and abIndex <= 6 then
             if not caster.deadlyArsenal then
                 caster.deadlyArsenal = {true, true, true, true, true, true}
@@ -2088,13 +2090,13 @@ function DamageUnit( event )
         end
     end
     local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1 or (alphablood_divine and (event.fromsummon or event.ComesFromPet)) or (ability:GetAbilityIndex() == 2 and caster:HasModifier("modifier_pathbuff_013")))) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ((COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 or (alphablood_divine and (event.fromsummon or event.ComesFromPet)) or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and caster:HasModifier("modifier_pathbuff_013")))) then
         local alphablood_chance = 5
         local crit_dmg_alpha = 4
         if alphablood_divine and (event.fromsummon or event.ComesFromPet) then
             crit_dmg_alpha = 6
         end
-        if ability:GetAbilityIndex() == 1 then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2.5
             if alphablood_divine then
                 alphablood_chance = 5
@@ -2341,6 +2343,7 @@ function DamageUnit( event )
             end
         end
     end
+	-- Should be fine because this unit without stances
     if critpossible == true and event.beartrapcrit and caster.owner and caster.owner:GetAbilityByIndex(2) and caster.owner:GetAbilityByIndex(2):GetLevel() >= 3 and target:HasModifier("modifier_bear_trap") then
         finaldamage = finaldamage*2.5*critdmgbonusfactor
         critpossible = false
@@ -3213,10 +3216,10 @@ function DamageUnit( event )
                 caster.combat_system_ability:ApplyDataDrivenModifier(caster, target, "crow_summon_proc", {Duration = 2})
             end
         end
-        if caster.talents[87] and caster.talents[87] > 0 and (event.bloodwolf or (caster:GetAbilityByIndex(0) == ability and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
+        if caster.talents[87] and caster.talents[87] > 0 and (event.bloodwolf or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
             PathStormStrikeProc( caster, target, false, true, false, false)
         end
-        if caster.talents[23] and caster.talents[23] > 0 and (caster:GetAbilityByIndex(4) == ability or (caster:GetAbilityByIndex(2) == ability and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
+        if caster.talents[23] and caster.talents[23] > 0 and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and (caster:HasModifier("modifier_storm") or caster:HasModifier("modifier_storm2")))) then
             PathRainOfStarsAA({caster = caster, target = target, ability = caster.combat_system_ability})
         end
     end
@@ -3238,7 +3241,7 @@ function DamageUnit( event )
         end
         --print(ability)
         if ability and not ability:IsNull() then
-            local index = ability:GetAbilityIndex()
+            local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
             if not caster.ability_stats[index] then
                 caster.ability_stats[index] = 0
             end
@@ -4628,7 +4631,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if overpower > 0 and wascrit then
             multiplicative_bonus = multiplicative_bonus * (1 + ability:GetManaCost(-1) * overpower / 10000)
         end
-        if caster.songIceFire1Cast and caster.talents and caster:GetAbilityByIndex(1) == ability and caster.talents[129] > 0 then
+        if caster.songIceFire1Cast and caster.talents and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
                 local bonusFactor = 2
                 if caster:HasModifier("modifier_pathbuff_129") then
@@ -4639,7 +4642,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 RestoreResource({caster = caster, amount = 2 * caster.talents[129], flat = true})
             end
             caster.songIceFire1Cast = false
-        elseif caster.songIceFire2Cast and caster.talents and caster:GetAbilityByIndex(0) == ability and caster.talents[129] > 0 then
+        elseif caster.songIceFire2Cast and caster.talents and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and caster.talents[129] > 0 then
             if math.random(1,100) <= caster.talents[129] * 33.4 then
                 local bonusFactor = 2
                 if caster:HasModifier("modifier_pathbuff_129") then
@@ -4759,15 +4762,15 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * fortressOfPain * (1 - GetTotalDamageTakenFactor(caster)))
     end
     --spellcast frenzy
-    if ability == caster:GetAbilityByIndex(2) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_044") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_044") then
         event.spellcastfrenzy = 0.05
         event.spellcastfrenzy_max = 0.5
     end
-    if ability == caster:GetAbilityByIndex(0) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_002") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_002") then
         event.spellcastfrenzy = 0.03
         event.spellcastfrenzy_max = 0.6
     end
-    if ability == caster:GetAbilityByIndex(1) and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_100") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 and ((not event.spellcastfrenzy) or (event.spellcastfrenzy and event.spellcastfrenzy == 0)) and caster:HasModifier("modifier_pathbuff_100") then
         event.spellcastfrenzy = 0.01
         event.spellcastfrenzy_max = 0.75
     end
@@ -4834,17 +4837,31 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
     end
     if caster:HasModifier("modifier_new7") and ability then
-        local abilityIndex = ability:GetAbilityIndex()
-        if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
+        local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
+
+        if abilityIndex >= 1 then
+            local isStanceAbility = COverthrowGameMode:IsStanceAbility(ability)
+            local targetAbility = COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex - 1, isStanceAbility)
+
+            if(targetAbility ~= nil) then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * targetAbility:GetLevel())
+            end
         end
     end
+
     if caster:HasModifier("modifier_new72") and ability then
-        local abilityIndex = ability:GetAbilityIndex()
-        if abilityIndex >= 1 and caster:GetAbilityByIndex(abilityIndex - 1) then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster:GetAbilityByIndex(abilityIndex - 1):GetLevel())
+        local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
+
+        if abilityIndex >= 1 then
+            local isStanceAbility = COverthrowGameMode:IsStanceAbility(ability)
+            local targetAbility = COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex - 1, isStanceAbility)
+
+            if(targetAbility ~= nil) then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * targetAbility:GetLevel())
+            end
         end
     end
+
     if event.shadowimp then
         local shadowimps = caster:GetModifierStackCount("modifier_shadow_imp", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * shadowimps)
@@ -4877,7 +4894,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_pathbuff_113") and ability:GetLevel() >= 4 then
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
-    if ability == caster:GetAbilityByIndex(5) and caster:HasModifier("modifier_tamerbond") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 and caster:HasModifier("modifier_tamerbond") then
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
     if isaoe and caster:HasModifier("modifier_blood_shield") and caster:HasModifier("modifier_npc_dota_hero_skeleton_king") then
@@ -5016,7 +5033,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         ParticleManager:SetParticleControl(particle, 2, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
     end
-    if ability == caster:GetAbilityByIndex(1) and caster:HasModifier("modifier_npc_dota_hero_riki") and caster:HasModifier("modifier_shadowstep1") then
+    if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 and caster:HasModifier("modifier_npc_dota_hero_riki") and caster:HasModifier("modifier_shadowstep1") then
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
     if caster:HasModifier("modifier_dh_soulpact") then
@@ -5107,7 +5124,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if is_very_big_hit and (caster:HasModifier("modifier_item_bighit") or caster:HasModifier("modifier_item_bighit_2")) then
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
-    if caster:HasModifier("modifier_pathbuff_032") and ability == caster:GetAbilityByIndex(0) then
+    if caster:HasModifier("modifier_pathbuff_032") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 then
         multiplicative_bonus = multiplicative_bonus * 1.15
     end
     if caster:HasModifier("modifier_special_bonus_day_vision") then
@@ -5231,7 +5248,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         local percent_hp = caster:GetHealth() / caster:GetMaxHealth()
         multiplicative_bonus = multiplicative_bonus * (1 + 1 - percent_hp)
     end
-    if caster:HasModifier("modifier_axe_dmg_titan") and caster:GetAbilityByIndex(4) and caster:GetAbilityByIndex(4) == ability then
+    if caster:HasModifier("modifier_axe_dmg_titan") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
         multiplicative_bonus = multiplicative_bonus * 1.3
     end
     if caster:HasModifier("modifier_axe_dmg_titan2") then
@@ -5257,7 +5274,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         buffstacks = caster:GetModifierStackCount("modifier_cotb", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks)
-        if process_procs and caster.talents[174] > 0 and ability and ability:GetAbilityIndex() == 4 or ability:GetAbilityIndex() == 5 then
+        if process_procs and caster.talents[174] > 0 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 or COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.3 * caster.talents[174])
         end
         if caster:HasModifier("modifier_invisible") and GetLevelOfAbility(caster, "combat6") >= 5 then
@@ -5338,7 +5355,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             end
             multiplicative_bonus = multiplicative_bonus * (1 + bonusPerElement * CountElementalDamageTypes(event))
         end
-        if caster.talents[100] and caster.talents[100] > 0 and caster:HasModifier("modifier_chaosknight_combo") and caster:GetAbilityByIndex(1) and caster:GetAbilityByIndex(1) == ability then
+        if caster.talents[100] and caster.talents[100] > 0 and caster:HasModifier("modifier_chaosknight_combo") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[100])
         end
         if caster.talents[113] and caster.talents[113] > 0 then
@@ -5360,7 +5377,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[91])
         end
         if caster.talents[148] and caster.talents[148] > 0 then
-            if process_procs and caster:GetPrimaryAttribute() == 1 and ability == caster:GetAbilityByIndex(1) then
+            if process_procs and caster:GetPrimaryAttribute() == 1 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
                 ApplyBuffStack({ caster = caster, target = caster, buff = "modifier_wma", ability = caster.combat_system_ability, max = 50, dur = 5})
             end
             if process_procs and caster:GetPrimaryAttribute() == 2 and event.isdot then
@@ -5460,7 +5477,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.talents[72] and caster.talents[72] > 0 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[72])
         end
-        if caster.talents[64] and caster.talents[64] > 0 and caster:GetAbilityByIndex(3) == ability then
+        if caster.talents[64] and caster.talents[64] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[64])
         end
         if event.warlockdot and caster:IsMoving() and caster:HasModifier("modifier_npc_dota_hero_wl2") then
@@ -5590,23 +5607,23 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         --if caster.talents[36] and caster.talents[36] > 0 and isaoe then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[36])
         --end
-        if caster.talents[66] and caster.talents[66] > 0 and (ability == caster:GetAbilityByIndex(1) or (ability == caster:GetAbilityByIndex(3) and caster:HasModifier("modifier_pathbuff_038"))) then
+        if caster.talents[66] and caster.talents[66] > 0 and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 or (COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and caster:HasModifier("modifier_pathbuff_038"))) then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[66])
             if (event.shadowdmg or math.random(1,100) <= 25) and caster.combat_system_ability and process_procs then
                 AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 300 + 100 * caster.talents[66], aacrit_chance = 100})
             end
         end
-        if caster.talents[6] and caster.talents[6] > 0 and ability == caster:GetAbilityByIndex(2) then
+        if caster.talents[6] and caster.talents[6] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[6])
         end
-        if caster.talents[8] and caster.talents[8] > 0 and (ability == caster:GetAbilityByIndex(4) or is_very_big_hit) then
+        if caster.talents[8] and caster.talents[8] > 0 and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 or is_very_big_hit) then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[8])
         end
         if caster.talents[68] and caster.talents[68] > 0 then
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[68])
             end
-            if ability:GetAbilityIndex() == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
                 multiplicative_bonus = multiplicative_bonus * (1 + 0.2 * caster.talents[68])
             end
         end
@@ -5739,10 +5756,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_item_int_set_t3_active") then
         multiplicative_bonus = multiplicative_bonus * 1.3
     end
-    if caster:HasModifier("modifier_item_night_shoulders") and caster:GetAbilityByIndex(4) == ability then
+    if caster:HasModifier("modifier_item_night_shoulders") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
         multiplicative_bonus = multiplicative_bonus * 2
     end
-    if caster:HasModifier("modifier_item_longbow") and ability == caster:GetAbilityByIndex(2) then
+    if caster:HasModifier("modifier_item_longbow") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 then
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
     if caster:HasModifier("modifier_item_ancient_grizzly") then
@@ -5799,16 +5816,16 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         if caster.runeword[19] then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster.runeword[19])
         end
-        --if caster.runeword[24] and ability and ability == caster:GetAbilityByIndex(2) then
+        --if caster.runeword[24] and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster.runeword[24])
         --end
-        if caster.runeword[25] and ability and ability == caster:GetAbilityByIndex(3) then
+        if caster.runeword[25] and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster.runeword[25])
         end
-        --if caster.runeword[26] and ability and ability == caster:GetAbilityByIndex(4) then
+        --if caster.runeword[26] and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster.runeword[26])
         --end
-        if caster.runeword[27] and ability and ability == caster:GetAbilityByIndex(1) then
+        if caster.runeword[27] and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster.runeword[27])
         end
         if event.runewordscale and event.runewordscale == 10 and caster.runeword[event.runewordscale] and caster.runeword[event.runewordscale] > 0 then
@@ -6848,6 +6865,7 @@ function SpellInterrupt( event )
 			ApplyBuff(myevent)
 		end
 		if event.qspellcd and event.qspellcd > 0 then
+			-- Might be fine, seems unused
 			local abil = target:GetAbilityByIndex(0)
 			if abil and abil:GetCooldownTimeRemaining() < event.qspellcd then
 				abil:EndCooldown()
@@ -7004,6 +7022,7 @@ end
 
 function ReduceAbilityCooldown ( event )
     local caster = event.caster
+	-- Should be fine i guess
     event.ability = caster:GetAbilityByIndex(event.index)
     ReduceCooldown(event)
 end
@@ -7454,10 +7473,10 @@ function HealUnit( event )
             end
         end
     end
-    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (ability:GetAbilityIndex() == 0 or ability:GetAbilityIndex() == 1) then
+    if critpossible == true and caster.talents and caster.talents[45] and caster.talents[45] > 0 and ability and (COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(ability) == 1) then
         local alphablood_divine = caster:HasModifier("modifier_pathbuff_045")
         local alphablood_chance = 3
-        if ability:GetAbilityIndex() == 1 then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             alphablood_chance = 2
             if alphablood_divine then
                 alphablood_chance = 4
@@ -7869,7 +7888,7 @@ function HealUnit( event )
         local index = -1
         -- here and below ability can be null because removed already (dazzle and maybe someone else)
         if event.ability and event.ability:IsNull() == false then
-            index = event.ability:GetAbilityIndex()
+            index = COverthrowGameMode:GetAbilityIndexCustom(event.ability)
         end
         if index >= 0 then
             if not caster.ability_stats_heal[index] then
@@ -8798,7 +8817,7 @@ function OutOfCombatCounter( event )
 				nightbladebonus = 1
 			end
 			if caster.oocmana == 2 then
-				--stealth users here
+				--stealth users here (should be fine)
 				local ability = caster:GetAbilityByIndex(5)
 				if ability ~= nil then
 					local cdremaining = ability:GetCooldownTimeRemaining()
@@ -8882,10 +8901,6 @@ function GameMechanics:DamageTaken(event)
 	--print(event.damage)
 end
 
-SwitchStancesLvl1 = {0,0,0,0,0,0,0,0,0,0}
-SwitchStancesLvl2 = {0,0,0,0,0,0,0,0,0,0}
-SwitchStancesLvl3 = {0,0,0,0,0,0,0,0,0,0}
-
 -- Warrior -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function ShieldReflect(event)
@@ -8935,65 +8950,83 @@ end
 
 function SwitchStances(event)
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
-	local id = hero:GetPlayerOwnerID()+1
+	local abil1 = hero:FindAbilityByName("Wounding_Strike")
+	local abil2 = hero:FindAbilityByName("Mortal_Swing")
+	local abil3 = hero:FindAbilityByName("Concussive_Blow")
+    local def1 = 1
+    local def2 = 1
+    local def3 = 1
+    local level = hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel()
 
-	if abil1:GetAbilityName() == "Wounding_Strike" then
+    if(hero._axeInit == nil) then
+        def1 = hero:AddAbility("WarriorCharge")
+        def2 = hero:AddAbility("Shield_Reflect")
+        def3 = hero:AddAbility("Terror_Shout")
+
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(abil3, 2)
+
+        COverthrowGameMode:SetAbilityIndexCustom(def1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(def2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(def3, 2)
+
+        COverthrowGameMode:SetIsStanceAbility(def1, true)
+        COverthrowGameMode:SetIsStanceAbility(def2, true)
+        COverthrowGameMode:SetIsStanceAbility(def3, true)
+
+        hero._axeInit = true
+    else
+        def1 = hero:FindAbilityByName("WarriorCharge")
+        def2 = hero:FindAbilityByName("Shield_Reflect")
+        def3 = hero:FindAbilityByName("Terror_Shout")
+    end
+
+    def1:SetLevel(level)
+    def2:SetLevel(level)
+    def3:SetLevel(level)
+
+	if hero:HasModifier("modifier_defstance") == false then
 		--print("to defensive")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_defstance", nil)
-		SwitchStancesLvl1[id]=abil1:GetLevel()
-		SwitchStancesLvl2[id]=abil2:GetLevel()
-		SwitchStancesLvl3[id]=abil3:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-
-  		hero:AddAbility("WarriorCharge")
-  		hero:FindAbilityByName("WarriorCharge"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
-  		hero:AddAbility("Shield_Reflect")
-  		hero:FindAbilityByName("Shield_Reflect"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
-  		hero:AddAbility("Terror_Shout")
-  		hero:FindAbilityByName("Terror_Shout"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance"):GetLevel())
+        hero:SwapAbilities("Wounding_Strike", "WarriorCharge", false, true)
+        hero:SwapAbilities("Mortal_Swing", "Shield_Reflect", false, true)
+        hero:SwapAbilities("Concussive_Blow", "Terror_Shout", false, true)
+        
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(false)
+        abil2:SetActivated(false)
+        abil3:SetActivated(false)
+        def1:SetActivated(true)
+        def2:SetActivated(true)
+        def3:SetActivated(true)
+        
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        def1:MarkAbilityButtonDirty()
+        def2:MarkAbilityButtonDirty()
+        def3:MarkAbilityButtonDirty()
   	else
   		--print("to offensive")
   		hero:RemoveModifierByName("modifier_defstance")
-  		-- fix crash on switch while charging
-		if hero:HasModifier("modifier_WarriorCharge") then
-	 		Timers:CreateTimer(1.0,function() 
-		        fixChargeStanceSwitch(hero)
-		    end)
-		else
-	  		hero:RemoveAbility(abil1:GetAbilityName())
-	  		hero:AddAbility("Wounding_Strike")
-	  		hero:FindAbilityByName("Wounding_Strike"):SetLevel(SwitchStancesLvl1[id])
-		end
-
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:AddAbility("Mortal_Swing")
-  		hero:FindAbilityByName("Mortal_Swing"):SetLevel(SwitchStancesLvl2[id])
-
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:AddAbility("Concussive_Blow")
-  		hero:FindAbilityByName("Concussive_Blow"):SetLevel(SwitchStancesLvl3[id])
+        
+  		hero:SwapAbilities("Wounding_Strike", "WarriorCharge", true, false)
+  		hero:SwapAbilities("Mortal_Swing", "Shield_Reflect", true, false)
+  		hero:SwapAbilities("Concussive_Blow", "Terror_Shout", true, false)
   		
+  		-- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+  		abil1:SetActivated(true)
+  		abil2:SetActivated(true)
+  		abil3:SetActivated(true)
+  		def1:SetActivated(false)
+  		def2:SetActivated(false)
+  		def3:SetActivated(false)
+  		
+  		-- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+  		abil1:MarkAbilityButtonDirty()
+  		abil2:MarkAbilityButtonDirty()
+  		abil3:MarkAbilityButtonDirty()
   	end
-end
-
-function fixChargeStanceSwitch(hero)
-	if hero:HasModifier("modifier_WarriorCharge") then
- 		Timers:CreateTimer(1.0,function() 
-	        fixChargeStanceSwitch(hero)
-	    end)
-	else
-		local abil1 = hero:GetAbilityByIndex(0)
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:AddAbility("Wounding_Strike")
-  		local id = hero:GetPlayerOwnerID()+1
-  		hero:FindAbilityByName("Wounding_Strike"):SetLevel(SwitchStancesLvl1[id])
-	end
 end
 
 function SwordStorm(event)
@@ -9470,6 +9503,8 @@ function FatalThrowHit(event)
 		--myevent.ability = event.ability
 		--myevent.dur = caster.FatalThrowCP*event.silence
 		--ApplyBuff(myevent)
+
+        -- This was intentionally made to don't care if spell was interrupted or no
         if(caster:HasModifier("modifier_fatal_throw_inner_cd") == false and event.ability:IsAltCasted()) then
             SpellInterrupt({caster = caster, target = target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
             local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
@@ -9501,6 +9536,7 @@ function FatalThrowHit(event)
 end
 
 function SacredSpearHit(event)
+    -- This was intentionally made to don't care if spell was interrupted or no
     if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
         SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
         local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
@@ -9589,28 +9625,63 @@ function Stealth(event)
 	--print("steaklth test")
 	local hero = event.caster
 	local level = event.ability:GetLevel()
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
+	local abil1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, false)
+	local abil2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, false)
+    local stealth1 = 1
+    local stealth2 = 1
 
-	hero.StealthSpell1=abil1:GetLevel()
-	hero.StealthSpell2=abil2:GetLevel()
+    if(hero._stealthInit == nil) then
+        if hero:GetName() == "npc_dota_hero_bounty_hunter" then
+            stealth1 = hero:AddAbility("combat7")
+        else
+            stealth1 = hero:AddAbility("Narcotic_Strike")
+        end
+        stealth2 = hero:AddAbility("Paralyse")
 
-	hero:RemoveAbility(abil1:GetAbilityName())
-	hero:RemoveAbility(abil2:GetAbilityName())
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
 
-	if hero:GetName() == "npc_dota_hero_bounty_hunter" then
-		hero:AddAbility("combat7")
-		hero:FindAbilityByName("combat7"):SetLevel(level)
-	else
-		hero:AddAbility("Narcotic_Strike")
-		hero:FindAbilityByName("Narcotic_Strike"):SetLevel(level)
-	end
-	hero:AddAbility("Paralyse")
-	hero:FindAbilityByName("Paralyse"):SetLevel(level)
-	hero:FindAbilityByName("Paralyse"):EndCooldown()
+        COverthrowGameMode:SetAbilityIndexCustom(stealth1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(stealth2, 1)
+        COverthrowGameMode:SetIsStanceAbility(stealth1, true)
+        COverthrowGameMode:SetIsStanceAbility(stealth2, true)
+
+        hero._stealthInit = true
+    else
+        if hero:GetName() == "npc_dota_hero_bounty_hunter" then
+            stealth1 = hero:FindAbilityByName("combat7")
+        else
+            stealth1 = hero:FindAbilityByName("Narcotic_Strike")
+        end
+        stealth2 = hero:FindAbilityByName("Paralyse")
+    end
+
     if hero:HasModifier("modifier_npc_dota_hero_pa2") then
         hero.fatalThrowBonus = 3
     end
+
+    if(hero._inStealth) then
+        return
+    end
+
+    hero._inStealth = true
+
+    hero:SwapAbilities(abil1:GetAbilityName(), stealth1:GetAbilityName(), false, true)
+    hero:SwapAbilities(abil2:GetAbilityName(), stealth2:GetAbilityName(), false, true)
+
+    -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+    abil1:SetActivated(false)
+    abil2:SetActivated(false)
+    stealth1:SetActivated(true)
+    stealth2:SetActivated(true)
+
+    stealth1:SetLevel(level)
+    stealth2:SetLevel(level)
+	stealth2:EndCooldown()
+    
+    -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+    stealth1:MarkAbilityButtonDirty()
+    stealth2:MarkAbilityButtonDirty()
 end
 
 function Paralyse(event)
@@ -9656,28 +9727,29 @@ function StealthEnd(event)
 	hero:RemoveModifierByName("modifier_invisible")
 	hero:RemoveModifierByName("modifier_stealthrogue")
 
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
+    if(hero._inStealth == nil) then
+        return
+    end
 
-	hero:RemoveAbility(abil1:GetAbilityName())
-	hero:RemoveAbility(abil2:GetAbilityName())
+    hero._inStealth = nil
 
-	if hero:GetName() == "npc_dota_hero_riki" then
-		hero:AddAbility("hawk1")
-		hero:FindAbilityByName("hawk1"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("hawk2")
-		hero:FindAbilityByName("hawk2"):SetLevel(hero.StealthSpell2)
-	elseif hero:GetName() == "npc_dota_hero_bounty_hunter" then
-		hero:AddAbility("combat1")
-		hero:FindAbilityByName("combat1"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("combat3")
-		hero:FindAbilityByName("combat3"):SetLevel(hero.StealthSpell2)
-	else
-		hero:AddAbility("Dagger_Strike")
-		hero:FindAbilityByName("Dagger_Strike"):SetLevel(hero.StealthSpell1)
-		hero:AddAbility("Numbing_Cut")
-		hero:FindAbilityByName("Numbing_Cut"):SetLevel(hero.StealthSpell2)
-	end
+	local stealth1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, true)
+	local stealth2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, true)
+	local abil1 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 0, false)
+	local abil2 = COverthrowGameMode:GetAbilityByIndexCustom(hero, 1, false)
+
+    hero:SwapAbilities(abil1:GetAbilityName(), stealth1:GetAbilityName(), true, false)
+    hero:SwapAbilities(abil2:GetAbilityName(), stealth2:GetAbilityName(), true, false)
+
+    -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+    abil1:SetActivated(true)
+    abil2:SetActivated(true)
+    stealth1:SetActivated(false)
+    stealth2:SetActivated(false)
+    
+    -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+    abil1:MarkAbilityButtonDirty()
+    abil2:MarkAbilityButtonDirty()
 end
 
 
@@ -11737,7 +11809,7 @@ function ShapeshiftOut( event )
     --tree talent
     if ability:GetLevel() >= 4 then
         if event.event_ability then
-            if event.event_ability:GetAbilityIndex() == 0 or event.event_ability:GetAbilityIndex() == 2 or event.event_ability:GetAbilityIndex() == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 0 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 2 or COverthrowGameMode:GetAbilityIndexCustom(event.event_ability) == 5 then
                 --StartAnimation(caster, {activity=ACT_DOTA_ATTACK, duration=0.25, rate=2.5})
             else
                 --StartAnimation(caster, {activity=ACT_DOTA_SPAWN, duration=1.5, rate=0.27})
@@ -11921,7 +11993,8 @@ function AstralGuardianProcs(event)
       		local stack = caster:GetModifierStackCount("modifier_mooncharge", caster)
       		if stack >= 5 then
                 if GetLevelOfAbility(caster, "moon2") >= 3 then
-                    local buffevent = { caster = caster, target = target, ability = caster:GetAbilityByIndex(2), aoe = 900, buff = "modifier_moon2", dur = 0.25, dontbreakccbuff = 1}
+					local moon2Ability = COverthrowGameMode:GetAbilityByIndexCustom(caster, 2, false)
+                    local buffevent = { caster = caster, target = target, ability = moon2Ability, aoe = 900, buff = "modifier_moon2", dur = 0.25, dontbreakccbuff = 1}
                     ApplyBuffAOE(buffevent)
                 end
       			caster:RemoveModifierByName("modifier_mooncharge")	
@@ -11955,7 +12028,8 @@ function AstralGuardianProcs(event)
         	local stack = caster:GetModifierStackCount("modifier_suncharge", caster)
       		if stack >= 5 then
                 if GetLevelOfAbility(caster, "moon12") >= 3 then
-                    local buffevent = { caster = caster, target = target, ability = caster:GetAbilityByIndex(2), aoe = 900, buff = "modifier_moon12", dur = 0.25, dontbreakccbuff = 1}
+					local moon12Ability = COverthrowGameMode:GetAbilityByIndexCustom(caster, 2, true)
+                    local buffevent = { caster = caster, target = target, ability = moon12Ability, aoe = 900, buff = "modifier_moon12", dur = 0.25, dontbreakccbuff = 1}
                     ApplyBuffAOE(buffevent)
                 end
       			caster:RemoveModifierByName("modifier_suncharge")
@@ -11977,7 +12051,7 @@ function AstralGuardianProcs(event)
                 if event.id == 6 then
                     event.buff = "modifier_druid_sun_crit"
                     event.dur = 30
-                    event.ability = caster:GetAbilityByIndex(5)
+                    event.ability = COverthrowGameMode:GetAbilityByIndexCustom(caster, 5, true)
                     event.target = caster
                     ApplyBuff(event)
                 end
@@ -12098,10 +12172,197 @@ function ChainLightningOld(event)
 	]]
 end
 
+function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
+    local human1 = nil
+    local human2 = nil
+    local human3 = nil
+    local human4 = nil
+    local human5 = nil
+
+    if(shapeshiftInit) then
+        human1 = caster:AddAbility("RegrowthFeral")
+        human2 = caster:AddAbility("RootsDruidFeral")
+        human3 = caster:AddAbility("CycloneDruidFeral")
+        human4 = caster:AddAbility("empty_spell1")
+        human5 = caster:AddAbility("empty_spell2")
+    else
+        human1 = caster:FindAbilityByName("RegrowthFeral")
+        human2 = caster:FindAbilityByName("RootsDruidFeral")
+        human3 = caster:FindAbilityByName("CycloneDruidFeral")
+        human4 = caster:FindAbilityByName("empty_spell1")
+        human5 = caster:FindAbilityByName("empty_spell2")
+    end
+
+    local feral1 = caster:FindAbilityByName("Feral2")
+    local feral2 = caster:FindAbilityByName("Feral3")
+    local feral3 = caster:FindAbilityByName("Feral4")
+    local feral4 = caster:FindAbilityByName("Feral1")
+    local feral5 = caster:FindAbilityByName("Feral5")
+
+    human1:SetLevel(level)
+    human2:SetLevel(level)
+    human3:SetLevel(level)
+    human4:SetLevel(1)
+    human5:SetLevel(1)
+
+    if(human) then
+        caster:SwapAbilities("Feral2", "RegrowthFeral", false, true)
+        caster:SwapAbilities("Feral3", "RootsDruidFeral", false, true)
+        caster:SwapAbilities("Feral4", "CycloneDruidFeral", false, true)
+        caster:SwapAbilities("Feral1", "empty_spell1", false, true)
+        caster:SwapAbilities("Feral5", "empty_spell2", false, true)
+        
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        feral1:SetActivated(false)
+        feral2:SetActivated(false)
+        feral3:SetActivated(false)
+        feral4:SetActivated(false)
+        feral5:SetActivated(false)
+        
+        human1:SetActivated(true)
+        human2:SetActivated(true)
+        human3:SetActivated(true)
+        human4:SetActivated(true)
+        human5:SetActivated(true)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        human1:MarkAbilityButtonDirty()
+        human2:MarkAbilityButtonDirty()
+        human3:MarkAbilityButtonDirty()
+        human4:MarkAbilityButtonDirty()
+        human5:MarkAbilityButtonDirty()
+    else
+        if(shapeshiftInit == nil) then
+            caster:SwapAbilities("Feral2", "RegrowthFeral", true, false)
+            caster:SwapAbilities("Feral3", "RootsDruidFeral", true, false)
+            caster:SwapAbilities("Feral4", "CycloneDruidFeral", true, false)
+            caster:SwapAbilities("Feral1", "empty_spell1", true, false)
+            caster:SwapAbilities("Feral5", "empty_spell2", true, false)
+        else
+            human1:SetHidden(true)
+            human2:SetHidden(true)
+            human3:SetHidden(true)
+            human4:SetHidden(true)
+            human5:SetHidden(true)
+        end
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        feral1:SetActivated(true)
+        feral2:SetActivated(true)
+        feral3:SetActivated(true)
+        feral4:SetActivated(true)
+        feral5:SetActivated(true)
+
+        human1:SetActivated(false)
+        human2:SetActivated(false)
+        human3:SetActivated(false)
+        human4:SetActivated(false)
+        human5:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        feral1:MarkAbilityButtonDirty()
+        feral2:MarkAbilityButtonDirty()
+        feral3:MarkAbilityButtonDirty()
+        feral4:MarkAbilityButtonDirty()
+        feral5:MarkAbilityButtonDirty()
+    end
+
+    -- Sets internal things for anything that rely on ability indexes...
+    COverthrowGameMode:SetAbilityIndexCustom(feral1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(feral2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(feral3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(feral4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(feral5, 4)
+
+    COverthrowGameMode:SetAbilityIndexCustom(human1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(human2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(human3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(human4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(human5, 4)
+
+    COverthrowGameMode:SetIsStanceAbility(human1, true)
+    COverthrowGameMode:SetIsStanceAbility(human2, true)
+    COverthrowGameMode:SetIsStanceAbility(human3, true)
+    COverthrowGameMode:SetIsStanceAbility(human4, true)
+    COverthrowGameMode:SetIsStanceAbility(human5, true)
+end
+
+function COverthrowGameMode:SetIsStanceAbility(ability, state)
+    ability._isStanceAbility = state
+end
+
+function COverthrowGameMode:IsStanceAbility(ability)
+    if(ability == nil) then
+        return false
+    end
+
+    if(ability._isStanceAbility ~= nil) then
+        return ability._isStanceAbility
+    end
+
+    return false
+end
+
+function COverthrowGameMode:SetAbilityIndexCustom(ability, index)
+    ability._abilityIndexCustom = index
+end
+
+function COverthrowGameMode:GetAbilityIndexCustom(ability)
+    if(ability == nil) then
+        return -1
+    end
+
+    if(ability._abilityIndexCustom ~= nil) then
+        return ability._abilityIndexCustom
+    end
+
+    return ability:GetAbilityIndex()
+end
+
+function GetAbilityBehaviorSafe(ability)
+    -- No idea if this true or no, but very valve like (this bug happened when valve decide to destroy custom games and destroyed they own event custom game with countless hot fixes this night after that...)
+    -- Valve did add GetBehaviorInt() but that overflows with some behavior flags like DOTA_ABILITY_BEHAVIOR_OVERSHOOT
+    local behavior = ability:GetBehavior()
+    if type(behavior) ~= "number" then
+        behavior = tonumber(tostring(behavior))
+    end
+
+    return behavior
+end
+
+function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
+    for i = 0, DOTA_MAX_ABILITIES - 1 do
+        local ability = hero:GetAbilityByIndex(i)
+
+        if(ability == nil) then
+            return nil
+        end
+
+        if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
+            -- Probably enough to filter out valve weird internal abilities (they all have index = 0...)
+            if(bit.band(GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
+                local abilityName = ability:GetAbilityName()
+                -- Dazzle abilities
+                if(abilityName == "empty_spell1" or abilityName == "empty_spell2") then
+                    return ability
+                end
+
+                -- Shadowstalkers abilities
+                if(abilityName == "combat7" or abilityName == "Narcotic_Strike" or abilityName == "Paralyse") then
+                    return ability
+                end
+            else
+                return ability
+            end
+        end
+    end
+
+    return nil
+end
 
 function ShapeshiftFeral(event)
 	local caster = event.caster
-	local level = caster:GetAbilityByIndex(5):GetLevel()
+	local level = caster:FindAbilityByName("ShapeshiftFeral"):GetLevel()
 	if caster:HasModifier("modifier_catform") then
         -- to human form
         if not caster:HasModifier("modifier_feralcd") then
@@ -12118,30 +12379,7 @@ function ShapeshiftFeral(event)
 		caster:RemoveModifierByName("modifier_catform")
         event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_catform_off", nil)
 		
-		caster.spell1 = caster:GetAbilityByIndex(0):GetLevel()
-		caster.spell2 = caster:GetAbilityByIndex(1):GetLevel()
-		caster.spell3 = caster:GetAbilityByIndex(2):GetLevel()
-		caster.spell4 = caster:GetAbilityByIndex(3):GetLevel()
-		caster.spell5 = caster:GetAbilityByIndex(4):GetLevel()
-		caster:RemoveAbility("Feral2")
-		caster:RemoveAbility("Feral3")
-		caster:RemoveAbility("Feral4")
-		caster:RemoveAbility("Feral1")
-		caster:RemoveAbility("Feral5")
-		caster:AddAbility("RegrowthFeral")
-		caster:GetAbilityByIndex(0):SetLevel(level)
-		caster:AddAbility("RootsDruidFeral")
-		caster:GetAbilityByIndex(1):SetLevel(level)
-		--if caster:HasModifier("modifier_feralpowercast") then
- 		--	caster:AddAbility("CycloneDruidFeralInstant")
-		--else
-			caster:AddAbility("CycloneDruidFeral")
-		--end
-		caster:GetAbilityByIndex(2):SetLevel(level)
-		caster:AddAbility("empty_spell1")
-		caster:GetAbilityByIndex(3):SetLevel(1)
-		caster:AddAbility("empty_spell2")
-		caster:GetAbilityByIndex(4):SetLevel(1)
+        ShapeshiftFeralAbilitiesSwap(caster, true, level, event.shapeshiftInit)
         CheckForMaxManaCap(caster)
         caster:SetMana(caster:GetMaxMana()) --(caster.OldMana)
 		--model change
@@ -12160,26 +12398,8 @@ function ShapeshiftFeral(event)
 		caster.OldMana = caster:GetMana()
         caster:RemoveModifierByName("modifier_catform_off")
 		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_catform", nil)
-        if caster.feralfirstshift then
-    		caster:RemoveAbility("RegrowthFeral")
-    		caster:RemoveAbility("RootsDruidFeral")
-    		caster:RemoveAbility("CycloneDruidFeral")
-    		caster:RemoveAbility("CycloneDruidFeralInstant")
-    		caster:RemoveAbility("empty_spell1")
-    		caster:RemoveAbility("empty_spell2")
-    		caster:AddAbility("Feral2")
-    		caster:GetAbilityByIndex(0):SetLevel(caster.spell1)
-    		caster:AddAbility("Feral3")
-    		caster:GetAbilityByIndex(1):SetLevel(caster.spell2)
-    		caster:AddAbility("Feral4")
-    		caster:GetAbilityByIndex(2):SetLevel(caster.spell3)
-    		caster:AddAbility("Feral1")
-    		caster:GetAbilityByIndex(3):SetLevel(caster.spell4)
-    		caster:AddAbility("Feral5")
-    		caster:GetAbilityByIndex(4):SetLevel(caster.spell5)
-        else
-            caster.feralfirstshift = true
-        end
+        
+        ShapeshiftFeralAbilitiesSwap(caster, false, level, event.shapeshiftInit)
         CheckForMaxManaCap(caster)
 		--model change, only when synced
 		if COverthrowGameMode.EnableShapeshift == 1 then
@@ -12216,6 +12436,8 @@ end
 
 
 function RemoveInstantAbility(event)
+	-- seems unused
+	--[[
 	local caster = event.caster
 	local target = event.target
 	Timers:CreateTimer(0.1, function()
@@ -12238,6 +12460,7 @@ function RemoveInstantAbility(event)
 			--print(tab.Duration)
 		end
 	end)
+	--]]
 end
 
 function FeralAttackHeal(event)
@@ -12654,167 +12877,169 @@ end
 function SwitchStancesProt(event)
 
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
+	local abil1 = hero:FindAbilityByName("Protect1")
+	local abil2 = hero:FindAbilityByName("Protect2")
+	local abil3 = hero:FindAbilityByName("Protect3")
+    local def1 = 1
+    local def2 = 1
+    local def3 = 1
+    local level = hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel()
 
-	if abil1:GetAbilityName() == "Protect1" then
+    if(hero._dkInit == nil) then
+        def1 = hero:AddAbility("WarriorCharge")
+        def2 = hero:AddAbility("Shield_Reflect")
+        def3 = hero:AddAbility("Terror_ShoutProt")
+
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(abil3, 2)
+
+        COverthrowGameMode:SetAbilityIndexCustom(def1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(def2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(def3, 2)
+
+        COverthrowGameMode:SetIsStanceAbility(def1, true)
+        COverthrowGameMode:SetIsStanceAbility(def2, true)
+        COverthrowGameMode:SetIsStanceAbility(def3, true)
+
+        hero._dkInit = true
+    else
+        def1 = hero:FindAbilityByName("WarriorCharge")
+        def2 = hero:FindAbilityByName("Shield_Reflect")
+        def3 = hero:FindAbilityByName("Terror_ShoutProt")
+    end
+
+    def1:SetLevel(level)
+    def2:SetLevel(level)
+    def3:SetLevel(level)
+
+	if hero:HasModifier("modifier_offstance") then
 		--print("to defensive")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_defstance", nil)
         hero:RemoveModifierByName("modifier_offstance")
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-
-  		hero:AddAbility("WarriorCharge")
-  		hero:FindAbilityByName("WarriorCharge"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-  		hero:AddAbility("Shield_Reflect")
-  		hero:FindAbilityByName("Shield_Reflect"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-  		hero:AddAbility("Terror_ShoutProt")
-  		hero:FindAbilityByName("Terror_ShoutProt"):SetLevel(hero:FindAbilityByName("Switch_Battle_Stance_Prot"):GetLevel())
-        --fix charges
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
+        hero:SwapAbilities("Protect1", "WarriorCharge", true, false)
+        hero:SwapAbilities("Protect2", "Shield_Reflect", true, false)
+        hero:SwapAbilities("Protect3", "Terror_ShoutProt", true, false)
+    
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(true)
+        abil2:SetActivated(true)
+        abil3:SetActivated(true)
+        def1:SetActivated(false)
+        def2:SetActivated(false)
+        def3:SetActivated(false)
+        
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        abil1:MarkAbilityButtonDirty()
+        abil2:MarkAbilityButtonDirty()
+        abil3:MarkAbilityButtonDirty()
   	else
   		--print("to offensive")
         if event.alwaysdef and event.alwaysdef == 1 then
             event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_offstance", nil)
         end
   		hero:RemoveModifierByName("modifier_defstance")
-  		-- fix crash on switch while charging
-		if hero:HasModifier("modifier_WarriorCharge") then
-	 		Timers:CreateTimer(1.0,function() 
-		        fixChargeStanceSwitchProt(hero)
-		    end)
-		else
-	  		hero:RemoveAbility(abil1:GetAbilityName())
-	  		hero:AddAbility("Protect1")
-	  		hero:FindAbilityByName("Protect1"):SetLevel(hero.abil1)
-		end
 
-
-
-  		
-
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:AddAbility("Protect2")
-  		hero:FindAbilityByName("Protect2"):SetLevel(hero.abil2)
-
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:AddAbility("Protect3")
-  		hero:FindAbilityByName("Protect3"):SetLevel(hero.abil3)
-  		
-        --fix charges
-        local abilityName = "Protect1"
-        local ability = hero:FindAbilityByName(abilityName)
-        if ability then
-            hero[abilityName.."_is_init"] = true
-            hero:AddNewModifier(hero, ability, "modifier_charges",
-                {
-                    max_count = 5,
-                    start_count = 1,
-                    replenish_time = 3
-                }
-            )
-        end
+          hero:SwapAbilities("Protect1", "WarriorCharge", false, true)
+          hero:SwapAbilities("Protect2", "Shield_Reflect", false, true)
+          hero:SwapAbilities("Protect3", "Terror_ShoutProt", false, true)
+      
+          -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+          abil1:SetActivated(false)
+          abil2:SetActivated(false)
+          abil3:SetActivated(false)
+          def1:SetActivated(true)
+          def2:SetActivated(true)
+          def3:SetActivated(true)
+          
+          -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+          def1:MarkAbilityButtonDirty()
+          def2:MarkAbilityButtonDirty()
+          def3:MarkAbilityButtonDirty()
   	end
-end
-
-function fixChargeStanceSwitchProt(hero)
-	if hero:HasModifier("modifier_WarriorCharge") then
- 		Timers:CreateTimer(1.0,function() 
-	        fixChargeStanceSwitchProt(hero)
-	    end)
-	else
-		local abil1 = hero:GetAbilityByIndex(0)
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:AddAbility("Protect1")
-  		hero:FindAbilityByName("Protect1"):SetLevel(hero.abil1)
-	end
 end
 
 function SwitchStancesFury(event)
 
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
+	local abil1 = hero:FindAbilityByName("fury1")
+	local abil2 = hero:FindAbilityByName("fury2")
+	local abil3 = hero:FindAbilityByName("fury3")
+    local def1 = 1
+    local def2 = 1
+    local def3 = 1
+    local level = hero:FindAbilityByName("fury6"):GetLevel()
 
-	if abil1:GetAbilityName() == "fury1" then
+    if(hero._bmInit == nil) then
+        def1 = hero:AddAbility("WarriorCharge")
+        def2 = hero:AddAbility("Shield_Reflect")
+        def3 = hero:AddAbility("Terror_ShoutFury")
+
+        COverthrowGameMode:SetAbilityIndexCustom(abil1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(abil2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(abil3, 2)
+
+        COverthrowGameMode:SetAbilityIndexCustom(def1, 0)
+        COverthrowGameMode:SetAbilityIndexCustom(def2, 1)
+        COverthrowGameMode:SetAbilityIndexCustom(def3, 2)
+
+        COverthrowGameMode:SetIsStanceAbility(def1, true)
+        COverthrowGameMode:SetIsStanceAbility(def2, true)
+        COverthrowGameMode:SetIsStanceAbility(def3, true)
+
+        hero._bmInit = true
+    else
+        def1 = hero:FindAbilityByName("WarriorCharge")
+        def2 = hero:FindAbilityByName("Shield_Reflect")
+        def3 = hero:FindAbilityByName("Terror_ShoutFury")
+    end
+
+    def1:SetLevel(level)
+    def2:SetLevel(level)
+    def3:SetLevel(level)
+    
+    if hero:HasModifier("modifier_defstance") == false then
 		--print("to defensive")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_defstance", nil)
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-
-  		hero:AddAbility("WarriorCharge")
-  		hero:FindAbilityByName("WarriorCharge"):SetLevel(hero:FindAbilityByName("fury6"):GetLevel())
-  		hero:AddAbility("Shield_Reflect")
-  		hero:FindAbilityByName("Shield_Reflect"):SetLevel(hero:FindAbilityByName("fury6"):GetLevel())
-  		hero:AddAbility("Terror_ShoutFury")
-  		hero:FindAbilityByName("Terror_ShoutFury"):SetLevel(hero:FindAbilityByName("fury6"):GetLevel())
-        --fix charges
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
-        hero:RemoveModifierByName("modifier_charges")
+        hero:SwapAbilities("fury1", "WarriorCharge", false, true)
+        hero:SwapAbilities("fury2", "Shield_Reflect", false, true)
+        hero:SwapAbilities("fury3", "Terror_ShoutFury", false, true)
+    
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(false)
+        abil2:SetActivated(false)
+        abil3:SetActivated(false)
+        def1:SetActivated(true)
+        def2:SetActivated(true)
+        def3:SetActivated(true)
+        
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        def1:MarkAbilityButtonDirty()
+        def2:MarkAbilityButtonDirty()
+        def3:MarkAbilityButtonDirty()
   	else
   		--print("to offensive")
-  		hero:RemoveModifierByName("modifier_defstance")
-  		-- fix crash on switch while charging
-		if hero:HasModifier("modifier_WarriorCharge") then
-	 		Timers:CreateTimer(1.0,function() 
-		        fixChargeStanceSwitchFury(hero)
-		    end)
-		else
-	  		hero:RemoveAbility(abil1:GetAbilityName())
-	  		hero:AddAbility("fury1")
-	  		hero:FindAbilityByName("fury1"):SetLevel(hero.abil1)
-		end
+        hero:RemoveModifierByName("modifier_defstance")
 
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:AddAbility("fury2")
-  		hero:FindAbilityByName("fury2"):SetLevel(hero.abil2)
+        hero:SwapAbilities("fury1", "WarriorCharge", true, false)
+        hero:SwapAbilities("fury2", "Shield_Reflect", true, false)
+        hero:SwapAbilities("fury3", "Terror_ShoutFury", true, false)
 
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:AddAbility("fury3")
-  		hero:FindAbilityByName("fury3"):SetLevel(hero.abil3)
-  		
-        --fix charges
-        local abilityName = "fury1"
-        local ability = hero:FindAbilityByName(abilityName)
-        if ability then
-            hero[abilityName.."_is_init"] = true
-            hero:AddNewModifier(hero, ability, "modifier_charges",
-                {
-                    max_count = 5,
-                    start_count = 1,
-                    replenish_time = 1.5
-                }
-            )
-        end
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        abil1:SetActivated(true)
+        abil2:SetActivated(true)
+        abil3:SetActivated(true)
+        def1:SetActivated(false)
+        def2:SetActivated(false)
+        def3:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        abil1:MarkAbilityButtonDirty()
+        abil2:MarkAbilityButtonDirty()
+        abil3:MarkAbilityButtonDirty()
   	end
-end
-
-function fixChargeStanceSwitchFury(hero)
-	if hero:HasModifier("modifier_WarriorCharge") then
- 		Timers:CreateTimer(1.0,function() 
-	        fixChargeStanceSwitchFury(hero)
-	    end)
-	else
-		local abil1 = hero:GetAbilityByIndex(0)
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:AddAbility("fury1")
-  		hero:FindAbilityByName("fury1"):SetLevel(hero.abil1)
-	end
 end
 
 function LightningFurySetup( event )
@@ -13674,9 +13899,12 @@ function Blind(event)
 end
 
 function Preparation(event)
+	-- seems unused
+	--[[
 	local caster = event.caster
 	caster:GetAbilityByIndex(3):EndCooldown()
 	caster:GetAbilityByIndex(5):EndCooldown()
+	--]]
 end
 
 --function RogueAgiBonus(event)
@@ -14337,7 +14565,8 @@ function StopChannelMaxRange( event )
 end
 
 function HolyForm(event)
-
+	-- seems unused
+	--[[
 	local hero = event.caster
 	local abil1 = hero:GetAbilityByIndex(0)
 	local abil2 = hero:GetAbilityByIndex(1)
@@ -14391,82 +14620,143 @@ function HolyForm(event)
   		local c = 50
   		--hero:SetRenderColor(c, c, c)
   		EmitSoundOn("dark_seer_dkseer_attack_05", hero)		
-
   	end
+	--]]
 end
 
 function SunForm(event)
-
 	local hero = event.caster
-	local abil1 = hero:GetAbilityByIndex(0)
-	local abil2 = hero:GetAbilityByIndex(1)
-	local abil3 = hero:GetAbilityByIndex(2)
-	local abil4 = hero:GetAbilityByIndex(3)
-	local abil5 = hero:GetAbilityByIndex(4)
 
-	if abil3:GetAbilityName() == "moon2" then
+    local moon1 = hero:FindAbilityByName("moon11")
+    local moon2 = hero:FindAbilityByName("moon3")
+    local moon3 = hero:FindAbilityByName("moon2")
+    local moon4 = hero:FindAbilityByName("moon4")
+    local moon5 = hero:FindAbilityByName("moon5")
+    local sun1 = 1
+    local sun2 = 1
+    local sun3 = 1
+    local sun4 = 1
+    local sun5 = 1
+
+    if(hero._sunFormInit == nil) then
+        sun1 = hero:AddAbility("moon1")
+        sun2 = hero:AddAbility("RootsDruidMoon")
+        sun3 = hero:AddAbility("moon12")
+        sun4 = hero:AddAbility("moon9")
+        sun5 = hero:AddAbility("moon10")
+
+        hero._sunFormInit = true
+    else
+        sun1 = hero:FindAbilityByName("moon1")
+        sun2 = hero:FindAbilityByName("RootsDruidMoon")
+        sun3 = hero:FindAbilityByName("moon12")
+        sun4 = hero:FindAbilityByName("moon9")
+        sun5 = hero:FindAbilityByName("moon10")
+    end
+
+    local moonStance = hero:GetAbilityByIndex(2):GetAbilityName() == "moon2"
+
+	if moonStance then
 		--print("to holy")
 		hero:RemoveModifierByName("modifier_moonstance")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_sunstance", nil)
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
-		hero.abil4=abil4:GetLevel()
-		hero.abil5=abil5:GetLevel()
 
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:RemoveAbility(abil4:GetAbilityName())
-  		hero:RemoveAbility(abil5:GetAbilityName())
-
-  		hero:AddAbility("moon1")
-  		hero:FindAbilityByName("moon1"):SetLevel(hero.abil1)
-  		hero:AddAbility("RootsDruidMoon")
-  		hero:FindAbilityByName("RootsDruidMoon"):SetLevel(hero.abil2)
-  		hero:AddAbility("moon12")
-  		hero:FindAbilityByName("moon12"):SetLevel(hero.abil3)
-  		hero:AddAbility("moon9")
-  		hero:FindAbilityByName("moon9"):SetLevel(hero.abil4)
-  		hero:AddAbility("moon10")
-  		hero:FindAbilityByName("moon10"):SetLevel(hero.abil5)
+        hero:SwapAbilities("moon11", "moon1", false, true)
+        hero:SwapAbilities("moon3", "RootsDruidMoon", false, true)
+        hero:SwapAbilities("moon2", "moon12", false, true)
+        hero:SwapAbilities("moon4", "moon9", false, true)
+        hero:SwapAbilities("moon5", "moon10", false, true)
+  
   		hero:SetRenderColor(255, 255, 255)
-  		
+
+        sun1:SetLevel(moon1:GetLevel())
+        sun2:SetLevel(moon2:GetLevel())
+        sun3:SetLevel(moon3:GetLevel())
+        sun4:SetLevel(moon4:GetLevel())
+        sun5:SetLevel(moon5:GetLevel())
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        moon1:SetActivated(false)
+        moon2:SetActivated(false)
+        moon3:SetActivated(false)
+        moon4:SetActivated(false)
+        moon5:SetActivated(false)
+        
+        sun1:SetActivated(true)
+        sun2:SetActivated(true)
+        sun3:SetActivated(true)
+        sun4:SetActivated(true)
+        sun5:SetActivated(true)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        sun1:MarkAbilityButtonDirty()
+        sun2:MarkAbilityButtonDirty()
+        sun3:MarkAbilityButtonDirty()
+        sun4:MarkAbilityButtonDirty()
+        sun5:MarkAbilityButtonDirty()
+
   		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)		
   	else
   		--print("to moon")
   		hero:RemoveModifierByName("modifier_sunstance")
 		event.ability:ApplyDataDrivenModifier(hero, hero, "modifier_moonstance", nil)
 
-		hero.abil1=abil1:GetLevel()
-		hero.abil2=abil2:GetLevel()
-		hero.abil3=abil3:GetLevel()
-		hero.abil4=abil4:GetLevel()
-		hero.abil5=abil5:GetLevel()
-
-  		hero:RemoveAbility(abil1:GetAbilityName())
-  		hero:RemoveAbility(abil2:GetAbilityName())
-  		hero:RemoveAbility(abil3:GetAbilityName())
-  		hero:RemoveAbility(abil4:GetAbilityName())
-  		hero:RemoveAbility(abil5:GetAbilityName())
-
-  		hero:AddAbility("moon11")
-  		hero:FindAbilityByName("moon11"):SetLevel(hero.abil1)
-  		hero:AddAbility("moon3")
-  		hero:FindAbilityByName("moon3"):SetLevel(hero.abil2)
-  		hero:AddAbility("moon2")
-  		hero:FindAbilityByName("moon2"):SetLevel(hero.abil3)
-  		hero:AddAbility("moon4")
-  		hero:FindAbilityByName("moon4"):SetLevel(hero.abil4)
-  		hero:AddAbility("moon5")
-  		hero:FindAbilityByName("moon5"):SetLevel(hero.abil5)
+        hero:SwapAbilities("moon11", "moon1", true, false)
+        hero:SwapAbilities("moon3", "RootsDruidMoon", true, false)
+        hero:SwapAbilities("moon2", "moon12", true, false)
+        hero:SwapAbilities("moon4", "moon9", true, false)
+        hero:SwapAbilities("moon5", "moon10", true, false)
   		
   		--EmitSoundOn("vengefulspirit_vng_levelup_03", hero)	
   		local c = 200
   		hero:SetRenderColor(c, c, c)
-  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)		
+  		--EmitSoundOn("vengefulspirit_vng_attack_12", hero)
 
+        moon1:SetLevel(sun1:GetLevel())
+        moon2:SetLevel(sun2:GetLevel())
+        moon3:SetLevel(sun3:GetLevel())
+        moon4:SetLevel(sun4:GetLevel())
+        moon5:SetLevel(sun5:GetLevel())
+
+        -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
+        moon1:SetActivated(true)
+        moon2:SetActivated(true)
+        moon3:SetActivated(true)
+        moon4:SetActivated(true)
+        moon5:SetActivated(true)
+        
+        sun1:SetActivated(false)
+        sun2:SetActivated(false)
+        sun3:SetActivated(false)
+        sun4:SetActivated(false)
+        sun5:SetActivated(false)
+
+        -- MarkAbilityButtonDirty to fix ui bug that ability very rare always gray (disabled) due to some valve bug
+        moon1:MarkAbilityButtonDirty()
+        moon2:MarkAbilityButtonDirty()
+        moon3:MarkAbilityButtonDirty()
+        moon4:MarkAbilityButtonDirty()
+        moon5:MarkAbilityButtonDirty()
   	end
+
+    -- Sets internal things for anything that rely on ability indexes...
+    COverthrowGameMode:SetAbilityIndexCustom(moon1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(moon2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(moon3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(moon4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(moon5, 4)
+
+    COverthrowGameMode:SetAbilityIndexCustom(sun1, 0)
+    COverthrowGameMode:SetAbilityIndexCustom(sun2, 1)
+    COverthrowGameMode:SetAbilityIndexCustom(sun3, 2)
+    COverthrowGameMode:SetAbilityIndexCustom(sun4, 3)
+    COverthrowGameMode:SetAbilityIndexCustom(sun5, 4)
+
+    COverthrowGameMode:SetIsStanceAbility(sun1, true)
+    COverthrowGameMode:SetIsStanceAbility(sun2, true)
+    COverthrowGameMode:SetIsStanceAbility(sun3, true)
+    COverthrowGameMode:SetIsStanceAbility(sun4, true)
+    COverthrowGameMode:SetIsStanceAbility(sun5, true)
 end
 
 function holynova(event)
@@ -14761,7 +15051,7 @@ function GlobalOnAbilityExecuted( event )
         caster.bopCasts = caster.bopCasts + 1
         if caster.bopCasts >= 10 then
             caster.bopCasts = 0
-            caster:GetAbilityByIndex(0):ApplyDataDrivenModifier(caster, caster, "modifier_bop", {Duration = 3})
+            caster:GetAbilityByIndex(0):ApplyDataDrivenModifier(caster, caster, "modifier_bop", {Duration = 3}) -- should be fine i guess
         end
     end
     if GetLevelOfAbility(caster, "frostdk3") >= 4 and ability and ability:GetName() == "frostdk3" then
@@ -14811,7 +15101,7 @@ function GlobalOnAbilityExecuted( event )
     if GetLevelOfAbility(caster, "Arcane7") >= 4 and ability:GetName() == "Arcane7" then
         ReduceCooldown({caster = caster, chooseability = 5, amount = 5, ability = event.ability})
     end
-    if GetLevelOfAbility(caster, "RootsDruid") >= 2 and ability and (ability:GetName() == "RootsDruid" or ability:GetName() == "Shapeshift") then
+    if GetLevelOfAbility(caster, "RootsDruid") >= 2 and ability and (ability:GetName() == "RootsDruid" or ability:GetName() == "Shapeshift") then -- should be fine
         local dur = 10
         if caster:GetAbilityByIndex(0):GetLevel() >= 3 then
             dur = 15
@@ -14920,15 +15210,15 @@ function GlobalOnAbilityExecuted( event )
             --ParticleManager:ReleaseParticleIndex(particle)
         end
         if caster.talents[129] > 0 then
-            if caster:GetAbilityByIndex(0) == ability then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 then
                 caster.songIceFire1Cast = true
             end
-            if caster:GetAbilityByIndex(1) == ability then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
                 caster.songIceFire2Cast = true
             end
         end
         if caster.talents[100] and caster.talents[100] > 0 then
-            if ability == caster:GetAbilityByIndex(0) then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 then
                 caster.chaos_knight_combo_1 = true
                 if caster.chaos_knight_combo_3 then
                     caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_chaosknight_combo", {Duration = 8})
@@ -14936,7 +15226,7 @@ function GlobalOnAbilityExecuted( event )
                     caster.chaos_knight_combo_3 = false
                 end
             end
-            if ability == caster:GetAbilityByIndex(2) then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 then
                 caster.chaos_knight_combo_3 = true
                 if caster.chaos_knight_combo_1 then
                     caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_chaosknight_combo", {Duration = 8})
@@ -14945,10 +15235,10 @@ function GlobalOnAbilityExecuted( event )
                 end
             end
         end
-        if caster.snowl_item_ability and caster:HasModifier("modifier_snowl") and ability == caster:GetAbilityByIndex(5) then
+        if caster.snowl_item_ability and caster:HasModifier("modifier_snowl") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
             caster.snowl_item_ability:ApplyDataDrivenModifier(caster, caster, "modifier_snowl_proc", {Duration = 10})
         end
-        if caster.snowl_item_ability2 and caster:HasModifier("modifier_snowl2") and ability == caster:GetAbilityByIndex(5) then
+        if caster.snowl_item_ability2 and caster:HasModifier("modifier_snowl2") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
             caster.snowl_item_ability2:ApplyDataDrivenModifier(caster, caster, "modifier_snowl_proc2", {Duration = 10})
         end
         local chance = 10
@@ -14977,17 +15267,17 @@ function GlobalOnAbilityExecuted( event )
             ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin() + Vector(0,0,75))
             ParticleManager:ReleaseParticleIndex(particle)
         end
-        if HeroHasNeutralItem(caster, "item_neutral_27") and ability == caster:GetAbilityByIndex(4) then
+        if HeroHasNeutralItem(caster, "item_neutral_27") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
             ApplyBuff({ caster = caster, target = caster, dur = 5, buff = "modifier_stormbringer", ability = caster.combat_system_ability})
             local particle = ParticleManager:CreateParticle("particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", PATTACH_POINT_FOLLOW, caster)
             ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
             ParticleManager:ReleaseParticleIndex(particle)
             EmitSoundOn("Ability.GushCast", caster)
         end
-        if caster.talents[93] > 0 and ability == caster:GetAbilityByIndex(4) then
+        if caster.talents[93] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_boneshield", {Duration = 1 + 2 * caster.talents[93]})
         end
-        if caster.talents[97] > 0 and ability == caster:GetAbilityByIndex(3) and not caster:HasModifier("modifier_bloodflow_cd") then
+        if caster.talents[97] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and not caster:HasModifier("modifier_bloodflow_cd") then
             local dur = 2.5 + 0.5 * caster.talents[97]
             if dur > 8 then
                 dur = 8
@@ -14995,7 +15285,7 @@ function GlobalOnAbilityExecuted( event )
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_bloodflow", {Duration = dur})
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_bloodflow_cd", {Duration = 25 * GetInnerCooldownFactor(caster)})
         end
-        if caster.talents[101] and caster.talents[101] > 0 and ability == caster:GetAbilityByIndex(5) then
+        if caster.talents[101] and caster.talents[101] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_path_unholyaura", {Duration = 3 + caster.talents[101]})
         end
         if caster.talents[7] and caster.talents[7] > 0 and target and target:GetTeamNumber() == caster:GetTeamNumber() then
@@ -15083,7 +15373,7 @@ function GlobalOnAbilityExecuted( event )
                 ApplyBuff({caster = caster, target = target, ability = caster.combat_system_ability, dur = 4, buff = "modifier_shieldShatter"})
             end
         end
-        if caster.talents[162] and caster.talents[162] > 0 and ability == caster:GetAbilityByIndex(3) and not caster:HasModifier("modifier_phantomShadeCD") then
+        if caster.talents[162] and caster.talents[162] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and not caster:HasModifier("modifier_phantomShadeCD") then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_phantomShadeCD", {Duration = 30 * GetInnerCooldownFactor(caster)})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, buff = "modifier_phantomShade", dur = 2 * caster.talents[162]})
         end
@@ -15185,7 +15475,7 @@ function GetCooldownReductionFactor( caster, ability )
     if caster:HasModifier("modifier_item_winterbreeze2") then
         factor = factor * 0.9
     end
-    if caster:HasModifier("modifier_item_night_shoulders") and ability == caster:GetAbilityByIndex(5) then
+    if caster:HasModifier("modifier_item_night_shoulders") and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
         factor = factor * 0.75
     end
     if GetLevelOfAbility(caster, "special_bonus_unique_nether_wizard_4") >= 1 then
@@ -15197,19 +15487,19 @@ function GetCooldownReductionFactor( caster, ability )
     if caster.talents and caster.talents[28] > 0 then
         factor = factor * (1 - 0.025 - 0.025 * caster.talents[28])
     end
-    if caster.talents and caster.talents[41] > 0 and ability == caster:GetAbilityByIndex(4) then
+    if caster.talents and caster.talents[41] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 then
         factor = factor * (1 - 0.07 * caster.talents[41])
     end
-    if caster.talents and caster.talents[83] > 0 and ability == caster:GetAbilityByIndex(3) then
+    if caster.talents and caster.talents[83] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 then
         factor = factor * (1 - 0.07 * caster.talents[83])
     end
-    if caster.talents and caster.talents[17] > 0 and ability == caster:GetAbilityByIndex(2) then
+    if caster.talents and caster.talents[17] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 then
         factor = factor * (1 - 0.05 - 0.05 * caster.talents[17])
     end
-    --if caster.runeword and caster.runeword[22] > 0 and ability == caster:GetAbilityByIndex(3) then
+    --if caster.runeword and caster.runeword[22] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 then
     --    factor = factor * (1 - 0.01 * caster.runeword[22])
     --end
-    --if caster.runeword and caster.runeword[23] > 0 and ability == caster:GetAbilityByIndex(5) then
+    --if caster.runeword and caster.runeword[23] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
     --    factor = factor * (1 - 0.01 * caster.runeword[23])
     --end
     if caster.talents and caster.talents[154] and caster.talents[154] >= 1 and ability:IsItem() then
@@ -15316,7 +15606,7 @@ function CooldownReduction( event ) --also instant ability resets
             end
         end
         --local astral_talent_shock = caster:FindAbilityByName("moon6")
-        --if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 30 and ability:GetAbilityIndex() <= 2 then
+        --if astral_talent_shock and astral_talent_shock:GetLevel() >= 4 and math.random(1,100) <= 30 and COverthrowGameMode:GetAbilityIndexCustom(ability) <= 2 then
         --	AstralShock(caster)
         --end
     	--cooldown item
@@ -15349,10 +15639,10 @@ function CooldownReduction( event ) --also instant ability resets
                 caster:SetModifierStackCount("modifier_windbreaker", caster.combat_system_ability, caster.talents[83])
             end
         end
-        if caster.talents and caster.talents[84] > 0 and caster.combat_system_ability and ability == caster:GetAbilityByIndex(5) then
+        if caster.talents and caster.talents[84] > 0 and caster.combat_system_ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_dominance", {Duration = 15})
         end
-        if ability == caster:GetAbilityByIndex(3) and caster:HasModifier("modifier_summon2") then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and caster:HasModifier("modifier_summon2") then
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/mekanism_ti8_beam.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
             if not caster.summon2_bonus then
@@ -15363,7 +15653,7 @@ function CooldownReduction( event ) --also instant ability resets
                 caster.summon2_bonus = caster.summon2_bonus - 1
             end)
         end
-        if ability == caster:GetAbilityByIndex(3) and caster:HasModifier("modifier_summon") then
+        if COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and caster:HasModifier("modifier_summon") then
             local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/mekanism_ti8_beam.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
             if not caster.summon_bonus then
@@ -15466,7 +15756,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_6 then
             caster.ability_combo_6 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_6[index] = true
         if caster.ability_combo_6[1] and caster.ability_combo_6[2] and caster.ability_combo_6[3] and caster.ability_combo_6[4] and caster.ability_combo_6[5] and caster.ability_combo_6[0] then
             for i=0,5 do
@@ -15509,7 +15799,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4 then
             caster.ability_combo_4 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_4[index] = true
         if caster.ability_combo_4[1] and caster.ability_combo_4[2] and caster.ability_combo_4[3] and caster.ability_combo_4[0] then
             for i=0,3 do
@@ -15534,7 +15824,7 @@ function AbilityComboProcs(caster, ability)
         if not caster.ability_combo_4_5_6 then
             caster.ability_combo_4_5_6 = {}
         end
-        local index = ability:GetAbilityIndex()
+        local index = COverthrowGameMode:GetAbilityIndexCustom(ability)
         caster.ability_combo_4_5_6[index] = true
         if caster.ability_combo_4_5_6[3] and caster.ability_combo_4_5_6[4] and caster.ability_combo_4_5_6[5] then
             for i=3,5 do
@@ -15548,7 +15838,7 @@ function AbilityComboProcs(caster, ability)
         end
     end
     if caster.talents then
-        if caster.talents[147] and caster.talents[147] > 0 and caster:GetAbilityByIndex(0) == ability and not caster.darkInitiation then
+        if caster.talents[147] and caster.talents[147] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and not caster.darkInitiation then
             caster.darkInitiation = true
             AddSpellhaste(caster, 75 * caster.talents[147], 5)
             AddAttackSpeed(caster, 75 * caster.talents[147], 5)
@@ -15574,7 +15864,7 @@ function CooldownProcs( caster, ability, cd )
         abil_4:EndCooldown()
     end
     if caster:HasModifier("modifier_class_bm2") and ability and (ability:GetName() == "WarriorCharge" or ability:GetName() == "Shield_Reflect" or ability:GetName() == "Terror_ShoutFury") then
-        caster:FindAbilityByName("fury6"):ApplyDataDrivenModifier(caster, caster, "modifier_bm2", {Duration = 7})
+        caster:FindAbilityByName("fury6"):ApplyDataDrivenModifier(caster, caster, "modifier_bm2", {Duration = 7}) -- should be fine
     end
     if ability and cd and cd >= 45 and caster and caster.talents and caster.talents[159] > 0 then
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 1 + caster.talents[159]})
@@ -15583,7 +15873,7 @@ function CooldownProcs( caster, ability, cd )
         ApplyBuffStack({caster = caster, target = caster, buff = "modifier_innerfire", ability = caster.combat_system_ability, dur = 10, addstacks = 1, max = 5})
     end
     Timers:CreateTimer(0.05, function()
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 and (caster:HasModifier("modifier_item_cd_65") or caster:HasModifier("modifier_item_cd_65_2")) and not caster.temple_class then
             local abil_5 = caster:GetAbilityByIndex(4)
             if abil_5 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -15594,7 +15884,7 @@ function CooldownProcs( caster, ability, cd )
                 end
             end
         end
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 4 and (caster:HasModifier("modifier_item_cd_54") or caster:HasModifier("modifier_item_cd_54_2")) and not caster.temple_class then
             local abil_4 = caster:GetAbilityByIndex(3)
             if abil_4 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -15605,7 +15895,7 @@ function CooldownProcs( caster, ability, cd )
                 end
             end
         end
-        if cd and cd >= 30 and ability and ability:GetAbilityIndex() == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) and not caster.temple_class then
+        if cd and cd >= 30 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 3 and (caster:HasModifier("modifier_item_cd_43") or caster:HasModifier("modifier_item_cd_43_2")) and not caster.temple_class then
             local abil_3 = caster:GetAbilityByIndex(2)
             if abil_3 then
                 local particle = ParticleManager:CreateParticle("particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -15802,6 +16092,10 @@ function DeadlyPoisonProc(event)
 end
 
 function FatalPoisonSpread(event)
+    -- seems unfinished stuff (anyway not working)
+    if(true) then
+        return
+    end
     local caster = event.caster
     local ability = event.ability
     local point = event.target_points[1]
@@ -17991,15 +18285,16 @@ function KillDance (event)
 	KillDanceFX(event)
 	
     if event.addroguepoison then
+        local bhPoisonAbility = caster:FindAbilityByName("combat2")
     	local myevent = {}
     	myevent.caster = caster
     	myevent.target = target
     	myevent.buff = "modifier_deadlypoison"
     	myevent.max = 25
-        if caster:GetAbilityByIndex(2):GetLevel() >= 4 then
+        if bhPoisonAbility:GetLevel() >= 4 then
             myevent.max = 50
         end
-    	myevent.ability = caster:GetAbilityByIndex(2)
+    	myevent.ability = bhPoisonAbility
     	myevent.dur = 10
     	myevent.notself = 1
     	ApplyBuffStack(myevent)
@@ -24535,9 +24830,10 @@ end
 function GlobalOnAbilityCriticalStrike(caster, target, ability, damageOrHeal, swordStorm)
     if caster.talents then
         if GetLevelOfAbility(caster, "Protect2") >= 2 and math.random(1,100) <= 25 then
-            caster:GetAbilityByIndex(0):ApplyDataDrivenModifier(caster, caster, "modifier_ironshield", {Duration = 3})
+            local dkProtect1 = caster:FindAbilityByName("Protect1")
+            dkProtect1:ApplyDataDrivenModifier(caster, caster, "modifier_ironshield", {Duration = 3})
         end
-        if caster.talents[19] and caster.talents[19] > 0 and math.random(1,100) <= 10 * caster.talents[19] and caster:GetAbilityByIndex(2) == ability and not caster:HasModifier("modifier_path19cd") then
+        if caster.talents[19] and caster.talents[19] > 0 and math.random(1,100) <= 10 * caster.talents[19] and COverthrowGameMode:GetAbilityIndexCustom(ability) == 2 and not caster:HasModifier("modifier_path19cd") then
             Timers:CreateTimer(0.1,function()
                 caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_path19cd", {Duration = 30 * GetInnerCooldownFactor(caster)})
                 local myevent = {caster = caster, amount = 1000, ability = ability }
@@ -24638,7 +24934,7 @@ end
 function GlobalOnDealChaosDamage( caster, target )
     if caster.talents then
         if GetLevelOfAbility(caster, "terror1") >= 4 and math.random(1,100) <= 5 then
-            ApplyBuff({caster = caster, target = target, ability = caster:GetAbilityByIndex(0), dur = 1, buff = "modifier_stunned"})
+            ApplyBuff({caster = caster, target = target, ability = caster:GetAbilityByIndex(0), dur = 1, buff = "modifier_stunned"}) -- should be fine?
             local particle = ParticleManager:CreateParticle("particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_cast_lightray.vpcf", PATTACH_POINT_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
         end
@@ -24691,7 +24987,7 @@ function DivineBlessingProc(caster)
     if GetLevelOfAbility(caster, "disc7") >= 4 and math.random(1,100) <= 5 then
         local target = MostWoundedTarget({range = 1500, caster = caster, target = caster, onlyhero = true})
         if target then
-            caster:GetAbilityByIndex(3):ApplyDataDrivenModifier(caster, target, "modifier_divinebl", {Duration = 3})
+            caster:GetAbilityByIndex(3):ApplyDataDrivenModifier(caster, target, "modifier_divinebl", {Duration = 3}) -- should be fine?
         end
     end
 end
@@ -24818,7 +25114,7 @@ function SwipeOfUrsaTalent(caster, original_ability)
     Timers:CreateTimer(1.25,function()
         local aoe = 300
         local event = {caster = caster, ability = caster.combat_system_ability, changedmgtypetophys = 1, damage_factor_single_target = 2, damage = 0, attributefactor = 250*caster.talents[50], attributechangestr = 1, aoe = aoe, max_targets = 5, targeteffect = "arcanablood", isaoe = 1, delay = delay, dontbreakcc = 1 }
-        if caster:HasModifier("modifier_pathbuff_066") and caster:GetAbilityByIndex(1) == original_ability then
+        if caster:HasModifier("modifier_pathbuff_066") and COverthrowGameMode:GetAbilityIndexCustom(original_ability) == 1 then
             event.shadowdmg = 1
             event.attributechangestr = nil
             event.attributefactor = event.attributefactor * 1.25
@@ -25526,7 +25822,7 @@ function AutoAttackCriticalStrike( event )
             --    caster:RemoveModifierByName("modifier_dfury")
             --end
             --caster.retri_aa_crit_target = target
-            ApplyBuffStack({caster = caster, target = caster, ability = caster:GetAbilityByIndex(5), dur = 8, max = 100, buff = "modifier_dfury"})
+            ApplyBuffStack({caster = caster, target = caster, ability = caster:GetAbilityByIndex(5), dur = 8, max = 100, buff = "modifier_dfury"}) -- should be fine
         end
         Timers:CreateTimer(5, function()
         	caster.aa_crit_counter_last_10_secs = caster.aa_crit_counter_last_10_secs - 1
@@ -25821,7 +26117,7 @@ function GetAbilitiesOnCooldown( caster )
     end
     local count = 0
 
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() > 0.1 then
             count = count + 1
@@ -25835,7 +26131,7 @@ function GetTotalAbilityCooldowns( caster )
         return 0
     end
     local count = 0
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() >= 0.1 then
             count = count + ab:GetCooldownTimeRemaining()
@@ -25850,7 +26146,7 @@ function GetHighestRemainingCooldownAbility( caster )
     end
     local cd = 0
     local ability = nil
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() and ab:GetCooldownTimeRemaining() > cd then
             cd = ab:GetCooldownTimeRemaining()
@@ -25866,7 +26162,7 @@ function GetHighestCooldownAbility( caster )
     end
     local cd = 0
     local ability = nil
-    for i=0, COverthrowGameMode.heroAbilityCount do
+    for i=0, COverthrowGameMode.heroAbilityCount do  -- maybe should count stances abilities?
         local ab = caster:GetAbilityByIndex(i)
         if ab and not ab:IsPassive() then
             local baseCD = ab:GetCooldown(ab:GetLevel())
@@ -26135,7 +26431,7 @@ function HealProcs(caster, target, ability, healingAmount, isdot)
         AddEnergy(myevent)
     end
     if caster == target and GetLevelOfAbility(caster, "Infested_Wound") >= 4 then
-        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2})
+        caster:GetAbilityByIndex(2):ApplyDataDrivenModifier(caster, caster, "modifier_dkres", {Duration = 2}) -- should be fine
     end
     if (not isdot) and target and target.talents then
         if target:HasModifier("modifier_rotting") then
@@ -27761,7 +28057,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         if caster.talents[67] and caster.talents[67] > 0 and isaoe then
             healing_bonus = healing_bonus + 0.07 * caster.talents[67]
         end
-        if caster.talents[39] and caster.talents[39] > 0 and ability and ability:GetAbilityIndex() == 0 then
+        if caster.talents[39] and caster.talents[39] > 0 and ability and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 then
             healing_bonus = healing_bonus + 0.1 * caster.talents[39]
         end
         if caster.talents[99] and caster.talents[99] > 0 and process_procs then
@@ -27795,7 +28091,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
             end
             healing_bonus = healing_bonus + 0.05 * caster.talents[20] * standsstill
         end
-        if caster.talents[66] and caster.talents[66] > 0 and ability == caster:GetAbilityByIndex(1) then
+        if caster.talents[66] and caster.talents[66] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 1 then
             healing_bonus = healing_bonus + 0.15 * caster.talents[66]
             if math.random(1,100) <= 25 and caster.combat_system_ability and process_procs then
                 AutoAttackCriticalStrike({attacker = caster, target = target, ability = caster.combat_system_ability, aacrit_factor = 300 + 100 * caster.talents[66], aacrit_chance = 100})
@@ -27805,7 +28101,7 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
             if caster.path_dark_ritual and caster.path_dark_ritual > 0 then
                 healing_bonus = healing_bonus + 0.05 * caster.talents[68]
             end
-            if ability:GetAbilityIndex() == 5 then
+            if COverthrowGameMode:GetAbilityIndexCustom(ability) == 5 then
                 healing_bonus = healing_bonus + 0.1 * caster.talents[68]
             end
         end
@@ -27892,9 +28188,10 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
         healing_bonus = healing_bonus + heavencharge
         caster:RemoveModifierByName("modifier_heaven_charge")
     end
-    if caster:HasModifier("modifier_shapeshifttravel") and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
-        healing_bonus = healing_bonus + 0.75
-    end
+	-- unused old np 6th ability
+    --if caster:HasModifier("modifier_shapeshifttravel") and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
+    --    healing_bonus = healing_bonus + 0.75
+    --end
     if caster:HasModifier("modifier_special_bonus_lifesteal") then
         healing_bonus = healing_bonus + 0.1
     end
@@ -28002,7 +28299,9 @@ function GetHealingMultiplier(event, caster, ability, target, process_procs, isa
     if priest_heal_talent and priest_heal_talent:GetLevel() >= 4 then
         healing_bonus = healing_bonus + GetAgilityCustom(caster) * 0.001
     end
-    if caster:GetName() == "npc_dota_hero_dazzle" and caster:GetAbilityByIndex(5):GetLevel() >= 4 then
+	-- Rank 3: Gain Regenerative Skin, passively increasing your Armor by 7 and Spell Resistance by 15 and all healing caused by you by 25%%
+	priest_heal_talent = caster:FindAbilityByName("ShapeshiftFeral")
+    if caster:GetName() == "npc_dota_hero_dazzle" and priest_heal_talent and priest_heal_talent:GetLevel() >= 3 then
         healing_bonus = healing_bonus + 0.25
     end
     if caster:HasModifier("item_mother_of_dragons") then
@@ -29313,7 +29612,7 @@ function FelBlast( caster, target )
     tab.spelldamagefactor = 0.0
     tab.attributefactor = 250
     tab.attributechangestragi = 250
-    tab.ability = caster:GetAbilityByIndex(2)
+    tab.ability = caster:GetAbilityByIndex(2) -- should be fine
     tab.aoe = range
     --tab.targeteffect = "blood"
     tab.targetpos = 1
@@ -29404,13 +29703,7 @@ function LunarEclipseProc( hero )
 end
 
 function GetButterflyDamageFactor( hero, ability )
-    local abilityIndex = -1
-    for i=0, COverthrowGameMode.heroAbilityCount do
-        if ability == hero:GetAbilityByIndex(i) then
-            abilityIndex = i
-            break
-        end
-    end
+    local abilityIndex = COverthrowGameMode:GetAbilityIndexCustom(ability)
     local bonus = 0
     if abilityIndex >= 0 then
         if not hero.butterflyExpectedAbility then
@@ -29638,7 +29931,7 @@ end
 
 function CountAbilitiesWithLevel( hero, level )
     local count = 0
-    for i = 0, COverthrowGameMode.heroAbilityCount do
+    for i = 0, COverthrowGameMode.heroAbilityCount do -- should affect stance abilities?
         local ability = hero:GetAbilityByIndex(i)
         if ability and not ability:IsPassive() and ability:GetLevel() == level then
             count = count + 1
@@ -30207,6 +30500,8 @@ function SpellbookLearn(event)
 end
 
 function LearnMasteryAbility(caster, newAbilityName)
+	-- unfinished or unused thing
+	--[[
     --remove previously learned ability
     local masteryAbilityLevel = 1
     if caster.masteryAbility then
@@ -30225,6 +30520,7 @@ function LearnMasteryAbility(caster, newAbilityName)
         local abilityIn7thSlotWasActive = abilityIn7thSlot:IsActivated()
         caster:SwapAbilities(newAbilityName, abilityIn7thSlot:GetName(), true, abilityIn7thSlotWasActive)
     end
+	--]]
 end
 
 function IsAbilityAllowedForHero(hero, abilityName)
@@ -30264,6 +30560,8 @@ function WarriorBerserkerRage(event)
 end
 
 function AbilityAutoCastOld(event)
+	-- unfinished or unused thing
+	--[[
     local caster = event.caster
     local target = event.target
     local ability = caster:GetAbilityByIndex(0)
@@ -30285,7 +30583,7 @@ function AbilityAutoCastOld(event)
         }
 
         ExecuteOrderFromTable(order)
-    end)
+    end) --]]
 end
 
 function AbilityAutoCastV2(event)
@@ -30295,7 +30593,7 @@ function AbilityAutoCastV2(event)
 
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(event.abilityIndex)
+    local ability = caster:GetAbilityByIndex(event.abilityIndex) -- should be fine
 
     if ability:GetCooldownTimeRemaining() > 0 or ability:GetLevel() <= 0 then
         return
@@ -30344,7 +30642,7 @@ function TryAddShadowClericShadowSphere(caster, ability, chance)
             self = 1
         })
         for i=0,DOTA_MAX_ABILITIES-1 do
-            local ability = caster:GetAbilityByIndex(i)
+            local ability = caster:GetAbilityByIndex(i) -- should be fine
 
             if(ability == nil) then
                 break
@@ -30394,7 +30692,7 @@ function CheckForFlurryProc(event)
         return
     end
     local target = event.target
-    local ability = caster:GetAbilityByIndex(caster.flurryAbility)
+    local ability = caster:GetAbilityByIndex(caster.flurryAbility) -- should be fine for now, use COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex, isStanceAbility) for stance abilities support
     local mana = caster:GetMana()
     local manacost = ability:GetManaCost(-1)
 
@@ -30964,7 +31262,7 @@ function Brew4FireTick(event)
     if ability:GetLevel() >= 3 then
         local pos = caster:GetAbsOrigin()
         local forward = caster:GetForwardVector()
-        local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}}
+        local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos - forward, spawnPoint = pos + forward * 50}} -- should be fine
         CastBrew1(bofEvent)
     end
 end
@@ -30974,7 +31272,7 @@ function Brew3Fire(caster)
     local forward = caster:GetForwardVector()
     local forward2 = RotateVectorAroundAngle(forward, 30)
     local forward3 = RotateVectorAroundAngle(forward, -30)
-    local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward * 100}}
+    local bofEvent = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward * 100}} -- every GetAbilityByIndex here should be fine
     CastBrew1(bofEvent)
     --Timers:CreateTimer(0.2, function()
         local bofEvent2 = {caster = caster, ability = caster:GetAbilityByIndex(0), target_points = {pos + forward2 * 100}}
@@ -31039,7 +31337,7 @@ end
 function Brew2Ignite(event)
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(1)
+    local ability = caster:GetAbilityByIndex(1) -- should be fine
     if target:HasModifier("modifier_haze") then
         local buffevent = { caster = caster, target = target, ability = ability, buff = "modifier_haze_fire", dur = 10}
         ApplyBuff(buffevent)
@@ -31276,7 +31574,7 @@ function CheckForEarthquakeProc(caster, target)
 end
 
 function ProcEarthQuake(caster, target)
-    local ability = caster:GetAbilityByIndex(5)
+    local ability = caster:GetAbilityByIndex(5) -- should be fine
     if ability:GetLevel() < 5 then
         return
     end
@@ -31415,7 +31713,7 @@ end
 function PestCheck(event)
     local caster = event.caster
     local target = event.target
-    local ability = caster:GetAbilityByIndex(0)
+    local ability = caster:GetAbilityByIndex(0) -- should be fine
 
     if ability:GetLevel() >= 5 then
         local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), caster, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
@@ -31470,4 +31768,62 @@ function InfestedWoundWormAttackBuff(event)
         ability = event.ability,
         max = event.maxstacks
     })
+end
+
+function CreateEmberFireShieldParticleByModifier(event)
+    local caster = event.caster
+    local modifier = caster:FindModifierByName(event.modifier_name)
+
+    if(modifier ~= nil) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(particle, 1, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+        modifier:AddParticle(particle, false, false, 1, false, false)
+    end
+end
+
+function AstralGuardianMoonburnParticle(event)
+    local target = event.target
+    local targetPosition = target:GetAbsOrigin()
+    local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf", PATTACH_ABSORIGIN, target)
+    ParticleManager:SetParticleControl(particle, 0, targetPosition)
+    ParticleManager:SetParticleControl(particle, 1, targetPosition)
+    ParticleManager:SetParticleControl(particle, 3, targetPosition)
+    ParticleManager:SetParticleControl(particle, 5, targetPosition)
+    ParticleManager:DestroyParticle(particle, false)
+    ParticleManager:ReleaseParticleIndex(particle)
+end
+
+function AstralGuardianSunburnParticle(event)
+    local target = event.target
+    local targetPosition = target:GetAbsOrigin()
+    local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf", PATTACH_ABSORIGIN, target)
+    ParticleManager:SetParticleControl(particle, 0, targetPosition)
+    ParticleManager:SetParticleControl(particle, 1, targetPosition)
+    ParticleManager:SetParticleControl(particle, 3, targetPosition)
+    ParticleManager:SetParticleControl(particle, 5, targetPosition)
+    ParticleManager:DestroyParticle(particle, false)
+    ParticleManager:ReleaseParticleIndex(particle)
+end
+
+function AstralGuardianRayOfTheSunParticle(event)
+    local target = event.target
+    local targetPosition = target:GetAbsOrigin()
+
+    if(event.type == 1) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf", PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(particle, 0, targetPosition)
+        ParticleManager:SetParticleControl(particle, 1, targetPosition)
+        ParticleManager:SetParticleControl(particle, 3, targetPosition)
+        ParticleManager:SetParticleControl(particle, 5, targetPosition)
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+    end
+
+    if(event.type == 2) then
+        local particle = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(particle, 0, targetPosition)
+        --ParticleManager:SetParticleControl(particle, 1, Vector(event.radius, 0, 0))
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+    end
 end
