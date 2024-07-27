@@ -1460,7 +1460,6 @@
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
 	box-shadow: inset white 1px 1px 1px 1px;
 	flow-children: down;
-	horizontal-align: center;
 	width: 90px;
 	height: 90px;
 	margin-top: 10px;
