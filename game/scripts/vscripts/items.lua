@@ -1379,7 +1379,7 @@ COverthrowGameMode.PathTalentNames = {
 	"Typhoon Thunder",
 	"Hysteria",
 	"Natural Disaster",
-	"Four Horsemen",
+	"Five Horsemen",
 	"Mutation",
 	"Infestor",
 	"Tree of Life",
@@ -7043,7 +7043,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			self.main_quests_completed = 0
 		end
 		self.main_quests_completed = self.main_quests_completed + 1
-		drop_chance_factor = drop_chance_factor * 15 * self.main_quests_completed
+		drop_chance_factor = drop_chance_factor * COverthrowGameMode:GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
 		if unit.main_quest_boss == 1 then
 			Notifications:BottomToAll({text="Quest completed: Retrieving the Essence of the Forest", duration=12, style={color="lightgreen"}})
 		end
@@ -7086,7 +7086,7 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 		if unit.main_quest_boss == 16 then
 			Notifications:BottomToAll({text="Quest completed: Defending Castle Winterwall", duration=12, style={color="lightgreen"}})
 		end
-		Notifications:BottomToAll({text="Reward: "..(15*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
+		Notifications:BottomToAll({text="Reward: "..(COverthrowGameMode:GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
 		EmitGlobalSound("valve_dota_001.stinger.dire_win")
 		--COverthrowGameMode:MainQuestVoice()
 	end
@@ -7096,8 +7096,8 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			--fix for tests
 			self.main_quests_completed = 1
 		end
-		drop_chance_factor = drop_chance_factor * 15 * self.main_quests_completed
-		Notifications:BottomToAll({text=""..(15*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
+		drop_chance_factor = drop_chance_factor * COverthrowGameMode:GetLootDropChanceIncreasePerQuest() * self.main_quests_completed
+		Notifications:BottomToAll({text=""..(COverthrowGameMode:GetLootDropChanceIncreasePerQuest()*self.main_quests_completed).."x improved drop chances for this Monster's loot.", duration=12, style={color="lightgreen"}})
 		EmitGlobalSound("valve_dota_001.stinger.dire_win")
 	end
 
@@ -7146,8 +7146,13 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 			t3chance = t3chance / trash_discount
 			t2chance = t2chance / trash_discount
 		end
-		if wasbosskill and COverthrowGameMode.jungledifficulty >= 5 then
-			maxItemDropCount = 2
+		if wasbosskill then
+			if COverthrowGameMode.jungledifficulty >= 2 then
+				maxItemDropCount = COverthrowGameMode.bossLootFactor
+			end
+			if COverthrowGameMode.jungledifficulty >= 5 then
+				maxItemDropCount = maxItemDropCount * 2
+			end
 		end
 	end
 	--no t6 below 5
@@ -7165,8 +7170,6 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 	if normal_drop and COverthrowGameMode.jungledifficulty < 200 then
 		t8chance = 0
 	end
-	
-	
 	
 	--item was bought
 	if not normal_drop then
@@ -7202,9 +7205,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 	
 	-- roll for each allied player
 	local all = HeroList:GetAllHeroes()
-	local delay = 1 -- -1    4.8
+	local delayPerDrop = 0.25 --1.25 -- delay per drop (not per round)
+	local delay = 1 -- initial delay
 	if not normal_drop then
-		delay = 3.2
+		delay = 3
 	end
 	local max_boss_kills = 0
 	local best_drop = 0
@@ -7258,9 +7262,11 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 		end
 	end
 	]]
+
+	local pauseBetweenItemDropRounds = delayPerDrop + 0.05
 	local i = 1
 	for itemDropCount = 1, maxItemDropCount do
-		Timers:CreateTimer(0.05 + (itemDropCount - 1) * 3.25 * (#all),function()
+		--Timers:CreateTimer(0.05 + (itemDropCount - 1) * pauseBetweenItemDropRounds * (#all),function()
 			for i=1, #all do
 				local hero = all[i]
 				--does an item drop?
@@ -7328,10 +7334,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_immortal_new.vpcf"
 								fxpath_ray = "particles/invoker_sun_strike_team_big_ray_legendary_long.vpcf"
-								EmitGlobalSound("abaddon_abad_immort_01")
-								Timers:CreateTimer(3.0,function() 
-									EmitGlobalSound("abaddon_abad_respawn_06")
-								end)
+								--EmitGlobalSound("abaddon_abad_immort_01")
+								--Timers:CreateTimer(3.0,function() 
+								--	EmitGlobalSound("abaddon_abad_respawn_06")
+								--end)
 								--new material drop chance
 								if COverthrowGameMode.jungledifficulty >= 100 and hero and hero.combat_system_ability then
 									if unit.act and unit.act == 12 and math.random(1,100) <= 50 then
@@ -7349,7 +7355,6 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 									end
 								end
 							elseif roll <= t5chance then --legendary
-								print("legendary drop")
 								local immortal_item_level = 6
 								if self.jungledifficulty >= 2 then
 									immortal_item_level = 7
@@ -7363,10 +7368,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								end
 								fxpath = "particles/item_quality_legendary.vpcf"
 								fxpath_ray = "particles/invoker_sun_strike_team_big_ray_immortal1_long.vpcf"
-								EmitGlobalSound("abaddon_abad_borrowedtime_01")
-								Timers:CreateTimer(2.0,function() 
-									EmitGlobalSound("abaddon_abad_levelup_04")
-								end)
+								--EmitGlobalSound("abaddon_abad_borrowedtime_01")
+								--Timers:CreateTimer(2.0,function() 
+								--	EmitGlobalSound("abaddon_abad_levelup_04")
+								--end)
 							elseif roll <= t4chance then -- epic
 								local epicItems = COverthrowGameMode:GetLootTableByItemQuality( GetAllItems(unit, false, true, act_specific_loot_factor), 4)
 								spawnedItem = epicItems[math.random(1, #epicItems)]
@@ -7461,18 +7466,18 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 								normal_item = true
 							end
 							if lootquality == 8 then
-				        		EmitGlobalSound("abaddon_abad_purch_03")
+				        		--EmitGlobalSound("abaddon_abad_purch_03")
 				        	end
 							if lootquality == 7 then
 				        		--divine_non_artifact_drop = true
-				        		EmitGlobalSound("omniknight_omni_regen_02")
+				        		--EmitGlobalSound("omniknight_omni_regen_02")
 				        	end
 							if not normal_drop then
 								--save hero so u cant abuse gold
 								self:SaveChar(hero)
 								EmitSoundOn("DOTA_Item.Hand_Of_Midas", hero)
 							end
-							delay = delay + 3
+							delay = delay + delayPerDrop
 							Timers:CreateTimer(delay,function() 
 								if lootquality >= 4 then
 					        		local particle = ParticleManager:CreateParticle("particles/econ/events/ti6/hero_levelup_ti6_flash_hit_magic.vpcf", PATTACH_POINT_FOLLOW, all[i])
@@ -7532,6 +7537,10 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 																end
 																return 1
 										        			end)
+										        		end
+										        		if lootquality == 8 then
+										        			local particleMyth = ParticleManager:CreateParticle("particles/items_fx/phylactery_target_shadow.vpcf", PATTACH_POINT_FOLLOW, itemContainer)
+										        			ParticleManager:ReleaseParticleIndex(particleMyth)
 										        		end
 										        	end
 										        end)
@@ -7614,21 +7623,21 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 						        end
 								
 								if lootquality >= 6 and normal_item then
-									EmitSoundOn("DOTA_Item.EtherealBlade.Target", all[i])
+									--EmitSoundOn("DOTA_Item.EtherealBlade.Target", all[i])
 								elseif lootquality >= 6 then
 									PopupKillbanner(hero, "rampage_g")
 									COverthrowGameMode:ThunderEffectAndSound(hero)
 								elseif lootquality == 5 then
 									if self.jungledifficulty <= 5.0 then
-										EmitGlobalSound("DOTA_Item.DoE.Activate")
+										--EmitGlobalSound("DOTA_Item.DoE.Activate")
 									end
 								elseif lootquality == 4 then
 									if self.jungledifficulty <= 5.0 then
-										EmitGlobalSound("DOTA_Item.DustOfAppearance.Activate")
+										--EmitGlobalSound("DOTA_Item.DustOfAppearance.Activate")
 									end
 								else
 									if self.jungledifficulty <= 5.0 then
-										EmitGlobalSound("DOTA_Item.Hand_Of_Midas")
+										--EmitGlobalSound("DOTA_Item.Hand_Of_Midas")
 									end
 								end
 								local overthrow_item_drop =
@@ -7644,7 +7653,57 @@ function COverthrowGameMode:DropTempleItem( unit, reward, drop_type, buy_quality
 					end
 				end
 			end
+		--end)
+	end
+
+	--local totalDropDuration = 0.05 + (itemDropCount - 1) * pauseBetweenItemDropRounds * (#all) + 0.1
+	Timers:CreateTimer(1,function()
+		PlaySoundByDropQuality(best_drop)
+	end)
+end
+
+function PlaySoundByDropQuality(best_drop)
+	--EmitGlobalSound("abaddon_abad_win_01") -- yes
+	--EmitGlobalSound("abaddon_abad_move_03") -- such power
+	--EmitGlobalSound("abaddon_abad_move_10") -- so be it
+	--EmitGlobalSound("abaddon_abad_purch_02") -- a noble expense for a noble cause
+	--EmitGlobalSound("abaddon_abad_borrowedtime_01") -- come at me
+	--EmitGlobalSound("abaddon_abad_levelup_08") --new power steers within
+
+
+	if best_drop == 4 then -- epic
+		EmitGlobalSound("DOTA_Item.Hand_Of_Midas")
+	end
+	if best_drop == 5 then -- legendary
+		
+		EmitGlobalSound("abaddon_abad_levelup_04") --all this was promissed me, and more
+		Timers:CreateTimer(3.35,function()
+			--EmitGlobalSound("DOTA_Item.Aegis_Expire")
+			EmitGlobalSound("DOTA_Item.DoE.Activate")
 		end)
+	end
+	if best_drop == 6 then -- immortal
+		EmitGlobalSound("abaddon_abad_respawn_06") -- the mist conceals, and then reveals
+		Timers:CreateTimer(4.8,function()
+			EmitGlobalSound("abaddon_abad_immort_01")
+		end)
+	end
+
+	if best_drop == 7 then -- divine
+		EmitGlobalSound("omniknight_omni_regen_02") -- in this healing glow...
+		Timers:CreateTimer(3.0,function()
+			--EmitGlobalSound("omniknight_omni_level_08") -- for this gift of power, i am grateful
+			--EmitGlobalSound("DOTA_Item.ExMachina.Cast")
+			EmitGlobalSound("DOTA_Item.DustOfAppearance.Activate")
+		end)
+	end
+	if best_drop == 8 then -- mythic
+		EmitGlobalSound("abaddon_abad_purch_03") -- any power can be acquired, for a price
+		Timers:CreateTimer(4.0,function()
+			
+			EmitGlobalSound("DOTA_Item.EssenceRing.Cast")
+		end)
+		--EmitSoundOn("DOTA_Item.EtherealBlade.Target", all[i])
 	end
 end
 

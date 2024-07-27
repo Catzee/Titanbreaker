@@ -55034,7 +55034,7 @@
 					    	{
 					    		"ScriptFile"	"game_mechanics.lua"
 					    		"Function"		"ApplyBuffStack"
-					    		//"max"			"10"
+					    		"max"			"2"
 					    		"addstacks"		"1"
 					    		"buff"			"modifier_creeping_death"
 					    		"dur"	"60"
@@ -62092,7 +62092,7 @@
 					    "firedmg"	"1"
 					    "burndot"	"1"
 					    "isdot"	"1"
-					    "isaoe"	"%isaoe"
+					    "isaoe"	"%aoe"
 					}
 				}
 			}
@@ -62674,7 +62674,7 @@
 			    }
 			    "FireSound"
 				{
-					"EffectName"		"DOTA_Item.Mjollnir.Activate"
+					"EffectName"		"Item.Maelstrom.Chain_Lightning.Jump"
 					"Target"			"TARGET"
 				}
         		"RunScript"
@@ -74008,6 +74008,15 @@
         		"IsBuff"			"1"
         		"TextureName"		"bloodseeker_thirst"
         	}
+        	"modifier_da_dmg"
+        	{
+        		"Passive"			"0"
+        		"IsHidden"			"0"
+        		"IsDebuff"			"0"
+        		"IsPurgable"		"0"
+        		"IsBuff"			"1"
+        		"TextureName"		"pangolier_swashbuckle"
+        	}
         	"modifier_block_all"
         	{
         		"Passive"			"0"
@@ -77678,12 +77687,12 @@
 	    	"02"
 	    	{
 	    		"var_type"			"FIELD_INTEGER"
-	    		"bossdmg"		"0 75 130 200 275 375 500 650 900" //1 ML 1-2, ML 5, ML 10-50, ML 100, 4 ML 1000   old: "0 50 100 300 700 700"    s8 "0 50 100 150 200 275 375 500 700"
+	    		"bossdmg"		"0 50 100 150 200 275 375 500 650 900" //1 ML 1-2, ML 5, ML 10-50, ML 100, 4 ML 1000   old: "0 50 100 300 700 700"    s8 "0 50 100 150 200 275 375 500 700"
 	    	}
 	    	"02"
 	    	{
 	    		"var_type"			"FIELD_INTEGER"
-	    		"msboss"		"0 50 100 200 200 200 200 200 200" //1 ML 1-5, 2 ML 10-50 and 3 ML 100
+	    		"msboss"		"0 25 50 100 200 200 200 200 200 200" //1 ML 1-5, 2 ML 10-50 and 3 ML 100
 	    	}
 	    }
 

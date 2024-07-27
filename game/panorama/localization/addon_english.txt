@@ -244,13 +244,13 @@
 
 		"talent133"								"Mimesis: Whenever you silence an enemy, strike them for 500% / 1000% / 1500% of your Attack Damage plus Spellpower as Shadow Chaos Damage, stun them for 1 / 2 / 3 secs and Heal yourself for 5% / 10% / 15% of max Health, with an inner cooldown of 5 secs."
 		"talent134"								"Nemesis: Every 4th / 3rd / 2nd Finishing Move against the same target does not consume Combo Points. Finishing Moves are Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash. Capped at level 3." //All Finishing Moves gain Spell Fury, causing each consecutive Damage instance dealt against the same target to deal 1% / 2% / 3% increased Damage, up to 30% / 60% / 90%.\nFinishing Moves are: Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash." // "Demonhunter: Ability Damage against enemies above 75% of max Health is increased by 15% / 30% / 45%. When dealing Shadow or Chaos Damage, it affects targets below 75% of max Health instead."
-		"talent135"								"Genesis: At the beginning of the game and whenever you are revived, gain 30% Damage and Damage Reduction for 180 / 240 / 300 secs."
+		"talent135"								"Genesis: Auto Attacks and Abilities that are Level 1 deal 25% / 50% / 75% increased Damage.\nAt the beginning of the game and whenever you are revived, gain 25% Damage and Damage Reduction for 180 / 240 / 300 secs."
 
 		"talent136"								"Typhoon Thunder: Gain a Typhoon charge every 5 secs, stacking up to 10 times. Whenever you're in combat and there's an enemy within 900 yards, strike it for 250% / 500% / 750% of all Attributes as Nature Damage and restore 5% / 10% / 15% of max Resource."
 		"talent137"								"Hysteria: Auto Attack the closest enemy every 3 / 2 / 1 secs and increase the max cap of Abilities with charges by 1 / 2 / 3. Auto Attack Range is 300 yards for Melee and 900 yards for Ranged. Capped at level 3."
 		"talent138"								"Natural Disaster: Whenever you proc a Natural Disaster, there is a 5% / 10% / 15% chance to proc all other Natural Disasters you have learned, with an inner cooldown of 3 secs, ignoring all other inner cooldowns. Natural Disasters are Rain of Stars, Blizzard, Ice Storm, Storm Strike, Epidemic and Typhoon."
 
-		"talent139"								"Four Horsemen: Your Abilities gain one out of four Effects, based on their Level.\nLevel 1: Passive + 3% / 6% / 9% Movement Speed and 25 / 50 / 75 Attack Speed. Level 2: + 3 / 6 / 9 passive Armor. Level 3: + 5% / 10% / 15% chance to Critical Strike for 500% with that Ability. Level 4: + 5% / 10% / 15% chance to deal Pure Damage with that Ability and 10% / 20% / 30% chance to add Chaos Damage Type."
+		"talent139"								"Five Horsemen: Your Abilities gain one out of five Effects, based on their Level.\nLevel 1: Passive + 3% / 6% / 9% Movement Speed and 25 / 50 / 75 Attack Speed. Level 2: + 3 / 6 / 9 passive Armor. Level 3: + 5% / 10% / 15% chance to Critical Strike for 500% with that Ability. Level 4: + 5% / 10% / 15% chance to deal Pure Damage with that Ability and 10% / 20% / 30% chance to add Chaos Damage Type. Level 5: Vampiric Strike - Dealing Damage with that Ability has a 25% chance to heal you for 5% / 10% / 15% of your Primary Attribute, inner cooldown 1.5 secs."
 		"talent140"								"Mutation: All Damage is increased by 15% / 30% / 45% per Path Mutation Effect on your Hero. Path Mutation Effects are: Wolf Rage, Bestial Wrath, From the Shadows, Shadow Form, Storm Crow and Crowfall."
 		"talent141"								"Infestor: Stack based Debuffs gain + 1 / 2 / 3 max stacks and all debuffs last 0.5 / 1 / 1.5 secs longer."
 
@@ -274,7 +274,7 @@
 		"talent155"								"Executioner: Your Ability with the highest base cooldown gains 33% / 66% / 100% increased Ability Damage. Abilities you have not learned and abilities with zero cooldown do not count."
 		"talent156"								"Rogue Resistance: While your Damage Reduction is 50% or higher, increase all Damage by 15% / 30% / 45%. This effect only refers to the actual stat Damage Reduction, not Armor or Spell Resistance.\nTanks receive 3 times the Damage Bonus and non-Tanks passively gain +10% / 20% / 30% max Health."
 		"talent157"								"Inner Focus: Inner cooldowns are reduced by 10% / 20% / 30% (capped at 30%), Channeled Abilities deal 10% / 20% / 30% increased Damage and all Resource Regeneration is increased by 10% / 20% / 30%."
-		"talent158"								"Deadly Arsenal: Each of your damaging Abilities gains a guaranteed Critical Strike for 150% / 200% / 250%, each with an inner cooldown of 20 secs and Auto Attack Critical Strikes deal 25% / 50% / 75% increased Damage."
+		"talent158"								"Deadly Arsenal: Each of your damaging Abilities gains a guaranteed Critical Strike for 150% / 200% / 250%, each with an inner cooldown of 20 secs and Auto Attack Critical Strikes deal 25% / 50% / 75% increased Damage.\nAfter having caused Damage with 4 different Abilities, gain 25% / 50% / 75% increased Damage for 10 secs."
 		"talent159"								"Ambush: After being invisibile for at least 1 sec, your next 10 Damage instances deal 30% / 60% / 90% increased Damage. Whenever you cast an Ability with a base cooldown of 45 secs or higher, become invisibile for 2 / 3 / 4 secs."
 		"talent160"								"Preparation: Ability cooldowns can not exceed 50 / 45 / 40 secs, taking effect after other reductions. Whenever this effect alters a cooldown, increase your Primary Attribute by 15% / 30% / 45% for 7 secs. Capped at level 3."
 		"talent161"								"Killing Spree: Whenever a Boss gets killed, gain 125 Agility and 5% Movement Speed for 60 / 120 / 180 secs, with multiple instances of this buff stacking."
@@ -344,7 +344,35 @@
 		//"talent163"								"Axe Flinger: Melee Hero Ability Range."
 		//"talent163"								"Headhunter: Critical Strike Damage per Agility doubled."
 
+		//royal knight
+		//"talent163"								"Basic Training: Primary Attribute per Level"
+		//"talent163"								"Shield Block: Block per Level and per Strength"
+		//"talent163"								"Chivalry: Get out of combat a few secs faster and gain Bonus Movement Speed while out of combat."
 
+		//"talent163"								"Overthrow: Crit Damage per Strength"
+		//"talent163"								"Robustness: Damage Reduction while stunned"
+		//"talent163"								"Undefeated Knight: While not having died, gain % Damage and Damage Reduction."
+
+		//"talent163"								"King's Blessing: All stats per level"
+		//"talent163"								"Sharpened Blades:  Physical DoT Bonus"
+		//"talent163"								"Heavy Cut: Crit % for non-DoT big hit"
+		
+		//"talent163"								"Melee Combat: Bonus Damage to enemies within 300"
+		//"talent163"								"Protect the King: Ally take Damage and drop below 50%, Damage Reduction buff."
+		//"talent163"								"War Banner: Armor and Damage Aura 2 / 2%"
+		
+		//"talent163"								"Versatility: Melee Bonus Damage when ranged, Ranged Bonus Damage when melee."
+		//"talent163"								"Tactician: After using last 3 Abilities, Damage and Damage Reduction"
+		//"talent163"								"Champion: After killing a Champion, permanently gain 1% increased Damage."
+		
+		//"talent163"								"Long Sword: Cast and Attack Range (for melee?) and AA scalings increased by 10%"
+		//"talent163"								"Last Stand: ?" or  "Second Wind: Each second row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels, choosen from right to left."
+		//"talent163"								"Storm of Swords: Dealing Ability Damage will repeat the previous Damage instance, inner cooldown 2 / 1.5 / 1 sec."
+		//"talent163"								"Blade Tornado / Cleaver: Non targeted abilities deal % Bonus Damage."
+		//"talent163"								"Armored to the Teeth: Armor and Damage %."
+		//"talent163"								"War Shout: % Damage first 15 secs engaging enemy."
+		//"talent163"								"Deep Technique: After having caused direct Damage, Damage over Time and AOE Damage, increase all Damage by %."
+		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."

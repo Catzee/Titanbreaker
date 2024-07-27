@@ -3020,6 +3020,10 @@ function DamageUnit( event )
             end
         end
 
+        if ability then
+            caster.lastAbilityCausingDamage = ability
+        end
+
         --extra hit procs
         if caster:HasModifier("modifier_rage_proc2") or caster:HasModifier("modifier_rage_proc") then
             local dmgfactorproc = 0.15
@@ -3244,6 +3248,8 @@ function DamageUnit( event )
             caster.ability_stats[index] = caster.ability_stats[index] + damage_table.damage
         end
     end
+
+    GlobalOnDealAbilityDamage(caster, target, ability)
 end
 
 function MultiElementProcs(event, caster, target)
@@ -4576,6 +4582,9 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if caster:HasModifier("modifier_mage_1") then
         multiplicative_bonus = multiplicative_bonus * 1.5
     end
+    if caster:HasModifier("modifier_da_dmg") then
+        multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[158])
+    end
     local hp_percent = -1
     if target then
         hp_percent = target:GetHealth() / target:GetMaxHealth()
@@ -4668,6 +4677,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
                 multiplicative_bonus = multiplicative_bonus * 1.5
             end
         end
+
+        if caster.talents[135] > 0 and ability and ability:GetLevel() == 1 then
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[135])
+        end
     end
     if process_procs and caster:HasModifier("modifier_summoner") then
         if is_pet_dmg then
@@ -4705,7 +4718,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if caster:HasModifier("modifier_talent_genesis") and caster.talents[135] > 0 then
-        multiplicative_bonus = multiplicative_bonus * 1.3
+        multiplicative_bonus = multiplicative_bonus * 1.25
     end
     local ab_on_cooldown = GetAbilitiesOnCooldown(caster)
     if ab_on_cooldown > 0 and caster.talents and caster.talents[41] and caster.talents[41] > 0 then
@@ -10373,12 +10386,16 @@ function WarlockHauntingTerror (event)
     local ability = event.ability
     if ability:GetLevel() >= 3 then
         ability = caster:GetAbilityByIndex(0)
-        if ability and not HasBuffReflect(caster, target) then
+        if ability and not HasBuffReflect(caster, target) and not target:HasModifier("modifier_dot1") then
             local tickRate = 1
+            local dur = 20
             if ability:GetLevel() <= 1 then
                 tickRate = 2
             end
-            ApplyBuff({caster = caster, target = target, ability = ability, dur = 20, buff = "modifier_dot1", settickrate = tickRate})
+            if ability:GetLevel() >= 5 then
+                dur = 10
+            end
+            ApplyBuff({caster = caster, target = target, ability = ability, dur = dur, buff = "modifier_dot1", settickrate = tickRate})
         end
     end
 end
@@ -20228,7 +20245,7 @@ function GetIntellectPercentageBonus( hero, primary_stats_percent_bonus )
     local percent_bonus = intPerLevel * hero.talents[25] + 0.03 * hero.talents[76]
     local mindFeeder = hero:GetModifierStackCount("modifier_shadow_cleric_mindstorm_mindbender", nil)
     if mindFeeder > 0 and GetLevelOfAbility(hero, "shadow1") >= 5 then
-        percent_bonus = percent_bonus + 0.2 * mindFeeder
+        percent_bonus = percent_bonus + 0.1 * mindFeeder
     end
     if hero:GetPrimaryAttribute() == 2 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus
@@ -20665,7 +20682,7 @@ function GetAutoAttackDamageStaticBonus( hero, str, agi, int )
     return value
 end
 
-function GetAutoAttackDamagePercentBonus( hero )
+function GetAutoAttackDamagePercentBonus(hero)
     local value = (1 + hero.talents[49] * 0.25) * (1 + hero.talents[120] * 0.1)
     if hero:HasModifier("modifier_furycharge") then
         value = value * 2
@@ -20704,6 +20721,9 @@ function GetAutoAttackDamagePercentBonus( hero )
     buffstacks = hero:GetModifierStackCount("modifier_crowfall", nil)
     if buffstacks >= 1 then
         value = value * (1 + 0.02 * buffstacks)
+    end
+    if hero.talents[135] > 0 then
+        value = value * (1 + 0.25 * hero.talents[135])
     end
     return value
 end
@@ -21849,8 +21869,8 @@ function PassiveStatCalculation(event)
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
         -- test
-        --if i == 144 then
-            --new_talent_value = 3
+        --if i == 70 then
+        --    new_talent_value = 3
         --end
         
         --new divine doubling soul items
@@ -22015,7 +22035,7 @@ function PassiveStatCalculation(event)
             RestoreMana(myevent)
         end
     end
-    level = hero.talents[1]
+    level = hero.talents[70]
     if level > 0 then
         if (hero:HasModifier("modifier_invisible") or hero:HasModifier("modifier_oocmana")) and hero.talents[70] > 0 then
             buff = "modifier_path_from_shadows"
@@ -24972,13 +24992,50 @@ function DivineBlessingProc(caster)
     end
 end
 
+function GlobalOnDealAbilityDamage(caster, target, ability)
+    if caster.talents then
+        if caster.talents[139] and caster.talents[139] > 0 and ability:GetLevel() >= 5 and math.random(1,100) <= 25 and not caster.horseHealCd then
+            HealUnit({caster = caster, target = caster, ability = ability, heal = GetPrimaryStatValueCustom(caster) * 0.05 * caster.talents[139]})
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf", PATTACH_POINT_FOLLOW, target)
+            ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() + Vector(0,0,75))
+            ParticleManager:ReleaseParticleIndex(particle)
+            caster.horseHealCd = true
+            Timers:CreateTimer(1.5 * GetInnerCooldownFactor(caster),function()
+                caster.horseHealCd = false
+            end)
+        end
+
+        if caster.talents[158] and caster.talents[158] > 0 then
+            local abIndex = ability:GetAbilityIndex() + 1
+            if abIndex >= 1 and abIndex <= 6 then
+                if not caster.deadlyArsenalDmg then
+                    caster.deadlyArsenalDmg = {false, false, false, false, false, false}
+                end
+                if not caster.deadlyArsenalDmg[abIndex] then
+                    caster.deadlyArsenalDmg[abIndex] = true
+                    local instances = 0
+                    for i=1, 6 do
+                        if caster.deadlyArsenalDmg[i] then
+                            instances = instances + 1
+                        end
+                    end
+                    if instances >= 4 then
+                        caster.deadlyArsenalDmg = {false, false, false, false, false, false}
+                        caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_da_dmg", {Duration = 10})
+                    end
+                end
+            end
+        end
+    end
+end
+
 function GlobalOnDealDamage( event )
     local caster = event.caster
     local target = event.unit
+    local ability = event.ability -- this is not the ability causing the damage. this is the abilitiy whos modifier listens for damage (combat_system)
     caster.creepertarget = target
-    if event.ability then
-        caster.lastAbilityCausingDamage = event.ability
-    end
+    
     if GetLevelOfAbility(caster, "glacier_crack_spell") >= 2 then
         RestoreResource({caster = caster, amount = 5, cap = 10})
     end
@@ -24998,7 +25055,7 @@ function GlobalOnDealDamage( event )
             if stackcount >= threshold then
                 stackcount = 0
                 caster:RemoveModifierByName("modifier_swipe_of_ursa")
-                SwipeOfUrsaTalent(caster, event.ability)
+                SwipeOfUrsaTalent(caster, ability)
             else
                 ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 30, buff = "modifier_swipe_of_ursa"})
             end
@@ -25011,7 +25068,7 @@ function GlobalOnDealDamage( event )
                 --stunextra = 2
             end
             backstabcd = backstabcd * GetInnerCooldownFactor(caster)
-            ApplyBuff({caster = caster, target = target, ability = event.ability, dur = 1 + caster.talents[44] + stunextra, buff = "modifier_stunned"})
+            ApplyBuff({caster = caster, target = target, ability = ability, dur = 1 + caster.talents[44] + stunextra, buff = "modifier_stunned"})
             ApplyBuff({caster = caster, target = caster, ability = caster.combat_system_ability, dur = backstabcd, buff = "modifier_backstab_cd"})
             BloodArcana({caster = caster, target = target, ignore_crit_effect_cooldown = true })
         end
@@ -26508,7 +26565,7 @@ function GetTotalDamageTakenFactor(caster, attacker)
         factor = 1 - sacredProtection / 100
     end
     if caster:HasModifier("modifier_talent_genesis") and caster.talents and caster.talents[135] > 0 then
-        factor = factor * 0.7
+        factor = factor * 0.75
     end
     if caster:HasModifier("modifier_savagery") and HeroHasNeutralItem(caster, "item_neutral_13") then
         factor = factor * 0.75
