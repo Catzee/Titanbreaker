@@ -20245,21 +20245,11 @@
 
         "OnSpellStart"
         {
-        	"FireEffect"
-	    	{
-	    		"EffectName"        "particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf"
-	    		"EffectAttachType"  "attach_hitloc"
-	    		"Target"            "TARGET"
-	    		"ControlPointEntities"
-	    		{
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    		}
-	    	}
+	        "RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "AstralGuardianMoonburnParticle"
+			}
         	"FireSound"
 			{
 				"EffectName"		"Hero_Luna.LucentBeam.Target"

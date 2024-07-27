@@ -31723,3 +31723,14 @@ function CreateEmberFireShieldParticleByModifier(event)
         modifier:AddParticle(particle, false, false, 1, false, false)
     end
 end
+
+function AstralGuardianMoonburnParticle(event)
+    local target = event.target
+    local targetPosition = target:GetAbsOrigin()
+    local particle = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+    ParticleManager:SetParticleControl(particle, 1, targetPosition)
+    ParticleManager:SetParticleControl(particle, 3, targetPosition)
+    ParticleManager:SetParticleControl(particle, 5, targetPosition)
+    ParticleManager:DestroyParticle(particle, false)
+    ParticleManager:ReleaseParticleIndex(particle)
+end
