@@ -1338,8 +1338,14 @@ function Precache( context )
             
             -- Pick up all items particle
             PrecacheResource( "particle", "particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", context )
+            -- venge sun1 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon1", context)
+            -- venge sun3 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon12", context)
+            -- venge sun4 particles (not precached for some reasons)
+            PrecacheItemByNameSync("moon9", context)
           end
-
+          
         end
 
         function Activate()
@@ -9511,8 +9517,9 @@ function PVEAggroAdd(event)
     if source.super_aggro_tank and not event.ignore_super_aggro_tank then
       local levelThreshold = 2
       local level_tank_ability = 0
-      local tank_ability = source:GetAbilityByIndex(0)
-      if tank_ability and tank_ability:GetName() == "bear1" then
+	  --
+      local tank_ability = source:FindAbilityByName("bear1")
+      if tank_ability ~= nil then
         levelThreshold = 4
       end
       if source.super_aggro_tank_temple then
@@ -10845,11 +10852,12 @@ if heroName == "npc_dota_hero_dazzle" then
    hero.spell4 = 0
    hero.spell5 = 0 
  end
- local ability_shift =  hero:GetAbilityByIndex(5)
+ local ability_shift =  hero:FindAbilityByName("ShapeshiftFeral")
  ability_shift:SetLevel(1)
  local myevent = {}
  myevent.ability = ability_shift
  myevent.caster = hero
+ myevent.shapeshiftInit = true
  ShapeshiftFeral(myevent)
  --ability_shift:ApplyDataDrivenModifier(hero, hero, "modifier_catform", nil)
  if self.FarmMode == 1 or true then
@@ -17889,6 +17897,7 @@ function COverthrowGameMode:OnPlayerLevelUp(keys)
                  end
                end
                
+			   -- Should be fine for heroes with abilities switch
                --standard
                local ability = hero:GetAbilityByIndex(index)
                if ability then
@@ -18840,6 +18849,10 @@ function GetRandomTempleClassAbility( hero, templeclass )
 end
 
 function RemoveRightmostTempleClassAbility( hero )
+  -- unused
+  if(true) then
+	return
+  end
   local templeclass = hero.temple_class
   if templeclass then
     for i=1, 5 do

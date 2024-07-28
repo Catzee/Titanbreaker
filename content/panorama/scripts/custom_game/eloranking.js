@@ -155,14 +155,6 @@ function ToggleTalentTree() {
     }
 }
 
-function ToggleBlacksmith() {
-    $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
-}
-
-function ToggleAutoSellStash() {
-    $.FindChildInContext("#autoSellStash").visible = !$.FindChildInContext("#autoSellStash").visible;
-}
-
 function ToggleRewards() {
     if (!rewardsvisible){
         rewardsvisible = true;
@@ -1934,6 +1926,7 @@ var blacksmithItemsContainer = $("#blacksmithItemsList");
 var previousBlacksmithFilterText = "";
 var blacksmithFilterTickRate = 0.05;
 var blacksmithFilterStarted = false;
+var blacksmithKnownItems = [];
 
 // Fix for tools mode (removes blacksmith items on every panorama reload to prevent out of memory)
 if(Game.IsInToolsMode())
@@ -1941,9 +1934,25 @@ if(Game.IsInToolsMode())
     blacksmithItemsContainer.RemoveAndDeleteChildren();
 }
 
+function ToggleBlacksmith() {
+    $.FindChildInContext("#shopMain").visible = !$.FindChildInContext("#shopMain").visible;
+
+    // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
+    // So we forced to destroy and recreate all item panels on tab open/close to fix lags for heroes with abilities switch (thanks valve)
+    // I hope it will not destroy potato pc fps
+    if(!$.FindChildInContext("#shopMain").visible) {
+        blacksmithItemsContainer.RemoveAndDeleteChildren();
+        blacksmithItemsContainer.shopItems = [];
+    } else {
+        for (const [_, itemData] of Object.entries(blacksmithKnownItems)) {
+            AddItemToShop(itemData);
+        }
+    }
+}
+
 function AddItemsToShop(args){
     for (const [_, itemData] of Object.entries(args)) {
-        AddItemToShop(itemData);
+        blacksmithKnownItems.push(itemData);
     }
 
     if(!blacksmithFilterStarted)
@@ -1959,7 +1968,7 @@ function TryApplyBlacksmithFilter()
 
     var shopItems = blacksmithItemsContainer.shopItems;
 
-    if(shopItems != undefined)
+    if(shopItems != undefined && shopItems.length > 0)
     {  
         if(currentFilterText != previousBlacksmithFilterText)
         {
@@ -2028,7 +2037,23 @@ if(Game.IsInToolsMode())
     autoSellItemsContainer.RemoveAndDeleteChildren();
 }
 
-function OnAutoSellStashItem(args)
+function ToggleAutoSellStash() {
+    let autoSellStash = $.FindChildInContext("#autoSellStash");
+    autoSellStash.visible = !autoSellStash.visible;
+
+    // Any existing item/ability panel (even hidden) causing heavy client lags when using lua SwapAbilities (thanks valve)
+    // So we forced to destroy and recreate all item panels on tab open/close to fix lags for heroes with abilities switch (thanks valve)
+    // I hope it will not destroy potato pc fps
+    if(!autoSellStash.visible) {
+        autoSellItemsContainer.RemoveAndDeleteChildren();
+    } else {
+        for (const [_, itemData] of Object.entries(autoSellItemsPanels)) {
+            AddAutoSellItemPanel(itemData);
+        }
+    }
+}
+
+function AddAutoSellItemPanel(args)
 {
     var itemPanel = $.CreatePanel('Panel', autoSellItemsContainer, '');
     itemPanel.BLoadLayoutSnippet("BlacksmithItem");
@@ -2047,8 +2072,11 @@ function OnAutoSellStashItem(args)
             GameEvents.SendCustomGameEventToServer("buyautosellstashitem", { "player_id": Players.GetLocalPlayer(), "key": args.key } );
         }
     )
+}
 
-    autoSellItemsPanels[args.key] = itemPanel;
+function OnAutoSellStashItem(args)
+{
+    autoSellItemsPanels[args.key] = args;
 }
 
 function OnAutoSellStashItemBought(args)

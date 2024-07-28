@@ -1778,7 +1778,7 @@
 			</Panel>
 		</Panel>
 		
-		<Panel class="Shop" hittest="false" id="shopMain" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
+		<Panel class="Shop VerticalScrollBarVisible" hittest="false" id="shopMain" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
 			<Label class="ButtTextBigGold" text="The Blacksmith" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
 				<Panel class="TableRow" style="margin-left: 10px;">
@@ -1789,7 +1789,7 @@
 			</Panel>
 		</Panel>	
 
-		<Panel class="Shop" hittest="false" id="autoSellStash" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
+		<Panel class="Shop VerticalScrollBarVisible" hittest="false" id="autoSellStash" style="horizontal-align: center; margin-top: 100px; width:75%; height:80%; flow-children:down;">
 			<Label class="ButtTextBigGold" text="Autosell Items" style="font-size: 40px; vertical-align: top; horizontal-align: center;"/>
 			<Panel class="LootTableList" hittest="false" id="shop" style="flow-children: down; horizontal-align: center; overflow: scroll;">
 				<Panel id="autoSellItemsList"/>

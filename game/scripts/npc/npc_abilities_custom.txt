@@ -19827,7 +19827,8 @@
 	
 		"precache"
 		{
-
+			"particle"	"particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
+			"particle"	"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
 		}
 	
 		"OnSpellStart"
@@ -19924,27 +19925,19 @@
 
 		        "OnCreated"
 		        {
-		        	"FireEffect"
-		        	{
-		        		"EffectName"        "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
-		        		"EffectAttachType"  "attach_hitloc"
-		        		"Target"            "TARGET"
-		        		"ControlPointEntities"
-		        		{
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        			"TARGET"	"attach_hitloc"
-		        		}
-		        	}
-		        	"FireEffect"
-		        	{
-		        		"EffectName"        "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
-		        		"EffectAttachType"  "attach_hitloc"
-		        		"Target"            "TARGET"
-		        	}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "AstralGuardianRayOfTheSunParticle"
+						"type"			"1"
+					}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "AstralGuardianRayOfTheSunParticle"
+						"type"			"2"
+						"radius"		"%radius"
+					}
 		        	"ActOnTargets"
 		        	{
 		        		"Target"
@@ -20245,21 +20238,11 @@
 
         "OnSpellStart"
         {
-        	"FireEffect"
-	    	{
-	    		"EffectName"        "particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf"
-	    		"EffectAttachType"  "attach_hitloc"
-	    		"Target"            "TARGET"
-	    		"ControlPointEntities"
-	    		{
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    		}
-	    	}
+	        "RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "AstralGuardianMoonburnParticle"
+			}
         	"FireSound"
 			{
 				"EffectName"		"Hero_Luna.LucentBeam.Target"
@@ -20424,6 +20407,11 @@
 	    //"AbilityChannelTime"      "0.0"
 	    //"AoERadius"               "250"
 
+		"precache"
+		{
+			"particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
+		}
+
 	    "AbilitySpecial"
 	    {
 	    	"03"
@@ -20463,21 +20451,11 @@
 
         "OnSpellStart"
         {
-        	"FireEffect"
-	    	{
-	    		"EffectName"        "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
-	    		"EffectAttachType"  "attach_hitloc"
-	    		"Target"            "TARGET"
-	    		"ControlPointEntities"
-	    		{
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    			"TARGET"	"attach_hitloc"
-	    		}
-	    	}
+	        "RunScript"
+			{
+			    "ScriptFile"    "game_mechanics.lua"
+			    "Function"      "AstralGuardianSunburnParticle"
+			}
         	"FireSound"
 			{
 				"EffectName"		"Hero_Luna.LucentBeam.Target"
@@ -20692,7 +20670,32 @@
 		        "healchance" "0 0 0 100"
 		    }
 		}
-		
+
+		"precache"
+		{
+		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+		    "particle"  "particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf"
+		    "particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf"
+		    "particle"  "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+		    "particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_lucent_beam_impact_rings_ti_5_gold.vpcf"
+		    "particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_cast_moonfall_gold.vpcf"
+
+			"particle"  "particles/status_fx/status_effect_guardian_angel.vpcf"
+			"particle"  "particles/units/heroes/hero_mirana/mirana_moonlight_owner.vpcf"
+			"particle"  "particles/units/heroes/hero_mirana/mirana_starfall_moonray.vpcf"
+			"particle"  "particles/units/heroes/hero_mirana/mirana_moonlight_ray.vpcf"
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+		    "particle"  "particles/cyclone_self1.vpcf"
+		    "particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
+		    "particle"  "particles/econ/items/enchantress/enchantress_lodestar/enchantress_lodestar_butterfly.vpcf"
+		    "particle"  "particles/units/heroes/hero_treant/treant_overgrowth_cast_tree.vpcf"
+		    "particle"  "particles/units/heroes/hero_furion/furion_wrath_of_nature_old.vpcf"
+		    "particle"  "particles/starsurge.vpcf"
+		}
+
 		"OnSpellStart"
         {
 
@@ -20798,32 +20801,6 @@
 				}
 
         }
-
-
-		"precache"
-		{
-		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
-		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
-		    "soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
-		    "particle"  "particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf"
-		    "particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_impact_ti_5.vpcf"
-		    "particle"  "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
-		    "particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_lucent_beam_impact_rings_ti_5_gold.vpcf"
-		    "particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_cast_moonfall_gold.vpcf"
-
-			"particle"  "particles/status_fx/status_effect_guardian_angel.vpcf"
-			"particle"  "particles/units/heroes/hero_mirana/mirana_moonlight_owner.vpcf"
-			"particle"  "particles/units/heroes/hero_mirana/mirana_starfall_moonray.vpcf"
-			"particle"  "particles/units/heroes/hero_mirana/mirana_moonlight_ray.vpcf"
-			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
-			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
-		    "particle"  "particles/cyclone_self1.vpcf"
-		    "particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
-		    "particle"  "particles/econ/items/enchantress/enchantress_lodestar/enchantress_lodestar_butterfly.vpcf"
-		    "particle"  "particles/units/heroes/hero_treant/treant_overgrowth_cast_tree.vpcf"
-		    "particle"  "particles/units/heroes/hero_furion/furion_wrath_of_nature_old.vpcf"
-		    "particle"  "particles/starsurge.vpcf"
-		}
 
 		"Modifiers"
 		{
@@ -22806,7 +22783,7 @@
 			   }
 			   "FireSound"
 				{
-					"EffectName"		"phantom_assassin_phass_move_07"
+					"EffectName"		"bounty_hunter_bount_ability_windwalk_02"
 					"Target"			"CASTER"
 				}
 				"RunScript"
@@ -25255,17 +25232,12 @@
 			
 				"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_fireshield"
+					}
         		}
 				"Properties"
 				{
@@ -46940,17 +46912,12 @@
         	
         		"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_ironshield"
+					}
         		}
         	}
 			"modifier_shieldbash"
@@ -47963,17 +47930,12 @@
 				"IsDebuff"			"0"
 				"OnCreated"
         		{
-        			"AttachEffect"
-        			{
-        				"EffectName"        "particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard_shield_outer.vpcf"
-        				"EffectAttachType"  "attach_hitloc"
-        				"Target"            "TARGET"
-        				"ControlPointEntities"
-        				{
-        					"TARGET"	"attach_hitloc"
-        					"TARGET"	"attach_hitloc"
-        				}
-        			}
+					"RunScript"
+					{
+						"ScriptFile"    "game_mechanics.lua"
+						"Function"      "CreateEmberFireShieldParticleByModifier"
+						"modifier_name" "modifier_feraldef"
+					}
         		}
 			}
 			"modifier_feralcd"
