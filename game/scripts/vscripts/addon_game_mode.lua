@@ -9518,8 +9518,8 @@ function PVEAggroAdd(event)
       local levelThreshold = 2
       local level_tank_ability = 0
 	  --
-      local tank_ability = source:FindAbilityByName("bear1")
-      if tank_ability ~= nil then
+      local tank_ability = source:GetAbilityByIndex(0)
+      if tank_ability and tank_ability:GetName() == "bear1" then
         levelThreshold = 4
       end
       if source.super_aggro_tank_temple then
