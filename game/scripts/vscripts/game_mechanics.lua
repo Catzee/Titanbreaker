@@ -14932,7 +14932,7 @@ end
 
 function OnSummonDamage(caster, target, ability)
     if GetBeastWithinStat(caster) > 0 and not caster.bwicd then
-        RestoreResource({caster = caster, amount = GetBeastWithinStat(caster)})
+        RestoreResource({caster = caster, amount = GetBeastWithinStat(caster) * (caster:GetMaxMana() / 100)})
         caster.bwicd = true
         Timers:CreateTimer(0.25, function()
             caster.bwicd = false
