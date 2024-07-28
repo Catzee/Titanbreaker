@@ -37057,6 +37057,7 @@
 				"IsDebuff"			"0"
 				"IsStunDebuff"		"0"
 				"IsHidden"	"0"
+				"RemoveOnDeath"		"0"
 		
 				"Properties"
 				{
@@ -37072,7 +37073,7 @@
 				"IsDebuff"			"0"
 				"IsStunDebuff"		"0"
 				"IsHidden"	"1"
-		
+
 				"Properties"
 				{
 					//"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%aabonus"
