@@ -67085,7 +67085,7 @@
 		    "05"
 		    { 
 		        "var_type"  "FIELD_FLOAT"
-		        "silence_duration" "5"
+		        "silence_duration" "0.5"
 		    }
 		    "06"
 		    { 
