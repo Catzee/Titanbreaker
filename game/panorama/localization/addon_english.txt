@@ -373,6 +373,11 @@
 		//"talent163"								"War Shout: % Damage first 15 secs engaging enemy."
 		//"talent163"								"Deep Technique: After having caused direct Damage, Damage over Time and AOE Damage, increase all Damage by %."
 		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
+		//"talent163"								"Against all Odds: Bonus Damage per enemy nearby"
+		//"talent163"								"Sword Storm: when 3 or more enemies, activate sword storm"
+		//"talent163"								"Frontliner: Taunt duration + 10% and Aggro caused + 50%"
+		//"talent163"								"Battle Stance: Bonus Damage and Damage reduction after stance change: dazzle, brawlers, venge"
+		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."
