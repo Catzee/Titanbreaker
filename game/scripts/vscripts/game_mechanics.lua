@@ -14932,7 +14932,7 @@ end
 
 function OnSummonDamage(caster, target, ability)
     if GetBeastWithinStat(caster) > 0 and not caster.bwicd then
-        RestoreResource({caster = caster, amount = GetBeastWithinStat(caster)})
+        RestoreResource({caster = caster, amount = GetBeastWithinStat(caster), percent = 1})
         caster.bwicd = true
         Timers:CreateTimer(0.25, function()
             caster.bwicd = false
@@ -23151,7 +23151,7 @@ end
 function DH2( event )
     local caster = event.caster
     local target = caster.last_attack_target
-    if target and not target:IsNull() and target:IsAlive() and caster:GetMana() >= 50 and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() <= 175 then
+    if target and not target:IsNull() and target:IsAlive() and caster:GetMana() >= 50 and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length() <= 75 + caster:Script_GetAttackRange() then
         event.ability:ApplyDataDrivenModifier(caster, target, "modifier_dh2_toggle_proc", nil)
     end
 end

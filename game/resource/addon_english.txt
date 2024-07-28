@@ -10157,7 +10157,7 @@
 		"DOTA_Tooltip_ability_item_pathbuff_106_stat1"  "Primary Attribute: + "
 		"DOTA_Tooltip_ability_item_pathbuff_106_stat2"  "Health: + "
 		"DOTA_Tooltip_ability_item_pathbuff_107"  "<font color=\"#ffd700\">[Divine] Kilt of the Lonely Hunter"
-		"DOTA_Tooltip_ability_item_pathbuff_107_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Lone Druid.</font>\nWhenever the Healing from Lone Druid procs, gain 250 Attack Speed for 5 secs.\n+ 100 Cast and Attack Range for Ranged Heroes"
+		"DOTA_Tooltip_ability_item_pathbuff_107_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Lone Druid.</font>\nWhenever the Healing from Lone Druid procs, gain 250 Attack Speed for 5 secs.\n+ 100 Cast and Attack Range"
 		"DOTA_Tooltip_ability_item_pathbuff_107_stat1"  "Primary Attribute: + "
 		"DOTA_Tooltip_ability_item_pathbuff_108"  "<font color=\"#ffd700\">[Divine] Ranger's String"
 		"DOTA_Tooltip_ability_item_pathbuff_108_Description"  "<font color=\"#FF6600\">+3 for the Path Talent Mountain Ranger.</font>\nPassively shoot an Arrow every sec at the nearest enemy, dealing Physical Damage equal to your Attack Damage (max range 900)."
