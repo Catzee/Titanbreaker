@@ -17221,17 +17221,25 @@ function VolcanoEvent4(event)
       local offset = RandomVector(1):Normalized()*50
       local unit
       unit = CreateUnitByName("npc_dota_creature_demon_volcano", pos[i%4]+offset, true, nil, nil, DOTA_TEAM_BADGUYS )
-      if i % 4 == 1 then
+      if i == 1 then
         unit:AddAbility("pve_temple_affix_armor_melt"):SetLevel(1)
       end
-      if i % 4 == 2 then
+      if i == 2 then
         unit:AddAbility("pve_temple_iceberg_linear2"):SetLevel(1)
       end
-      if i % 4 == 3 then
+      if i == 3 then
         unit:AddAbility("pve_temple_affix_immolation"):SetLevel(1)
+        unit:AddAbility("pve_temple_aggro_ranged"):SetLevel(1)
       end
-      if i % 4 == 0 then
+      if i == 4 then
         unit:AddAbility("pve_temple_fireball_ritual_hard_1"):SetLevel(1)
+        unit:AddAbility("pve_temple_affix_maniac"):SetLevel(1)
+      end
+      if i == 5 then
+        unit:AddAbility("pve_temple_affix_armor_melt"):SetLevel(1)
+      end
+      if i == 6 then
+        unit:AddAbility("pve_temple_iceberg_linear2"):SetLevel(1)
       end
       unit:AddAbility("pve_affix_fireball_aoe"):SetLevel(1)
       unit.act = 8
