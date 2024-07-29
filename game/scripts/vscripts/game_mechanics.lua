@@ -9597,20 +9597,29 @@ function Ambush(event)
 		angleDiff = -angleDiff
 	end
 
+	event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_combopoint", damage_table)
+	caster.ComboPoints = caster.ComboPoints + 3
+	if caster.ComboPoints > 3 then
+		caster.ComboPoints = 3
+	end
+	caster:SetModifierStackCount("modifier_combopoint", event.ability, caster.ComboPoints)
+	AddCPEffect(event)
+
 	if (angleDiff <= 90.0 or angleDiff >= 270.0) then
 		local damage_table = {}
 		damage_table.Duration = -1
-		event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_combopoint", damage_table)
-		caster.ComboPoints = caster.ComboPoints + 3
-		if caster.ComboPoints > 3 then
-   			caster.ComboPoints = 3
-   		end
-   		caster:SetModifierStackCount("modifier_combopoint", event.ability, caster.ComboPoints)
-   		AddCPEffect(event)
         local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_blood.vpcf", PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
    		DamageUnit(event)
+
+	    ApplyBuff({
+	        caster = caster,
+	        target = caster,
+	        buff = "modifier_dmgbonus_cruel",
+	        ability = event.ability,
+	        dur = event.ability:GetSpecialValueFor("buffdur")
+	    })
    	else
    		--print("end")
    		--event.ability:EndCooldown()
