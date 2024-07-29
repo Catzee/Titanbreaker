@@ -67369,12 +67369,6 @@
 
         "OnSpellStart"
         {		
-        		"ApplyModifier"
-		        {
-		        	"ModifierName"	"modifier_dmgbonus_cruel"
-		        	"Target" 		"CASTER"
-		        	"Duration"		"%buffdur"
-		        }
                 "RunScript"
 				{
 				    "ScriptFile"    "game_mechanics.lua"
