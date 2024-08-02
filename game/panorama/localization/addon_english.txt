@@ -344,40 +344,50 @@
 		//"talent163"								"Axe Flinger: Melee Hero Ability Range."
 		//"talent163"								"Headhunter: Critical Strike Damage per Agility doubled."
 
-		//royal knight
-		//"talent163"								"Basic Training: Primary Attribute per Level"
-		//"talent163"								"Shield Block: Block per Level and per Strength"
-		//"talent163"								"Chivalry: Get out of combat a few secs faster and gain Bonus Movement Speed while out of combat."
+		//royal knight: block, crit, strength, armor, big hits, melee, aggro, support
+		"talent181"								"King's Blessing: + 2% / 4% / 6% Strength, Agility, Intellect and max Health."
+		"talent182"								"Melee Combat: Abilities deal 10% / 20% / 30% increased Damage to enemies within 300 yards."
+		"talent183"								"Shield Bearer: Gain 2 / 4 / 6 Damage Block per Level and increase the Damage Block gained from Strength by 33% / 66% / 100%."
+									
+		"talent184"								"Banner of War: Gain an Aura increasing Armor by 2 / 4 / 6 and Damage by 2% / 4% / 6%."
+		"talent185"								"Sharpened Blades: Ability Damage caused by Physical Abilities is increased by 10% / 20% / 30%. Doubled for Physical Damage over time."
+		"talent186"								"Shield Crush: Add 50% / 100% / 150% of your Damage Block to the base Damage when dealing Ability Damage."
 
-		//"talent163"								"Overthrow: Crit Damage per Strength"
-		//"talent163"								"Robustness: Damage Reduction while stunned"
-		//"talent163"								"Undefeated Knight: While not having died, gain % Damage and Damage Reduction."
+		"talent187"								"Overthrow: Gain 1.5% / 3% / 4.5% Critical Strike Damage per 100 Strength."
+		"talent188"								"Battle Shout: Gain 15% / 30% / 45% increased Damage for 10 secs after dealing Damage to an enemy for the first time or when using [all game shouts]."
+		"talent189"								"Platemail: Gain 15% / 30% / 45% Damage Reduction while stunned."
+		
+		"talent190"								"Sudden Death: Abilities with a base cooldown of 5 secs or higher gain a 15% / 30% / 45% chance to Critical Strike for 500%."
+		"talent191"								"Undisputed Champion: After killing a Champion, permanently gain 1% / 2% / 3% increased Damage. After dying, the Bonus resets."
+		"talent192"								"Protect the King: You provide 10% / 20% / 30% Damage Reduction to the lowest Health party member."
+		
+		"talent193"								"Echoing Blade: After casting an Ability, each following Ability Damage instance you cause is increased by 1% / 2% / 3%, up to 300%. Resets when casting the next Ability."
+		"talent194"								"Frontliner: Taunt durations are increased 0.5 / 1 / 1.5 secs and Aggro caused by 50% / 100% / 150%."
+		"talent195"								"Sword Mastery: After having caused direct Ability Damage, Damage over Time and AOE Damage, increase all Damage by 20% / 40% / 60% for 5 secs."
 
-		//"talent163"								"King's Blessing: All stats per level"
-		//"talent163"								"Sharpened Blades:  Physical DoT Bonus"
-		//"talent163"								"Heavy Cut: Crit % for non-DoT big hit"
-		
-		//"talent163"								"Melee Combat: Bonus Damage to enemies within 300"
-		//"talent163"								"Protect the King: Ally take Damage and drop below 50%, Damage Reduction buff."
-		//"talent163"								"War Banner: Armor and Damage Aura 2 / 2%"
-		
+		"talent196"								"Overcrit: When you land a Critical Strike with an Ability, there is a 10% / 20% / 30% chance for it to Critical Strike again for 200%."
+		"talent197"								"Valyrian Knight: + 50 / 100 / 150 Strength, + 500 / 1000 / 1500 Health and + 5 / 10 / 15 Armor."
+		"talent198"								"Battle Stance: After changing Battle Stance, gain 50% / 100% / 150% increased Damage for 10 secs, decreasing over time.\nBattle Stances are: dazzle, brawlers, venge"
+
+
+		//"talent163"								"Undefeated Champion: While not having died, gain % Damage and Damage Reduction."
+		//"talent163"								"Recklessness: damage at cost of damage reduction."
 		//"talent163"								"Versatility: Melee Bonus Damage when ranged, Ranged Bonus Damage when melee."
 		//"talent163"								"Tactician: After using last 3 Abilities, Damage and Damage Reduction"
-		//"talent163"								"Champion: After killing a Champion, permanently gain 1% increased Damage."
 		
 		//"talent163"								"Long Sword: Cast and Attack Range (for melee?) and AA scalings increased by 10%"
 		//"talent163"								"Last Stand: ?" or  "Second Wind: Each second row Path Talent that is exactly Level 3 will gain + 1 / 2 / 3 Levels, choosen from right to left."
 		//"talent163"								"Storm of Swords: Dealing Ability Damage will repeat the previous Damage instance, inner cooldown 2 / 1.5 / 1 sec."
 		//"talent163"								"Blade Tornado / Cleaver: Non targeted abilities deal % Bonus Damage."
-		//"talent163"								"Armored to the Teeth: Armor and Damage %."
-		//"talent163"								"War Shout: % Damage first 15 secs engaging enemy."
-		//"talent163"								"Deep Technique: After having caused direct Damage, Damage over Time and AOE Damage, increase all Damage by %."
-		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
+		//"talent163"								"Armored to the Teeth: Armor and Single Target Damage per Armor %."
 		//"talent163"								"Against all Odds: Bonus Damage per enemy nearby"
 		//"talent163"								"Sword Storm: when 3 or more enemies, activate sword storm"
-		//"talent163"								"Frontliner: Taunt duration + 10% and Aggro caused + 50%"
-		//"talent163"								"Battle Stance: Bonus Damage and Damage reduction after stance change: dazzle, brawlers, venge"
-		//"talent163"								"Echoing Blade: When casting an Ability, each Damage instance of that Ability increases the Damage this Ability does by 10%. Resets when casting the Ability again."
+		//"talent163"								"*Intervene: Targeting an ally with an Ability will grant them 50% Damage Reduction for 2 / 3 / 4 secs when they are below 50% of max Health. Inner cooldown 30 secs."
+		
+		//"talent190"								"Outnumbered:  more enemies than heroes?"
+
+		//"talent163"								"Chivalry: Get out of combat a few secs faster and gain Bonus Movement Speed while out of combat."
+		//"talent163"								"Basic Training: Primary Attribute per Level"
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."
