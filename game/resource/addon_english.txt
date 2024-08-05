@@ -408,6 +408,8 @@
 
 		"DOTA_Tooltip_modifier_healdebuff"	"Wounded"
 		"DOTA_Tooltip_modifier_healdebuff_Description"	"Greatly reduces healing received."
+		"DOTA_Tooltip_modifier_wounding_strike_heal_debuff"	"Wounded"
+		"DOTA_Tooltip_modifier_wounding_strike_heal_debuff_Description"	"Greatly reduces healing received."
 		"DOTA_Tooltip_modifier_healdebuff75"	"Deadly Wounds"
 		"DOTA_Tooltip_modifier_healdebuff75_Description"	"Reduces healing received by 75%%."
 
@@ -4054,8 +4056,8 @@
 		"DOTA_Tooltip_rooted_proc_innercd"                                                "Root Proc Inner Cooldown"
 		"DOTA_Tooltip_rooted_proc_innercd_Description"                                    " "
 
-		"DOTA_Tooltip_modifier_arms_bleed"                                                "Bleeding Wounds"
-		"DOTA_Tooltip_modifier_arms_bleed_Description"                                    "Taking damage over time."
+		"DOTA_Tooltip_modifier_wounding_strike_bleed_debuff"                              "Bleeding Wounds"
+		"DOTA_Tooltip_modifier_wounding_strike_bleed_debuff_Description"                  "Taking damage over time."
 
 		"DOTA_Tooltip_ability_Sword_Storm_critchance"                                     "Critical Strike chance factor:"
 
