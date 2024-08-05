@@ -351,9 +351,9 @@
 									
 		"talent184"								"Banner of War: Gain an Aura increasing Armor by 2 / 4 / 6 and Damage by 2% / 4% / 6%."
 		"talent185"								"Sharpened Blades: Ability Damage caused by Physical Abilities is increased by 10% / 20% / 30%. Doubled for Physical Damage over time."
-		"talent186"								"Shield Crush: Add 50% / 100% / 150% of your Damage Block to the base Damage when dealing Ability Damage."
+		"talent186"								"Shield Crush: Add 100% / 200% / 300% of your Damage Block to the base Damage when dealing Ability Damage."
 
-		"talent187"								"Overthrow: Gain 1.5% / 3% / 4.5% Critical Strike Damage per 100 Strength."
+		"talent187"								"Kingslayer: Gain 1.5% / 3% / 4.5% Critical Strike Damage per 100 Strength."
 		"talent188"								"Battle Shout: Gain 15% / 30% / 45% increased Damage for 10 secs after dealing Damage to an enemy for the first time or when using [all game shouts]."
 		"talent189"								"Platemail: Gain 15% / 30% / 45% Damage Reduction while stunned."
 		
@@ -388,6 +388,9 @@
 
 		//"talent163"								"Chivalry: Get out of combat a few secs faster and gain Bonus Movement Speed while out of combat."
 		//"talent163"								"Basic Training: Primary Attribute per Level"
+
+		//"talent163"								"Overthrow: Your Abilities gain Bonus Damage equal to 10% of their Strength scaling."
+		//"talent163"								"Corrupted Knight: Your Abilities gain Bonus Damage equal to 10% of their Strength scaling."
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."
