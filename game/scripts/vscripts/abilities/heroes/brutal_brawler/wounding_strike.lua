@@ -14,7 +14,6 @@ end
 function Wounding_Strike:OnSpellStart()
     -- Console casting orders probably still not fixed so checks for them...
     if(self:IsHidden() and COverthrowGameMode:IsAllowedToUseWhileHidden(self) == false) then
-        print("This")
         return
     end
     local caster = self:GetCaster()

@@ -5,9 +5,9 @@ modifier_wounding_strike_heal_debuff = class({
     IsPurgable = function()
         return true
     end,
-	IsDebuff = function()
+    IsDebuff = function()
 		return true
-	end,
+    end,
     GetTexture = function()
         return "fix/axe_strike2"
     end,

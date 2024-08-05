@@ -5,9 +5,9 @@ modifier_wounding_strike_bleed_debuff = class({
     IsPurgable = function()
         return true
     end,
-	IsDebuff = function()
+    IsDebuff = function()
 		return true
-	end,
+    end,
     GetTexture = function()
         return "bloodseeker_blood_bath"
     end
@@ -18,7 +18,7 @@ function modifier_wounding_strike_bleed_debuff:OnCreated()
         return
     end
     self.ability = self:GetAbility()
-    
+
     self.damageTable = {
         caster = self.ability:GetCaster(),
         target = self:GetParent(),
