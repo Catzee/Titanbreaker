@@ -62,6 +62,9 @@ LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_summons_buff", "modifie
 LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_buff_inner_cd", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_buff_inner_cd", LUA_MODIFIER_MOTION_NONE)
 -- dark seer: path of darkness (class item)
 LinkLuaModifier("modifier_shadow_cleric_path_of_darkness_shadow_priest_form", "modifiers/heroes/shadow_cleric/path_of_darkness/modifier_shadow_cleric_path_of_darkness_shadow_priest_form", LUA_MODIFIER_MOTION_NONE)
+-- axe: wounding strike
+LinkLuaModifier("modifier_wounding_strike_heal_debuff", "modifiers/heroes/brutal_brawler/wounding_strike/modifier_wounding_strike_heal_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_wounding_strike_bleed_debuff", "modifiers/heroes/brutal_brawler/wounding_strike/modifier_wounding_strike_bleed_debuff", LUA_MODIFIER_MOTION_NONE)
 -- for lua pets
 LinkLuaModifier("modifier_pet_system_lua", "modifiers/heroes/modifier_pet_system_lua", LUA_MODIFIER_MOTION_NONE)
 -- frostwyrm fury (path talent)

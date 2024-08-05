@@ -3513,7 +3513,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.frostdmg and caster:HasModifier("modifier_npc_dota_hero_drow_ranger") and caster:HasModifier("modifier_manacost_reduction") then
         value = value + 2
     end
-    if caster:HasModifier("modifier_class_brawler") and target and target:HasModifier("modifier_arms_bleed") and caster:IsRealHero() and dmgtype == 1 then
+    if caster:HasModifier("modifier_class_brawler") and target and target:HasModifier("modifier_wounding_strike_bleed_debuff") and caster:IsRealHero() and dmgtype == 1 then
         value = value + 0.001 * GetStrengthCustom(caster) --0.0008
     end
     if event.naturedmg and caster:HasModifier("modifier_class_bounty") and caster:IsRealHero() then
@@ -7738,6 +7738,9 @@ function HealUnit( event )
     if target:HasModifier("modifier_healdebuff") and event.retridmgtoheal == nil then
     	event.heal = event.heal / 2
     end
+    if target:HasModifier("modifier_wounding_strike_heal_debuff") then
+    	event.heal = event.heal / 2
+    end
     if target.talents then
         if target.talents[72] and target.talents[72] > 0 then
             event.heal = event.heal / 4
@@ -8995,7 +8998,8 @@ function SwitchStances(event)
         hero:SwapAbilities("Concussive_Blow", "Terror_Shout", false, true)
         
         -- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
-        abil1:SetActivated(false)
+        abil1:SetActivated(true) -- Special case for flurry (should be activated while hidden to be castable)...
+        COverthrowGameMode:SetIsAllowedToUseWhileHidden(abil1, true)
         abil2:SetActivated(false)
         abil3:SetActivated(false)
         def1:SetActivated(true)
@@ -9016,6 +9020,7 @@ function SwitchStances(event)
   		
   		-- This should be enough to prevent console casting orders that ignores Hidden behavior in some cases
   		abil1:SetActivated(true)
+        COverthrowGameMode:SetIsAllowedToUseWhileHidden(abil1, false)
   		abil2:SetActivated(true)
   		abil3:SetActivated(true)
   		def1:SetActivated(false)
@@ -12294,6 +12299,22 @@ function ShapeshiftFeralAbilitiesSwap(caster, human, level, shapeshiftInit)
     COverthrowGameMode:SetIsStanceAbility(human3, true)
     COverthrowGameMode:SetIsStanceAbility(human4, true)
     COverthrowGameMode:SetIsStanceAbility(human5, true)
+end
+
+function COverthrowGameMode:SetIsAllowedToUseWhileHidden(ability, state)
+    ability._isAllowedToUseWhileHidden = state
+end
+
+function COverthrowGameMode:IsAllowedToUseWhileHidden(ability)
+    if(ability == nil) then
+        return false
+    end
+
+    if(ability._isAllowedToUseWhileHidden ~= nil) then
+        return ability._isAllowedToUseWhileHidden
+    end
+
+    return false
 end
 
 function COverthrowGameMode:SetIsStanceAbility(ability, state)
@@ -30701,7 +30722,7 @@ function CheckForFlurryProc(event)
         return
     end
     local target = event.target
-    local ability = caster:GetAbilityByIndex(caster.flurryAbility) -- should be fine for now, use COverthrowGameMode:GetAbilityByIndexCustom(caster, abilityIndex, isStanceAbility) for stance abilities support
+    local ability = COverthrowGameMode:GetAbilityByIndexCustom(caster, caster.flurryAbility, false)
     local mana = caster:GetMana()
     local manacost = ability:GetManaCost(-1)
 
@@ -30709,33 +30730,32 @@ function CheckForFlurryProc(event)
         return
     end
 
+    -- IMPORTANT: If ever stance another stance ability added to flurry look Wounding_Strike example how to setup it (should be castable while hidden, only lua supports that)
     -- dmg proc
     ApplyBuff({ caster = caster, target = caster, dur = 2, buff = "modifier_talent_flurry", ability = caster.combat_system_ability})
 
-    local castCount = 2
-
-    for i=1, castCount do
-        Timers:CreateTimer(0.12 * i, function()
-            if target and not target:IsNull() and caster:GetMana() >= manacost and ability:GetCooldownTimeRemaining() <= 0 then
-                local order = 
-                {
-                    UnitIndex = caster:entindex(),
-                    OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-                    AbilityIndex = ability:GetEntityIndex(), 
-                    Queue = false,
-                    TargetIndex = target:entindex()
-                }
-
-                ExecuteOrderFromTable(order)
-
-                --if i == 2 then
-                --    Timers:CreateTimer(0.03, function()
-                --        RestoreResource({caster = caster, amount = manacost * 0.15 * caster.talents[164], flat = true})
-                --    end)
-                --end
+    -- If CastAbilityOnTarget will cause issues or broken by valve revert to ExecuteOrderFromTable
+    --[[
+    ExecuteOrderFromTable({
+        UnitIndex = caster:entindex(),
+        OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+        AbilityIndex = ability:GetEntityIndex(), 
+        Queue = false,
+        TargetIndex = target:entindex()
+    }) --]]
+    -- Cast first time
+    caster:CastAbilityOnTarget(target, ability, -1)
+    -- Wait cd and cast again
+    Timers:CreateTimer(ability:GetCooldownTimeRemaining(), function()
+        if(ability:IsCooldownReady()) then
+            if(target and target:IsNull() == false and caster:GetMana() >= manacost) then
+                caster:CastAbilityOnTarget(target, ability, -1)
             end
-        end)
-    end
+        else
+            -- Something happened like frozen cooldown, restarts timer
+            return 0.01
+        end
+    end)
 end
 
 function AbilityAutoCastCheck(event)
