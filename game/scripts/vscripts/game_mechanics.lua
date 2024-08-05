@@ -30730,7 +30730,7 @@ function CheckForFlurryProc(event)
         return
     end
 
-    -- IMPORTANT: If ever stance another stance ability added to flurry look Wounding_Strike example how to setup it (should be castable while hidden, only lua supports that)
+    -- IMPORTANT: If ever another stance ability added to flurry look Wounding_Strike example how to setup it (should be castable while hidden, only lua supports that)
     -- dmg proc
     ApplyBuff({ caster = caster, target = caster, dur = 2, buff = "modifier_talent_flurry", ability = caster.combat_system_ability})
 
