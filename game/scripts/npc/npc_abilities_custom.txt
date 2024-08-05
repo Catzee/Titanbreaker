@@ -55454,7 +55454,8 @@
 	}
 	"Wounding_Strike"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/brutal_brawler/wounding_strike"
 		"AbilityTextureName"	"fix/axe_strike2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -55470,97 +55471,7 @@
 		"AbilityCastRange"	"100"
 		"AbilityCastRangeBuffer"	"250"
 		"AbilityDuration"	"0.0 0.0 0.0 0.0"
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Axe.Attack"
-				"Target"	"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"DamageUnit"
-				"damage"	"%AbilityDamage"
-				"spelldamagefactor"	"0.0"
-				"attributefactor"	"%dmgfromstat"
-				"execute"	"%execute"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"ApplyBuff"
-				"buff"	"modifier_healdebuff"
-				"dur"	"%buffduration"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"ApplyBuff"
-				"buff"	"modifier_arms_bleed"
-				"dur"	"%bleeddur"
-				"settickrate"	"%tick"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"ragesystem.lua"
-				"Function"	"EnergyCost"
-				"cost"	"%AbilityManaCost"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf"
-				"EffectAttachType"	"follow_hitloc"
-				"Target"	"TARGET"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_hitloc"
-					"TARGET"	"attach_hitloc"
-				}
-			}
-		}
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf"
-			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf"
-			"particle"	"particles/status_fx/status_effect_rupture.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_healdebuff"
-			{
-				"Passive"	"0"
-				"TextureName"	"fix/axe_strike2"
-				"IsDebuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"EffectName"	"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf"
-				"EffectAttachType"	"attach_hitloc"
-				"StatusEffectName"	"particles/status_fx/status_effect_rupture.vpcf"
-				"StatusEffectPriority"	"20"
-			}
-			"modifier_arms_bleed"
-			{
-				"Passive"	"0"
-				"TextureName"	"bloodseeker_blood_bath"
-				"IsDebuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"ThinkInterval"	"%tick"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"DamageUnit"
-						"damage"	"%AbilityDamage"
-						"spelldamagefactor"	"0.0"
-						"attributefactor"	"%bleeddmg"
-						"isdot"	"1"
-					}
-				}
-			}
-		}
+		
 		"AbilityValues"
 		{
 			"buffduration"	"10"
