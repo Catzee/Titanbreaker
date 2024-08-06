@@ -390,7 +390,7 @@
 		//"talent163"								"Basic Training: Primary Attribute per Level"
 
 		//"talent163"								"Overthrow: Your Abilities gain Bonus Damage equal to 10% of their Strength scaling."
-		//"talent163"								"Corrupted Knight: Your Abilities gain Bonus Damage equal to 10% of their Strength scaling."
+		//"talent163"								"Corrupted Knight: Gain +1 to all Death Knight Paths you have learned, affecting up to 3 / 6 / 9 Paths, starting from top left."
 
 		//holy cursader
 		//"talent164"								"Holy Hunter: Holy Damage and Healing."
