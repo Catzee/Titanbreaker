@@ -17398,7 +17398,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"invoker_sun_strike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
