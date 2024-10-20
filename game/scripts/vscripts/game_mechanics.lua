@@ -12349,7 +12349,7 @@ function COverthrowGameMode:GetAbilityIndexCustom(ability)
     return ability:GetAbilityIndex()
 end
 
-function GetAbilityBehaviorSafe(ability)
+function COverthrowGameMode:GetAbilityBehaviorSafe(ability)
     -- No idea if this true or no, but very valve like (this bug happened when valve decide to destroy custom games and destroyed they own event custom game with countless hot fixes this night after that...)
     -- Valve did add GetBehaviorInt() but that overflows with some behavior flags like DOTA_ABILITY_BEHAVIOR_OVERSHOOT
     local behavior = ability:GetBehavior()
@@ -12370,7 +12370,7 @@ function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
 
         if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
             -- Probably enough to filter out valve weird internal abilities (they all have index = 0...)
-            if(bit.band(GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
+            if(bit.band(GCOverthrowGameMode:GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
                 local abilityName = ability:GetAbilityName()
                 -- Dazzle abilities
                 if(abilityName == "empty_spell1" or abilityName == "empty_spell2") then
