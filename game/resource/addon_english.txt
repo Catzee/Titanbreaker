@@ -2944,7 +2944,7 @@
 		"DOTA_Tooltip_Ability_item_elements2_bonus_stat7"	"Holy: +1 to all Stats and +3% healing caused, max Stacks"
 
 		"DOTA_Tooltip_Ability_holy1"  "Holy Light"  
-		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Cast Range by 300. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy1_Description"  "Heal the target. 2 secs casttime.\nCan be set to Auto Cast for continuous casting of Holy Light against last Holy Light target. If Divine Nova learned and set to Auto Cast will consider it.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Cast Range by 300. \nRank 3: Grant targets 25 Spell Resistance and 10%% increased Damage for 10 secs. \nRank 4: Passively gain a +10%% max Health Aura.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy1_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy1_magicres"    "Spell Resistance on cast:"
@@ -2959,7 +2959,7 @@
 		"DOTA_Tooltip_Ability_holy2_duration"    "Duration:"
 
 		"DOTA_Tooltip_Ability_holy3"  "Divine Nova"  
-		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed gain 15 Armor for 8 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed deal 50%% increased Holy Damage for 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_holy3_Description"  "Heal all nearby allied heroes and deal Holy Damage with reduced effectiveness to enemy heroes.\nCan be set to Auto Cast for continuous casting of Divine Nova when ready.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing and Damage and all allies healed gain 15 Armor for 8 secs. \nRank 3: Reduced cooldown and when cast, you take 60%% reduced Damage for 2 secs. \nRank 4: Increased Damage ratio, 200 yard increased range and all allies healed deal 50%% increased Holy Damage for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_holy3_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_holy3_spelldmg"    "%Healing Spellpower Factor:"
 		"DOTA_Tooltip_Ability_holy3_dmgfactor"    "%Damage Effectiveness:"
