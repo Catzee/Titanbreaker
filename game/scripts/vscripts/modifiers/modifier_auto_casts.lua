@@ -5,17 +5,18 @@ modifier_auto_casts = class({
     IsPurgable = function()
         return false
     end,
+    IsPurgeException = function()
+        return false
+    end,
     IsDebuff = function()
         return false
     end,
     DeclareFunctions = function()
         return 
         {
-            MODIFIER_EVENT_ON_ABILITY_FULLY_CAST 
+            MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+            MODIFIER_EVENT_ON_ORDER
         }
-    end,
-    GetModifierCastRangeBonusStacking = function(self)
-        return self:GetStackCount()
     end,
     GetAttributes = function()
         return MODIFIER_ATTRIBUTE_PERMANENT
@@ -31,44 +32,67 @@ function modifier_auto_casts:OnCreated()
     end
 
     self.parent = self:GetParent()
+    self.abilitiesWithAutoCasts = {}
+    self.abilitiesWithAutoCastsCount = 0
+end
+
+function modifier_auto_casts:OnOrder(kv)
+    if(kv.unit ~= self.parent) then
+        return
+    end
+
+    if(kv.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO and kv.ability ~= nil) then
+        -- Inverted because called before state set?
+        if(kv.ability:GetAutoCastState() == false) then
+            self.abilitiesWithAutoCasts[kv.ability] = true
+            self.abilitiesWithAutoCastsCount = self.abilitiesWithAutoCastsCount + 1
+        else
+            self.abilitiesWithAutoCasts[kv.ability] = nil
+            self.abilitiesWithAutoCastsCount = self.abilitiesWithAutoCastsCount - 1
+        end
+
+        if(self.abilitiesWithAutoCastsCount < 1) then
+            self:StartIntervalThink(-1)
+        else
+            self:StartIntervalThink(0.25)
+        end
+    end
+
+    if(self:IsOrderFromAutoCast()) then
+        return
+    end
+
+    self:SetIsIgnoreCastTimeAbilities(self:IsOrderPreventAutoCastOfCastTimeAbilities(kv.order_type))
+end
+
+function modifier_auto_casts:IsOrderPreventAutoCastOfCastTimeAbilities(orderType)
+    return orderType == DOTA_UNIT_ORDER_MOVE_TO_POSITION or orderType == DOTA_UNIT_ORDER_MOVE_TO_TARGET 
+        or orderType == DOTA_UNIT_ORDER_ATTACK_MOVE or orderType == DOTA_UNIT_ORDER_ATTACK_TARGET
+        or orderType == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH or orderType == DOTA_UNIT_ORDER_PING_ABILITY
+        or orderType == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION or orderType == DOTA_UNIT_ORDER_PATROL
+        or orderType == DOTA_UNIT_ORDER_MOVE_RELATIVE or orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN
+        or orderType == DOTA_UNIT_ORDER_TAUNT or orderType == DOTA_UNIT_ORDER_STOP
+        or orderType == DOTA_UNIT_ORDER_HOLD_POSITION
 end
 
 function modifier_auto_casts:OnAbilityFullyCast(kv)
-    local hero = kv.unit
-    local target = kv.target
+    if(kv.unit ~= self.parent) then
+        return
+    end
 
-    -- If ability doesn't have autocast turned on don't try start auto casts queue
     if(kv.ability:GetAutoCastState() == false) then
         return
     end
 
-    -- Do nothing if there is auto cast queue already
-    if(hero._autoCastInternalTimer ~= nil) then
-        return
+    if(kv.target ~= nil) then
+        kv.ability._lastAutoCastTarget = kv.target
     end
+end
 
-    local tickRate = 0.05
-
-    if(target ~= nil) then
-        hero._lastAutoCastTarget = target
+function modifier_auto_casts:OnIntervalThink()
+    for ability, _ in pairs(self.abilitiesWithAutoCasts) do
+        self:CheckAbilityAutoCast(self.parent, ability, ability._lastAutoCastTarget)
     end
-    
-    hero._autoCastInternalTimer = Timers:CreateTimer(0, function(kv)
-        local status, errorMessage = pcall(function ()
-            for i=0, COverthrowGameMode.heroAbilityCount do
-                local ability = hero:GetAbilityByIndex(i)
-                if(ability and ability:GetAutoCastState() == true) then
-                    self:CheckAbilityAutoCast(hero, ability, hero._lastAutoCastTarget)
-                    return
-                end
-            end
-        end)
-        if(status ~= true) then
-            print("CheckAbilityAutoCast timer error: ", errorMessage)
-        end
-
-        return tickRate
-    end)
 end
 
 -- Target can be nil
@@ -109,25 +133,24 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
         return
     end
 
-    local isAutoCastWhileRunningAllowed = false
+    if(self:IsAbilityCanBeAutoCastedWhileRunning(ability) == false) then
+        if(caster:IsMoving()) then
+            return
+        end
 
-    if(modifier_auto_casts:IsAbilityCanBeAutoCastedWhileRunning(modifier_auto_casts:GetLastAutoCastedAbility(caster))) then
-        isAutoCastWhileRunningAllowed = true
-    end
-    
-    -- If caster moving most likely he is running from death unless it special autocast while running...
-    if(isAutoCastWhileRunningAllowed == false and caster:IsMoving()) then
-        return
+        if(self:IsIgnoreCastTimeAbilities()) then
+            return
+        end
     end
 
-    local abilityToAutoCast = modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
+    local abilityToAutoCast = self:GetNextAbilityForAutoCast(caster, ability, target)
 
     -- Nothing worth casting, too bad...
     if(abilityToAutoCast == nil) then
         return
     end
 
-    local autoCastOrder = modifier_auto_casts:GetAutoCastOrderForAbility(abilityToAutoCast)
+    local autoCastOrder = self:GetAutoCastOrderForAbility(abilityToAutoCast)
 
     -- Unsupported behavior or something wrong, too bad
     if(autoCastOrder == nil) then
@@ -135,6 +158,9 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
     end
 
     if(autoCastOrder == DOTA_UNIT_ORDER_CAST_NO_TARGET) then
+
+        self:SetIsOrderFromAutoCast(true)
+
         ExecuteOrderFromTable({
             UnitIndex = caster:entindex(),
             OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -142,11 +168,14 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
             Queue = false
         })
 
-        modifier_auto_casts:SetLastAutoCastedAbility(caster, abilityToAutoCast)
+        self:SetIsOrderFromAutoCast(false)
         return
     end
 
     if(autoCastOrder == DOTA_UNIT_ORDER_CAST_TARGET and target) then
+
+        self:SetIsOrderFromAutoCast(true)
+
         ExecuteOrderFromTable({
             UnitIndex = caster:entindex(),
             OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
@@ -155,7 +184,7 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
             TargetIndex = target:entindex()
         })
 
-        modifier_auto_casts:SetLastAutoCastedAbility(caster, abilityToAutoCast)
+        self:SetIsOrderFromAutoCast(false)
         return
     end
 
@@ -171,6 +200,8 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
             end
         end
 
+        self:SetIsOrderFromAutoCast(true)
+
         ExecuteOrderFromTable({
             UnitIndex = caster:entindex(),
             OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
@@ -179,7 +210,7 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
             Position = position
         })
 
-        modifier_auto_casts:SetLastAutoCastedAbility(caster, abilityToAutoCast)
+        self:SetIsOrderFromAutoCast(false)
         return
     end
 end
@@ -201,10 +232,10 @@ function modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
             self:DetermineAutoCastOrderForAbility(caster._autoCastOracleDivineNova)
         end
 
-        local isOracleDivineNovaReadyForAutocast = modifier_auto_casts:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
+        local isOracleDivineNovaReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
 
         if(ability == caster._autoCastOracleHolyLight or ability == caster._autoCastOracleDivineNova) then
-            local isOracleHolyLightReadyForAutocast = modifier_auto_casts:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
+            local isOracleHolyLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
             if(isOracleDivineNovaReadyForAutocast) then
                 return caster._autoCastOracleDivineNova
             end 
@@ -218,6 +249,18 @@ function modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
     end
 
     return nil
+end
+
+function modifier_auto_casts:IsOrderFromAutoCast()
+    if(self._isOrderFromAutoCast ~= nil) then
+        return self._isOrderFromAutoCast
+    end
+
+    return false
+end
+
+function modifier_auto_casts:SetIsOrderFromAutoCast(state)
+    self._isOrderFromAutoCast = state
 end
 
 function modifier_auto_casts:GetAutoCastOrderForAbility(ability)
@@ -242,22 +285,6 @@ function modifier_auto_casts:IsAbilityCanBeAutoCastedWhileRunning(ability)
     end
 
     return false
-end
-
-function modifier_auto_casts:SetLastAutoCastedAbility(hero, ability)
-    if(hero == nil) then
-        return
-    end
-
-    hero._lastAutoCastedAbility = ability
-end
-
-function modifier_auto_casts:GetLastAutoCastedAbility(hero)
-    if(hero == nil) then
-        return nil
-    end
-
-    return hero._lastAutoCastedAbility
 end
 
 function modifier_auto_casts:DetermineAutoCastOrderForAbility(ability)
@@ -304,41 +331,14 @@ function modifier_auto_casts:IsAbilityReadyForAutoCast(ability)
     return ability:GetAutoCastState() and ability:GetLevel() > 0 and ability:IsFullyCastable()
 end
 
--- Ability can be nil
-function modifier_auto_casts:TryCancelAutoCasts(caster, orderType, ability)
-    if(modifier_auto_casts:IsOrderCanBeIgnoredForAutoCastsWhileRunning(orderType)) then
-        if(modifier_auto_casts:IsAbilityCanBeAutoCastedWhileRunning(modifier_auto_casts:GetLastAutoCastedAbility(caster))) then
-            return
-        end
+function modifier_auto_casts:IsIgnoreCastTimeAbilities()
+    if(self._isIgnoreCastTimeAbilities ~= nil) then
+        return self._isIgnoreCastTimeAbilities
     end
 
-    -- Non ability order, cancel auto casting
-    if(ability == nil) then
-        modifier_auto_casts:CancelAutoCasts(caster)
-        return
-    end
-
-    -- Cancels auto casts if this is order for non auto cast (most likely player issues order)
-    -- No idea why GetAutoCastState can be nil, probably some weird things
-    if(ability and ability.GetAutoCastState and ability:GetAutoCastState() == false) then
-        COverthrowGameMode:TryCancelAutoCasts(hero, ability)
-        return
-    end
-
+    return false
 end
 
-function modifier_auto_casts:IsOrderCanBeIgnoredForAutoCastsWhileRunning(orderType)
-    return orderType == DOTA_UNIT_ORDER_MOVE_TO_POSITION or orderType == DOTA_UNIT_ORDER_MOVE_TO_TARGET 
-        or orderType == DOTA_UNIT_ORDER_ATTACK_MOVE or orderType == DOTA_UNIT_ORDER_ATTACK_TARGET
-        or orderType == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH or orderType == DOTA_UNIT_ORDER_PING_ABILITY
-        or orderType == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION or orderType == DOTA_UNIT_ORDER_PATROL
-        or orderType == DOTA_UNIT_ORDER_MOVE_RELATIVE or orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN
-        or orderType == DOTA_UNIT_ORDER_TAUNT
-end
-
-function modifier_auto_casts:CancelAutoCasts(caster)
-    if(caster._autoCastInternalTimer ~= nil) then
-        Timers:RemoveTimer(caster._autoCastInternalTimer)
-        caster._autoCastInternalTimer = nil
-    end
+function modifier_auto_casts:SetIsIgnoreCastTimeAbilities(state)
+    self._isIgnoreCastTimeAbilities = state
 end

@@ -10305,27 +10305,6 @@ function COverthrowGameMode:ExecuteOrderFilter( filterTable )
 
 	local orderType = filterTable["order_type"]
 
-  -- Auto casting helper
-  if(orderType ~= DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO and orderType ~= DOTA_UNIT_ORDER_CAST_TOGGLE and orderType ~= DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
-    local hero = filterTable.units and filterTable.units["0"] or nil
-    if(hero ~= nil and hero > -1) then
-      hero = EntIndexToHScript(hero)
-      if(hero and hero:IsRealHero()) then
-        local ability = nil
-        if(filterTable["entindex_ability"] ~= nil and filterTable["entindex_ability"] > -1) then
-          ability = EntIndexToHScript(filterTable["entindex_ability"])
-        end
-        -- This will prevent hero ignore any orders if COverthrowGameMode:TryCancelAutoCasts throws any error
-        local status, errorMessage = pcall(function ()
-          COverthrowGameMode:TryCancelAutoCasts(hero, orderType, ability)
-        end)
-        if(status ~= true) then
-          print("Auto casting helper error: ", errorMessage)
-        end
-      end
-    end
-  end
-
   -- Fix for bug: can't drop items from inventory to village while dead/fake dead?
   if(orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN) then
     local itemInInventory = filterTable["entindex_ability"]
@@ -20771,14 +20750,4 @@ function COverthrowGameMode:GetLootDropChanceIncreasePerQuest()
     end
 
     return 15
-end
-
-function COverthrowGameMode:TryCancelAutoCasts(hero, orderType, ability)
-  hero._autoCastsModifier = hero._autoCastsModifier or hero:FindModifierByName("modifier_auto_casts")
-
-  if(hero._autoCastsModifier == nil) then
-    return
-  end
-
-  hero._autoCastsModifier:TryCancelAutoCasts(hero, orderType, ability)
 end
