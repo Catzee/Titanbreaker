@@ -42,7 +42,7 @@ function modifier_auto_casts:OnOrder(kv)
     end
 
     if(kv.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO and kv.ability ~= nil) then
-        -- Inverted because called before state set?
+        -- Inverted because called before state set
         if(kv.ability:GetAutoCastState() == false) then
             self.abilitiesWithAutoCasts[kv.ability] = true
             self.abilitiesWithAutoCastsCount = self.abilitiesWithAutoCastsCount + 1
@@ -54,11 +54,28 @@ function modifier_auto_casts:OnOrder(kv)
         if(self.abilitiesWithAutoCastsCount < 1) then
             self:StartIntervalThink(-1)
         else
-            self:StartIntervalThink(0.25)
+            self:StartIntervalThink(0.05)
         end
     end
 
     if(self:IsOrderFromAutoCast()) then
+        return
+    end
+
+    -- This orders breaks queue...
+    if(kv.order_type == DOTA_UNIT_ORDER_CONTINUE) then
+        return
+    end
+
+    if(kv.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE) then
+        return
+    end
+
+    if(kv.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO) then
+        return
+    end
+
+    if(kv.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_ALT) then
         return
     end
 
@@ -133,6 +150,7 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
         return
     end
 
+    -- Abilities without cast time and instant cast should be castable while running (oracle E, np Q, etc)
     if(self:IsAbilityCanBeAutoCastedWhileRunning(ability) == false) then
         if(caster:IsMoving()) then
             return
