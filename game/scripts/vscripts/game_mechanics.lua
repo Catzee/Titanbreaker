@@ -831,6 +831,7 @@ function DamageUnit( event )
     	caster:SetModifierStackCount("modifier_souls", event.ability, caster.souls)
     end]]
     -- consume
+    -- TODO: Replace that with ConsumeSouls(event) to prevent copy paste?
     local nodamageatall = 1
     if event.consumesouls ~= nil then
     	if caster.souls == nil then

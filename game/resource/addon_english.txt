@@ -1837,7 +1837,7 @@
 
 		//2.0.0
 		"DOTA_Tooltip_Ability_destro1"  "Soulflame"  
-		"DOTA_Tooltip_Ability_destro1_Description"  "Deal Fire Damage to the target. If the target is afflicted by Ignite, the Damage is increased by 50%%. 2 secs casttime. \n\n<font color=\"#00EE00\">Generates Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Increased cast range, reduced manacost and benefits 25%% more from Critical Strike chances. \nRank 4: Generated Souls and max Souls increased by 1.\n\n</font>"
+		"DOTA_Tooltip_Ability_destro1_Description"  "Deal Fire Damage to the target. If the target is afflicted by Ignite, the Damage is increased by 50%%. 2 secs casttime.\nCan be set to Auto Cast for continuous casting of Soulflame against last Soulflame target. If Ignite and/or Chaos Blast learned and set to Auto Cast will consider them.\n\n<font color=\"#00EE00\">Generates Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Increased cast range, reduced manacost and benefits 25%% more from Critical Strike chances. \nRank 4: Generated Souls and max Souls increased by 1.\n\n</font>"
 		"DOTA_Tooltip_Ability_destro1_dmgfromstat"    "%Intellect to Damage:"
 		"DOTA_Tooltip_Ability_destro1_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_destro1_bonus"    "%Ignite Bonus Damage:"
@@ -1846,7 +1846,7 @@
 		"DOTA_Tooltip_Ability_destro1_range"    "Cast range:"
 		
 		"DOTA_Tooltip_Ability_destro3"  "Chaos Blast"  
-		"DOTA_Tooltip_Ability_destro3_Description"  "Deal high Shadow Chaos Damage to the target. Benefits more from Critical Strike chances while the target is burning from Ignite. 2.5 secs casttime. \n\n<font color=\"#00EE00\">Requires and consumes 2 Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and Critical Strike Damage. \nRank 3: Reduced casttime and passively gain +1%% Chaos Damage for every 10 Points of Strength. \nRank 4: When cast, reduce the cooldown of all other Abilities by 2 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_destro3_Description"  "Deal high Shadow Chaos Damage to the target. Benefits more from Critical Strike chances while the target is burning from Ignite. 2.5 secs casttime.\nCan be set to Auto Cast for continuous casting of Chaos Blast against last Chaos Blast target when you have enough Souls. If Ignite and/or Soulflame learned and set to Auto Cast will consider them.\n\n<font color=\"#00EE00\">Requires and consumes 2 Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and Critical Strike Damage. \nRank 3: Reduced casttime and passively gain +1%% Chaos Damage for every 10 Points of Strength. \nRank 4: When cast, reduce the cooldown of all other Abilities by 2 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_destro3_dmgfromstat"    "%Intellect to Damage:"
 		"DOTA_Tooltip_Ability_destro3_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_destro3_critdmg"    "Critical Strike Damage Factor: "
@@ -2415,7 +2415,7 @@
 		"DOTA_Tooltip_modifier_item_aura_sp_immo_Description"	"Spellpower increased."
 
 		"DOTA_Tooltip_Ability_destro2"  "Ignite"  
-		"DOTA_Tooltip_Ability_destro2_Description"  "Deal Fire Damage instantly and over time, stacking multiple times.<font color=\"#FFBB00\">\n\nRank 2: Increased initial Damage and also generate 1 Soul when cast. \nRank 3: Faster DoT ticks and passively gain Shadow Ignition, causing all Fire Damage to have a 25%% chance to deal 500%% of Intellect and Spellpower as Shadow Damage. \nRank 4: Increased cast range and every 2nd cast causes no cooldown and makes your next Soulflame instant\nRank 5: Eternal Flame - When Ignite ends, there is a 40%% chance to trigger another Ignite on the target.\n\n</font>"
+		"DOTA_Tooltip_Ability_destro2_Description"  "Deal Fire Damage instantly and over time, stacking multiple times.\nCan be set to Auto Cast for continuous casting of Ignite against last Ignite target.<font color=\"#FFBB00\">\n\nRank 2: Increased initial Damage and also generate 1 Soul when cast. \nRank 3: Faster DoT ticks and passively gain Shadow Ignition, causing all Fire Damage to have a 25%% chance to deal 500%% of Intellect and Spellpower as Shadow Damage. \nRank 4: Increased cast range and every 2nd cast causes no cooldown and makes your next Soulflame instant\nRank 5: Eternal Flame - When Ignite ends, there is a 40%% chance to trigger another Ignite on the target.\n\n</font>"
 		"DOTA_Tooltip_Ability_destro2_dmgfromstat"    "%Intellect to Damage per DoT Tick:"
 		"DOTA_Tooltip_Ability_destro2_spelldmg"    "%Spellpower Factor per DoT Tick:"
 		"DOTA_Tooltip_Ability_destro2_dmgfromstat1"    "%Initial Intellect to Damage:"
