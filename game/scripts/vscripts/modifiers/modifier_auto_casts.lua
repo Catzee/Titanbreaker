@@ -1,3 +1,9 @@
+--[[
+    HOW TO ADD SUPPORT FOR NEW HERO:
+    1. Define and implement function that will return next ability for autocasts based on caster, ability, target (if exists)
+    2. Setup table entry in OnCreated for that hero and function from 1)
+--]]
+
 modifier_auto_casts = class({
     IsHidden = function()
         return false
@@ -30,10 +36,14 @@ function modifier_auto_casts:OnCreated()
     if(not IsServer()) then
         return
     end
-
     self.parent = self:GetParent()
+    self.parentName = self.parent:GetUnitName()
     self.abilitiesWithAutoCasts = {}
     self.abilitiesWithAutoCastsCount = 0
+    -- Add entry here [heroName, functionName] for heroName autocasts support + implementation of functionName somewhere here in modifier_auto_casts scope
+    self.autoCastsImplementations = {
+        ["npc_dota_hero_oracle"] = "GetNextAbilityForOracleAutoCast"
+    }
 end
 
 function modifier_auto_casts:OnOrder(kv)
@@ -233,37 +243,46 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
     end
 end
 
+-- Oracle: Q, E spam
+function modifier_auto_casts:GetNextAbilityForOracleAutoCast(caster, ability, target)
+    if(caster._autoCastOracleHolyLight == nil) then
+        caster._autoCastOracleHolyLight = caster:FindAbilityByName("holy1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleHolyLight)
+    end
+    if(caster._autoCastOracleDivineNova == nil) then
+        caster._autoCastOracleDivineNova = caster:FindAbilityByName("holy3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleDivineNova)
+    end
+
+    local isOracleDivineNovaReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
+
+    if(ability == caster._autoCastOracleHolyLight or ability == caster._autoCastOracleDivineNova) then
+        local isOracleHolyLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
+        if(isOracleDivineNovaReadyForAutocast) then
+            return caster._autoCastOracleDivineNova
+        end 
+        if(isOracleHolyLightReadyForAutocast) then
+            return caster._autoCastOracleHolyLight
+        end
+    end
+
+    return nil
+end
+
 -- target can be nil
 function modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
     -- Caster should be fine and ready to cast any ability now so no need to check for that (at least only manacosts and cooldowns for desired abilities needs checking)
-    local casterName = caster:GetUnitName()
+    if(self.autoCastsImplementations[self.parentName] ~= nil) then
+        local status, result = pcall(function ()
+            return self[self.autoCastsImplementations[self.parentName]](self, caster, ability, target)
+        end)
 
-    -- Oracle: Q, E spam
-    if(casterName == "npc_dota_hero_oracle") then
-        if(caster._autoCastOracleHolyLight == nil) then
-            caster._autoCastOracleHolyLight = caster:FindAbilityByName("holy1")
-            self:DetermineAutoCastOrderForAbility(caster._autoCastOracleHolyLight)
-        end
-        -- Should be Q E spam, but now it have issues (atm this thing can't support auto casting while walking)
-        if(caster._autoCastOracleDivineNova == nil) then
-            caster._autoCastOracleDivineNova = caster:FindAbilityByName("holy3")
-            self:DetermineAutoCastOrderForAbility(caster._autoCastOracleDivineNova)
+        if(status ~= true) then
+            print("modifier_auto_casts:GetNextAbilityForAutoCast error: ", result)
+            return nil
         end
 
-        local isOracleDivineNovaReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
-
-        if(ability == caster._autoCastOracleHolyLight or ability == caster._autoCastOracleDivineNova) then
-            local isOracleHolyLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
-            if(isOracleDivineNovaReadyForAutocast) then
-                return caster._autoCastOracleDivineNova
-            end 
-            if(isOracleHolyLightReadyForAutocast) then
-                return caster._autoCastOracleHolyLight
-            end
-        end
-
-        -- Returns nil to prevent rest calculations of rest conditions that will be always false
-        return nil
+        return result
     end
 
     return nil
