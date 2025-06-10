@@ -4571,7 +4571,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if event.slashAndBurn then
-        multiplicative_bonus = multiplicative_bonus * 1.25
+        multiplicative_bonus = multiplicative_bonus * 1.5
     end
     if event.fromcompanion and caster:HasModifier("modifier_bloodbrother") and GetCompanionCount(caster) == 1 then
         multiplicative_bonus = multiplicative_bonus * 3.5
@@ -4679,7 +4679,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
 
         if caster.talents[135] > 0 and ability and ability:GetLevel() == 1 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[135])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.45 * caster.talents[135])
         end
     end
     if process_procs and caster:HasModifier("modifier_summoner") then
@@ -20401,7 +20401,7 @@ function GetArmorStaticBonus( hero, strength, agility, mana, magicres )
         static_bonus = static_bonus + CountAbilitiesWithLevel(hero, 2) * 3 * hero.talents[139]
     end
     if hero.talents[116] and hero.talents[116] > 0 then
-        local value = hero.talents[116] * 0.00333 * GetAgilityCustom(hero)
+        local value = (hero.talents[116] * 0.0025 + 0.0025) * GetAgilityCustom(hero)
         if value > 30 then
             value = 30
         end
@@ -20759,7 +20759,7 @@ function GetAutoAttackDamagePercentBonus(hero)
         value = value * (1 + 0.02 * buffstacks)
     end
     if hero.talents[135] > 0 then
-        value = value * (1 + 0.25 * hero.talents[135])
+        value = value * (1 + 0.45 * hero.talents[135])
     end
     return value
 end
@@ -25113,6 +25113,9 @@ function GlobalOnDealDamage( event )
             if caster:HasModifier("modifier_pathbuff_068") then
                 chance = chance + 3
             end
+            if caster:HasModifier("modifier_pathbuff_067") then
+                chance = chance / 2
+            end
             if math.random(1,100) <= chance then
                 SummonBoneWarrior(caster, target)
             end
@@ -25125,6 +25128,9 @@ end
 
 function SummonBoneWarrior( caster, target )
     local maxWarriors = 2 + caster.talents[102]
+    if caster:HasModifier("modifier_pathbuff_067") then
+        maxWarriors = maxWarriors * 2
+    end
     local dur = 10
     if not caster.bone_warrior_count then
         caster.bone_warrior_count = 0
@@ -29816,7 +29822,7 @@ function TyphoonProc( caster, target, alwaysProc )
         local particle = ParticleManager:CreateParticle("particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
-        DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 250 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
+        DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 500 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
         RestoreResource({caster = caster, amount = 5 * caster.talents[136]})
         EmitSoundOn("Ability.GushCast", target)
         OnNaturalDisasterProcced( caster, target, 7 )

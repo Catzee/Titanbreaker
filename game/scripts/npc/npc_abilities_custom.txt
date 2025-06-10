@@ -58280,8 +58280,8 @@
 						"ScriptFile"	"game_mechanics.lua"
 						"Function"	"DamageUnit"
 						"damage"	"0.0"
-						"spelldamagefactor"	"100"
-						"includeauto"	"100"
+						"spelldamagefactor"	"200"
+						"includeauto"	"200"
 						"attributefactor"	"0"
 						"talentscale"	"170"
 						"isdot"	"1"
@@ -59209,7 +59209,7 @@
 				"IsStunDebuff"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"50"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"100"
 				}
 			}
 			"modifier_eyeaegis"

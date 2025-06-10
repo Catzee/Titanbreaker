@@ -216,7 +216,7 @@
 		"talent113"								"Elder Wisdom: Gain Mana Regeneration equal to 0.2% / 0.4% / 0.6% of your Max Mana and for every second of combined remaining cooldown time of all of your Abilities, gain + 0.2% / 0.4% / 0.6% Damage. Abilities hidden by Shapeshifting or Stance changes do not count."
 		"talent114"								"Aspect of the Viper: Gain 1 / 2 / 3 Spellpower for every 10 Points of Intellect and debuffs that deal Damage over Time now tick 10% / 20% / 30% faster for every 100% Spellhaste you have, capped at 50%."
 		"talent115"								"Ancient of War: + 1500 / 3000 / 4500 Health and when you deal AOE Damage with an Ability, add 1% / 2% / 3% of your current Health to its Base Damage, at the cost of 25 / 50 / 75 reduced Attack Speed."
-		"talent116"								"Ram Guardian: Gain 0.33 / 0.77 / 1 Spell Resistance and Armor for every 100 Points of Agility, capped at 30, and 1% / 2% / 3% Critical Strike Damage per 100 Agility."
+		"talent116"								"Ram Guardian: Gain 0.5 / 0.75 / 1 Spell Resistance and Armor for every 100 Points of Agility, capped at 30, and 1% / 2% / 3% Critical Strike Damage per 100 Agility."
 		"talent117"								"Bull Rush: Whenever you cast an Ability, there is a 30% / 40% / 50% chance to Auto Attack the closest enemy within 900 yards (300 yards for melee Heroes), with an inner cooldown of 0.3 secs."
 		//"talent117"								"Bull Rush: Increases the effectiveness of all Critical Strike chances by 5% / 10% / 15% and after landing a Damaging Critical Strike gain 10% increased Movement Speed for 1 / 2 / 3 secs."
 		"talent118"								"Molten Giant: Gain Attack Damage equal to 1% / 1.5% / 2% of your max Health and gain a 10% chance to get Lava Flow when Auto Attacking, restoring 3% / 6% / 9% of max Resource, with an inner cooldown of 2 secs. After dealing Fire Damage, the Attack Damage Bonus is doubled for 10 secs, with an inner cooldown of three times the duration." //+ 300 / 600 / 900 Attack Damage at the cost of 25 / 50 / 75 reduced Attack Speed."
@@ -228,7 +228,7 @@
 
 		"talent121"								"Giant Growth: Whenever a Boss is killed, your Primary Attribute is increased by 0.5% / 0.75% / 1% for the rest of the game, stacking multiple times."
 		"talent122"								"Critical Mass: When you cause 3 Damaging Critical Strikes during one second, increase all Damage by 25% / 50% / 75% for 5 secs. Can not proc while active."
-		"talent123"								"Growing Pains: Whenever you land an Auto Attack Critical Strike, gain 50 / 100 / 150 Auto Attack Damage for 5 secs, stacking 100 times and whenever you die, gain 3% / 5% / 7% Spell Resistance and 3% / 5% / 7% max Health, capped at 60%."
+		"talent123"								"Growing Pains: Whenever you land an Auto Attack Critical Strike, gain 100 / 200 / 300 Auto Attack Damage for 5 secs, stacking 100 times and whenever you die, gain 3% / 5% / 7% Spell Resistance and 3% / 5% / 7% max Health, capped at 60%."
 
 		"talent124"								"Lunar Eclipse: Gain 3 Lunar Eclipse stacks every 5 secs that get consumed when dealing Damage / Healing with an Ability, stacking up to 15 times. While you have Lunar Eclipse stacks, Ability Critical Strike Damage and Critical Healing is increased by 35% / 70% / 105%."
 		"talent125"								"Butterfly Effect: When you deal Damage with your first Ability, your next Damage instance with your second Ability deals Bonus Damage. When this Bonus Damage occurs, your next Damage instance with your third Ability deals Bonus Damage. This repeats until you reach your 6th Ability. Whenever you deal Damage with your first Ability, everything is reset. The initial Damage Bonus is 10% / 20% / 30% and it doubles on each jump. Capped at level 3."
@@ -244,9 +244,9 @@
 
 		"talent133"								"Mimesis: Whenever you silence an enemy, strike them for 500% / 1000% / 1500% of your Attack Damage plus Spellpower as Shadow Chaos Damage, stun them for 1 / 2 / 3 secs and Heal yourself for 5% / 10% / 15% of max Health, with an inner cooldown of 5 secs."
 		"talent134"								"Nemesis: Every 4th / 3rd / 2nd Finishing Move against the same target does not consume Combo Points. Finishing Moves are Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash. Capped at level 3." //All Finishing Moves gain Spell Fury, causing each consecutive Damage instance dealt against the same target to deal 1% / 2% / 3% increased Damage, up to 30% / 60% / 90%.\nFinishing Moves are: Fatal Throw, Resolve, Dire Cut, Venom Strike, Elemental Overload, Wild Fury, Blood Feast, Chaos Blast, Demon Bolt, Hellfire and Meteor Crash." // "Demonhunter: Ability Damage against enemies above 75% of max Health is increased by 15% / 30% / 45%. When dealing Shadow or Chaos Damage, it affects targets below 75% of max Health instead."
-		"talent135"								"Genesis: Auto Attacks and Abilities that are Level 1 deal 25% / 50% / 75% increased Damage.\nAt the beginning of the game and whenever you are revived, gain 25% Damage and Damage Reduction for 180 / 240 / 300 secs."
+		"talent135"								"Genesis: Auto Attacks and Abilities that are Level 1 deal 45% / 90% / 135% increased Damage.\nAt the beginning of the game and whenever you are revived, gain 25% Damage and Damage Reduction for 180 / 240 / 300 secs."
 
-		"talent136"								"Typhoon Thunder: Gain a Typhoon charge every 5 secs, stacking up to 10 times. Whenever you're in combat and there's an enemy within 900 yards, strike it for 250% / 500% / 750% of all Attributes as Nature Damage and restore 5% / 10% / 15% of max Resource."
+		"talent136"								"Typhoon Thunder: Gain a Typhoon charge every 5 secs, stacking up to 10 times. Whenever you're in combat and there's an enemy within 900 yards, strike it for 500% / 1000% / 1500% of all Attributes as Nature Damage and restore 5% / 10% / 15% of max Resource."
 		"talent137"								"Hysteria: Auto Attack the closest enemy every 3 / 2 / 1 secs and increase the max cap of Abilities with charges by 1 / 2 / 3. Auto Attack Range is 300 yards for Melee and 900 yards for Ranged. Capped at level 3."
 		"talent138"								"Natural Disaster: Whenever you proc a Natural Disaster, there is a 5% / 10% / 15% chance to proc all other Natural Disasters you have learned, with an inner cooldown of 3 secs, ignoring all other inner cooldowns. Natural Disasters are Rain of Stars, Blizzard, Ice Storm, Storm Strike, Epidemic and Typhoon."
 
@@ -307,13 +307,13 @@
 		"talent167"								"Jungle Roamer: Increase all Damage against non-Bosses by 10% / 20% / 30%."
 		"talent168"								"Unpredictable: Ability Damage is increased by 15% / 30% / 45% when your previous Ability Damage was caused by a different Ability."
 		"talent169"								"Troll Regeneration: Gain Health Regeneration equal to 1% / 1.5% / 2% of max Health and Mana Regeneration equal to 0.5% / 0.75% / 1% of max Resource."
-		"talent170"								"Poison Darts: When you target an enemy with an Ability, gain a 5% / 10% / 15% chance to apply a DoT for 5 secs, dealing 100% / 200% / 300% of Attack Damage and Spellpower as Nature Damage. Multiple instances of this debuff can be active."
+		"talent170"								"Poison Darts: When you target an enemy with an Ability, gain a 5% / 10% / 15% chance to apply a DoT for 5 secs, dealing 200% / 400% / 600% of Attack Damage and Spellpower as Nature Damage. Multiple instances of this debuff can be active."
 		"talent171"								"Voodoo Magic: Gain Spellpower equal to 10% / 20% / 30% of missing Mana."
 		"talent172"								"Fresh Blood: Gain % Damage equal to 3% / 6% / 9% of your Health Regeneration. Capped at 150% Bonus Damage."
 		"talent173"								"Bloodthirst: Enemies dying nearby grant 5% / 10% / 15% increased Damage and Health Regeneration for 10 secs, stacking 5 times."
 		"talent174"								"Gargantuan: Increase the Damage of your 5th and 6th Ability by 30% / 60% / 90%."
 		"talent175"								"Tribal Power: Gain an Aura increasing all Attributes by 10 / 20 / 30. Stacks with other Heroes."
-		"talent176"								"Slash and Burn: When you deal Physical Ability Damage with no other Elemental Type involved, there is a 33% / 66% / 100% chance for the Damage being increased by 25% and being also of type Fire.\nThis applies before other Elemental Damage altering effects."
+		"talent176"								"Slash and Burn: When you deal Physical Ability Damage with no other Elemental Type involved, there is a 33% / 66% / 100% chance for the Damage being increased by 50% and being also of type Fire.\nThis applies before other Elemental Damage altering effects."
 		"talent177"								"Stampede: Summon 3 Jungle Beasts for 10 secs when casting an Ability with a base cooldown of 20 secs or higher, dealing 100% / 200% / 300% of Attack Damage and Spellpower as Nature Damage.\nFor every Jungle Beast active, gain 5% / 10% / 15% increased Summon Damage. Max 9 Jungle Beasts."
 		"talent178"								"Aspect of the Jungle: + 50 / 100 / 150 Agility, + 50 / 100 / 150 Attack Speed and + 5% / 10% / 15% Movement Speed."
 		"talent179"								"Duelist: Dealing Damage to a Boss increases your Damage by 1% / 1.5% / 2% for 10 secs, stacking up to 25% / 50% / 75%."
