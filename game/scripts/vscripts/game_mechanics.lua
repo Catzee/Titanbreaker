@@ -5026,7 +5026,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if was_consecutive_crit and (caster:HasModifier("modifier_critmaster") or caster:HasModifier("modifier_critmaster2")) then
         local bonusfactor = 1.5
         if caster:HasModifier("modifier_critmaster2") then
-            bonusfactor = 2
+            bonusfactor = 1.75
         end
         multiplicative_bonus = multiplicative_bonus * bonusfactor
         local particle = ParticleManager:CreateParticle("particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
@@ -8486,6 +8486,12 @@ function ChannelManaFixStart( event )
             castpoint = castpoint - 0.25
         end
         castpoint = castpoint * (1 + slowbonus) / ( 1 + speedbonus)
+
+        -- cast point limit, similar to AS limit
+        if castpoint < 0.2 then
+            castpoint = 0.2
+        end
+
         event.casttime = castpoint
         ability:SetOverrideCastPoint(castpoint)
 	end

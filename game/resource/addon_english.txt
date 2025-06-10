@@ -9771,7 +9771,7 @@
 		"DOTA_Tooltip_Ability_item_crowndefender2_bonus_stat3"	"Block: +"
 
 		"DOTA_Tooltip_Ability_item_critmaster2"  "<font color=\"#7733ff\">[Mythical] Godslayer"  
-		"DOTA_Tooltip_Ability_item_critmaster2_Description"  "When you land a Critical Strike with a Damaging Ability and the previous Ability Damage instance was a Critical Strike too, increase the total Damage by 100%%."
+		"DOTA_Tooltip_Ability_item_critmaster2_Description"  "When you land a Critical Strike with a Damaging Ability and the previous Ability Damage instance was a Critical Strike too, increase the total Damage by 75%%."
 		"DOTA_Tooltip_Ability_item_critmaster2_bonus_stat1"	"Primary Attribute: +"
 
 		"DOTA_Tooltip_Ability_item_critmaster"  "<font color=\"#00ffff\">[Ancient] Killer Saw"  
