@@ -54711,7 +54711,7 @@
 		}
 		"AbilityValues"
 		{
-			"dmgfromstat"	"125 150 150 150"
+			"dmgfromstat"	"200 250 250 250"
 			"asbonus"	"0 0 20 20"
 			"asdur"	"0 0 10 10"
 			"cd"	"0 0 0 1"
@@ -89972,6 +89972,11 @@
 					"RemoveModifier"
 					{
 						"ModifierName"	"modifier_crit_ambush"
+						"Target"	"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
 						"Target"	"CASTER"
 					}
 				}
