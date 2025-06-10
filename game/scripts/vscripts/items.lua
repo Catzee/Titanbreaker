@@ -776,7 +776,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 0.5
 	end
 	if attribute == " % Afterburn" then
-		return 1.5
+		return 2.5
 	end
 	if attribute == " % Frostbite" then
 		return 1

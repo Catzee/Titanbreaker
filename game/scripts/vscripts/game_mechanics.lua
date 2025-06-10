@@ -4622,7 +4622,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             multiplicative_bonus = multiplicative_bonus * (1 + 0.0015 * GetStrengthCustom(caster))
         end
         if target and not target.real_boss and caster.talents[167] then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[167])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[167])
         end
         if caster.lastAbilityCausingDamage ~= ability and caster.talents[168] > 0 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[168])
@@ -20197,7 +20197,7 @@ function GetStrengthPercentageBonus( hero, primary_stats_percent_bonus )
     if hero:HasModifier("modifier_crowndefender") or hero:HasModifier("modifier_crowndefender2") then
         strPerLevel = 0.075
     end
-    local percent_bonus = strPerLevel * hero.talents[1] + 0.04 * hero.talents[38] + 0.03 * hero.talents[76]
+    local percent_bonus = strPerLevel * hero.talents[1] + 0.04 * hero.talents[38] + 0.03 * hero.talents[76] + 0.07 * hero.talents[174]
     if hero:GetPrimaryAttribute() == 0 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus
     end
@@ -22264,7 +22264,7 @@ function PassiveStatCalculation(event)
                 local myevent = {caster = hero, target = hero, attributefactor = 50 * level, heal = 0, ability = ability}
                 Timers:CreateTimer(0.25, function()
                     HealUnit(myevent)
-                    AddAttackSpeed(hero, 250, 5)
+                    --AddAttackSpeed(hero, 250, 5)
                 end)
             end
         else
