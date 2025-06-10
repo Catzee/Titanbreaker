@@ -5263,6 +5263,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         caster.tiger_fury_next_abi_bonus = nil
     end
     if caster.talents then
+        if caster.talents[133] > 0 then
+            local spellPower = GetSpellpower(event)
+            if spellPower > 0 then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.0001 * spellPower * caster.talents[133])
+            end
+        end
+
         --if isaoe and caster.talents[104] and caster.talents[104] > 0 and caster:HasModifier("modifier_deathchill") then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[104])
         --end
@@ -16294,6 +16301,7 @@ function ApplyBuff(event)
     if GetLevelOfAbility(caster, "ench2") >= 4 and not isBuff then
         duration = duration + 1
     end
+    --[[
     if caster.talents and caster.talents[133] and caster.talents[133] > 0 and duration and buff == "modifier_silence" and not isBuff and not HasDamageReflect(target) and not caster.mimesisCD then
         caster.mimesisCD = true
         ApplyBuff({caster = caster, target = target, ability = ability, buff = "modifier_stunned", dur = caster.talents[133]})
@@ -16302,7 +16310,7 @@ function ApplyBuff(event)
         Timers:CreateTimer(5, function()
             caster.mimesisCD = false
         end)
-    end
+    end]]
 	--adjust time of buff
 	if duration and event.cursebladespecial and caster:HasModifier("modifier_item_curseblade") and not isBuff then
     	duration = duration * GetCCPower(event)
@@ -21950,7 +21958,7 @@ function PassiveStatCalculation(event)
         end
 
         --new_talent_value = 5
-        --if i == 95 then
+        --if i == 133 then
         --    new_talent_value = 10
         --end
         --if i == 132 then
