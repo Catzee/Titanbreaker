@@ -187,7 +187,19 @@
    overflow: squish scroll;
    //background-image: url("file://{images}/bg_hero.png");
    //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
-   //margin-left: 400px;
+   //margin-top: 50px;
+   //margin-bottom: 400px;
+}
+
+.WeaponInventoryDisplayInner
+{
+   //horizontal-align: center;
+   //vertical-align: top;
+   flow-children: down;
+   overflow: squish scroll;
+   //background-image: url("file://{images}/bg_hero.png");
+   //background-color: gradient( linear, 0% 0%, 50% 100%, from( #22222a ), to( #44444a ) );
+   //margin-top: 50px;
    //margin-bottom: 400px;
 }
 
@@ -1075,7 +1087,7 @@
 	horizontal-align: left;
 	margin-top: 50px;
 	margin-left: 150px;
-	margin-bottom: 350px;
+	//margin-bottom: 350px;
 	flow-children: right;
 	border-style: solid;
     border-width: 2px;
