@@ -5488,7 +5488,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         if caster.talents[60] and caster.talents[60] > 0 then
             local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
-            bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
+            bonusfromms = bonusfromms * 0.00033 * caster.talents[60]
             if bonusfromms > 0.45 then
                 bonusfromms = 0.45
             end
@@ -26974,7 +26974,7 @@ function GetTotalDamageTakenFactor(caster, attacker)
     --wolf rider
     if caster.talents and caster.talents[60] and caster.talents[60] > 0 then
       local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
-      bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
+      bonusfromms = bonusfromms * 0.00033 * caster.talents[60]
       local wolf_dmg_factor = (1 - bonusfromms)
       if wolf_dmg_factor < 0.55 then
         wolf_dmg_factor = 0.55
