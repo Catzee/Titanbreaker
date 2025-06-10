@@ -723,7 +723,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 1
 	end
 	if attribute == " % Eye of the Tiger" then
-		return 0.75
+		return 0.6
 	end
 	if attribute == " % Titan Sorcerer" then
 		return 0.5
@@ -782,7 +782,7 @@ function COverthrowGameMode:MythicWeaponAttributeValue( attribute )
 		return 1
 	end
 	if attribute == " % Twin Blast" then
-		return 0.75
+		return 0.5
 	end
 	if attribute == " % Black Mirror" then
 		return 0.8
