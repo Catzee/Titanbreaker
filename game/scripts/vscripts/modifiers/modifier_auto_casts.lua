@@ -45,7 +45,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_oracle"] = "GetNextAbilityForOracleAutoCasts",
         ["npc_dota_hero_pugna"] = "GetNextAbilityForPugnaAutoCasts",
         ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts",
-        ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts"
+        ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts",
+        ["npc_dota_hero_shadow_shaman"] = "GetNextAbilityForShadowShamanAutoCasts",
     }
 end
 
@@ -394,7 +395,7 @@ function modifier_auto_casts:GetNextAbilityForPugnaAutoCasts(caster, ability, ta
     return nil
 end
 
--- Oracle: Q, E spam
+-- Oracle: Q E spam
 function modifier_auto_casts:GetNextAbilityForOracleAutoCasts(caster, ability, target)
     if(caster._autoCastOracleHolyLight == nil) then
         caster._autoCastOracleHolyLight = caster:FindAbilityByName("holy1")
@@ -420,7 +421,7 @@ function modifier_auto_casts:GetNextAbilityForOracleAutoCasts(caster, ability, t
     return nil
 end
 
--- Grimstroke: Q, W or Q E spam
+-- Grimstroke: Q W or Q E spam
 function modifier_auto_casts:GetNextAbilityForGrimstrokeAutoCasts(caster, ability, target)
     if(caster._autoCastDemo1 == nil) then
         caster._autoCastDemo1 = caster:FindAbilityByName("demo1")
@@ -457,7 +458,7 @@ function modifier_auto_casts:GetNextAbilityForGrimstrokeAutoCasts(caster, abilit
     return nil
 end
 
--- Warlock: Q, W dots upkeep, D spam during downtime
+-- Warlock: Q W dots upkeep, D spam during downtime
 function modifier_auto_casts:GetNextAbilityForWarlockAutoCasts(caster, ability, target)
     if(caster._autoCastWarlockQ == nil) then
         caster._autoCastWarlockQ = caster:FindAbilityByName("Agony")
@@ -511,6 +512,46 @@ function modifier_auto_casts:GetNextAbilityForWarlockAutoCasts(caster, ability, 
 
         if(isWarlockDReadyForAutocast) then
             return caster._autoCastWarlockD
+        end
+    end
+
+    return nil
+end
+
+-- Shadow Shaman: Q E D spam
+function modifier_auto_casts:GetNextAbilityForShadowShamanAutoCasts(caster, ability, target)
+    if(caster._autoCastShadowShamanQ == nil) then
+        caster._autoCastShadowShamanQ = caster:FindAbilityByName("Lightning_Bolt")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastShadowShamanQ)
+    end
+    if(caster._autoCastShadowShamanE == nil) then
+        caster._autoCastShadowShamanE = caster:FindAbilityByName("Spirit_Shock")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastShadowShamanE)
+    end
+    if(caster._autoCastShadowShamanD == nil) then
+        caster._autoCastShadowShamanD = caster:FindAbilityByName("Lavaburst")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastShadowShamanD)
+    end
+
+    if(ability == caster._autoCastShadowShamanQ or ability == caster._autoCastShadowShamanE or ability == caster._autoCastShadowShamanD) then
+        local isShadowShamanQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastShadowShamanQ)
+        local isShadowShamanEReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastShadowShamanE)
+        local isShadowShamanDReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastShadowShamanD)
+
+        if(target == nil) then
+            return nil
+        end
+
+        if(isShadowShamanEReadyForAutocast) then
+            return caster._autoCastShadowShamanE
+        end
+
+        if(isShadowShamanDReadyForAutocast and target:HasModifier("modifier_lavashock")) then
+            return caster._autoCastShadowShamanD
+        end
+
+        if(isShadowShamanQReadyForAutocast) then
+            return caster._autoCastShadowShamanQ
         end
     end
 
