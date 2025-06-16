@@ -1429,7 +1429,7 @@
 		"npc_dota_hero_witch_doctor"	"[Healer] Spirit Voodoo"
 
 		"DOTA_Tooltip_Ability_resto1"  "Healing Wave"  
-		"DOTA_Tooltip_Ability_resto1_Description"  "Heal the target and the most injured nearby ally with 25%% effectiveness. Heals 30%% more on targets affected by Rock Shield. 2 secs cast time.<font color=\"#FFBB00\">\n\nRank 2: Increased healing and affected targets gain 15 Spell Resistance for 5 secs. \nRank 3: Affects up to 3 targets, less Healing reduction per jump and jump range increased by 150 yards. \nRank 4: When cast while affected by Soulwarden Totem, reduce the cooldown of Meditation by 2 secs. When cast while affected by Manastorm Totem, reduce the cooldown of both Totems by 2 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto1_Description"  "Heal the target and the most injured nearby ally with 25%% effectiveness. Heals 30%% more on targets affected by Rock Shield. 2 secs cast time.\nCan be set to Auto Cast for continuous casting of Healing Wave against last Healing Wave target<font color=\"#FFBB00\">\n\nRank 2: Increased healing and affected targets gain 15 Spell Resistance for 5 secs. \nRank 3: Affects up to 3 targets, less Healing reduction per jump and jump range increased by 150 yards. \nRank 4: When cast while affected by Soulwarden Totem, reduce the cooldown of Meditation by 2 secs. When cast while affected by Manastorm Totem, reduce the cooldown of both Totems by 2 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_resto1_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_resto1_spelldmg"    "%Spellpower Factor:"
 
