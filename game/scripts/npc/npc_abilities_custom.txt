@@ -26386,7 +26386,6 @@
 				"damage"	"%AbilityDamage"
 				"spelldamagefactor"	"%spelldmg"
 				"attributefactor"	"%dmgfromstat"
-				"consumesouls"	"2"
 				"shadowdmg"	"1"
 			}
 			"RunScript"
@@ -26417,6 +26416,12 @@
 		}
 		"OnSpellStart"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"ConsumeSouls"
+				"amount"	"2"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
