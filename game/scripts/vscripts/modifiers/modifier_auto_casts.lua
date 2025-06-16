@@ -48,7 +48,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts",
         ["npc_dota_hero_shadow_shaman"] = "GetNextAbilityForShadowShamanAutoCasts",
         ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts",
-        ["npc_dota_hero_invoker"] = "GetNextAbilityForInvokerAutoCasts"
+        ["npc_dota_hero_invoker"] = "GetNextAbilityForInvokerAutoCasts",
+        ["npc_dota_hero_dark_seer"] = "GetNextAbilityForDarkSeerAutoCasts"
     }
 end
 
@@ -626,6 +627,60 @@ function modifier_auto_casts:GetNextAbilityForInvokerAutoCasts(caster, ability, 
 
         if(isInvokerQReadyForAutocast) then
             return caster._autoCastInvokerQ
+        end
+    end
+
+    return nil
+end
+
+-- Dark Seer: Q spam, W spam, D spam or Q D spam
+function modifier_auto_casts:GetNextAbilityForDarkSeerAutoCasts(caster, ability, target)
+        if(caster._autoCastMindstorm == nil) then
+            caster._autoCastMindstorm = caster:FindAbilityByName("shadow1")
+            self:DetermineAutoCastOrderForAbility(caster._autoCastMindstorm)
+        end
+        if(caster._autoCastMindshatter == nil) then
+            caster._autoCastMindshatter = caster:FindAbilityByName("shadow11")
+            self:DetermineAutoCastOrderForAbility(caster._autoCastMindshatter)
+        end
+        if(caster._autoCastDreamFeast == nil) then
+            caster._autoCastDreamFeast = caster:FindAbilityByName("shadow3")
+            self:DetermineAutoCastOrderForAbility(caster._autoCastDreamFeast)
+        end
+
+    if(ability == caster._autoCastMindstorm or ability == caster._autoCastMindshatter or ability == caster._autoCastDreamFeast) then
+        local isDarkSeerMindstormReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastMindstorm)
+        local isDarkSeerMindshatterReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastMindshatter)
+        local isDarkSeerDreamFeastReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDreamFeast)
+
+        if(ability == caster._autoCastMindstorm) then
+            if(isDarkSeerDreamFeastReadyForAutocast) then
+                return caster._autoCastDreamFeast
+            end
+            if(isDarkSeerMindstormReadyForAutocast) then
+                return caster._autoCastMindstorm
+            end
+        end
+
+        if(ability == caster._autoCastMindshatter) then
+            if(isDarkSeerDreamFeastReadyForAutocast) then
+                return caster._autoCastDreamFeast
+            end
+            if(isDarkSeerMindshatterReadyForAutocast) then
+                return caster._autoCastMindshatter
+            end
+        end
+
+        if(ability == caster._autoCastDreamFeast) then
+            if(isDarkSeerDreamFeastReadyForAutocast) then
+                return caster._autoCastDreamFeast
+            end
+            if(isDarkSeerMindshatterReadyForAutocast) then
+                return caster._autoCastMindshatter
+            end
+            if(isDarkSeerMindstormReadyForAutocast) then
+                return caster._autoCastMindstorm
+            end
         end
     end
 
