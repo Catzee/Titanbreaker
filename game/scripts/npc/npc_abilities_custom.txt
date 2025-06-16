@@ -52779,14 +52779,6 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-50"
 				}
 			}
-			"modifier_fatal_throw_inner_cd"
-			{
-				"Passive"	"0"
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"0"
-			}
 		}
 		"AbilityValues"
 		{
@@ -52794,8 +52786,6 @@
 			"auto"	"300 350 350 350"
 			"slowdur"	"1.5 1.5 3 3"
 			"pure"	"0 0 25 25"
-			"silence_duration"	"0.5"
-			"silence_inner_cd"	"5"
 		}
 	}
 	"Numbing_Cut"
@@ -53041,9 +53031,10 @@
 	}
 	"Dagger_Strike"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/cruel_shadowstalker/slice"
 		"AbilityTextureName"	"queenofpain_shadow_strike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -53057,147 +53048,13 @@
 		"AbilityCastRange"	"100"
 		"AbilityCastRangeBuffer"	"250"
 		"AbilityDuration"	"0.0 0.0 0.0 0.0"
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_PhantomAssassin.CoupDeGrace.Mech"
-				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_combopoint"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"CosmeticEffectsFromItems"
-				"pa"	"1"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"DamageUnit"
-				"damage"	"%AbilityDamage"
-				"spelldamagefactor"	"0.0"
-				"attributefactor"	"0.0"
-				"includeauto"	"%dmgfromstat"
-				"critchancefactor"	"%critchance"
-				"oncritbuff"	"modifier_cobra_poison"
-				"oncritbuffchance"	"25"
-				"cruelabils"	"1"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"ragesystem.lua"
-				"Function"	"EnergyCost"
-				"cost"	"%AbilityManaCost"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"ragesystem.lua"
-				"Function"	"AddComboPoints"
-				"amount"	"1"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_d.vpcf"
-				"EffectAttachType"	"attach_hitloc"
-				"Target"	"TARGET"
-			}
-		}
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_d.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_combopoint"
-			{
-				"Duration"	"-1"
-				"Passive"	"0"
-				"TextureName"	"vengefulspirit_command_aura"
-				"IsDebuff"	"0"
-				"IsBuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"0"
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"RemoveCPEffect"
-					}
-				}
-			}
-			"modifier_cobra_poison"
-			{
-				"Duration"	"%poisondur"
-				"Passive"	"0"
-				"TextureName"	"venomancer_poison_nova"
-				"IsBuff"	"1"
-				"IsDebuff"	"0"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/econ/items/venomancer/toxicant/veno_toxicant_tail_b.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-						}
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/econ/items/venomancer/toxicant/veno_toxicant_tail_b.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_attack2"
-							"TARGET"	"attach_attack2"
-							"TARGET"	"attach_attack2"
-							"TARGET"	"attach_attack2"
-							"TARGET"	"attach_attack2"
-						}
-					}
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orb_of_venom_b.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"DamageUnit"
-						"damage"	"0.0"
-						"spelldamagefactor"	"0.0"
-						"attributefactor"	"0.0"
-						"includeauto"	"250"
-						"naturedmg"	"1"
-						"poisondmg"	"1"
-					}
-				}
-			}
-		}
 		"AbilityValues"
 		{
 			"dmgfromstat"	"125 150 150 150"
 			"critchance"	"1 1 1.25 1.25"
 			"poisondur"	"0 0 0 20"
+			"silence_duration"	"0.5"
+			"silence_inner_cd"	"5"
 		}
 	}
 	"Holy_Judgement"

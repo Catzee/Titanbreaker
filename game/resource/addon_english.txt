@@ -248,17 +248,17 @@
 		"DOTA_Tooltip_Ability_Dagger_Strike"  "Slice"
 		//"DOTA_Tooltip_Ability_Holy_Shield_buffduration"    "Duration:" 
 		"DOTA_Tooltip_Ability_Dagger_Strike_dmgfromstat"    "%Base Damage dealt:" 
-
+		
+		"DOTA_Tooltip_modifier_slice_inner_cd"	"Slice - Inner Cooldown"
+		"DOTA_Tooltip_modifier_slice_inner_cd_Description"	""
+		
 		"DOTA_Tooltip_modifier_cobra_poison"                                              "Cobra Poison"
 		"DOTA_Tooltip_modifier_cobra_poison_Description"                                  " "
 
 		"DOTA_Tooltip_Ability_Fatal_Throw"  "Fatal Throw"  
-		"DOTA_Tooltip_Ability_Fatal_Throw_Description"  "A ranged throw of your weapon, dealing Damage and Slowing by 50%%.\nInterrupts Spellcasting when Alt-Cast is activated or CTRL held with a %silence_duration% sec Silence when used with at least 1 Focus Point (with an inner cooldown of %silence_inner_cd% secs).\n\n<font color=\"#00EE00\">Consumes up to 3 Focus Points to increase the Damage and Slow duration.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage, removed resource cost and greatly reduced cooldown. \nRank 3: Longer slow duration and a 25%% chance to deal Pure Damage with Fatal Throw. \nRank 4: When cast with 3 Focus Points, Blink behind the target and cause 3 Auto Attacks.\nRank 5: Rapid Throw - Every 100 points of Agility increase the Damage of Fatal Throw by 10%%.\n\n</font>"
+		"DOTA_Tooltip_Ability_Fatal_Throw_Description"  "A ranged throw of your weapon, dealing Damage and Slowing by 50%%.\n\n<font color=\"#00EE00\">Consumes up to 3 Focus Points to increase the Damage and Slow duration.</font>\nCan be set to Auto Cast for continuous casting of Fatal Throw against last Fatal Throw target. If Ambush learned and set to Auto Cast will consider him<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, removed resource cost and greatly reduced cooldown. \nRank 3: Longer slow duration and a 25%% chance to deal Pure Damage with Fatal Throw. \nRank 4: When cast with 3 Focus Points, Blink behind the target and cause 3 Auto Attacks.\nRank 5: Rapid Throw - Every 100 points of Agility increase the Damage of Fatal Throw by 10%%.\n\n</font>"
 		"DOTA_Tooltip_Ability_Fatal_Throw_auto"    "%Base Damage dealt per Focus Point:" 
 		"DOTA_Tooltip_ability_Fatal_Throw_slowdur"                                        "Slow duration per Focus Point:"
-
-		"DOTA_Tooltip_modifier_fatal_throw_inner_cd"	"Fatal Throw - Inner Cooldown"
-		"DOTA_Tooltip_modifier_fatal_throw_inner_cd_Description"	""
 
 		"DOTA_Tooltip_Ability_Ambush"  "Ambush"  
 		
@@ -6844,7 +6844,7 @@
 		"DOTA_Tooltip_Ability_Feral3_Description"  "Unleash the Wild Fury in yourself, increasing all Damage by 25%% and Attack Speed by 25.\nWhen Shapeshifting, this effect ends.\n\n<font color=\"#00EE00\">Requires and consumes up to 4 Focus Points, increasing the duration.</font><font color=\"#FFBB00\">\n\nRank 2: Auto Attacks have a chance to proc extra Damage and restore 15 Energy. \nRank 3: Increased proc chance and each proc also heals 3%% of max health. \nRank 4: While active, the Rip debuff will deal 100%% of your Agility and Strength twice per sec.\nRank 5: Gushing Bleeds - Whenever you deal Damage over Time, add 250%% of your Strength to it.\n\n</font>"
 		
 		//version 3.2
-		"DOTA_Tooltip_Ability_Ambush_Description"  "Deal high Damage. Only successful when used from behind the target.\n\n<font color=\"#00EE00\">Generates 3 Focus Points (always, even in front of the target).</font><font color=\"#FFBB00\">\n\nRank 2: After successfully dealing Damage, all Damage is increased by 35%% for 20 secs. \nRank 3: Cooldown lowered greatly and increased Damage. \nRank 4: When Ambush lands a Critical Strike twice in a row, enter a State of Cruelty for 10 secs, reducing your Base Attack Time to 1.5 secs and granting 10 Energy twice per sec.\n\n</font>" 
+		"DOTA_Tooltip_Ability_Ambush_Description"  "Deal high Damage. Only successful when used from behind the target.\n\n<font color=\"#00EE00\">Generates 3 Focus Points (always, even in front of the target).</font>\nCan be set to Auto Cast for continuous casting of Ambush against last Ambush target. If Fatal Throw learned and set to Auto Cast will consider him<font color=\"#FFBB00\">\n\nRank 2: After successfully dealing Damage, all Damage is increased by 35%% for 20 secs. \nRank 3: Cooldown lowered greatly and increased Damage. \nRank 4: When Ambush lands a Critical Strike twice in a row, enter a State of Cruelty for 10 secs, reducing your Base Attack Time to 1.5 secs and granting 10 Energy twice per sec.\n\n</font>" 
 		"DOTA_Tooltip_Ability_fury2_dmg"  "%Base Damage dealt:"
 		"DOTA_Tooltip_Ability_fury1_Description"  "Deal damage and increase your Attack Speed and Slaughter Damage by 5%%, but pay with a percentage of your max Health.\n\nHas 5 charges and refreshes every 1.5 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage and gain 5 Spell Resistance per Fury stack. \nRank 3: Increased Attack Speed bonus, increased max stacks and grant your Auto Attacks a 50%% chance to Heal 3%% of max Health while under Fury. \nRank 4: 20%% chance to strike a total of 4 times.\nRank 5: Outrage - Each point of Rage increases the Damage of Furious Strike, Bloody Chop and Wild Throw by 0.5%%.\n\n</font>"
 		"DOTA_Tooltip_Ability_Wounding_Strike_Description"  "Deal damage, cause the target to bleed, causing physical damage every 2 secs and reduce all healing received by 50%%.<font color=\"#FFBB00\">\n\nRank 2: The DoT now ticks every sec.\nRank 3: Targets below 50%% of max health take 3x Damage from the initial hit. \nRank 4: All Ability Critical Strikes caused by you deal 25%% increased damage.\n\n</font>"
@@ -7596,7 +7596,7 @@
 		
 		"DOTA_Tooltip_Ability_Numbing_Cut_Description"  "Stun the target and reduce its Armor.\n\n<font color=\"#00EE00\">Consumes up to 3 Focus Points to increase the stun duration.</font><font color=\"#FFBB00\">\n\nRank 2: Improved Armor reduction, longer stun duration and reduced cooldown. \nRank 3: When cast with at least 1 Focus Point, gain Critical Annihilation, increasing all Ability Critical Strike Damage by 25%% and Attack Speed by 100%% for 25 secs. \nRank 4: Slice, Fatal Throw and Ambush deal 100%% increased Phyiscal Damage on stunned targets.\n\n</font>"
 		
-		"DOTA_Tooltip_Ability_Dagger_Strike_Description"  "Deal Physical Damage.\n\n<font color=\"#00EE00\">Generates 1 Focus Point (max 3).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Reduced resource cost and benefits more from Critical Strike chances. \nRank 4: Critical Strikes with this Ability have a 25%% chance to apply Cobra Poisons to your Weapon for 20 secs, causing each Auto Attack to also deal 250%% of your Attack Damage as Physical Nature Damage.\n\n</font>"
+		"DOTA_Tooltip_Ability_Dagger_Strike_Description"  "Deal Physical Damage.\n\n<font color=\"#00EE00\">Generates 1 Focus Point (max 3).\nInterrupts Spellcasting when Alt-Cast is activated or CTRL held with a %silence_duration% sec Silence when used with at least 1 Focus Point (with an inner cooldown of %silence_inner_cd% secs).</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Reduced resource cost and benefits more from Critical Strike chances. \nRank 4: Critical Strikes with this Ability have a 25%% chance to apply Cobra Poisons to your Weapon for 20 secs, causing each Auto Attack to also deal 250%% of your Attack Damage as Physical Nature Damage.\n\n</font>"
 		
 		"DOTA_Tooltip_ability_item_nature"                                             "<font color=\"#00ffff\">[Ancient] Nature's Decay"
 		"DOTA_Tooltip_ability_item_nature_Description"                                 "All Nature Damage is increased by 50%%.\nAll Damage over Time is increased by 50%%.\n<font color=\"#FF6600\">Uniquely Equipped.</font>\n"

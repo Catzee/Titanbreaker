@@ -74,6 +74,9 @@ LinkLuaModifier("modifier_swipe_of_ursa_proc", "modifiers/path_talents/modifier_
 -- cm: frost shatter
 LinkLuaModifier("modifier_ice_shatter", "modifiers/heroes/winter_wizard/frost_shatter/modifier_ice_shatter", LUA_MODIFIER_MOTION_NONE)
 
+-- pa: slice
+LinkLuaModifier("modifier_cobra_poison", "modifiers/heroes/cruel_shadowstalker/slice/modifier_cobra_poison", LUA_MODIFIER_MOTION_NONE)
+
 -- animation.lua modifiers
 LinkLuaModifier( "modifier_animation", "libraries/modifiers/modifier_animation.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_animation_translate", "libraries/modifiers/modifier_animation_translate.lua", LUA_MODIFIER_MOTION_NONE )

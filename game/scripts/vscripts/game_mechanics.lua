@@ -9510,13 +9510,6 @@ function FatalThrowHit(event)
 		--myevent.dur = caster.FatalThrowCP*event.silence
 		--ApplyBuff(myevent)
 
-        -- This was intentionally made to don't care if spell was interrupted or no
-        if(caster:HasModifier("modifier_fatal_throw_inner_cd") == false and event.ability:IsAltCasted()) then
-            SpellInterrupt({caster = caster, target = target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
-            local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
-            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_fatal_throw_inner_cd", { duration = innerCd})
-        end
-
         if caster.fatalThrowBonus and caster.fatalThrowBonus >= 1 then
             event.fatalThrowBonus = 1
         end
