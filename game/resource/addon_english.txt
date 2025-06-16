@@ -1205,7 +1205,7 @@
 		"DOTA_Tooltip_Ability_Regrowth_spelldmgtick"    "%HoT Tick Spellpower Factor:" 
 
 		"DOTA_Tooltip_Ability_Lifebloom"  "Flourish"  
-		"DOTA_Tooltip_Ability_Lifebloom_Description"  "Place a HoT on yourself and the closest ally, healing every second. Stacks up to 3 times on the same target.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Longer duration and each stack now also grants 1 Armor and 15 Attack Speed. \nRank 4: Now affect all allies within 900 yards, at the cost of 35 Mana per additional ally affected beyond the first two targets.\n\n</font>"
+		"DOTA_Tooltip_Ability_Lifebloom_Description"  "Place a HoT on yourself and the closest ally, healing every second. Stacks up to 3 times on the same target.\nCan be set to Auto Cast for continuous casting of Lifebloom when required<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Longer duration and each stack now also grants 1 Armor and 15 Attack Speed. \nRank 4: Now affect all allies within 900 yards, at the cost of 35 Mana per additional ally affected beyond the first two targets.\n\n</font>"
 		"DOTA_Tooltip_Ability_Lifebloom_dmgfromstat"    "%Intellect to Healing per Tick:"
 		"DOTA_Tooltip_Ability_Lifebloom_buffduration"    "HoT Duration:"
 		"DOTA_Tooltip_Ability_Lifebloom_spelldmg"    "%Spellpower Factor per Tick:" 
