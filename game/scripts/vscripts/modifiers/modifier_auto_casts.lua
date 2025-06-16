@@ -47,6 +47,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts",
         ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts",
         ["npc_dota_hero_shadow_shaman"] = "GetNextAbilityForShadowShamanAutoCasts",
+        ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts"
     }
 end
 
@@ -552,6 +553,51 @@ function modifier_auto_casts:GetNextAbilityForShadowShamanAutoCasts(caster, abil
 
         if(isShadowShamanQReadyForAutocast) then
             return caster._autoCastShadowShamanQ
+        end
+    end
+
+    return nil
+end
+
+-- Lina Q W E D spam
+function modifier_auto_casts:GetNextAbilityForLinaAutoCasts(caster, ability, target)
+    if(caster._autoCastLinaQ == nil) then
+        caster._autoCastLinaQ = caster:FindAbilityByName("Magma_Bolt")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLinaQ)
+    end
+    if(caster._autoCastLinaW == nil) then
+        caster._autoCastLinaW = caster:FindAbilityByName("Fire_Lance")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLinaW)
+    end
+    if(caster._autoCastLinaE == nil) then
+        caster._autoCastLinaE = caster:FindAbilityByName("Molten_Lava")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLinaE)
+    end
+    if(caster._autoCastLinaD == nil) then
+        caster._autoCastLinaD = caster:FindAbilityByName("Dragon_Claw")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLinaD)
+    end
+
+    if(ability == caster._autoCastLinaQ or ability == caster._autoCastLinaW or ability == caster._autoCastLinaE or ability == caster._autoCastLinaD) then
+        local isLinaQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastLinaQ)
+        local isLinaWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastLinaW)
+        local isLinaEReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastLinaE)
+        local isLinaDReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastLinaD)
+
+        if(isLinaWReadyForAutocast) then
+            return caster._autoCastLinaW
+        end
+
+        if(isLinaEReadyForAutocast) then
+            return caster._autoCastLinaE
+        end
+
+        if(isLinaDReadyForAutocast) then
+            return caster._autoCastLinaD
+        end
+
+        if(isLinaQReadyForAutocast) then
+            return caster._autoCastLinaQ
         end
     end
 
