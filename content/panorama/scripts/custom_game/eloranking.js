@@ -4052,6 +4052,11 @@ let customAttackSpeedLabel = undefined;
 let customAttackSpeedUnitStatsLabel = undefined;
 
 function OnTooltipVisible(object) {
+    if(object.paneltype == "DOTATooltipNeutralItem") {
+        FixDotaNeutralItemTooltip();
+        return;
+    }
+	
     if(object.paneltype != "DOTATooltipUnitDamageArmor") {
         return;
     }
@@ -4061,6 +4066,79 @@ function OnTooltipVisible(object) {
     UpdateMainStatsUI(GetLocalPlayerSelectedUnit(), true);
 }
 
+let neutralItemNameLabel = undefined;
+
+function FixDotaNeutralItemTooltip()
+{
+	if(neutralItemNameLabel == undefined)
+	{
+		let dotaHudRoot = GetDotaHudRoot();
+		let neutralItemsTooltip = dotaHudRoot.FindChildTraverse("NeutralItemTooltip");
+		
+		if(neutralItemsTooltip == undefined)
+		{
+			return;
+		}
+		
+		let headerTextContainer = neutralItemsTooltip.FindChildrenWithClassTraverse("NeutralHeaderText");
+		if(headerTextContainer == undefined || headerTextContainer.length != 1)
+		{
+			return;
+		}
+		
+		headerTextContainer = headerTextContainer[0];
+		if(headerTextContainer == undefined)
+		{
+			return;
+		}
+		
+		neutralItemNameLabel = headerTextContainer.FindChildrenWithClassTraverse("NeutralName");
+		if(neutralItemNameLabel == undefined || neutralItemNameLabel.length != 1)
+		{
+			neutralItemNameLabel = undefined;
+			$.Msg("Fail here? 1");
+			return;
+		}
+		
+		neutralItemNameLabel = neutralItemNameLabel[0];
+		if(neutralItemNameLabel == undefined)
+		{
+			$.Msg("Fail here? 2");
+			return;
+		}
+		
+		neutralItemNameLabel = neutralItemNameLabel;
+		neutralItemNameLabel.html = true;
+		
+		let neutralItemSubtitleLabel = headerTextContainer.FindChildrenWithClassTraverse("NeutralSubtitle");
+		if(neutralItemSubtitleLabel == undefined || neutralItemSubtitleLabel.length != 1)
+		{
+			return;
+		}
+		
+		neutralItemSubtitleLabel = neutralItemSubtitleLabel[0];
+		if(neutralItemSubtitleLabel == undefined)
+		{
+			return;
+		}
+		
+		neutralItemSubtitleLabel.style.visibility = "collapse";
+	}
+	
+	if(neutralItemNameLabel == undefined)
+	{
+		$.Msg("Valve break something or did major changes to UI (can't modify neutral item tooltip).");
+		return;
+	}
+	
+	var itemInSlot = Entities.GetItemInSlot(GetLocalPlayerSelectedUnit(), 16);
+	
+	if(itemInSlot > -1) 
+	{
+		neutralItemNameLabel.text = $.Localize("#DOTA_Tooltip_ability_"+Abilities.GetAbilityName(itemInSlot));
+	}
+}
+	
 function GetDotaHudRoot()
 {
     return $.GetContextPanel().GetParent().GetParent().GetParent();
