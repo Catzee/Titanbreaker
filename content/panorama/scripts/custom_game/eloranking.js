@@ -4096,14 +4096,12 @@ function FixDotaNeutralItemTooltip()
 		if(neutralItemNameLabel == undefined || neutralItemNameLabel.length != 1)
 		{
 			neutralItemNameLabel = undefined;
-			$.Msg("Fail here? 1");
 			return;
 		}
 		
 		neutralItemNameLabel = neutralItemNameLabel[0];
 		if(neutralItemNameLabel == undefined)
 		{
-			$.Msg("Fail here? 2");
 			return;
 		}
 		
