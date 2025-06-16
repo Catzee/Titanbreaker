@@ -43,7 +43,8 @@ function modifier_auto_casts:OnCreated()
     -- Add entry here [heroName, functionName] for heroName autocasts support + implementation of functionName somewhere here in modifier_auto_casts scope
     self.autoCastsImplementations = {
         ["npc_dota_hero_oracle"] = "GetNextAbilityForOracleAutoCasts",
-        ["npc_dota_hero_pugna"] = "GetNextAbilityForPugnaAutoCasts"
+        ["npc_dota_hero_pugna"] = "GetNextAbilityForPugnaAutoCasts",
+        ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts"
     }
 end
 
@@ -244,69 +245,6 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
     end
 end
 
--- Pugna: Q E combo with W sometimes for debuff
-function modifier_auto_casts:GetNextAbilityForPugnaAutoCasts(caster, ability, target)
-    if(caster._autoCastPugnaSoulFlame == nil) then
-        caster._autoCastPugnaSoulFlame = caster:FindAbilityByName("destro1")
-        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaSoulFlame)
-    end
-    if(caster._autoCastPugnaIgnite == nil) then
-        caster._autoCastPugnaIgnite = caster:FindAbilityByName("destro2")
-        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaIgnite)
-    end
-    if(caster._autoCastPugnaChaosBlast == nil) then
-        caster._autoCastPugnaChaosBlast = caster:FindAbilityByName("destro3")
-        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaChaosBlast)
-    end
-
-    if(ability == caster._autoCastPugnaSoulFlame or ability == caster._autoCastPugnaIgnite or ability == caster._autoCastPugnaChaosBlast) then
-        local isPugnaSoulFlameReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaSoulFlame)
-        local isPugnaIgniteReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaIgnite)
-        local isPugnaChaosBlastReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaChaosBlast)
-
-        -- If ignire refreshed spam it because dot stacks?
-        if(isPugnaIgniteReadyForAutoCast) then
-            return caster._autoCastPugnaIgnite
-        end
-
-        if(isPugnaChaosBlastReadyForAutoCast and caster:GetModifierStackCount("modifier_souls", nil) >= 2) then
-            return caster._autoCastPugnaChaosBlast
-        end
-
-        if(isPugnaSoulFlameReadyForAutoCast) then
-            return caster._autoCastPugnaSoulFlame
-        end
-    end
-
-    return nil
-end
-
--- Oracle: Q, E spam
-function modifier_auto_casts:GetNextAbilityForOracleAutoCasts(caster, ability, target)
-    if(caster._autoCastOracleHolyLight == nil) then
-        caster._autoCastOracleHolyLight = caster:FindAbilityByName("holy1")
-        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleHolyLight)
-    end
-    if(caster._autoCastOracleDivineNova == nil) then
-        caster._autoCastOracleDivineNova = caster:FindAbilityByName("holy3")
-        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleDivineNova)
-    end
-
-    local isOracleDivineNovaReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
-
-    if(ability == caster._autoCastOracleHolyLight or ability == caster._autoCastOracleDivineNova) then
-        local isOracleHolyLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
-        if(isOracleDivineNovaReadyForAutocast) then
-            return caster._autoCastOracleDivineNova
-        end 
-        if(isOracleHolyLightReadyForAutocast) then
-            return caster._autoCastOracleHolyLight
-        end
-    end
-
-    return nil
-end
-
 -- target can be nil
 function modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
     -- Caster should be fine and ready to cast any ability now so no need to check for that (at least only manacosts and cooldowns for desired abilities needs checking)
@@ -416,4 +354,104 @@ end
 
 function modifier_auto_casts:SetIsIgnoreCastTimeAbilities(state)
     self._isIgnoreCastTimeAbilities = state
+end
+
+-- Pugna: Q E combo with W sometimes for debuff
+function modifier_auto_casts:GetNextAbilityForPugnaAutoCasts(caster, ability, target)
+    if(caster._autoCastPugnaSoulFlame == nil) then
+        caster._autoCastPugnaSoulFlame = caster:FindAbilityByName("destro1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaSoulFlame)
+    end
+    if(caster._autoCastPugnaIgnite == nil) then
+        caster._autoCastPugnaIgnite = caster:FindAbilityByName("destro2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaIgnite)
+    end
+    if(caster._autoCastPugnaChaosBlast == nil) then
+        caster._autoCastPugnaChaosBlast = caster:FindAbilityByName("destro3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPugnaChaosBlast)
+    end
+
+    if(ability == caster._autoCastPugnaSoulFlame or ability == caster._autoCastPugnaIgnite or ability == caster._autoCastPugnaChaosBlast) then
+        local isPugnaSoulFlameReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaSoulFlame)
+        local isPugnaIgniteReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaIgnite)
+        local isPugnaChaosBlastReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastPugnaChaosBlast)
+
+        -- If ignire refreshed spam it because dot stacks?
+        if(isPugnaIgniteReadyForAutoCast) then
+            return caster._autoCastPugnaIgnite
+        end
+
+        if(isPugnaChaosBlastReadyForAutoCast and caster:GetModifierStackCount("modifier_souls", nil) >= 2) then
+            return caster._autoCastPugnaChaosBlast
+        end
+
+        if(isPugnaSoulFlameReadyForAutoCast) then
+            return caster._autoCastPugnaSoulFlame
+        end
+    end
+
+    return nil
+end
+
+-- Oracle: Q, E spam
+function modifier_auto_casts:GetNextAbilityForOracleAutoCasts(caster, ability, target)
+    if(caster._autoCastOracleHolyLight == nil) then
+        caster._autoCastOracleHolyLight = caster:FindAbilityByName("holy1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleHolyLight)
+    end
+    if(caster._autoCastOracleDivineNova == nil) then
+        caster._autoCastOracleDivineNova = caster:FindAbilityByName("holy3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastOracleDivineNova)
+    end
+
+    local isOracleDivineNovaReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleDivineNova)
+
+    if(ability == caster._autoCastOracleHolyLight or ability == caster._autoCastOracleDivineNova) then
+        local isOracleHolyLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastOracleHolyLight)
+        if(isOracleDivineNovaReadyForAutocast) then
+            return caster._autoCastOracleDivineNova
+        end 
+        if(isOracleHolyLightReadyForAutocast) then
+            return caster._autoCastOracleHolyLight
+        end
+    end
+
+    return nil
+end
+
+-- Grimstroke: Q, W or Q E spam
+function modifier_auto_casts:GetNextAbilityForGrimstrokeAutoCasts(caster, ability, target)
+    if(caster._autoCastDemo1 == nil) then
+        caster._autoCastDemo1 = caster:FindAbilityByName("demo1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDemo1)
+    end
+    if(caster._autoCastDemo2 == nil) then
+        caster._autoCastDemo2 = caster:FindAbilityByName("demo2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDemo2)
+    end
+    if(caster._autoCastDemo3 == nil) then
+        caster._autoCastDemo3 = caster:FindAbilityByName("demo3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDemo3)
+    end
+
+    if(ability == caster._autoCastDemo1 or ability == caster._autoCastDemo2 or ability == caster._autoCastDemo3) then
+        local isGrimstrokeQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDemo1)
+        local isGrimstrokeWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDemo2)
+        local isGrimstrokeEReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDemo3)
+        local soulsCount = caster:GetModifierStackCount("modifier_souls", nil)
+
+        if(isGrimstrokeWReadyForAutocast and soulsCount >= 2) then
+            return caster._autoCastDemo2
+        end
+
+        if(isGrimstrokeEReadyForAutocast and soulsCount >= 2) then
+            return caster._autoCastDemo3
+        end
+
+        if(isGrimstrokeQReadyForAutocast) then
+            return caster._autoCastDemo1
+        end
+    end
+
+    return nil
 end
