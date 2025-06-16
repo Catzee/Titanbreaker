@@ -56,6 +56,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_witch_doctor"] = "GetNextAbilityForWitchDoctorAutoCasts",
         ["npc_dota_hero_silencer"] = "GetNextAbilityForSilencerAutoCasts",
         ["npc_dota_hero_enchantress"] = "GetNextAbilityForEnchantressAutoCasts",
+        ["npc_dota_hero_phantom_assassin"] = "GetNextAbilityForPhantomAssassinAutoCasts",
     }
 end
 
@@ -325,6 +326,10 @@ function modifier_auto_casts:DetermineAutoCastOrderForAbility(ability)
         end
         if(ability._autoCastWhileRunning == nil and bit.band(abilityBehavior, DOTA_ABILITY_BEHAVIOR_IMMEDIATE) == DOTA_ABILITY_BEHAVIOR_IMMEDIATE) then
             ability._autoCastWhileRunning = true
+        end
+        -- Prevent pointless PA E spam
+        if(ability:GetAbilityName() == "Fatal_Throw") then
+            ability._autoCastWhileRunning = false
         end
     end
 
@@ -821,6 +826,28 @@ function modifier_auto_casts:GetNextAbilityForEnchantressAutoCasts(caster, abili
             
     if(ability == caster._autoCastEnchantressQ and self:IsAbilityReadyForAutoCast(caster._autoCastEnchantressQ)) then
         return caster._autoCastEnchantressQ
+    end
+
+    return nil
+end
+
+-- Phantom Assassin: D E spam
+function modifier_auto_casts:GetNextAbilityForPhantomAssassinAutoCasts(caster, ability, target)
+    if(caster._autoCastPhantomAssassinE == nil) then
+        caster._autoCastPhantomAssassinE = caster:FindAbilityByName("Fatal_Throw")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPhantomAssassinE)
+    end
+    if(caster._autoCastPhantomAssassinD == nil) then
+        caster._autoCastPhantomAssassinD = caster:FindAbilityByName("Ambush")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPhantomAssassinD)
+    end
+
+    if(ability == caster._autoCastPhantomAssassinD and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomAssassinD)) then
+        return caster._autoCastPhantomAssassinD
+    end
+
+    if(ability == caster._autoCastPhantomAssassinE and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomAssassinE)) then
+        return caster._autoCastPhantomAssassinE
     end
 
     return nil
