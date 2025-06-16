@@ -47,7 +47,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts",
         ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts",
         ["npc_dota_hero_shadow_shaman"] = "GetNextAbilityForShadowShamanAutoCasts",
-        ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts"
+        ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts",
+        ["npc_dota_hero_invoker"] = "GetNextAbilityForInvokerAutoCasts"
     }
 end
 
@@ -559,7 +560,7 @@ function modifier_auto_casts:GetNextAbilityForShadowShamanAutoCasts(caster, abil
     return nil
 end
 
--- Lina Q W E D spam
+-- Lina: Q W E D spam
 function modifier_auto_casts:GetNextAbilityForLinaAutoCasts(caster, ability, target)
     if(caster._autoCastLinaQ == nil) then
         caster._autoCastLinaQ = caster:FindAbilityByName("Magma_Bolt")
@@ -598,6 +599,33 @@ function modifier_auto_casts:GetNextAbilityForLinaAutoCasts(caster, ability, tar
 
         if(isLinaQReadyForAutocast) then
             return caster._autoCastLinaQ
+        end
+    end
+
+    return nil
+end
+
+-- Invoker: Q W spam
+function modifier_auto_casts:GetNextAbilityForInvokerAutoCasts(caster, ability, target)
+    if(caster._autoCastInvokerQ == nil) then
+        caster._autoCastInvokerQ = caster:FindAbilityByName("Arcane1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastInvokerQ)
+    end
+    if(caster._autoCastInvokerW == nil) then
+        caster._autoCastInvokerW = caster:FindAbilityByName("Arcane2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastInvokerW)
+    end
+
+    if(ability == caster._autoCastInvokerQ or ability == caster._autoCastInvokerW) then
+        local isInvokerQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastInvokerQ)
+        local isInvokerWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastInvokerW)
+
+        if(isInvokerWReadyForAutocast) then
+            return caster._autoCastInvokerW
+        end
+
+        if(isInvokerQReadyForAutocast) then
+            return caster._autoCastInvokerQ
         end
     end
 
