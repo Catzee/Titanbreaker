@@ -220,7 +220,7 @@
 		"DOTA_Tooltip_Ability_Terror_Shout_buffduration"    "Duration:" 
 
 		"DOTA_Tooltip_Ability_Divine_Light"  "Divine Light"  
-		"DOTA_Tooltip_Ability_Divine_Light_Description"  "Heal the target. 2 secs casttime.<font color=\"#FFBB00\">\n\nRank 2: Increased healing and when Divine Light lands a Critical Strike, gain 200 Spellhaste for 10 secs. \nRank 3: When the target is at 100%% health after being Healed, it takes 25%% less Damage for 10 secs. \nRank 4: Healing increased greatly, but manacost doubled.\n\n</font>"
+		"DOTA_Tooltip_Ability_Divine_Light_Description"  "Heal the target. 2 secs casttime.\nCan be set to Auto Cast for continuous casting of Divine Light against last Divine Light target.<font color=\"#FFBB00\">\n\nRank 2: Increased healing and when Divine Light lands a Critical Strike, gain 200 Spellhaste for 10 secs. \nRank 3: When the target is at 100%% health after being Healed, it takes 25%% less Damage for 10 secs. \nRank 4: Healing increased greatly, but manacost doubled.\n\n</font>"
 		"DOTA_Tooltip_Ability_Divine_Light_dmgfromstat"    "%Intellect to Healing:"
 		"DOTA_Tooltip_Ability_Divine_Light_spelldmg"    "%Spellpower Factor:"
 		"DOTA_Tooltip_Ability_Divine_Light_haste"    "%Spellhaste:"

@@ -49,7 +49,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_shadow_shaman"] = "GetNextAbilityForShadowShamanAutoCasts",
         ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts",
         ["npc_dota_hero_invoker"] = "GetNextAbilityForInvokerAutoCasts",
-        ["npc_dota_hero_dark_seer"] = "GetNextAbilityForDarkSeerAutoCasts"
+        ["npc_dota_hero_dark_seer"] = "GetNextAbilityForDarkSeerAutoCasts",
+        ["npc_dota_hero_omniknight"] = "GetNextAbilityForOmniknightAutoCasts"
     }
 end
 
@@ -635,18 +636,18 @@ end
 
 -- Dark Seer: Q spam, W spam, D spam or Q D spam
 function modifier_auto_casts:GetNextAbilityForDarkSeerAutoCasts(caster, ability, target)
-        if(caster._autoCastMindstorm == nil) then
-            caster._autoCastMindstorm = caster:FindAbilityByName("shadow1")
-            self:DetermineAutoCastOrderForAbility(caster._autoCastMindstorm)
-        end
-        if(caster._autoCastMindshatter == nil) then
-            caster._autoCastMindshatter = caster:FindAbilityByName("shadow11")
-            self:DetermineAutoCastOrderForAbility(caster._autoCastMindshatter)
-        end
-        if(caster._autoCastDreamFeast == nil) then
-            caster._autoCastDreamFeast = caster:FindAbilityByName("shadow3")
-            self:DetermineAutoCastOrderForAbility(caster._autoCastDreamFeast)
-        end
+    if(caster._autoCastMindstorm == nil) then
+        caster._autoCastMindstorm = caster:FindAbilityByName("shadow1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastMindstorm)
+    end
+    if(caster._autoCastMindshatter == nil) then
+        caster._autoCastMindshatter = caster:FindAbilityByName("shadow11")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastMindshatter)
+    end
+    if(caster._autoCastDreamFeast == nil) then
+        caster._autoCastDreamFeast = caster:FindAbilityByName("shadow3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDreamFeast)
+    end
 
     if(ability == caster._autoCastMindstorm or ability == caster._autoCastMindshatter or ability == caster._autoCastDreamFeast) then
         local isDarkSeerMindstormReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastMindstorm)
@@ -681,6 +682,24 @@ function modifier_auto_casts:GetNextAbilityForDarkSeerAutoCasts(caster, ability,
             if(isDarkSeerMindstormReadyForAutocast) then
                 return caster._autoCastMindstorm
             end
+        end
+    end
+
+    return nil
+end
+
+-- Omni: Q spam
+function modifier_auto_casts:GetNextAbilityForOmniknightAutoCasts(caster, ability, target)
+    if(caster._autoCastDivineLight == nil) then
+        caster._autoCastDivineLight = caster:FindAbilityByName("Divine_Light")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDivineLight)
+    end
+
+    if(ability == caster._autoCastDivineLight) then
+        local isOmniDivineLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDivineLight)
+        
+        if(isOmniDivineLightReadyForAutocast) then
+            return caster._autoCastDivineLight
         end
     end
 
