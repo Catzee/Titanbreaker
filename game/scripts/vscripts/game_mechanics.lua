@@ -4572,7 +4572,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         multiplicative_bonus = multiplicative_bonus * 2
     end
     if event.slashAndBurn then
-        multiplicative_bonus = multiplicative_bonus * 1.25
+        multiplicative_bonus = multiplicative_bonus * 1.5
     end
     if event.fromcompanion and caster:HasModifier("modifier_bloodbrother") and GetCompanionCount(caster) == 1 then
         multiplicative_bonus = multiplicative_bonus * 3.5
@@ -4623,7 +4623,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             multiplicative_bonus = multiplicative_bonus * (1 + 0.0015 * GetStrengthCustom(caster))
         end
         if target and not target.real_boss and caster.talents[167] then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * caster.talents[167])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[167])
         end
         if caster.lastAbilityCausingDamage ~= ability and caster.talents[168] > 0 then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[168])
@@ -4680,7 +4680,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
 
         if caster.talents[135] > 0 and ability and ability:GetLevel() == 1 then
-            multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[135])
+            multiplicative_bonus = multiplicative_bonus * (1 + 0.45 * caster.talents[135])
         end
     end
     if process_procs and caster:HasModifier("modifier_summoner") then
@@ -5027,7 +5027,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if was_consecutive_crit and (caster:HasModifier("modifier_critmaster") or caster:HasModifier("modifier_critmaster2")) then
         local bonusfactor = 1.5
         if caster:HasModifier("modifier_critmaster2") then
-            bonusfactor = 2
+            bonusfactor = 1.75
         end
         multiplicative_bonus = multiplicative_bonus * bonusfactor
         local particle = ParticleManager:CreateParticle("particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
@@ -5264,6 +5264,13 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         caster.tiger_fury_next_abi_bonus = nil
     end
     if caster.talents then
+        if caster.talents[133] > 0 then
+            local spellPower = GetSpellpower(event)
+            if spellPower > 0 then
+                multiplicative_bonus = multiplicative_bonus * (1 + 0.0001 * spellPower * caster.talents[133])
+            end
+        end
+
         --if isaoe and caster.talents[104] and caster.talents[104] > 0 and caster:HasModifier("modifier_deathchill") then
         --    multiplicative_bonus = multiplicative_bonus * (1 + 0.25 * caster.talents[104])
         --end
@@ -5489,7 +5496,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         if caster.talents[60] and caster.talents[60] > 0 then
             local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
-            bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
+            bonusfromms = bonusfromms * 0.00033 * caster.talents[60]
             if bonusfromms > 0.45 then
                 bonusfromms = 0.45
             end
@@ -8487,6 +8494,12 @@ function ChannelManaFixStart( event )
             castpoint = castpoint - 0.25
         end
         castpoint = castpoint * (1 + slowbonus) / ( 1 + speedbonus)
+
+        -- cast point limit, similar to AS limit
+        if castpoint < 0.2 then
+            castpoint = 0.2
+        end
+
         event.casttime = castpoint
         ability:SetOverrideCastPoint(castpoint)
 	end
@@ -16287,6 +16300,7 @@ function ApplyBuff(event)
     if GetLevelOfAbility(caster, "ench2") >= 4 and not isBuff then
         duration = duration + 1
     end
+    --[[
     if caster.talents and caster.talents[133] and caster.talents[133] > 0 and duration and buff == "modifier_silence" and not isBuff and not HasDamageReflect(target) and not caster.mimesisCD then
         caster.mimesisCD = true
         ApplyBuff({caster = caster, target = target, ability = ability, buff = "modifier_stunned", dur = caster.talents[133]})
@@ -16295,7 +16309,7 @@ function ApplyBuff(event)
         Timers:CreateTimer(5, function()
             caster.mimesisCD = false
         end)
-    end
+    end]]
 	--adjust time of buff
 	if duration and event.cursebladespecial and caster:HasModifier("modifier_item_curseblade") and not isBuff then
     	duration = duration * GetCCPower(event)
@@ -20182,7 +20196,7 @@ function GetStrengthPercentageBonus( hero, primary_stats_percent_bonus )
     if hero:HasModifier("modifier_crowndefender") or hero:HasModifier("modifier_crowndefender2") then
         strPerLevel = 0.075
     end
-    local percent_bonus = strPerLevel * hero.talents[1] + 0.04 * hero.talents[38] + 0.03 * hero.talents[76]
+    local percent_bonus = strPerLevel * hero.talents[1] + 0.04 * hero.talents[38] + 0.03 * hero.talents[76] + 0.07 * hero.talents[174]
     if hero:GetPrimaryAttribute() == 0 then
         percent_bonus = percent_bonus + primary_stats_percent_bonus
     end
@@ -20394,7 +20408,7 @@ function GetArmorStaticBonus( hero, strength, agility, mana, magicres )
         static_bonus = static_bonus + CountAbilitiesWithLevel(hero, 2) * 3 * hero.talents[139]
     end
     if hero.talents[116] and hero.talents[116] > 0 then
-        local value = hero.talents[116] * 0.00333 * GetAgilityCustom(hero)
+        local value = (hero.talents[116] * 0.0025 + 0.0025) * GetAgilityCustom(hero)
         if value > 30 then
             value = 30
         end
@@ -20752,7 +20766,7 @@ function GetAutoAttackDamagePercentBonus(hero)
         value = value * (1 + 0.02 * buffstacks)
     end
     if hero.talents[135] > 0 then
-        value = value * (1 + 0.25 * hero.talents[135])
+        value = value * (1 + 0.45 * hero.talents[135])
     end
     return value
 end
@@ -21943,7 +21957,7 @@ function PassiveStatCalculation(event)
         end
 
         --new_talent_value = 5
-        --if i == 95 then
+        --if i == 133 then
         --    new_talent_value = 10
         --end
         --if i == 132 then
@@ -22249,7 +22263,7 @@ function PassiveStatCalculation(event)
                 local myevent = {caster = hero, target = hero, attributefactor = 50 * level, heal = 0, ability = ability}
                 Timers:CreateTimer(0.25, function()
                     HealUnit(myevent)
-                    AddAttackSpeed(hero, 250, 5)
+                    --AddAttackSpeed(hero, 250, 5)
                 end)
             end
         else
@@ -25106,6 +25120,9 @@ function GlobalOnDealDamage( event )
             if caster:HasModifier("modifier_pathbuff_068") then
                 chance = chance + 3
             end
+            if caster:HasModifier("modifier_pathbuff_067") then
+                chance = chance / 2
+            end
             if math.random(1,100) <= chance then
                 SummonBoneWarrior(caster, target)
             end
@@ -25118,6 +25135,9 @@ end
 
 function SummonBoneWarrior( caster, target )
     local maxWarriors = 2 + caster.talents[102]
+    if caster:HasModifier("modifier_pathbuff_067") then
+        maxWarriors = maxWarriors * 2
+    end
     local dur = 10
     if not caster.bone_warrior_count then
         caster.bone_warrior_count = 0
@@ -26967,7 +26987,7 @@ function GetTotalDamageTakenFactor(caster, attacker)
     --wolf rider
     if caster.talents and caster.talents[60] and caster.talents[60] > 0 then
       local bonusfromms = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), true) - 300
-      bonusfromms = bonusfromms * 0.0005 * caster.talents[60]
+      bonusfromms = bonusfromms * 0.00033 * caster.talents[60]
       local wolf_dmg_factor = (1 - bonusfromms)
       if wolf_dmg_factor < 0.55 then
         wolf_dmg_factor = 0.55
@@ -29809,7 +29829,7 @@ function TyphoonProc( caster, target, alwaysProc )
         local particle = ParticleManager:CreateParticle("particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
-        DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 250 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
+        DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 500 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
         RestoreResource({caster = caster, amount = 5 * caster.talents[136]})
         EmitSoundOn("Ability.GushCast", target)
         OnNaturalDisasterProcced( caster, target, 7 )

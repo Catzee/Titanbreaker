@@ -54579,7 +54579,7 @@
 		}
 		"AbilityValues"
 		{
-			"dmgfromstat"	"125 150 150 150"
+			"dmgfromstat"	"200 250 250 250"
 			"asbonus"	"0 0 20 20"
 			"asdur"	"0 0 10 10"
 			"cd"	"0 0 0 1"
@@ -58148,8 +58148,8 @@
 						"ScriptFile"	"game_mechanics.lua"
 						"Function"	"DamageUnit"
 						"damage"	"0.0"
-						"spelldamagefactor"	"100"
-						"includeauto"	"100"
+						"spelldamagefactor"	"200"
+						"includeauto"	"200"
 						"attributefactor"	"0"
 						"talentscale"	"170"
 						"isdot"	"1"
@@ -59077,7 +59077,7 @@
 				"IsStunDebuff"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"50"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"100"
 				}
 			}
 			"modifier_eyeaegis"
@@ -89840,6 +89840,11 @@
 					"RemoveModifier"
 					{
 						"ModifierName"	"modifier_crit_ambush"
+						"Target"	"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
 						"Target"	"CASTER"
 					}
 				}

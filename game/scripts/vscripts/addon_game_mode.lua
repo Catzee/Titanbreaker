@@ -1548,7 +1548,7 @@ self.affixes = {
   "pve_ice_nova_affix",
   "pve_temple_affix_shadowcloud",
   "pve_temple_bloodlust",
-  "pve_temple_ambush",
+  --"pve_temple_ambush",
   "pve_temple_affix_maniac",
   "pve_temple_affix_shadow_magus",
   "pve_temple_affix_immolation",
@@ -14979,7 +14979,7 @@ end
       unit.chance_for_champion = 10
       unit.exp_factor = 2
       --SetSwarmOnDeath(unit, 7, 7, Vector(900,900,0), zone, "temple_wolf_rage", nil, true)
-      unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+      --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
       unit:SetRenderColor(50, 50, 50)
       self:SetTempleStats(unit,scale,125*act_1_dmg_factor,500,20,2*affixinact1)
 
@@ -15212,7 +15212,7 @@ end
         unit = CreateUnitByName("extra_act2", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
         unit.chance_for_champion = 100
         unit.exp_factor = 2
-        unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+        --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
         self:SetTempleStats(unit,scale,200,2500,20,2)
 
         for i=1, horde_factor do
@@ -15491,7 +15491,7 @@ end
         unit = CreateUnitByName("extra_act3", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
         unit.chance_for_champion = 100
         unit.exp_factor = 2
-        unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+        --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
         self:SetTempleStats(unit,scale,200,1500,20,2)
 
         for i=1, horde_factor do
@@ -15923,7 +15923,7 @@ end
             unit = CreateUnitByName("extra_act4", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
             unit.chance_for_champion = 100
             unit.exp_factor = 2
-            unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+            --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
             self:SetTempleStats(unit,scale,200,1500,20,2)
 
             --camp 1                 
@@ -16394,7 +16394,7 @@ end
             unit = CreateUnitByName("extra_act5", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
             unit.chance_for_champion = 100
             unit.exp_factor = 2
-            unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+            --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
             self:SetTempleStats(unit,scale,200,1500,20,2)
 
             --camp 1   
@@ -16653,7 +16653,7 @@ end
           unit = CreateUnitByName("extra_act6", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
           unit.chance_for_champion = 100
           unit.exp_factor = 2
-          unit:AddAbility("pve_temple_ambush"):SetLevel(1)
+          --unit:AddAbility("pve_temple_ambush"):SetLevel(1)
           self:SetTempleStats(unit,scale,135,2500,20,2)
 
           for i=1, horde_factor do
@@ -18522,27 +18522,27 @@ function COverthrowGameMode:CreateActBoss(act, boss_unlock)
     end
     local unit = CreateUnitByName("extra_act11", deadwingPos, true, nil, nil, DOTA_TEAM_BADGUYS )
     unit.chance_for_champion = 100
-    unit:AddAbility("pve_temple_ambush")
+    --unit:AddAbility("pve_temple_ambush")
     self:SetTempleStats(unit,scale,250,1000,20,0)
 
     for i=1,1*horde_factor do
      local unit = CreateUnitByName("temple_shadow_spectre_2", creep1+Vector(0,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
      unit:SetModelScale(1.1)
-     unit:AddAbility("pve_temple_ambush")
+     --unit:AddAbility("pve_temple_ambush")
      unit:AddAbility("temple_shadowstrike")
      self:SetTempleStats(unit,scale,250,1250,20,0)
    end
    for i=1,3*horde_factor do
      local unit = CreateUnitByName("temple_shadow_spectre_2", creep2+Vector(-300+150*i,0,0), true, nil, nil, DOTA_TEAM_BADGUYS )
      unit:SetModelScale(0.85)
-     unit:AddAbility("pve_temple_ambush")
+     --unit:AddAbility("pve_temple_ambush")
      unit:AddAbility("temple_shadowstrike")
      self:SetTempleStats(unit,scale,65,500,7,0)
    end
    for i=1,1*horde_factor do
      local unit = CreateUnitByName("temple_shadow_spectre_2", creep3+Vector(0,400,0), true, nil, nil, DOTA_TEAM_BADGUYS )
      unit:SetModelScale(1.0)
-     unit:AddAbility("pve_temple_ambush")
+     --unit:AddAbility("pve_temple_ambush")
      unit:AddAbility("temple_shadowstrike")
      self:SetTempleStats(unit,scale,50,600,7,0)
    end

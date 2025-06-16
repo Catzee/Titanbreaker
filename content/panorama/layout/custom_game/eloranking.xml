@@ -937,7 +937,7 @@
 		</Panel>
 
 		<Panel class="Inventory" hittest="false" id="WeaponInventoryDisplay" style="height:1000px;">
-			<Panel  class="WeaponInventoryDisplay" >
+			<Panel  class="WeaponInventoryDisplayInner" >
 				<Label class="ButtTextBigGold" text="Artifact Inventory" style="font-size: 24px;"/>
 				<Panel class="TableRow" style="horizontal-align:center;">
 					<DOTAHeroImage heroname="dragon_knight" id="playericon" heroimagestyle="icon" />
@@ -1707,6 +1707,7 @@
 				<Label class="ButtTextBigGold" text="Effects that modify Critical Strike Chances\nand Damage stack additively." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Spell Resistance from Artifacts is capped at 35." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="Percentage Bonuses from multiple Artifacts\nstack additively (for example +5% Damage and\n+10% Damage results in +15% Damage)." style="color:white; font-size: 16px; horizontal-align: left;"/>
+				<Label class="ButtTextBigGold" text="Spellhaste lowers the cast time of Spells, which is capped at a minimum of 0.2 secs. " style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label id="ChannelSpellHasteLabel" class="ButtTextBigGold" text="Half of Spellhaste increases the tick rate of Channeled Abilities\nbut only up to (LOADING) %." style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="When you have more than 1 core Healer (Divine Crusader /\nHoly Cleric / Twilight Cleric / Peaceful Guardian / Spirit Voodoo)\nin your party, there will be a Healing output penalty\nfor all players:" style="color:white; font-size: 16px; horizontal-align: left;"/>
 				<Label class="ButtTextBigGold" text="2 Healers = 25% Output" style="color:white; font-size: 16px; horizontal-align: left;"/>
