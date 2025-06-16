@@ -4713,6 +4713,12 @@ function InjectIntoDotaUI()
     if(statsRegion != undefined) {
         customAttackSpeedLabel = dotaHudRoot.FindChildTraverse("AttackSpeedLabelBase");
     }
+	
+    // Hides new neutral item buttons
+    let neutralItemContainer = dotaHudRoot.FindChildTraverse("inventory_neutral_craft_holder");
+    if(neutralItemContainer != undefined) {
+        neutralItemContainer.style.visibility = "collapse";
+    }
 }
 
 function SetUIStats(args)
