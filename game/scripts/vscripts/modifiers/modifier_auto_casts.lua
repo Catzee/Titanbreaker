@@ -44,7 +44,8 @@ function modifier_auto_casts:OnCreated()
     self.autoCastsImplementations = {
         ["npc_dota_hero_oracle"] = "GetNextAbilityForOracleAutoCasts",
         ["npc_dota_hero_pugna"] = "GetNextAbilityForPugnaAutoCasts",
-        ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts"
+        ["npc_dota_hero_grimstroke"] = "GetNextAbilityForGrimstrokeAutoCasts",
+        ["npc_dota_hero_warlock"] = "GetNextAbilityForWarlockAutoCasts"
     }
 end
 
@@ -450,6 +451,66 @@ function modifier_auto_casts:GetNextAbilityForGrimstrokeAutoCasts(caster, abilit
 
         if(isGrimstrokeQReadyForAutocast) then
             return caster._autoCastDemo1
+        end
+    end
+
+    return nil
+end
+
+-- Warlock: Q, W dots upkeep, D spam during downtime
+function modifier_auto_casts:GetNextAbilityForWarlockAutoCasts(caster, ability, target)
+    if(caster._autoCastWarlockQ == nil) then
+        caster._autoCastWarlockQ = caster:FindAbilityByName("Agony")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWarlockQ)
+    end
+    if(caster._autoCastWarlockW == nil) then
+        caster._autoCastWarlockW = caster:FindAbilityByName("Pain_Warlock")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWarlockW)
+    end
+    if(caster._autoCastWarlockD == nil) then
+        caster._autoCastWarlockD = caster:FindAbilityByName("dark_ranger_life_drain")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWarlockD)
+    end
+
+    if(ability == caster._autoCastWarlockQ or ability == caster._autoCastWarlockW or ability == caster._autoCastWarlockD) then
+        local isWarlockQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastWarlockQ)
+        local isWarlockWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastWarlockW)
+        local isWarlockDReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastWarlockD)
+
+        if(target == nil) then
+            return nil
+        end
+
+        if(isWarlockQReadyForAutocast) then
+            local dotModifier = target:FindModifierByName("modifier_dot1")
+            -- Due to instant cast time trying prevent issues with low spell haste upkeep
+            local isDotAlmostEnded = dotModifier and dotModifier:GetRemainingTime() / dotModifier:GetDuration() < 0.8
+
+            if(isDotAlmostEnded or dotModifier == nil) then
+                return caster._autoCastWarlockQ
+            end
+        end
+
+        if(isWarlockWReadyForAutocast) then
+            local dotModifier = target:FindModifierByName("modifier_dot2")
+            local stacksCount = dotModifier and dotModifier:GetStackCount() or 0
+            local isDotAlmostEnded = dotModifier and dotModifier:GetRemainingTime() / dotModifier:GetDuration() < 0.3
+
+            if(isDotAlmostEnded) then
+                return caster._autoCastWarlockW
+            end
+
+            if(caster._autoCastWarlockW:GetLevel() >= 3 and stacksCount < 2) then
+                return caster._autoCastWarlockW
+            else
+                if(dotModifier == nil) then
+                    return caster._autoCastWarlockW
+                end
+            end
+        end
+
+        if(isWarlockDReadyForAutocast) then
+            return caster._autoCastWarlockD
         end
     end
 
