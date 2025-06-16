@@ -52,6 +52,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_dark_seer"] = "GetNextAbilityForDarkSeerAutoCasts",
         ["npc_dota_hero_omniknight"] = "GetNextAbilityForOmniknightAutoCasts",
         ["npc_dota_hero_crystal_maiden"] = "GetNextAbilityForCrystalMaidenAutoCasts",
+        ["npc_dota_hero_furion"] = "GetNextAbilityForNatureProphetAutoCasts",
     }
 end
 
@@ -746,4 +747,42 @@ function modifier_auto_casts:GetNextAbilityForCrystalMaidenAutoCasts(caster, abi
             return caster._autoCastCMFrostShatter
         end
     end
+
+    return nil
+end
+
+-- Nature Phophet: Q spam if required
+function modifier_auto_casts:GetNextAbilityForNatureProphetAutoCasts(caster, ability, target)
+    if(caster._autoCastNatureProphetQ == nil) then
+        caster._autoCastNatureProphetQ = caster:FindAbilityByName("Lifebloom")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastNatureProphetQ)
+    end
+    
+    local isNatureProphetQReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastNatureProphetQ)
+        
+    if(ability == caster._autoCastNatureProphetQ) then
+        local position = caster:GetAbsOrigin()
+        local allies = FindNearbyAllies(caster, caster:GetAbsOrigin(), ability:GetEffectiveCastRange(position, caster))
+        local isCastRequired = false
+        local maxStacks = GetMaxBuffStackBonus(caster) + 3
+
+        for _, ally in pairs(allies) do
+            local firstModifier = ally:FindModifierByName("modifier_lifebloom")
+            local secondModifier = ally:FindModifierByName("modifier_lifebloomfull")
+            local allyStacks = (firstModifier and firstModifier:GetStackCount() or 0) + (secondModifier and secondModifier:GetStackCount() or 0)
+            local isHotAlmostEnded = (firstModifier and firstModifier:GetRemainingTime() / firstModifier:GetDuration() < 0.5 or false) 
+                or (secondModifier and secondModifier:GetRemainingTime() / secondModifier:GetDuration() < 0.5 or false)
+                
+            if(allyStacks < maxStacks or isHotAlmostEnded) then
+                isCastRequired = true
+                break
+            end
+        end
+        
+        if(isCastRequired == true) then
+            return caster._autoCastNatureProphetQ
+        end
+    end
+
+    return nil
 end
