@@ -50,7 +50,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_lina"] = "GetNextAbilityForLinaAutoCasts",
         ["npc_dota_hero_invoker"] = "GetNextAbilityForInvokerAutoCasts",
         ["npc_dota_hero_dark_seer"] = "GetNextAbilityForDarkSeerAutoCasts",
-        ["npc_dota_hero_omniknight"] = "GetNextAbilityForOmniknightAutoCasts"
+        ["npc_dota_hero_omniknight"] = "GetNextAbilityForOmniknightAutoCasts",
+        ["npc_dota_hero_crystal_maiden"] = "GetNextAbilityForCrystalMaidenAutoCasts",
     }
 end
 
@@ -704,4 +705,45 @@ function modifier_auto_casts:GetNextAbilityForOmniknightAutoCasts(caster, abilit
     end
 
     return nil
+end
+
+-- Crystal Maiden: Q Q W combo, Q = Ice_Bolt, W = Frost_Shatter (Q can be casted more often than two times per combo while waiting for W)
+function modifier_auto_casts:GetNextAbilityForCrystalMaidenAutoCasts(caster, ability, target)
+    if(caster._autoCastCMIceBolt == nil) then
+        caster._autoCastCMIceBolt = caster:FindAbilityByName("Ice_Bolt")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastCMIceBolt)
+    end
+    if(caster._autoCastCMFrostShatter == nil) then
+        caster._autoCastCMFrostShatter = caster:FindAbilityByName("Frost_Shatter")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastCMFrostShatter)
+    end
+    
+    local isIceBoltReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastCMIceBolt)
+    local isFrostShatterReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastCMFrostShatter)
+        
+    if(ability == caster._autoCastCMIceBolt) then
+        local winterChillStacks = caster:GetModifierStackCount("modifier_winterschill", nil)
+
+        -- If Frost Shatter ready and autocasted do Q Q W combo else just Q spam
+        if(winterChillStacks >= 2 and isFrostShatterReadyForAutoCast) then
+            return caster._autoCastCMFrostShatter
+        end
+    
+        -- Continue Q spam if W cast not possible or not desired
+        if(isIceBoltReadyForAutoCast) then
+            return caster._autoCastCMIceBolt
+        end
+    end
+    
+    if(ability == caster._autoCastCMFrostShatter) then
+        -- You always want continue stacking Q after W cast
+        if(isIceBoltReadyForAutoCast) then
+            return caster._autoCastCMIceBolt
+        end
+    
+        -- If Q autocast turned off, but W autocast enabled spam it until impossible
+        if(isFrostShatterReadyForAutoCast) then
+            return caster._autoCastCMFrostShatter
+        end
+    end
 end
