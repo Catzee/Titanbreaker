@@ -53,6 +53,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_omniknight"] = "GetNextAbilityForOmniknightAutoCasts",
         ["npc_dota_hero_crystal_maiden"] = "GetNextAbilityForCrystalMaidenAutoCasts",
         ["npc_dota_hero_furion"] = "GetNextAbilityForNatureProphetAutoCasts",
+        ["npc_dota_hero_witch_doctor"] = "GetNextAbilityForWitchDoctorAutoCasts",
     }
 end
 
@@ -697,12 +698,8 @@ function modifier_auto_casts:GetNextAbilityForOmniknightAutoCasts(caster, abilit
         self:DetermineAutoCastOrderForAbility(caster._autoCastDivineLight)
     end
 
-    if(ability == caster._autoCastDivineLight) then
-        local isOmniDivineLightReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDivineLight)
-        
-        if(isOmniDivineLightReadyForAutocast) then
-            return caster._autoCastDivineLight
-        end
+    if(ability == caster._autoCastDivineLight and self:IsAbilityReadyForAutoCast(caster._autoCastDivineLight)) then
+        return caster._autoCastDivineLight
     end
 
     return nil
@@ -757,10 +754,8 @@ function modifier_auto_casts:GetNextAbilityForNatureProphetAutoCasts(caster, abi
         caster._autoCastNatureProphetQ = caster:FindAbilityByName("Lifebloom")
         self:DetermineAutoCastOrderForAbility(caster._autoCastNatureProphetQ)
     end
-    
-    local isNatureProphetQReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastNatureProphetQ)
-        
-    if(ability == caster._autoCastNatureProphetQ) then
+            
+    if(ability == caster._autoCastNatureProphetQ and self:IsAbilityReadyForAutoCast(caster._autoCastNatureProphetQ)) then
         local position = caster:GetAbsOrigin()
         local allies = FindNearbyAllies(caster, caster:GetAbsOrigin(), ability:GetEffectiveCastRange(position, caster))
         local isCastRequired = false
@@ -782,6 +777,20 @@ function modifier_auto_casts:GetNextAbilityForNatureProphetAutoCasts(caster, abi
         if(isCastRequired == true) then
             return caster._autoCastNatureProphetQ
         end
+    end
+
+    return nil
+end
+
+-- Witch Doctor: Q spam
+function modifier_auto_casts:GetNextAbilityForWitchDoctorAutoCasts(caster, ability, target)
+    if(caster._autoCastWitchDoctorQ == nil) then
+        caster._autoCastWitchDoctorQ = caster:FindAbilityByName("resto1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWitchDoctorQ)
+    end
+            
+    if(ability == caster._autoCastWitchDoctorQ and self:IsAbilityReadyForAutoCast(caster._autoCastWitchDoctorQ)) then
+        return caster._autoCastWitchDoctorQ
     end
 
     return nil
