@@ -57,6 +57,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_silencer"] = "GetNextAbilityForSilencerAutoCasts",
         ["npc_dota_hero_enchantress"] = "GetNextAbilityForEnchantressAutoCasts",
         ["npc_dota_hero_phantom_assassin"] = "GetNextAbilityForPhantomAssassinAutoCasts",
+        ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts"
     }
 end
 
@@ -329,6 +330,16 @@ function modifier_auto_casts:DetermineAutoCastOrderForAbility(ability)
         end
         -- Prevent pointless PA E spam
         if(ability:GetAbilityName() == "Fatal_Throw") then
+            ability._autoCastWhileRunning = false
+        end
+        -- Eventually will kill player because tries constantly spam q w e combos even when player running away
+        if(ability:GetAbilityName() == "deadly1") then
+            ability._autoCastWhileRunning = false
+        end
+        if(ability:GetAbilityName() == "deadly2") then
+            ability._autoCastWhileRunning = false
+        end
+        if(ability:GetAbilityName() == "deadly3") then
             ability._autoCastWhileRunning = false
         end
     end
@@ -848,6 +859,92 @@ function modifier_auto_casts:GetNextAbilityForPhantomAssassinAutoCasts(caster, a
 
     if(ability == caster._autoCastPhantomAssassinE and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomAssassinE)) then
         return caster._autoCastPhantomAssassinE
+    end
+
+    return nil
+end
+
+-- Juggernaut: Q W E spam
+function modifier_auto_casts:GetNextAbilityForJuggernautAutoCasts(caster, ability, target)
+    if(caster._autoCastJuggernautQ == nil) then
+        caster._autoCastJuggernautQ = caster:FindAbilityByName("deadly1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastJuggernautQ)
+    end
+    if(caster._autoCastJuggernautW == nil) then
+        caster._autoCastJuggernautW = caster:FindAbilityByName("deadly2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastJuggernautW)
+    end
+    if(caster._autoCastJuggernautE == nil) then
+        caster._autoCastJuggernautE = caster:FindAbilityByName("deadly3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastJuggernautE)
+    end
+    
+    if(not caster.yinyangsystem) then
+        return nil
+    end
+
+    local isJuggernautQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastJuggernautQ)
+    local isJuggernautWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastJuggernautW)
+    local isJuggernautEReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastJuggernautE)
+
+    local yin = caster.yinyangsystem[1]
+    local yang = caster.yinyangsystem[2]
+    local yin2yang1modifier = caster:FindModifierByName("modifier_molten_blade")
+    local yin2yang1modifierAlmostEnded = (yin2yang1modifier and yin2yang1modifier:GetRemainingTime() / yin2yang1modifier:GetDuration() < 0.5 or false) 
+
+    -- Fallback
+    if(yin + yang >= 3 and isJuggernautEReadyForAutocast) then
+        return caster._autoCastJuggernautE
+    end
+
+    --[[
+    print("====")
+    print("yin", yin)
+    print("yang", yang)
+    print("yin2yang1modifier", yin2yang1modifier)
+    print("yin2yang1modifierAlmostEnded", yin2yang1modifierAlmostEnded)
+    --]]
+
+    -- Q Q E combo
+    if(yin2yang1modifier == nil or yin2yang1modifierAlmostEnded) then
+        if(yin >= 2 and yang >= 1 and isJuggernautEReadyForAutocast) then
+            return caster._autoCastJuggernautE
+        else
+            if(yin < 2 and isJuggernautQReadyForAutocast) then
+                return caster._autoCastJuggernautQ
+            end
+
+            if(yang < 1 and isJuggernautWReadyForAutocast) then
+                return caster._autoCastJuggernautW
+            end
+        end
+    end
+
+    -- Q W W combo
+    local yin1yang2modifier = caster:FindModifierByName("modifier_frozen_blade")
+    local yin1yang2modifierAlmostEnded = (yin1yang2modifier and yin1yang2modifier:GetRemainingTime() / yin1yang2modifier:GetDuration() < 0.5 or false) 
+
+    if(yin1yang2modifier == nil or yin1yang2modifierAlmostEnded) then
+        if(yin >= 1 and yang >= 2 and isJuggernautEReadyForAutocast) then
+            return caster._autoCastJuggernautE
+        else
+            if(yin < 1 and isJuggernautQReadyForAutocast) then
+                return caster._autoCastJuggernautQ
+            end
+
+            if(yang < 2 and isJuggernautWReadyForAutocast) then
+                return caster._autoCastJuggernautW
+            end
+        end
+    end
+
+    -- Q Q Q combo
+    if(yin >= 3 and isJuggernautEReadyForAutocast) then
+        return caster._autoCastJuggernautE
+    else
+        if(yin < 3 and isJuggernautQReadyForAutocast) then
+            return caster._autoCastJuggernautQ
+        end
     end
 
     return nil
