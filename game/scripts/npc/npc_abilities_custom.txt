@@ -53033,7 +53033,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"ScriptFile"	"abilities/heroes/cruel_shadowstalker/slice"
-		"AbilityTextureName"	"queenofpain_shadow_strike"
+		"AbilityTextureName"	"cruel_shadowstalker_slice"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
