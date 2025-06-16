@@ -54,6 +54,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_crystal_maiden"] = "GetNextAbilityForCrystalMaidenAutoCasts",
         ["npc_dota_hero_furion"] = "GetNextAbilityForNatureProphetAutoCasts",
         ["npc_dota_hero_witch_doctor"] = "GetNextAbilityForWitchDoctorAutoCasts",
+        ["npc_dota_hero_silencer"] = "GetNextAbilityForSilencerAutoCasts",
+        ["npc_dota_hero_enchantress"] = "GetNextAbilityForEnchantressAutoCasts",
     }
 end
 
@@ -791,6 +793,34 @@ function modifier_auto_casts:GetNextAbilityForWitchDoctorAutoCasts(caster, abili
             
     if(ability == caster._autoCastWitchDoctorQ and self:IsAbilityReadyForAutoCast(caster._autoCastWitchDoctorQ)) then
         return caster._autoCastWitchDoctorQ
+    end
+
+    return nil
+end
+
+-- Silener: Q spam
+function modifier_auto_casts:GetNextAbilityForSilencerAutoCasts(caster, ability, target)
+    if(caster._autoCastSilencerQ == nil) then
+        caster._autoCastSilencerQ = caster:FindAbilityByName("Light_of_Heaven")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastSilencerQ)
+    end
+            
+    if(ability == caster._autoCastSilencerQ and self:IsAbilityReadyForAutoCast(caster._autoCastSilencerQ)) then
+        return caster._autoCastSilencerQ
+    end
+
+    return nil
+end
+
+-- Enchantress: Q spam
+function modifier_auto_casts:GetNextAbilityForEnchantressAutoCasts(caster, ability, target)
+    if(caster._autoCastEnchantressQ == nil) then
+        caster._autoCastEnchantressQ = caster:FindAbilityByName("ench1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastEnchantressQ)
+    end
+            
+    if(ability == caster._autoCastEnchantressQ and self:IsAbilityReadyForAutoCast(caster._autoCastEnchantressQ)) then
+        return caster._autoCastEnchantressQ
     end
 
     return nil
