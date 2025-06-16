@@ -50774,7 +50774,8 @@
 	}
 	"Frost_Shatter"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/winter_wizard/frost_shatter"
 		"AbilityTextureName"	"crystal_maiden_freezing_field"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"

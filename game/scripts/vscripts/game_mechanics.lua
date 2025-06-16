@@ -1086,14 +1086,14 @@ function DamageUnit( event )
         finaldamage = 0.1*finaldamage*caster.AgonyCounter
     end
 
-    local winter_chills = caster:GetModifierStackCount("modifier_winterschill", nil)
-    if event.icelance and (winter_chills >= 2 or target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")) then
-        if not (target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")) then
-            caster:RemoveModifierByName("modifier_winterschill")
+    if event.icelance then
+        local isModifiersProc = target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")
+        local isStacksProc = event.icelancestacks ~= nil and event.icelancestacks >= 2
+        if(isStacksProc or isModifiersProc) then
+            finaldamage = finaldamage * 3
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT_FOLLOW, target)
+            ParticleManager:ReleaseParticleIndex(particle)
         end
-        finaldamage = finaldamage * 3
-        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT_FOLLOW, target)
-        ParticleManager:ReleaseParticleIndex(particle)
     end
 
     --cp based scaling
@@ -11380,7 +11380,12 @@ function MulticastItem( event )
         end
     end
     if item and math.random(1,100) <= chance then
-        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_multicast_item", {Duration = dur})
+        -- special case for cm W
+        if(event.ability:GetAbilityName() == "Frost_Shatter") then
+            event.ability:OnMulticastProc(caster, target, dur)
+        else
+            event.ability:ApplyDataDrivenModifier(caster, target, "modifier_multicast_item", {Duration = dur})
+        end
     end
 end
 
