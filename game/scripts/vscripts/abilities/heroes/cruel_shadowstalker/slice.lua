@@ -14,21 +14,14 @@ function Dagger_Strike:OnAltCastToggled()
     local caster = self:GetCaster()
     self._modifier = self._modifier or caster:FindModifierByName(self:GetIntrinsicModifierName())
     
-    self:EndCooldown()
-
     -- Hack for client lua... IsAltCasted() available only server side and we use modifier to determine alt cast state client side
     if(self:IsAltCasted()) then
-        local cdModifier = caster:FindModifierByName("modifier_slice_inner_cd")
-        if(cdModifier ~= nil) then
-            self:StartCooldown(cdModifier:GetRemainingTime())
-        end
-        
         self._modifier:SetStackCount(1)
     else
         self._modifier:SetStackCount(0)
-        -- start cd
-        self:UseResources(false, false, false, true)
     end
+
+    self:FixCooldown(caster)
 end
 
 function Dagger_Strike:GetManaCost(level)
@@ -63,6 +56,7 @@ function Dagger_Strike:OnSpellStart()
             caster:AddNewModifier(caster, self, "modifier_slice_inner_cd", { duration = innerCd})
         end
     else
+        -- Hack around data driven modifiers...
         self._ambushAbility = self._ambushAbility or caster:FindAbilityByName("Ambush")
         self._ambushAbility:ApplyDataDrivenModifier(caster, caster, "modifier_combopoint", {duration = -1})
 
@@ -94,6 +88,21 @@ function Dagger_Strike:OnSpellStart()
             ability = self,
             amount = 1
         })
+    end
+
+    self:FixCooldown(caster)
+end
+
+function Dagger_Strike:FixCooldown(caster)
+    self:EndCooldown()
+
+    if(self:IsAltCasted()) then
+        local cdModifier = caster:FindModifierByName("modifier_slice_inner_cd")
+        if(cdModifier ~= nil) then
+            self:StartCooldown(cdModifier:GetRemainingTime())
+        end
+    else
+        self:UseResources(false, false, false, true)
     end
 end
 
