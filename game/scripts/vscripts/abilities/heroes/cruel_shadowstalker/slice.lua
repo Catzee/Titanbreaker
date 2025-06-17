@@ -11,13 +11,23 @@ function Dagger_Strike:Precache(context)
 end
 
 function Dagger_Strike:OnAltCastToggled()
-    self._modifier = self.modifier or self:GetCaster():FindModifierByName(self:GetIntrinsicModifierName())
+    local caster = self:GetCaster()
+    self._modifier = self._modifier or caster:FindModifierByName(self:GetIntrinsicModifierName())
     
+    self:EndCooldown()
+
     -- Hack for client lua... IsAltCasted() available only server side and we use modifier to determine alt cast state client side
     if(self:IsAltCasted()) then
+        local cdModifier = caster:FindModifierByName("modifier_slice_inner_cd")
+        if(cdModifier ~= nil) then
+            self:StartCooldown(cdModifier:GetRemainingTime())
+        end
+        
         self._modifier:SetStackCount(1)
     else
         self._modifier:SetStackCount(0)
+        -- start cd
+        self:UseResources(false, false, false, true)
     end
 end
 
@@ -120,7 +130,13 @@ modifier_slice_inner_cd = class({
     end,
     IsDebuff = function()
 		return true
-	end
+	end,
+    GetAttributes = function()
+        return MODIFIER_ATTRIBUTE_PERMANENT
+    end,
+    RemoveOnDeath = function()
+        return false
+    end
 })
 
 LinkLuaModifier("modifier_slice_alt_cast_state", "abilities/heroes/cruel_shadowstalker/slice", LUA_MODIFIER_MOTION_NONE)
