@@ -57,7 +57,21 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_silencer"] = "GetNextAbilityForSilencerAutoCasts",
         ["npc_dota_hero_enchantress"] = "GetNextAbilityForEnchantressAutoCasts",
         ["npc_dota_hero_phantom_assassin"] = "GetNextAbilityForPhantomAssassinAutoCasts",
-        ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts"
+        ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts",
+        ["npc_dota_hero_riki"] = "GetNextAbilityForRikiAutoCasts"
+    }
+
+    -- List of abilities that can be casted while running, but actually will do more harm than good
+    self.cantBeCastedWhileRunning = {
+        -- Prevent pointless PA E spam
+        ["Fatal_Throw"] = true,
+        -- Eventually will kill player because tries constantly spam q w e combos even when player running away
+        ["deadly1"] = true,
+        ["deadly2"] = true,
+        ["deadly3"] = true,
+        -- Eventually will kill player?
+        ["hawk1"] = true,
+        ["hawk2"] = true
     }
 end
 
@@ -122,18 +136,12 @@ function modifier_auto_casts:OnAbilityFullyCast(kv)
         return
     end
 
-    if(kv.ability:GetAutoCastState() == false) then
-        return
-    end
-
-    if(kv.target ~= nil) then
-        kv.ability._lastAutoCastTarget = kv.target
-    end
+    self.parent._autoCastLastAutoCastTarget = kv.target
 end
 
 function modifier_auto_casts:OnIntervalThink()
     for ability, _ in pairs(self.abilitiesWithAutoCasts) do
-        self:CheckAbilityAutoCast(self.parent, ability, ability._lastAutoCastTarget)
+        self:CheckAbilityAutoCast(self.parent, ability, self.parent._autoCastLastAutoCastTarget)
     end
 end
 
@@ -146,6 +154,7 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
     if(target ~= nil) then
         -- Ignore dead guys
         if(target:IsNull() or target:IsAlive() == false) then
+            self.parent._autoCastLastAutoCastTarget = nil
             return
         end
         -- Check for too far enemies (2500+)
@@ -328,18 +337,7 @@ function modifier_auto_casts:DetermineAutoCastOrderForAbility(ability)
         if(ability._autoCastWhileRunning == nil and bit.band(abilityBehavior, DOTA_ABILITY_BEHAVIOR_IMMEDIATE) == DOTA_ABILITY_BEHAVIOR_IMMEDIATE) then
             ability._autoCastWhileRunning = true
         end
-        -- Prevent pointless PA E spam
-        if(ability:GetAbilityName() == "Fatal_Throw") then
-            ability._autoCastWhileRunning = false
-        end
-        -- Eventually will kill player because tries constantly spam q w e combos even when player running away
-        if(ability:GetAbilityName() == "deadly1") then
-            ability._autoCastWhileRunning = false
-        end
-        if(ability:GetAbilityName() == "deadly2") then
-            ability._autoCastWhileRunning = false
-        end
-        if(ability:GetAbilityName() == "deadly3") then
+        if(self.cantBeCastedWhileRunning[ability:GetAbilityName()] == true) then
             ability._autoCastWhileRunning = false
         end
     end
@@ -897,14 +895,6 @@ function modifier_auto_casts:GetNextAbilityForJuggernautAutoCasts(caster, abilit
         return caster._autoCastJuggernautE
     end
 
-    --[[
-    print("====")
-    print("yin", yin)
-    print("yang", yang)
-    print("yin2yang1modifier", yin2yang1modifier)
-    print("yin2yang1modifierAlmostEnded", yin2yang1modifierAlmostEnded)
-    --]]
-
     -- Q Q E combo
     if(yin2yang1modifier == nil or yin2yang1modifierAlmostEnded) then
         if(yin >= 2 and yang >= 1 and isJuggernautEReadyForAutocast) then
@@ -945,6 +935,32 @@ function modifier_auto_casts:GetNextAbilityForJuggernautAutoCasts(caster, abilit
         if(yin < 3 and isJuggernautQReadyForAutocast) then
             return caster._autoCastJuggernautQ
         end
+    end
+
+    return nil
+end
+
+-- Riki: Q W spam
+function modifier_auto_casts:GetNextAbilityForRikiAutoCasts(caster, ability, target)
+    if(caster._autoCastRikiQ == nil) then
+        caster._autoCastRikiQ = caster:FindAbilityByName("hawk1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastRikiQ)
+    end
+    if(caster._autoCastRikiW == nil) then
+        caster._autoCastRikiW = caster:FindAbilityByName("hawk2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastRikiW)
+    end
+    
+    local isRikiQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastRikiQ)
+    local isRikiWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastRikiW)
+    local focusPoints = caster:GetModifierStackCount("modifier_combopoint", nil)
+
+    if(ability == caster._autoCastRikiW and self:IsAbilityReadyForAutoCast(caster._autoCastRikiW) and focusPoints >= 3) then
+        return caster._autoCastRikiW
+    end
+
+    if(ability == caster._autoCastRikiQ and self:IsAbilityReadyForAutoCast(caster._autoCastRikiQ)) then
+        return caster._autoCastRikiQ
     end
 
     return nil
