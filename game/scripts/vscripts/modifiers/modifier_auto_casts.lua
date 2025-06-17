@@ -58,20 +58,25 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_enchantress"] = "GetNextAbilityForEnchantressAutoCasts",
         ["npc_dota_hero_phantom_assassin"] = "GetNextAbilityForPhantomAssassinAutoCasts",
         ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts",
-        ["npc_dota_hero_riki"] = "GetNextAbilityForRikiAutoCasts"
+        ["npc_dota_hero_riki"] = "GetNextAbilityForRikiAutoCasts",
+        ["npc_dota_hero_bounty_hunter"] = "GetNextAbilityForBountyHunterAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
     self.cantBeCastedWhileRunning = {
-        -- Prevent pointless PA E spam
+        -- Prevent pointless Phantom Assassin E spam
         ["Fatal_Throw"] = true,
-        -- Eventually will kill player because tries constantly spam q w e combos even when player running away
+        -- Eventually will kill player because tries constantly spam q w e combos even when player running away (Juggernaut)
         ["deadly1"] = true,
         ["deadly2"] = true,
         ["deadly3"] = true,
-        -- Eventually will kill player?
+        -- Eventually will kill player? (RIki)
         ["hawk1"] = true,
-        ["hawk2"] = true
+        ["hawk2"] = true,
+        -- Eventually will kill player? (Bounty Hunter)
+        ["combat1"] = true,
+        ["combat2"] = true,
+        ["combat3"] = true
     }
 end
 
@@ -951,8 +956,6 @@ function modifier_auto_casts:GetNextAbilityForRikiAutoCasts(caster, ability, tar
         self:DetermineAutoCastOrderForAbility(caster._autoCastRikiW)
     end
     
-    local isRikiQReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastRikiQ)
-    local isRikiWReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastRikiW)
     local focusPoints = caster:GetModifierStackCount("modifier_combopoint", nil)
 
     if(ability == caster._autoCastRikiW and self:IsAbilityReadyForAutoCast(caster._autoCastRikiW) and focusPoints >= 3) then
@@ -961,6 +964,38 @@ function modifier_auto_casts:GetNextAbilityForRikiAutoCasts(caster, ability, tar
 
     if(ability == caster._autoCastRikiQ and self:IsAbilityReadyForAutoCast(caster._autoCastRikiQ)) then
         return caster._autoCastRikiQ
+    end
+
+    return nil
+end
+
+-- Bounty Hunter: Q W E spam
+function modifier_auto_casts:GetNextAbilityForBountyHunterAutoCasts(caster, ability, target)
+    if(caster._autoCastBountyHunterQ == nil) then
+        caster._autoCastBountyHunterQ = caster:FindAbilityByName("combat1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterQ)
+    end
+    if(caster._autoCastBountyHunterW == nil) then
+        caster._autoCastBountyHunterW = caster:FindAbilityByName("combat1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterW)
+    end
+    if(caster._autoCastBountyHunterE == nil) then
+        caster._autoCastBountyHunterE = caster:FindAbilityByName("combat3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterE)
+    end
+
+    local focusPoints = caster:GetModifierStackCount("modifier_combopoint", nil)
+
+    if(ability == caster._autoCastBountyHunterE and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterE)) then
+        return caster._autoCastBountyHunterE
+    end
+
+    if(ability == caster._autoCastBountyHunterW and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterW) and focusPoints >= 3) then
+        return caster._autoCastBountyHunterW
+    end
+    
+    if(ability == caster._autoCastBountyHunterQ and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterQ)) then
+        return caster._autoCastBountyHunterQ
     end
 
     return nil
