@@ -1355,8 +1355,8 @@ function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, a
     end
 
     if(caster._autoCastLegionCommanderD:GetLevel() >= 4) then
-        -- Always spam when possible for cdr
-        if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
+        -- Always spam when possible and required for cdr
+        if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ) and caster._autoCastLegionCommanderD:GetCooldownTimeRemaining() > 1) then
             return caster._autoCastLegionCommanderQ
         end
     else
