@@ -209,7 +209,7 @@ function modifier_auto_casts:OnOrder(kv)
     end
 
     if(kv.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET) then
-        -- Special cast. Some heroes must spam auto attacks too for their abilities to work. If player decide change target it breaks auto casting for that heroes
+        -- Special case. Some heroes must spam auto attacks too for their abilities to work. If player decide change target it breaks auto casting for that heroes
         self:SetLastAutoCastTarget(kv.target)
         return
     end
