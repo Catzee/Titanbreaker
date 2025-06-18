@@ -1210,6 +1210,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_tomb_shadow", function(unit) end )
             PrecacheUnitByNameAsync( "temple_tomb_bug", function(unit) end )
             PrecacheUnitByNameAsync( "temple_tomb_skeleton", function(unit) end )
+            PrecacheUnitByNameAsync( "temple_tomb_boss_5", function(unit) end )
             --a6
             PrecacheUnitByNameAsync( "temple_mount_boss_1", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_boss_2", function(unit) end )
