@@ -67,7 +67,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_vengefulspirit"] = "GetNextAbilityForVengefulSpiritAutoCasts",
         ["npc_dota_hero_sven"] = "GetNextAbilityForSvenAutoCasts",
         ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts",
-        ["npc_dota_hero_legion_commander"] = "GetNextAbilityForLegionCommanderAutoCasts"
+        ["npc_dota_hero_legion_commander"] = "GetNextAbilityForLegionCommanderAutoCasts",
+        ["npc_dota_hero_beastmaster"] = "GetNextAbilityForBeastmasterAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -112,7 +113,10 @@ function modifier_auto_casts:OnCreated()
         ["Knee_Breaker"] = true,
         -- Eventually will kill player? (Legion Commander)
         ["Retri1"] = true,
-        ["Retri2"] = true
+        ["Retri2"] = true,
+        -- Eventually will kill player? (Beastmaster)
+        ["fury1"] = true,
+        ["fury4"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -1360,6 +1364,28 @@ function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, a
 
     if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
         return caster._autoCastLegionCommanderQ
+    end
+
+    return nil
+end
+
+-- Beastmaster: Q D spam
+function modifier_auto_casts:GetNextAbilityForBeastmasterAutoCasts(caster, ability, target)
+    if(caster._autoCastBeastmasterQ == nil) then
+        caster._autoCastBeastmasterQ = caster:FindAbilityByName("fury1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBeastmasterQ)
+    end
+    if(caster._autoCastBeastmasterD == nil) then
+        caster._autoCastBeastmasterD = caster:FindAbilityByName("fury4")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBeastmasterD)
+    end
+
+    if(ability == caster._autoCastBeastmasterD and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterD)) then
+        return caster._autoCastBeastmasterD
+    end
+
+    if(ability == caster._autoCastBeastmasterQ and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterQ)) then
+        return caster._autoCastBeastmasterQ
     end
 
     return nil
