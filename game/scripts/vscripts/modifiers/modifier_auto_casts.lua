@@ -66,7 +66,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_dazzle"] = "GetNextAbilityForDazzleAutoCasts",
         ["npc_dota_hero_vengefulspirit"] = "GetNextAbilityForVengefulSpiritAutoCasts",
         ["npc_dota_hero_sven"] = "GetNextAbilityForSvenAutoCasts",
-        ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts"
+        ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts",
+        ["npc_dota_hero_legion_commander"] = "GetNextAbilityForLegionCommanderAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -109,6 +110,9 @@ function modifier_auto_casts:OnCreated()
         --["Mortal_Swing"] = true,
         ["Concussive_Blow"] = true,
         ["Knee_Breaker"] = true,
+        -- Eventually will kill player? (Legion Commander)
+        ["Retri1"] = true,
+        ["Retri2"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -121,6 +125,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_bloodseeker"] = true,
         ["npc_dota_hero_dazzle"] = true,
         ["npc_dota_hero_axe"] = true,
+        ["npc_dota_hero_legion_commander"] = true,
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1333,6 +1338,28 @@ function modifier_auto_casts:GetNextAbilityForAxeAutoCasts(caster, ability, targ
         end
 
         return nil
+    end
+
+    return nil
+end
+
+-- Legion Commander: Q W spam
+function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, ability, target)
+    if(caster._autoCastLegionCommanderQ == nil) then
+        caster._autoCastLegionCommanderQ = caster:FindAbilityByName("Retri1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLegionCommanderQ)
+    end
+    if(caster._autoCastLegionCommanderW == nil) then
+        caster._autoCastLegionCommanderW = caster:FindAbilityByName("Retri2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastLegionCommanderW)
+    end
+
+    if(ability == caster._autoCastLegionCommanderW and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderW)) then
+        return caster._autoCastLegionCommanderW
+    end
+
+    if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
+        return caster._autoCastLegionCommanderQ
     end
 
     return nil
