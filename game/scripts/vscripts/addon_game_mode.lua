@@ -1257,6 +1257,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_shadow_boss_4", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_boss_6", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act4", function(unit) end )
             --a3
             PrecacheUnitByNameAsync( "temple_fungal_ancient", function(unit) end )
             PrecacheUnitByNameAsync( "temple_fungal_slark", function(unit) end )
