@@ -1241,6 +1241,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_depressive", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_supportive", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_angry", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act5", function(unit) end )
             --a4
             PrecacheUnitByNameAsync( "temple_shadow_inferno", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_spectre", function(unit) end )
