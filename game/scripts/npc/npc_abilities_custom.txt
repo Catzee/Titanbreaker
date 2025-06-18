@@ -45798,13 +45798,6 @@
 				"Function"	"ChannelManaFixEnd"
 				"mana"	"0"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastV2"
-				"autocast"	"%autocast"
-				"abilityIndex"	"2"
-			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
