@@ -158,7 +158,9 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_mars"] = true,
         ["npc_dota_hero_dragon_knight"] = true,
         ["npc_dota_hero_phantom_lancer"] = true,
-        ["npc_dota_hero_terrorblade"] = true
+        ["npc_dota_hero_terrorblade"] = true,
+        ["npc_dota_hero_bounty_hunter"] = true,
+        ["npc_dota_hero_bounty_sven"] = true
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -938,7 +940,7 @@ function modifier_auto_casts:GetNextAbilityForPhantomAssassinAutoCasts(caster, a
         return caster._autoCastPhantomAssassinD
     end
 
-    if(ability == caster._autoCastPhantomAssassinE and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomAssassinE)) then
+    if(ability == caster._autoCastPhantomAssassinE and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomAssassinE) and caster:GetModifierStackCount("modifier_combopoint", nil) >= 3) then
         return caster._autoCastPhantomAssassinE
     end
 
@@ -1223,11 +1225,11 @@ function modifier_auto_casts:GetNextAbilityForDazzleAutoCasts(caster, ability, t
     local isTigerFuryBuffModifierAlmostEnded = tigerFuryBuffModifier and tigerFuryBuffModifier:GetRemainingTime() / tigerFuryBuffModifier:GetDuration() < 0.5 or false  
 
     if(tigerFuryBuffModifier == nil) then
-        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW)) then
+        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW) and focusPoints >= 4) then
             return caster._autoCastDazzleW
         end
     else
-        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW) and isTigerFuryBuffModifierAlmostEnded) then
+        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW) and isTigerFuryBuffModifierAlmostEnded and focusPoints >= 4) then
             return caster._autoCastDazzleW
         end
     end
@@ -1236,7 +1238,7 @@ function modifier_auto_casts:GetNextAbilityForDazzleAutoCasts(caster, ability, t
         return caster._autoCastDazzleE
     end
 
-    if(ability == caster._autoCastDazzleQ and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleQ)) then
+    if(ability == caster._autoCastDazzleQ and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleQ) and focusPoints < 4) then
         return caster._autoCastDazzleQ
     end
 
