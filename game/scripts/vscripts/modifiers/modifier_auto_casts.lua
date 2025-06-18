@@ -59,7 +59,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_phantom_assassin"] = "GetNextAbilityForPhantomAssassinAutoCasts",
         ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts",
         ["npc_dota_hero_riki"] = "GetNextAbilityForRikiAutoCasts",
-        ["npc_dota_hero_bounty_hunter"] = "GetNextAbilityForBountyHunterAutoCasts"
+        ["npc_dota_hero_bounty_hunter"] = "GetNextAbilityForBountyHunterAutoCasts",
+        ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -76,8 +77,23 @@ function modifier_auto_casts:OnCreated()
         -- Eventually will kill player? (Bounty Hunter)
         ["combat1"] = true,
         ["combat2"] = true,
-        ["combat3"] = true
+        ["combat3"] = true,
+        -- Eventually will kill player? (Windrunner)
+        ["wind1"] = true,
+        ["wind2"] = true,
+        ["wind7"] = true,
     }
+
+    -- List of heroes that must keep auto attacking last enemy after every auto cast
+    self.mustAutoAttackAfterAutoCast = 
+    {
+        ["npc_dota_hero_juggernaut"] = true,
+        ["npc_dota_hero_phantom_assassin"] = true,
+        ["npc_dota_hero_windrunner"] = true,
+        ["npc_dota_hero_riki"] = true
+    }
+
+    self:DetermineIfMustAutoAttackAfterAutoCast()
 end
 
 function modifier_auto_casts:OnOrder(kv)
@@ -123,6 +139,12 @@ function modifier_auto_casts:OnOrder(kv)
         return
     end
 
+    if(kv.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET) then
+        -- Special cast. Some heroes must spam auto attacks too for their abilities to work. If player decide change target it breaks auto casting for that heroes
+        self:SetLastAutoCastTarget(kv.target)
+        return
+    end
+
     self:SetIsIgnoreCastTimeAbilities(self:IsOrderPreventAutoCastOfCastTimeAbilities(kv.order_type))
 end
 
@@ -141,13 +163,34 @@ function modifier_auto_casts:OnAbilityFullyCast(kv)
         return
     end
 
-    self.parent._autoCastLastAutoCastTarget = kv.target
+    if(kv.target == nil) then
+        return
+    end
+
+    self:SetLastAutoCastTarget(kv.target)
+
+    if(self:IsMustAutoAttackAfterAutoCast()) then
+        self.parent:MoveToTargetToAttack(kv.target)
+    end
 end
 
 function modifier_auto_casts:OnIntervalThink()
     for ability, _ in pairs(self.abilitiesWithAutoCasts) do
-        self:CheckAbilityAutoCast(self.parent, ability, self.parent._autoCastLastAutoCastTarget)
+        self:CheckAbilityAutoCast(self.parent, ability, self:GetLastAutoCastTarget())
     end
+end
+
+function modifier_auto_casts:DetermineIfMustAutoAttackAfterAutoCast()
+    if(self.mustAutoAttackAfterAutoCast[self.parent:GetUnitName()] == true) then
+        self._isAutoAttackAfterAutoCasts = true
+        return
+    end
+
+    self._isAutoAttackAfterAutoCasts = false
+end
+
+function modifier_auto_casts:IsMustAutoAttackAfterAutoCast()
+    return self._isAutoAttackAfterAutoCasts
 end
 
 -- Target can be nil
@@ -289,6 +332,14 @@ function modifier_auto_casts:GetNextAbilityForAutoCast(caster, ability, target)
     end
 
     return nil
+end
+
+function modifier_auto_casts:SetLastAutoCastTarget(target)
+    self.parent._autoCastLastAutoCastTarget = target
+end
+
+function modifier_auto_casts:GetLastAutoCastTarget()
+    return self.parent._autoCastLastAutoCastTarget
 end
 
 function modifier_auto_casts:IsOrderFromAutoCast()
@@ -996,5 +1047,63 @@ function modifier_auto_casts:GetNextAbilityForBountyHunterAutoCasts(caster, abil
         return caster._autoCastBountyHunterQ
     end
 
+    return nil
+end
+
+-- Windrunner: Q W R spam
+function modifier_auto_casts:GetNextAbilityForWindRunnerAutoCasts(caster, ability, target)
+    if(caster._autoCastWindrunnerQ == nil) then
+        caster._autoCastWindrunnerQ = caster:FindAbilityByName("wind1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWindrunnerQ)
+    end
+    if(caster._autoCastWindrunnerW == nil) then
+        caster._autoCastWindrunnerW = caster:FindAbilityByName("wind2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWindrunnerW)
+    end
+    if(caster._autoCastWindrunnerR == nil) then
+        caster._autoCastWindrunnerR = caster:FindAbilityByName("wind7")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWindrunnerR)
+    end
+
+    -- If fire arrow learned try smart use lock and reload stacks
+    local fireArrowLevel = caster._autoCastWindrunnerW:GetLevel()
+    if(fireArrowLevel > 0) then
+        if(ability == caster._autoCastWindrunnerR and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerR) and caster:GetModifierStackCount("modifier_lockreload", nil) >= 10) then
+            return caster._autoCastWindrunnerR
+        end
+
+        -- Try consider fire arrow buff
+        if(fireArrowLevel >= 3) then
+            local fireArrowBuffModifier = caster:FindModifierByName("modifier_fire_shots_jungle")
+            local isFireArrowBuffModifierAlmostEnded = fireArrowBuffModifier and fireArrowBuffModifier:GetRemainingTime() / fireArrowBuffModifier:GetDuration() < 0.5 or false
+
+            if(fireArrowBuffModifier == nil) then
+                if(ability == caster._autoCastWindrunnerW and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerW)) then
+                    return caster._autoCastWindrunnerW
+                end
+            else
+                if(ability == caster._autoCastWindrunnerW and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerW) and isFireArrowBuffModifierAlmostEnded) then
+                    return caster._autoCastWindrunnerW
+                end
+            end
+        else
+            if(ability == caster._autoCastWindrunnerW and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerW)) then
+                return caster._autoCastWindrunnerW
+            end
+        end
+    else
+        if(ability == caster._autoCastWindrunnerR and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerR)) then
+            return caster._autoCastWindrunnerR
+        end
+
+        if(ability == caster._autoCastWindrunnerW and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerW)) then
+            return caster._autoCastWindrunnerW
+        end
+    end
+
+    if(ability == caster._autoCastWindrunnerQ and self:IsAbilityReadyForAutoCast(caster._autoCastWindrunnerQ)) then
+        return caster._autoCastWindrunnerQ
+    end
+    
     return nil
 end
