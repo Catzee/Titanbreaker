@@ -1222,6 +1222,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_mount_archer", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_archer_boss", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_wisp", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act6", function(unit) end )
             --a5
             PrecacheUnitByNameAsync( "temple_dragon_jakiro", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_melee", function(unit) end )
