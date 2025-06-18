@@ -106,7 +106,7 @@ function modifier_auto_casts:OnCreated()
         ["frostdk2"] = true,
         -- Eventually will kill player? (Axe)
         ["Wounding_Strike"] = true,
-        ["Mortal_Swing"] = false,
+        --["Mortal_Swing"] = true,
         ["Concussive_Blow"] = true,
         ["Knee_Breaker"] = true,
     }
