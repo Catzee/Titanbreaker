@@ -1407,3 +1407,25 @@ function modifier_auto_casts:GetNextAbilityForUrsaAutoCasts(caster, ability, tar
 
     return nil
 end
+
+-- Pudge: Q W spam
+function modifier_auto_casts:GetNextAbilityForPudgeAutoCasts(caster, ability, target)
+    if(caster._autoCastPudgeQ == nil) then
+        caster._autoCastPudgeQ = caster:FindAbilityByName("unholy_1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPudgeQ)
+    end
+    if(caster._autoCastPudgeW == nil) then
+        caster._autoCastPudgeW = caster:FindAbilityByName("unholy_2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPudgeW)
+    end
+
+    if(ability == caster._autoCastPudgeW and self:IsAbilityReadyForAutoCast(caster._autoCastPudgeW)) then
+        return caster._autoCastPudgeW
+    end
+
+    if(ability == caster._autoCastPudgeQ and self:IsAbilityReadyForAutoCast(caster._autoCastPudgeQ)) then
+        return caster._autoCastPudgeQ
+    end
+
+    return nil
+end
