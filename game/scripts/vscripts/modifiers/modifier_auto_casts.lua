@@ -6,7 +6,7 @@
 
 modifier_auto_casts = class({
     IsHidden = function()
-        return false
+        return true
     end,
     IsPurgable = function()
         return false
