@@ -265,7 +265,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"TrackingProjectile"
 			{
@@ -16280,7 +16280,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"Random"
 			{
@@ -16454,7 +16454,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 		}
 		"OnAbilityPhaseInterrupted"
@@ -17435,7 +17435,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"FireSound"
 			{
@@ -28971,7 +28971,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"FireSound"
 			{
@@ -47446,7 +47446,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"FireSound"
 			{
@@ -48505,7 +48505,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"TrackingProjectile"
 			{
@@ -49055,7 +49055,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"FireEffect"
 			{
@@ -51180,7 +51180,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 		}
 		"OnAbilityPhaseInterrupted"
@@ -53022,7 +53022,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"AbilityAutoCastCheck"
+				"Function"	"TunnelVisionProc"
 			}
 			"FireSound"
 			{

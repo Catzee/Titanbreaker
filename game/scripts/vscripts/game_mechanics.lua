@@ -30595,60 +30595,6 @@ function WarriorBerserkerRage(event)
     end
 end
 
-function AbilityAutoCastOld(event)
-	-- unfinished or unused thing
-	--[[
-    local caster = event.caster
-    local target = event.target
-    local ability = caster:GetAbilityByIndex(0)
-    local ability2 = caster:GetAbilityByIndex(1)
-
-    local abilityToCast = ability
-    if ability2:GetCooldownTimeRemaining() <= 0 and ability2:GetLevel() > 0 then
-        abilityToCast = ability2
-    end
-
-    Timers:CreateTimer(0.05, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = abilityToCast:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-    end) --]]
-end
-
-function AbilityAutoCastV2(event)
-    if not event.autocast then
-        return
-    end
-
-    local caster = event.caster
-    local target = event.target
-    local ability = caster:GetAbilityByIndex(event.abilityIndex) -- should be fine
-
-    if ability:GetCooldownTimeRemaining() > 0 or ability:GetLevel() <= 0 then
-        return
-    end
-
-    Timers:CreateTimer(0.05, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = ability:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-    end)
-end
-
 function DivineSphereTakeDamage(event)
     local caster = event.caster
     HealUnit({caster = caster, target = caster, heal = 0, percenthp = 5, ability = event.ability})
@@ -30764,7 +30710,7 @@ function CheckForFlurryProc(event)
     end)
 end
 
-function AbilityAutoCastCheck(event)
+function TunnelVisionProc(event)
     local caster = event.caster
     if caster.talents[165] <= 0 then
         return
@@ -30773,22 +30719,7 @@ function AbilityAutoCastCheck(event)
     local target = event.target
     local ability = caster:GetAbilityByIndex(0)
 
-    local abilityToCast = ability
-
-    Timers:CreateTimer(0.1, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = abilityToCast:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-
-        ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, buff = "modifier_talent_tunnel"})
-    end)
+	ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, buff = "modifier_talent_tunnel"})
 end
 
 function StampedeBonusDamageProc(event)
