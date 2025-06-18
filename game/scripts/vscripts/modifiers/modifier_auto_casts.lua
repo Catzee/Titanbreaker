@@ -68,7 +68,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_sven"] = "GetNextAbilityForSvenAutoCasts",
         ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts",
         ["npc_dota_hero_legion_commander"] = "GetNextAbilityForLegionCommanderAutoCasts",
-        ["npc_dota_hero_beastmaster"] = "GetNextAbilityForBeastmasterAutoCasts"
+        ["npc_dota_hero_beastmaster"] = "GetNextAbilityForBeastmasterAutoCasts",
+        ["npc_dota_hero_ursa"] = "GetNextAbilityForUrsaAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -116,7 +117,9 @@ function modifier_auto_casts:OnCreated()
         ["Retri2"] = true,
         -- Eventually will kill player? (Beastmaster)
         ["fury1"] = true,
-        ["fury4"] = true
+        ["fury4"] = true,
+        -- Eventually will kill player? (Ursa)
+        ["bear1"] = true,
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -1386,6 +1389,20 @@ function modifier_auto_casts:GetNextAbilityForBeastmasterAutoCasts(caster, abili
 
     if(ability == caster._autoCastBeastmasterQ and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterQ)) then
         return caster._autoCastBeastmasterQ
+    end
+
+    return nil
+end
+
+-- Ursa: Q spam
+function modifier_auto_casts:GetNextAbilityForUrsaAutoCasts(caster, ability, target)
+    if(caster._autoCastBearQ == nil) then
+        caster._autoCastBearQ = caster:FindAbilityByName("bear1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBearQ)
+    end
+
+    if(ability == caster._autoCastBearQ and self:IsAbilityReadyForAutoCast(caster._autoCastBearQ)) then
+        return caster._autoCastBearQ
     end
 
     return nil
