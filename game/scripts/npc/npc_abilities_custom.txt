@@ -33929,7 +33929,7 @@
 	"Retri3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"phantom_lancer_sunwarrior_phantom_edge"
+		"AbilityTextureName"	"fix/retri3"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
