@@ -778,7 +778,7 @@ function modifier_auto_casts:GetNextAbilityForInvokerAutoCasts(caster, ability, 
     return nil
 end
 
--- Dark Seer: Q spam, W spam, D spam or Q D spam
+-- Dark Seer: Q W E spam
 function modifier_auto_casts:GetNextAbilityForDarkSeerAutoCasts(caster, ability, target)
     if(caster._autoCastMindstorm == nil) then
         caster._autoCastMindstorm = caster:FindAbilityByName("shadow1")
@@ -793,40 +793,16 @@ function modifier_auto_casts:GetNextAbilityForDarkSeerAutoCasts(caster, ability,
         self:DetermineAutoCastOrderForAbility(caster._autoCastDreamFeast)
     end
 
-    if(ability == caster._autoCastMindstorm or ability == caster._autoCastMindshatter or ability == caster._autoCastDreamFeast) then
-        local isDarkSeerMindstormReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastMindstorm)
-        local isDarkSeerMindshatterReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastMindshatter)
-        local isDarkSeerDreamFeastReadyForAutocast = self:IsAbilityReadyForAutoCast(caster._autoCastDreamFeast)
+    if(ability == caster._autoCastDreamFeast and self:IsAbilityReadyForAutoCast(caster._autoCastDreamFeast)) then
+        return caster._autoCastDreamFeast
+    end
 
-        if(ability == caster._autoCastMindstorm) then
-            if(isDarkSeerDreamFeastReadyForAutocast) then
-                return caster._autoCastDreamFeast
-            end
-            if(isDarkSeerMindstormReadyForAutocast) then
-                return caster._autoCastMindstorm
-            end
-        end
+    if(ability == caster._autoCastMindshatter and self:IsAbilityReadyForAutoCast(caster._autoCastMindshatter)) then
+        return caster._autoCastMindshatter
+    end
 
-        if(ability == caster._autoCastMindshatter) then
-            if(isDarkSeerDreamFeastReadyForAutocast) then
-                return caster._autoCastDreamFeast
-            end
-            if(isDarkSeerMindshatterReadyForAutocast) then
-                return caster._autoCastMindshatter
-            end
-        end
-
-        if(ability == caster._autoCastDreamFeast) then
-            if(isDarkSeerDreamFeastReadyForAutocast) then
-                return caster._autoCastDreamFeast
-            end
-            if(isDarkSeerMindshatterReadyForAutocast) then
-                return caster._autoCastMindshatter
-            end
-            if(isDarkSeerMindstormReadyForAutocast) then
-                return caster._autoCastMindstorm
-            end
-        end
+    if(ability == caster._autoCastMindstorm and self:IsAbilityReadyForAutoCast(caster._autoCastMindstorm)) then
+        return caster._autoCastMindstorm
     end
 
     return nil
@@ -846,7 +822,7 @@ function modifier_auto_casts:GetNextAbilityForOmniknightAutoCasts(caster, abilit
     return nil
 end
 
--- Crystal Maiden: Q Q W combo, Q = Ice_Bolt, W = Frost_Shatter (Q can be casted more often than two times per combo while waiting for W)
+-- Crystal Maiden: Q Q W combo
 function modifier_auto_casts:GetNextAbilityForCrystalMaidenAutoCasts(caster, ability, target)
     if(caster._autoCastCMIceBolt == nil) then
         caster._autoCastCMIceBolt = caster:FindAbilityByName("Ice_Bolt")
@@ -857,33 +833,15 @@ function modifier_auto_casts:GetNextAbilityForCrystalMaidenAutoCasts(caster, abi
         self:DetermineAutoCastOrderForAbility(caster._autoCastCMFrostShatter)
     end
     
-    local isIceBoltReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastCMIceBolt)
-    local isFrostShatterReadyForAutoCast = self:IsAbilityReadyForAutoCast(caster._autoCastCMFrostShatter)
-        
-    if(ability == caster._autoCastCMIceBolt) then
+    if(ability == caster._autoCastCMFrostShatter and self:IsAbilityReadyForAutoCast(caster._autoCastCMFrostShatter)) then
         local winterChillStacks = caster:GetModifierStackCount("modifier_winterschill", nil)
-
-        -- If Frost Shatter ready and autocasted do Q Q W combo else just Q spam
-        if(winterChillStacks >= 2 and isFrostShatterReadyForAutoCast) then
+        if(winterChillStacks >= 2) then
             return caster._autoCastCMFrostShatter
-        end
-    
-        -- Continue Q spam if W cast not possible or not desired
-        if(isIceBoltReadyForAutoCast) then
-            return caster._autoCastCMIceBolt
         end
     end
-    
-    if(ability == caster._autoCastCMFrostShatter) then
-        -- You always want continue stacking Q after W cast
-        if(isIceBoltReadyForAutoCast) then
-            return caster._autoCastCMIceBolt
-        end
-    
-        -- If Q autocast turned off, but W autocast enabled spam it until impossible
-        if(isFrostShatterReadyForAutoCast) then
-            return caster._autoCastCMFrostShatter
-        end
+
+    if(ability == caster._autoCastCMIceBolt and self:IsAbilityReadyForAutoCast(caster._autoCastCMIceBolt)) then
+        return caster._autoCastCMIceBolt
     end
 
     return nil
