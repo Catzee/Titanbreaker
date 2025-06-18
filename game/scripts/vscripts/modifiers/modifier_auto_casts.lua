@@ -119,7 +119,6 @@ function modifier_auto_casts:OnCreated()
         ["Concussive_Blow"] = true,
         ["Knee_Breaker"] = true,
         -- Eventually will kill player? (Legion Commander)
-        ["Retri1"] = true,
         ["Retri2"] = true,
         -- Eventually will kill player? (Beastmaster)
         ["fury1"] = true,
@@ -1354,7 +1353,7 @@ function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, a
     if(ability == caster._autoCastLegionCommanderW and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderW)) then
         return caster._autoCastLegionCommanderW
     end
-    
+
     if(caster._autoCastLegionCommanderD:GetLevel() >= 4) then
         -- Always spam when possible for cdr
         if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
@@ -1364,7 +1363,7 @@ function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, a
         -- Spam only when enemies around
         if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
             local casterPosition = caster:GetAbsOrigin()
-            local enemiesAround = FindNearbyEnemies(caster, casterPosition, caster._autoCastAxeW:GetSpecialValueFor("range"))
+            local enemiesAround = FindNearbyEnemies(caster, casterPosition, caster._autoCastLegionCommanderQ:GetSpecialValueFor("range"))
             if(#enemiesAround > 0) then
                 return caster._autoCastLegionCommanderQ
             end
