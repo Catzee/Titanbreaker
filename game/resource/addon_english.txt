@@ -79,7 +79,7 @@
 		"DOTA_Tooltip_Ability_Retri3_buffduration"    "Duration:" 
 
 		"DOTA_Tooltip_Ability_Retri4"  "Hammer of Sanction"  
-		"DOTA_Tooltip_Ability_Retri4_Description"  "Stun the target and restore mana. The closer the target is, the longer the Stun lasts, but the less Mana is restored.<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown, longer stun duration and also deal 500%% of your Attack Damage as Shadow Damage to the target. \nRank 3: When cast, increase your Attack Damage by 100%% and restore Mana every 3 secs for 20 secs. \nRank 4: Each Holy Storm reduces the cooldown of this ability by 1 and when the hammer hits, Auto Attack the target 5 times.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri4_Description"  "Stun the target and restore mana. The closer the target is, the longer the Stun lasts, but the less Mana is restored. Interrupts spellcasting (without damage or additional effects) and Alt-Cast is activated or CTRL held, silence it for %silence_duration% secs with an inner cooldown of %silence_inner_cd% secs<font color=\"#FFBB00\">\n\nRank 2: Reduced cooldown, longer stun duration and also deal 500%% of your Attack Damage as Shadow Damage to the target. \nRank 3: When cast, increase your Attack Damage by 100%% and restore Mana every 3 secs for 20 secs. \nRank 4: Each Holy Storm reduces the cooldown of this ability by 1 and when the hammer hits, Auto Attack the target 5 times.\n\n</font>"
 		"DOTA_Tooltip_Ability_Retri4_buffduration"    "Maximum Stun Duration:" 
 		"DOTA_Tooltip_Ability_Retri4_buffdurationmin"    "Minimum Stun Duration:" 
 		"DOTA_Tooltip_Ability_Retri4_manareturn"    "Maximum Mana Restored:" 
@@ -3274,7 +3274,7 @@
 		"DOTA_Tooltip_Ability_Soul_Burn_percent"    "%Mana burned depending on your Max Mana:" 
 
 		//3.8
-		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target. If the target is spellcasting and Alt-Cast is activated or CTRL held, silence it for %silence_duration% secs with an inner cooldown of %silence_inner_cd% secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri2_Description"  "Deal Holy Damage and slow the target.\nCan be set to Auto Cast for continuous casting of Sacred Spear against last Sacred Spear target. If Holy Storm learned and set to Auto Cast will consider him<font color=\"#FFBB00\">\n\nRank 2: Increased Damage, reduced cooldown, improved slow and longer slow duration. Whenever you cause Shadow Damage, there's a 50%% chance to reset the cooldown of Sacred Spear. \nRank 3: Gain 50%% increased Movement Speed and 50%% Damage reduction for 2.5 secs when casting. \nRank 4: Increase your Attack Damage by 100%% for 5 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_Retri2_slow"    "%Slow Amount:" 
 
 		"DOTA_Tooltip_modifier_sacred_spear_inner_cd"	"Sacred Spear - Inner Cooldown"
@@ -6225,7 +6225,7 @@
 
 		"DOTA_Tooltip_Ability_Lightning_Bolt_Description"  "Deal Nature Damage. Enemies hit for the first time by Lightning Bolt will be stunned for 3 secs. The Lightning will jump to one additional target after a short delay, striking with 50%% effectiveness. 2 secs casttime.\nCan be set to Auto Cast for continuous casting of Lightning Bolt against last Lightning Bolt target. If Lavashock and/or Flameburst learned and set to Auto Cast will consider them<font color=\"#FFBB00\">\n\nRank 2: Increased Damage and now hit up to 3 targets and lower the Damage loss per target hit to 25%%. \nRank 3: Consecutive casts grant Thunderload, increasing all Nature Damage by 10%%, up to 100%%. \nRank 4: Passively gain +1% Nature Damage for every 10 Points of Intellect.\n\n</font>"
 
-		"DOTA_Tooltip_Ability_Retri1_Description"  "Deal Physical Holy damage to all nearby enemies and heal 2%% of max Health for each enemy hit.\n\nHas 3 charges and refreshes every 1.5 secs.<font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Increased Healing and aoe. \nRank 4: Each Auto Attack has a chance to proc Holy Storm.\nRank 5: Holy Strength - Gain 1 additional Attack Damage per Strength.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri1_Description"  "Deal Physical Holy damage to all nearby enemies and heal 2%% of max Health for each enemy hit.\n\nHas 3 charges and refreshes every 1.5 secs.\nCan be set to Auto Cast for continuous casting of Holy Storm against last Holy Storm target. If Sacred Spear learned and set to Auto Cast will consider him<font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Increased Healing and aoe. \nRank 4: Each Auto Attack has a chance to proc Holy Storm.\nRank 5: Holy Strength - Gain 1 additional Attack Damage per Strength.\n\n</font>"
 
 		
 		"DOTA_Tooltip_modifier_mana_shield"                                               "Mana Shield"
