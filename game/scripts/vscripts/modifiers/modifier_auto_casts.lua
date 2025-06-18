@@ -63,7 +63,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts",
         ["npc_dota_hero_bloodseeker"] = "GetNextAbilityForBloodseekerAutoCasts",
         ["npc_dota_hero_drow_ranger"] = "GetNextAbilityForDrowRangerAutoCasts",
-        ["npc_dota_hero_dazzle"] = "GetNextAbilityForDazzleAutoCasts"
+        ["npc_dota_hero_dazzle"] = "GetNextAbilityForDazzleAutoCasts",
+        ["npc_dota_hero_vengefulspirit"] = "GetNextAbilityForVengefulSpiritAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -1230,6 +1231,28 @@ function modifier_auto_casts:GetNextAbilityForDazzleAutoCasts(caster, ability, t
 
     if(ability == caster._autoCastDazzleQ and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleQ)) then
         return caster._autoCastDazzleQ
+    end
+
+    return nil
+end
+
+-- Venge: Q spam, TODO: Make it smarter...
+function modifier_auto_casts:GetNextAbilityForVengefulSpiritAutoCasts(caster, ability, target)
+    if(caster._autoCastVengefulSpiritMoonQ == nil) then
+        caster._autoCastVengefulSpiritMoonQ = caster:FindAbilityByName("moon11")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastVengefulSpiritMoonQ)
+    end
+    if(caster._autoCastVengefulSpiritSunQ == nil) then
+        caster._autoCastVengefulSpiritSunQ = caster:FindAbilityByName("moon1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastVengefulSpiritSunQ)
+    end
+
+    if(ability == caster._autoCastVengefulSpiritMoonQ and self:IsAbilityReadyForAutoCast(caster._autoCastVengefulSpiritMoonQ)) then
+        return caster._autoCastVengefulSpiritMoonQ
+    end
+
+    if(ability == caster._autoCastVengefulSpiritSunQ and self:IsAbilityReadyForAutoCast(caster._autoCastVengefulSpiritSunQ)) then
+        return caster._autoCastVengefulSpiritSunQ
     end
 
     return nil
