@@ -74,7 +74,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_skeleton_king"] = "GetNextAbilityForWraithKingAutoCasts",
         ["npc_dota_hero_mars"] = "GetNextAbilityForMarsAutoCasts",
         ["npc_dota_hero_dragon_knight"] = "GetNextAbilityForDragonKnightAutoCasts",
-        ["npc_dota_hero_phantom_lancer"] = "GetNextAbilityForPhantomLancerAutoCasts"
+        ["npc_dota_hero_phantom_lancer"] = "GetNextAbilityForPhantomLancerAutoCasts",
+        ["npc_dota_hero_terrorblade"] = "GetNextAbilityForTerrorbladeAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -130,12 +131,14 @@ function modifier_auto_casts:OnCreated()
         ["unholy_2"] = true,
         -- Eventually will kill player? (Wraith King)
         ["Corrupting_Strike"] = true,
-        -- Eventually will kill player? (Wraith King)
+        -- Eventually will kill player? (Mars)
         ["mars1"] = true,
         -- Eventually will kill player? (Dragon Knight)
         ["Protect1"] = true,
         -- Eventually will kill player? (Phantom Lancer)
         ["pala1"] = true,
+        -- Eventually will kill player? (Terrorblade)
+        ["terror1"] = true,
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -154,7 +157,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_skeleton_king"] = true,
         ["npc_dota_hero_mars"] = true,
         ["npc_dota_hero_dragon_knight"] = true,
-        ["npc_dota_hero_phantom_lancer"] = true
+        ["npc_dota_hero_phantom_lancer"] = true,
+        ["npc_dota_hero_terrorblade"] = true
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1503,6 +1507,20 @@ function modifier_auto_casts:GetNextAbilityForPhantomLancerAutoCasts(caster, abi
 
     if(ability == caster._autoCastPhantomLancerQ and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomLancerQ)) then
         return caster._autoCastPhantomLancerQ
+    end
+
+    return nil
+end
+
+-- Terrorblade: Q spam, TODO: Something smarter?
+function modifier_auto_casts:GetNextAbilityForTerrorbladeAutoCasts(caster, ability, target)
+    if(caster._autoCastTerrorbladeQ == nil) then
+        caster._autoCastTerrorbladeQ = caster:FindAbilityByName("terror1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastTerrorbladeQ)
+    end
+
+    if(ability == caster._autoCastTerrorbladeQ and self:IsAbilityReadyForAutoCast(caster._autoCastTerrorbladeQ)) then
+        return caster._autoCastTerrorbladeQ
     end
 
     return nil
