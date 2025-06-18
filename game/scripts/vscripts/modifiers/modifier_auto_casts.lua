@@ -74,6 +74,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_skeleton_king"] = "GetNextAbilityForWraithKingAutoCasts",
         ["npc_dota_hero_mars"] = "GetNextAbilityForMarsAutoCasts",
         ["npc_dota_hero_dragon_knight"] = "GetNextAbilityForDragonKnightAutoCasts",
+        ["npc_dota_hero_phantom_lancer"] = "GetNextAbilityForPhantomLancerAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -133,6 +134,8 @@ function modifier_auto_casts:OnCreated()
         ["mars1"] = true,
         -- Eventually will kill player? (Dragon Knight)
         ["Protect1"] = true,
+        -- Eventually will kill player? (Phantom Lancer)
+        ["pala1"] = true,
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -150,7 +153,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_ursa"] = true,
         ["npc_dota_hero_skeleton_king"] = true,
         ["npc_dota_hero_mars"] = true,
-        ["npc_dota_hero_dragon_knight"] = true
+        ["npc_dota_hero_dragon_knight"] = true,
+        ["npc_dota_hero_phantom_lancer"] = true
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1485,6 +1489,20 @@ function modifier_auto_casts:GetNextAbilityForDragonKnightAutoCasts(caster, abil
 
     if(ability == caster._autoCastDragonKnightQ and self:IsAbilityReadyForAutoCast(caster._autoCastDragonKnightQ)) then
         return caster._autoCastDragonKnightQ
+    end
+
+    return nil
+end
+
+-- Phantom Lancer: Q spam, TODO: Something smarter?
+function modifier_auto_casts:GetNextAbilityForPhantomLancerAutoCasts(caster, ability, target)
+    if(caster._autoCastPhantomLancerQ == nil) then
+        caster._autoCastPhantomLancerQ = caster:FindAbilityByName("pala1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastPhantomLancerQ)
+    end
+
+    if(ability == caster._autoCastPhantomLancerQ and self:IsAbilityReadyForAutoCast(caster._autoCastPhantomLancerQ)) then
+        return caster._autoCastPhantomLancerQ
     end
 
     return nil
