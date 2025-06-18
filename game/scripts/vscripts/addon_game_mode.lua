@@ -1182,6 +1182,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "merge_boss_56", function(unit) end )
             PrecacheUnitByNameAsync( "merge_boss_78", function(unit) end )
             PrecacheUnitByNameAsync( "merge_boss_910", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act11", function(unit) end )
             --a10
             PrecacheUnitByNameAsync( "temple_throne_boss_1", function(unit) end )
             --a9
