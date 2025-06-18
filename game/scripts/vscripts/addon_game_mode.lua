@@ -1270,6 +1270,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_water_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_7", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_8", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act3", function(unit) end )
             --a2
             PrecacheUnitByNameAsync( "temple_sand_boss_1", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_boss_2", function(unit) end )
