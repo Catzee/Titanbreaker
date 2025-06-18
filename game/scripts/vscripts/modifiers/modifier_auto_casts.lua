@@ -63,6 +63,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts",
         ["npc_dota_hero_bloodseeker"] = "GetNextAbilityForBloodseekerAutoCasts",
         ["npc_dota_hero_drow_ranger"] = "GetNextAbilityForDrowRangerAutoCasts",
+        ["npc_dota_hero_dazzle"] = "GetNextAbilityForDazzleAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -92,7 +93,11 @@ function modifier_auto_casts:OnCreated()
         -- Eventually will kill player? (Drow ranger)
         ["Focussed_Shot"] = true,
         ["Inspiring_Shot"] = true,
-        ["Mindfreezing_Shot"] = true
+        ["Mindfreezing_Shot"] = true,
+        -- Eventually will kill player? (Dazzle)
+        ["Feral2"] = true,
+        ["Feral3"] = true,
+        ["Feral4"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -103,6 +108,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_windrunner"] = true,
         ["npc_dota_hero_riki"] = true,
         ["npc_dota_hero_bloodseeker"] = true,
+        ["npc_dota_hero_dazzle"] = true,
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -434,7 +440,8 @@ function modifier_auto_casts:IsAbilityReadyForAutoCast(ability)
     end
 
     -- IsFullyCastable() = caster have enough mana and ability coooldown ready
-    return ability:GetAutoCastState() and ability:GetLevel() > 0 and ability:IsFullyCastable()
+    -- IsActivated() = not hidden by stance/shapeshift/etc
+    return ability:GetAutoCastState() and ability:GetLevel() > 0 and ability:IsFullyCastable() and ability:IsActivated()
 end
 
 function modifier_auto_casts:IsIgnoreCastTimeAbilities()
@@ -1183,6 +1190,46 @@ function modifier_auto_casts:GetNextAbilityForDrowRangerAutoCasts(caster, abilit
 
     if(ability == caster._autoCastDrowRangerQ and self:IsAbilityReadyForAutoCast(caster._autoCastDrowRangerQ)) then
         return caster._autoCastDrowRangerQ
+    end
+
+    return nil
+end
+
+-- Dazzle: Q W E spam
+function modifier_auto_casts:GetNextAbilityForDazzleAutoCasts(caster, ability, target)
+    if(caster._autoCastDazzleQ == nil) then
+        caster._autoCastDazzleQ = caster:FindAbilityByName("Feral2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDazzleQ)
+    end
+    if(caster._autoCastDazzleW == nil) then
+        caster._autoCastDazzleW = caster:FindAbilityByName("Feral3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDazzleW)
+    end
+    if(caster._autoCastDazzleE == nil) then
+        caster._autoCastDazzleE = caster:FindAbilityByName("Feral4")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDazzleE)
+    end
+
+    local focusPoints = caster:GetModifierStackCount("modifier_combopoint", nil)
+    local tigerFuryBuffModifier = caster:FindModifierByName("modifier_tigerfury")
+    local isTigerFuryBuffModifierAlmostEnded = tigerFuryBuffModifier and tigerFuryBuffModifier:GetRemainingTime() / tigerFuryBuffModifier:GetDuration() < 0.5 or false  
+
+    if(tigerFuryBuffModifier == nil) then
+        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW)) then
+            return caster._autoCastDazzleW
+        end
+    else
+        if(ability == caster._autoCastDazzleW and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleW) and isTigerFuryBuffModifierAlmostEnded) then
+            return caster._autoCastDazzleW
+        end
+    end
+
+    if(ability == caster._autoCastDazzleE and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleE) and focusPoints >= 4) then
+        return caster._autoCastDazzleE
+    end
+
+    if(ability == caster._autoCastDazzleQ and self:IsAbilityReadyForAutoCast(caster._autoCastDazzleQ)) then
+        return caster._autoCastDazzleQ
     end
 
     return nil
