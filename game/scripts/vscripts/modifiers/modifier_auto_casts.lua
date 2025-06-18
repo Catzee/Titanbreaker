@@ -72,6 +72,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_ursa"] = "GetNextAbilityForUrsaAutoCasts",
         ["npc_dota_hero_pudge"] = "GetNextAbilityForPudgeAutoCasts",
         ["npc_dota_hero_skeleton_king"] = "GetNextAbilityForWraithKingAutoCasts",
+        ["npc_dota_hero_mars"] = "GetNextAbilityForMarsAutoCasts",
+        ["npc_dota_hero_dragon_knight"] = "GetNextAbilityForDragonKnightAutoCasts",
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -126,7 +128,11 @@ function modifier_auto_casts:OnCreated()
         ["unholy_1"] = true,
         ["unholy_2"] = true,
         -- Eventually will kill player? (Wraith King)
-        ["Corrupting_Strike"] = true
+        ["Corrupting_Strike"] = true,
+        -- Eventually will kill player? (Wraith King)
+        ["mars1"] = true,
+        -- Eventually will kill player? (Dragon Knight)
+        ["Protect1"] = true,
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -140,6 +146,11 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_dazzle"] = true,
         ["npc_dota_hero_axe"] = true,
         ["npc_dota_hero_legion_commander"] = true,
+        ["npc_dota_hero_beastmaster"] = true,
+        ["npc_dota_hero_ursa"] = true,
+        ["npc_dota_hero_skeleton_king"] = true,
+        ["npc_dota_hero_mars"] = true,
+        ["npc_dota_hero_dragon_knight"] = true
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1446,6 +1457,34 @@ function modifier_auto_casts:GetNextAbilityForWraithKingAutoCasts(caster, abilit
 
     if(ability == caster._autoCastWraithKingQ and self:IsAbilityReadyForAutoCast(caster._autoCastWraithKingQ)) then
         return caster._autoCastWraithKingQ
+    end
+
+    return nil
+end
+
+-- Mars: Q spam, TODO: Something smarter?
+function modifier_auto_casts:GetNextAbilityForMarsAutoCasts(caster, ability, target)
+    if(caster._autoCastMarsQ == nil) then
+        caster._autoCastMarsQ = caster:FindAbilityByName("mars1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastMarsQ)
+    end
+
+    if(ability == caster._autoCastMarsQ and self:IsAbilityReadyForAutoCast(caster._autoCastMarsQ)) then
+        return caster._autoCastMarsQ
+    end
+
+    return nil
+end
+
+-- Dragon Knight: Q spam, TODO: Something smarter?
+function modifier_auto_casts:GetNextAbilityForDragonKnightAutoCasts(caster, ability, target)
+    if(caster._autoCastDragonKnightQ == nil) then
+        caster._autoCastDragonKnightQ = caster:FindAbilityByName("Protect1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDragonKnightQ)
+    end
+
+    if(ability == caster._autoCastDragonKnightQ and self:IsAbilityReadyForAutoCast(caster._autoCastDragonKnightQ)) then
+        return caster._autoCastDragonKnightQ
     end
 
     return nil
