@@ -103375,6 +103375,10 @@
 				"Target"	"CASTER"
 			}
 		}
+		"precache"
+		{
+			"model"	"models/items/courier/mighty_chicken/mighty_chicken_flying.vmdl"
+		}
 		"Modifiers"
 		{
 			"modifier_chicken_affix"
