@@ -7,6 +7,7 @@ end
 
 function Frost_Shatter:OnProjectileHitHandle(target, location, projectileId)
     if(not target) then
+		self._projectiles[projectileId] = nil
         return true
     end
 

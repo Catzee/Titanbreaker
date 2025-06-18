@@ -33632,9 +33632,10 @@
 	}
 	"Retri4"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/fanatic_crusarder/hammer_of_sanction"
 		"AbilityTextureName"	"fix/strike9"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -33653,119 +33654,6 @@
 		"AbilityCastRangeBuffer"	"250"
 		"AbilityDuration"	"0.0 0.0 0.0 0.0"
 		"AbilityChannelTime"	"0.0"
-		"OnProjectileHitUnit"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"Punishment"
-				"dur"	"%buffduration"
-				"amount"	"%manareturn"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"SpellInterrupt"
-				"dur"	"%buffdurationInterrupt"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_LegionCommander.Overwhelming.Hero"
-				"Target"	"TARGET"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf"
-				"EffectAttachType"	"attach_hitloc"
-				"Target"	"TARGET"
-			}
-			"Random"
-			{
-				"Chance"	"%shadowchance"
-				"OnSuccess"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"DamageUnit"
-						"damage"	"%AbilityDamage"
-						"spelldamagefactor"	"0.0"
-						"attributefactor"	"0"
-						"includeauto"	"500"
-						"shadowdmg"	"1"
-					}
-				}
-			}
-		}
-		"OnSpellStart"
-		{
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"1"
-				"VisionRadius"	"300"
-				"MoveSpeed"	"750"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_HITLOCATION"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_LegionCommander.PreAttack"
-				"Target"	"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_pala_str_bonus_check"
-				"Target"	"CASTER"
-				"Duration"	"%strdur"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_slow25"
-			{
-				"Passive"	"0"
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"EffectName"	"particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
-				"EffectAttachType"	"attach_hitloc"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-25"
-				}
-			}
-			"modifier_pala_str_bonus_check"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsPurgable"	"0"
-				"IsBuff"	"1"
-				"IsDebuff"	"0"
-				"IsStunDebuff"	"0"
-				"TextureName"	"sven_warcry"
-				"OnCreated"	""
-				"ThinkInterval"	"2.99"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"RestoreMana"
-						"amount"	"%amount"
-						"percent"	"1"
-					}
-				}
-			}
-		}
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_bloom.vpcf"
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-			"particle"	"particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf"
-		}
 		"AbilityValues"
 		{
 			"buffduration"	"4.5 6 6 6"
@@ -33775,6 +33663,8 @@
 			"amount"	"0 0 2 2"
 			"strdur"	"0 0 20 20"
 			"shadowchance"	"0 100 100 100"
+			"silence_duration"	"1.0"
+			"silence_inner_cd"	"10"
 		}
 	}
 	"Retri2"
@@ -33931,9 +33821,7 @@
 			"slow"	"-25 -45 -45 -45"
 			"buffduration"	"4.0 6.0 6.0 6.0"
 			"crit"	"0 0 0 5"
-			"silence_duration"	"1.0"
 			"ms"	"0 0 2.5 2.5"
-			"silence_inner_cd"	"10"
 		}
 	}
 	"Retri3"

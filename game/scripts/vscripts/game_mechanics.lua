@@ -9547,15 +9547,6 @@ function FatalThrowHit(event)
 	end
 end
 
-function SacredSpearHit(event)
-    -- This was intentionally made to don't care if spell was interrupted or no
-    if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
-        SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
-        local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
-        event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_sacred_spear_inner_cd", { duration = innerCd})
-    end
-end
-
 function ListContainsString( list, text )
     for i=1, #list do
         if list[i] == text then
@@ -13720,11 +13711,7 @@ function StormStunCD(event)
 	local caster = event.caster
 	local abil = caster:FindAbilityByName("Retri4")
 	if abil and abil:GetLevel() >= 4 then
- 		local cd = abil:GetCooldownTimeRemaining()
-    	if cd > 0.1 then
-    		abil:EndCooldown()
-    		abil:StartCooldown(cd-1)
-    	end
+		abil:ReduceCooldown(1)
 	end
 end
 

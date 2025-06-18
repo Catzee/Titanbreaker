@@ -21,7 +21,7 @@ function Dagger_Strike:OnAltCastToggled()
         self._modifier:SetStackCount(0)
     end
 
-    self:FixCooldown(caster)
+    self:FixCooldown()
 end
 
 function Dagger_Strike:GetManaCost(level)
@@ -29,6 +29,14 @@ function Dagger_Strike:GetManaCost(level)
         return 0
     else
         return self.BaseClass.GetManaCost(self, level)
+    end
+end
+
+function Dagger_Strike:GetCooldown(level)
+    if(self:GetCaster():GetModifierStackCount(self:GetIntrinsicModifierName(), nil) > 0) then
+        return self:GetSpecialValueFor("silence_inner_cd")
+    else
+        return self.BaseClass.GetCooldown(self, level)
     end
 end
 
@@ -48,13 +56,11 @@ function Dagger_Strike:OnSpellStart()
     ParticleManager:SetParticleControlEnt(particle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
     ParticleManager:ReleaseParticleIndex(particle)
 
+    self._expectedCooldownEndTime = self._expectedCooldownEndTime or {}
+
     if(self:IsAltCasted()) then
-        -- This was intentionally made to don't care if spell was interrupted or no
-        if(caster:HasModifier("modifier_slice_inner_cd") == false) then
-            SpellInterrupt({caster = caster, target = target, dur = self:GetSpecialValueFor("silence_duration"), ability = self})
-            local innerCd = self:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
-            caster:AddNewModifier(caster, self, "modifier_slice_inner_cd", { duration = innerCd})
-        end
+		SpellInterrupt({caster = caster, target = target, dur = self:GetSpecialValueFor("silence_duration"), ability = self})
+        self._expectedCooldownEndTime[true] = GameRules:GetGameTime() + (self:GetSpecialValueFor("silence_inner_cd") * GetCooldownReductionFactor(caster, ability))
     else
         -- Hack around data driven modifiers...
         self._ambushAbility = self._ambushAbility or caster:FindAbilityByName("Ambush")
@@ -88,22 +94,19 @@ function Dagger_Strike:OnSpellStart()
             ability = self,
             amount = 1
         })
+        self._expectedCooldownEndTime[false] = GameRules:GetGameTime() + (self:GetCooldown(-1) * GetCooldownReductionFactor(caster, ability))
     end
 
-    self:FixCooldown(caster)
+    self:FixCooldown()
 end
 
-function Dagger_Strike:FixCooldown(caster)
+function Dagger_Strike:FixCooldown()
+    local isAltCast = self:IsAltCasted()
     self:EndCooldown()
-
-    if(self:IsAltCasted()) then
-        local cdModifier = caster:FindModifierByName("modifier_slice_inner_cd")
-        if(cdModifier ~= nil) then
-            self:StartCooldown(cdModifier:GetRemainingTime())
-        end
-    else
-        self:UseResources(false, false, false, true)
-    end
+    self._expectedCooldownEndTime = self._expectedCooldownEndTime or {}
+    self._expectedCooldownEndTime[isAltCast] = self._expectedCooldownEndTime[isAltCast] or 0
+    local expectedCd = math.max(0, self._expectedCooldownEndTime[isAltCast] - GameRules:GetGameTime())
+    self:StartCooldown(expectedCd)
 end
 
 modifier_slice_alt_cast_state = class({
@@ -127,26 +130,4 @@ modifier_slice_alt_cast_state = class({
     end
 })
 
-modifier_slice_inner_cd = class({
-	IsHidden = function() 
-        return false 
-    end,
-	IsPurgable = function() 
-        return false 
-    end,
-    IsPurgeException = function()
-        return false
-    end,
-    IsDebuff = function()
-		return true
-	end,
-    GetAttributes = function()
-        return MODIFIER_ATTRIBUTE_PERMANENT
-    end,
-    RemoveOnDeath = function()
-        return false
-    end
-})
-
 LinkLuaModifier("modifier_slice_alt_cast_state", "abilities/heroes/cruel_shadowstalker/slice", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slice_inner_cd", "abilities/heroes/cruel_shadowstalker/slice", LUA_MODIFIER_MOTION_NONE)
