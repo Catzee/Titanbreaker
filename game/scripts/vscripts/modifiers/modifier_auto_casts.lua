@@ -69,7 +69,9 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts",
         ["npc_dota_hero_legion_commander"] = "GetNextAbilityForLegionCommanderAutoCasts",
         ["npc_dota_hero_beastmaster"] = "GetNextAbilityForBeastmasterAutoCasts",
-        ["npc_dota_hero_ursa"] = "GetNextAbilityForUrsaAutoCasts"
+        ["npc_dota_hero_ursa"] = "GetNextAbilityForUrsaAutoCasts",
+        ["npc_dota_hero_pudge"] = "GetNextAbilityForPudgeAutoCasts",
+        ["npc_dota_hero_skeleton_king"] = "GetNextAbilityForWraithKingAutoCasts",
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -120,6 +122,11 @@ function modifier_auto_casts:OnCreated()
         ["fury4"] = true,
         -- Eventually will kill player? (Ursa)
         ["bear1"] = true,
+        -- Eventually will kill player? (Pudge)
+        ["unholy_1"] = true,
+        ["unholy_2"] = true,
+        -- Eventually will kill player? (Wraith King)
+        ["Corrupting_Strike"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -1425,6 +1432,20 @@ function modifier_auto_casts:GetNextAbilityForPudgeAutoCasts(caster, ability, ta
 
     if(ability == caster._autoCastPudgeQ and self:IsAbilityReadyForAutoCast(caster._autoCastPudgeQ)) then
         return caster._autoCastPudgeQ
+    end
+
+    return nil
+end
+
+-- Wraith King: Q spam, TODO: Something smarter?
+function modifier_auto_casts:GetNextAbilityForWraithKingAutoCasts(caster, ability, target)
+    if(caster._autoCastWraithKingQ == nil) then
+        caster._autoCastWraithKingQ = caster:FindAbilityByName("Corrupting_Strike")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastWraithKingQ)
+    end
+
+    if(ability == caster._autoCastWraithKingQ and self:IsAbilityReadyForAutoCast(caster._autoCastWraithKingQ)) then
+        return caster._autoCastWraithKingQ
     end
 
     return nil
