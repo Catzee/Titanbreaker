@@ -64,7 +64,9 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_bloodseeker"] = "GetNextAbilityForBloodseekerAutoCasts",
         ["npc_dota_hero_drow_ranger"] = "GetNextAbilityForDrowRangerAutoCasts",
         ["npc_dota_hero_dazzle"] = "GetNextAbilityForDazzleAutoCasts",
-        ["npc_dota_hero_vengefulspirit"] = "GetNextAbilityForVengefulSpiritAutoCasts"
+        ["npc_dota_hero_vengefulspirit"] = "GetNextAbilityForVengefulSpiritAutoCasts",
+        ["npc_dota_hero_sven"] = "GetNextAbilityForSvenAutoCasts",
+        ["npc_dota_hero_axe"] = "GetNextAbilityForAxeAutoCasts"
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -98,7 +100,15 @@ function modifier_auto_casts:OnCreated()
         -- Eventually will kill player? (Dazzle)
         ["Feral2"] = true,
         ["Feral3"] = true,
-        ["Feral4"] = true
+        ["Feral4"] = true,
+        -- Eventually will kill player? (Sven)
+        ["frostdk1"] = true,
+        ["frostdk2"] = true,
+        -- Eventually will kill player? (Axe)
+        ["Wounding_Strike"] = true,
+        ["Mortal_Swing"] = false,
+        ["Concussive_Blow"] = true,
+        ["Knee_Breaker"] = true,
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -110,6 +120,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_riki"] = true,
         ["npc_dota_hero_bloodseeker"] = true,
         ["npc_dota_hero_dazzle"] = true,
+        ["npc_dota_hero_axe"] = true,
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1253,6 +1264,75 @@ function modifier_auto_casts:GetNextAbilityForVengefulSpiritAutoCasts(caster, ab
 
     if(ability == caster._autoCastVengefulSpiritSunQ and self:IsAbilityReadyForAutoCast(caster._autoCastVengefulSpiritSunQ)) then
         return caster._autoCastVengefulSpiritSunQ
+    end
+
+    return nil
+end
+
+-- Sven: Q W spam
+function modifier_auto_casts:GetNextAbilityForSvenAutoCasts(caster, ability, target)
+    if(caster._autoCastSvenQ == nil) then
+        caster._autoCastSvenQ = caster:FindAbilityByName("frostdk1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastSvenQ)
+    end
+    if(caster._autoCastSvenW == nil) then
+        caster._autoCastSvenW = caster:FindAbilityByName("frostdk2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastSvenW)
+    end
+
+    if(ability == caster._autoCastSvenW and self:IsAbilityReadyForAutoCast(caster._autoCastSvenW)) then
+        return caster._autoCastSvenW
+    end
+
+    if(ability == caster._autoCastSvenQ and self:IsAbilityReadyForAutoCast(caster._autoCastSvenQ)) then
+        return caster._autoCastSvenQ
+    end
+
+    return nil
+end
+
+-- Axe: Q W E D spam
+function modifier_auto_casts:GetNextAbilityForAxeAutoCasts(caster, ability, target)
+    if(caster._autoCastAxeQ == nil) then
+        caster._autoCastAxeQ = caster:FindAbilityByName("Wounding_Strike")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastAxeQ)
+    end
+    if(caster._autoCastAxeW == nil) then
+        caster._autoCastAxeW = caster:FindAbilityByName("Mortal_Swing")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastAxeW)
+    end
+    if(caster._autoCastAxeE == nil) then
+        caster._autoCastAxeE = caster:FindAbilityByName("Concussive_Blow")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastAxeE)
+    end
+    if(caster._autoCastAxeD == nil) then
+        caster._autoCastAxeD = caster:FindAbilityByName("Knee_Breaker")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastAxeD)
+    end
+
+    if(target ~= nil) then
+        if(ability == caster._autoCastAxeQ and self:IsAbilityReadyForAutoCast(caster._autoCastAxeQ) and target:HasModifier("modifier_wounding_strike_bleed_debuff") == false) then
+            return caster._autoCastAxeQ
+        end
+    end
+    
+    if(ability == caster._autoCastAxeE and self:IsAbilityReadyForAutoCast(caster._autoCastAxeE)) then
+        return caster._autoCastAxeE
+    end
+
+    if(ability == caster._autoCastAxeD and self:IsAbilityReadyForAutoCast(caster._autoCastAxeD)) then
+        return caster._autoCastAxeD
+    end
+
+    if(ability == caster._autoCastAxeW and self:IsAbilityReadyForAutoCast(caster._autoCastAxeW)) then
+        local casterPosition = caster:GetAbsOrigin()
+        local enemiesAround = FindNearbyEnemies(caster, casterPosition, caster._autoCastAxeW:GetSpecialValueFor("radius"))
+
+        if(#enemiesAround > 0) then
+            return caster._autoCastAxeW
+        end
+
+        return nil
     end
 
     return nil

@@ -24116,7 +24116,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"fix/froststrike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -24273,7 +24273,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"lich_frost_nova"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -54296,7 +54296,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"fix/strike2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -54424,7 +54424,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"axe_counter_helix"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -54435,7 +54435,8 @@
 		"AbilityDamage"	"0"
 		"AbilityManaCost"	"15"
 		"AbilityCooldown"	"1.5 1.5 1.5 0.5"
-		"AoERadius"	"250"
+		"AoERadius"	"%radius"
+		
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -54448,7 +54449,7 @@
 				"Target"
 				{
 					"Center"	"CASTER"
-					"Radius"	"300"
+					"Radius"	"%radius"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				}
@@ -54478,7 +54479,7 @@
 				"Function"	"DamageAOE"
 				"damage"	"%AbilityDamage"
 				"attributefactor"	"%dmgfromstat"
-				"aoe"	"250"
+				"aoe"	"%radius"
 				"targeteffect"	"blood"
 				"oncritcdreduce3rd"	"%cd"
 				"oncritcdreduce4th"	"%cd"
@@ -54518,7 +54519,7 @@
 						"Target"
 						{
 							"Center"	"CASTER"
-							"Radius"	"300"
+							"Radius"	"%radius"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 						}
@@ -54548,7 +54549,7 @@
 						"Function"	"DamageAOE"
 						"damage"	"%AbilityDamage"
 						"attributefactor"	"%dmgfromstat"
-						"aoe"	"250"
+						"aoe"	"%radius"
 						"targeteffect"	"blood"
 						"oncritcdreduce3rd"	"%cd"
 						"oncritcdreduce4th"	"%cd"
@@ -54576,6 +54577,7 @@
 			"asbonus"	"0 0 20 20"
 			"asdur"	"0 0 10 10"
 			"cd"	"0 0 0 1"
+			"radius"	"300"
 		}
 	}
 	"bear2"
@@ -55150,7 +55152,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"fix/strike4"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -55318,7 +55320,7 @@
 		"BaseClass"	"ability_lua"
 		"ScriptFile"	"abilities/heroes/brutal_brawler/wounding_strike"
 		"AbilityTextureName"	"fix/axe_strike2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
