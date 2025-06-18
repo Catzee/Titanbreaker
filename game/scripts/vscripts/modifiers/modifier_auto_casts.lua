@@ -1,7 +1,7 @@
 --[[
     HOW TO ADD SUPPORT FOR NEW HERO:
     1. Define and implement function that will return next ability for autocasts based on caster, ability, target (if exists)
-    2. Setup table entry in OnCreated for that hero and function from 1)
+    2. Setup tables entries in OnCreated for that hero and function from 1)
 --]]
 
 modifier_auto_casts = class({
@@ -60,7 +60,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_juggernaut"] = "GetNextAbilityForJuggernautAutoCasts",
         ["npc_dota_hero_riki"] = "GetNextAbilityForRikiAutoCasts",
         ["npc_dota_hero_bounty_hunter"] = "GetNextAbilityForBountyHunterAutoCasts",
-        ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts"
+        ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts",
+        ["npc_dota_hero_bloodseeker"] = "GetNextAbilityForBloodseekerAutoCasts",
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -82,6 +83,11 @@ function modifier_auto_casts:OnCreated()
         ["wind1"] = true,
         ["wind2"] = true,
         ["wind7"] = true,
+        -- Eventually will kill player? (Bloodseeker)
+        ["Ghost1"] = true,
+        ["Ghost2"] = true,
+        ["Ghost3"] = true,
+        ["Ghost5"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -90,7 +96,8 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_juggernaut"] = true,
         ["npc_dota_hero_phantom_assassin"] = true,
         ["npc_dota_hero_windrunner"] = true,
-        ["npc_dota_hero_riki"] = true
+        ["npc_dota_hero_riki"] = true,
+        ["npc_dota_hero_bloodseeker"] = true,
     }
 
     self:DetermineIfMustAutoAttackAfterAutoCast()
@@ -1105,5 +1112,43 @@ function modifier_auto_casts:GetNextAbilityForWindRunnerAutoCasts(caster, abilit
         return caster._autoCastWindrunnerQ
     end
     
+    return nil
+end
+
+-- Bloodseeker: Q W E D spam
+function modifier_auto_casts:GetNextAbilityForBloodseekerAutoCasts(caster, ability, target)
+    if(caster._autoCastBloodseekerQ == nil) then
+        caster._autoCastBloodseekerQ = caster:FindAbilityByName("Ghost1")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBloodseekerQ)
+    end
+    if(caster._autoCastBloodseekerW == nil) then
+        caster._autoCastBloodseekerW = caster:FindAbilityByName("Ghost2")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBloodseekerW)
+    end
+    if(caster._autoCastBloodseekerE == nil) then
+        caster._autoCastBloodseekerE = caster:FindAbilityByName("Ghost3")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBloodseekerE)
+    end
+    if(caster._autoCastBloodseekerD == nil) then
+        caster._autoCastBloodseekerD = caster:FindAbilityByName("Ghost5")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastBloodseekerD)
+    end
+
+    if(ability == caster._autoCastBloodseekerD and self:IsAbilityReadyForAutoCast(caster._autoCastBloodseekerD) and caster:GetModifierStackCount("modifier_elementalfury", nil) >= 10) then
+        return caster._autoCastBloodseekerD
+    end
+
+    if(ability == caster._autoCastBloodseekerQ and self:IsAbilityReadyForAutoCast(caster._autoCastBloodseekerQ)) then
+        return caster._autoCastBloodseekerQ
+    end
+
+    if(ability == caster._autoCastBloodseekerW and self:IsAbilityReadyForAutoCast(caster._autoCastBloodseekerW)) then
+        return caster._autoCastBloodseekerW
+    end
+
+    if(ability == caster._autoCastBloodseekerE and self:IsAbilityReadyForAutoCast(caster._autoCastBloodseekerE)) then
+        return caster._autoCastBloodseekerE
+    end
+
     return nil
 end
