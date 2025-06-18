@@ -1165,6 +1165,8 @@ function Precache( context )
             PrecacheModel( "temple_fire_ele", context )
 
             --since later spawn of creeps
+			--a12
+            PrecacheUnitByNameAsync( "extra_act12", function(unit) end )
             --a11
             PrecacheUnitByNameAsync( "temple_throne_boss_2", function(unit) end )
             PrecacheUnitByNameAsync( "temple_volcano_boss_3", function(unit) end )
