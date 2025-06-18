@@ -62,6 +62,7 @@ function modifier_auto_casts:OnCreated()
         ["npc_dota_hero_bounty_hunter"] = "GetNextAbilityForBountyHunterAutoCasts",
         ["npc_dota_hero_windrunner"] = "GetNextAbilityForWindRunnerAutoCasts",
         ["npc_dota_hero_bloodseeker"] = "GetNextAbilityForBloodseekerAutoCasts",
+        ["npc_dota_hero_drow_ranger"] = "GetNextAbilityForDrowRangerAutoCasts",
     }
 
     -- List of abilities that can be casted while running, but actually will do more harm than good
@@ -87,7 +88,11 @@ function modifier_auto_casts:OnCreated()
         ["Ghost1"] = true,
         ["Ghost2"] = true,
         ["Ghost3"] = true,
-        ["Ghost5"] = true
+        ["Ghost5"] = true,
+        -- Eventually will kill player? (Drow ranger)
+        ["Focussed_Shot"] = true,
+        ["Inspiring_Shot"] = true,
+        ["Mindfreezing_Shot"] = true
     }
 
     -- List of heroes that must keep auto attacking last enemy after every auto cast
@@ -1148,6 +1153,36 @@ function modifier_auto_casts:GetNextAbilityForBloodseekerAutoCasts(caster, abili
 
     if(ability == caster._autoCastBloodseekerE and self:IsAbilityReadyForAutoCast(caster._autoCastBloodseekerE)) then
         return caster._autoCastBloodseekerE
+    end
+
+    return nil
+end
+
+-- Drow Ranger: Q E D spam
+function modifier_auto_casts:GetNextAbilityForDrowRangerAutoCasts(caster, ability, target)
+    if(caster._autoCastDrowRangerQ == nil) then
+        caster._autoCastDrowRangerQ = caster:FindAbilityByName("Focussed_Shot")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDrowRangerQ)
+    end
+    if(caster._autoCastDrowRangerE == nil) then
+        caster._autoCastDrowRangerE = caster:FindAbilityByName("Inspiring_Shot")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDrowRangerE)
+    end
+    if(caster._autoCastDrowRangerD == nil) then
+        caster._autoCastDrowRangerD = caster:FindAbilityByName("Mindfreezing_Shot")
+        self:DetermineAutoCastOrderForAbility(caster._autoCastDrowRangerD)
+    end
+
+    if(ability == caster._autoCastDrowRangerD and self:IsAbilityReadyForAutoCast(caster._autoCastDrowRangerD)) then
+        return caster._autoCastDrowRangerD
+    end
+
+    if(ability == caster._autoCastDrowRangerE and self:IsAbilityReadyForAutoCast(caster._autoCastDrowRangerE)) then
+        return caster._autoCastDrowRangerE
+    end
+
+    if(ability == caster._autoCastDrowRangerQ and self:IsAbilityReadyForAutoCast(caster._autoCastDrowRangerQ)) then
+        return caster._autoCastDrowRangerQ
     end
 
     return nil
