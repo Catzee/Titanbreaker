@@ -976,21 +976,19 @@ function modifier_auto_casts:GetNextAbilityForBountyHunterAutoCasts(caster, abil
         self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterQ)
     end
     if(caster._autoCastBountyHunterW == nil) then
-        caster._autoCastBountyHunterW = caster:FindAbilityByName("combat1")
+        caster._autoCastBountyHunterW = caster:FindAbilityByName("combat3")
         self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterW)
     end
     if(caster._autoCastBountyHunterE == nil) then
-        caster._autoCastBountyHunterE = caster:FindAbilityByName("combat3")
+        caster._autoCastBountyHunterE = caster:FindAbilityByName("combat2")
         self:DetermineAutoCastOrderForAbility(caster._autoCastBountyHunterE)
     end
-
-    local focusPoints = caster:GetModifierStackCount("modifier_combopoint", nil)
 
     if(ability == caster._autoCastBountyHunterE and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterE)) then
         return caster._autoCastBountyHunterE
     end
 
-    if(ability == caster._autoCastBountyHunterW and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterW) and focusPoints >= 3) then
+    if(ability == caster._autoCastBountyHunterW and self:IsAbilityReadyForAutoCast(caster._autoCastBountyHunterW) and caster:GetModifierStackCount("modifier_combopoint", nil) >= 3) then
         return caster._autoCastBountyHunterW
     end
     
