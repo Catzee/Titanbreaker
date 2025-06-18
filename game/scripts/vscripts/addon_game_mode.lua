@@ -1289,6 +1289,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_sand_poisonward", function(unit) end )
             PrecacheUnitByNameAsync( "act_2_farmer", function(unit) end )
             PrecacheUnitByNameAsync( "act_2_lama", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act2", function(unit) end )
             --a1
             PrecacheUnitByNameAsync( "temple_wolf", function(unit) end )
             PrecacheUnitByNameAsync( "temple_wolf_brown", function(unit) end )
