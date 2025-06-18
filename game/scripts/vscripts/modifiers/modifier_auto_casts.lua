@@ -1346,13 +1346,31 @@ function modifier_auto_casts:GetNextAbilityForLegionCommanderAutoCasts(caster, a
         caster._autoCastLegionCommanderW = caster:FindAbilityByName("Retri2")
         self:DetermineAutoCastOrderForAbility(caster._autoCastLegionCommanderW)
     end
+    if(caster._autoCastLegionCommanderD == nil) then
+        caster._autoCastLegionCommanderD = caster:FindAbilityByName("Retri4")
+        --self:DetermineAutoCastOrderForAbility(caster._autoCastLegionCommanderD)
+    end
 
     if(ability == caster._autoCastLegionCommanderW and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderW)) then
         return caster._autoCastLegionCommanderW
     end
+    
+    if(caster._autoCastLegionCommanderD:GetLevel() >= 4) then
+        -- Always spam when possible for cdr
+        if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
+            return caster._autoCastLegionCommanderQ
+        end
+    else
+        -- Spam only when enemies around
+        if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
+            local casterPosition = caster:GetAbsOrigin()
+            local enemiesAround = FindNearbyEnemies(caster, casterPosition, caster._autoCastAxeW:GetSpecialValueFor("range"))
+            if(#enemiesAround > 0) then
+                return caster._autoCastLegionCommanderQ
+            end
 
-    if(ability == caster._autoCastLegionCommanderQ and self:IsAbilityReadyForAutoCast(caster._autoCastLegionCommanderQ)) then
-        return caster._autoCastLegionCommanderQ
+            return nil
+        end
     end
 
     return nil
