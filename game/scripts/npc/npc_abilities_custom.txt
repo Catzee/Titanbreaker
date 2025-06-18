@@ -91638,6 +91638,11 @@
 		"MaxLevel"	"1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityCooldown"	"0"
+		"precache"
+		{
+			"particle"	"particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf"
+			"model"	"models/heroes/wraith_king/wraith_frost.vmdl"
+		}
 		"Modifiers"
 		{
 			"modifier_omni_revelation"
