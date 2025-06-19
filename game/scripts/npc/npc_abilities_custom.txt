@@ -33184,7 +33184,7 @@
 	"special_bonus_unique_nether_wizard_1"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33194,7 +33194,7 @@
 	"special_bonus_unique_nether_wizard_2"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33204,7 +33204,7 @@
 	"special_bonus_unique_nether_wizard_3"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33214,7 +33214,7 @@
 	"special_bonus_unique_nether_wizard_3"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33224,7 +33224,7 @@
 	"special_bonus_unique_nether_wizard_4"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33234,7 +33234,7 @@
 	"special_bonus_unique_nether_wizard_5"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33244,7 +33244,7 @@
 	"special_bonus_unique_nether_wizard_6"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33254,7 +33254,7 @@
 	"special_bonus_unique_nether_wizard_7"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
@@ -33264,7 +33264,7 @@
 	"special_bonus_unique_nether_wizard_8"
 	{
 		"BaseClass"	"special_bonus_undefined"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
