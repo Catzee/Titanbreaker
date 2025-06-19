@@ -3,7 +3,6 @@
 	"Version"	"1"
 	"special_bonus_hp_100"
 	{
-		"ID"	"5900"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -13,7 +12,6 @@
 	}
 	"special_bonus_hp_125"
 	{
-		"ID"	"5901"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -23,7 +21,6 @@
 	}
 	"special_bonus_hp_150"
 	{
-		"ID"	"5902"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -33,7 +30,6 @@
 	}
 	"special_bonus_hp_175"
 	{
-		"ID"	"6034"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -43,7 +39,6 @@
 	}
 	"special_bonus_hp_200"
 	{
-		"ID"	"5959"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -53,7 +48,6 @@
 	}
 	"special_bonus_hp_225"
 	{
-		"ID"	"6405"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -63,7 +57,6 @@
 	}
 	"special_bonus_hp_250"
 	{
-		"ID"	"5903"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -73,7 +66,6 @@
 	}
 	"special_bonus_hp_275"
 	{
-		"ID"	"6311"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -83,7 +75,6 @@
 	}
 	"special_bonus_hp_300"
 	{
-		"ID"	"5993"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -93,7 +84,6 @@
 	}
 	"special_bonus_hp_350"
 	{
-		"ID"	"6195"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -103,7 +93,6 @@
 	}
 	"special_bonus_hp_400"
 	{
-		"ID"	"5976"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -113,7 +102,6 @@
 	}
 	"special_bonus_hp_500"
 	{
-		"ID"	"6235"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -123,7 +111,6 @@
 	}
 	"special_bonus_hp_600"
 	{
-		"ID"	"6377"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -133,7 +120,6 @@
 	}
 	"special_bonus_hp_700"
 	{
-		"ID"	"6415"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -143,7 +129,6 @@
 	}
 	"special_bonus_mp_100"
 	{
-		"ID"	"6096"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -153,7 +138,6 @@
 	}
 	"special_bonus_mp_125"
 	{
-		"ID"	"5904"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -163,7 +147,6 @@
 	}
 	"special_bonus_mp_150"
 	{
-		"ID"	"5905"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -173,7 +156,6 @@
 	}
 	"special_bonus_mp_175"
 	{
-		"ID"	"6067"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -183,7 +165,6 @@
 	}
 	"special_bonus_mp_200"
 	{
-		"ID"	"6094"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -193,7 +174,6 @@
 	}
 	"special_bonus_mp_250"
 	{
-		"ID"	"6006"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -203,7 +183,6 @@
 	}
 	"special_bonus_mp_300"
 	{
-		"ID"	"5990"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -213,7 +192,6 @@
 	}
 	"special_bonus_mp_350"
 	{
-		"ID"	"6254"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -223,7 +201,6 @@
 	}
 	"special_bonus_mp_400"
 	{
-		"ID"	"6321"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -233,7 +210,6 @@
 	}
 	"special_bonus_mp_500"
 	{
-		"ID"	"6185"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -243,7 +219,6 @@
 	}
 	"special_bonus_mp_600"
 	{
-		"ID"	"6382"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -253,7 +228,6 @@
 	}
 	"special_bonus_attack_speed_10"
 	{
-		"ID"	"6118"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -263,7 +237,6 @@
 	}
 	"special_bonus_attack_speed_15"
 	{
-		"ID"	"6119"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -273,7 +246,6 @@
 	}
 	"special_bonus_attack_speed_20"
 	{
-		"ID"	"5906"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -283,7 +255,6 @@
 	}
 	"special_bonus_attack_speed_25"
 	{
-		"ID"	"6016"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -293,7 +264,6 @@
 	}
 	"special_bonus_attack_speed_30"
 	{
-		"ID"	"5907"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -303,7 +273,6 @@
 	}
 	"special_bonus_attack_speed_35"
 	{
-		"ID"	"6196"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -313,7 +282,6 @@
 	}
 	"special_bonus_attack_speed_40"
 	{
-		"ID"	"6210"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -323,7 +291,6 @@
 	}
 	"special_bonus_attack_speed_45"
 	{
-		"ID"	"6224"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -333,7 +300,6 @@
 	}
 	"special_bonus_attack_speed_50"
 	{
-		"ID"	"6020"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -343,7 +309,6 @@
 	}
 	"special_bonus_attack_speed_60"
 	{
-		"ID"	"5908"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -353,7 +318,6 @@
 	}
 	"special_bonus_attack_speed_80"
 	{
-		"ID"	"6030"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -363,7 +327,6 @@
 	}
 	"special_bonus_attack_speed_100"
 	{
-		"ID"	"6037"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -373,7 +336,6 @@
 	}
 	"special_bonus_hp_regen_4"
 	{
-		"ID"	"5909"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -383,7 +345,6 @@
 	}
 	"special_bonus_hp_regen_5"
 	{
-		"ID"	"5910"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -393,7 +354,6 @@
 	}
 	"special_bonus_hp_regen_6"
 	{
-		"ID"	"5969"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -403,7 +363,6 @@
 	}
 	"special_bonus_hp_regen_7"
 	{
-		"ID"	"5966"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -413,7 +372,6 @@
 	}
 	"special_bonus_hp_regen_8"
 	{
-		"ID"	"5911"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -423,7 +381,6 @@
 	}
 	"special_bonus_hp_regen_10"
 	{
-		"ID"	"5912"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -433,7 +390,6 @@
 	}
 	"special_bonus_hp_regen_14"
 	{
-		"ID"	"5913"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -443,7 +399,6 @@
 	}
 	"special_bonus_hp_regen_15"
 	{
-		"ID"	"5914"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -453,7 +408,6 @@
 	}
 	"special_bonus_hp_regen_20"
 	{
-		"ID"	"6079"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -463,7 +417,6 @@
 	}
 	"special_bonus_hp_regen_25"
 	{
-		"ID"	"6308"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -473,7 +426,6 @@
 	}
 	"special_bonus_hp_regen_30"
 	{
-		"ID"	"6351"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -483,7 +435,6 @@
 	}
 	"special_bonus_hp_regen_40"
 	{
-		"ID"	"6022"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -493,7 +444,6 @@
 	}
 	"special_bonus_hp_regen_50"
 	{
-		"ID"	"6302"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -503,7 +453,6 @@
 	}
 	"special_bonus_mp_regen_1"
 	{
-		"ID"	"5915"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -513,7 +462,6 @@
 	}
 	"special_bonus_mp_regen_2"
 	{
-		"ID"	"5961"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -523,7 +471,6 @@
 	}
 	"special_bonus_mp_regen_4"
 	{
-		"ID"	"5916"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -533,7 +480,6 @@
 	}
 	"special_bonus_mp_regen_5"
 	{
-		"ID"	"6410"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -543,7 +489,6 @@
 	}
 	"special_bonus_mp_regen_3"
 	{
-		"ID"	"6160"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -553,7 +498,6 @@
 	}
 	"special_bonus_mp_regen_6"
 	{
-		"ID"	"5980"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -563,7 +507,6 @@
 	}
 	"special_bonus_mp_regen_8"
 	{
-		"ID"	"6243"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -573,7 +516,6 @@
 	}
 	"special_bonus_mp_regen_10"
 	{
-		"ID"	"6116"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -583,7 +525,6 @@
 	}
 	"special_bonus_mp_regen_14"
 	{
-		"ID"	"6255"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -593,7 +534,6 @@
 	}
 	"special_bonus_movement_speed_10"
 	{
-		"ID"	"5958"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -603,7 +543,6 @@
 	}
 	"special_bonus_movement_speed_15"
 	{
-		"ID"	"5917"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -613,7 +552,6 @@
 	}
 	"special_bonus_movement_speed_20"
 	{
-		"ID"	"5918"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -623,7 +561,6 @@
 	}
 	"special_bonus_movement_speed_25"
 	{
-		"ID"	"5919"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -633,7 +570,6 @@
 	}
 	"special_bonus_movement_speed_30"
 	{
-		"ID"	"6141"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -643,7 +579,6 @@
 	}
 	"special_bonus_movement_speed_35"
 	{
-		"ID"	"6077"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -653,7 +588,6 @@
 	}
 	"special_bonus_movement_speed_40"
 	{
-		"ID"	"6093"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -663,7 +597,6 @@
 	}
 	"special_bonus_movement_speed_45"
 	{
-		"ID"	"6249"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -673,7 +606,6 @@
 	}
 	"special_bonus_movement_speed_50"
 	{
-		"ID"	"6306"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -683,7 +615,6 @@
 	}
 	"special_bonus_movement_speed_60"
 	{
-		"ID"	"6373"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -693,7 +624,6 @@
 	}
 	"special_bonus_movement_speed_75"
 	{
-		"ID"	"6355"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -703,7 +633,6 @@
 	}
 	"special_bonus_lifesteal_10"
 	{
-		"ID"	"6158"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -713,7 +642,6 @@
 	}
 	"special_bonus_lifesteal_15"
 	{
-		"ID"	"6289"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -723,7 +651,6 @@
 	}
 	"special_bonus_lifesteal_20"
 	{
-		"ID"	"6078"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -733,7 +660,6 @@
 	}
 	"special_bonus_lifesteal_25"
 	{
-		"ID"	"6111"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -743,7 +669,6 @@
 	}
 	"special_bonus_lifesteal_30"
 	{
-		"ID"	"6121"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -753,7 +678,6 @@
 	}
 	"special_bonus_all_stats_4"
 	{
-		"ID"	"5920"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -763,7 +687,6 @@
 	}
 	"special_bonus_all_stats_5"
 	{
-		"ID"	"5921"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -773,7 +696,6 @@
 	}
 	"special_bonus_all_stats_6"
 	{
-		"ID"	"5922"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -783,7 +705,6 @@
 	}
 	"special_bonus_all_stats_7"
 	{
-		"ID"	"6074"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -793,7 +714,6 @@
 	}
 	"special_bonus_all_stats_8"
 	{
-		"ID"	"5923"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -803,7 +723,6 @@
 	}
 	"special_bonus_all_stats_10"
 	{
-		"ID"	"6168"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -813,7 +732,6 @@
 	}
 	"special_bonus_all_stats_12"
 	{
-		"ID"	"6139"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -823,7 +741,6 @@
 	}
 	"special_bonus_all_stats_14"
 	{
-		"ID"	"6252"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -833,7 +750,6 @@
 	}
 	"special_bonus_all_stats_15"
 	{
-		"ID"	"6135"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -843,7 +759,6 @@
 	}
 	"special_bonus_all_stats_20"
 	{
-		"ID"	"6309"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -853,7 +768,6 @@
 	}
 	"special_bonus_intelligence_6"
 	{
-		"ID"	"5924"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -863,7 +777,6 @@
 	}
 	"special_bonus_intelligence_7"
 	{
-		"ID"	"6117"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -873,7 +786,6 @@
 	}
 	"special_bonus_intelligence_8"
 	{
-		"ID"	"5925"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -883,7 +795,6 @@
 	}
 	"special_bonus_intelligence_10"
 	{
-		"ID"	"5965"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -893,7 +804,6 @@
 	}
 	"special_bonus_intelligence_12"
 	{
-		"ID"	"5926"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -903,7 +813,6 @@
 	}
 	"special_bonus_intelligence_13"
 	{
-		"ID"	"6042"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -913,7 +822,6 @@
 	}
 	"special_bonus_intelligence_15"
 	{
-		"ID"	"5991"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -923,7 +831,6 @@
 	}
 	"special_bonus_intelligence_16"
 	{
-		"ID"	"6332"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -933,7 +840,6 @@
 	}
 	"special_bonus_intelligence_20"
 	{
-		"ID"	"5995"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -943,7 +849,6 @@
 	}
 	"special_bonus_intelligence_25"
 	{
-		"ID"	"6050"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -953,7 +858,6 @@
 	}
 	"special_bonus_intelligence_30"
 	{
-		"ID"	"6060"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -963,7 +867,6 @@
 	}
 	"special_bonus_intelligence_35"
 	{
-		"ID"	"6248"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -973,7 +876,6 @@
 	}
 	"special_bonus_spell_lifesteal_20"
 	{
-		"ID"	"6166"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -983,7 +885,6 @@
 	}
 	"special_bonus_spell_lifesteal_70"
 	{
-		"ID"	"6061"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -993,7 +894,6 @@
 	}
 	"special_bonus_strength_3"
 	{
-		"ID"	"6002"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1003,7 +903,6 @@
 	}
 	"special_bonus_strength_4"
 	{
-		"ID"	"6005"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1013,7 +912,6 @@
 	}
 	"special_bonus_strength_5"
 	{
-		"ID"	"5927"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1023,7 +921,6 @@
 	}
 	"special_bonus_strength_6"
 	{
-		"ID"	"6048"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1033,7 +930,6 @@
 	}
 	"special_bonus_strength_7"
 	{
-		"ID"	"6115"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1043,7 +939,6 @@
 	}
 	"special_bonus_strength_8"
 	{
-		"ID"	"5982"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1053,7 +948,6 @@
 	}
 	"special_bonus_strength_9"
 	{
-		"ID"	"6250"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1063,7 +957,6 @@
 	}
 	"special_bonus_strength_10"
 	{
-		"ID"	"6137"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1073,7 +966,6 @@
 	}
 	"special_bonus_strength_12"
 	{
-		"ID"	"5928"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1083,7 +975,6 @@
 	}
 	"special_bonus_strength_14"
 	{
-		"ID"	"6281"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1093,7 +984,6 @@
 	}
 	"special_bonus_strength_15"
 	{
-		"ID"	"6145"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1103,7 +993,6 @@
 	}
 	"special_bonus_strength_20"
 	{
-		"ID"	"6080"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1113,7 +1002,6 @@
 	}
 	"special_bonus_strength_25"
 	{
-		"ID"	"5984"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1123,7 +1011,6 @@
 	}
 	"special_bonus_agility_8"
 	{
-		"ID"	"6014"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1133,7 +1020,6 @@
 	}
 	"special_bonus_agility_10"
 	{
-		"ID"	"6029"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1143,7 +1029,6 @@
 	}
 	"special_bonus_agility_13"
 	{
-		"ID"	"6011"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1153,7 +1038,6 @@
 	}
 	"special_bonus_agility_14"
 	{
-		"ID"	"6170"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1163,7 +1047,6 @@
 	}
 	"special_bonus_agility_15"
 	{
-		"ID"	"5929"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1173,7 +1056,6 @@
 	}
 	"special_bonus_agility_16"
 	{
-		"ID"	"6169"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1183,7 +1065,6 @@
 	}
 	"special_bonus_agility_20"
 	{
-		"ID"	"5962"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1193,7 +1074,6 @@
 	}
 	"special_bonus_agility_25"
 	{
-		"ID"	"6150"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1203,7 +1083,6 @@
 	}
 	"special_bonus_agility_30"
 	{
-		"ID"	"6406"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1213,7 +1092,6 @@
 	}
 	"special_bonus_agility_40"
 	{
-		"ID"	"6430"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1223,7 +1101,6 @@
 	}
 	"special_bonus_armor_2"
 	{
-		"ID"	"6110"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1233,7 +1110,6 @@
 	}
 	"special_bonus_armor_3"
 	{
-		"ID"	"5930"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1243,7 +1119,6 @@
 	}
 	"special_bonus_armor_4"
 	{
-		"ID"	"5931"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1253,7 +1128,6 @@
 	}
 	"special_bonus_armor_5"
 	{
-		"ID"	"5932"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1263,7 +1137,6 @@
 	}
 	"special_bonus_armor_6"
 	{
-		"ID"	"5933"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1273,7 +1146,6 @@
 	}
 	"special_bonus_armor_7"
 	{
-		"ID"	"5970"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1283,7 +1155,6 @@
 	}
 	"special_bonus_armor_8"
 	{
-		"ID"	"5934"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1293,7 +1164,6 @@
 	}
 	"special_bonus_armor_9"
 	{
-		"ID"	"6136"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1303,7 +1173,6 @@
 	}
 	"special_bonus_armor_10"
 	{
-		"ID"	"6004"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1313,7 +1182,6 @@
 	}
 	"special_bonus_armor_12"
 	{
-		"ID"	"6286"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1323,7 +1191,6 @@
 	}
 	"special_bonus_armor_15"
 	{
-		"ID"	"6175"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1333,7 +1200,6 @@
 	}
 	"special_bonus_magic_resistance_5"
 	{
-		"ID"	"5935"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1343,7 +1209,6 @@
 	}
 	"special_bonus_magic_resistance_6"
 	{
-		"ID"	"5994"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1353,7 +1218,6 @@
 	}
 	"special_bonus_magic_resistance_8"
 	{
-		"ID"	"5936"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1363,7 +1227,6 @@
 	}
 	"special_bonus_magic_resistance_10"
 	{
-		"ID"	"5937"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1373,7 +1236,6 @@
 	}
 	"special_bonus_magic_resistance_12"
 	{
-		"ID"	"6299"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1383,7 +1245,6 @@
 	}
 	"special_bonus_magic_resistance_15"
 	{
-		"ID"	"6138"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1393,7 +1254,6 @@
 	}
 	"special_bonus_magic_resistance_20"
 	{
-		"ID"	"6000"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1403,7 +1263,6 @@
 	}
 	"special_bonus_magic_resistance_25"
 	{
-		"ID"	"6091"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1413,7 +1272,6 @@
 	}
 	"special_bonus_magic_resistance_30"
 	{
-		"ID"	"6221"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1423,7 +1281,6 @@
 	}
 	"special_bonus_magic_resistance_35"
 	{
-		"ID"	"6386"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1433,7 +1290,6 @@
 	}
 	"special_bonus_day_vision_400"
 	{
-		"ID"	"6092"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1443,7 +1299,6 @@
 	}
 	"special_bonus_vision_200"
 	{
-		"ID"	"6228"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1453,7 +1308,6 @@
 	}
 	"special_bonus_attack_damage_10"
 	{
-		"ID"	"6095"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1463,7 +1317,6 @@
 	}
 	"special_bonus_attack_damage_12"
 	{
-		"ID"	"6159"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1473,7 +1326,6 @@
 	}
 	"special_bonus_attack_damage_15"
 	{
-		"ID"	"5938"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1483,7 +1335,6 @@
 	}
 	"special_bonus_attack_damage_20"
 	{
-		"ID"	"5960"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1493,7 +1344,6 @@
 	}
 	"special_bonus_attack_damage_25"
 	{
-		"ID"	"6009"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1503,7 +1353,6 @@
 	}
 	"special_bonus_attack_damage_30"
 	{
-		"ID"	"5939"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1513,7 +1362,6 @@
 	}
 	"special_bonus_attack_damage_35"
 	{
-		"ID"	"6164"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1523,7 +1371,6 @@
 	}
 	"special_bonus_attack_damage_40"
 	{
-		"ID"	"5940"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1533,7 +1380,6 @@
 	}
 	"special_bonus_attack_damage_45"
 	{
-		"ID"	"6253"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1543,7 +1389,6 @@
 	}
 	"special_bonus_attack_damage_50"
 	{
-		"ID"	"5941"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1553,7 +1398,6 @@
 	}
 	"special_bonus_attack_damage_55"
 	{
-		"ID"	"6396"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1563,7 +1407,6 @@
 	}
 	"special_bonus_attack_damage_60"
 	{
-		"ID"	"6366"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1573,7 +1416,6 @@
 	}
 	"special_bonus_attack_damage_65"
 	{
-		"ID"	"6142"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1583,7 +1425,6 @@
 	}
 	"special_bonus_attack_damage_75"
 	{
-		"ID"	"5942"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1593,7 +1434,6 @@
 	}
 	"special_bonus_attack_damage_90"
 	{
-		"ID"	"5968"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1603,7 +1443,6 @@
 	}
 	"special_bonus_attack_damage_100"
 	{
-		"ID"	"5979"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1613,7 +1452,6 @@
 	}
 	"special_bonus_attack_damage_120"
 	{
-		"ID"	"6112"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1623,7 +1461,6 @@
 	}
 	"special_bonus_attack_damage_150"
 	{
-		"ID"	"6247"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1633,7 +1470,6 @@
 	}
 	"special_bonus_attack_range_50"
 	{
-		"ID"	"5992"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1643,7 +1479,6 @@
 	}
 	"special_bonus_attack_range_75"
 	{
-		"ID"	"6027"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1653,7 +1488,6 @@
 	}
 	"special_bonus_attack_range_100"
 	{
-		"ID"	"5943"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1663,7 +1497,6 @@
 	}
 	"special_bonus_attack_range_125"
 	{
-		"ID"	"5944"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1673,7 +1506,6 @@
 	}
 	"special_bonus_attack_range_150"
 	{
-		"ID"	"5963"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1683,7 +1515,6 @@
 	}
 	"special_bonus_attack_range_175"
 	{
-		"ID"	"6186"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1693,7 +1524,6 @@
 	}
 	"special_bonus_attack_range_200"
 	{
-		"ID"	"5945"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1703,7 +1533,6 @@
 	}
 	"special_bonus_attack_range_250"
 	{
-		"ID"	"6040"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1713,7 +1542,6 @@
 	}
 	"special_bonus_attack_range_300"
 	{
-		"ID"	"6051"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1723,7 +1551,6 @@
 	}
 	"special_bonus_attack_range_400"
 	{
-		"ID"	"6307"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1733,7 +1560,6 @@
 	}
 	"special_bonus_cast_range_50"
 	{
-		"ID"	"5946"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1743,7 +1569,6 @@
 	}
 	"special_bonus_cast_range_60"
 	{
-		"ID"	"6032"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1753,7 +1578,6 @@
 	}
 	"special_bonus_cast_range_75"
 	{
-		"ID"	"5947"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1763,7 +1587,6 @@
 	}
 	"special_bonus_cast_range_100"
 	{
-		"ID"	"6003"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1773,7 +1596,6 @@
 	}
 	"special_bonus_cast_range_125"
 	{
-		"ID"	"6197"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1783,7 +1605,6 @@
 	}
 	"special_bonus_cast_range_150"
 	{
-		"ID"	"6056"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1793,7 +1614,6 @@
 	}
 	"special_bonus_cast_range_175"
 	{
-		"ID"	"6120"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1803,7 +1623,6 @@
 	}
 	"special_bonus_cast_range_200"
 	{
-		"ID"	"6114"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1813,7 +1632,6 @@
 	}
 	"special_bonus_cast_range_250"
 	{
-		"ID"	"6161"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1823,7 +1641,6 @@
 	}
 	"special_bonus_cast_range_300"
 	{
-		"ID"	"6213"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1833,7 +1650,6 @@
 	}
 	"special_bonus_cast_range_400"
 	{
-		"ID"	"6384"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1843,7 +1659,6 @@
 	}
 	"special_bonus_spell_amplify_3"
 	{
-		"ID"	"6162"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1853,7 +1668,6 @@
 	}
 	"special_bonus_spell_amplify_4"
 	{
-		"ID"	"6015"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1863,7 +1677,6 @@
 	}
 	"special_bonus_spell_amplify_5"
 	{
-		"ID"	"5948"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1873,7 +1686,6 @@
 	}
 	"special_bonus_spell_amplify_6"
 	{
-		"ID"	"5996"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1883,7 +1695,6 @@
 	}
 	"special_bonus_spell_amplify_8"
 	{
-		"ID"	"5949"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1893,7 +1704,6 @@
 	}
 	"special_bonus_spell_amplify_10"
 	{
-		"ID"	"5989"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1903,7 +1713,6 @@
 	}
 	"special_bonus_spell_amplify_12"
 	{
-		"ID"	"6326"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1913,7 +1722,6 @@
 	}
 	"special_bonus_spell_amplify_15"
 	{
-		"ID"	"6055"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1923,7 +1731,6 @@
 	}
 	"special_bonus_spell_amplify_20"
 	{
-		"ID"	"6236"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1933,7 +1740,6 @@
 	}
 	"special_bonus_spell_amplify_25"
 	{
-		"ID"	"6327"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1943,7 +1749,6 @@
 	}
 	"special_bonus_cooldown_reduction_8"
 	{
-		"ID"	"5950"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1953,7 +1758,6 @@
 	}
 	"special_bonus_cooldown_reduction_10"
 	{
-		"ID"	"6021"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1963,7 +1767,6 @@
 	}
 	"special_bonus_cooldown_reduction_12"
 	{
-		"ID"	"6190"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1973,7 +1776,6 @@
 	}
 	"special_bonus_cooldown_reduction_15"
 	{
-		"ID"	"5951"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1983,7 +1785,6 @@
 	}
 	"special_bonus_cooldown_reduction_20"
 	{
-		"ID"	"5952"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -1993,7 +1794,6 @@
 	}
 	"special_bonus_cooldown_reduction_25"
 	{
-		"ID"	"6222"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2003,7 +1803,6 @@
 	}
 	"special_bonus_respawn_reduction_15"
 	{
-		"ID"	"5975"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2013,7 +1812,6 @@
 	}
 	"special_bonus_respawn_reduction_20"
 	{
-		"ID"	"5953"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2023,7 +1821,6 @@
 	}
 	"special_bonus_respawn_reduction_25"
 	{
-		"ID"	"5954"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2033,7 +1830,6 @@
 	}
 	"special_bonus_respawn_reduction_30"
 	{
-		"ID"	"5964"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2043,7 +1839,6 @@
 	}
 	"special_bonus_respawn_reduction_35"
 	{
-		"ID"	"6038"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2053,7 +1848,6 @@
 	}
 	"special_bonus_respawn_reduction_40"
 	{
-		"ID"	"6066"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2063,7 +1857,6 @@
 	}
 	"special_bonus_respawn_reduction_45"
 	{
-		"ID"	"6375"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2073,7 +1866,6 @@
 	}
 	"special_bonus_respawn_reduction_50"
 	{
-		"ID"	"6269"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2083,7 +1875,6 @@
 	}
 	"special_bonus_respawn_reduction_60"
 	{
-		"ID"	"6059"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2093,7 +1884,6 @@
 	}
 	"special_bonus_gold_income_5"
 	{
-		"ID"	"5955"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2103,7 +1893,6 @@
 	}
 	"special_bonus_gold_income_10"
 	{
-		"ID"	"5956"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2113,7 +1902,6 @@
 	}
 	"special_bonus_gold_income_15"
 	{
-		"ID"	"6007"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2123,7 +1911,6 @@
 	}
 	"special_bonus_gold_income_20"
 	{
-		"ID"	"6008"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2133,7 +1920,6 @@
 	}
 	"special_bonus_gold_income_25"
 	{
-		"ID"	"5957"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2143,7 +1929,6 @@
 	}
 	"special_bonus_gold_income_40"
 	{
-		"ID"	"6301"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2153,7 +1938,6 @@
 	}
 	"special_bonus_gold_income_50"
 	{
-		"ID"	"6318"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2163,7 +1947,6 @@
 	}
 	"special_bonus_evasion_10"
 	{
-		"ID"	"5971"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2173,7 +1956,6 @@
 	}
 	"special_bonus_evasion_12"
 	{
-		"ID"	"6239"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2183,7 +1965,6 @@
 	}
 	"special_bonus_evasion_15"
 	{
-		"ID"	"5972"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2193,7 +1974,6 @@
 	}
 	"special_bonus_evasion_20"
 	{
-		"ID"	"5973"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2203,7 +1983,6 @@
 	}
 	"special_bonus_evasion_25"
 	{
-		"ID"	"5974"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2213,7 +1992,6 @@
 	}
 	"special_bonus_20_bash_2"
 	{
-		"ID"	"6025"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2223,7 +2001,6 @@
 	}
 	"special_bonus_exp_boost_5"
 	{
-		"ID"	"5983"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2233,7 +2010,6 @@
 	}
 	"special_bonus_exp_boost_10"
 	{
-		"ID"	"5985"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2243,7 +2019,6 @@
 	}
 	"special_bonus_exp_boost_15"
 	{
-		"ID"	"5986"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2253,7 +2028,6 @@
 	}
 	"special_bonus_exp_boost_20"
 	{
-		"ID"	"6017"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2263,7 +2037,6 @@
 	}
 	"special_bonus_exp_boost_25"
 	{
-		"ID"	"5987"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2273,7 +2046,6 @@
 	}
 	"special_bonus_exp_boost_30"
 	{
-		"ID"	"6317"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2283,7 +2055,6 @@
 	}
 	"special_bonus_exp_boost_35"
 	{
-		"ID"	"6372"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
@@ -2312,7 +2083,6 @@
 	}
 	"pudge_meat_hook"
 	{
-		"ID"	"5075"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -2336,7 +2106,6 @@
 	}
 	"bounty_hunter_wind_walk"
 	{
-		"ID"	"5287"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -2376,7 +2145,6 @@
 	}
 	"spirit_breaker_charge_of_darkness"
 	{
-		"ID"	"5353"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -2431,7 +2199,6 @@
 	}
 	"medusa_stone_gaze"
 	{
-		"ID"	"5507"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
