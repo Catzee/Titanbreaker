@@ -7566,6 +7566,7 @@
 				"IsDebuff"	"0"
 				"IsPurgable"	"1"
 				"IsBuff"	"1"
+				"TextureName"	"fix/deadly1"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -7607,6 +7608,7 @@
 				"IsBuff"	"1"
 				"EffectName"	"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_blade_fury_dragon.vpcf"
 				"EffectAttachType"	"attach_hitloc"
+				"TextureName"	"fix/deadly2"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%res"
