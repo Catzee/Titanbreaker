@@ -1347,12 +1347,9 @@ function Precache( context )
             
             -- Pick up all items particle
             PrecacheResource( "particle", "particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", context )
-            -- venge sun1 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon1", context)
-            -- venge sun3 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon12", context)
-            -- venge sun4 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon9", context)
+			
+			-- global heal with inner cd particle precache
+            PrecacheResource( "particle", "particles/dazzle_holy_wave_b.vpcf", context )
           end
           
         end
