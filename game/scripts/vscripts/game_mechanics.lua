@@ -11378,7 +11378,7 @@ function MulticastItem( event )
     end
     if item and math.random(1,100) <= chance then
         -- special case for cm W
-        if(event.ability:GetAbilityName() == "Frost_Shatter") then
+        if(event.ability.OnMulticastProc) then
             event.ability:OnMulticastProc(caster, target, dur)
         else
             event.ability:ApplyDataDrivenModifier(caster, target, "modifier_multicast_item", {Duration = dur})
