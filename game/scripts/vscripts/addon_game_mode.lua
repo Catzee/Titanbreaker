@@ -20685,56 +20685,6 @@ function COverthrowGameMode:PingHeroLevel(params)
   end)
 end
 
-function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)
-   -- Use this as last resort only because in future valve may add "ability_crash_game" and this code will delete it with crash...
-  if(true) then
-    return
-  end
-  -- If this approach will stop working you can try parse heroes kv with code below and determine valid abilities using it...
-  --COverthrowGameMode._heroesKV = COverthrowGameMode._heroesKV or LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-
-  local allowedAbilities = {}
-  --local heroName = hero:GetUnitName()
-  --local heroKV = COverthrowGameMode._heroesKV[heroName]
-  --for i=0, DOTA_MAX_ABILITIES do
-  --  if(heroKV["Ability"..tostring(i)] ~= nil) then
-  --    allowedAbilities[heroKV["Ability"..tostring(i)]] = true
-  --  end
-  --end
-
-  -- valve things (can be referenced in c++ and crash if removed)
-  allowedAbilities["ability_capture"] = true
-  allowedAbilities["abyssal_underlord_portal_warp"] = true
-  allowedAbilities["twin_gate_portal_warp"] = true
-  allowedAbilities["ability_lamp_use"] = true
-  allowedAbilities["ability_pluck_famango"] = true
-
-  for i=0, DOTA_MAX_ABILITIES-1 do
-    local ability = hero:GetAbilityByIndex(i)
-    if(ability ~= nil) then
-      local abilityClass = ability:GetClassname()
-      local abilityName = ability:GetAbilityName()
-      -- skip datadriven and lua abilities
-      if(abilityClass ~= "ability_datadriven" and abilityClass ~= "ability_lua") then
-        local abilityName = ability:GetAbilityName()
-        if(allowedAbilities[abilityName] == nil) then
-          local isTalent = string.sub(abilityName, 1, string.len("special_bonus_")) == "special_bonus_"
-          if(isTalent == false) then
-            --print("Destroy ", abilityName)
-            hero:RemoveAbilityByHandle(ability)
-          else
-            --print("Keep ", abilityName)
-          end
-        else
-          --print("Keep ", abilityName)
-        end
-      else
-        --print("Keep ", abilityName)
-      end
-    end
-  end
-end
-
 function SetupFlurryAbility(hero, heroName)
   if heroName == "npc_dota_hero_drow_ranger" or heroName == "npc_dota_hero_windrunner" or heroName == "npc_dota_hero_sniper" or heroName == "npc_dota_hero_axe" then
     hero.flurryAbility = 0
