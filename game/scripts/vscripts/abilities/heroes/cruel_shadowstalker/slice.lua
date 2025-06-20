@@ -100,6 +100,13 @@ function Dagger_Strike:OnSpellStart()
     self:FixCooldown()
 end
 
+function Dagger_Strike:ReduceCooldown(cdrFlat)
+    self._expectedCooldownEndTime = self._expectedCooldownEndTime or {}
+    self._expectedCooldownEndTime[false] = self._expectedCooldownEndTime[false] or 0
+    self._expectedCooldownEndTime[false] = self._expectedCooldownEndTime[false] - cdrFlat
+    self:FixCooldown()
+end
+
 function Dagger_Strike:FixCooldown()
     local isAltCast = self:IsAltCasted()
     self:EndCooldown()

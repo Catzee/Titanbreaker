@@ -13711,7 +13711,8 @@ function StormStunCD(event)
 	local caster = event.caster
 	local abil = caster:FindAbilityByName("Retri4")
 	if abil and abil:GetLevel() >= 4 then
-		abil:ReduceCooldown(1)
+		local myevent = {caster = caster, amount = 1, ability = abil}
+		ReduceCooldown(myevent)
 	end
 end
 
@@ -17375,18 +17376,28 @@ function ReduceCooldown( event )
                 end
                 if not event.delaycdreduce then
                     Timers:CreateTimer(0.1, function()
-                        cd = ability:GetCooldownTimeRemaining()
-                        if cd > cd - reduction and cd > 0.1 then
- 			                ability:EndCooldown()
-                            ability:StartCooldown(cd - reduction)
+                        -- Abilities with special cd
+                        if(ability.ReduceCooldown) then
+                        	ability:ReduceCooldown(event.amount)
+                        else
+                        	cd = ability:GetCooldownTimeRemaining()
+                        	if cd > cd - reduction and cd > 0.1 then
+                        		ability:EndCooldown()
+                        		ability:StartCooldown(cd - reduction)
+                        	end
                         end
                     end)
                 else
                     Timers:CreateTimer(event.delaycdreduce, function()
-                        cd = ability:GetCooldownTimeRemaining()
-                        if cd > cd - reduction and cd > 0.1 then
-                            ability:EndCooldown()
-                            ability:StartCooldown(cd - reduction)
+                        -- Abilities with special cd
+                        if(ability.ReduceCooldown) then
+                        	ability:ReduceCooldown(event.amount)
+                        else
+                        	cd = ability:GetCooldownTimeRemaining()
+                        	if cd > cd - reduction and cd > 0.1 then
+                        		ability:EndCooldown()
+                        		ability:StartCooldown(cd - reduction)
+                        	end
                         end
                     end)
                 end
