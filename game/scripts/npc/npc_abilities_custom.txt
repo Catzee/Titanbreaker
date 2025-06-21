@@ -7566,6 +7566,7 @@
 				"IsDebuff"	"0"
 				"IsPurgable"	"1"
 				"IsBuff"	"1"
+				"TextureName"	"fix/deadly1"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -7607,6 +7608,7 @@
 				"IsBuff"	"1"
 				"EffectName"	"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_blade_fury_dragon.vpcf"
 				"EffectAttachType"	"attach_hitloc"
+				"TextureName"	"fix/deadly2"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%res"
@@ -33827,7 +33829,7 @@
 	"Retri3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"phantom_lancer_sunwarrior_phantom_edge"
+		"AbilityTextureName"	"fix/retri3"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -91389,6 +91391,11 @@
 		"MaxLevel"	"1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityCooldown"	"0"
+		"precache"
+		{
+			"particle"	"particles/econ/events/ti7/blink_dagger_start_ti7_lvl2.vpcf"
+			"model"	"models/heroes/wraith_king/wraith_frost.vmdl"
+		}
 		"Modifiers"
 		{
 			"modifier_omni_revelation"
@@ -103121,6 +103128,10 @@
 				"Target"	"CASTER"
 			}
 		}
+		"precache"
+		{
+			"model"	"models/items/courier/mighty_chicken/mighty_chicken_flying.vmdl"
+		}
 		"Modifiers"
 		{
 			"modifier_chicken_affix"
@@ -106977,5 +106988,19 @@
 			"radius"	"2500"
 			"buffduration"	"9.1"
 		}
+	}
+	"astral_guardian_precache"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/astral_guardian/astral_guardian_precache"
+		"AbilityTextureName"	"fix/abaddon_borrowed_time_colored_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"	"ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"RequiredLevel"	"0"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.0"
+		"AbilityManaCost"	"0"
+		"AbilityCooldown"	"0"
 	}
 }

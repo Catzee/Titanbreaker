@@ -7115,6 +7115,7 @@ function HealUnit( event )
             return
         else
             ability:ApplyDataDrivenModifier(caster, caster, event.heal_inner_cd_buff, {Duration = event.heal_inner_cd * GetInnerCooldownFactor(caster)})
+			-- If you remove or change this particle also change global precache for this particle in addon_game_mode.lua (find by "global heal with inner cd particle precache" comment")
             local particle = ParticleManager:CreateParticle("particles/dazzle_holy_wave_b.vpcf", PATTACH_POINT_FOLLOW, caster)
             ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin()+Vector(0,0,75))
             ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()+Vector(0,0,75))
