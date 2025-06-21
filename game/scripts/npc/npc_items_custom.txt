@@ -52299,6 +52299,10 @@
 		"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		"AbilityDamage"	"0"
 		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"model"	"models/creeps/lane_creeps/creep_2021_dire/creep_2021_dire_ranged.vmdl"
+		}
 		"Modifiers"
 		{
 			"modifier_class_pugna2"

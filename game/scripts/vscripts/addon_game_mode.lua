@@ -1165,6 +1165,8 @@ function Precache( context )
             PrecacheModel( "temple_fire_ele", context )
 
             --since later spawn of creeps
+			--a12
+            PrecacheUnitByNameAsync( "extra_act12", function(unit) end )
             --a11
             PrecacheUnitByNameAsync( "temple_throne_boss_2", function(unit) end )
             PrecacheUnitByNameAsync( "temple_volcano_boss_3", function(unit) end )
@@ -1182,6 +1184,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "merge_boss_56", function(unit) end )
             PrecacheUnitByNameAsync( "merge_boss_78", function(unit) end )
             PrecacheUnitByNameAsync( "merge_boss_910", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act11", function(unit) end )
             --a10
             PrecacheUnitByNameAsync( "temple_throne_boss_1", function(unit) end )
             --a9
@@ -1207,6 +1210,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_tomb_shadow", function(unit) end )
             PrecacheUnitByNameAsync( "temple_tomb_bug", function(unit) end )
             PrecacheUnitByNameAsync( "temple_tomb_skeleton", function(unit) end )
+            PrecacheUnitByNameAsync( "temple_tomb_boss_5", function(unit) end )
             --a6
             PrecacheUnitByNameAsync( "temple_mount_boss_1", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_boss_2", function(unit) end )
@@ -1221,6 +1225,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_mount_archer", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_archer_boss", function(unit) end )
             PrecacheUnitByNameAsync( "temple_mount_wisp", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act6", function(unit) end )
             --a5
             PrecacheUnitByNameAsync( "temple_dragon_jakiro", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_melee", function(unit) end )
@@ -1239,6 +1244,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_depressive", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_supportive", function(unit) end )
             PrecacheUnitByNameAsync( "temple_dragon_boss_4_angry", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act5", function(unit) end )
             --a4
             PrecacheUnitByNameAsync( "temple_shadow_inferno", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_spectre", function(unit) end )
@@ -1256,6 +1262,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_shadow_boss_4", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_shadow_boss_6", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act4", function(unit) end )
             --a3
             PrecacheUnitByNameAsync( "temple_fungal_ancient", function(unit) end )
             PrecacheUnitByNameAsync( "temple_fungal_slark", function(unit) end )
@@ -1269,6 +1276,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_water_boss_5", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_7", function(unit) end )
             PrecacheUnitByNameAsync( "temple_water_boss_8", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act3", function(unit) end )
             --a2
             PrecacheUnitByNameAsync( "temple_sand_boss_1", function(unit) end )
             PrecacheUnitByNameAsync( "temple_sand_boss_2", function(unit) end )
@@ -1288,6 +1296,7 @@ function Precache( context )
             PrecacheUnitByNameAsync( "temple_sand_poisonward", function(unit) end )
             PrecacheUnitByNameAsync( "act_2_farmer", function(unit) end )
             PrecacheUnitByNameAsync( "act_2_lama", function(unit) end )
+            PrecacheUnitByNameAsync( "extra_act2", function(unit) end )
             --a1
             PrecacheUnitByNameAsync( "temple_wolf", function(unit) end )
             PrecacheUnitByNameAsync( "temple_wolf_brown", function(unit) end )
@@ -1338,12 +1347,9 @@ function Precache( context )
             
             -- Pick up all items particle
             PrecacheResource( "particle", "particles/econ/events/fall_major_2016/teleport_team_flair_ground_magic.vpcf", context )
-            -- venge sun1 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon1", context)
-            -- venge sun3 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon12", context)
-            -- venge sun4 particles (not precached for some reasons)
-            PrecacheItemByNameSync("moon9", context)
+			
+			-- global heal with inner cd particle precache
+            PrecacheResource( "particle", "particles/dazzle_holy_wave_b.vpcf", context )
           end
           
         end
@@ -10574,6 +10580,8 @@ function COverthrowGameMode:OnHeroInGame(hero)
       Notifications:Bottom(hero:GetPlayerID(), {text="You can find a Titanbreaker guide in the panel on the left, if you want to learn more about the game!", duration=12, style={color="violet"}})
     end
   end)
+
+  hero:AddNewModifier(hero, nil, "modifier_auto_casts", {duration = -1})
 
   SetupFlurryAbility(hero, heroName)
 
@@ -20677,56 +20685,6 @@ function COverthrowGameMode:PingHeroLevel(params)
   Timers:CreateTimer(2, function()
     COverthrowGameMode._pingHeroLevelCd[playerId] = nil
   end)
-end
-
-function COverthrowGameMode:RemoveFacetsAndInnateAbilties(hero)
-   -- Use this as last resort only because in future valve may add "ability_crash_game" and this code will delete it with crash...
-  if(true) then
-    return
-  end
-  -- If this approach will stop working you can try parse heroes kv with code below and determine valid abilities using it...
-  --COverthrowGameMode._heroesKV = COverthrowGameMode._heroesKV or LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-
-  local allowedAbilities = {}
-  --local heroName = hero:GetUnitName()
-  --local heroKV = COverthrowGameMode._heroesKV[heroName]
-  --for i=0, DOTA_MAX_ABILITIES do
-  --  if(heroKV["Ability"..tostring(i)] ~= nil) then
-  --    allowedAbilities[heroKV["Ability"..tostring(i)]] = true
-  --  end
-  --end
-
-  -- valve things (can be referenced in c++ and crash if removed)
-  allowedAbilities["ability_capture"] = true
-  allowedAbilities["abyssal_underlord_portal_warp"] = true
-  allowedAbilities["twin_gate_portal_warp"] = true
-  allowedAbilities["ability_lamp_use"] = true
-  allowedAbilities["ability_pluck_famango"] = true
-
-  for i=0, DOTA_MAX_ABILITIES-1 do
-    local ability = hero:GetAbilityByIndex(i)
-    if(ability ~= nil) then
-      local abilityClass = ability:GetClassname()
-      local abilityName = ability:GetAbilityName()
-      -- skip datadriven and lua abilities
-      if(abilityClass ~= "ability_datadriven" and abilityClass ~= "ability_lua") then
-        local abilityName = ability:GetAbilityName()
-        if(allowedAbilities[abilityName] == nil) then
-          local isTalent = string.sub(abilityName, 1, string.len("special_bonus_")) == "special_bonus_"
-          if(isTalent == false) then
-            --print("Destroy ", abilityName)
-            hero:RemoveAbilityByHandle(ability)
-          else
-            --print("Keep ", abilityName)
-          end
-        else
-          --print("Keep ", abilityName)
-        end
-      else
-        --print("Keep ", abilityName)
-      end
-    end
-  end
 end
 
 function SetupFlurryAbility(hero, heroName)
