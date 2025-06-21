@@ -831,6 +831,7 @@ function DamageUnit( event )
     	caster:SetModifierStackCount("modifier_souls", event.ability, caster.souls)
     end]]
     -- consume
+    -- TODO: Replace that with ConsumeSouls(event) to prevent copy paste?
     local nodamageatall = 1
     if event.consumesouls ~= nil then
     	if caster.souls == nil then
@@ -1085,14 +1086,14 @@ function DamageUnit( event )
         finaldamage = 0.1*finaldamage*caster.AgonyCounter
     end
 
-    local winter_chills = caster:GetModifierStackCount("modifier_winterschill", nil)
-    if event.icelance and (winter_chills >= 2 or target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")) then
-        if not (target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")) then
-            caster:RemoveModifierByName("modifier_winterschill")
+    if event.icelance then
+        local isModifiersProc = target:HasModifier("modifier_icenova") or target:HasModifier("modifier_deepfreeze") or target:HasModifier("modifier_icenova_slow")
+        local isStacksProc = event.icelancestacks ~= nil and event.icelancestacks >= 2
+        if(isStacksProc or isModifiersProc) then
+            finaldamage = finaldamage * 3
+            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT_FOLLOW, target)
+            ParticleManager:ReleaseParticleIndex(particle)
         end
-        finaldamage = finaldamage * 3
-        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT_FOLLOW, target)
-        ParticleManager:ReleaseParticleIndex(particle)
     end
 
     --cp based scaling
@@ -9522,13 +9523,6 @@ function FatalThrowHit(event)
 		--myevent.dur = caster.FatalThrowCP*event.silence
 		--ApplyBuff(myevent)
 
-        -- This was intentionally made to don't care if spell was interrupted or no
-        if(caster:HasModifier("modifier_fatal_throw_inner_cd") == false and event.ability:IsAltCasted()) then
-            SpellInterrupt({caster = caster, target = target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
-            local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(caster)
-            event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_fatal_throw_inner_cd", { duration = innerCd})
-        end
-
         if caster.fatalThrowBonus and caster.fatalThrowBonus >= 1 then
             event.fatalThrowBonus = 1
         end
@@ -9551,15 +9545,6 @@ function FatalThrowHit(event)
             ChainProjectile( caster, target, event.ability, 1, "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", {target}, "Hero_PhantomAssassin.Dagger.Cast", 0.25, 600 )
         end
 	end
-end
-
-function SacredSpearHit(event)
-    -- This was intentionally made to don't care if spell was interrupted or no
-    if(event.caster:HasModifier("modifier_sacred_spear_inner_cd") == false and event.ability:IsAltCasted()) then
-        SpellInterrupt({caster = event.caster, target = event.target, dur = event.ability:GetSpecialValueFor("silence_duration"), ability = event.ability})
-        local innerCd = event.ability:GetSpecialValueFor("silence_inner_cd") * GetInnerCooldownFactor(event.caster)
-        event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_sacred_spear_inner_cd", { duration = innerCd})
-    end
 end
 
 function ListContainsString( list, text )
@@ -11392,7 +11377,12 @@ function MulticastItem( event )
         end
     end
     if item and math.random(1,100) <= chance then
-        event.ability:ApplyDataDrivenModifier(caster, target, "modifier_multicast_item", {Duration = dur})
+        -- special case for cm W
+        if(event.ability.OnMulticastProc) then
+            event.ability:OnMulticastProc(caster, target, dur)
+        else
+            event.ability:ApplyDataDrivenModifier(caster, target, "modifier_multicast_item", {Duration = dur})
+        end
     end
 end
 
@@ -12362,7 +12352,7 @@ function COverthrowGameMode:GetAbilityIndexCustom(ability)
     return ability:GetAbilityIndex()
 end
 
-function GetAbilityBehaviorSafe(ability)
+function COverthrowGameMode:GetAbilityBehaviorSafe(ability)
     -- No idea if this true or no, but very valve like (this bug happened when valve decide to destroy custom games and destroyed they own event custom game with countless hot fixes this night after that...)
     -- Valve did add GetBehaviorInt() but that overflows with some behavior flags like DOTA_ABILITY_BEHAVIOR_OVERSHOOT
     local behavior = ability:GetBehavior()
@@ -12383,7 +12373,7 @@ function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
 
         if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
             -- Probably enough to filter out valve weird internal abilities (they all have index = 0...)
-            if(bit.band(GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
+            if(bit.band(GCOverthrowGameMode:GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
                 local abilityName = ability:GetAbilityName()
                 -- Dazzle abilities
                 if(abilityName == "empty_spell1" or abilityName == "empty_spell2") then
@@ -13721,11 +13711,8 @@ function StormStunCD(event)
 	local caster = event.caster
 	local abil = caster:FindAbilityByName("Retri4")
 	if abil and abil:GetLevel() >= 4 then
- 		local cd = abil:GetCooldownTimeRemaining()
-    	if cd > 0.1 then
-    		abil:EndCooldown()
-    		abil:StartCooldown(cd-1)
-    	end
+		local myevent = {caster = caster, amount = 1, ability = abil}
+		ReduceCooldown(myevent)
 	end
 end
 
@@ -17389,18 +17376,28 @@ function ReduceCooldown( event )
                 end
                 if not event.delaycdreduce then
                     Timers:CreateTimer(0.1, function()
-                        cd = ability:GetCooldownTimeRemaining()
-                        if cd > cd - reduction and cd > 0.1 then
- 			                ability:EndCooldown()
-                            ability:StartCooldown(cd - reduction)
+                        -- Abilities with special cd
+                        if(ability.ReduceCooldown) then
+                        	ability:ReduceCooldown(event.amount)
+                        else
+                        	cd = ability:GetCooldownTimeRemaining()
+                        	if cd > cd - reduction and cd > 0.1 then
+                        		ability:EndCooldown()
+                        		ability:StartCooldown(cd - reduction)
+                        	end
                         end
                     end)
                 else
                     Timers:CreateTimer(event.delaycdreduce, function()
-                        cd = ability:GetCooldownTimeRemaining()
-                        if cd > cd - reduction and cd > 0.1 then
-                            ability:EndCooldown()
-                            ability:StartCooldown(cd - reduction)
+                        -- Abilities with special cd
+                        if(ability.ReduceCooldown) then
+                        	ability:ReduceCooldown(event.amount)
+                        else
+                        	cd = ability:GetCooldownTimeRemaining()
+                        	if cd > cd - reduction and cd > 0.1 then
+                        		ability:EndCooldown()
+                        		ability:StartCooldown(cd - reduction)
+                        	end
                         end
                     end)
                 end
@@ -30609,60 +30606,6 @@ function WarriorBerserkerRage(event)
     end
 end
 
-function AbilityAutoCastOld(event)
-	-- unfinished or unused thing
-	--[[
-    local caster = event.caster
-    local target = event.target
-    local ability = caster:GetAbilityByIndex(0)
-    local ability2 = caster:GetAbilityByIndex(1)
-
-    local abilityToCast = ability
-    if ability2:GetCooldownTimeRemaining() <= 0 and ability2:GetLevel() > 0 then
-        abilityToCast = ability2
-    end
-
-    Timers:CreateTimer(0.05, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = abilityToCast:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-    end) --]]
-end
-
-function AbilityAutoCastV2(event)
-    if not event.autocast then
-        return
-    end
-
-    local caster = event.caster
-    local target = event.target
-    local ability = caster:GetAbilityByIndex(event.abilityIndex) -- should be fine
-
-    if ability:GetCooldownTimeRemaining() > 0 or ability:GetLevel() <= 0 then
-        return
-    end
-
-    Timers:CreateTimer(0.05, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = ability:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-    end)
-end
-
 function DivineSphereTakeDamage(event)
     local caster = event.caster
     HealUnit({caster = caster, target = caster, heal = 0, percenthp = 5, ability = event.ability})
@@ -30778,7 +30721,7 @@ function CheckForFlurryProc(event)
     end)
 end
 
-function AbilityAutoCastCheck(event)
+function TunnelVisionProc(event)
     local caster = event.caster
     if caster.talents[165] <= 0 then
         return
@@ -30787,22 +30730,7 @@ function AbilityAutoCastCheck(event)
     local target = event.target
     local ability = caster:GetAbilityByIndex(0)
 
-    local abilityToCast = ability
-
-    Timers:CreateTimer(0.1, function()
-        local order = 
-        {
-            UnitIndex = caster:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = abilityToCast:GetEntityIndex(), 
-            Queue = false,
-            TargetIndex = target:entindex()
-        }
-
-        ExecuteOrderFromTable(order)
-
-        ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, buff = "modifier_talent_tunnel"})
-    end)
+	ApplyBuffStack({caster = caster, target = caster, ability = caster.combat_system_ability, dur = 3, buff = "modifier_talent_tunnel"})
 end
 
 function StampedeBonusDamageProc(event)

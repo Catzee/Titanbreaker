@@ -10575,6 +10575,8 @@ function COverthrowGameMode:OnHeroInGame(hero)
     end
   end)
 
+  hero:AddNewModifier(hero, nil, "modifier_auto_casts", {duration = -1})
+
   SetupFlurryAbility(hero, heroName)
 
   --jungle mode
