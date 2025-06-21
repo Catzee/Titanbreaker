@@ -87,9 +87,9 @@ function Retri4:OnSpellStart()
     self._expectedCooldownEndTime = self._expectedCooldownEndTime or {}
 	if(self._projectiles[projectileId] == false) then
 		caster:AddNewModifier(caster, self, "modifier_pala_str_bonus_check", {duration = self:GetSpecialValueFor("strdur")})
-        self._expectedCooldownEndTime[false] = GameRules:GetGameTime() + (self:GetCooldown(-1) * GetCooldownReductionFactor(caster, ability))
+        self._expectedCooldownEndTime[false] = GameRules:GetGameTime() + (self:GetCooldown(-1) * GetCooldownReductionFactor(caster, self))
 	else
-        self._expectedCooldownEndTime[true] = GameRules:GetGameTime() + (self:GetSpecialValueFor("silence_inner_cd") * GetCooldownReductionFactor(caster, ability))
+        self._expectedCooldownEndTime[true] = GameRules:GetGameTime() + (self:GetSpecialValueFor("silence_inner_cd") * GetCooldownReductionFactor(caster, self))
 	end
 
     self:FixCooldown()
