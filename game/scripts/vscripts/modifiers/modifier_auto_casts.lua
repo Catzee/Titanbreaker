@@ -296,6 +296,13 @@ function modifier_auto_casts:CheckAbilityAutoCast(caster, ability, target)
     if(caster:IsChanneling()) then
         return
     end
+    -- Waiting for invisibility
+    if(caster:IsInvisible()) then
+        if(caster:GetCurrentActiveAbility() ~= nil) then
+            caster:Stop()
+        end
+        return
+    end
     -- Casting something else, waiting for that
     if(caster:GetCurrentActiveAbility() ~= nil) then
         return
