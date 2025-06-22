@@ -60,7 +60,7 @@ function Dagger_Strike:OnSpellStart()
 
     if(self:IsAltCasted()) then
 		SpellInterrupt({caster = caster, target = target, dur = self:GetSpecialValueFor("silence_duration"), ability = self})
-        self._expectedCooldownEndTime[true] = GameRules:GetGameTime() + (self:GetSpecialValueFor("silence_inner_cd") * GetCooldownReductionFactor(caster, ability))
+        self._expectedCooldownEndTime[true] = GameRules:GetGameTime() + (self:GetSpecialValueFor("silence_inner_cd") * GetCooldownReductionFactor(caster, self))
     else
         -- Hack around data driven modifiers...
         self._ambushAbility = self._ambushAbility or caster:FindAbilityByName("Ambush")
@@ -94,7 +94,7 @@ function Dagger_Strike:OnSpellStart()
             ability = self,
             amount = 1
         })
-        self._expectedCooldownEndTime[false] = GameRules:GetGameTime() + (self:GetCooldown(-1) * GetCooldownReductionFactor(caster, ability))
+        self._expectedCooldownEndTime[false] = GameRules:GetGameTime() + (self:GetCooldown(-1) * GetCooldownReductionFactor(caster, self))
     end
 
     self:FixCooldown()

@@ -12374,7 +12374,7 @@ function COverthrowGameMode:GetAbilityByIndexCustom(hero, index, fromStance)
 
         if(COverthrowGameMode:GetAbilityIndexCustom(ability) == index and COverthrowGameMode:IsStanceAbility(ability) == fromStance) then
             -- Probably enough to filter out valve weird internal abilities (they all have index = 0...)
-            if(bit.band(GCOverthrowGameMode:GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
+            if(bit.band(COverthrowGameMode:GetAbilityBehaviorSafe(ability), DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE) ~= 0) then
                 local abilityName = ability:GetAbilityName()
                 -- Dazzle abilities
                 if(abilityName == "empty_spell1" or abilityName == "empty_spell2") then
