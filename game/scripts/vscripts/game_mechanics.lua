@@ -4,6 +4,8 @@ if _G.GameMechanics == nil then
 	--refer to: http://stackoverflow.com/questions/6586145/lua-require-with-global-local
 end
 
+PlayerResource:GetSelectedHeroEntity(0):SetAbilityPoints(90)
+
 totalAttributes = 9
 STR = 1
 AGI = 2

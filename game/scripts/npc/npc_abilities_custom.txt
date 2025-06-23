@@ -26219,7 +26219,7 @@
 	"demo1"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"demo1"
+		"AbilityTextureName"	"fix/demo1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -26359,7 +26359,7 @@
 	"demo2"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"demo2"
+		"AbilityTextureName"	"fix/demo2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -26495,7 +26495,7 @@
 	"demo3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"dragon_knight_breathe_fire"
+		"AbilityTextureName"	"fix/demo3"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -26709,7 +26709,7 @@
 	"demo4"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"demo4"
+		"AbilityTextureName"	"fix/demo4"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -26871,7 +26871,7 @@
 	"demo5"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"demo5"
+		"AbilityTextureName"	"fix/demo5"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -27051,7 +27051,7 @@
 	"demo6"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"doom_bringer_devour"
+		"AbilityTextureName"	"fix/demo6"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
