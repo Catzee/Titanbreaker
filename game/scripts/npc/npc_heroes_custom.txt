@@ -678,6 +678,7 @@
 		"DisableWearables"		"0"
 		"override_hero"				"npc_dota_hero_grimstroke"
 		"AbilityLayout"     "6"
+		// If you will even change his abilities modify precache "demonic_witcher_precache" to precache all required stuff for actual abilities of hero
 		"Ability1"					"demo1"
 		"Ability2"					"demo2"
 		"Ability3"					"demo3"
@@ -695,6 +696,7 @@
 		"Ability15"		"special_bonus_cast_range_150"
 		"Ability16"		"special_bonus_magic_resistance_20"
 		"Ability17"		"special_bonus_all_stats_20"
+		"Ability18"		"demonic_witcher_precache"
 
 		"Facets"
 		{
