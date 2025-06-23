@@ -95918,6 +95918,11 @@
 				}
 			}
 		}
+		"precache"
+		{
+			"particle"	"particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_bubbles_fxset.vpcf"
+			"particle"	"particles/econ/items/tidehunter/tidehunter_divinghelmet/tidehunter_gush_splash_diving_helmet.vpcf"
+		}
 	}
 	"raptorevent"
 	{
