@@ -29505,6 +29505,7 @@
 		{
 			"particle"	"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf"
 			"particle"	"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_mechanical_arcana.vpcf"
+			"particle"	"particles/world_tower/tower_upgrade/ti7_radiant_tower_proj.vpcf"
 		}
 		"Modifiers"
 		{

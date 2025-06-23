@@ -1393,8 +1393,31 @@ function modifier_auto_casts:GetNextAbilityForBeastmasterAutoCasts(caster, abili
         self:DetermineAutoCastOrderForAbility(caster._autoCastBeastmasterD)
     end
 
-    if(ability == caster._autoCastBeastmasterD and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterD)) then
-        return caster._autoCastBeastmasterD
+    if(target == nil) then
+    	return nil
+    end
+
+    -- Bonus Q W E damage based on current rage/mana with Q5
+    local minRageToMaintain = caster._autoCastBeastmasterQ:GetLevel() >= 5 and (caster:GetMaxMana() - caster._autoCastBeastmasterD:GetManaCost(-1)) or 0
+    local currentRage = caster:GetMana()
+
+    if(ability == caster._autoCastBeastmasterD and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterD) and currentRage >= minRageToMaintain) then
+        if(caster._autoCastBeastmasterD:GetLevel() >= 4) then
+            if(target:GetHealth() / target:GetMaxHealth() > 0.5) then
+                if(caster:GetMana() >= 40) then
+                    -- Bonus D damage when D used on enemies above 50% max health with at least 40 rage
+                    return caster._autoCastBeastmasterD
+                else
+                    return nil
+                end
+            else
+                -- Bonus damage can't be used anymore, spam D when possible
+                return caster._autoCastBeastmasterD
+            end
+        else
+            -- Spam D when possible
+            return caster._autoCastBeastmasterD
+        end
     end
 
     if(ability == caster._autoCastBeastmasterQ and self:IsAbilityReadyForAutoCast(caster._autoCastBeastmasterQ)) then
