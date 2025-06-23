@@ -955,7 +955,9 @@ function Precache( context )
     PrecacheUnitByNameAsync( "temple_missile_trap_dragon", function(unit) end )
     --PrecacheUnitByNameAsync( "temple_jungle_spider", function(unit) end )
 
-
+    --swarm on death particle
+    PrecacheResource( "particle", "particles/econ/events/fall_major_2016/force_staff_fm06_dust.vpcf", context )
+	
     --spells
     PrecacheResource( "particle", "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge.vpcf", context )

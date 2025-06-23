@@ -23760,6 +23760,7 @@ function SpawnMonsterSwarm( act, min_count, max_count, triggering_unit, random_o
                 LeapToLocation( unit, order_position+RandomVector(150), jump_time)
             end)
         end
+        -- If you ever change this particle consider removing/adjusting global precache(in addon_game_mode.lua). Can be found by comment "swarm on death particle"
         local particle = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/force_staff_fm06_dust.vpcf", PATTACH_POINT_FOLLOW, unit)
         ParticleManager:ReleaseParticleIndex(particle)
     end
