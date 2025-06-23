@@ -1795,7 +1795,10 @@
 		"DOTA_Tooltip_Ability_demo2_Description"  "Deal high Shadow Damage to the target. 2.5 secs casttime.\nCan be set to Auto Cast for continuous casting of Demon Bolt against the last Demon Bolt target. If Soilcoil and/or Hellfire is learned and set to Auto Cast they will be cast in correct order\n\nAfter casting Demon Bolt, your Demons (Hellguards, Shadow Imps and Voidhunters) will Critical Strike for 250%% with their next Damage instance. \n\n<font color=\"#00EE00\">Requires and consumes 2 Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased damage. \nRank 3: Passively gain 20%% Shadow Damage for every active Demon. \nRank 4: Passively gain 20%% Summon Damage for every active Demon.\nRank 5: Gloom - Each Demon Bolt increases your Shadow Damage against that target by 10%%, stacking.\n\n</font>"
 		"DOTA_Tooltip_Ability_demo2_dmgfromstat"    "%Intellect to Damage:"
 		"DOTA_Tooltip_Ability_demo2_spelldmg"    "%Spellpower Factor:"
-
+		
+		"DOTA_Tooltip_modifier_gloom"	"Demon Bolt - Gloom"
+		"DOTA_Tooltip_modifier_gloom_Description"	"Incoming Shadow Damage increased."
+		
 		"DOTA_Tooltip_Ability_demo3"  "Hellfire"  
 		"DOTA_Tooltip_Ability_demo3_Description"  "Channel for 3 secs, dealing Fire Damage 4 times to all nearby enemies and Regenerating 10%% of max Health for your Demons.\nCan be set to Auto Cast for continuous casting of Hellfire against the last Hellfire target. If Soilcoil and/or Demon Bolt is learned and set to Auto Cast they will be cast in correct order \n\n<font color=\"#00EE00\">Requires and consumes 2 Souls.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Passively gain 20%% Fire Damage for every Ability that is on cooldown. \nRank 4: While Channeling, all Summon Damage is increased by 50%%.\n\n</font>"
 		"DOTA_Tooltip_Ability_demo3_buffduration"    "Stun Duration:"
