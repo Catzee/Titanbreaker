@@ -15001,16 +15001,17 @@
 					"RunScript"
 					{
 						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"ApplyBuff"
-						"buff"	"modifier_stunned"
-						"dur"	"%stun"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_treantstun"
-						"Target"	"ATTACKER"
+						"Function"	"AstralGuardianRiseOfNatureStun"
 					}
 				}
+			}
+			"modifier_treantstun_inner_cd"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
 			}
 		}
 		"AbilityValues"

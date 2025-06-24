@@ -3548,7 +3548,10 @@
 		"DOTA_Tooltip_Ability_moon10_stun"    "Stun on first hit:"
 		//"DOTA_Tooltip_Ability_moon10_SummonHealth"    "Treant Health:"
 		"DOTA_Tooltip_Ability_moon10_duration"    "Duration:"
-
+		
+		"DOTA_Tooltip_modifier_treantstun_inner_cd"	"Rise of Nature - Inner Cooldown"
+		"DOTA_Tooltip_modifier_treantstun_inner_cd_Description"	""
+		
 		"DOTA_Tooltip_Ability_moon6"  "Moon and Sun"  
 		"DOTA_Tooltip_Ability_moon6_amount"    "%Mana Regeneration:"  
 
@@ -6483,7 +6486,7 @@
 
 		"DOTA_Tooltip_Ability_moon2_Description"  "Deal Arcane Damage instantly as well as every 1.5 secs. If used with 5 Moon Charges, reduce the remaining cooldown of Tidal Wave and Moonlight by 8 secs.\n\n<font color=\"#00EE00\">Grants 1 Sun Charge.</font><font color=\"#FFBB00\">\n\nRank 2: Increased Damage and DoT Damage. \nRank 3: Whenever you consume 5 Moon charges, fire a Moon Glaive at all enemies within 900 yards, applying Moonburn's Damage effects. \nRank 4: The DoT now ticks every sec and lasts 6 secs.\n\n</font>"
 		"DOTA_Tooltip_Ability_moon1_Description"  "Deal Nature Damage. If used with 5 Sun Charges, reduce the remaining cooldown of Entangling Roots and Rise of Nature by 8 secs. 2 secs casttime.\n\n<font color=\"#00EE00\">Grants 1 Moon Charge.</font>\nCan be set to Auto Cast for continuous casting of Wrath of Nature against the last Wrath of Nature target<font color=\"#FFBB00\">\n\nRank 2: Increased Damage. \nRank 3: Benefits 50%% more from Critical Strike chances. \nRank 4: Heal for 50%% of max Health, with an inner cooldown of 20 secs.\n\n</font>"
-		"DOTA_Tooltip_Ability_moon10_Description"  "Summon 3 Treants to attack the target for Nature Damage. The Treant's damage depends on your Intellect and Spellpower and the Treants will stun on their first hit.<font color=\"#FFBB00\">\n\nRank 2: Treants last longer. \nRank 3: Reduced cooldown and longer stun on first hit. \nRank 4: For each enemy in a 1500 area, there is a 50%% chance to summon one additional Treant and for 5 secs when cast, reduce all Damage taken by 75%%.\nRank 5: March of the Forest - Greatly reduced cooldown and increased Mana cost.\n\n</font>"
+		"DOTA_Tooltip_Ability_moon10_Description"  "Summon 3 Treants to attack the target for Nature Damage. The Treant's damage depends on your Intellect and Spellpower. Each Treant will stun enemy once on their hit with global inner cooldown equal to twice the duration of stun.<font color=\"#FFBB00\">\n\nRank 2: Treants last longer. \nRank 3: Reduced cooldown and longer stun on first hit. \nRank 4: For each enemy in a 1500 area, there is a 50%% chance to summon one additional Treant and for 5 secs when cast, reduce all Damage taken by 75%%.\nRank 5: March of the Forest - Greatly reduced cooldown and increased Mana cost.\n\n</font>"
 		"DOTA_Tooltip_ability_pve_temple_shadow_link_close"                                     "Disease Bond"
 		"DOTA_Tooltip_ability_pve_temple_shadow_link_close_Description"                         "Choose 3 random heroes and apply a Disease Bond to them, dealing Poison Damage periodically. The Disease Bond breaks if all heroes are closer than 300 yards to other."
 		"DOTA_Tooltip_ability_pve_temple_shadow_link_close_buffduration"                        "BUFF DURATION:"
