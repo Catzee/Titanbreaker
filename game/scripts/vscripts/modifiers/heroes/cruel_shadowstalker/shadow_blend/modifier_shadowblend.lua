@@ -15,7 +15,7 @@ modifier_shadowblend = class({
         return 
         {
     	    MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-    		MODIFIER_PROPERTY_EVASION_CONSTANT
+    	    MODIFIER_PROPERTY_EVASION_CONSTANT
         } 
     end,
     GetStatusEffectName = function()
