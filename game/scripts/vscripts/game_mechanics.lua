@@ -31823,7 +31823,7 @@ function AstralGuardianRiseOfNatureStun(event)
 end
 
 function AstralGuardianRiseOfNatureProtection(event)
-    if(event.caster:HasModifier("modifier_rond_inner_cd")) then
+    if(event.caster:HasModifier("modifier_rond_inner_cd") or event.ability:IsAltCasted() == false) then
     	return
     end
         
