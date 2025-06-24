@@ -21861,6 +21861,15 @@ function PassiveStatCalculation(event)
     end
     
     --path bonus calculation
+	--[[
+	If this will be changed here are things for test to prevent known bugs/abuse:
+	1: Any non soul item correctly provide path bonus (for example item_wolf_sword = +1 howl of time)
+	2: Any non soul item + soul item correctly provide path bonus (for example item_wolf_sword + item_mastery_041_002 = +1 howl of time + 2 howl of time = +3 howl of time)
+	3: Multiple same non soul items not stacks because there are unique (for example item_wolf_sword + item_wolf_sword = +1 howl of time)
+	4: Multiple same souls not stacks because there are unique (for example item_mastery_041_002 + item_mastery_041_002 = +2 howl of time)
+	5: Multiple non soul items + Multiple same non soul items + multiple same soul item correctly provide path bonus (for example item_pathbuff_041 + item_pathbuff_041 + item_wolf_sword + item_wolf_sword + item_mastery_041_002 + item_mastery_041_002 = +6 howl of time)
+	--]]
+	
     local soul = GetSoulItemTalent(hero)
     local amuletpathbonus = GetArtifactPathBonus(hero, 8)
     local ringpathbonus = GetArtifactPathBonus(hero, 3)
@@ -23201,12 +23210,15 @@ end
 function GetSoulItemTalent(hero)
     local result = {{0,0},{0,0},{0,0}}
     local has_ravencraft_abilitypoint_soul_equipped = false
+    -- All souls are unique and must be counted only once
+    local alreadyCalculatedSouls = {}
     for i=1,3 do
         local item = hero:GetItemInSlot(5+i)
+        -- Muted here means soul not owned by hero instead of muted (dota state debuff). Maybe its better to check for owner instead?
         if item and not item:IsMuted() then
             item = item:GetName()
             --print(item)
-            if item and string.len(item) == 20 and string.sub(item, 1, 13) == "item_mastery_" then
+            if item and string.len(item) == 20 and string.sub(item, 1, 13) == "item_mastery_" and alreadyCalculatedSouls[item] == nil then
                 local talent = tonumber(string.sub(item, 14, 16))
                 if talent and talent == 4 then
                     talent = 6
@@ -23245,6 +23257,7 @@ function GetSoulItemTalent(hero)
                     has_ravencraft_abilitypoint_soul_equipped = true
                 end
                 result[i] = {talent, talent_level }
+                alreadyCalculatedSouls[item] = true
             end
         end
     end
