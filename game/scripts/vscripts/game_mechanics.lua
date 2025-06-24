@@ -21873,34 +21873,14 @@ function PassiveStatCalculation(event)
                 soul_item_bonus = soul_item_bonus + soul[k][2]
             end
         end
-        local path_bonus_from_ring_given = 0
-        --for k=1, 3 do
-        --    if i == classringbonus[-1+k*2] then
-        --        path_bonus_from_ring_given = classringbonus[k*2]
-        --        soul_item_bonus = soul_item_bonus + classringbonus[k*2]
-        --    end
-        --end
         for k=1, 3 do
             if i == amuletpathbonus[-1+k*2] then
-                --if amuletpathbonus[k*2] > path_bonus_from_ring_given then
-                    --only when the amulet gives more points than the ring it takes effect
-                    soul_item_bonus = soul_item_bonus + amuletpathbonus[k*2] - path_bonus_from_ring_given
-                --end
+                soul_item_bonus = soul_item_bonus + amuletpathbonus[k*2]
             end
             if i == ringpathbonus[-1+k*2] then
-                --if ringpathbonus[k*2] > path_bonus_from_ring_given then
-                    --only when the amulet gives more points than the ring it takes effect
-                    soul_item_bonus = soul_item_bonus + ringpathbonus[k*2] - path_bonus_from_ring_given
-                --end
+                soul_item_bonus = soul_item_bonus + ringpathbonus[k*2]
             end
         end
-        --if pathwords and pathwords[i] and pathwords[i][1] and pathwords[i][1] > 0 then
-        --    soul_item_bonus = soul_item_bonus + pathwords[i][1]
-        --    path_word_bonus = pathwords[i][1]
-        --end
-        --if pathSynergies and pathSynergies[i] and pathSynergies[i] >= 1 then
-            --soul_item_bonus = soul_item_bonus + pathSynergies[i]
-        --end
 
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
