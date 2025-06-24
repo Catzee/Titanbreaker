@@ -21862,7 +21862,6 @@ function PassiveStatCalculation(event)
     
     --path bonus calculation
     local soul = GetSoulItemTalent(hero)
-    --local classringbonus = GetClassRingPower(hero) --unused?
     local amuletpathbonus = GetArtifactPathBonus(hero, 8)
     local ringpathbonus = GetArtifactPathBonus(hero, 3)
     local pathBonuses = GetPathBonuses(hero, isUpdateTickEvery5secs)
@@ -25183,18 +25182,6 @@ end
 function SetBeastmasterItem( event )
     local caster = event.caster
     caster['item_beastmaster'..event.id] = event.ability
-end
-
-function GetClassRingPower( hero )
-    local result = {0,0,0,0,0,0} -- 1st talent id, talent levels, 2nd ...
-    local heroname = string.sub(hero:GetUnitName(), 15)
-    if hero and hero.inventory and hero.inventory[3] and hero.inventory[3][1] and string.sub(hero.inventory[3][1], 12) == heroname then
-        for i=1, 3 do
-            result[-1 + i*2] = COverthrowGameMode:GetTalentIdByName(string.sub(hero.inventory[3][7+i], 8))
-            result[0 + i*2] = hero.inventory[3][4+i]
-        end
-    end
-    return result
 end
 
 function GetArtifactPathBonus( hero, slot )
