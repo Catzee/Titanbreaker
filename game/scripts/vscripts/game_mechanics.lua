@@ -31828,5 +31828,5 @@ function AstralGuardianRiseOfNatureProtection(event)
     end
         
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond", {duration = event.ability:GetSpecialValueFor("duration2")})
-    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20})
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20 * GetInnerCooldownFactor(event.caster)})
 end
