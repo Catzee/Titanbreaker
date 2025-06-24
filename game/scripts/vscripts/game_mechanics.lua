@@ -12399,7 +12399,7 @@ function ShapeshiftFeral(event)
 	local level = caster:FindAbilityByName("ShapeshiftFeral"):GetLevel()
 	if caster:HasModifier("modifier_catform") then
         -- to human form
-        if not caster:HasModifier("modifier_feralcd") then
+        if not caster:HasModifier("modifier_feralcd") and event.ability:IsAltCasted() then
             event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_feralcd", {Duration = 30 * GetInnerCooldownFactor(caster)})
             event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_feraldef", {Duration = 5})
         end
