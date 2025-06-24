@@ -69,15 +69,15 @@ function modifier_shadowblend:OnIntervalThink()
 end
 
 function modifier_shadowblend:GetModifierMagicalResistanceBonus()
-    if(self:GetStackCount() == 1) then
+    --[[if(self:GetStackCount() == 1) then
     	return 90
-    end
-    return 0
+    end --]]
+    return 90
 end
 
 function modifier_shadowblend:GetModifierEvasion_Constant()
-    if(self:GetStackCount() == 1) then
+    --[[if(self:GetStackCount() == 1) then
     	return 90
-    end
-    return 0			
+    end --]]
+    return 90		
 end
