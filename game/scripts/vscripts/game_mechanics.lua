@@ -26680,6 +26680,11 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_soulwarden_shield") then
         factor = factor * 0.25
     end
+    -- Alt casted shadow blend
+    if caster:GetModifierStackCount("modifier_shadowblend", nil) == 1 then
+    	factor = factor * 0.1
+    end
+
     if caster.talents then
         if attacker then
             if caster.talents[106] and caster.talents[106] > 0 and caster:HasModifier("modifier_guardianshield") then
@@ -31805,4 +31810,16 @@ function AstralGuardianRayOfTheSunParticle(event)
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(particle)
     end
+end
+
+function CruelShadowstalkerShadowBlend(event)
+    local modifier = event.caster:AddNewModifier(event.caster, event.ability, "modifier_shadowblend", {duration = event.ability:GetSpecialValueFor("buffduration")})
+	modifier:SetStackCount(0)
+	
+    if(event.caster:HasModifier("modifier_shadowblend_inner_cd") or event.ability:IsAltCasted() == false) then
+    	return
+    end
+    
+    modifier:SetStackCount(1)
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_shadowblend_inner_cd", {duration = 30 * GetInnerCooldownFactor(event.caster)})
 end
