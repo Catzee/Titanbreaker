@@ -107023,4 +107023,18 @@
 		"AbilityManaCost"	"0"
 		"AbilityCooldown"	"0"
 	}
+	"wild_guardian_precache"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/wild_guardian/wild_guardian_precache"
+		"AbilityTextureName"	"fix/abaddon_borrowed_time_colored_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"	"ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"RequiredLevel"	"0"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.0"
+		"AbilityManaCost"	"0"
+		"AbilityCooldown"	"0"
+	}
 }
