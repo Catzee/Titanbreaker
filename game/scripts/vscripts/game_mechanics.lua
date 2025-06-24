@@ -31821,3 +31821,12 @@ function AstralGuardianRiseOfNatureStun(event)
     
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_treantstun_inner_cd", {duration = stunDuration * 2})
 end
+
+function AstralGuardianRiseOfNatureProtection(event)
+    if(event.caster:HasModifier("modifier_rond_inner_cd")) then
+    	return
+    end
+        
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond", {duration = event.ability:GetSpecialValueFor("duration2")})
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20})
+end
