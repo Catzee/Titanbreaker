@@ -1398,7 +1398,7 @@ function modifier_auto_casts:GetNextAbilityForBeastmasterAutoCasts(caster, abili
     end
 
     -- Bonus Q W E damage based on current rage/mana with Q. Maintain 40 rage for rest abilities usage
-	local slaughterRageCost = caster._autoCastBeastmasterD:GetManaCost(-1)
+    local slaughterRageCost = caster._autoCastBeastmasterD:GetManaCost(-1)
     local minRageToMaintain = caster._autoCastBeastmasterQ:GetLevel() >= 5 and (caster:GetMaxMana() - slaughterRageCost) or 40
     local currentRage = caster:GetMana()
 
