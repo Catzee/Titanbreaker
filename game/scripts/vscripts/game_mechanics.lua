@@ -10321,11 +10321,10 @@ function EndShieldParticle( event )
 	ParticleManager:DestroyParticle(target.ShieldParticle,false)
 end
 
-function SacredShieldStacks( event )
+function AddSacredShieldModifier( event )
 	local target = event.target
-	if target:HasModifier("modifier_sacred_shield") then
-		target:SetModifierStackCount("modifier_sacred_shield", event.ability, target.AphoticShieldRemaining)
-	end
+	local shieldModifier = target:AddNewModifier(event.caster, event.ability, "modifier_sacred_shield", {duration = event.ability:GetSpecialValueFor("duration")})
+	shieldModifier:SetStackCount(target.AphoticShieldRemaining)
 end
 
 function SacredShieldHealth( event )
@@ -12399,7 +12398,7 @@ function ShapeshiftFeral(event)
 	local level = caster:FindAbilityByName("ShapeshiftFeral"):GetLevel()
 	if caster:HasModifier("modifier_catform") then
         -- to human form
-        if not caster:HasModifier("modifier_feralcd") then
+        if not caster:HasModifier("modifier_feralcd") and event.ability:IsAltCasted() then
             event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_feralcd", {Duration = 30 * GetInnerCooldownFactor(caster)})
             event.ability:ApplyDataDrivenModifier(caster, caster, "modifier_feraldef", {Duration = 5})
         end
@@ -15869,14 +15868,11 @@ function AbilityComboProcs(caster, ability)
         end
     end
     if caster.talents then
-        if caster.talents[147] and caster.talents[147] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and not caster.darkInitiation then
-            caster.darkInitiation = true
+        if caster.talents[147] and caster.talents[147] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and not caster:HasModifier("modifier_darkInit_inner_cd") then
             AddSpellhaste(caster, 75 * caster.talents[147], 5)
             AddAttackSpeed(caster, 75 * caster.talents[147], 5)
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_darkInit", {Duration = 5})
-            Timers:CreateTimer(15 * GetInnerCooldownFactor(caster), function()
-                caster.darkInitiation = false
-            end)
+            caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_darkInit_inner_cd", {Duration = 15 * GetInnerCooldownFactor(caster)})
             local particle = ParticleManager:CreateParticle("particles/items3_fx/glimmer_cape_initial.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
         end
@@ -21860,17 +21856,21 @@ function PassiveStatCalculation(event)
         end
     end
     
-    --pathwords
-    --local pathwords = GetPathBonusesFromPathWords(hero)
-    --local pathSynergies = GetPathSynergyBonuses(hero)
-    --SendPathWordsToUI(hero, pathwords)
     --path bonus calculation
+	--[[
+	If this will be changed here are things for test to prevent known bugs/abuse:
+	1: Any non soul item correctly provide path bonus (for example item_wolf_sword = +1 howl of time)
+	2: Any non soul item + soul item correctly provide path bonus (for example item_wolf_sword + item_mastery_041_002 = +1 howl of time + 2 howl of time = +3 howl of time)
+	3: Multiple same non soul items not stacks because there are unique (for example item_wolf_sword + item_wolf_sword = +1 howl of time)
+	4: Multiple same souls not stacks because there are unique (for example item_mastery_041_002 + item_mastery_041_002 = +2 howl of time)
+	5: Multiple non soul items + Multiple same non soul items + multiple same soul item correctly provide path bonus (for example item_pathbuff_041 + item_pathbuff_041 + item_wolf_sword + item_wolf_sword + item_mastery_041_002 + item_mastery_041_002 = +6 howl of time)
+	--]]
+	
     local soul = GetSoulItemTalent(hero)
-    --local classringbonus = GetClassRingPower(hero) --unused?
     local amuletpathbonus = GetArtifactPathBonus(hero, 8)
     local ringpathbonus = GetArtifactPathBonus(hero, 3)
-    local primalPowerBonusCount = 0
     local pathBonuses = GetPathBonuses(hero, isUpdateTickEvery5secs)
+    local primalPowerBonusCount = 0
     for i=1, COverthrowGameMode.maxtalents do
         local soul_item_bonus = pathBonuses[i]
         local path_word_bonus = 0
@@ -21879,34 +21879,14 @@ function PassiveStatCalculation(event)
                 soul_item_bonus = soul_item_bonus + soul[k][2]
             end
         end
-        local path_bonus_from_ring_given = 0
-        --for k=1, 3 do
-        --    if i == classringbonus[-1+k*2] then
-        --        path_bonus_from_ring_given = classringbonus[k*2]
-        --        soul_item_bonus = soul_item_bonus + classringbonus[k*2]
-        --    end
-        --end
         for k=1, 3 do
             if i == amuletpathbonus[-1+k*2] then
-                --if amuletpathbonus[k*2] > path_bonus_from_ring_given then
-                    --only when the amulet gives more points than the ring it takes effect
-                    soul_item_bonus = soul_item_bonus + amuletpathbonus[k*2] - path_bonus_from_ring_given
-                --end
+                soul_item_bonus = soul_item_bonus + amuletpathbonus[k*2]
             end
             if i == ringpathbonus[-1+k*2] then
-                --if ringpathbonus[k*2] > path_bonus_from_ring_given then
-                    --only when the amulet gives more points than the ring it takes effect
-                    soul_item_bonus = soul_item_bonus + ringpathbonus[k*2] - path_bonus_from_ring_given
-                --end
+                soul_item_bonus = soul_item_bonus + ringpathbonus[k*2]
             end
         end
-        --if pathwords and pathwords[i] and pathwords[i][1] and pathwords[i][1] > 0 then
-        --    soul_item_bonus = soul_item_bonus + pathwords[i][1]
-        --    path_word_bonus = pathwords[i][1]
-        --end
-        --if pathSynergies and pathSynergies[i] and pathSynergies[i] >= 1 then
-            --soul_item_bonus = soul_item_bonus + pathSynergies[i]
-        --end
 
         local new_talent_value = hero.talents_clicked[i] + soul_item_bonus
 
@@ -21976,7 +21956,7 @@ function PassiveStatCalculation(event)
                 new_talent_value = primalPowerCap
             end
         end
-
+		
         if primalPowerBonusCount < 3 and hero.talents[132] > 0 and new_talent_value == 3 and ((i <= 39 and math.floor(1 + ((i - 1) % 12) / 3) == 1) or i == 61 or i == 62 or i == 63 or i == 76 or i == 77 or i == 78 or i == 91 or i == 92 or i == 93 or i == 106 or i == 107 or i == 108 or i == 145 or i == 146 or i == 147 or i == 163 or i == 164 or i == 165) then
             new_talent_value = new_talent_value + hero.talents[132]
             primalPowerBonusCount = primalPowerBonusCount + 1
@@ -23231,12 +23211,15 @@ end
 function GetSoulItemTalent(hero)
     local result = {{0,0},{0,0},{0,0}}
     local has_ravencraft_abilitypoint_soul_equipped = false
+    -- All souls are unique and must be counted only once
+    local alreadyCalculatedSouls = {}
     for i=1,3 do
         local item = hero:GetItemInSlot(5+i)
+        -- Muted here means soul not owned by hero instead of muted (dota state debuff). Maybe its better to check for owner instead?
         if item and not item:IsMuted() then
             item = item:GetName()
             --print(item)
-            if item and string.len(item) == 20 and string.sub(item, 1, 13) == "item_mastery_" then
+            if item and string.len(item) == 20 and string.sub(item, 1, 13) == "item_mastery_" and alreadyCalculatedSouls[item] == nil then
                 local talent = tonumber(string.sub(item, 14, 16))
                 if talent and talent == 4 then
                     talent = 6
@@ -23275,6 +23258,7 @@ function GetSoulItemTalent(hero)
                     has_ravencraft_abilitypoint_soul_equipped = true
                 end
                 result[i] = {talent, talent_level }
+                alreadyCalculatedSouls[item] = true
             end
         end
     end
@@ -25194,18 +25178,6 @@ function SetBeastmasterItem( event )
     caster['item_beastmaster'..event.id] = event.ability
 end
 
-function GetClassRingPower( hero )
-    local result = {0,0,0,0,0,0} -- 1st talent id, talent levels, 2nd ...
-    local heroname = string.sub(hero:GetUnitName(), 15)
-    if hero and hero.inventory and hero.inventory[3] and hero.inventory[3][1] and string.sub(hero.inventory[3][1], 12) == heroname then
-        for i=1, 3 do
-            result[-1 + i*2] = COverthrowGameMode:GetTalentIdByName(string.sub(hero.inventory[3][7+i], 8))
-            result[0 + i*2] = hero.inventory[3][4+i]
-        end
-    end
-    return result
-end
-
 function GetArtifactPathBonus( hero, slot )
     local result = {0,0,0,0,0,0} -- 1st talent id, talent levels, 2nd ...
     if hero and hero.inventory and hero.inventory[slot] and hero.inventory[slot][1] then
@@ -25983,82 +25955,6 @@ function GetPathSynergyID( pathID ) --which path does the given path improve?
     return pathID + 3
 end
 
-function GetPathSynergyBonuses(hero) --down propagation of path levels
-    if not hero.talents_without_pathwords then
-        return nil
-    end
-    local pathSynergies = {}
-    for i=1, COverthrowGameMode.maxtalents do
-        pathSynergies[i] = 0
-    end
-    local propagationRatio = 5 --how many levels required for propagating down 1 level
-    local maxBonus = 2
-    for i=1, COverthrowGameMode.maxtalents do
-        local pathSynergyID = GetPathSynergyID(i) --which path does this path affect?
-        if pathSynergyID >= 1 and hero.talents[i] and hero.talents[i] >= propagationRatio then
-            if pathSynergyID ~= 88 and pathSynergyID ~= 105 then --hard exceptions
-                if (pathSynergyID ~= 6 and pathSynergyID ~= 21 and pathSynergyID ~= 28 and pathSynergyID ~= 33 and pathSynergyID ~= 58 and pathSynergyID ~= 72 and pathSynergyID ~= 74 and pathSynergyID ~= 96 and pathSynergyID ~= 99) or (hero.talents_without_pathwords[pathSynergyID] and hero.talents_without_pathwords[pathSynergyID] >= 1) then --path synergy exceptions (negative side effects), require 1 non-synergy point
-                    local bonus = math.floor(hero.talents[i] / propagationRatio)
-                    if bonus > maxBonus then
-                        bonus = maxBonus
-                    end
-                    pathSynergies[pathSynergyID] = bonus
-                end
-            end
-        end
-    end
-    return pathSynergies
-end
-
-
-function GetPathBonusesFromPathWords(hero)
-    if not hero.talents_without_pathwords then
-        return nil
-    end
-    local pathwords = {}
-    for i=1, COverthrowGameMode.maxtalents do
-        pathwords[i] = {0, nil}
-    end
-    local proc_threshold = 6
-    local bonus_on_proc = 1
-    local offset = 60 --30
-    local max_path_words = 12
-    local path_words_found = 0
-    if not hero.disablePathWordBonuses then
-        for i=1, COverthrowGameMode.maxtalents do
-            if hero.talents_without_pathwords[i] and hero.talents_without_pathwords[i] >= proc_threshold then
-                local first_tree = COverthrowGameMode:GetTalentTreeByTalentPoint(i)
-                for j=i+1, COverthrowGameMode.maxtalents do
-                    local second_tree = COverthrowGameMode:GetTalentTreeByTalentPoint(j)
-                    if hero.talents_without_pathwords[j] and hero.talents_without_pathwords[j] >= proc_threshold and first_tree ~= second_tree and path_words_found <= max_path_words then
-                        local bonus_index = 1 + ((i * j + offset) % (90 - 1)) --fixate old pathwords, independant of new additions
-                        if j >= 91 then
-                            bonus_index = 1 + ((i * j + offset) % (COverthrowGameMode.maxtalents + 1)) --new pathwords can be anything
-                        end
-                        if bonus_index ~= 58 and bonus_index ~= 74 and bonus_index ~= 105 then --some pathwords have too strong drawbacks
-                            --if bonus_index == 51 or bonus_index == 54 or bonus_index == 57 or bonus_index == 60 or bonus_index == 75 then --those paths do exist now!
-                            --    bonus_index = bonus_index - 1
-                            --end
-                            local name1 = GetFirstPathName(i)
-                            local name2 = GetLastPathName(j)
-                            --local name3 = GetLastPathName(bonus_index)
-                            if name1 and name2 and COverthrowGameMode.PathTalentNames[bonus_index] then --name3
-                                local new_bonus = pathwords[bonus_index][1] + bonus_on_proc
-                                --local bonus_name = name1 .. " " .. name2 .. " " .. name3 .. ": +" .. new_bonus .. " " .. COverthrowGameMode.PathTalentNames[bonus_index]
-                                local bonus_name = name1 .. " " .. name2 .. " " .. ": +" .. new_bonus .. " " .. COverthrowGameMode.PathTalentNames[bonus_index]
-                                pathwords[bonus_index] = {new_bonus, bonus_name}
-                                path_words_found = path_words_found + 1
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-    --DeepPrintTable(pathwords)
-    return pathwords
-end
-
 function GetFirstPathName( id )
     local pieces = COverthrowGameMode.PathTalentNames[id]
     local words = {}
@@ -26075,18 +25971,6 @@ function GetLastPathName( id )
         table.insert(words, w) 
     end
     return words[#words]
-end
-
-function SendPathWordsToUI(hero, pathwords)
-    local bonuses = ""
-    for i=1, COverthrowGameMode.maxtalents do
-        if pathwords and pathwords[i] and pathwords[i][1] > 0 then
-            bonuses = bonuses .. pathwords[i][2] .. "," .. i .. ","
-        end
-    end
-    --local player = PlayerResource:GetPlayer(hero:GetPlayerID())
-    --print(bonuses)
-    CustomGameEventManager:Send_ServerToAllClients("pathword", { playerid = hero:GetPlayerID(), pathword = bonuses } )
 end
 
 function ApplyBuffDataDriven( event )
@@ -26683,6 +26567,14 @@ function GetTotalDamageTakenFactor(caster, attacker)
     -- Alt casted shadow blend
     if caster:GetModifierStackCount("modifier_shadowblend", nil) == 1 then
     	factor = factor * 0.1
+    end
+    if caster:HasModifier("modifier_shadowstep1") then
+        local hawk3factor = 0.7
+        if GetLevelOfAbility(caster, "hawk3") >= 3 then
+        	hawk3factor = 0.25
+        end
+        
+        factor = factor * hawk3factor
     end
 
     if caster.talents then
@@ -31822,4 +31714,28 @@ function CruelShadowstalkerShadowBlend(event)
     
     modifier:SetStackCount(1)
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_shadowblend_inner_cd", {duration = 30 * GetInnerCooldownFactor(event.caster)})
+end
+
+function AstralGuardianRiseOfNatureStun(event)
+    if(event.caster:HasModifier("modifier_treantstun_inner_cd")) then
+    	return
+    end
+    
+    local stunDuration = event.ability:GetSpecialValueFor("stun")
+    event.buff = "modifier_stunned"
+    event.dur = stunDuration
+    ApplyBuff(event)
+    
+    event.attacker:RemoveModifierByName("modifier_treantstun")
+    
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_treantstun_inner_cd", {duration = stunDuration * 2})
+end
+
+function AstralGuardianRiseOfNatureProtection(event)
+    if(event.caster:HasModifier("modifier_rond_inner_cd") or event.ability:IsAltCasted() == false) then
+    	return
+    end
+        
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond", {duration = event.ability:GetSpecialValueFor("duration2")})
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20 * GetInnerCooldownFactor(event.caster)})
 end

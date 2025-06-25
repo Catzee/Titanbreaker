@@ -29,6 +29,8 @@ LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_debuff", "modifiers/heroes/
 LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_instant_casts", "modifiers/heroes/spirit_voodoo/spirit_shock/modifier_spirit_voodoo_spirit_shock_instant_casts", LUA_MODIFIER_MOTION_NONE)
 -- silencer 3rd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_twilight_cleric_lightstream_buff", "modifiers/heroes/twilight_cleric/lightstream/modifier_twilight_cleric_lightstream_buff", LUA_MODIFIER_MOTION_NONE)
+-- silencer sacred shield
+LinkLuaModifier("modifier_sacred_shield", "modifiers/heroes/twilight_cleric/sacred_shield/modifier_sacred_shield", LUA_MODIFIER_MOTION_NONE)
 -- wild guardian
 -- wild guardian: human form renew (HoT)
 LinkLuaModifier("modifier_regrowth2", "modifiers/heroes/wild_guardian/renew/modifier_regrowth2", LUA_MODIFIER_MOTION_NONE)

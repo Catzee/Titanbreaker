@@ -14729,8 +14729,8 @@
 	"moon10"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"furion_force_of_nature"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"	"fix/moon10"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -14754,11 +14754,10 @@
 				"ScriptFile"	"game_mechanics.lua"
 				"Function"	"ShadowCreeperTargetSet"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_rond"
-				"Target"	"CASTER"
-				"Duration"	"%duration2"
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"AstralGuardianRiseOfNatureProtection"
 			}
 			"ActOnTargets"
 			{
@@ -14910,6 +14909,14 @@
 				"EffectName"	"particles/items5_fx/essence_ring.vpcf"
 				"EffectAttachType"	"attach_hitloc"
 			}
+			"modifier_rond_inner_cd"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
+			}
 			"modifier_pet_system"
 			{
 				"Duration"	"-1"
@@ -15001,16 +15008,17 @@
 					"RunScript"
 					{
 						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"ApplyBuff"
-						"buff"	"modifier_stunned"
-						"dur"	"%stun"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_treantstun"
-						"Target"	"ATTACKER"
+						"Function"	"AstralGuardianRiseOfNatureStun"
 					}
 				}
+			}
+			"modifier_treantstun_inner_cd"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
 			}
 		}
 		"AbilityValues"
@@ -37477,7 +37485,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"fix/catdruid"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -47602,17 +47610,12 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"SacredShieldStacks"
+				"Function"	"AddSacredShieldModifier"
 			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Abaddon.AphoticShield.Cast"
 				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_sacred_shield"
 			}
 			"ApplyModifier"
 			{
@@ -47652,40 +47655,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_sacred_shield"
-			{
-				"IsBuff"	"1"
-				"IsBuff"	"1"
-				"Duration"	"%duration"
-				"IsPurgable"	"1"
-				"IsDebuff"	"0"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/sacred_shield2.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"SacredShieldAbsorb"
-						"DamageTaken"	"%attack_damage"
-						"darkboltchance"	"%darkboltchance"
-					}
-				}
-			}
 			"modifier_sacred_move_bonus"
 			{
 				"Passive"	"0"
@@ -60589,6 +60558,15 @@
 					}
 				}
 			}
+			"modifier_darkInit_inner_cd"
+			{
+				"TextureName"	"void_spirit_astral_step"
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
+			}
 			"modifier_trickster"
 			{
 				"TextureName"	"alchemist_unstable_concoction"
@@ -61432,7 +61410,6 @@
 		{
 			"bonus_manax"	"0"
 			"spell_damage_amplification"	"0"
-			"cast_range_bonus"	"50 100 150 200 250 300 350 400 450 500 550 600 650 700 750 800 850 900"
 			"bonus_health_regen"	"0"
 			"sp"	"0"
 		}
@@ -106950,6 +106927,20 @@
 	{
 		"BaseClass"	"ability_lua"
 		"ScriptFile"	"abilities/heroes/demonic_witcher/demonic_witcher_precache"
+		"AbilityTextureName"	"fix/abaddon_borrowed_time_colored_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"	"ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"RequiredLevel"	"0"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.0"
+		"AbilityManaCost"	"0"
+		"AbilityCooldown"	"0"
+	}
+	"wild_guardian_precache"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"abilities/heroes/wild_guardian/wild_guardian_precache"
 		"AbilityTextureName"	"fix/abaddon_borrowed_time_colored_2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityType"	"ABILITY_TYPE_BASIC"
