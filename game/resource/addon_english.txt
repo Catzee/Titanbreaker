@@ -10797,6 +10797,8 @@
 		"DOTA_Tooltip_modifier_bloodmoonCD_Description"                                   " "
 		"DOTA_Tooltip_modifier_darkInit"                                               "Dark Initiation"
 		"DOTA_Tooltip_modifier_darkInit_Description"                                   " "
+		"DOTA_Tooltip_modifier_darkInit_inner_cd"                                               "Dark Initiation Inner Cooldown"
+		"DOTA_Tooltip_modifier_darkInit_inner_cd_Description"                                   " "
 		
 		//new ability stuff
 		"DOTA_Tooltip_modifier_shamandef"                                               "Magma Ward Shield"

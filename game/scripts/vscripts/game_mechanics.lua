@@ -15869,14 +15869,11 @@ function AbilityComboProcs(caster, ability)
         end
     end
     if caster.talents then
-        if caster.talents[147] and caster.talents[147] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and not caster.darkInitiation then
-            caster.darkInitiation = true
+        if caster.talents[147] and caster.talents[147] > 0 and COverthrowGameMode:GetAbilityIndexCustom(ability) == 0 and not caster:HasModifier("modifier_darkInit_inner_cd") then
             AddSpellhaste(caster, 75 * caster.talents[147], 5)
             AddAttackSpeed(caster, 75 * caster.talents[147], 5)
             caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_darkInit", {Duration = 5})
-            Timers:CreateTimer(15 * GetInnerCooldownFactor(caster), function()
-                caster.darkInitiation = false
-            end)
+            caster.combat_system_ability:ApplyDataDrivenModifier(caster, caster, "modifier_darkInit_inner_cd", {Duration = 15 * GetInnerCooldownFactor(caster)})
             local particle = ParticleManager:CreateParticle("particles/items3_fx/glimmer_cape_initial.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
             ParticleManager:ReleaseParticleIndex(particle)
         end
