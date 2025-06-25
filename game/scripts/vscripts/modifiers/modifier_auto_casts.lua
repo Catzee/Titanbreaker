@@ -224,7 +224,11 @@ function modifier_auto_casts:IsOrderPreventAutoCastOfCastTimeAbilities(orderType
         or orderType == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION or orderType == DOTA_UNIT_ORDER_PATROL
         or orderType == DOTA_UNIT_ORDER_MOVE_RELATIVE or orderType == DOTA_UNIT_ORDER_DROP_ITEM_AT_FOUNTAIN
         or orderType == DOTA_UNIT_ORDER_TAUNT or orderType == DOTA_UNIT_ORDER_STOP
-        or orderType == DOTA_UNIT_ORDER_HOLD_POSITION
+        or orderType == DOTA_UNIT_ORDER_HOLD_POSITION or orderType == DOTA_UNIT_ORDER_TRAIN_ABILITY
+        or orderType == DOTA_UNIT_ORDER_DROP_ITEM or orderType == DOTA_UNIT_ORDER_GIVE_ITEM
+        or orderType == DOTA_UNIT_ORDER_MOVE_ITEM or orderType == DOTA_UNIT_ORDER_GLYPH
+        or orderType == DOTA_UNIT_ORDER_RADAR or orderType == DOTA_UNIT_ORDER_SET_ITEM_COMBINE_LOCK
+        or orderType == DOTA_UNIT_ORDER_PICKUP_ITEM or orderType == DOTA_UNIT_ORDER_SET_ITEM_MARK_FOR_SELL
 end
 
 function modifier_auto_casts:OnAbilityFullyCast(kv)
