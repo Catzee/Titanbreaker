@@ -3732,7 +3732,8 @@
 		"Ability15"		"special_bonus_mp_regen_2"
 		"Ability16"		"special_bonus_magic_resistance_15"
 		"Ability17"		"special_bonus_all_stats_20"
-
+		"Ability18"		"wild_guardian_precache"
+	
 		"Facets"
 		{
 		}
