@@ -342,7 +342,7 @@
 		"DOTA_Tooltip_modifier_shadowstep_Description"	"Auto Attack damage increased."
 		
 		"DOTA_Tooltip_modifier_sacred_shield"	"Sacred Shield"
-		"DOTA_Tooltip_modifier_sacred_shield_Description"	"Absorbs damage."
+		"DOTA_Tooltip_modifier_sacred_shield_Description"	"Absorbs %dMODIFIER_PROPERTY_TOOLTIP% damage."
 
 		"DOTA_Tooltip_modifier_confused"	"Incapacitated"
 		"DOTA_Tooltip_modifier_confused_Description"	"Incapacitated. Damage breaks this effect."
