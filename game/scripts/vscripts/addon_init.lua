@@ -78,6 +78,8 @@ LinkLuaModifier("modifier_ice_shatter", "modifiers/heroes/winter_wizard/frost_sh
 
 -- pa: slice
 LinkLuaModifier("modifier_cobra_poison", "modifiers/heroes/cruel_shadowstalker/slice/modifier_cobra_poison", LUA_MODIFIER_MOTION_NONE)
+-- pa: shadow blend
+LinkLuaModifier("modifier_shadowblend", "modifiers/heroes/cruel_shadowstalker/shadow_blend/modifier_shadowblend", LUA_MODIFIER_MOTION_NONE)
 
 -- animation.lua modifiers
 LinkLuaModifier( "modifier_animation", "libraries/modifiers/modifier_animation.lua", LUA_MODIFIER_MOTION_NONE )

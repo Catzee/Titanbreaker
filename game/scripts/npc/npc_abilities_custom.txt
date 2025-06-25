@@ -52345,8 +52345,8 @@
 	"Shadow_Blend"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"night_stalker_void"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"	"fix/shadow_blend"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -52364,11 +52364,10 @@
 		"AbilityCastRangeBuffer"	"250"
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_shadowblend"
-				"Duration"	"%buffduration"
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"CruelShadowstalkerShadowBlend"
 			}
 			"ApplyModifier"
 			{
@@ -52416,75 +52415,13 @@
 		}
 		"Modifiers"
 		{
-			"modifier_shadowblend"
+			"modifier_shadowblend_inner_cd"
 			{
 				"Passive"	"0"
-				"TextureName"	"night_stalker_void"
-				"IsDebuff"	"0"
-				"IsBuff"	"1"
+				"IsDebuff"	"1"
+				"IsBuff"	"0"
 				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"EffectName"	"particles/econ/courier/courier_faceless_rex/cour_rex_flying_a.vpcf"
-				"EffectAttachType"	"follow_hitloc"
-				"StatusEffectName"	"particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
-				"StatusEffectPriority"	"20"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_shadow_demon/shadow_demon_disruption_center.vpcf"
-						"EffectAttachType"	"follow_hitloc"
-						"Target"	"TARGET"
-					}
-					"Random"
-					{
-						"Chance"	"%chance"
-						"OnSuccess"
-						{
-							"AttachEffect"
-							{
-								"EffectName"	"particles/econ/events/ti9/mjollnir_shield_ti9.vpcf"
-								"EffectAttachType"	"attach_hitloc"
-								"Target"	"TARGET"
-							}
-						}
-					}
-				}
-				"ThinkInterval"	"0.5"
-				"OnIntervalThink"
-				{
-					"Random"
-					{
-						"Chance"	"%chance"
-						"OnSuccess"
-						{
-							"ActOnTargets"
-							{
-								"Target"
-								{
-									"Center"	"CASTER"
-									"Radius"	"200"
-									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-								}
-								"Action"
-								{
-									"RunScript"
-									{
-										"ScriptFile"	"game_mechanics.lua"
-										"Function"	"PerformAutoAttack"
-										"showFX"	"1"
-									}
-								}
-							}
-						}
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"90"
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"90"
-				}
+				"IsPurgable"	"0"
 			}
 			"modifier_guaranteed_dmg_once"
 			{
