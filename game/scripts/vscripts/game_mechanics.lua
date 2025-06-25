@@ -31694,3 +31694,27 @@ function AstralGuardianRayOfTheSunParticle(event)
         ParticleManager:ReleaseParticleIndex(particle)
     end
 end
+
+function AstralGuardianRiseOfNatureStun(event)
+    if(event.caster:HasModifier("modifier_treantstun_inner_cd")) then
+    	return
+    end
+    
+    local stunDuration = event.ability:GetSpecialValueFor("stun")
+    event.buff = "modifier_stunned"
+    event.dur = stunDuration
+    ApplyBuff(event)
+    
+    event.attacker:RemoveModifierByName("modifier_treantstun")
+    
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_treantstun_inner_cd", {duration = stunDuration * 2})
+end
+
+function AstralGuardianRiseOfNatureProtection(event)
+    if(event.caster:HasModifier("modifier_rond_inner_cd") or event.ability:IsAltCasted() == false) then
+    	return
+    end
+        
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond", {duration = event.ability:GetSpecialValueFor("duration2")})
+    event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20 * GetInnerCooldownFactor(event.caster)})
+end

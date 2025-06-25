@@ -14729,8 +14729,8 @@
 	"moon10"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"furion_force_of_nature"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"	"fix/moon10"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -14754,11 +14754,10 @@
 				"ScriptFile"	"game_mechanics.lua"
 				"Function"	"ShadowCreeperTargetSet"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_rond"
-				"Target"	"CASTER"
-				"Duration"	"%duration2"
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"AstralGuardianRiseOfNatureProtection"
 			}
 			"ActOnTargets"
 			{
@@ -14910,6 +14909,14 @@
 				"EffectName"	"particles/items5_fx/essence_ring.vpcf"
 				"EffectAttachType"	"attach_hitloc"
 			}
+			"modifier_rond_inner_cd"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
+			}
 			"modifier_pet_system"
 			{
 				"Duration"	"-1"
@@ -15001,16 +15008,17 @@
 					"RunScript"
 					{
 						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"ApplyBuff"
-						"buff"	"modifier_stunned"
-						"dur"	"%stun"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_treantstun"
-						"Target"	"ATTACKER"
+						"Function"	"AstralGuardianRiseOfNatureStun"
 					}
 				}
+			}
+			"modifier_treantstun_inner_cd"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsBuff"	"0"
 			}
 		}
 		"AbilityValues"
