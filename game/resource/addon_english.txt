@@ -10250,7 +10250,7 @@
 		"DOTA_Tooltip_ability_item_killer_Description"  "<font color=\"#FF6600\">Killing Spree now also grants 100 Strength and Intellect.</font>"
 		"DOTA_Tooltip_ability_item_killer_stat1"  "All Stats: + "
 		"DOTA_Tooltip_ability_item_nameless"  "<font color=\"#ffd700\">[Divine] Nameless Cape"
-		"DOTA_Tooltip_ability_item_nameless_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Elusiveness\n+2 for the Path Talent Dark Initiation\n+2 for the Path Talent Ambush\n+2 for the Path Talent Phantom Shade</font>"
+		"DOTA_Tooltip_ability_item_nameless_Description"  "<font color=\"#FF6600\">+2 for the Path Talent Elusiveness\n<font color=\"#FF6600\">+2 for the Path Talent Dark Initiation\n<font color=\"#FF6600\">+2 for the Path Talent Ambush\n<font color=\"#FF6600\">+2 for the Path Talent Phantom Shade</font>"
 		"DOTA_Tooltip_ability_item_wise_eye"  "<font color=\"#ffd700\">[Divine] Wise Eye"
 		"DOTA_Tooltip_ability_item_wise_eye_Description"  "<font color=\"#FF6600\">Demon Fury now grants Intellect based on Strength and Agility instead.</font>"
 		"DOTA_Tooltip_ability_item_wise_eye_stat1"  "Intellect: + "
