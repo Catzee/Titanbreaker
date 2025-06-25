@@ -47602,17 +47602,12 @@
 			"RunScript"
 			{
 				"ScriptFile"	"game_mechanics.lua"
-				"Function"	"SacredShieldStacks"
+				"Function"	"AddSacredShieldModifier"
 			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Abaddon.AphoticShield.Cast"
 				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_sacred_shield"
 			}
 			"ApplyModifier"
 			{
@@ -47652,40 +47647,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_sacred_shield"
-			{
-				"IsBuff"	"1"
-				"IsBuff"	"1"
-				"Duration"	"%duration"
-				"IsPurgable"	"1"
-				"IsDebuff"	"0"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/sacred_shield2.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-							"TARGET"	"attach_overhead"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"SacredShieldAbsorb"
-						"DamageTaken"	"%attack_damage"
-						"darkboltchance"	"%darkboltchance"
-					}
-				}
-			}
 			"modifier_sacred_move_bonus"
 			{
 				"Passive"	"0"

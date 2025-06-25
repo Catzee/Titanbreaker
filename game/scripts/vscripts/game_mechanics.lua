@@ -10321,11 +10321,10 @@ function EndShieldParticle( event )
 	ParticleManager:DestroyParticle(target.ShieldParticle,false)
 end
 
-function SacredShieldStacks( event )
+function AddSacredShieldModifier( event )
 	local target = event.target
-	if target:HasModifier("modifier_sacred_shield") then
-		target:SetModifierStackCount("modifier_sacred_shield", event.ability, target.AphoticShieldRemaining)
-	end
+	local shieldModifier = target:AddNewModifier(event.caster, event.ability, "modifier_sacred_shield", {duration = event.ability:GetSpecialValueFor("duration")})
+	shieldModifier:SetStackCount(target.AphoticShieldRemaining)
 end
 
 function SacredShieldHealth( event )
