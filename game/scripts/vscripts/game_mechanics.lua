@@ -26568,6 +26568,15 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_soulwarden_shield") then
         factor = factor * 0.25
     end
+    if caster:HasModifier("modifier_shadowstep1") then
+        local hawk3factor = 0.7
+        if GetLevelOfAbility(caster, "hawk3") >= 3 then
+        	hawk3factor = 0.25
+        end
+        
+        factor = factor * hawk3factor
+    end
+
     if caster.talents then
         if attacker then
             if caster.talents[106] and caster.talents[106] > 0 and caster:HasModifier("modifier_guardianshield") then
