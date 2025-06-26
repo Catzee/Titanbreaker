@@ -14,16 +14,8 @@ modifier_spirit_voodoo_meditation_far_sight = class({
     DeclareFunctions = function()
         return 
         {
-            MODIFIER_PROPERTY_BONUS_DAY_VISION,
-            MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
             MODIFIER_EVENT_ON_ORDER 
         }
-    end,
-    GetBonusDayVision = function(self)
-    	return self.bonusVisionRange
-    end,
-    GetBonusNightVision = function(self)
-    	return self.bonusVisionRange
     end,
     GetAttributes = function()
         return MODIFIER_ATTRIBUTE_PERMANENT
@@ -45,7 +37,6 @@ end
 
 function modifier_spirit_voodoo_meditation_far_sight:OnRefresh()
     self.ability = self:GetAbility()
-    self.bonusVisionRange = self.ability:GetSpecialValueFor("vision")
 end
 
 function modifier_spirit_voodoo_meditation_far_sight:CheckState()
