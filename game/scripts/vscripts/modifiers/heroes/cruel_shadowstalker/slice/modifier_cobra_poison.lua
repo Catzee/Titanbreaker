@@ -25,7 +25,6 @@ function modifier_cobra_poison:OnCreated()
     end
     self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	print("self.ability", self.ability:GetAbilityName())
 	
     local parentOrigin = self.parent:GetAbsOrigin()
 
