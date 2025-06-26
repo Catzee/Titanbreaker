@@ -13722,11 +13722,8 @@ function PalaUltiCD(event)
 	if abil:GetLevel() >= 4 then
 		abil = caster:FindAbilityByName("Retri6")
         if abil then
-     		local ab = abil:GetCooldownTimeRemaining()
-        	if ab > 0.1 then
-        		abil:EndCooldown()
-        		abil:StartCooldown(ab-0.25)
-        	end
+			local myevent = {caster = caster, amount = 0.25, ability = abil}
+			ReduceCooldown(myevent)
         end
 	end
 end
@@ -15647,14 +15644,8 @@ function CooldownReduction( event ) --also instant ability resets
             local sphereAbility = caster:FindAbilityByName("Retri6")
 			
             if(sphereAbility) then
-                local sphereCooldown = sphereAbility:GetCooldown(sphereAbility:GetLevel() - 1)
-                local sphereCurrentCooldown = sphereAbility:GetCooldownTimeRemaining()
-                local minSphereCooldownReduction = sphereCooldown * 0.5
-                if(sphereCurrentCooldown > minSphereCooldownReduction) then
-                    local flatCdr = math.min(2, sphereCurrentCooldown - minSphereCooldownReduction)
-                    local myevent = {caster = caster, amount = flatCdr, ability = ability, chooseabilityname = "Retri6" }
-                    ReduceCooldown(myevent)
-                end
+                local myevent = {caster = caster, amount = 2, ability = ability, chooseabilityname = "Retri6" }
+                ReduceCooldown(myevent)
             end
         end
         if caster:HasModifier("modifier_npc_dota_hero_ursa") and ability:GetName() == "bear2" then
@@ -15718,9 +15709,12 @@ function CooldownReduction( event ) --also instant ability resets
     end
 	newcd = newcd * factor
     --minimum cooldowns
-    if ability and ability:GetName() == "Holy_Shield" and newcd < 30 then
-        newcd = 30
-    end
+	local minCooldownOfAbility = GetMinCooldownOfAbilityForCooldownReduction(ability)
+	
+	if(minCooldownOfAbility ~= nil and newcd < minCooldownOfAbility) then
+		newcd = minCooldownOfAbility
+	end
+	
     if cd >= 30 and math.random(1,100) <= GetEchoStat(caster) and not caster.echoCooldown then
         newcd = 1
         local particle = ParticleManager:CreateParticle("particles/econ/events/ti8/mekanism_ti8_beam.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -17300,6 +17294,22 @@ function MageGloves2( event )
 	end
 end
 
+function GetMinCooldownOfAbilityForCooldownReduction(ability)
+	local abilityName = ability:GetAbilityName()
+	
+	-- CD of Divine Sphere can't be reduced below half of base cooldown (legion commander)
+	if(abilityName == "Retri6") then
+		return ability:GetCooldown(-1) * 0.5
+	end
+	
+	-- CD of Holy_Shield can't be reduced below 30 (omniknight)
+	if(abilityName == "Holy_Shield") then
+		return 30
+	end
+	
+	return nil
+end
+
 function ReduceCooldown( event )
 	local caster = event.caster
 	if event.amount <= 0 then
@@ -17363,10 +17373,18 @@ function ReduceCooldown( event )
             if event.onself and event.caster ~= event.target then
                 return
             end
- 			local cd = ability:GetCooldownTimeRemaining()
+			
+            local minCooldownOfAbility = GetMinCooldownOfAbilityForCooldownReduction(ability)
+            
+            if(minCooldownOfAbility ~= nil) then
+                event.cdreduceminthreshold = minCooldownOfAbility
+            end
+            			
+            local cd = ability:GetCooldownTimeRemaining()
             if event.cdreduceminthreshold and (cd - reduction) < event.cdreduceminthreshold then --we are below the min threshold
                 reduction = cd - event.cdreduceminthreshold
             end
+			
  			if cd > 0.1 then
                 if event.conditionRemainingCD and cd < event.conditionRemainingCD then
                     return

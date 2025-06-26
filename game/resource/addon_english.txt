@@ -89,7 +89,7 @@
 		"DOTA_Tooltip_Ability_Retri5_def"    "Spell Resistance Duration:" 
 
 		"DOTA_Tooltip_Ability_Retri6"  "Divine Sphere"  
-		"DOTA_Tooltip_Ability_Retri6_Description"  "Protect yourself inside a Divine Sphere, rendering you imune to Damage and restoring 5%% of max Health and Mana whenever struck by an enemy.<font color=\"#FFBB00\">\n\nRank 2: Increased duration and passively gain the Divine Fury effect, causing Auto Attack Critical Strikes to increase your Attack Damage by 2.5%% for 8 secs, stacking up to 100 times. \nRank 3: While active, launch Holy Hammers at nearby heroes every sec, dealing Holy Damage based on your Attack Damage. Passively gain 5 Holy Damage for every Point of Agility and Intellect. \nRank 4: Decreased cooldown and also gain 100 Attack Speed and 100%% increased Holy Damage while active.\n\n</font>"
+		"DOTA_Tooltip_Ability_Retri6_Description"  "Protect yourself inside a Divine Sphere, rendering you imune to Damage and restoring 5%% of max Health and Mana whenever struck by an enemy.\nThe cooldown of this Ability can not be reduced below half of base cooldown.<font color=\"#FFBB00\">\n\nRank 2: Increased duration and passively gain the Divine Fury effect, causing Auto Attack Critical Strikes to increase your Attack Damage by 2.5%% for 8 secs, stacking up to 100 times. \nRank 3: While active, launch Holy Hammers at nearby heroes every sec, dealing Holy Damage based on your Attack Damage. Passively gain 5 Holy Damage for every Point of Agility and Intellect. \nRank 4: Decreased cooldown and also gain 100 Attack Speed and 100%% increased Holy Damage while active.\n\n</font>"
 		"DOTA_Tooltip_Ability_Retri6_buffduration"    "Duration:" 
 
 		"DOTA_Tooltip_modifier_fanatism"					"Fanaticism"
@@ -8993,7 +8993,7 @@
 		"DOTA_Tooltip_ability_item_class_elemental_bonus_stat3"                            "Intellect:"
 
 		"DOTA_Tooltip_ability_item_class_retri"                                          "<font color=\"#00ffff\">[Ancient] Trident of Hope"
-		"DOTA_Tooltip_ability_item_class_retri_Description"                              "<font color=\"#00EE00\">Sacred Spear has its cooldown reduced by 60%%, heals 25%% of max Health and reduces the cooldown of Divine Sphere by 2 secs, but not below 50%% of Divine Sphere base cooldown."
+		"DOTA_Tooltip_ability_item_class_retri_Description"                              "<font color=\"#00EE00\">Sacred Spear has its cooldown reduced by 60%%, heals 25%% of max Health and reduces the cooldown of Divine Sphere by 2 secs."
 		"DOTA_Tooltip_ability_item_class_retri_bonus_stat1"                              "Attack Damage:"
 
 		"DOTA_Tooltip_ability_item_class_arcane"                                          "<font color=\"#00ffff\">[Ancient] Netherglow Talisman"
