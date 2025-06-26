@@ -1,18 +1,18 @@
 modifier_cobra_poison = class({
-	IsHidden = function() 
+    IsHidden = function() 
         return false 
     end,
-	IsPurgable = function() 
+    IsPurgable = function() 
         return true 
     end,
     IsDebuff = function()
-		return false
-	end,
-	DeclareFunctions = function() 
+    	return false
+    end,
+    DeclareFunctions = function() 
         return 
         {
-		    MODIFIER_EVENT_ON_ATTACK_LANDED
-	    } 
+    	    MODIFIER_EVENT_ON_ATTACK_LANDED
+        } 
     end,
     GetTexture = function()
         return "venomancer_poison_nova"
@@ -25,23 +25,23 @@ function modifier_cobra_poison:OnCreated()
     end
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	
+    
     local parentOrigin = self.parent:GetAbsOrigin()
-
+    
     local particle = ParticleManager:CreateParticle("particles/econ/items/venomancer/toxicant/veno_toxicant_tail_b.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 4, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 4, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", parentOrigin, true)
     self:AddParticle(particle, false, false, 1, false, false)
-
+    
     local particle = ParticleManager:CreateParticle("particles/econ/items/venomancer/toxicant/veno_toxicant_tail_b.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
-	ParticleManager:SetParticleControlEnt(particle, 4, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
+    ParticleManager:SetParticleControlEnt(particle, 4, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", parentOrigin, true)
     self:AddParticle(particle, false, false, 1, false, false)
 end
 
