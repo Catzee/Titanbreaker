@@ -7,7 +7,6 @@ Dagger_Strike = class({
 function Dagger_Strike:Precache(context)
     PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_d.vpcf", context)
     PrecacheResource("particle", "particles/econ/items/venomancer/toxicant/veno_toxicant_tail_b.vpcf", context)
-    PrecacheResource("particle", "particles/items2_fx/orb_of_venom_b.vpcf", context)
 end
 
 function Dagger_Strike:OnAltCastToggled()
