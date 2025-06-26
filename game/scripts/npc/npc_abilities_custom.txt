@@ -28716,6 +28716,14 @@
 				"Target"	"CASTER"
 			}
 		}
+		"OnCreated"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"SpiritVoodooMeditationFarSight"
+			}
+		}
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_dazzle/dazzle_weave_c.vpcf"
@@ -28726,17 +28734,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_resto4"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"IsDebuff"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%vision"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%vision"
-				}
-			}
 			"modifier_resto"
 			{
 				"Passive"	"0"

@@ -27,6 +27,9 @@ LinkLuaModifier("modifer_peaceful_guardian_cyclone_hurricane_debuff", "modifiers
 LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_buff", "modifiers/heroes/spirit_voodoo/spirit_shock/modifier_spirit_voodoo_spirit_shock_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_debuff", "modifiers/heroes/spirit_voodoo/spirit_shock/modifier_spirit_voodoo_spirit_shock_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_spirit_voodoo_spirit_shock_instant_casts", "modifiers/heroes/spirit_voodoo/spirit_shock/modifier_spirit_voodoo_spirit_shock_instant_casts", LUA_MODIFIER_MOTION_NONE)
+-- wd 3rd ability: far sight
+LinkLuaModifier("modifier_spirit_voodoo_meditation_far_sight", "modifiers/heroes/spirit_voodoo/meditation/modifier_spirit_voodoo_meditation_far_sight", LUA_MODIFIER_MOTION_NONE)
+
 -- silencer 3rd ability alt cast support (lua rewrite)
 LinkLuaModifier("modifier_twilight_cleric_lightstream_buff", "modifiers/heroes/twilight_cleric/lightstream/modifier_twilight_cleric_lightstream_buff", LUA_MODIFIER_MOTION_NONE)
 -- silencer sacred shield

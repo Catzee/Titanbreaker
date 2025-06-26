@@ -20971,7 +20971,8 @@ function GetCastRangeBonus(hero)
     if hero:HasModifier("modifier_pathbuff_052") then
         bonus = bonus + 100
     end
-    if GetLevelOfAbility(hero, "resto3") >= 5 then
+    -- If stacks == 1 then far sight learned and activated
+    if hero:GetModifierStackCount("modifier_spirit_voodoo_meditation_far_sight", hero) == 1 then
         bonus = bonus + 150
     end
     if hero:HasModifier("modifier_new3") then
@@ -31738,4 +31739,8 @@ function AstralGuardianRiseOfNatureProtection(event)
         
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond", {duration = event.ability:GetSpecialValueFor("duration2")})
     event.ability:ApplyDataDrivenModifier(event.caster, event.caster, "modifier_rond_inner_cd", {duration = 20 * GetInnerCooldownFactor(event.caster)})
+end
+
+function SpiritVoodooMeditationFarSight(event)
+	event.caster:AddNewModifier(event.caster, event.ability, "modifier_spirit_voodoo_meditation_far_sight", {duration = -1})
 end
