@@ -29729,7 +29729,7 @@ function TyphoonProc( caster, target, alwaysProc )
         DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 500 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
         RestoreResource({caster = caster, amount = 5 * caster.talents[136]})
         EmitSoundOn("Ability.GushCast", target)
-        OnNaturalDisasterProcced( caster, target, 7 )
+        OnNaturalDisasterProcced( caster, target, 6 )
     end
 end
 
