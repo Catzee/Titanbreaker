@@ -1373,7 +1373,7 @@ COverthrowGameMode.PathTalentNames = {
 	"Savagery",
 	"Lycanthrope",
 	"Primal Power",
-	"Mimesis",
+	"Phychic Link",
 	"Nemesis",
 	"Genesis",
 	"Typhoon Thunder",
