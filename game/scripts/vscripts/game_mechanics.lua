@@ -29742,13 +29742,14 @@ function TyphoonProc( caster, target, alwaysProc )
             local myevent = {caster = caster, target = caster, buff = "modifier_typhoon", ability = caster.combat_system_ability }
             DecreaseBuffStack(myevent)
         end
+        -- If this ever changes adjust global precache too (can be found by comment "Typhoon Thunder particle")
         local particle = ParticleManager:CreateParticle("particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(particle)
         DamageUnit({caster = caster, target = target, ability = caster.combat_system_ability, damage = 0, attributefactor = 500 * caster.talents[136], attributechangeall = 1, naturedmg = 1})
         RestoreResource({caster = caster, amount = 5 * caster.talents[136]})
         EmitSoundOn("Ability.GushCast", target)
-        OnNaturalDisasterProcced( caster, target, 7 )
+        OnNaturalDisasterProcced( caster, target, 6 )
     end
 end
 
