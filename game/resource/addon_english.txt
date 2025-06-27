@@ -1723,7 +1723,7 @@
 		"DOTA_Tooltip_Ability_item_allrecipe4_lore"	"Join me in death."
 
 		//1.8.1
-		"DOTA_Tooltip_Ability_resto3_Description"  "Heal all nearby allies every second, but your movement speed is reduced during the effect. Each tick increases the initial healing by 5%%.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Affected targets take 60%% less damage for the duration and instead of having reduced movement speed, you gain a movement bonus. \nRank 4: Reduced cooldown and increased duration.\nRank 5: Far Sight - Gain 600 vision and 150 cast range.\n\n</font>"
+		"DOTA_Tooltip_Ability_resto3_Description"  "Heal all nearby allies every second, but your movement speed is reduced during the effect. Each tick increases the initial healing by 5%%.<font color=\"#FFBB00\">\n\nRank 2: Increased Healing. \nRank 3: Affected targets take 60%% less damage for the duration and instead of having reduced movement speed, you gain a movement bonus. \nRank 4: Reduced cooldown and increased duration.\nRank 5: Far Sight - Passively provide flying vision increased by 600 and 150 cast range.\n\n</font>"
 		"DOTA_Tooltip_Ability_resto3_slow"    "%Movement reduction:"
 
 		"DOTA_Tooltip_modifier_meditation_reduction"                                      "Body and Soul"

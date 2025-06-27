@@ -28716,6 +28716,14 @@
 				"Target"	"CASTER"
 			}
 		}
+		"OnCreated"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"game_mechanics.lua"
+				"Function"	"SpiritVoodooMeditationFarSight"
+			}
+		}
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_dazzle/dazzle_weave_c.vpcf"

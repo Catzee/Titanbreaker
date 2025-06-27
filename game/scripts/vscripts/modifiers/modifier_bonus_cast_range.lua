@@ -11,10 +11,10 @@ modifier_bonus_cast_range = class({
     DeclareFunctions = function()
         return 
         {
-            MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING
+            MODIFIER_PROPERTY_CAST_RANGE_BONUS
         }
     end,
-    GetModifierCastRangeBonusStacking = function(self)
+    GetModifierCastRangeBonus = function(self)
         return self:GetStackCount()
     end,
     GetAttributes = function()
