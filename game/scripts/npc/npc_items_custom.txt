@@ -712,6 +712,10 @@
 		"ItemStackable"	"0"
 		"ItemPermanent"	"1"
 		"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"precache"
+		{
+			"particle"	"particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf"
+		}
 	}
 	"item_neutral_28"
 	{

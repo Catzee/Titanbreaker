@@ -957,7 +957,10 @@ function Precache( context )
 
     --swarm on death particle
     PrecacheResource( "particle", "particles/econ/events/fall_major_2016/force_staff_fm06_dust.vpcf", context )
-	
+    
+    --Typhoon Thunder particle
+    PrecacheResource( "particle", "particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_cast_lightning.vpcf", context )
+  
     --spells
     PrecacheResource( "particle", "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge.vpcf", context )
