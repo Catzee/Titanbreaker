@@ -7527,7 +7527,7 @@ function HealUnit( event )
     if critpossible == true and legionBannerActiveModifier then
         local legionBannerActiveModifierAbility = legionBannerActiveModifier:GetAbility()
         if(legionBannerActiveModifierAbility) then
-            critchance = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor + flatCritChance
+            critchance = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat8")*critchancefactor
             if math.random(1,100) <= critchance then
                 local critDmgFactor = legionBannerActiveModifierAbility:GetSpecialValueFor("bonus_stat9") / 100
                 event.heal = event.heal*critDmgFactor*critdmgbonusfactor
