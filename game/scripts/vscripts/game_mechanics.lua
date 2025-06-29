@@ -31763,3 +31763,11 @@ end
 function SpiritVoodooMeditationFarSight(event)
 	event.caster:AddNewModifier(event.caster, event.ability, "modifier_spirit_voodoo_meditation_far_sight", {duration = -1})
 end
+
+function JungleRangerEntanglingJumpKnockback(event)
+	if(event.ability:IsAltCasted() == false) then
+		return
+	end
+	
+	KnockBack(event)
+end
