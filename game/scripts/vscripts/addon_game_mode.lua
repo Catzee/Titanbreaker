@@ -9486,6 +9486,54 @@ function COverthrowGameMode:PVEAggroAdd(event)
   PVEAggroAdd(event)
 end
 
+function COverthrowGameMode:IsPrimalTankAbilityLearned(source)
+	return IsPrimalTankAbilityLearned(source)
+end
+
+function IsPrimalTankAbilityLearned(source)
+  if(source.super_aggro_tank == nil) then
+    return false
+  end
+  
+  local levelThreshold = 2
+  local level_tank_ability = 0
+  local tank_ability = COverthrowGameMode:GetAbilityByIndexCustom(source, 0, false)
+  
+  if tank_ability and tank_ability:GetName() == "bear1" then
+    levelThreshold = 4
+  end
+  if source.super_aggro_tank_temple then
+    tank_ability = source:FindAbilityByName("Protect1")
+  end
+  if source.super_aggro_tank_prot then
+    tank_ability = source:FindAbilityByName("Protect1")
+    if not tank_ability and source.abil1 then
+      level_tank_ability = source.abil1
+    end
+  end
+  if source.super_aggro_tank_dk then
+    tank_ability = source:FindAbilityByName("Corrupting_Strike")
+  end
+  if source.super_aggro_tank_pala then
+    tank_ability = source:FindAbilityByName("pala1")
+    levelThreshold = 2
+  end
+  if source.super_aggro_tank_dh then
+    tank_ability = source:FindAbilityByName("terror1")
+    levelThreshold = 2
+  end
+  if source.super_aggro_tank_monk2 then
+    tank_ability = source:FindAbilityByName("brew2")
+    levelThreshold = 3
+  end
+  
+  if tank_ability then
+    level_tank_ability = tank_ability:GetLevel()
+  end
+  
+  return level_tank_ability and level_tank_ability >= levelThreshold
+end
+
 function PVEAggroAdd(event)
 	local source = event.attacker
 	local caster = event.unit
@@ -9526,44 +9574,7 @@ function PVEAggroAdd(event)
    local aggro_reduce = 0
    local setHeroStatsAggroPercent = not event.ignore_super_aggro_tank
 	   
-   if source:IsHero() then
-    if source.super_aggro_tank and not event.ignore_super_aggro_tank then
-      local levelThreshold = 2
-      local level_tank_ability = 0
-	  --
-      local tank_ability = COverthrowGameMode:GetAbilityByIndexCustom(source, 0, false) -- source:GetAbilityByIndex(0)
-      if tank_ability and tank_ability:GetName() == "bear1" then
-        levelThreshold = 4
-      end
-      if source.super_aggro_tank_temple then
-        tank_ability = source:FindAbilityByName("Protect1")
-      end
-      if source.super_aggro_tank_prot then
-        tank_ability = source:FindAbilityByName("Protect1")
-        if not tank_ability and source.abil1 then
-          level_tank_ability = source.abil1
-        end
-      end
-      if source.super_aggro_tank_dk then
-        tank_ability = source:FindAbilityByName("Corrupting_Strike")
-      end
-      if source.super_aggro_tank_pala then
-        tank_ability = source:FindAbilityByName("pala1")
-        levelThreshold = 2
-      end
-      if source.super_aggro_tank_dh then
-        tank_ability = source:FindAbilityByName("terror1")
-        levelThreshold = 2
-      end
-      if source.super_aggro_tank_monk2 then
-        tank_ability = source:FindAbilityByName("brew2")
-        levelThreshold = 3
-      end
-      
-      if tank_ability then
-        level_tank_ability = tank_ability:GetLevel()
-      end
-      if level_tank_ability and level_tank_ability >= levelThreshold then
+   if source:IsHero() and IsPrimalTankAbilityLearned(source) and not event.ignore_super_aggro_tank then
         local aggro_bonus_armor = 1 + source:GetPhysicalArmorValue(false) * 0.05
         if aggro_bonus_armor < 1 then
           aggro_bonus_armor = 1
@@ -9582,16 +9593,12 @@ function PVEAggroAdd(event)
        --print(aggro_bonus_armor)
        --print(aggro_bonus_resist)
        --print(aggro_bonus_hp)
-     end
    end
- end
  --print("aggro add")
  if source:HasModifier("modifier_dh_aa_heal") then
    bonus_aggro = bonus_aggro * 2
  end
- if source:HasModifier("modifier_fanatism_aggro") then
-   bonus_aggro = bonus_aggro * 3
- end
+ 
  if source:HasModifier("modifier_item_shield_aggro") then
    bonus_aggro = bonus_aggro * 2
  end
@@ -9601,6 +9608,7 @@ function PVEAggroAdd(event)
  if source:HasModifier("modifier_item_bootshp4") then
   bonus_aggro = bonus_aggro * 2
 end
+
 if source:HasModifier("modifier_mythic_aggro") then
  bonus_aggro = bonus_aggro + source:GetModifierStackCount("modifier_mythic_aggro", nil) / 100
 end
@@ -12119,7 +12127,7 @@ function COverthrowGameMode:FilterDamage( filterTable )
     filterTable["damage"] = 0
     return true
   end
-  
+    
   if attacker:HasModifier("modifier_mol_peace") or victim:HasModifier("modifier_mol_peace") then
     filterTable["damage"] = 0
     return true

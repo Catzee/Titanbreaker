@@ -1245,7 +1245,7 @@
 			"cd"	"1"
 			"evasion"	"0 0 100 100"
 			"weaken"	"0 0 0 100"
-			"aggro"	"0 0 30 30"
+			"aggro"	"0 0 150 150"
 		}
 	}
 	"mars2"
@@ -12288,6 +12288,7 @@
 			"taunt"	"0 0 5 5"
 			"res"	"0 0 -10 -10"
 			"duration"	"5"
+			"bonus_movement_speed"	"0 0 0 0 25"
 		}
 	}
 	"spectre1"
@@ -13614,27 +13615,6 @@
 				"EffectName"	"particles/items2_fx/urn_of_shadows_damage.vpcf"
 				"EffectAttachType"	"attach_hitloc"
 			}
-			"modifier_strikeofvengeance3"
-			{
-				"IsBuff"	"1"
-				"IsDebuff"	"0"
-				"TextureName"	"fix/call1"
-			}
-			"modifier_vengeance_3"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"IsDebuff"	"0"
-				"OnAttacked"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"StrikeOfVengeance3"
-						"on"	"%vengeance3"
-					}
-				}
-			}
 		}
 		"AbilityValues"
 		{
@@ -13980,12 +13960,6 @@
 				"ModifierName"	"modifier_fanatism_2"
 				"Duration"	"%buffduration"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_fanatism_aggro"
-				"Duration"	"%buffaggro"
-			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Magnataur.Empower.Cast"
@@ -14018,12 +13992,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_fanatism_aggro"
-			{
-				"Passive"	"0"
-				"IsHidden"	"1"
-				"IsDebuff"	"0"
-			}
 			"modifier_pala3_counter"
 			{
 				"Passive"	"1"
@@ -14117,14 +14085,13 @@
 		}
 		"AbilityValues"
 		{
-			"dmgfromstat"	"250"
+			"dmgfromstat"	"150"
 			"as"	"0 100 100 100"
 			"res"	"25 25 50 50"
 			"mana"	"10 20 20 20"
 			"lifesteal"	"0 3 3 3"
 			"counter"	"0 0 0 30"
 			"buffduration"	"10"
-			"buffaggro"	"0 0 10 10"
 		}
 	}
 	"pala2"
@@ -14303,8 +14270,8 @@
 		}
 		"AbilityValues"
 		{
-			"dmgfromstat"	"450 600 600 600"
-			"spelldmg"	"450 600 600 600"
+			"dmgfromstat"	"225 300 300 300"
+			"spelldmg"	"225 300 300 300"
 			"chance"	"0 100 100 100"
 			"heal"	"5 10 10 10"
 			"armordur"	"0 0 10 10"
@@ -14343,6 +14310,12 @@
 				"ScriptFile"	"addon_game_mode.lua"
 				"Function"	"AggroOnEnemy"
 				"damagetaken"	"250"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"addon_game_mode.lua"
+				"Function"	"AggroOnEnemy"
+				"health"	"%aggro"
 			}
 			"RunScript"
 			{
@@ -14479,11 +14452,12 @@
 		}
 		"AbilityValues"
 		{
-			"dmgfromstat"	"450"
+			"dmgfromstat"	"200 200 200 250"
 			"slow"	"0 0 -20 -20"
 			"asslow"	"0 0 -10 -10"
 			"duration"	"6"
 			"evasion"	"10 10 10 15"
+			"aggro"	"0 150 150 150"
 		}
 	}
 	"moon5"
@@ -36357,7 +36331,7 @@
 					{
 						"ScriptFile"	"addon_game_mode.lua"
 						"Function"	"AggroOnEnemy"
-						"health"	"175"
+						"health"	"300"
 					}
 				}
 			}
@@ -36625,6 +36599,7 @@
 			"armor"	"0 0 1 1"
 			"armordur"	"0 0 15 15"
 			"cap"	"5"
+			"aggro"	"0 0 175 175"
 		}
 	}
 	"Protect1"
@@ -43452,37 +43427,6 @@
 					}
 				}
 			}
-			"modifier_deathwish_def"
-			{
-				"Passive"	"0"
-				"IsDebuff"	"0"
-				"IsBuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"TextureName"	"fix/strike_blood"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_witness_ambient.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_attack1"
-						}
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_hellfireblast_debuff.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-				}
-			}
 		}
 		"AbilityValues"
 		{
@@ -43532,7 +43476,7 @@
 			{
 				"ScriptFile"	"addon_game_mode.lua"
 				"Function"	"AggroOnEnemy"
-				"health"	"100"
+				"health"	"%aggro"
 			}
 			"RunScript"
 			{
@@ -43650,27 +43594,6 @@
 				"IsHidden"	"0"
 				"IsPurgable"	"1"
 			}
-			"modifier_vengeance_2"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"IsDebuff"	"0"
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"game_mechanics.lua"
-						"Function"	"StrikeOfVengeance2"
-						"on"	"%vengeance2"
-					}
-				}
-			}
-			"modifier_strikeofvengeance2"
-			{
-				"IsBuff"	"1"
-				"IsDebuff"	"0"
-				"TextureName"	"fix/strike_red"
-			}
 		}
 		"precache"
 		{
@@ -43683,6 +43606,7 @@
 			"dmgfromstat"	"7 10 10 10"
 			"lifestealbonus"	"0 0 20 20"
 			"vengeance2"	"0 0 0 1"
+			"aggro"	"0 100 100 100"
 		}
 	}
 	"Fatal_Grasp"
@@ -44284,6 +44208,7 @@
 						"ScriptFile"	"game_mechanics.lua"
 						"Function"	"InfestedWoundWormAttackBuff"
 						"duration"	"%strdur"
+						"active"	"%str_proc"
 						"maxstacks"	"35"
 					}
 					"RunScript"
@@ -44310,14 +44235,15 @@
 		"AbilityValues"
 		{
 			"dmgfromstat"	"750 1000 1000 1000"
-			"str"	"0 0 3 3"
-			"strdur"	"0 0 12 12"
+			"str"	"3"
+			"str_proc"	"0 0 1 1"
+			"strdur"	"45"
 			"worm"	"0 0 1 1"
 			"critdmg"	"1 1 1.5 1.5"
 			"buffduration"	"3"
 			"heal"	"0 100 100 100"
 			"worm_str_to_dmg_pct"	"100"
-			"worm_duration"	"9"
+			"worm_duration"	"12"
 		}
 	}
 	"Rot"
@@ -44418,6 +44344,12 @@
 						"isaoe"	"1"
 						"shadowdmg"	"1"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"addon_game_mode.lua"
+						"Function"	"AggroOnEnemy"
+						"health"	"%aggro"
+					}
 					"Random"
 					{
 						"Chance"	"%chance"
@@ -44500,6 +44432,7 @@
 			"msslow"	"0 0 -10 -10"
 			"chance"	"0 0 0 100"
 			"buffduration"	"10"
+			"aggro"	"0 45 45 45"
 		}
 	}
 	"runic_system"

@@ -3680,10 +3680,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     if event.arcanedmg and caster.nec and caster.nec > 0 and caster.hpPercentValue and caster.manaPercentValue then
         value = value + 0.01 * (caster.hpPercentValue + caster.manaPercentValue) * caster.nec
     end
-
-    if event.chaosdmg and caster:HasModifier("modifier_dh_soulpact_chaos") then
-        value = value + 0.25
-    end
     
     if event.naturedmg and caster:HasModifier("modifier_pathbuff_119") then
         value = value + 0.25
@@ -3706,12 +3702,6 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
     end
     if caster:HasModifier("modifier_item_myth_agi") then
         value = value + 0.25
-    end
-    if event.chaosdmg then
-        local dh_agi_talent = caster:FindAbilityByName("terror3")
-        if dh_agi_talent and dh_agi_talent:GetLevel() >= 4 then
-            value = value + GetAgilityCustom(caster) * 0.001
-        end
     end
     if event.shadowdmg and target then
         local tentacleAuraModifier = target:FindModifierByName("modifier_shadow_cleric_dream_feast_tentacle_debuff")
@@ -3808,7 +3798,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             if caster:GetPrimaryAttribute() == 0 and caster.talents[148] > 0 then
                 value = value + caster.talents[148] * GetPhysicalDamageBonusFromStr(caster, GetStrengthCustom(caster))
             end
-            if GetLevelOfAbility(caster, "brew5") >= 4 then
+            if GetLevelOfAbility(caster, "brew5") >= 4 and COverthrowGameMode:IsPrimalTankAbilityLearned(caster) == false then
                 value = value + 0.5
             end
             value = value + 0.2 * caster.talents[100] + 0.15 * caster.talents[50]
@@ -4062,6 +4052,7 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
             value = value + 0.0025 * speed
         end
     end
+	--[[
     local int_to_holy_pala = caster:FindAbilityByName("pala4")
     if event.holydmg and int_to_holy_pala and int_to_holy_pala:GetLevel() >= 4 then
         local bonus_fire = GetIntellectCustom(caster) * 0.001
@@ -4077,8 +4068,8 @@ function GetElementalDamageModifierAdditive( event, caster, real_caster, target,
         --    bonus_fire = 0.3
         --end
         value = value + bonus_fire
-    end
-    int_to_holy_pala = caster:FindAbilityByName("Lightning_Bolt")
+    end --]]
+    local int_to_holy_pala = caster:FindAbilityByName("Lightning_Bolt")
     if event.naturedmg and int_to_holy_pala and int_to_holy_pala:GetLevel() >= 4 then
         local bonus_fire = GetIntellectCustom(caster) * 0.001
         --if bonus_fire > 0.3 then
@@ -4794,9 +4785,6 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         event.spellcastfrenzy = 0.01
         event.spellcastfrenzy_max = 0.75
     end
-    if caster:HasModifier("modifier_taunt123") and GetLevelOfAbility(caster, "mars6") >= 4 then
-        multiplicative_bonus = multiplicative_bonus * 2
-    end
     if caster:HasModifier("modifier_manacost_reduction") then
         multiplicative_bonus = multiplicative_bonus * 2
     end
@@ -4926,9 +4914,6 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     
     if caster:HasModifier("modifier_unholyaura") then
         multiplicative_bonus = multiplicative_bonus * 1.15
-    end
-    if isaoe and GetLevelOfAbility(caster, "mars4") >= 3 and caster:GetPhysicalArmorValue(false) > 0 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * caster:GetPhysicalArmorValue(false))
     end
     if isaoe and caster:HasModifier("modifier_stormcrow") then
         multiplicative_bonus = multiplicative_bonus * 2
@@ -5296,7 +5281,7 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         local buffstacks = caster:GetModifierStackCount("modifier_talent_thirst", nil)
         multiplicative_bonus = multiplicative_bonus * (1 + 0.05 * buffstacks * caster.talents[173])
         buffstacks = caster:GetModifierStackCount("modifier_bof_stack", nil)
-        if buffstacks > 0 then
+        if buffstacks > 0 and COverthrowGameMode:IsPrimalTankAbilityLearned(caster) then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.01 * buffstacks)
         end
         buffstacks = caster:GetModifierStackCount("modifier_cotb", nil)
@@ -5306,9 +5291,6 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
         end
         if caster:HasModifier("modifier_invisible") and GetLevelOfAbility(caster, "combat6") >= 5 then
             multiplicative_bonus = multiplicative_bonus * 2
-        end
-        if caster:HasModifier("modifier_metamorph_terror2") then
-            multiplicative_bonus = multiplicative_bonus * 1.25
         end
         if caster:HasModifier("modifier_talent_flurry") then
             multiplicative_bonus = multiplicative_bonus * (1 + 0.15 * caster.talents[164])
@@ -5706,12 +5688,6 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if fire_dot_talent and fire_dot_talent:GetLevel() >= 4 then
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
-    if isaoe then
-        fire_dot_talent = caster:FindAbilityByName("terror5")
-        if fire_dot_talent and fire_dot_talent:GetLevel() >= 4 then
-            multiplicative_bonus = multiplicative_bonus * 1.5
-        end
-    end
     if event.isdot and caster:HasModifier("modifier_item_ancient_dot") then
         multiplicative_bonus = multiplicative_bonus * 1.25
     end
@@ -5813,14 +5789,6 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
     if event.consumesuncharge and caster.starfallDamage then
         multiplicative_bonus = multiplicative_bonus * caster.starfallDamage
     end
-    local dk_blood_stacks = caster:GetModifierStackCount("modifier_strikeofvengeance2", nil)
-    if dk_blood_stacks > 0 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * dk_blood_stacks)
-    end
-    local pala_retal_stacks = caster:GetModifierStackCount("modifier_strikeofvengeance3", nil)
-    if pala_retal_stacks > 0 then
-        multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * pala_retal_stacks)
-    end
     if event.immolatebonus ~= nil and target then
         if target:HasModifier("modifier_magmaburn2") then
             multiplicative_bonus = multiplicative_bonus * (1 + event.immolatebonus/100.0)
@@ -5876,19 +5844,10 @@ function GetAbilityDamageModifierMultiplicative( event, caster, real_caster, tar
             ParticleManager:ReleaseParticleIndex(particle)
         end
     end
-    local bearroartalent = caster:FindAbilityByName("bear6")
-    if bearroartalent and bearroartalent:GetLevel() >= 3 and caster:HasModifier("modifier_bear_roar_armor") then
-        multiplicative_bonus = multiplicative_bonus * 1.5
-    end
     local fury_as_abil = caster:FindAbilityByName("fury2")
     local attackSpeedForFury2 = GetAttackSpeedCustom(caster)
     if fury_as_abil and fury_as_abil:GetLevel() >= 4 and attackSpeedForFury2 > 0 then
         multiplicative_bonus = multiplicative_bonus * (1 + 0.1 * attackSpeedForFury2)
-    end
-    local dk_resi_dmg = caster:FindAbilityByName("Rot")
-    if dk_resi_dmg and dk_resi_dmg:GetLevel() >= 4 then
-        local spellResToDmg = math.min(0.25, caster:Script_GetMagicalArmorValue(false, nil))
-        multiplicative_bonus = multiplicative_bonus * (1 + spellResToDmg)
     end
     if caster:HasModifier("item_mother_of_dragons") then
         multiplicative_bonus = multiplicative_bonus * 1.15
@@ -12752,7 +12711,9 @@ function SwordSwipe(event)
     end
 	event.attributefactor = event.attributefactor + event.attributefactor*targetamount*event.aoebonus/100
     --event.includeauto = event.includeauto + event.includeauto*targetamount*event.aoebonus/100
-
+	
+	local maxHpAggro = ability:GetSpecialValueFor("aggro")
+	
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if enemy ~= nil then
@@ -12764,6 +12725,12 @@ function SwordSwipe(event)
                     ParticleManager:ReleaseParticleIndex(particle)
 					event.target = enemy
 					DamageUnit(event)
+					
+					if(maxHpAggro > 0) then
+						event.health = maxHpAggro
+						COverthrowGameMode:AggroOnEnemy(event)
+						event.health = nil
+					end
 				end
 			end
 		end
@@ -17726,38 +17693,8 @@ function StrikeOfVengeance( event )
     end
 end
 
-function StrikeOfVengeance2( event )
-    local caster = event.caster
-    --local dmg = event.dmg
-    if event.on and event.on == 1 then
-        event.buff = "modifier_strikeofvengeance2"
-        event.dur = 20
-        event.target = caster
-        event.max = 10
-        event.self = true
-        ApplyBuffStack(event)
-
-        --ability:ApplyDataDrivenModifier(caster, caster, buff, {Duration = -1})
-        --caster:SetModifierStackCount(buff, ability, dmg)
-        --caster.lastdamagetaken = dmg
-    end
-end
-
 function SanctifiedCrusaderRetaliation( event )
     event.target:AddNewModifier(event.caster, event.ability, "modifier_godschosen_2", {duration = event.Duration})
-end
-
-function StrikeOfVengeance3( event )
-    local caster = event.caster
-    --local dmg = event.dmg
-    if event.on and event.on == 1 then
-        event.buff = "modifier_strikeofvengeance3"
-        event.dur = 8
-        event.target = caster
-        event.max = 25
-        event.self = true
-        ApplyBuffStack(event)
-    end
 end
 
 function RotApplyBuff( event )
@@ -26955,9 +26892,6 @@ function GetTotalDamageTakenFactor(caster, attacker)
     if caster:HasModifier("modifier_interruptimune") then
         factor = factor * 0.5
     end
-    if caster:HasModifier("modifier_deathwish_def") then
-        factor = factor * 0.5
-    end
     if caster:HasModifier("modifier_dk_tank_def") then
         factor = factor * 0.5
     end
@@ -31205,7 +31139,9 @@ function Brew3(event)
 
     local abilityName = lastAbility:GetName()
     if abilityName == "brew1" then
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_fire", {Duration = 30})
+		if(COverthrowGameMode:IsPrimalTankAbilityLearned(caster) == false) then
+            ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_fire", {Duration = 30})
+		end
         Brew3Fire(caster)
     end
     if abilityName == "brew2" then
@@ -31223,7 +31159,9 @@ function Brew3(event)
     end
     if abilityName == "brew6" then
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_invisible", {Duration = 10})
-        ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_shadow", {Duration = 30})
+		if(COverthrowGameMode:IsPrimalTankAbilityLearned(caster) == false) then
+            ability:ApplyDataDrivenModifier(caster, caster, "modifier_brew_shadow", {Duration = 30})
+		end
         local particle = ParticleManager:CreateParticle("particles/items_fx/phylactery_target_shadow.vpcf", PATTACH_POINT_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(particle)
     end
@@ -31396,7 +31334,7 @@ function Brew5Taunt(event)
     local caster = event.caster
     local ability = event.ability
 
-    if ability:GetLevel() >= 2 and GetLevelOfAbility(caster, "brew2") >= 3 then
+    if ability:GetLevel() >= 2 and COverthrowGameMode:IsPrimalTankAbilityLearned(caster) then
         ability:ApplyDataDrivenModifier(caster, caster, "modifier_taunt123", {Duration = event.duration})
     end
 end
@@ -31405,7 +31343,7 @@ function Brew1AggroEnemy(event)
     local caster = event.caster
     local ability = event.ability
 
-    if ability:GetLevel() >= 2 and GetLevelOfAbility(caster, "brew2") >= 3 then
+    if ability:GetLevel() >= 2 and COverthrowGameMode:IsPrimalTankAbilityLearned(caster) then
 		COverthrowGameMode:AggroOnEnemy(event)
     end
 end
@@ -31786,6 +31724,10 @@ function InfestedWoundDamageReduction(event)
 end
 
 function InfestedWoundWormAttackBuff(event)
+	if(event.active ~= 1) then
+		return
+	end
+	
     local hero = event.attacker:GetOwnerEntity()
 
     ApplyBuffStack({
