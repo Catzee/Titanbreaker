@@ -2730,4 +2730,10 @@
 	"item_infused_raindrop"	"REMOVE"
 	"item_tome_of_knowledge"	"REMOVE"
 	"item_faerie_fire"	"REMOVE"
+	"item_dragon_lance"	"REMOVE"
+	"item_recipe_dragon_lance"	"REMOVE"
+	"item_specialists_array"	"REMOVE"
+	"item_recipe_specialists_array"	"REMOVE"
+	"item_hydras_breath"	"REMOVE"
+	"item_recipe_hydras_breath"	"REMOVE"
 }
